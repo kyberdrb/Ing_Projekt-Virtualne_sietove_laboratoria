@@ -1,0 +1,6 @@
+xvfb+thightvnc - najprv vytvorit virtualny displej a potom spustit vnc server. funkcne, ale nestabilne. Funguje na debiane (niekedy), na ubuntu som neskusal, lebo tam funguje x2go :)
+x2go - jednoducha instalacia servera aj klienta, ale iba pre ubuntu! funguje vynikajuco na ubuntu, ale na debian sa neda nainstalovat. najprv som si myslel, ze je to kvoli tomu, ze stretch v aprili 2017 este stale nebol oficialne vydany, pretoze debian vyvojari cakali na jadro 4.10, ktore este nevyslo, kvoli zavislostiam. Nefunguje ani "apt-get", ani "aptitude". Zavislosti nenaslo ani po pridani backportov z jessie. RIESENIE: trebalo nainstalovat balicek "libpng12-0" z jessie repozitarov, a potom to islo pekne nainstalovat cez "sudo aptitude install x2goserver x2goserver-xsession"
+
+xdummy - google "headless xorg vnc access"
+xrdp - vid youtube "xrdp server ubuntu"
+teamviewer - po pridani architektury "i386" cez dpkg sa sice nainstaloval, ale pri prvotnom nastaveni si vyzadoval framebuffer "/dev/fb/0". to si vyzaduje dalsi zasah do hostovskeho systemu, co je neziaduce

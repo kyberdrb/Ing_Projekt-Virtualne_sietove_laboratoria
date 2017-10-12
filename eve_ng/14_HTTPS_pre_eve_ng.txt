@@ -1,0 +1,5 @@
+http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve     <-- tento návod som použil
+
+alebo
+
+http://www.eve-ng.net/index.php/documentation/howto-s/82-howto-enable-letsencrypt-on-eve-2

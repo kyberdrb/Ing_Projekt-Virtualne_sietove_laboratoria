@@ -1,0 +1,21 @@
+-Ked chceme zmenit heslo vnc servera, zadame prikaz
+
+  tightvncpasswd
+
+-Potom zadame nove heslo. Heslo moze mat max. 8 znakov. Z bezpecnostnych dovodov odporucam, aby malo heslo prave 8 znakov: min 2 cisla, 2 male a 2 velke pismena a 1 specialny znak (napr. medzeru). Bezpecnost hesla sa da odmerat na stranke "http://www.passwordmeter.com/". Toto heslo opravnuje pouzivatelov sledovat VNC obrazovku a zaroven pouzivat klavesnicu aj mys.
+
+-Potvrdime nove heslo
+
+-Nasledne sa server spyta, ci chceme zadavat aj tzv. "view-only" heslo ("Would you like to enter a view-only password (y/n)?"). Toto heslo opravnuje pouzivatelov vylucne sledovat VNC obrazovku, bez moznosti pouzivat klavesnicu a mys. Ak ho chceme zadat, stlacime "y". Co sa tyka EVE-ng, pouzivatel s nim bude pracovat cez web rozhranie, VNC sluzi len ako manazment pre VMware Player. Preto zadanie "view-only" hesla odmietneme volbou "n".
+
+-nasledne ukoncime vsetky spustene vnc servery
+
+  tightvncserver -kill :0
+  tightvncserver -kill :1
+  tightvncserver -kill :2
+
+-potom mozme spustit vnc server nanovo
+
+  tightvncserver
+
+-teraz sa uz mozeme autentifikovat novym heslom.

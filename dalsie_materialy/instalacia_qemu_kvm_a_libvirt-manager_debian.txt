@@ -1,0 +1,9 @@
+aptitude install virt-manger qemu qemu-kvm
+
+Aby vedel aj bezny pouzivatel spustat a vytvarat kvm virtualky, treba ho pridat do skupin "kvm" a "libvirt"
+# adduser <youruser> kvm
+# adduser <youruser> libvirt
+
+Zdroje:
+https://wiki.debian.org/KVM
+https://wiki.debian.org/QEMU

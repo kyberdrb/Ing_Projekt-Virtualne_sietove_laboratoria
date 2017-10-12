@@ -1,0 +1,67 @@
+Šablóny pre jednotlivé zariadenia sú uložené v adresári
+/opt/unetlab/html/templates
+
+==========================================================================
+
+-Cisco ASAv: vzdialený prístup je cez VNC, nie Telnet.
+
+  sudo nano asav.php
+
+zmeníme parametre nasledovne:
+  $p['console'] = 'vnc';
+
+==========================================================================
+
+-Cisco IOL (router/switch): nastaviť veľkosť RAM na 240MB a pridat 1 skupinu (= 4 porty) seriakov:
+
+  sudo nano iol.php
+
+zmeníme parametre nasledovne:
+  $p['ram'] = 240;
+  $p['serial'] = 1;
+
+Sice switch so seriakmi je divny, ale vsak co, aspon bude menej roboty a student nemusi premyslat
+
+==========================================================================
+
+-Cisco v7206VXR: nastaviť veľkosť RAM na 240MB (optimálne množstvo) a pridáme rozširujúcu
+kartu na 4 Ethernet porty.
+
+  sudo nano c7200.php
+
+zmeníme parametre nasledovne:
+  $p['ram'] = 240;
+  $p['slot1'] = 'PA-4E';
+
+==========================================================================
+
+-Juniper Olive: nastaviť veľkosť RAM na 2GB pre správne fungovanie.
+
+  sudo nano olive.php
+
+zmeníme parametre nasledovne:
+  $p['cpu'] = 4;
+  $p['ram'] = 2048;
+
+==========================================================================
+
+-Juniper vMX: nastaviť veľkosť RAM na 1GB (optimálne množstvo)
+
+  sudo nano vmx.php
+
+zmeníme parametre nasledovne:
+  $p['cpu'] = 4;
+  $p['ram'] = 1024;
+
+Zdroj:
+  http://nil.uniza.sk/sk/node/654
+
+==========================================================================
+
+-Juniper vSRX: nastaviť veľkosť RAM na 4GB pre správne fungovanie.
+
+  sudo nano vsrx.php
+
+zmeníme parametre nasledovne:
+  $p['cpu'] = 2;
+  $p['ram'] = 2048;

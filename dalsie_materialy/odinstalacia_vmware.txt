@@ -1,0 +1,8 @@
+sudo vmware-installer -u vmware-*
+
+potom vyhodi chybovu hlasku, v ktorej vylistuje zoznam nainstalovanych vmware produktov. potom mozeme konkretizovat prikaz podla tohto zoznamu:
+
+sudo vmware-installer -u vmware-player vmware-vix
+
+Zdroje:
+  https://pubs.vmware.com/workstation-9/index.jsp?topic=%2Fcom.vmware.ws.get_started.doc%2FGUID-05E4C876-F32C-49D2-82B4-8C759691E7F5.html

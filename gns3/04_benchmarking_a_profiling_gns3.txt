@@ -1,0 +1,4 @@
+kolko pamate a cpu vyzaduju jednotlive stroje?
+odskusat spravanie, ked sa spusti niekolko desiatok zariadeni naraz? ako sa bude eve spravat pri 100 routroch? otestovat vsetky boxy.
+A co windows a kvm_acceleration v template?
+A co cisco csr a ukms v kerneli?

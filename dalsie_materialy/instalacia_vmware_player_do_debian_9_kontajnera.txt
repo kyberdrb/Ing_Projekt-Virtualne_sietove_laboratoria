@@ -1,0 +1,58 @@
+Instalacia VMWare Workstation Player 12.5.5 (cez vnc do odysea aj do kontajnera)
+
+Hostovsky operacny system je Debian 9 Stretch. V nom bezi LXC kontajner, ktory ma tiez Debian 9 Stretch. Do hostovskeho systemu sme potrebovali nainstalovat balicky potrebne pre instalaciu VMware. Medzi potrebnymi balickami pre VMware je aj linux-headers. VMware striktne vyzaduje, aby bola verzia linux-headers zhodna s aktualne beziacim jadrom, preto je operacny system v kontajneri a hostovsky operacny system zhodny!
+
+VMware instalujeme do hostovskeho operacneho systemu na to, aby VMware nainstaloval moduly do kernelu, lebo z kontajnera sa to neda, pretoze jadro je zdielane a neda sa modifikovat zvnutra kontajnera. Potom nainstalujeme VMware aj do kontajnera. Avsak pouzivame a vzdialene spravujeme iba VMware vnutri kontajnera, nie v hostovskom systeme (tato myslienka sa ukazala ako mylna - vid "Zaver"). Kontajnerovy VMware potom spravujeme bud pomocou VNC, alebo inym sposobom zdielania vzdialenej pracovnej plochy v headless serveri.
+
+Zakladny postup:
+0) Uistime sa, ze mame nainstalovane linux-headers v rovnakej verzii ako aktualny kernel na hostovskom OS.
+1) Nainstalujeme VMware do hostovskeho operacneho systemu.
+2) Nainstalujeme VMware do kontajnera
+3) Spustime VMware v kontajneri
+
+Podrobny postup:
+-aktualizujeme server
+
+  aptitude update
+  aptitude upgrade
+
+Pokial bude medzi aktualizovanymi balickami aj novsi kernel, potom musime po nainstalovani aktualizacii restartovat cely server.
+
+-Nainstalujeme potrebne balicky:
+(https://askubuntu.com/questions/40979/what-is-the-path-to-the-kernel-headers-so-i-can-install-vmware)
+
+  apt-get install gcc linux-headers-$(uname -r) build-essential
+
+-stiahneme vmware player
+
+  wget http://www.vmware.com/go/tryplayerpro-linux-64
+
+-nainstalujeme stiahnuty vmware player ako sudo resp. root
+
+  chmod +x
+  sudo ./<nazov_stiahnuteho_suboru_vmware_playera>
+  
+-spustime vmware player z terminalu prikazom
+
+  vmplayer
+
+alebo vytvorime maly skript na pracovnu plochu, ktory bude spustat VMware Player
+
+    -urobime skript na ploche na spustanie vmware player, lebo cez application menu -> system -> vmware player dava chybu pri spusteni:
+
+#!/bin/bash
+exec /usr/lib/vmware/lib/vmplayer
+
+    -vmware player spustime dvojklikom na skript (plati pre xfce4)
+
+
+    -pretoze odkaz v "Application menu -> System -> VMware Player" nefunguje
+
+-Po prvom vykonani prikazu "vmplayer" na hostovskom systeme nam vyskoci dialogove okno, ktore nas vyzve na instalaciu modulov do aktualneho kernelu. Pokial nam vyhodi okno na zadanie cesty ku "GCC", nainstalujeme balicek "build-essential". Po nainstalovani potrebnych balickov znova spustime "vmplayer" a v dialogovom okne potvrdime instalaciu modulov kliknutim na tlacidlo "Install".
+
+-Tento isty postup opakujeme na instalaciu VMware Player do kontajnera.
+
+============================================
+Zaver
+============================================
+-Moduly sa nainstaluju do hostovskeho systemu bez problemov. Predpokladali sme, ze LXC kontajner vie spolupracovat s modulmi v hostovskom systeme. Ale po nainstalovani a spusteni VMware Player v LXC kontajneri sa znova zobrazilo dialogove okno na instalaciu modulov do kernelu. Pri pokuse o instalaciu kernel modulov z LXC kontajnera instalacia zlyhala. Z toho vyplyva, ze LXC kontajner nedokaze pristupovat ku kernelovym modulom v hostovskom systeme.
