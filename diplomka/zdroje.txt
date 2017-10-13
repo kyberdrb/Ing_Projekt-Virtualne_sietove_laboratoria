@@ -1,0 +1,8 @@
+Zdroj:
+  http://frcatel.fri.uniza.sk/~beerb/latex/latex.htm
+
+Práca:
+  http://frcatel.fri.uniza.sk/~beerb/latex/BP-DP.rar
+
+Prezentácia:
+  http://frcatel.fri.uniza.sk/~beerb/latex/prezentacia.tex

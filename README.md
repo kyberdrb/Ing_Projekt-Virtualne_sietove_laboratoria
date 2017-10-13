@@ -1,6 +1,5 @@
 # Ing-Projekt_Ing-Virtualne_sietove_laboratoria
-Inžiniersky projekt - Využitie virtuálnych sieťových laboratórií pre 
-podporu vyučovania
+Inžiniersky projekt - Virtuálne sieťové laboratórium
 
 # TODO - Projekt
 - (Chalani) Urobiť VMware virtuálku pre GNS3 VM a otestovať 
@@ -21,8 +20,8 @@ virtuáliek súčasne
 
 
 # TODO - Diplomová práca
-- vymyslieť názov témy (Vhodnosť na podporu výučby)
-- urobiť kostru (obsah) v latexu (získať/vytvoriť šablónu)
+- *vymyslieť názov témy*
+- *urobiť kostru (obsah) v latexu (získať/vytvoriť šablónu)*
 - kritériá testovania (kompatibilita zariadení, maximálny počet 
 zariadení každého typu, stabilita backendu a frontendu, odlišnosti 
 oproti ostatným nástrojom) -> v každom nástroji otestovať dve zariadenia 
