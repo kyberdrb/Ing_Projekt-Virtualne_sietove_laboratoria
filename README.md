@@ -2,6 +2,8 @@
 Inžiniersky projekt - Virtuálne sieťové laboratórium
 
 # TODO - Projekt
+- (Chalani) zvyknúť si na GitHub
+- (Chalani) dať im Bombalove GNS3 návody 
 - (Chalani) Urobiť VMware virtuálku pre GNS3 VM a otestovať 
 kompatibilitu zariadení + dokumentácia (inštalácia virtuálky, import 
 zariadení na GNS3 VM server, zoznam dostupných funkčných zariadení)
