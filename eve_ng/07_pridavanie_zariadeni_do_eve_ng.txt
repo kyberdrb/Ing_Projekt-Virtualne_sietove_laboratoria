@@ -152,20 +152,7 @@ Prihlasovacie údaje na jednotlivé zariadenia by nemali byť žiadne. Ak naprie
 
 5) Odskúšame pridané zariadenie vo webovom rozhraní. Zariadenie stačí pridať na pracovnú plochu, buď cez ikonku "plus" v nástrojovej lište, alebo pravým tlačidlom a zvoliť možnosť "Add node". Z rozbaľovacieho zoznamu vyberieme druh zariadenia, ktorý sme pridávali, ponecháme predvolené nastavenia a klikneme na "Add". Zariadenie spustíme tak, že naň klikneme pravým tlačidlom a zvolíme možnosť "Start".
 
-Poznámka pre Juniper Olive, Juniper VMx a Juniper VSRx:
-  Niekedy treba buchat chvilu na Enter, ked sa to zatne na viac ako 5 min obrazovke po nacitani kernela:
-
-Hit [Enter] to boot immediately, or space bar for command prompt.
-Booting [/kernel]...               
-platform_early_bootinit: M/T Series Early Boot Initialization
-Olive CPU
-GDB: debug ports: sio
-GDB: current port: sio
-KDB: debugger backends: ddb gdb
-KDB: current backend: ddb
-
-Poznámka pre Juniper Olive, Juniper VMx a Juniper VSRx:
-  Na boxy sa treba hned prihlasit, inak box zblbne a neda sa viac prihlasit
+Pre problémy so spúšťamím zariadenia, viď "riesenie_problemov_so_zariadeniami.txt"
 
 6) Teraz sa pokúsime k zariadeniu pripojiť. V EVE-ng sa k zariadeniam dá pripojiť buď cez "telnet", alebo cez "vnc". To, ktorý spôsob zvoliť sa líši podľa zariadenia (spôsob, ako sa pripojiť ku zariadeniam je uvedený v tabuľke).
 Pokiaľ máme pre zariadenie použiť spôsob pripojenia "telnet", použijeme terminál (pre linuxové distribúcie) resp. PuTTY (alebo iný emuátor terminálu pre Windows)
