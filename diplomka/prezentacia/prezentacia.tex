@@ -1,0 +1,266 @@
+%\documentclass[17pt,compress,aspectratio=1610]{beamer}
+%\documentclass[17pt,compress,aspectratio=169]{beamer}
+%\documentclass[17pt,compress,aspectratio=149]{beamer}
+%\documentclass[17pt,compress,aspectratio=54]{beamer}
+%\documentclass[17pt,compress,aspectratio=43]{beamer}
+\documentclass[compress,aspectratio=32]{beamer}
+\usepackage[slovak]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,amscd}
+\usepackage{curves,bezier,epic,rotating}
+\usepackage{array,hhline}
+
+\pagestyle{empty}
+
+
+\usetheme{Warsaw}
+%\usetheme{Madrid}
+%\usetheme{AnnArbor}
+
+
+%\useoutertheme{infolines}
+%\useoutertheme[hooks]{tree}
+
+%\useinnertheme{circles}
+
+%\usecolortheme{crane}
+%\usecolortheme{seagull}
+%\usecolortheme{wolverine}
+
+\setbeamercovered{transparent}
+
+\newcommand\modra{\color{blue}}
+\def\Bcervena{\color{red!90!black}}
+\def\Bmodra{\color{blue!90!black}}
+\def\Bcierna{\color{blue!10!black}}
+\def\Mmodra{\color{blue!30!white}} 
+\newcommand\fsectionN[1][|]{\bf{\Large\bf\color{white!80!blue}\sectionN\ #1\ }\color{white!90!black}\large\bf}
+
+\begin{document}
+
+
+
+\title{\bf\color{yellow!90!black} 
+Elektronické spracovanie a prezentácia dokumentov \\[-.5em]
+\color{white!50!blue}\rule{.9\linewidth}{.5pt}}
+\subtitle{\color{white!80!blue} skúsenosti }
+\author[rb]{\Large\bf Autor Autor\\
+\large Fakulta riadenia a informatiky, Žilinská univerzita}
+\date{24. 12. 2015 Žilina}
+
+
+\setbeamercolor{normal text}{fg=black!90!white,bg=white!90!blue}
+%-----------------------------------------------------------------------------------------------------------
+\begin{frame}[t]
+\titlepage
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%..... nazov do horneho riadku
+\def\sectionN{Elektronické spracovanie a prezentácia dokumentov}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{\fsectionN[]}
+{\bf\Bmodra Názor:} 
+
+Úplne postačí, ak vie študent ovládať niektorý z kancelárskych programov 
+a semestrálnu, seminárnu alebo aj bakalársku či diplomovú prácu napíše.
+\pause
+
+\smallskip
+
+{\bf\Bmodra Musíme uznať, že to je hlboká pravda, prácu napíše.
+\pause 
+
+Ale:} 
+
+\begin{itemize}
+\item Ako vyzerá táto práca?   
+                               
+\item Je čitateľná?            
+                               
+\item Pôsobí estetickým dojmom?
+
+\item Neznepokojuje nás?                  
+                                          
+\item Nepôsobí na nás rušivo?             
+                                          
+\end{itemize}
+\end{frame}
+
+%..... nazov do horneho riadku
+\def\sectionN{ESPD}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{\fsectionN Základy typografie}
+
+{\bf\Bmodra Typografia:}
+
+\begin{itemize}
+\item Často sa zanedbáva (hlavne kompozícia strany a dokumentu).
+                                                 
+\item Za posledných dvadsať rokov výrazný pokrok. 
+      
+\item Skoro všetka práca na vývoji dokumentov a kníh sa vykonáva na počítačoch.
+      
+\end{itemize}
+\pause
+
+\medskip
+
+
+\begin{itemize}
+\item Nezanedbateľná je aj estetická časť dokumentu.\\
+      {\bf Je iba na tvorcovi, či ma cit pre krásu alebo cit pre gýč.}
+      
+\item Správna kompozícia stránky má svoje pravidlá:
+      
+  \begin{itemize}
+  \item v texte nesmú byť príliš veľké ani príliš malé medzery,
+      
+  \item správne delenie slov (často sa ignoruje),
+
+  \item sadzobný obrazec 
+
+
+  \end{itemize}
+
+\end{itemize}
+ 
+
+
+\end{frame}
+
+%
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{\fsectionN Optický stred}
+
+
+\begin{block}{Základné pravidlo získané na základe historických skúseností}
+Stred plochy sadzby musí byť umiestnený vždy nad~geometrickým stredom strany. 
+\end{block}\pause
+
+\begin{center}
+\setlength{\unitlength}{.33em}%
+\begin{picture}(40,30)
+\put(20,0){\put(-20,0){\line(1,0){40}}\put(-20,0){\line(0,1){30}}%
+  \put(20,30){\line(0,-1){30}}\put(20,30){\line(-1,0){40}}%
+\only<2-3>{\Mmodra\thinlines\curve(0,30,20,0)\curve(0,30,-20,0)}%
+\only<2-3>{\Mmodra\thinlines\curve(-20,30,20,0)\curve(20,30,-20,0)%
+  \put(0,15){\circle*{1}}\put(0,13){\makebox(0,0)[t]{G}}}%
+\only<3>{\modra\thinlines\curve(-10,20,10,20)%
+  \put(0,20){\circle*{1}}\put(0,22){\makebox(0,0)[b]{O}}}%
+}
+\end{picture}
+%
+\qquad
+%
+\begin{picture}(20,30)
+\put(0,0){\line(1,0){20}}\put(0,0){\line(0,1){30}}%
+  \put(20,30){\line(-1,0){20}}\put(20,30){\line(0,-1){30}}%
+\only<2-3>{\Mmodra\thinlines\curve(10,30,20,0)\curve(10,30,0,0)}%
+\only<2-3>{\Mmodra\thinlines\curve(0,30,20,0)\curve(20,30,0,0)%
+  \put(10,15){\circle*{1}}\put(10,13){\makebox(0,0)[t]{G}}}%
+\only<3>{\modra\thinlines\curve(5,20,15,20)%
+  \put(10,20){\circle*{1}}\put(10,22){\makebox(0,0)[b]{O}}}%
+\end{picture}
+\end{center}
+
+
+
+
+
+
+
+
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{\fsectionN \LaTeX}
+
+\begin{itemize}
+\item Primárne je určený na sadzbu odborných a vedeckých textov.           
+                                                                           
+\item Bez problémov dokáže realizovať aj hladkú alebo zmiešanú sadzbu.     
+                                                                           
+\item Nie je WYSIWYG (What You See Is What You get) ako programy typu word. 
+                                                                           
+\item Je nazávislý na OS (Linux, MS Windows, Mac).                         
+                                                                           
+\item Nie je klikací.                                                       
+
+\end{itemize}
+
+{\bf\Bmodra
+Nedá sa používať tak ako word --- sadnem, klikám, 
+klikám,~\dots, klikám a uklikám sa možno k~výsledku.}
+
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{\fsectionN Niektoré chyby pri tvorbe dokumentov}
+
+\begin{itemize}
+\item Wordovské rieky.
+                                                                           
+\item Nedodržanie typografickej úpravy.
+                                                                           
+\item Neprehľadnosť atď.
+                                                                           
+\end{itemize}
+
+\smallskip
+
+Príklad nedodržania elementárnych typografických pravidiel.
+Tu sa vkladajú obrázkové súbory:
+
+%\includegraphics[width=.49\linewidth]{obr2a.jpg}
+\
+%\includegraphics[width=.49\linewidth]{obr2b.jpg}
+
+\end{frame}
+
+
+
+
+
+\def\sectionN{}
+%----------------------------------------------------------------------------------------
+\begin{frame}[t]
+\frametitle{\fsectionN[]}
+
+\Huge
+
+\vfill
+
+\centerline{Ďakujem za pozornosť.}
+
+\vfill
+
+
+\end{frame}
+
+
+
+
+
+
+%
+\end{document}
+
+%
