@@ -111,11 +111,12 @@ Prihlasovacie údaje na jednotlivé zariadenia by nemali byť žiadne. Ak naprie
     tar xf ../csr1000v-universalk9.03.13.00.S.154-3.S-ext.ova
 
     # Skonvertujeme extrahovaný vmdk disk do formátu qcow2
-    /opt/qemu/bin/qemu-img convert -f vmdk -O qcow2 <vmdk_disk>.vmdk hda.qcow2
+    /opt/qemu/bin/qemu-img convert -O qcow2 <vmdk_disk>.vmdk hda.qcow2
 
     # Presunieme obraz disku na správne miesto
     mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
     mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+
 2.8) QEMU - Ak je obraz disku vo formáte "img", vykonáme tieto príkazy:
     # Nahráme obraz disku na server
     sftp root@<ip_adresa_UnetLabu>
