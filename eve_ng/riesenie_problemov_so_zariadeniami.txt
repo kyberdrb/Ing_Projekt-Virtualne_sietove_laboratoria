@@ -1,0 +1,17 @@
+Poznámka pre Juniper Olive, Juniper VMx a Juniper VSRx:
+  Niekedy treba buchat chvilu na Enter, ked sa to zatne na viac ako 5 min obrazovke po nacitani kernela:
+
+Hit [Enter] to boot immediately, or space bar for command prompt.
+Booting [/kernel]...               
+platform_early_bootinit: M/T Series Early Boot Initialization
+Olive CPU
+GDB: debug ports: sio
+GDB: current port: sio
+KDB: debugger backends: ddb gdb
+KDB: current backend: ddb
+
+Poznámka pre Juniper Olive, Juniper VMx a Juniper VSRx:
+  Na boxy sa treba hned prihlasit, inak box zblbne a neda sa viac prihlasit
+
+Juniper zariadenia
+  Ak sa zariadenie zasekne v "debug shell" 'db>', treba zadať príkaz "cont". Router sa reštartuje a mal by sa spustiť správne.
