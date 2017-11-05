@@ -1,0 +1,23 @@
+Juniper vMX 17.1
+
+17:38
+17:41
+
+-Nahodit podla oficialneho navodu
+  http://www.eve-ng.net/index.php/documentation/howto-s/109-howto-juniper-vmx-16-x-17-x
+
+-Prvy krat pustit naprazdno (iba prepojene VCP a VFP cez em1) -> prihlasit sa (root; bez hesla)
+-cli
+-show interfaces terse
+  -ak vidime interfejsy "ge-x/y/z", potom skocime na "READY"
+  -inak sa odhlasime (exit, exit) a znovu prihlasime (root; bez hesla) a ideme od zaciatku (show ...)
+  -ak ani teraz nevidime interfejsy "ge-x/y/z", vypneme junipery (VCP aj VFP) a znova ich zapneme a ideme od zaciatku (show ...)
+  -teraz sa uz tie interfejsy musia ukazat
+-READY: vypneme juniper a mozeme ho prepojit s dalsimi zariadeniami. POZOR! Pouzivame iba interfejsy od "ge-0/0/1" vyssie!ň
+
+PRVE SPUSPENIE:
+Z junipera kontinualne pingame cisco
+Z cisca kontinualne pingame juniper
+Cakame kym sa nepingaju navzajom naraz paralelne.
+Nejaky ten paket sa sem tam strati. Uspesnost je zhruba 99%.
+Moze nastat situacia, ze sa pocas kontinualneho pingu nebudu moct opingat. Tento problem sa ale za cca 1 min sam od seba vyriesi.
