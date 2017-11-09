@@ -17,8 +17,8 @@ Nepridavat 50 zariadeni naraz, inak EVE-ng web gui zblbne. Zariadenia pridavat n
     
   UKSM vypnute:
 =============================
--Juniper VMx
-  UKSM zapnute:
+-Juniper VMx 17
+  UKSM zapnute: 
     
   UKSM vypnute:
     
