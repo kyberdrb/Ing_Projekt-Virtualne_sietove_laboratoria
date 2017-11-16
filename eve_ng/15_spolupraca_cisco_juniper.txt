@@ -1,0 +1,72 @@
+sampel konfiguracia
+
+##################
+CISCO
+##################
+ena
+conf t
+int e0/0
+ip addr 10.0.0.1 255.255.255.0
+no shut
+end
+sh ip int b
+! vyplnit parametre pingu: Target: 10.0.0.2; Count: 10000; ostatne odEnterovat
+ping
+
+
+##################
+JUNIPER vSRX
+##################
+cli
+configure
+set root-authentication plain-text-password
+commit
+# mozno to potrebuje iba vMX
+delete chassis auto-image-upgrade
+commit
+set interface unit family 10.0.0.2/24
+commit
+
+##################
+JUNIPER vMX - prvotna
+##################
+cli
+configure
+set system root-authentication plain-text-password
+commit
+delete chassis auto-image-upgrade
+commit
+set interfaces vtnet unit 0 family inet address 10.0.0.2/24
+commit
+
+##################
+JUNIPER vMX - rychla
+##################
+cli
+configure
+set system root-authentication plain-text-password
+commit
+delete chassis auto-image-upgrade
+commit
+set interfaces ge-0/0/1 unit 0 family inet address 10.0.0.2/24
+set interfaces ge-0/0/2 unit 0 family inet address 10.0.0.3/24
+set interfaces ge-0/0/3 unit 0 family inet address 10.0.0.4/24
+set interfaces ge-0/0/4 unit 0 family inet address 10.0.0.5/24
+set interfaces ge-0/0/5 unit 0 family inet address 10.0.0.6/24
+set interfaces ge-0/0/6 unit 0 family inet address 10.0.0.7/24
+commit
+run show interfaces terse
+quit
+run ping 10.0.0.1
+
+##################
+ZAVER
+##################
+Nazvy rozhrani pre Juniper router su ine vo web GUI a ine v konfiguracnom terminali. Zatial co vo web GUI sa volaju ge-x/y/z, v konfiguracnom terminali sa volaju vmnetX (X je cislo rozhrania) napr. ge0/0/1 v GUI je vmnet3 v Juniper konzole. Navyse su inak namapovane z web GUI do konfiguracie routra (ge-0/0/0 je v skutocnosti vmnet2). TODO - rozlusknut mapovania, je v tom chaos. Juniper zo zaciatku nevie pingnut nic okolo seba. Najprv sa musi pingnut Cisco Junipera, a potom sa uz vedia pingat navzajom (zrejme ARP problem).
+
+Funkcny tutorial aj s upratanymi rozhraniami a spravnou funkcnostou na juniper + jeho nasadenie a konfiguraciu je v "07-1_juniper_17.1_eveng_navod.txt". Ked budeme pridavat juniper podla tohto navodu, juniper bude fungovat podla ocakavani.
+
+Sources:
+  https://www.juniper.net/documentation/en_US/junos/topics/task/configuration/routing-engine-single-initial-configuration.html
+  https://www.juniper.net/documentation/en_US/vmx15.1f6/topics/task/operational/vmx-vm-accessing-aws.html
+  
