@@ -28,18 +28,6 @@ set interface unit family 10.0.0.2/24
 commit
 
 ##################
-JUNIPER vMX - prvotna
-##################
-cli
-configure
-set system root-authentication plain-text-password
-commit
-delete chassis auto-image-upgrade
-commit
-set interfaces vtnet unit 0 family inet address 10.0.0.2/24
-commit
-
-##################
 JUNIPER vMX - rychla
 ##################
 cli
@@ -48,16 +36,21 @@ set system root-authentication plain-text-password
 commit
 delete chassis auto-image-upgrade
 commit
-set interfaces ge-0/0/1 unit 0 family inet address 10.0.0.2/24
-set interfaces ge-0/0/2 unit 0 family inet address 10.0.0.3/24
-set interfaces ge-0/0/3 unit 0 family inet address 10.0.0.4/24
-set interfaces ge-0/0/4 unit 0 family inet address 10.0.0.5/24
-set interfaces ge-0/0/5 unit 0 family inet address 10.0.0.6/24
-set interfaces ge-0/0/6 unit 0 family inet address 10.0.0.7/24
-commit
-run show interfaces terse
-quit
-run ping 10.0.0.1
+set interfaces vtnet0 unit 0 family inet address 10.0.0.2/24
+set interfaces vtnet1 unit 0 family inet address 10.0.0.3/24
+set interfaces vtnet2 unit 0 family inet address 10.0.0.4/24
+set interfaces vtnet3 unit 0 family inet address 10.0.0.5/24
+set interfaces vtnet4 unit 0 family inet address 10.0.0.6/24
+set interfaces vtnet5 unit 0 family inet address 10.0.0.7/24
+set interfaces ge-0/0/1 unit 0 family inet address 10.0.0.8/24
+set interfaces ge-0/0/2 unit 0 family inet address 10.0.0.9/24
+set interfaces ge-0/0/3 unit 0 family inet address 10.0.0.10/24
+set interfaces ge-0/0/4 unit 0 family inet address 10.0.0.11/24
+set interfaces ge-0/0/5 unit 0 family inet address 10.0.0.12/24
+set interfaces ge-0/0/6 unit 0 family inet address 10.0.0.13/24
+commit and-quit
+show interfaces terse
+ping 10.0.0.1 rapid
 
 ##################
 ZAVER
