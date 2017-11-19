@@ -46,6 +46,6 @@ Z cisca kontinualne pingame juniper
 
 vtnet: Juniper zo zaciatku nebude vediet opingat cisco, najprv musi cisco opingat juniper; az ked cisco uspesne opinga juniper, juniper bude vediet spatne opingat cisco (zrejme kvoli ARP)
 
-Cakame kym sa nepingaju navzajom naraz paralelne.
+Cakame kym sa nepingaju navzajom (mozeme vykonat aj paralelne oboma smermi).
 Nejaky ten paket sa sem tam strati. Uspesnost je zhruba 99%.
 Moze nastat situacia, ze sa pocas kontinualneho pingu nebudu moct opingat. Tento problem sa ale za cca 1 min sam od seba vyriesi.

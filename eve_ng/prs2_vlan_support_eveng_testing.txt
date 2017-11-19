@@ -1,0 +1,13 @@
+Ktory cisco router podporuje vlany?
+A preco na switchoch idu, ale na routroch nie?
+
+Podla "https://gns3.com/qa/why-can-t-create-vlan-in-gns-3"
+je to tym, ze defaultne podporuju vlany len switche. Na router musime pridat etherswitch modul (NM-16ESW). Vlany na routri nebudu podporovane ani po vypnuti ip routingu (no ip routing)
+
+Routre:
+-7200VXR + 8GE modul	NIE
+-c3725 + NM-16ESW modul	ANO
+
+Switch:
+-iol l2			ANO
+-vios l2		ANO
