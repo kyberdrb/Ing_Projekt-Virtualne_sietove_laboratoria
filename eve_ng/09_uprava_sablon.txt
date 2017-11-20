@@ -29,8 +29,8 @@ Sice switch so seriakmi je divny, ale vsak co, aspon bude menej roboty a student
   sudo nano c3725.php
 
 zmeníme parametre nasledovne:
-  $p['slot1'] = 'NM-16ESW';
-
+  $p['slot1'] = 'NM-1FE-TX';
+  $p['slot2'] = 'NM-16ESW';
 ==========================================================================
 
 -Cisco v7206VXR: nastaviť veľkosť RAM na 240MB (optimálne množstvo) a pridáme rozširujúcu
