@@ -1,0 +1,3 @@
+Ak juniper nemá konfigurovatelné porty, je potrebné pridat viac ako 2 intefaces
+Po pridaní templatu do GNS kliknút nan pravým->Configure Template->Network->Adapters - nastavit pocet interfacov
+Niekedy treba pockat pár minút po boote aby sa pridané interfaces zobrazili

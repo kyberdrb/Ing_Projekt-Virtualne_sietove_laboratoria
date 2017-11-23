@@ -1,0 +1,97 @@
+Konfiguracia
+
+##################
+CISCO
+##################
+ena
+conf t
+int e0/0
+ip addr 10.0.0.1 255.255.255.0
+no shut
+end
+sh ip int b
+! vyplnit parametre pingu: Target: 10.0.0.2; Count: 10000; ostatne odEnterovat
+ping
+
+
+##################
+JUNIPER vSRX
+##################
+cli
+configure
+set root-authentication plain-text-password
+commit
+# mozno to potrebuje iba vMX
+delete chassis auto-image-upgrade
+commit
+set interface unit family 10.0.0.2/24
+commit
+
+##################
+JUNIPER vMX - rychla
+##################
+cli
+configure
+set system root-authentication plain-text-password
+commit
+delete chassis auto-image-upgrade
+commit
+set interfaces vtnet0 unit 0 family inet address 10.0.0.2/24
+set interfaces vtnet1 unit 0 family inet address 10.0.0.3/24
+set interfaces vtnet2 unit 0 family inet address 10.0.0.4/24
+set interfaces vtnet3 unit 0 family inet address 10.0.0.5/24
+set interfaces vtnet4 unit 0 family inet address 10.0.0.6/24
+set interfaces vtnet5 unit 0 family inet address 10.0.0.7/24
+set interfaces ge-0/0/1 unit 0 family inet address 10.0.0.8/24
+set interfaces ge-0/0/2 unit 0 family inet address 10.0.0.9/24
+set interfaces ge-0/0/3 unit 0 family inet address 10.0.0.10/24
+set interfaces ge-0/0/4 unit 0 family inet address 10.0.0.11/24
+set interfaces ge-0/0/5 unit 0 family inet address 10.0.0.12/24
+set interfaces ge-0/0/6 unit 0 family inet address 10.0.0.13/24
+commit and-quit
+show interfaces terse
+ping 10.0.0.1 rapid
+
+
+
+#######
+ochrana proti vymknutiu - viacero pouzivatelskych uctov
+#######
+
+vsetky ucty maju heslo "juniper123"
+
+set system root-authentication encrypted-password "$6$YXDdKthn$cGwSBHrAO4VqOF84533HIz0zYGDVaQmkjfWob4HqWUuSBevVM0S4pXlcjUcp1GBjdbtEJnneWp.D63eddY.if0"
+set system login user andrej full-name Andrej
+set system login user andrej uid 2000
+set system login user andrej class super-user
+set system login user andrej authentication encrypted-password "$6$gSy1TKCu$cqk6jOfzUiKmniFpSfYCirMtElnmq6i2Nm/43m5G23vSGuJ6dpsCtFQWpt0zDyKG88JcEjc26hHlyMNCKPBON0"
+set system login user marian full-name Marian
+set system login user marian uid 2001
+set system login user marian class operator
+set system login user marian authentication encrypted-password "$6$/laxqpR/$C4mYtsXl0c4Gjj1TOFRQ66El9Ehz1H782giG7JW/SMwNKlCek/FDQG93XbJeovk2/bcPueJOaZxuh2VL7.O0J1"
+
+
+
+##################
+Testovanie
+##################
+-zalohovat konfiguraciu na PE1 a PE2 - OK
+-vymazat vsetko z PE1 a PE2 - OK
+-nastavit staticke IPcky na PE1 a PE2 - OK
+-otestovat konektivitu z PE2 na PE1 (najprv z cisca (PE2) na juniper (PE1) (opacne sa najprv nepingnu, zrejme kvoli ARP) - OK
+-otestovat konektivitu z juniperu (PE1) na cisco (PE2) - OK
+-nastavit na PE1 a PE2 IS-IS - FAIL! - IS-IS protokol je spusteny aj na ciscu aj na juniperi, ale nemaju neighborship => funguje iba staticke smerovanie pre Junipery
+-vyskusat OSPF, ak IS-IS nebude fungovat - netestovane
+-nastavit BGP na PE1 a PE2 - netestovane
+
+##################
+ZAVER
+##################
+Nazvy rozhrani pre Juniper router su ine vo web GUI a ine v konfiguracnom terminali. Zatial co vo web GUI sa volaju ge-x/y/z, v konfiguracnom terminali sa volaju vmnetX (X je cislo rozhrania) napr. ge0/0/1 v GUI je vmnet3 v Juniper konzole. Navyse su inak namapovane z web GUI do konfiguracie routra (ge-0/0/0 je v skutocnosti vmnet2). TODO - rozlusknut mapovania, je v tom chaos. Juniper zo zaciatku nevie pingnut nic okolo seba. Najprv sa musi pingnut Cisco Junipera, a potom sa uz vedia pingat navzajom (zrejme ARP problem).
+
+Funkcny tutorial aj s upratanymi rozhraniami a spravnou funkcnostou na juniper + jeho nasadenie a konfiguraciu je v "07-1_juniper_17.1_eveng_navod.txt". Ked budeme pridavat juniper podla tohto navodu, juniper bude fungovat podla ocakavani.
+
+Sources:
+  https://www.juniper.net/documentation/en_US/junos/topics/task/configuration/routing-engine-single-initial-configuration.html
+  https://www.juniper.net/documentation/en_US/vmx15.1f6/topics/task/operational/vmx-vm-accessing-aws.html
+  

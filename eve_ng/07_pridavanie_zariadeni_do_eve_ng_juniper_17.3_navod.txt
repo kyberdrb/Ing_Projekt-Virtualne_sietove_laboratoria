@@ -1,0 +1,51 @@
+Juniper vMX 17.3
+
+Existuje viacero sposobov, ako pridat Juniper vMX 17 do EVE-ng. Bud to urobime vseobecnym sposobom (skopirujeme 'qcow2' subor do vhodneho adresara) alebo podla oficialneho navodu (link nizsie).
+  http://www.eve-ng.net/index.php/documentation/howto-s/109-howto-juniper-vmx-16-x-17-x
+Najlepsie vysledky som dostal pri pridavani vseobecnym sposobom. Pri pridavani oficialnym sposobom sa vyskytlo nekonzistentne spravanie, hlavne pri detekcii Ethernet rozhrani, ktore vo vypise prikazu "show interfaces terse" neboli vobec pritomne.
+
+Preto som skusil pridat tento Juniper vseobecnym sposobom, tak ako pridavame "qcow2" subory do EVE-ng, co popisujem v navode "07_pridavanie_zariadeni_do_eve_ng.txt". Najprv som extrahoval archiv "vmx-bundle-17.3R1.10.tgz" (mozno bude potrebne rekurzivne extrahovat vsetky archivy vnutri). Potom prejdeme do adresara "vmx-bundle-17.3R1.10/vmx/images". V adresari "images" sa nachadza jediny "qcow2" subor. Vytvorime adresar pre toto zariadenie, vlozime tam tento "qcow2" subor (so spravnym nazvom), opravime opravnenia a mozeme ho pouzivat:
+  dtrx vmx-bundle-17.3R1.10.tgz
+  cd vmx-bundle-17.3R1.10/vmx/images
+  sudo mkdir /opt/unetlab/addons/qemu/vmx-junos-vmx-x86-64-17.3R1.10/
+  sudo cp junos-vmx-x86-64-17.3R1.10.qcow2 /opt/unetlab/addons/qemu/vmx-junos-vmx-x86-64-17.3R1.10/hda.qcow2
+  sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
+=====================================
+
+Pridavanie zariadenia do labu (vMX pridany vseobecnym sposobom)
+-Pridame, nakablujeme a spustime
+-Pri konfiguracii davame pozor na rozne nazvy rozhrani vo web GUI a Juniper CLI:
+Vo web GUI sa nazvy rozhrani volaju napr. "ge-X/Y/Z", ale v Juniper CLI sa vola rovnake rozhranie "vtnetA", kde A = Z + 2. Mapovanie rozhrani medzi web GUI a Juniper CLI (testovane na pocte rozhrani 4):
+
+  web GUI   ->    Juniper CLI
+  ge-0/0/0  ->    vtnet2
+  ge-0/0/1  ->    vtnet3
+  ge-0/0/2  ->    vtnet4
+  ge-0/0/3  ->    vtnet5
+
+Odporuca sa pouzivat iba "ge" rozhrania.
+
+=====================================
+
+Pridavanie zariadenia do labu (vMX pridany oficialnym sposobom)
+-Prvy krat pustit naprazdno (iba prepojene VCP a VFP cez em1) -> prihlasit sa (root; bez hesla)
+-cli
+-show interfaces terse
+  -ak vidime interfejsy "ge-x/y/z", potom skocime na "READY"
+  -inak sa odhlasime (exit, exit) a znovu prihlasime (root; bez hesla) a ideme od zaciatku (show ...)
+  -ak ani teraz nevidime interfejsy "ge-x/y/z", vypneme junipery (VCP aj VFP) a znova ich zapneme a ideme od zaciatku (show ...)
+  -teraz sa uz tie interfejsy musia ukazat
+
+READY
+-vypneme juniper a mozeme ho prepojit s dalsimi zariadeniami. POZOR! Pouzivame iba interfejsy od "ge-0/0/1" vyssie!
+
+Test funkcionality:
+Z junipera kontinualne pingame cisco
+Z cisca kontinualne pingame juniper
+
+vtnet: Juniper zo zaciatku nebude vediet opingat cisco, najprv musi cisco opingat juniper; az ked cisco uspesne opinga juniper, juniper bude vediet spatne opingat cisco (zrejme kvoli ARP)
+
+Cakame kym sa nepingaju navzajom (mozeme vykonat aj paralelne oboma smermi).
+Nejaky ten paket sa sem tam strati. Uspesnost je zhruba 99%.
+Moze nastat situacia, ze sa pocas kontinualneho pingu nebudu moct opingat. Tento problem sa ale za cca 1 min sam od seba vyriesi.
