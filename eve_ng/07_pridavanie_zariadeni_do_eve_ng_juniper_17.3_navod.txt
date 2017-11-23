@@ -4,7 +4,7 @@ Existuje viacero sposobov, ako pridat Juniper vMX 17 do EVE-ng. Bud to urobime v
   http://www.eve-ng.net/index.php/documentation/howto-s/109-howto-juniper-vmx-16-x-17-x
 Najlepsie vysledky som dostal pri pridavani vseobecnym sposobom. Pri pridavani oficialnym sposobom sa vyskytlo nekonzistentne spravanie, hlavne pri detekcii Ethernet rozhrani, ktore vo vypise prikazu "show interfaces terse" neboli vobec pritomne.
 
-Preto som skusil pridat tento Juniper vseobecnym sposobom. Najprv som extrahoval archiv "vmx-bundle-17.3R1.10.tgz" (mozno bude potrebne rekurzivne extrahovat vsetky archivy vnutri). Potom prejdeme do adresara "vmx-bundle-17.3R1.10/vmx/images". V adresari "images" sa nachadza jediny "qcow2" subor. Vytvorime adresar pre toto zariadenie, vlozime tam tento "qcow2" subor (so spravnym nazvom), opravime opravnenia a mozeme ho pouzivat:
+Preto som skusil pridat tento Juniper vseobecnym sposobom, tak ako pridavame "qcow2" subory do EVE-ng, co popisujem v navode "07_pridavanie_zariadeni_do_eve_ng.txt". Najprv som extrahoval archiv "vmx-bundle-17.3R1.10.tgz" (mozno bude potrebne rekurzivne extrahovat vsetky archivy vnutri). Potom prejdeme do adresara "vmx-bundle-17.3R1.10/vmx/images". V adresari "images" sa nachadza jediny "qcow2" subor. Vytvorime adresar pre toto zariadenie, vlozime tam tento "qcow2" subor (so spravnym nazvom), opravime opravnenia a mozeme ho pouzivat:
   dtrx vmx-bundle-17.3R1.10.tgz
   cd vmx-bundle-17.3R1.10/vmx/images
   sudo mkdir /opt/unetlab/addons/qemu/vmx-junos-vmx-x86-64-17.3R1.10/
@@ -43,16 +43,9 @@ READY
 Test funkcionality:
 Z junipera kontinualne pingame cisco
 Z cisca kontinualne pingame juniper
-Cakame kym sa nepingaju navzajom naraz paralelne.
+
+vtnet: Juniper zo zaciatku nebude vediet opingat cisco, najprv musi cisco opingat juniper; az ked cisco uspesne opinga juniper, juniper bude vediet spatne opingat cisco (zrejme kvoli ARP)
+
+Cakame kym sa nepingaju navzajom (mozeme vykonat aj paralelne oboma smermi).
 Nejaky ten paket sa sem tam strati. Uspesnost je zhruba 99%.
 Moze nastat situacia, ze sa pocas kontinualneho pingu nebudu moct opingat. Tento problem sa ale za cca 1 min sam od seba vyriesi.
-
-=====================================
-
-Na vypnutie "Auto Image Upgrade" logov, vykoname tieto prikazy:
-cli
-configure
-set system root-authentication plain-text-password
-commit
-delete chassis auto-image-upgrade
-commit
