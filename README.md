@@ -29,7 +29,7 @@ a zmerať vyťaženie CPU a RAM
 - preskúmať možnosti EVE-ng
 - preskúmať možnosti GNS3 (remote server! vo VMwarei, VBoxe, 
 lxc kontaineri)
-- preskúmať možnosti Dynamips
-- preskúmať možnosti Cisco VIRL
+- preskúmať možnosti Dynamips?
+- preskúmať možnosti Cisco VIRL?
 - urobiť laboratórne cvičenia vo všetkých virtuálnych sieťových 
 nástrojoch z predmetov PS1, PS2, PrS1, PrS2, OKS
