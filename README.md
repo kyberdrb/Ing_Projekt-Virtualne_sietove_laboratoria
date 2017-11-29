@@ -22,13 +22,21 @@ virtuáliek súčasne
 
 # TODO - Diplomová práca
 - *urobiť kostru (obsah) v latexu (vytvoriť šablónu)*
-- kritériá testovania (kompatibilita zariadení, maximálny počet 
+- *kritériá testovania (kompatibilita zariadení, maximálny počet 
 zariadení každého typu, stabilita backendu a frontendu, odlišnosti 
 oproti ostatným nástrojom) -> v každom nástroji otestovať dve zariadenia 
-a zmerať vyťaženie CPU a RAM
-- preskúmať možnosti EVE-ng
-- preskúmať možnosti GNS3 (remote server! vo VMwarei, VBoxe, 
-lxc kontaineri)
+a zmerať vyťaženie CPU a RAM*
+- preskúmať možnosti EVE-ng (ideálne, aby bežala na fyzickom serveri)
+    - nainštalovať na fyzický server
+- preskúmať možnosti GNS3 (ideálne, aby bežala v LXC kontajneri)
+    - vzdialený server:
+      - -> VMware (učiteľský PC)
+        - nasadiť
+        - prepojiť vzdialenú GNS3 VM s GNS3 klientom
+        - pridať zariadenia
+        - otestovať zariadenia
+      - VBox (nedostane IPčku)
+      - LXC kontainer
 - preskúmať možnosti Dynamips?
 - preskúmať možnosti Cisco VIRL?
 - urobiť laboratórne cvičenia vo všetkých virtuálnych sieťových 
