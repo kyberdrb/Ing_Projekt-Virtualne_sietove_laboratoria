@@ -1,3 +1,7 @@
+**************   !!!!!!!!!!!!!!!!!!!!!!! **************
+Tento navod robime iba vtedy, ked sme EVE-ng instalovali do Ubuntu z eve-ng repozitara.
+**************   !!!!!!!!!!!!!!!!!!!!!!! **************
+
 Follow the Ubuntu server installation. During install please choose only OpenSSH server as a feature to be installed !!!!
 
 After the installation of Ubuntu server is done, follow the steps below in order to install the EVE. For futher convenient choose hostname as eve-ng.
@@ -70,10 +74,10 @@ iface lo inet loopback
 # This is an autoconfigured IPv6 interface
 auto eth0
 iface eth0 inet static
-	address 158.193.152.49
-	netmask 255.255.255.128
-	gateway 158.193.152.1
-	dns-nameservers 158.193.152.4
+	address <verejna_ip_servera>
+	netmask <maska>
+	gateway <predvolena_brana>
+	dns-nameservers <ip_dns_servera>
 
 iface eth0 inet6 auto
 
@@ -170,7 +174,7 @@ Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného
 
 Z bezpečnostných dôvodov odporucam okamžite zmenit heslo administrátorského účtu do web rozhrania. Heslá sú na EVE-ng serveri uložené v MySQL databázi (narozdiel od UNetLab-u, kde boli ulozene v SQLite databazi). (vid "http://www.eve-ng.net/index.php/faq"). Viac informácií o administrácií používateľov v rámci webového rozhrania EVE-ng nájdeme v súbore "Administrácia webových používateľov v EVE-ng".
 
-
+Ak SSH aj web rozhranie funguje (dovoli sa nam pripojit), pokracujeme zabezpecenim servera.
 
 Sources:
   (Instalacia EVE-ng do Ubuntu)

@@ -1,0 +1,244 @@
+************* ZABEZPECENIE SYSTEMU *************
+
+Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, nez priamo ako root.
+
+-nainstalovat sudo
+  apt-get install sudo
+-vytvorit noveho pouzivatela
+  adduser andrej
+-pridelit mu sudo pravomoci
+  sudo usermod -aG sudo <username>
+  -parameter -a je dolezity: zachovava pouzivatelove uz existujuce clenstva v inych skupinach.
+
+************* ZABEZPECENIE SSH *************
+SSH pouzivame na vzdialenu administraciu servera.
+
+Zmenit nastavenia v konfiguracnom subore SSH
+  sudo vim.tiny /etc/ssh/sshd_config
+  
+  Protocol 2
+  AllowUsers andrej
+  DenyUsers root
+  DenyGroups root
+
+  # Authentication  
+  PermitRootLogin no
+  
+  # To enable empty passwords, change to yes (NOT RECOMMENDED)
+  PermitEmptyPasswords no
+
+  # ... pod GSSAPI
+  TCPKeepAlive no
+
+  -restartujeme SSH, aby sa prejavila zmenena konfiguracia
+
+    sudo service ssh reload
+
+  -potom odskusame prihlasenie ako root aj ako pouzivatel. Po zadani spravneho hesla pouzivatela sa okamzite prihlasime. Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
+
+-aktivujeme autentifikaciu SSH klucom.
+  -vygenerujeme SSH kluce (verejny a privatny) na lokalnom pocitaci
+    ssh-keygen
+
+  -skopirujeme verejny kluc nasho pocitaca na server
+    ssh-copy-id <pouzivatel>@<ip_adresa_servera>
+
+  -skusime sa prihlasit na server pomocou SSH
+    ssh <pouzivatel>@<ip_adresa_servera>
+
+  -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu heslom, pretoze budeme pouzivat vylucne autentifikaciu SSH klucmi t.j. zmenime subor nasledovne
+
+  # Change to no to disable tunnelled clear text passwords
+  PasswordAuthentication no
+
+-Eventualne mozeme zmenit SSH port kvoli moznemu utoku zahltenim (vid riadok "Port" na zaciatku suboru)
+
+*************
+Zobrazime spravu pouzivatelovi pred prihlasenim
+
+-upravime subor:
+  sudo vim.tiny /etc/issue.net
+
+mozeme don vlozit lubovolny text, napr.:
+  EVE-ng server
+  Na prihlasenie je potrebny SSH kluc!
+
+-ulozime
+-upravime subor:
+  vim.tiny /etc/ssh/sshd_config
+
+odkomentujeme riadok "Banner" (nachadza sa pod "GSSAPI")
+  Banner /etc/issue.net
+
+restartujeme SSH server
+  sudo service ssh reload
+
+*************
+Zobrazime spravu pouzivatelovi po prihlaseni (MOTD - Message Of The Day)
+
+-upravime subor:
+  sudo vim.tiny /etc/motd
+
+mozeme don vlozit lubovolny text, napr.:
+
+
+************* ************* *************
+              EVE-ng server
+           Courtesy of kyberdrb
+************* ************* *************
+
+
+-ulozime
+
+Ukoncime SSH spojenie a znovu sa prihlasime.
+Uvidime MOTD.
+
+************* ZABEZPECENIE APACHE *************
+Apache sa pouziva ako server, ktory umoznuje pouzivanie EVE-ng cez web prehliadac.
+
+-aktivacia HTTPS pre EVE-ng
+
+  sudo a2enmod ssl
+  sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+    -vyplnime vsetky potrebne udaje
+  
+  sudo -i
+  cat << EOF > /etc/apache2/sites-enabled/default-ssl.conf
+<IfModule mod_ssl.c>
+    <VirtualHost _default_:443>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /opt/unetlab/html/
+        ErrorLog /opt/unetlab/data/Logs/ssl-error.log
+        CustomLog /opt/unetlab/data/Logs/ssl-access.log combined
+        Alias /Exports /opt/unetlab/data/Exports
+        Alias /Logs /opt/unetlab/data/Logs
+        SSLEngine on
+        SSLCertificateFile    /etc/ssl/certs/apache-selfsigned.crt
+        SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+        <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                SSLOptions +StdEnvVars
+        </FilesMatch>
+        <Directory /usr/lib/cgi-bin>
+                SSLOptions +StdEnvVars
+        </Directory>
+        <Location /html5/>
+                Order allow,deny
+                Allow from all
+                ProxyPass http://127.0.0.1:8080/guacamole/ flushpackets=on
+                ProxyPassReverse http://127.0.0.1:8080/guacamole/
+        </Location>
+
+        <Location /html5/websocket-tunnel>
+                Order allow,deny
+                Allow from all
+                ProxyPass ws://127.0.0.1:8080/guacamole/websocket-tunnel
+                ProxyPassReverse ws://127.0.0.1:8080/guacamole/websocket-tunnel
+        </Location>
+    </VirtualHost>
+</IfModule>
+EOF
+
+  exit
+  sudo /etc/init.d/apache2 restart
+  ->overime https pristup. do prehliadaca zadame:
+
+    https://<ip_adresa_servera>
+
+    -nasledne pridame vynimku do prehliadaca
+
+*************
+
+-nastavime pocuvanie iba na konkretnej IP adrese
+  -Apache bude pocuvat iba na tej IPcke, ktora mu bola priradena.
+  -upravime potrebne subory
+
+    sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
+zmenime riadok
+    '<VirtualHost *:80>'
+na
+    '<VirtualHost IP_ADRESA_SERVERA:80>'
+
+    sudo vim.tiny /etc/apache2/sites-enabled/default-ssl.conf
+    '<VirtualHost _default_:443>'
+na
+    '<VirtualHost IP_ADRESA_SERVERA:443>'
+
+restartujeme apache
+    sudo systemctl restart apache2.service
+    
+*************
+
+-presmerujeme HTTP poziadavky (port 80) na HTTPS (port 443)
+  -upravime potrebne subory
+
+    sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
+pod riadok '<VirtualHost *:80>' vlozime:
+    
+    Redirect / https://158.193.139.128/
+
+restartujeme apache
+    sudo systemctl restart apache2.service
+
+Overime, ci sa zmeny prejavili.
+V prehliadaci zadame
+  http://IP_ADRESA_SERVERA
+
+Malo by nas to okamzite presmerovat na HTTPS verziu stranky.
+Teraz staci do prehliadaca zadavat iba IP adresu servera.
+
+*************
+1. How to hide Apache Version and OS Identity from Errors
+
+-upravime subor:
+  sudo vim.tiny /etc/apache2/apache2.conf
+
+  na koniec suboru pridame riadky
+
+ServerSignature Off
+ServerTokens Prod
+
+-ulozime
+-restartujeme apache
+    sudo systemctl restart apache2.service
+
+*************
+5. Run Apache as separate User and Group
+-toto by malo byt uz defaultne nastavene:
+subor '/etc/apache2/envvars' uz ma premenne
+
+  export APACHE_RUN_USER=www-data
+  export APACHE_RUN_GROUP=www-data
+
+aby sa spustal v pouzivatelskom ucte.
+
+************* ZABEZPECENIE MYSQL *************
+MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
+Predvolene heslo je slabe, preto ho treba ho zmenit.
+
+  mysqladmin -u root -p'oldpassword' password newpass
+repsp.
+  mysqladmin -u root -p'oldpassword' password 'newpass'
+
+Zdroje:
+-System
+https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
+
+-SSH
+https://askubuntu.com/a/2224 -> priradenie pouzivatela do sudo skupiny
+https://www.cyberciti.biz/tips/openssh-deny-or-restrict-access-to-users-and-groups.html
+https://ubuntuforums.org/showthread.php?t=831372
+https://ubuntuforums.org/showthread.php?t=1914662
+https://www.youtube.com/watch?v=5Fcf-8LPvws (Linux Tutorial for Beginners - 15 - SSH Key Authentication)
+https://askubuntu.com/questions/2271/how-to-harden-an-ssh-server
+https://www.tecmint.com/protect-ssh-logins-with-ssh-motd-banner-messages/
+
+-Apache
+https://www.tecmint.com/apache-security-tips/
+https://askubuntu.com/a/185049
+https://askubuntu.com/questions/184791/how-to-disable-non-ssl-connection-on-apache-2-2
+https://wiki.apache.org/httpd/RedirectSSL
+http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve     <-- tento návod som použil na vygenerovanie SSL certifikatu pre Apache
+http://www.eve-ng.net/index.php/documentation/howto-s/82-howto-enable-letsencrypt-on-eve-2
+
+-MySQL
+https://www.cyberciti.biz/faq/mysql-change-root-password/

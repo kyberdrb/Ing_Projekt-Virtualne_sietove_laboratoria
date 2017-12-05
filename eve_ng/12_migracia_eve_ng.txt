@@ -1,0 +1,52 @@
+Skopírujeme tieto adresáre:
+
+  /opt/unetlab/addons
+    -obrazy diskov (z adresára addons musíme vylúčiť podadresár "/opt/unetlab/addons/iol/lib", aby nedošlo ku konfliktu súborov!)
+
+  /opt/unetlab/labs
+    -projektové súbory (topológie)
+
+  /opt/unetlab/html/templates
+    -šablóny pre jednotlivé typy zariadení
+
+a subory
+  /etc/apache2/apache2.conf
+    -upravene podla suboru "06_zabezpecenie_servera.txt"
+
+  /etc/apache2/sites-enabled/unetlab.conf
+    -pocuvanie na konkretnej IPcke: zmena z '<VirtualHost *:80>' na '<VirtualHost IP_ADRESA_SERVERA:80>'
+    -presmerovanie HTTP (port 80) na HTTPS (port 443): pridany riadok 'Redirect / https://158.193.139.128/' pod '<VirtualHost *:80>' resp. '<VirtualHost IP_ADRESA_SERVERA:80>'
+
+  /etc/apache2/sites-enabled/default-ssl.conf
+    -zmena - pocuvanie na konkretnej IPcke '<VirtualHost _default_:443>' na '<VirtualHost IP_ADRESA_SERVERA:443>'
+
+  /etc/issue.net -> SSH sprava pred prihlasenim
+  /etc/motd -> SSH sprava po prihlaseni
+
+Adresare skopirujeme na iny lokalny pocitac príkazom:
+  
+  scp -r <zdrojovy_adresar> andrej@<ip_adr_servera>:<cielovy_adresar>
+  resp.
+  put -r <zdrojovy_adresar>/* <cielovy_adresar>	# ta hviezdička na konci zdrojového adresára je veľmi dôležitá ;)
+
+napr.:
+  scp -r /opt/unetlab/addons andrej@<ip_adr_servera>:/home/andrej
+  scp -r /opt/unetlab/labs andrej@<ip_adr_servera>:/home/andrej
+  scp -r /opt/unetlab/html/templates andrej@<ip_adr_servera>:/home/andrej
+
+Po skopirovani suborov treba vygenerovať novú Cisco IOU/IOL licenciu tak, ako je popísané v súbore "06_vytvorenie_cisco_iou_iol_licencie". Pokiaľ licenciu nevytvoríme na novom stroji znovu, nepôjdu Cisco IOL zariadenia!
+
+IOL boxy kopirujeme opatrne do "bin" adresara, aby sme neprepisali jednak IOL licenciu, alebo "lib" adresar.
+
+Nakoniec opravime opravnenia skopirovanych suborov prikazom
+
+  /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
+resp.
+
+  sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
+
+Zdroje:
+http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-directories-contained-in-a-folder#387543
+http://www.eve-ng.net/index.php/faq

@@ -1,3 +1,9 @@
+EVE-ng mozeme instalovat bud:
+  -z EVE.iso stiahnuteho z "eve-ng.net" alebo
+  -alebo nainstalujeme Ubuntu, do ktoreho pridame eve-ng repozitar.
+
+Tu opisujem instalaciu EVE-ng z EVE.iso.
+
 -Spustime prave nakonfigurovanu EVE virtualku.
 -Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
 -Zvolime moznost "Install EVE Bare".
