@@ -10,6 +10,15 @@ Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, ne
   sudo usermod -aG sudo <username>
   -parameter -a je dolezity: zachovava pouzivatelove uz existujuce clenstva v inych skupinach.
 
+*************
+Pridavanie noveho pouzivatela
+-Pokial chceme pridat noveho pouzivatela pouzijeme prikaz
+  adduser <meno_pouzivatela>
+
+Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
+  -nesmie mat prazdne heslo a
+  -musi mat vygenerovany SSH kluce (verejny aj privatny) prikazom 'ssh-keygen'
+
 ************* ZABEZPECENIE SSH *************
 SSH pouzivame na vzdialenu administraciu servera.
 
