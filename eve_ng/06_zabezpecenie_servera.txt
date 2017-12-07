@@ -1,8 +1,10 @@
 ************* ZABEZPECENIE SYSTEMU *************
+Po uvodnej instalacii a konfiguracii systemu pokracujeme zabezpecenim jeho sucasti.
 
 Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, nez priamo ako root.
 
 -nainstalovat sudo
+  apt-get update
   apt-get install sudo
 -vytvorit noveho pouzivatela
   adduser andrej
@@ -16,8 +18,13 @@ Pridavanie noveho pouzivatela
   adduser <meno_pouzivatela>
 
 Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
-  -nesmie mat prazdne heslo a
+  -nesmie mat prazdne heslo
   -musi mat vygenerovany SSH kluce (verejny aj privatny) prikazom 'ssh-keygen'
+  -musime ho pridat do riadku "AllowUsers" v /etc/ssh/sshd_config
+  -podla potreby pridame pouzivatela do sudo skupiny
+
+*************
+Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani lokalne, a uz vobec nie vzdialene). Aj po "sudo -i" vie tak zblbnut, ze nepozna ani zakladne prikazy (napr "ls"): vypise chybu "Command not found". V kazdom pripade tak predideme dalsim komplikaciam.
 
 ************* ZABEZPECENIE SSH *************
 SSH pouzivame na vzdialenu administraciu servera.
@@ -223,14 +230,135 @@ aby sa spustal v pouzivatelskom ucte.
 ************* ZABEZPECENIE MYSQL *************
 MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
 Predvolene heslo je slabe, preto ho treba ho zmenit.
+Mozeme ho zmenit viacerymi sposobmi. Ja som pouzil prvy sposob.
 
+MYSQL_SECURE_INSTALLATIOM - ZMENA ROOT HESLA
+  mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password for user root: 
+
+VALIDATE PASSWORD PLUGIN can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+
+Press y|Y for Yes, any other key for No: y
+
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+
+Invalid option provided.
+
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+Using existing password for root.
+
+Estimated strength of the password: 25 
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : y
+
+New password: 
+
+Re-enter new password: 
+
+Estimated strength of the password: 100 
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done!
+
+
+
+MYSQLADMIN - ZMENA HESLA INEMU POUZIVATELOVI
   mysqladmin -u root -p'oldpassword' password newpass
 repsp.
   mysqladmin -u root -p'oldpassword' password 'newpass'
 
+MYSQL WORKBENCH
+-Dalsi sposob je cez MySQL Workbench. Na to je potrebne aktivovat vzdialeny pristup v konfiguracnom subore MySQL:
+  sudo vim.tiny /etc/mysql/mysql.conf.d/mysqld.cnf
+
+najdeme riadok
+  "bind-address = 127.0.0.1"
+a zakomentujeme ho
+  #bind-address = 127.0.0.1"
+
+restartujeme MySQL sluzbu
+  sudo service mysql restart
+
+Teraz sa mozeme pripojit k MySQL serveru cez MySQL Workbench.
+
+************* ZABEZPECENIE WEB ROZHRANIA *************
+-Okamzite zabezpecime 'admin' ucet:
+  -zadame IP/web adresu web servera
+  -prihlasime sa ako admin
+  -pojdeme do Management -> User Management -> v riadku admin klikneme na "Edit"
+  -zadame nove heslo a validny email
+  -klikneme na zelene tlacidlo "Edit"
+  -odhlasime sa a znovu sa prihlasime ako admin s novym heslom na overenie
+
+Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
+  https://howsecureismypassword.net/
+
+************* ZAVERECNE KROKY *************
+-vymazeme historiu bash prikazov pre kazdeho pouzivatela (lokalne aj cez SSH)
+  history -c
+  history -w
+
+-nainstalujeme doplnanie prikazov pre bash
+  sudo apt-get install bash-completion
+
+
 Zdroje:
 -System
 https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
+https://www.tecmint.com/check-linux-hard-disk-bad-sectors-bad-blocks/
 
 -SSH
 https://askubuntu.com/a/2224 -> priradenie pouzivatela do sudo skupiny
@@ -250,4 +378,10 @@ http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve
 http://www.eve-ng.net/index.php/documentation/howto-s/82-howto-enable-letsencrypt-on-eve-2
 
 -MySQL
+https://www.howtoforge.com/setting-changing-resetting-mysql-root-passwords
+https://dev.mysql.com/doc/refman/5.7/en/mysql-secure-installation.html
 https://www.cyberciti.biz/faq/mysql-change-root-password/
+https://stackoverflow.com/questions/11223235/mysql-root-access-from-all-hosts
+
+-Zaverecne kroky
+https://askubuntu.com/a/280451

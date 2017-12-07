@@ -12,6 +12,7 @@ Skopírujeme tieto adresáre:
 a subory
   /etc/apache2/apache2.conf
     -upravene podla suboru "06_zabezpecenie_servera.txt"
+    -ServerName - zmenene na sirena
 
   /etc/apache2/sites-enabled/unetlab.conf
     -pocuvanie na konkretnej IPcke: zmena z '<VirtualHost *:80>' na '<VirtualHost IP_ADRESA_SERVERA:80>'

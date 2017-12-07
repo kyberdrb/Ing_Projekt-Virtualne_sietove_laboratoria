@@ -4,6 +4,35 @@ EVE-ng mozeme instalovat bud:
 
 Tu opisujem instalaciu EVE-ng z EVE.iso.
 
+*************
+Pred instalaciou na fyzicky server otestujeme disk na chybne sektory!
+-Prevencia proti chybam, ktore mozu vzniknut az po 
+
+-Vytvorime live linux USB (napr. s Ubuntu Desktop)
+-nabootujeme z live USB
+-otvorime terminal a zadame prikaz
+  sudo -i
+  lsblk
+-zistime nazov disku napr. /dev/sdb
+-nechame vyhladat chybne bloky na disku prikazom
+  badblocks -v /dev/sda10 > badsectors_sdb.txt
+-operacia chvilu trva (na 320GB disku mi to trvalu cac hodinu). Prikaz zapise vsetky zle sektory do suboru "badsectors_sdb.txt"
+-po dokonceni prikazu sa zobrazi vysledok napr.
+  0 bad blocks
+-skontrolujeme obsah suboru "badsectors_sdb.txt"
+  cat badsectors_sdb.txt
+-ak je subor prazdny, disk je v poriadku a mozeme ho pouzit. v opacnom pripade si ulozime textovy subor na ine miesto (externy HDD, email, ...). Tento subor obsahuje zoznam poskodenych sektorov pevneho disku.
+-prikazom "e2fsck" alebo "fsck" vieme zabezpecit, ze sa zabrani operacnemu systemu pouzivat chybne sektory na konkretnom pevnom disku.
+
+  ------------ Specifically for ext2/ext3/ext4 file-systems ------------ 
+  $ sudo e2fsck -l badsectors.txt /dev/sda10
+  OR
+  ------------ For other file-systems ------------ 
+  $ sudo fsck -l badsectors.txt /dev/sda10
+
+*************
+Postup instalacie
+
 -Spustime prave nakonfigurovanu EVE virtualku.
 -Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
 -Zvolime moznost "Install EVE Bare".
