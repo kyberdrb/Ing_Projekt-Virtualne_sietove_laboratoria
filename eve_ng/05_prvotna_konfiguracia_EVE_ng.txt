@@ -78,8 +78,7 @@ iface eth0 inet static
 	netmask <maska>
 	gateway <predvolena_brana>
 	dns-nameservers <ip_dns_servera>
-
-iface eth0 inet6 auto
+iface eth0 inet6 manual
 
 
 
@@ -174,7 +173,7 @@ Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného
 
 Z bezpečnostných dôvodov odporucam okamžite zmenit heslo administrátorského účtu do web rozhrania. Heslá sú na EVE-ng serveri uložené v MySQL databázi (narozdiel od UNetLab-u, kde boli ulozene v SQLite databazi). (vid "http://www.eve-ng.net/index.php/faq"). Viac informácií o administrácií používateľov v rámci webového rozhrania EVE-ng nájdeme v súbore "Administrácia webových používateľov v EVE-ng".
 
-Ak SSH aj web rozhranie funguje (dovoli sa nam pripojit), pokracujeme zabezpecenim servera.
+Ak SSH aj web rozhranie funguje (dovoli sa nam pripojit a prihlasit), pokracujeme zabezpecenim servera.
 
 Sources:
   (Instalacia EVE-ng do Ubuntu)

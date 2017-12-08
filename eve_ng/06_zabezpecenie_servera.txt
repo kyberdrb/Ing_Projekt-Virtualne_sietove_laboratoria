@@ -1,4 +1,5 @@
 ************* ZABEZPECENIE SYSTEMU *************
+
 Po uvodnej instalacii a konfiguracii systemu pokracujeme zabezpecenim jeho sucasti.
 
 Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, nez priamo ako root.
@@ -14,37 +15,42 @@ Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, ne
 
 *************
 Pridavanie noveho pouzivatela
--Pokial chceme pridat noveho pouzivatela pouzijeme prikaz
+-Noveho pouzivatela vytvorime prikazom:
   adduser <meno_pouzivatela>
 
 Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
   -nesmie mat prazdne heslo
   -musi mat vygenerovany SSH kluce (verejny aj privatny) prikazom 'ssh-keygen'
   -musime ho pridat do riadku "AllowUsers" v /etc/ssh/sshd_config
-  -podla potreby pridame pouzivatela do sudo skupiny
+  -ak je potrebne, pridame pouzivatela do sudo skupiny
 
 *************
 Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani lokalne, a uz vobec nie vzdialene). Aj po "sudo -i" vie tak zblbnut, ze nepozna ani zakladne prikazy (napr "ls"): vypise chybu "Command not found". V kazdom pripade tak predideme dalsim komplikaciam.
 
+
 ************* ZABEZPECENIE SSH *************
+
 SSH pouzivame na vzdialenu administraciu servera.
 
 Zmenit nastavenia v konfiguracnom subore SSH
   sudo vim.tiny /etc/ssh/sshd_config
   
-  Protocol 2
-  AllowUsers andrej
-  DenyUsers root
-  DenyGroups root
+Protocol 2
 
-  # Authentication  
-  PermitRootLogin no
-  
-  # To enable empty passwords, change to yes (NOT RECOMMENDED)
-  PermitEmptyPasswords no
+AllowUsers andrej
+DenyUsers root
+DenyGroups root
 
-  # ... pod GSSAPI
-  TCPKeepAlive no
+# Authentication  
+PermitRootLogin no
+StrictMode no  -> toto umozni prihlasit sa certifikatom z Windowsu (lebo NTFS prepise prava na certifikate na 777; StrictMode ocakava 600)
+
+# To enable empty passwords, change to yes (NOT RECOMMENDED)
+PermitEmptyPasswords no
+
+# ... pod GSSAPI
+X11Forwarding no
+TCPKeepAlive no
 
   -restartujeme SSH, aby sa prejavila zmenena konfiguracia
 
@@ -62,10 +68,10 @@ Zmenit nastavenia v konfiguracnom subore SSH
   -skusime sa prihlasit na server pomocou SSH
     ssh <pouzivatel>@<ip_adresa_servera>
 
-  -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu heslom, pretoze budeme pouzivat vylucne autentifikaciu SSH klucmi t.j. zmenime subor nasledovne
+  -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu heslom, pretoze budeme pouzivat vylucne autentifikaciu SSH klucmi t.j. zmenime subor nasledovne (odkomentujeme riadok 'PasswordAuthentication')
 
-  # Change to no to disable tunnelled clear text passwords
-  PasswordAuthentication no
+# Change to no to disable tunnelled clear text passwords
+PasswordAuthentication no
 
 -Eventualne mozeme zmenit SSH port kvoli moznemu utoku zahltenim (vid riadok "Port" na zaciatku suboru)
 
@@ -81,7 +87,7 @@ mozeme don vlozit lubovolny text, napr.:
 
 -ulozime
 -upravime subor:
-  vim.tiny /etc/ssh/sshd_config
+  sudo vim.tiny /etc/ssh/sshd_config
 
 odkomentujeme riadok "Banner" (nachadza sa pod "GSSAPI")
   Banner /etc/issue.net
@@ -92,7 +98,7 @@ restartujeme SSH server
 *************
 Zobrazime spravu pouzivatelovi po prihlaseni (MOTD - Message Of The Day)
 
--upravime subor:
+-Vytvorime subor (ak este nie je pritomny):
   sudo vim.tiny /etc/motd
 
 mozeme don vlozit lubovolny text, napr.:
@@ -109,14 +115,25 @@ mozeme don vlozit lubovolny text, napr.:
 Ukoncime SSH spojenie a znovu sa prihlasime.
 Uvidime MOTD.
 
+
 ************* ZABEZPECENIE APACHE *************
+
 Apache sa pouziva ako server, ktory umoznuje pouzivanie EVE-ng cez web prehliadac.
 
 -aktivacia HTTPS pre EVE-ng
 
   sudo a2enmod ssl
   sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-    -vyplnime vsetky potrebne udaje
+  -> vyplnime vsetky potrebne udaje:
+
+Country Name (2 letter code) [AU]:SK
+State or Province Name (full name) [Some-State]:Slovakia
+Locality Name (eg, city) []:Zilina
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNIZA
+Organizational Unit Name (eg, section) []:FRI
+Common Name (e.g. server FQDN or YOUR name) []: KIS
+Email Address []: <nechal som prazdne>
+  
   
   sudo -i
   cat << EOF > /etc/apache2/sites-enabled/default-ssl.conf
@@ -169,6 +186,7 @@ EOF
   -upravime potrebne subory
 
     sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
+
 zmenime riadok
     '<VirtualHost *:80>'
 na
@@ -190,7 +208,7 @@ restartujeme apache
     sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
 pod riadok '<VirtualHost *:80>' vlozime:
     
-    Redirect / https://158.193.139.128/
+    Redirect / https://<ip_adresa_servera>/
 
 restartujeme apache
     sudo systemctl restart apache2.service
@@ -220,14 +238,26 @@ ServerTokens Prod
 *************
 5. Run Apache as separate User and Group
 -toto by malo byt uz defaultne nastavene:
-subor '/etc/apache2/envvars' uz ma premenne
+Nastavuje sa to v subore
+
+/etc/apache2/apache2.conf
+
+Ten ma pre premenne APACHE_RUN_USER a APACHE_RUN_GROUP odkazy na premenne v subore
+
+/etc/apache2/envvars
 
   export APACHE_RUN_USER=www-data
   export APACHE_RUN_GROUP=www-data
 
 aby sa spustal v pouzivatelskom ucte.
 
+-ulozime
+-restartujeme apache
+    sudo systemctl restart apache2.service
+
+
 ************* ZABEZPECENIE MYSQL *************
+
 MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
 Predvolene heslo je slabe, preto ho treba ho zmenit.
 Mozeme ho zmenit viacerymi sposobmi. Ja som pouzil prvy sposob.
@@ -324,17 +354,20 @@ MYSQL WORKBENCH
 -Dalsi sposob je cez MySQL Workbench. Na to je potrebne aktivovat vzdialeny pristup v konfiguracnom subore MySQL:
   sudo vim.tiny /etc/mysql/mysql.conf.d/mysqld.cnf
 
-najdeme riadok
-  "bind-address = 127.0.0.1"
-a zakomentujeme ho
-  #bind-address = 127.0.0.1"
+  najdeme riadok
+"bind-address = 127.0.0.1"
+
+  a zakomentujeme ho
+#bind-address = 127.0.0.1"
 
 restartujeme MySQL sluzbu
   sudo service mysql restart
 
 Teraz sa mozeme pripojit k MySQL serveru cez MySQL Workbench.
 
+
 ************* ZABEZPECENIE WEB ROZHRANIA *************
+
 -Okamzite zabezpecime 'admin' ucet:
   -zadame IP/web adresu web servera
   -prihlasime sa ako admin
@@ -346,7 +379,9 @@ Teraz sa mozeme pripojit k MySQL serveru cez MySQL Workbench.
 Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
   https://howsecureismypassword.net/
 
+
 ************* ZAVERECNE KROKY *************
+
 -vymazeme historiu bash prikazov pre kazdeho pouzivatela (lokalne aj cez SSH)
   history -c
   history -w

@@ -4,7 +4,15 @@ EVE-ng mozeme instalovat bud:
 
 Tu opisujem instalaciu EVE-ng z EVE.iso.
 
+************* PRED INSTALACIOU NA FYZICKY SERVER *************
+
 *************
+Vycistenie servera od prachu
+-Stlacenym vzduchom prefukneme ventilatory a tesne priestory
+
+*************
+Test disku na chybne sektory
+
 Pred instalaciou na fyzicky server otestujeme disk na chybne sektory!
 -Prevencia proti chybam, ktore mozu vzniknut az po 
 
@@ -15,23 +23,68 @@ Pred instalaciou na fyzicky server otestujeme disk na chybne sektory!
   lsblk
 -zistime nazov disku napr. /dev/sdb
 -nechame vyhladat chybne bloky na disku prikazom
-  badblocks -v /dev/sda10 > badsectors_sdb.txt
+  sudo badblocks -v /dev/sdb > badsectors_sdb.txt
+
 -operacia chvilu trva (na 320GB disku mi to trvalu cac hodinu). Prikaz zapise vsetky zle sektory do suboru "badsectors_sdb.txt"
 -po dokonceni prikazu sa zobrazi vysledok napr.
   0 bad blocks
+
 -skontrolujeme obsah suboru "badsectors_sdb.txt"
   cat badsectors_sdb.txt
+
 -ak je subor prazdny, disk je v poriadku a mozeme ho pouzit. v opacnom pripade si ulozime textovy subor na ine miesto (externy HDD, email, ...). Tento subor obsahuje zoznam poskodenych sektorov pevneho disku.
 -prikazom "e2fsck" alebo "fsck" vieme zabezpecit, ze sa zabrani operacnemu systemu pouzivat chybne sektory na konkretnom pevnom disku.
 
   ------------ Specifically for ext2/ext3/ext4 file-systems ------------ 
   $ sudo e2fsck -l badsectors.txt /dev/sda10
+
   OR
+
   ------------ For other file-systems ------------ 
   $ sudo fsck -l badsectors.txt /dev/sda10
 
+Poznamka: Otestoval som vsetky 4 disky na serveri. Vsetky su v poriadku (0 bad blocks). Preto si myslim, ze chyby s diskami v Linuxe sposoboval s velkou pravdepodobnostou hardverovy RAID radic.
+
+
 *************
-Postup instalacie
+Nastavenie BIOSu
+  -aktivovany Asus Smart Fan II (ale stale huci ako vysavac)
+  -Restore on AC loss: Power On (aby sa znovu zapol pri vypadku elektriny)
+  -v Boot Priority Options nastavime na bootovanie iba jediny hlavny pevny disk; ostatne disky budu sluzit ako zalozne, na ktore budem klonovat tento hlavny disk. Najprv odstranime vsetky zariadenia z Boot Priority Options a restartujeme. Malo by sa objavit hlasenie, ze nenasiel bootovatelne zariadenie. Potom restartujeme znovu, vojdeme do BIOSu a pridame jedno zariadenie do zoznamu a restartujeme. Ked server nabootuje, nastavenie je spravne. Inak znovu vojdeme do BIOSu, odstranime aktualne zariadenie v Boot Priority Options a vyberieme dalsie, kym nenajdeme to spravne zariadenie.
+  -Mozeme este nastavit heslo do BIOSu. Tento krok som vynechal.
+
+
+*************
+Upgrade BIOSu
+-ak je mozne, aktualizujeme BIOS na najnovsiu verziu.
+V mojom pripade to mozne nebolo, pretoze by to vyzadovalo vytvorenie diskety s aktualizacnymi subormi. A jedina disketova mechanika je v tom serveri.
+
+Postup vytvorenia aktualizacnej diskety
+-stiahneme si Rufus
+-nastavime ho
+  -Device: zvolime si disk
+  -Partition scheme and target system type: MBR partition scheme for BIOS or UEFI computers
+  -File System: FAT alebo FAT32
+  -Cluster size: default
+  -New volume label: odstranime vsetko (prazdny)
+  -Quick Format: zaskrtnute
+  -Create a bootable disk using: MS-DOS
+  -Create extenden label and icon files: odskrtnute
+-Start
+
+Vytvorene USBcko pripojime ku serveru a zapneme ho.
+Vojdeme do BIOSu a zmenime prioritu bootovania tak, aby bolo USB na prvom mieste.
+V BIOSe este nastavime "Flash Write" na Disabled, aby sme vypli ochranu BIOSu proti zapisu a mohli BIOS aktualizovat.
+Stlacime F10 (Ulozime nastavenia) -> Yes
+
+Server sa restartuje.
+Po chvili sa objavi MS-DOS s obrazovkov vyberu rozlozenia klavesnice. Odporucam vybrat "English-US".
+Ale po spusteni aktualizacneho skriptu sa objavi chybova hlaska "Cannot flash if Memory Managers (e.g. HIMEM) present"
+Tak som zase v BIOSe nastavil "Flash Write" na Enabled (zapnutie ochrany BIOSu pred prepisanim), vybral som USBcko a restartoval server.
+
+Ukazalo sa, ze aktualizacia BIOSu na serveri je technicky narocna, preto som sa rozhodol nevykonat ju.
+
+************* POSTUP INSTALACIE *************
 
 -Spustime prave nakonfigurovanu EVE virtualku.
 -Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
@@ -55,3 +108,8 @@ Postup instalacie
 -Prepneme sa naspäť do pôvodného terminálu (skúšame Ctrl+Alt+1 až 7).
 -Po nainstalovavi GRUBu potvrdime restart volbou “Continue”. Server sa nasledne restartuje.
 -Po restarte sa prihlasime s predvolenymi prihlasovacimi udajmi "root/eve". Po prvom prihlasenie treba vykonat prvotnu konfiguraciu, ktora je opisana v subore "5_prvotna_konfiguracia_EVE_ng".
+
+
+Zdroje:
+https://blogs.technet.microsoft.com/csstwplatform/2012/06/25/how-to-create-a-ms-dos-bootable-usb-flash-drive/
+https://www.computing.net/answers/windows-xp/phoenix-bios-upgrade-himem-message/192069.html#1
