@@ -15,7 +15,6 @@
     -ak chceme zmenit hostname servera, potrebujeme ho zmenit aj v:
       -/etc/apache2/apache2.conf
       -/etc/apache2/sites-enabled/unetlab.conf
-      -/etc/apache2/sites-enabled/default-ssl.etc
 
   /apache2/conf/apache2.conf
     -upravene podla suboru "06_zabezpecenie_servera.txt"

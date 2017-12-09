@@ -115,6 +115,24 @@ mozeme don vlozit lubovolny text, napr.:
 Ukoncime SSH spojenie a znovu sa prihlasime.
 Uvidime MOTD.
 
+*************
+Nastavime pocuvanie SSH iba na jednej IP adrese
+
+Tento krok som nevykonal.
+
+V /etc/ssh/sshd_conf upravime riadok
+
+  #Listen 0.0.0.0
+
+na
+
+  Listen <IP_adresa_servera>
+
+-ulozime
+-nacitame novu SSHkonfiguraciu
+
+  sudo service ssh reload
+
 
 ************* ZABEZPECENIE APACHE *************
 
@@ -255,6 +273,10 @@ aby sa spustal v pouzivatelskom ucte.
 -restartujeme apache
     sudo systemctl restart apache2.service
 
+*************
+7. Use mod_security and mod_evasive Modules to Secure Apache
+
+Tento krok som nevykonal.
 
 ************* ZABEZPECENIE MYSQL *************
 

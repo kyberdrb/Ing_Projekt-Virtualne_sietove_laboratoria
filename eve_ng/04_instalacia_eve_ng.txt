@@ -43,8 +43,11 @@ Pred instalaciou na fyzicky server otestujeme disk na chybne sektory!
   ------------ For other file-systems ------------ 
   $ sudo fsck -l badsectors.txt /dev/sda10
 
-Poznamka: Otestoval som vsetky 4 disky na serveri. Vsetky su v poriadku (0 bad blocks). Preto si myslim, ze chyby s diskami v Linuxe sposoboval s velkou pravdepodobnostou hardverovy RAID radic.
 
+*************
+Rozpustenie RAID zvazku
+
+Najprv som nainstaloval eve-ng na server, ked boli disky este v RAIDe. Ked server uz nejaku tu hodinku bezal, zacal na lokalnej konzole vypisovat chybove hlasenia ohladom diskov. Nic sa ale nevypisovalo do SSH konzoly. Tak som rozpustil RAID, vsetky disky vybral, zvolil som si prvy disk, vlozil som ho naspat (aby bol zapojeny iba jeden jediny disk) a otestoval som ho na chybne sektory. Disk bol v poriadku, preto som nan nainstaloval eve-ng. Ani po niekolkych hodinach sa neobjavilo ziadne chybove hlasenie ani na lokalnej, ani na SSH konzole. Neskor som zapojil a otestoval aj zvysne 3 disky na serveri. Vsetky boli v poriadku (0 bad blocks). Preto si myslim, ze chyby s diskami v eve-ng sposoboval s velkou pravdepodobnostou hardverovy RAID radic.
 
 *************
 Nastavenie BIOSu
