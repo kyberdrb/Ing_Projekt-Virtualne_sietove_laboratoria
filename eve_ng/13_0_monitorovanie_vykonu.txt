@@ -1,0 +1,77 @@
+						Prikaz					Jednotky
+Vyuzitie CPU celkovo + jednotlive jadra		dstat -T -c -C total,0,1,2,3,4,5,6,7	% (vyzaduje odcitat nameranu hodnotu od 100 zo stlpca 'idl')
+
+Vyuzitie operacnej pamate			dstat -T -m				MiB
+
+Vyuzitie disku					dstat -T -d -D sda			kB/s (citanie aj zapis)
+						dstat --disk-util			% (citanie aj zapis)
+						dstat --disk-tps			pocet operacii za sekundu (citanie aj zapis)
+
+Vyuzitie sietovej karty (up/down)		dstat -T -n				B/s
+
+Ukladanie do suboru (CSV)			dstat --output			dstat --output profiling_<nazov_zariadenia>.csv
+
+*************
+Kompletny prikaz
+
+dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output profiling_<nazov_zariadenia>.csv
+
+
+*************
+Dalsie nastroje
+
+nmap 		monitorovanie systemovych prostriedkov (vsetkych)
+iotop	 	monitorovanie procesov vzhladom na vyuzitie disku
+nethogs		monitorovanie procesov vzhladom na vyuzitie sietoveho rozhrania
+		pouzitie: sudo nethogs pnet0
+
+
+*************
+VYNECHANE Z PROFILINGU
+
+-FREKVENCIA
+Frekvenciu cpu som vynechal, lebo procesor podla prikazu 'watch lscpu | grep "MHz"' striedal iba dve frekvencie: 2000.000 MHz (minimalna) a 2333.000 (maximalna)
+
+CPU MHz:               2000.000
+CPU max MHz:           2333.0000
+CPU min MHz:           2000.0000
+
+
+-VYTAZENIE SIETOVEHO ROZHRANIA
+Vytazenie sietovej karty (uplink a downlink) je zanedbatelne pri profilingu jednotlivych zariadeni, ale moze byt relevantne pri profilingu a benchmarkingu topologii od viacerych studentov v ramci vyucovacich predmetov.
+
+*************
+Postup pri merani systemovych poziadaviek virtualnych zariadeni
+
+-Do projektu pridame jedno zariadenie daneho druhu
+-Nastavime mu velmi vela pamate (8-10GB operacnej pamate)
+-Spustime sledovanie systemovych prostriedkov spolu s ukladanim udajov do suboru
+-Spustime zariadenie
+-Pripojime sa na konzolu zariadenia
+-Po uspesnom spusteni zariadenia sa nan prihlasime (ak je to vyzadovane)
+-Akonahle nam zariadenie umozni pisat prikazy do konzoly, pockame este 1-2 minuty
+-Zastavime zariadenie
+-Ukoncime sledovanie systemovych prostriedkov
+-Stiahneme si subor zo sledovania systemovych prostriedkov zo servera
+-Ak je potrebne pridame zariadenie do sumarnej tabulky spolu s:
+  -predvolenymi prihlasovacimi udajmi (pozriet aj netbrainslearn GNS3 1.4 zariadenia)
+  -systemovymi poziadavkami (CPU, RAM)
+  -teoretickym maximalnym poctom spustitelnych zariadeni (v zavislosti od RAM)
+-Analyzujeme ulozeny subor
+  -ak je potrebne skonvertujeme jednotky
+  -vygenerujeme grafy
+-Na zaklade analyzy sa rozhodneme, ci a ako zmenime parametre daneho zariadenia.
+-Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
+
+
+
+
+Zdroje:
+http://dag.wiee.rs/home-made/dstat/
+https://stackoverflow.com/a/39136984
+https://stackoverflow.com/a/31007290
+http://hadooppowered.com/2014/05/04/advanced-dstat/
+https://askubuntu.com/questions/218567/any-way-to-check-the-clock-speed-of-my-processor
+https://askubuntu.com/a/741219
+https://unix.stackexchange.com/a/55227
+https://askubuntu.com/a/532430

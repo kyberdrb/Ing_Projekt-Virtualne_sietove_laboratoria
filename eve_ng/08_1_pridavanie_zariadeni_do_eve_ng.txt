@@ -40,6 +40,10 @@ Prihlasovacie údaje na jednotlivé zariadenia by nemali byť žiadne. Ak naprie
     Názvy adresárov podľa typu zariadení uvádzame v tabuľke.
 
 2.2) IOL - Ak je obraz disku vo formáte "bin", vykonáme tieto príkazy:
+    Buď ho skonvertujeme do "image" formátu v GNS3 a postupujeme podľa kroku "2.3) DYNAMIPS"
+
+    Alebo nahráme obraz disku priamo na server. (alebo mozeme spravit oboje a vyskusat, ktore zariadenie sa spusti)
+
     # Nahráme obraz disku na server
     sftp root@<ip_adresa_UnetLabu>
     put <cesta_k_obrazu_disku_bin_na_lokálnom_PC>
@@ -139,17 +143,13 @@ Prihlasovacie údaje na jednotlivé zariadenia by nemali byť žiadne. Ak naprie
     Tieto kroky vytvoria funkčný obraz disku optimálnej veľkosti z formátu "img" do formátu "qcow2".
 
 3) Ak je potrebné, vykonáme špecifické úpravy pre jednotlivé zariadenia:
-
-    - Cisco IOL -uistíme sa, že máme v adresári "/opt/unetlab/addons/iol/bin" súbor s názvom "iourc", ktorý obsahuje licenciu pre spúšťanie Cisco IOU/IOL zariadení. Cisco IOL ako jediné podporujú sériové porty.
+    - Cisco IOL - uistíme sa, že máme v adresári "/opt/unetlab/addons/iol/bin" súbor s názvom "iourc", ktorý obsahuje licenciu pre spúšťanie Cisco IOU/IOL zariadení. Cisco IOL ako jediné podporujú sériové porty.
     
-    - Aby sme mohli pridať obraz disku "c1700-adventerprisek9-mz.124-8.image", musíme ho premenovať na "c1710-c1700-adventerprisek9-mz.124-8.image". Potom pri zozname zariadení "Add node" vyberieme typ zariadenia "Cisco IOS 1710 (Dynamips)". Obraz disku "c1700-ipvoicek9-mz.124-4.XC4.image" sa po premenovaní na "c1710-ipvoicek9-mz.124-4.XC4.image" dal pridať, ale nedal sa už spustiť.
-    - Cisco CSR 1000v sa spúšťa asi 5 minút
-    - Cisco 7206 VXR podporuje rozširujúce karty na Ethernet porty
+    - Aby sme mohli pridať obraz disku "c1700-adventerprisek9-mz.124-8.image", musíme ho premenovať na "c1710-c1700-adventerprisek9-mz.124-8.image", aby sa objavil vo webovom rozhraní EVE-ng. Potom pri zozname zariadení "Add node" vyberieme typ zariadenia "Cisco IOS 1710 (Dynamips)".
     
 4) Opravíme oprávnenia
     sudo chown -R root:root /opt/unetlab/addons/
     /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
-    reboot     #pre istotu, ale nie je to nutne - treba najprv otestovat vo web GUI
 
 5) Odskúšame pridané zariadenie vo webovom rozhraní. Zariadenie stačí pridať na pracovnú plochu, buď cez ikonku "plus" v nástrojovej lište, alebo pravým tlačidlom a zvoliť možnosť "Add node". Z rozbaľovacieho zoznamu vyberieme druh zariadenia, ktorý sme pridávali, ponecháme predvolené nastavenia a klikneme na "Add". Zariadenie spustíme tak, že naň klikneme pravým tlačidlom a zvolíme možnosť "Start".
 

@@ -24,6 +24,15 @@ Sice switch so seriakmi je divny, ale vsak co, aspon bude menej roboty a student
 
 ==========================================================================
 
+-Cisco c1710: pridáme podporu VLAN
+
+  sudo nano c1710.php
+
+zmeníme parametre nasledovne:
+  $p['idlepc'] = '0x80618b54';
+
+==========================================================================
+
 -Cisco c3725: pridáme podporu VLAN
 
   sudo nano c3725.php
@@ -31,6 +40,7 @@ Sice switch so seriakmi je divny, ale vsak co, aspon bude menej roboty a student
 zmeníme parametre nasledovne:
   $p['slot1'] = 'NM-1FE-TX';
   $p['slot2'] = 'NM-16ESW';
+  $p['idlepc'] = '0x60c09aa0';
 ==========================================================================
 
 -Cisco v7206VXR: nastaviť veľkosť RAM na 240MB (optimálne množstvo) a pridáme rozširujúcu
@@ -41,6 +51,7 @@ kartu na 4 Ethernet porty.
 zmeníme parametre nasledovne:
   $p['ram'] = 240;
   $p['slot1'] = 'PA-4E';
+  $p['idlepc'] = '0x62a5af34';
 
 ==========================================================================
 

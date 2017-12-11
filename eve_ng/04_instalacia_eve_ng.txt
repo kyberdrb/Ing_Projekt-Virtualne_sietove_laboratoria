@@ -104,7 +104,26 @@ Ukazalo sa, ze aktualizacia BIOSu na serveri je technicky narocna, preto som sa 
 -Na otázku, či chceme zabezpečiť “home” adresár používateľa potvrdíme voľbu “No” - jednoduchšie zálohovanie
 -Pri partíciovaní odporúčam z vlastnej skúsenosti  zvoliť “Guided – use entire disk” - vyhradíme celý disk pre Ubuntu.
 -Nastavíme proxy (ak nemáme žiaden, necháme prázdne).
--Pri dotaze na automatické aktualizácie zvolíme “No automatic updates”, aby sme predišli nepredvídaným následkom. Aktualizácia servera bude na vyžiadanie (on demand) a je za ňu zodpovedný administrátor
+-Pri dotaze na automatické aktualizácie zvolíme “No automatic updates”, aby sme predišli nepredvídaným následkom. Aktualizácia servera bude na vyžiadanie (on demand) a je za ňu zodpovedný administrátor.
+
+Ak sme aj napriek tomu zvolili automaticke aktualizacie, vieme ich vypnut:
+
+  sudo vim.tiny /etc/apt/apt.conf.d/20auto-upgrades
+
+zmenime
+
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+
+na
+
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+
+!!
+Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt"
+!!
+
 -Pridáme balíček “OpenSSH server” (ak sme vyzvaní).
 -Nainštalujeme GRUB na disk.
 -Pokiaľ v sieti nie je IPv4 DHCP server, prepneme sa do virtuálnej konzoly (Ctrl+Alt+2) a upravíme súbor "/etc/network/interfaces", v ktorom serveru pridelíme statickú IPv4 (potrebná pre post-install EVE-ng).
@@ -116,3 +135,5 @@ Ukazalo sa, ze aktualizacia BIOSu na serveri je technicky narocna, preto som sa 
 Zdroje:
 https://blogs.technet.microsoft.com/csstwplatform/2012/06/25/how-to-create-a-ms-dos-bootable-usb-flash-drive/
 https://www.computing.net/answers/windows-xp/phoenix-bios-upgrade-himem-message/192069.html#1
+https://www.garron.me/en/linux/turn-off-stop-ubuntu-automatic-update.html
+https://askubuntu.com/a/172527

@@ -27,6 +27,14 @@ Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
 *************
 Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani lokalne, a uz vobec nie vzdialene). Aj po "sudo -i" vie tak zblbnut, ze nepozna ani zakladne prikazy (napr "ls"): vypise chybu "Command not found". V kazdom pripade tak predideme dalsim komplikaciam.
 
+*************
+Nastavime heslo pre BIOS.
+Tento krok som nevykonal.
+
+*************
+Pouzijeme iptables firewall na zabezpecenie servera
+Tento krok som nevykonal.
+
 
 ************* ZABEZPECENIE SSH *************
 
@@ -52,12 +60,14 @@ PermitEmptyPasswords no
 X11Forwarding no
 TCPKeepAlive no
 
-  -restartujeme SSH, aby sa prejavila zmenena konfiguracia
+
+-Nacitame nove nastavenia pre SSH
 
     sudo service ssh reload
 
   -potom odskusame prihlasenie ako root aj ako pouzivatel. Po zadani spravneho hesla pouzivatela sa okamzite prihlasime. Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
 
+*************
 -aktivujeme autentifikaciu SSH klucom.
   -vygenerujeme SSH kluce (verejny a privatny) na lokalnom pocitaci
     ssh-keygen
@@ -70,10 +80,20 @@ TCPKeepAlive no
 
   -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu heslom, pretoze budeme pouzivat vylucne autentifikaciu SSH klucmi t.j. zmenime subor nasledovne (odkomentujeme riadok 'PasswordAuthentication')
 
+  sudo vim.tiny /etc/ssh/sshd_config  
+
 # Change to no to disable tunnelled clear text passwords
 PasswordAuthentication no
 
--Eventualne mozeme zmenit SSH port kvoli moznemu utoku zahltenim (vid riadok "Port" na zaciatku suboru)
+
+-Nacitame nove nastavenia pre SSH
+
+    sudo service ssh reload
+
+*************
+Zmena SSH portu
+-Mozeme zmenit SSH port kvoli potencionalnym utokom na port 22 (vid riadok "Port" na zaciatku suboru)
+Tento krok som nevykonal.
 
 *************
 Zobrazime spravu pouzivatelovi pred prihlasenim
@@ -210,13 +230,18 @@ zmenime riadok
 na
     '<VirtualHost IP_ADRESA_SERVERA:80>'
 
+-ulozime
+
     sudo vim.tiny /etc/apache2/sites-enabled/default-ssl.conf
+
+zmenime riadok
     '<VirtualHost _default_:443>'
 na
     '<VirtualHost IP_ADRESA_SERVERA:443>'
 
-restartujeme apache
-    sudo systemctl restart apache2.service
+-ulozime
+-restartujeme apache
+  sudo systemctl restart apache2.service
     
 *************
 
@@ -224,7 +249,8 @@ restartujeme apache
   -upravime potrebne subory
 
     sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
-pod riadok '<VirtualHost *:80>' vlozime:
+
+-pod riadok '<VirtualHost *:80>' vlozime:
     
     Redirect / https://<ip_adresa_servera>/
 
@@ -409,7 +435,7 @@ Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
   history -w
 
 -nainstalujeme doplnanie prikazov pre bash
-  sudo apt-get install bash-completion
+  sudo apt-get install bash-completion man-db
 
 
 Zdroje:
@@ -442,3 +468,4 @@ https://stackoverflow.com/questions/11223235/mysql-root-access-from-all-hosts
 
 -Zaverecne kroky
 https://askubuntu.com/a/280451
+https://ubuntuforums.org/showthread.php?t=1291340&p=8104827#post8104827

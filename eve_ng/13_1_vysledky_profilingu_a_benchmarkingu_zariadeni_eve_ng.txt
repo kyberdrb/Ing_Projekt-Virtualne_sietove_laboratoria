@@ -1,0 +1,5 @@
+vid sumarny benchmarking a profiling v adresari o uroven vyssie
+
+suvisiace subory:
+  monitorovanie_vykonu.txt
+  ./profiling_and_benchmarking/

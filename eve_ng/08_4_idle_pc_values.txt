@@ -1,0 +1,7 @@
+Dynamips image                                                                                  Idle PC value
+----------------------------------------------------------------------------------------------------------------------------
+c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image           0x80618b54
+c3725-adventerprisek9-mz.124-15.T14.image                                                       0x60c09aa0
+c7200-adventerprisek9-mz.152-4.S6.image                                                         0x62a5af34
+./zariadenia_v_zalohe/c7200-advipservicesk9-mz.152-4.S5.image                                   0x6318687c
+

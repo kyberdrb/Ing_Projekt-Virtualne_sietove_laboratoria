@@ -1,0 +1,142 @@
+CALCULATING IDLE PC
+
+  If an unsupported image is added to the UNetLab platform, an Idle PC value must be identified. Start a Dynamips instance with basic configuration:
+
+
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 96 -n 128
+or
+dynamips -P 3725 /opt/unetlab/addons/dynamips/<nazov_3725_zariadenia>.image -r 256 -n 128
+or
+dynamips -P 7200 -t 7200 /opt/unetlab/addons/dynamips/<nazov_7200_zariadenia>.image -r 512 -n 128
+
+Vysvetlivky parametrov:
+
+
+
+
+
+dynamips -N 1710 -T 32772 -P 1700 -t 1710 -o 4 -c 0x2102 -X -l dynamips.txt --idle-pc 0x80369ac4 -N 1710 -i 4 -r 96 -n 128
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image -r 96 -n 128
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image -r 96 -n 128 --idle-pc 0x80c93034
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image -r 1024 -n 1024 --idle-pc 0x80c93034
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 1024 -n 1024 --idle-pc 0x80c93034
+
+
+
+
+
+
+  CPU usage is very high, a whole one core of CPU for each instance (htop output):
+
+PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+521 root      20   0  412236 125408 109904 S 99.5 25.4   3:27.82 dynamips
+
+  Wait for the following line on the console:
+Would you like to enter the initial configuration dialog? [yes/no]:
+
+
+  Exit from initial configuration dialog, and quit to get the con0 prompt:
+
+Router>exit
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+
+
+
+  After few more seconds press 'CTRL + ]' (na slovenskej klavesnici: CTRL + pravy ALT + G) (nothing will show up) and then press 'i'. Dynamips will compute and show suggested Idle PC values:
+
+Please wait while gathering statistics...
+Done. Suggested idling PC:
+   0x80369ac4 (count=35)
+   0x8023afac (count=51)
+   0x8023b008 (count=30)
+   0x8023b050 (count=27)
+   0x803637a0 (count=38)
+   0x80363984 (count=20)
+   0x80363ccc (count=28)
+   0x80363d48 (count=28)
+   0x80363d78 (count=74)
+   0x803645d0 (count=76)
+Restart the emulator with "--idle-pc=0x80369ac4" (for example)
+
+
+
+  Press 'CTRL + ]' and then press 'q' (na slovenskej klavesnici: 'CTRL + pravy ALT + G' a potom 'q') to terminate dynamips emulation.
+  Start the emulator again with the first suggested IDLE PC value e.g. "--idle-pc=0x80369ac4" (for example). Select one and restart dynamips with the IDle PC value:
+
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 96 -n 128 --idle-pc 0x80369ac4
+
+
+
+
+
+  If CPU usage is lower, then a good Idle PC value has been found. Note this value for this device into the template file (see "10_uprava_sablon.txt"):
+
+PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+3598 root      20   0  346700 125328 109828 S  5.3 25.3   0:03.98 dynamips
+
+
+If CPU is still busy, then another value must be tested (either the second value or value with the highest 'count').
+
+
+
+
+
+
+************** IDLE PC HODNOTY **************
+
+Funkcne hodnoty Idle PC pre nizsie uvedene zariadenia su v subore "/opt/unetlab/addons/dynamips/idle_pc_values.txt".
+Funkcne hodnoty Idle PC pre dane zariadenie je oznacene sipkou '->'.
+
+**************
+c1710
+c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image
+
+povodna hodnota		0x80369ac4
+
+vypocitane hodnoty	->0x80618b54 (count=59)
+			0x80618b7c (count=40)
+			0x80618ba4 (count=20)
+			0x80340fb4 (count=73)
+			0x8061d0b8 (count=62)
+			0x801269fc (count=59)
+			0x8061746c (count=35)
+			0x80617488 (count=57)
+			0x8061760c (count=72)
+
+**************
+c3725
+c3725-adventerprisek9-mz.124-15.T14.image
+
+povodna hodnota		0x60c08728
+
+vypocitane hodnoty	->0x60c09aa0 (count=58)
+			0x6026be8c (count=44)
+
+**************
+c7200
+c7200-adventerprisek9-mz.152-4.S6.image
+
+povodna hodnota		0x62f21000
+
+vypocitane hodnoty	->0x62a5af34 (count=45)
+			0x6238d044 (count=64)
+
+
+**************
+c7200
+c7200-advipservicesk9-mz.152-4.S5.image
+
+povodna hodnota		0x62f21000
+
+vypocitane hodnoty	0x61e05870 (count=36)
+			0x61e05874 (count=52)
+			->0x6318687c (count=62)
+			0x62cbf334 (count=40)
+
+Zdroje:
+  https://netbrainstlearn.wordpress.com/2015/12/15/unl-adding-dynamips-images/

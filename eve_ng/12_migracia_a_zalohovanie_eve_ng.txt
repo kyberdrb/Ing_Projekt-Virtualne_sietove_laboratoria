@@ -16,13 +16,17 @@
       -/etc/apache2/apache2.conf
       -/etc/apache2/sites-enabled/unetlab.conf
 
+  /etc/network/interfaces
+    -kvoli statickej IPv4
+    -vypnuta IPv6 (manual)
+
   /apache2/conf/apache2.conf
     -upravene podla suboru "06_zabezpecenie_servera.txt"
     -zmenene ServerName na sirena
 
   /etc/apache2/sites-enabled/unetlab.conf
     -pocuvanie na konkretnej IPcke: zmena z '<VirtualHost *:80>' na '<VirtualHost IP_ADRESA_SERVERA:80>'
-    -presmerovanie HTTP (port 80) na HTTPS (port 443): pridany riadok 'Redirect / https://158.193.139.128/' pod '<VirtualHost *:80>' resp. '<VirtualHost IP_ADRESA_SERVERA:80>'
+    -presmerovanie HTTP (port 80) na HTTPS (port 443): pridany riadok 'Redirect / https://IP_ADRESA_SERVERA/' pod '<VirtualHost *:80>' resp. '<VirtualHost IP_ADRESA_SERVERA:80>'
     -zmenene ServerName na sirena
 
   /etc/apache2/sites-enabled/default-ssl.conf
@@ -35,29 +39,39 @@
 
 ************* POSTUP ZALOHOVANIA / MIGRACIE *************
 
-Adresare skopirujeme na iny lokalny pocitac / LXC kontajner cez FileZillu alebo príkazom:
-  
-  scp -r <zdrojovy_adresar> andrej@<ip_adr_servera>:<cielovy_adresar>
-  resp.
-  put -r <zdrojovy_adresar>/* <cielovy_adresar>	# ta hviezdička na konci zdrojového adresára je veľmi dôležitá ;)
+*************
+Skript na zalohovanie na vzdialeny server.
 
-napr.:
-  scp -r /opt/unetlab/addons andrej@<ip_adr_servera>:/home/andrej
-  scp -r /opt/unetlab/labs andrej@<ip_adr_servera>:/home/andrej
-  scp -r /opt/unetlab/html/templates andrej@<ip_adr_servera>:/home/andrej
-
-Po skopirovani suborov treba vygenerovať novú Cisco IOU/IOL licenciu tak, ako je popísané v súbore "06_vytvorenie_cisco_iou_iol_licencie". Pokiaľ licenciu nevytvoríme na novom stroji znovu, nepôjdu Cisco IOL zariadenia!
-
-IOL boxy kopirujeme opatrne do "bin" adresara, aby sme neprepisali jednak IOL licenciu, alebo "lib" adresar!
-
-Nakoniec opravime opravnenia skopirovanych suborov prikazom
-
-  sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+Pouzivam 'rsync' na zalohovanie najdolezitejsich suborov do LXC kontajnera. EVE-ng server sa voci LXC kontaineru autentifikuje SSH certifikatom, takze nemusime manualne zadavat heslo.
 
 
+vim.tiny zaloha_na_eve_backup.sh
 
-Ale najlepsie by bolo, keby sa hlavny disk zalohoval klonovanim na dalsie lokalne disky na serveri aj vzdialene, aby sme sa nemuseli spoliehat na lokalny system. Zalohovanie sa budu vykonavat kazdy den, najlepsie v noci.
+
+#!/bin/bash
+
+EVE_BACKUP_IP=158.193.152.45
+
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/addons/dynamips/ andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_dynamips
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/addons/iol/bin/ andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_iol_bin
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/addons/qemu/ andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_qemu
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/addons/rozne_zariadenia/ andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_rozne_zariadenia
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/addons/rozne_zariadenia_prehlad.txt andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons/
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/addons/rozne_zariadenia_subory.txt andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons/
+rsync -a -e "ssh -i $HOME/.ssh/id_rsa" /opt/unetlab/labs/ andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_labs
+
+
+
+Potom vytvorime cron job, ktory bude kazdy den o 3:00 spustat tento zalohovaci skript.
+
+
+*************
+Skript na lokalne zalohovanie.
+
+Ale najlepsie by bolo, keby sa hlavny disk zalohoval klonovanim na dalsie lokalne disky na serveri aj vzdialene, aby sme sa nemuseli spoliehat na lokalny system. Zalohovanie sa bude vykonavat kazdy den, najlepsie v noci.
 
 Zdroje:
 http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-directories-contained-in-a-folder#387543
 http://www.eve-ng.net/index.php/faq
+https://unix.stackexchange.com/questions/127352/specify-identity-file-id-rsa-with-rsync
+https://www.liquidweb.com/kb/using-rsync-to-transfer-and-synchronize-local-and-remote-systems/
