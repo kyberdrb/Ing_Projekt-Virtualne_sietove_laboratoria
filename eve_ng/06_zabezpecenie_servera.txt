@@ -300,9 +300,17 @@ aby sa spustal v pouzivatelskom ucte.
     sudo systemctl restart apache2.service
 
 *************
-7. Use mod_security and mod_evasive Modules to Secure Apache
+mod_security
+
+-firewall pre webové aplikácie
+-ochrana napr. proti SQL Injection
 
 Tento krok som nevykonal.
+
+*************
+mod_evasive
+
+-ochrana Apache web servera proti DoS a DDoS utokom
 
 ************* ZABEZPECENIE MYSQL *************
 
@@ -433,9 +441,6 @@ Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
 -vymazeme historiu bash prikazov pre kazdeho pouzivatela (lokalne aj cez SSH)
   history -c
   history -w
-
--nainstalujeme doplnanie prikazov pre bash
-  sudo apt-get install bash-completion man-db
 
 
 Zdroje:

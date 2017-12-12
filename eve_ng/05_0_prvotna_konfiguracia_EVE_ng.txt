@@ -155,6 +155,15 @@ Finally you should upgrade system and EVE to latest version:
   apt-get upgrade
 
 
+
+
+-nainstalujeme doplnanie prikazov pre bash a dalsie nastroje
+
+  sudo apt-get install bash-completion man-db tmux
+
+
+
+
 EVE-ng server je teraz nainstalovany. Na to, aby bol pripravený na použtie z webového rozhrania, musime pridat vynimky do firewallu pre porty:
   80/443 - HTTP/HTTPS
   22 - SSH

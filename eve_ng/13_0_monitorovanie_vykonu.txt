@@ -57,12 +57,15 @@ Postup pri merani systemovych poziadaviek virtualnych zariadeni
   -predvolenymi prihlasovacimi udajmi (pozriet aj netbrainslearn GNS3 1.4 zariadenia)
   -systemovymi poziadavkami (CPU, RAM)
   -teoretickym maximalnym poctom spustitelnych zariadeni (v zavislosti od RAM)
+  -pribliznym casom spustania
 -Analyzujeme ulozeny subor
   -ak je potrebne skonvertujeme jednotky
   -vygenerujeme grafy
 -Na zaklade analyzy sa rozhodneme, ci a ako zmenime parametre daneho zariadenia.
 -Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
 
+
+Ked to budem mat pre vsetky zariadenia, vytvorim skript, ktory aktualizuje udaje v potrebnych sablonach v EVE-ng.
 
 
 
