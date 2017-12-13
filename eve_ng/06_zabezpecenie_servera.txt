@@ -30,10 +30,12 @@ Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani 
 *************
 Nastavime heslo pre BIOS.
 Tento krok som nevykonal.
+Spolieham sa na fyzicke zabezpecenie pristupu k serverovni.
 
 *************
 Pouzijeme iptables firewall na zabezpecenie servera
 Tento krok som nevykonal.
+Spolieham sa na katedrovy firewall.
 
 
 ************* ZABEZPECENIE SSH *************
@@ -306,11 +308,15 @@ mod_security
 -ochrana napr. proti SQL Injection
 
 Tento krok som nevykonal.
+Mohlo by to znemoznit vytvaranie pouzivatelov cez web rozhranie.
 
 *************
 mod_evasive
 
 -ochrana Apache web servera proti DoS a DDoS utokom
+
+Tento krok som nevykonal.
+Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
 
 ************* ZABEZPECENIE MYSQL *************
 

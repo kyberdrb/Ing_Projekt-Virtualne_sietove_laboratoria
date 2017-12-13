@@ -131,7 +131,7 @@ Preto vytvorime cron job, ktory sa bude starat o periodicke vykonavanie tohto sk
 
 -Ak je toto prva cron uloha, najprv sa presvedcime, ci sa cron ulohy vobec vykonavaju. na koniec suboru pridame riadok:
 
-  * * * * * /home/andrej/zaloha_na_eve_backup.sh >/dev/null 2&>1
+  * * * * * /home/andrej/zaloha_na_eve_backup.sh >/dev/null 2>&1
 
 -tato uloha sa bude vykonavat kazdu minutu.
 -ulozime
@@ -153,7 +153,7 @@ Uvidime, ako kazdu minutu cron spusta nas skript.
 
 Ked sme sa presvedcili, ze nas skript sa vykonava kazdu minutu, zakomentujeme ho a nahradime ho finalnou verziou:
 
-  0 3 * * * /home/andrej/zaloha_na_eve_backup.sh >/dev/null 2&>1
+  0 3 * * * /home/andrej/zaloha_na_eve_backup.sh >/dev/null 2>&1
 
 -tento skript sa bude vykonavat kazdu nultu minutu, kazdu tretiu hodinu, kazdy v tyzdni, vsetky mesiace, a lubovolny den v tyzdni
 -ulozime
@@ -200,13 +200,15 @@ napr.
 
 
 Zdroje:
+
+https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
+
 -RSYNC
 http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-directories-contained-in-a-folder#387543
 http://www.eve-ng.net/index.php/faq
 https://unix.stackexchange.com/questions/127352/specify-identity-file-id-rsa-with-rsync
 https://www.liquidweb.com/kb/using-rsync-to-transfer-and-synchronize-local-and-remote-systems/
 https://www.tecmint.com/mysql-backup-and-restore-commands-for-database-administration/
-https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
 https://stackoverflow.com/questions/1636889/rsync-how-can-i-configure-it-to-create-target-directory-on-server
 http://www.schwertly.com/2013/07/forcing-rsync-to-create-a-remote-path-using-rsync-path/
 
