@@ -65,7 +65,7 @@ Postup pri merani systemovych poziadaviek virtualnych zariadeni
 -Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
 
 
-Ked to budem mat pre vsetky zariadenia, vytvorim skript, ktory aktualizuje udaje v potrebnych sablonach v EVE-ng.
+Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do skriptu na aktualizaciu sablon (vid subor "uprava_sablon").
 
 
 

@@ -6,11 +6,13 @@ sudo -i
 DEBIAN_FRONTEND=noninteractive apt-get -y install eve-ng
 reboot
 
+Spustíme skript na úpravu šablón pre zariadenia podľa návodu "uprava_sablon.txt".
+
+  ./update_templates.sh
+
 Skontrolujeme, či beží apache:
 
   sudo netstat -plantu
-
-Upravíme šablóny pre zariadenia podľa návodu "09_uprava_sablon.txt"
 
 Ak vidíme, že na porte apache 80 beží, otvoríme internetový prehľadávač, vymažeme mu "Cache" a pripojíme sa na EVE-ng server.
 

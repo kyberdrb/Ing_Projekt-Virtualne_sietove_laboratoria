@@ -11,7 +11,7 @@ DOLEZITE ADRESARE
 
   /opt/unetlab/html/templates
     -šablóny pre jednotlivé typy zariadení
-    -TODO - lepsie by bolo, keby bol na to urceny skript v ramci aktualizacnej procedury
+    -šablóny aktualizujem skriptom, ktorý opisujem v subore "uprava_sablon"
 
   /var/lib/mysql
     -adresar s mysql databazami
@@ -29,7 +29,7 @@ DOLEZITE SUBORY
     -kvoli statickej IPv4
     -vypnuta IPv6 (manual)
 
-  /apache2/conf/apache2.conf
+  /etc/apache2/conf/apache2.conf
     -upravene podla suboru "06_zabezpecenie_servera.txt"
     -zmenene ServerName na sirena
 
@@ -56,68 +56,7 @@ Pouzivam 'rsync' na zalohovanie najdolezitejsich adresarov suborov do LXC kontaj
 
 vim.tiny zaloha_na_eve_backup.sh
 
-
-#!/bin/bash
-
-# Pass PATH variable with path to this script for cron job
-# Add script directory to the beginning of the PATH variable (in my case, the script is located in '/home/andrej/')
-PATH=/home/andrej:/home/andrej/bin:/home/andrej/.local/bin:/home/andrej/bin:/home/andrej/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
-
-EVE_BACKUP_IP=<IP_adresa_zalohovacieho_servera>
-HOME_DIR=/home/andrej
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/opt_unetlab_addons_dynamips && rsync" \
-  /opt/unetlab/addons/dynamips/ \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_dynamips
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/opt_unetlab_addons_iol_bin && rsync" \
-  /opt/unetlab/addons/iol/bin/ \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_iol_bin
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/opt_unetlab_addons_qemu && rsync" \
-  /opt/unetlab/addons/qemu/ \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_qemu
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/opt_unetlab_addons_rozne_zariadenia && rsync" \
-  /opt/unetlab/addons/rozne_zariadenia/ \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons_rozne_zariadenia
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/opt_unetlab_addons && rsync" \
-  /opt/unetlab/addons/rozne_zariadenia_prehlad.txt \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons/
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  /opt/unetlab/addons/rozne_zariadenia_subory.txt \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_addons/
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/opt_unetlab_labs && rsync" \
-  /opt/unetlab/labs/ \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/opt_unetlab_labs
-
-mysqldump -u root --password='<pouzivatelske_heslo>' eve_ng_db > $HOME_DIR/eve_ng_db.sql 2>&1
-mysqldump -u root --password='<pouzivatelske_heslo>' guacdb > $HOME_DIR/guacdb.sql 2>&1
-mysqldump -u root --password='<pouzivatelske_heslo>' --all-databases > $HOME_DIR/vsetky_mysql_databazy.sql 2>&1
-
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  --rsync-path="mkdir -p /home/andrej/eve-ng_zaloha/var_lib_mysql && rsync" \
-  $HOME_DIR/eve_ng_db.sql \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/var_lib_mysql
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  $HOME_DIR/guacdb.sql \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/var_lib_mysql
-rsync -a -e "ssh -i $HOME_DIR/.ssh/id_rsa" \
-  $HOME_DIR/vsetky_mysql_databazy.sql \
-  andrej@$EVE_BACKUP_IP:/home/andrej/eve-ng_zaloha/var_lib_mysql
-
-rm $HOME_DIR/eve_ng_db.sql
-rm $HOME_DIR/guacdb.sql
-rm $HOME_DIR/vsetky_mysql_databazy.sql
-
+Obsah skriptu je v subore "migracia_a_zalohovanie_eve_ng_skript".
 
 *************
 Periodicke vykonavanie zalohovacieho skriptu
@@ -202,6 +141,7 @@ napr.
 Zdroje:
 
 https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
+https://unix.stackexchange.com/questions/92384/how-to-clean-log-file
 
 -RSYNC
 http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-directories-contained-in-a-folder#387543

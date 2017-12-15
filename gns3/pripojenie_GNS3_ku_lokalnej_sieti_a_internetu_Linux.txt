@@ -1,0 +1,85 @@
+Pripojenie GNS3 ku lokálnej sieti a internetu + Prepojenie GNS3 medzi sebou  v OS Debian 8.6.0 x64 LXDE
+Nainštalujeme potrebné balíčky
+
+sudo apt-get install uml-utilities bridge-utils
+
+Vytvoríme skript s názvom napr. “bridge_interface.sh”:
+
+#!/bin/bash
+#Delete tap interface
+echo "Deleting bridge interface ..."
+
+sudo ifconfig br0 down
+sudo brctl delif br0 eth0
+sudo brctl delif br0 tap0
+sudo brctl delbr br0
+sudo tunctl -d tap0
+sudo ifconfig eth0 up
+sudo dhclient eth0
+#sudo ifconfig eth0 192.168.1.50
+#sudo route add default gw 192.168.0.1
+
+echo "Bridging interfaces ..."
+
+#Create a tap interface
+sudo tunctl -t tap0
+#Remove ip addressing and set eth0 and tap0 to promiscuous mode
+sudo ifconfig tap0 0.0.0.0 promisc up
+sudo ifconfig eth0 0.0.0.0 promisc up
+#Create a new bridge interface
+sudo brctl addbr br0
+#Add tap0 and eth0 to the bridge group
+sudo brctl addif br0 tap0
+sudo brctl addif br0 eth0
+#Enable the bridge interface and give it an ip address
+sudo ifconfig br0 up
+#sudo ifconfig br0 192.168.1.50/24
+sudo dhclient br0
+#Configure the default route
+#sudo route add default gw 192.168.0.1
+
+
+Pridelíme skriptu oprávnenia na vykonávanie a spustíme skript
+sudo chmod 744 bridge_interface.sh
+./bridge_interface.sh
+
+Môžeme overiť zoznam bridge interface zariadení:
+
+brctl show
+ip a
+
+Vytvoríme topológiu Cloud-smerovač (ľubovoľný)
+
+Nastavíme Cloud
+Pravé tlačidlo na Cloud -> Configure -> záložka TAP -> do TAP interface zadáme "tap0" bez úvodzoviek a klikneme na tlačidlo "Add" -> OK
+
+Prepojíme smerovač a Cloud
+
+Spustíme simuláciu
+
+Nastavíme smerovač (kroky sú uvádzané pre Cisco smerovač)
+Pravé tlačidlo na smerovač -> Console
+
+conf t
+int f0/0
+ip address dhcp
+no shutdown
+exit
+ip domain-lookup
+exit
+
+Otestujeme nastavenia smerovača a jeho konektivitu
+show ip interface brief
+show ip route
+ping <default_gateway>
+ping <lokalny_pc>
+ping 8.8.8.8
+ping google.com
+
+Mali by sme sa dopingať všade: na hosťovský počítač aj na internet. Podobne by mala byť funkčná konektivita aj z hosťovského počítača na smerovač vnútri GNS3.
+
+Poznámka: Návod funguje iba na káblové pripojenie k internetu. Pripojenie GNS3 ku bezdrôtovej sieťovke je takmer nemožné (cez terminál).
+
+Zdroje:
+http://www.blindhog.net/linux-bridging-for-gns3-lan-communications/
+https://www.youtube.com/watch?v=ZbiyxUVY6Sc

@@ -1,8 +1,3 @@
-Skript na upravu atributov v sablonach pre jednotlive druhy zariadeni.
-Skript je ulozeny v domovskom adresari (pre jednoduchost).
-
-
-
 #!/bin/bash
 
 # PURPOSE
@@ -203,13 +198,6 @@ run_tests () {
   diff $TEMPLATE_IOL $SED_TEST_4_IOL
 }
 
-########################
-#   RUN ALL THE TESTS
-########################
-
-#run_tests
-
-
 ###########################################
 #             TEMPLATES
 ###########################################
@@ -247,8 +235,17 @@ update_templates () {
 }
 
 ###########################################
+#           RUN ALL THE TESTS
+#
+#       after making some changes
+###########################################
+
+#run_tests
+
+###########################################
 #             CHANGE TEMPLATES
+#
+#        after everything was tested
 ###########################################
 
 update_templates
-

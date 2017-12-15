@@ -5,3 +5,4 @@ c3725-adventerprisek9-mz.124-15.T14.image                                       
 c7200-adventerprisek9-mz.152-4.S6.image                                                         0x62a5af34
 ./zariadenia_v_zalohe/c7200-advipservicesk9-mz.152-4.S5.image                                   0x6318687c
 
+Hodnoty pre prvé tri zariadenia sú zaznamenané v skripte na úpravu šablón, ktorý opisujem v súbore "uprava_sablon".

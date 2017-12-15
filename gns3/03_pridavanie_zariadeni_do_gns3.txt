@@ -1,0 +1,236 @@
+Pridávanie zariadení do GNS3
+Tento dokument je platný aj pre linuxové distribúcie aj pre Windows. Prípadné odlišnosti sú v dokumente označené.
+Pridanie Cisco smerovača
+1) Otvoríme GNS3 → Edit -> Preferences
+
+
+
+
+
+
+
+
+IOS routers -> New (je potrebné scrolovat na spodok okna)
+
+2.1)Ak už sme predtým pridávali nejaký IOS image, klikneme na "Existing image" a zvolíme z robaľovacieho menu želaný image. "Next".
+
+2.2) Ak nevidíme žiadne IOS obrazy, klikneme na "New image" -> "Browse", nájdeme IOS image a zvolíme ho. Keď sa nás spýta, či chceme image skopírovať do predvoleného priečinka, potvrdíme voľbu. Potom klikneme na "Next".
+
+
+3) V nasledujúcom kroku sú už nastavené predvolené hodnoty, tieto by mali byť správne. Môžeme zmniť meno zariadenia (napríklad pre lepšiu orientáciu).
+Voľbu "This is an EtherSwitch router" môžeme zaškrtnúť, ak máme v pláne pridať Ethernet modul NM-16ESW, čo nám umožní zmeniť smerovač na prepínač.
+"Chassis" určuje model routra. "Next".
+
+4) Zadáme množstvo operačnej pamäte. Predvolené množstvo (Linux 256 MB, Windows sa mení v závislosti od OS smerovača) by malo stačiť. "Next".
+5) Zvolíme počet a typ rozširujúcich kariet. "Next".
+
+5.1) Ak to router podporuje, zobrazí sa obrazovka, kde zvolíme počet a typ WIC kariet. "Next".
+
+6) Teraz treba zvolit “Idle-PC” hodnotu kliknutím na tlačidlo "Idle-PC finder". Po chvíli sa "Idle-PC" hodnota zobrazí. Nájdenú “Idle-PC” hodnotu potvrdíme. "Finish".
+
+
+Teraz je Cisco router pripravený na použitie a ďalšiu konfiguráciu.
+
+Zdroj: https://www.gns3.com/support/docs/adding-ios-or-iou-qemu-virtual-2
+
+
+
+
+
+
+V prípade, že po čase zistíme, že niektoré nastavenie nebolo vykonané správne je možné použiť možnosť edit v Edit -> Preferences a nastavenia upraviť.
+Pridanie Juniper smerovača
+1) Stiahneme si JunOS image zo stránky:
+
+http://commonerrors.blogspot.sk/2014/11/download-juniper-router-iosimage-for.html
+Uvedená adresa obsahuje JunOS vo verzií 12.1, avšak najnovšia verzia je 16.2 (nepodarilo sa nám nájsť novšiu verziu ako je 12.1).
+https://www.juniper.net/techpubs/en_US/release-independent/junos/information-products/pathway-pages/junos/product/index.html
+Importujeme image do VirtualBoxu (s predvolenými nastaveniami)
+3) Po pridaní JunOS VirtualBox-u treba ist do jej nastavení a nastaviť sieťový adaptér "Attached to" na "Not connected".
+3.1) Pokiaľ chceme viac Juniper smerovačov, môžeme si ich naklonovať, ale musíme reinicializovať MAC adresy sieťových adaptérov.
+4) V GNS3 importujeme JunOS virtuálku cez Edit->Preferences->VirtualBox VMs->New
+5) Vyberieme JunOS virtuálku zo zoznamu.
+6) Presunieme Juniper prepínač z časti "End devices" na pracovnú plochu GNS3.
+6.1) Je možné si nastaviť počet sieťovvých adaptérov (Ethernet portov) na Juniper smerovači, najviac však 8. Počet sieťových adaptérov zmeníme kliknutím pravým tlačidlom na smerovač → Configure → Network -> Adapters
+
+Po spustení simulácie sa otvorí aj Juniper virtuálka. Prihlasovacie údaje:
+root / <bez hesla>
+
+Zdroje:
+http://commonerrors.blogspot.sk/2014/11/download-juniper-router-iosimage-for.html
+http://commonerrors.blogspot.sk/2014/11/use-juniper-router-image-with-gns3-11.html
+
+
+
+Pridanie Juniper vMX 17.3
+-Ak juniper nemá konfigurovatelné porty, je potrebné pridat viac ako 2 intefaces
+Po pridaní templatu do GNS kliknút nan pravým->Configure Template->Network->Adapters - nastavit pocet interfacov
+Niekedy treba pockat pár minút po boote aby sa pridané interfaces zobrazili v "show interfaces terse".
+
+
+
+Pridanie Mikrotik smerovača
+QEMU
+1) Stiahneme si RouterOS image a stránke
+http://www.mikrotik.com/download
+
+Stiahneme si "VMDK" obraz v časti "Mikrotik Cloud Router".
+
+2) Najprv musíme vytvoriť disk, z ktorého bude RouterOS bootovať. Disk sa dá vytvoriť buď v termináli alebo priamo v GNS3.
+
+2.1) Vytvorenie disku v termináli:
+qemu-img create -f qcow2 Mikrotik-hda.qcow2 512M
+
+2.2) Vytvorenie disku v GNS3
+-qemu-img binary: nechať predvolenú
+-image format: qcow2
+-preallocation: off
+-cluster size: default
+-lazy refcounts: vypnuté
+-refcount entry size: default
+-file location: necháme predvolenú; súbor sa uloží do priečinku "/home/$USER/GNS3/images/QEMU/"
+-size: 512 MB
+
+3) Vytvorený disk pre Mikrotik router musíme pripraviť pred použitím v simulácií. Teraz naň nainštalujeme RouterOS príkazom:
+
+qemu-system-i386 -m 512 -enable-kvm -boot d -cdrom <cesta_k_routerOS_iso> <cesta_k_mikrotik_disku_vytvoreneho_v_predchadzajucom_kroku>
+
+v našom prípade:
+
+qemu-system-i386 -m 512 -enable-kvm -boot d -cdrom ~/Downloads/mikrotik-6.37.1.iso Mikrotik-hda.qcow2
+
+4) Následne sa otvorí inštalačné menu RouterOS, v ktorom si môžeme vybrať balíčky na inštaláciu. Vyberieme všetky balíčky stlačením klávesy 'a'. Výber potvrdíme klávesou 'i'. Pri dotaze, či chceme zachovať pôvodnú konfiguráciu, ju odmietneme stlačením klávesy 'n' a pri dotaze "Continue?" stlačíme klávesu 'y' potvrtíme vymazanie pôvodnej konfigurácie. Začne sa proces partíciovania, formátovania a inštalácie balíčkov. Po dokončení operácie je potrebné reštartovať router stlačením klávesy 'Enter'. Po opätovnom nabootovaní ukončíme prácu s routrom stlačením klávesovej skratky "Ctrl + Alt + G" (uvoľnenie kurzora z virtuálnej mašiny) -> Machine -> Quit, resp. klávesovou skratkou "Ctrl + Alt + Q" (ukončenie virtuálnej mašiny)
+
+5) Nainštalovaný RouterOS spustíme príkazom
+
+qemu-system-i386 -m 512 -enable-kvm -boot c Mikrotik-hda.qcow2 -nographic -serial telnet::4444,server,nowait
+
+Na router sa vieme pripojiť telnetom príkazom "telnet 127.0.0.1 4444". Do približne do 1-2 minút by sa po stlačení klávesy 'Enter' mala zobraziť prihlasovacia obrazovka. Prihlasovacie údaje sú:
+
+Mikrotik Login: admin
+Password: <bez hesla>
+
+6) Teraz je RouterOS image pripravený pre GNS3 na vytvorenie Mikrotik routra. V GNS3 klikneme na Edit -> Preferences -> Qemu VMs -> New:
+-Názov: napr. "Cisco ASA"
+-RAM: 256 MB
+-Disk image (hda) -> Existing image -> Mikrotik-hda.img
+-Finish
+
+7) Vytvorený router pridáme na pracovnú plochu GNS3 a spustíme simuláciu.
+
+
+VirtualBox
+1) Vo VirtualBoxe vytvoríme novú virtuálnu mašinu:
+-Názov: napr. "Mikrotik"
+-RAM: 512 MB
+-Create new virtual disk -> 512 MB -> Finish
+-Finish
+
+2) Vytvorenú virtuálku potrebujeme ešte nastaviť:
+-System
+ -Acceleration -> Paravirtualization interface -> KVM
+ -Mothedboard -> Boot order: Hard disk, CD, všetko ostatné odškrtnuté
+ -Processor -> PAE/NX
+-Storage -> do virtualnej CD mechaniky namontovať RouterOS iso
+-Network -> nastaviť toľko sieťoviek, koľko sa dá (buď NAT alebo Bridged)
+-Audio -> odškrtnúť "Enable Audio", inak sa router síce spustí normálne, ale na začiatku napíše chybovú hlášku, že sa nedá inicializovať zvukové zariadenie
+
+3) Inštalácia RouterOS je rovnaká ako pri QEMU metóde. Router je po inštalácií okamžite použiteľný pre simuláciu. Prihlasovacie údaje sú rovnaké ako pre QEMU metódu.
+
+UPOZORNENIE: Hneď po prvom spustení je potrebné zadať licenciu, v opačnom prípade sa router po reštarte / vypnutí a opätovnom zapnutí pri prihlasovacej obrazovke okamžite vypne! Platí pre QEMU aj VirtualBox metódu. Čiastočným riešením pre VirtualBox je vytvorenie snapshotu hneď po inštalácií routra. Pre QEMU je čiastočným riešením preinštalácia systému.
+
+Zdroje:
+http://brezular.com/2014/07/09/running-mikrotik-routeros-x86-on-gns3/
+https://www.youtube.com/watch?v=6h5n67Heao4
+https://translate.google.com/translate?hl=en&sl=bg&tl=en&u=https%3A%2F%2Fmikrotik.unibit.bg%2Fnews%2Fgns3-routeros%2F
+http://nil.uniza.sk/network-simulation-and-modelling/gns3/making-qemu-mikrotik-router-gns3-under-win7
+
+
+Pridanie Cisco ASA firewall
+1) Stiahneme si súbory pre Cisco ASA 842 z
+http://www.mediafire.com/file/ssadit26tl3llms/asa.zip
+
+2) Extrahujume archív
+3) Otvoríme GNS3 -> Edit -> Preferences -> Qemu VMs -> New
+4) Zadáme názov napr. "Cisco ASA"
+ RAM = aspoň 1024 MB
+5) Keď sa nás spýta na "Disk image (hda)" (disk, na ktory budeme ASU inštalovať), dáme "Create" (lebo ešte žiadny nemáme)
+-qemu-img binary: nechať predvolenú
+-image format: qcow2
+-preallocation: off
+-cluster size: default
+-lazy refcounts: vypnuté
+-refcount entry size: default
+-file location: necháme predvolenú; súbor sa uloží do priečinku "/home/$USER/GNS3/images/QEMU/"
+-size: 1,000 MB (1 GB)
+-local disk
+
+6) Teraz v zozname qemu vms vyberieme ASU -> edit -> advanced settings. Ak sa nás spýta, či chceme daný súbor skopírovať do predvoleného adresára GNS3, klikneme na "OK".
+-init image: <cesta_k_suboru>/asa842-initrd.gz
+-kernel image: <cesta_k_suboru>/asa842-initrd.gz
+-kernel parameters: -append ide_generic.probe_mask=0x01 ide_core.chs=0.0:980,16,32 auto nousb console=ttyS0,9600 bigphysarea=65536
+-qemu parameters: -m 1024 -icount auto -hdachs 980,16,32
+
+7) Pridáme vytvorený firewall do pracovnej plochy gns3
+8) Spustíme simuláciu
+9) Pravé tlačidlo na ASU -> Console. Chvíľu trvá (5-10min), kým sa firewall nainštaluje a inicializuje po prvý krát.
+10) Po inicializácií môžme s ASOU normálne pracovať. Heslo do privilegovaného režimu je prázdne (stačí zadať "enable"->Enter->Enter(potvrdiť prázdne heslo)).
+Nainštalovaná ASA už je licencovaná, pokiaľ by sa však vyskytli problémy s aktiváciou / funkcionalitou, môžeme ju aktivovať dodatočne týmito kľúčmi (zadávať ručne v privilegovanom režime):
+
+activation-key 0x4a3ec071 0x0d86fbf6 0x7cb1bc48 0x8b48b8b0 0xf317c0b5
+activation-key 0xb23bcf4a 0x1c713b4f 0x7d53bcbc 0xc4f8d09c 0x0e24c6b6
+
+Najlepšie je stiahnuť ASAv virtuálne zariadenie z oficiálnej Cisco stránky, ak je to možné. Posledná verzia ASAv je vo verzií ASAv30.
+http://www.cisco.com/c/en/us/products/collateral/security/adaptive-security-virtual-appliance-asav/datasheet-c78-733399.html
+
+Existuje aj novšia verzia Cisco ASA firewallu pre QEMU vo verzií 9.5.1:
+http://t4.magnetcluster.me/download/625d22566979d71712ca845567645d82982ee32e
+Pre VMware je dostupná vo verzií 9.2.1:
+http://www.mediafire.com/file/sapnspafdcp5q7p/ASAv_vmworkstation.rar
+
+VMware verzia sa do GNS3 importuje rovnako ako akýkoľvek iný virtuálny stroj (Edit -> Preferences -> VMware VMs). Pred importovaním sa uistíme, že máme nastavenú cestu ku VMware (Edit -> Preferences -> VMware -> Path to vmrun).
+V prípade, že sa rozhodneme použiť QEMU, nasledujeme tento návod:
+https://gns3.com/qa/is-there-a-step-by-step-process-
+
+Cisco ASDM
+K ASA firewall-u je možné doinštalovať Cisco ASDM (Cisco Adaptive Security Device Manager), čo je grafická nadstavba pre ASA firewall. Cisco ASDM vo verzií 7.2 je dostupný na stránke:
+http://www.mediafire.com/file/s52qadk8vjivhyt/asdm-731-101.bin
+Inštalácia je popísaná na:
+https://www.youtube.com/watch?v=vahOj6J7UtY
+
+
+Zdroje:
+https://plus.google.com/116532165669637416992/posts/6mpL8dmtt4j
+https://www.youtube.com/watch?v=Q4g1rW5ri5o
+https://www.youtube.com/watch?v=vahOj6J7UtY
+
+
+Pridanie Cisco prepínača
+Cisco switch je možné emulovať v GNS3 buď pomocou IOU alebo môžeme nastaviť router ako "EtherSwitch" a jednotlivé porty konfigurovať ako prepínacie. Dá sa na to použiť ľubovoľný prepínač (napr. z rady 3600/3700) a pridať doň rozširujúcu kartu napr. "NM-16ESW" - 16 Ethernet portov. Potom sa dá nakonfigurovať rozsah portov, aby namiesto smerovania prepínali, príkazom "switchport". Príkazom "show intarfaces status" zistíme stav jednotlivých portov. Podľa stĺpca "VLAN" vieme určit, či sa jedná o L2 alebo L3 port.
+
+Zdroje:
+https://www.gns3.com/support/docs/virtual-machines-supported-2
+https://www.youtube.com/watch?v=2gQcLDSj-_c
+
+Optimalizácia behu zariadení
+Doposiaľ je možné optimalizovať využitie zdrojov pri simulácií Cisco smerovačov cez Dynamips, ktorý podporuje optimalizáciu využitia procesora pomocou voľby “Idle-PC” hodnoty a optimalizáciu využitia operačnej pamäte pomocou “Ghost IOS”, “mmap” a “sparse memory support”. Pre ostatné hypervisory neexistujú žiadne ďalšie optimalizačné možnosti.
+
+Virtualizácia koncových zariadení v GNS3
+GNS3 dokáže spolupracovať s virtuálnymi počítačmi v prostrediach VPCS, VirtualBox, VMware a Docker (od verzie 1.5+)
+
+VPCS
+Pridelenie IP adresy VPCS hostovi
+1) Pridáme VPCS hosta do GNS3 pracovnej plochy
+2) Klikneme pravým tlačidlom na hosta -> Console
+3) Pre priradenie IPv4 adresy na vpcs host treba zadať príkaz:
+ip <ip_adresa> <maska> <default_gateway>
+resp.
+ip dhcp (pokiaľ máme DHCP server)
+
+Zdroje:
+https://www.youtube.com/watch?v=mfU_28NKVuA
+
+VirtualBox / Vmware
+GNS3 spolupracuje aj s virtuálnymi strojmi vnútri VirtualBox-u / Vmware. Nový virtuálny stroj pridáme cez “Edit → Preferences → VirtualBox VMs / Vmware VMs” → New”. Existujúci virtuálny stroj pridáme cez “Edit → Preferences → VirtualBox VMs / Vmware VMs” → v ľavom stĺpci vyberieme želaný virtuálny stroj“.
+Importovaný virtuálny stroj sa zobrazí v časti “End devices” (ikonka monitora).
+Ďalej virtuálny stroj nastavujeme podľa toho, aký operačný systém na ňom virtualizujeme.

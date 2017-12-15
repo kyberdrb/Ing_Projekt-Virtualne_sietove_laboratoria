@@ -1,0 +1,12 @@
+Záverečný report – GNS3
+
+Výhody
+-Multiplatformový
+-Jednoduché pridanie smerovačov rôznych výrobcov
+-Podpora emulácie Cisco IOS pomocou Dynamips hypervisora
+-Prehľadné grafické rozhranie a jednoduché ovládanie
+-Možnosť nasadiť GNS3 ako vzdialený server (funguje od verzie 2, dovtedy mal GNS3 VM veľa chýb a nedalo sa naň pripojiť)
+
+Nevýhody
+-Náročný na procesor (pri lokálnom serveri - pri GNS3 VM je záťaž presunutá na vzdialený server)
+-Zložitejšie prepojiteľný s lokálnou sieťou (jednoduchšie pri GNS3 VM)

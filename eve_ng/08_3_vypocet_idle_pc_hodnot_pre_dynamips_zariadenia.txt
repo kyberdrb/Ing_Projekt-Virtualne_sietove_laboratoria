@@ -1,26 +1,24 @@
 CALCULATING IDLE PC
 
-  If an unsupported image is added to the UNetLab platform, an Idle PC value must be identified. Start a Dynamips instance with basic configuration:
+If an unsupported image is added to the UNetLab platform, an Idle PC value must be identified. Start a Dynamips instance with basic configuration, but firtsly, go to the home directory
 
+  cd
 
-dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 96 -n 128
+Then start a Dynamips instance with basic configuration:
+
+  dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 96 -n 128
 or
-dynamips -P 3725 /opt/unetlab/addons/dynamips/<nazov_3725_zariadenia>.image -r 256 -n 128
+  dynamips -P 3725 /opt/unetlab/addons/dynamips/<nazov_3725_zariadenia>.image -r 256 -n 128
 or
-dynamips -P 7200 -t 7200 /opt/unetlab/addons/dynamips/<nazov_7200_zariadenia>.image -r 512 -n 128
-
-Vysvetlivky parametrov:
+  dynamips -P 7200 -t 7200 /opt/unetlab/addons/dynamips/<nazov_7200_zariadenia>.image -r 512 -n 128
 
 
+Pre vysvetlivky parametrov vid "man dynamips" alebo "dynamips -h".
 
 
+Povodny prikaz, ktory sa spusta cez EVE-ng web.
+  dynamips -N 1710 -T 32772 -P 1700 -t 1710 -o 4 -c 0x2102 -X -l dynamips.txt --idle-pc 0x80369ac4 -N 1710 -i 4 -r 96 -n 128
 
-dynamips -N 1710 -T 32772 -P 1700 -t 1710 -o 4 -c 0x2102 -X -l dynamips.txt --idle-pc 0x80369ac4 -N 1710 -i 4 -r 96 -n 128
-dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image
-dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image -r 96 -n 128
-dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image -r 96 -n 128 --idle-pc 0x80c93034
-dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.image -r 1024 -n 1024 --idle-pc 0x80c93034
-dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 1024 -n 1024 --idle-pc 0x80c93034
 
 
 

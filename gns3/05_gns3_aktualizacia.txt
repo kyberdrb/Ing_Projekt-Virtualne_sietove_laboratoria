@@ -1,0 +1,12 @@
+V hlavnom nemu GNS3 VM zvolime moznost "Upgrade".
+Ked sa nas spyta, ci chceme pokracovat, zvolime "Yes".
+Spusti sa aktualizacna procedura, na konci ktorej sa GNS3 VM restartuje.
+Pocas aktualizacnej procedury sa stiahne najnovsia verzia GNS3 VM.
+GNS3 VM si vie uchovat viacero svojich verzii.
+
+Po restarte sa mozeme rozhodnut, ktoru verziu GNS3 VM chceme pouzit.
+V pripade, ze chceme zmenit verziu GNS3 na serveri, v hlavnom menu zvolime moznost "Version".
+Zobrazi sa upozornenie o riziku pri zmene verzie GNS3. Na produkčnom serveri treba predtým zálohovať dôležité údaje (napr. na záložný server)
+Potom zolime moznost "Continue". Zobrazi sa zoznam dostupnych verzii GNS3 VM. Odporuca sa vybrat si vzdy verziu "Current stable release (RECOMMENDED)".
+Server sa následne reštartuje s nami vybranou verziou GNS3 VM, čo sa ukáže v informačnom dialógovom okne hneď po reštartovaní servera.
+V prípade, že server sa po aktualizácií nespustí, preinštalujeme ho a obnovíme zálohované súbory.

@@ -167,7 +167,7 @@ Finally you should upgrade system and EVE to latest version:
 EVE-ng server je teraz nainstalovany. Na to, aby bol pripravený na použtie z webového rozhrania, musime pridat vynimky do firewallu pre porty:
   80/443 - HTTP/HTTPS
   22 - SSH
-  32768-64536 - zariadenia (telnet/vnc/rdp)
+  32768-64536 - TCP aj UDP - zariadenia (telnet/vnc/rdp)
 
 
 Po uprave pravidiel vo firewalle otvoríme internetový prehľadávač a zadáme doň adresu EVE-ng serveru (napr. 192.168.1.137 - IPčku zistíme príkazom “ip a” na interface-i “pnet0”)

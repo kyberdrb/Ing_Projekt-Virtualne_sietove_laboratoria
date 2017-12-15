@@ -1,87 +1,9 @@
 Šablóny pre jednotlivé zariadenia sú uložené v adresári
 /opt/unetlab/html/templates
 
-==========================================================================
-
--Cisco ASAv: vzdialený prístup je cez VNC, nie Telnet.
-
-  sudo nano asav.php
-
-zmeníme parametre nasledovne:
-  $p['console'] = 'vnc';
-
-==========================================================================
-
--Cisco IOL (router/switch): nastaviť veľkosť RAM na 240MB a pridat 1 skupinu (= 4 porty) seriakov:
-
-  sudo nano iol.php
-
-zmeníme parametre nasledovne:
-  $p['ram'] = 240;
-  $p['serial'] = 1;
-
-Sice switch so seriakmi je divny, ale vsak co, aspon bude menej roboty a student nemusi premyslat
-
-==========================================================================
-
--Cisco c1710: pridáme podporu VLAN
-
-  sudo nano c1710.php
-
-zmeníme parametre nasledovne:
-  $p['idlepc'] = '0x80618b54';
-
-==========================================================================
-
--Cisco c3725: pridáme podporu VLAN
-
-  sudo nano c3725.php
-
-zmeníme parametre nasledovne:
-  $p['slot1'] = 'NM-1FE-TX';
-  $p['slot2'] = 'NM-16ESW';
-  $p['idlepc'] = '0x60c09aa0';
-==========================================================================
-
--Cisco v7206VXR: nastaviť veľkosť RAM na 240MB (optimálne množstvo) a pridáme rozširujúcu
-kartu na 4 Ethernet porty.
-
-  sudo nano c7200.php
-
-zmeníme parametre nasledovne:
-  $p['ram'] = 240;
-  $p['slot1'] = 'PA-4E';
-  $p['idlepc'] = '0x62a5af34';
-
-==========================================================================
-
--Juniper Olive: nastaviť veľkosť RAM na 2GB pre správne fungovanie.
-
-  sudo nano olive.php
-
-zmeníme parametre nasledovne:
-  $p['cpu'] = 4;
-  $p['ram'] = 2048;
-
-==========================================================================
-
--Juniper vMX: nastaviť veľkosť RAM na 1GB (optimálne množstvo)
-
-  sudo nano vmx.php
-
-zmeníme parametre nasledovne:
-  $p['cpu'] = 4;
-  $p['ram'] = 1024;
-
-Zdroj:
-  http://nil.uniza.sk/sk/node/654
-
-==========================================================================
-
--Juniper vSRX: nastaviť veľkosť RAM na 4GB pre správne fungovanie.
-
-  sudo nano vsrx.php
-
-zmeníme parametre nasledovne:
-  $p['cpu'] = 2;
-  $p['ram'] = 2048;
+Na úpravu šablón sa používa skript "update_templates.sh" uložený v HOME adresári (aj tu v dokumentacii v súbore "uprava_sablon_skript").
+Šablóny sa po aktualizácií eve-ng prepíšu na predvolené - všetky vlastné úpravy sa stratia.
+Zvažoval som dva spôsoby, ako obnoviť upravené šablóny:
+  -zálohovať upravené šablóny na zálohovací server a po aktualizácií ich skopírovať naspäť
+  -pomocou skriptu, ktorý vo vopred definovaných šablónach upraví vopred definované atribúty na nami definované hodnoty.
+Úprava šablón skriptom je bezpečnejšia než spätné kopírovanie upravených šablón, pretože pri aktualizácií EVE-ng sa môže stať aj to, že do šablón pribudnú nové atribúty, ktoré v predchádzajúcej verzií neboli, a ktoré v zálohovaných šablónach neexistujú, čo môže spôsobiť rôzne komplikácie pri interakcií s virtuálnymi zariadeniami vo web rozhraní.

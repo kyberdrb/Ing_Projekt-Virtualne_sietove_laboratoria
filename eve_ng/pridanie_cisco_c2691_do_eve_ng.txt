@@ -1,0 +1,8 @@
+EVE-ng ma dynamips
+C2691 bezi na dynamipse
+EVE-ng ma c2691.
+
+Takto moze mat akykolvek router, ktory dynamips podporuje. Staci pren vytvorit novu sablonu (template).
+
+Zdroje:
+https://github.com/GNS3/dynamips/blob/master/common/dynamips.c
