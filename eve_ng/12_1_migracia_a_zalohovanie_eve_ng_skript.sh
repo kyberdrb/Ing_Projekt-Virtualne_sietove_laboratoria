@@ -9,7 +9,7 @@
 PATH=/home/andrej:/home/andrej/bin:/home/andrej/.local/bin:/home/andrej/bin:/home/andrej/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
 REMOTE_USER=andrej
-REMOTE_IP=158.193.152.45
+REMOTE_IP=<IP_ADDRESS_OF_REMOTE_SERVER>
 REMOTE_MAIN_BACKUP_DIR=/home/$REMOTE_USER/zalohy_virtualnych_sietovych_laboratorii
 SSH_KEY_FILE=$HOME/.ssh/id_rsa
 
@@ -73,9 +73,9 @@ backup_images () {
 
 backup_eve_ng_specific_files () {
 
-  mysqldump -u root --password='Str0ng Un3tl4b' eve_ng_db > $EVE_NG_DB_LOCAL_BACKUP 2>&1
-  mysqldump -u root --password='Str0ng Un3tl4b' guacdb > $GUACDB_LOCAL_BACKUP 2>&1
-  mysqldump -u root --password='Str0ng Un3tl4b' --all-databases > $ALL_DB_LOCAL_BACKUP 2>&1
+  mysqldump -u root --password='<MYSQL_PASSWORD>' eve_ng_db > $EVE_NG_DB_LOCAL_BACKUP 2>&1
+  mysqldump -u root --password='<MYSQL_PASSWORD>' guacdb > $GUACDB_LOCAL_BACKUP 2>&1
+  mysqldump -u root --password='<MYSQL_PASSWORD>' --all-databases > $ALL_DB_LOCAL_BACKUP 2>&1
 
   backup $EVE_NG_DB_LOCAL_BACKUP \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/var_lib_mysql
