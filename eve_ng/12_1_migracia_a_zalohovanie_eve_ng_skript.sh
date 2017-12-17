@@ -8,6 +8,13 @@
 
 PATH=/home/andrej:/home/andrej/bin:/home/andrej/.local/bin:/home/andrej/bin:/home/andrej/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
+
+##############################################################################
+#
+# DON'T FORGET TO CHANGE THE IP_ADDRESS_OF_REMOTE_SERVER and MYSQL_PASSWORD!
+#
+##############################################################################
+
 REMOTE_USER=andrej
 REMOTE_IP=<IP_ADDRESS_OF_REMOTE_SERVER>
 REMOTE_MAIN_BACKUP_DIR=/home/$REMOTE_USER/zalohy_virtualnych_sietovych_laboratorii
@@ -26,6 +33,7 @@ MAIN_GNS3_DIR=/opt/gns3
 # methods reflect the directory structure
 ##########################################
 
+#synchronize () {
 backup () {
   LOCAL_FILE_OR_DIR=$1
   REMOTE_DIR=$2
@@ -36,8 +44,16 @@ backup () {
     $REMOTE_USER@$REMOTE_IP:$REMOTE_DIR
 }
 
+backup_shared_resources () {
 
-backup_images () {
+  backup $HOME/backup_gns3_and_eveng_data_to_backup_server.sh \
+    $REMOTE_MAIN_BACKUP_DIR/shared_resources/HOME/
+
+  backup $HOME/update_templates.sh \
+    $REMOTE_MAIN_BACKUP_DIR/shared_resources/HOME/
+
+  backup $HOME/import_eveng_qemu_devices_to_gns3.sh \
+    $REMOTE_MAIN_BACKUP_DIR/shared_resources/HOME/
   
   if [ -d "$MAIN_EVE_NG_DIR" ] && [ -d "$MAIN_GNS3_DIR" ]; then
     echo  "If you are able to have EVE-ng and GNS3 on the same server, \
@@ -49,27 +65,36 @@ backup_images () {
   if [ -d "$MAIN_EVE_NG_DIR" ]; then
 
     backup $MAIN_EVE_NG_DIR/addons/dynamips/ \
-      $REMOTE_MAIN_BACKUP_DIR/images/opt_unetlab_addons_dynamips_-_opt_gns3_images_IOS
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_dynamips_-_opt_gns3_images_IOS
 
-    #backup $MAIN_EVE_NG_DIR/addons/iol/bin/ \
-    #  $REMOTE_MAIN_BACKUP_DIR/images/opt_unetlab_addons_iol_bin_-_opt_gns3_images_IOU
+    backup $MAIN_EVE_NG_DIR/addons/iol/bin/ \
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_iol_bin_-_opt_gns3_images_IOU
 
-    #backup $MAIN_EVE_NG_DIR/addons/qemu/
-    #  $REMOTE_MAIN_BACKUP_DIR/images/opt_unetlab_addons_qemu_-_opt_gns3_images_QEMU
+    backup $MAIN_EVE_NG_DIR/addons/qemu/ \
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_qemu_-_opt_gns3_images_QEMU
 
-    #backup $MAIN_EVE_NG_DIR/addons/rozne_zariadenia/
-    #  $REMOTE_MAIN_BACKUP_DIR/images/opt_unetlab_addons_rozne_zariadenia_-_opt_gns3_images_rozne_zariadenia
+    backup $MAIN_EVE_NG_DIR/addons/rozne_zariadenia/ \
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_rozne_zariadenia_-_opt_gns3_images_rozne_zariadenia
 
   fi
 
   if [ -d "$MAIN_GNS3_DIR" ]; then
 
     backup $MAIN_GNS3_DIR/images/IOS/ \
-      $REMOTE_MAIN_BACKUP_DIR/images/opt_unetlab_addons_dynamips_-_opt_gns3_images_IOS
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_dynamips_-_opt_gns3_images_IOS
+
+    backup $MAIN_GNS3_DIR/images/IOU/ \
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_iol_bin_-_opt_gns3_images_IOU
+
+    #pri QEMU zariadeniach budu duplicity, ale no a co - ulozneho priestoru je dostatok
+    backup $MAIN_GNS3_DIR/images/QEMU/ \
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_qemu_-_opt_gns3_images_QEMU
+
+    backup backup $MAIN_GNS3_DIR/images/rozne_zariadenia/ \
+      $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_rozne_zariadenia_-_opt_gns3_images_rozne_zariadenia
 
   fi
 }
-
 
 backup_eve_ng_specific_files () {
 
@@ -99,6 +124,9 @@ backup_eve_ng_specific_files () {
   backup /etc/hostname \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/etc/
 
+  backup /etc/ssh/sshd_config \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/etc_ssh/
+
   backup /etc/issue.net \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/etc/
 
@@ -118,9 +146,13 @@ backup_eve_ng_specific_files () {
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/etc_apache2_sites_enabled/
 }
 
-
 backup_gns3_specific_files () {
-  echo "Backing up GNS3 specific files"
+
+  backup /home/gns3/gns3-server/gns3server/appliances \
+    $REMOTE_MAIN_BACKUP_DIR/gns3_specific/home_gns3_gns3-server_gns3server_appliances
+
+  backup /opt/gns3/projects/ \
+    $REMOTE_MAIN_BACKUP_DIR/gns3_specific/opt_gns3_projects
 }
 
 
@@ -128,12 +160,12 @@ backup_gns3_specific_files () {
 #  MAIN
 ##########
 
-backup_images
+backup_shared_resources
 
 if [ -d "$MAIN_EVE_NG_DIR" ]; then
   backup_eve_ng_specific_files
 fi
 
 if [ -d "$MAIN_GNS3_DIR" ]; then
-    backup_gns3_specific_files
+  backup_gns3_specific_files
 fi

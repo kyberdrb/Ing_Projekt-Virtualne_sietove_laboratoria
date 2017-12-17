@@ -42,6 +42,7 @@ DOLEZITE SUBORY
     -zmena - pocuvanie na konkretnej IPcke '<VirtualHost _default_:443>' na '<VirtualHost IP_ADRESA_SERVERA:443>'
     -zmenene ServerName na sirena (ak je pritomne)
 
+  /etc/ssh/sshd_config -> SSH konfiguracia - upravena podla suboru "zabezpecenie_servera"
   /etc/issue.net -> SSH sprava pred prihlasenim
   /etc/motd -> SSH sprava po prihlaseni
 
@@ -51,17 +52,19 @@ DOLEZITE SUBORY
 *************
 Skript na zalohovanie na vzdialeny server.
 
-Pouzivam 'rsync' na zalohovanie najdolezitejsich adresarov suborov do LXC kontajnera. EVE-ng server sa voci LXC kontaineru autentifikuje SSH certifikatom, takze nemusime manualne zadavat heslo.
+Pouzivam 'rsync' na zalohovanie najdolezitejsich adresarov suborov do LXC kontajnera. EVE-ng server sa voci LXC kontaineru autentifikuje SSH certifikatom, takze sa nemusi manualne zadavat heslo a cely proces je plne automatizovany.
 
 
 vim.tiny zaloha_na_eve_backup.sh
 
 Obsah skriptu je v subore "migracia_a_zalohovanie_eve_ng_skript".
 
+Pri zalohovani GNS3 QEMU zariadeni budu vznikat duplicity, pretoze suborova struktura v GNS3 je ina ako v EVE-ng.
+
 *************
 Periodicke vykonavanie zalohovacieho skriptu
 
--Tento zalohovaci skript sa bude vykonavat periodicky: kazdy den o 3:00.
+-Tento zalohovaci skript sa bude vykonavat periodicky: napr. kazdy den o 3:00.
 Preto vytvorime cron job, ktory sa bude starat o periodicke vykonavanie tohto skriptu.
 (ako textovy EDITOR mozeme pouzit napr. 'vim.tiny')
 
@@ -70,7 +73,7 @@ Preto vytvorime cron job, ktory sa bude starat o periodicke vykonavanie tohto sk
 
 -Ak je toto prva cron uloha, najprv sa presvedcime, ci sa cron ulohy vobec vykonavaju. na koniec suboru pridame riadok:
 
-  * * * * * /home/andrej/zaloha_na_eve_backup.sh >/dev/null 2>&1
+  * * * * * /home/andrej/<nazov_zalohovacieno_skriptu>.sh >/dev/null 2>&1
 
 -tato uloha sa bude vykonavat kazdu minutu.
 -ulozime
@@ -92,7 +95,7 @@ Uvidime, ako kazdu minutu cron spusta nas skript.
 
 Ked sme sa presvedcili, ze nas skript sa vykonava kazdu minutu, zakomentujeme ho a nahradime ho finalnou verziou:
 
-  0 3 * * * /home/andrej/zaloha_na_eve_backup.sh >/dev/null 2>&1
+  0 3 * * * /home/andrej/<nazov_zalohovacieho_skriptu>.sh >/dev/null 2>&1
 
 -tento skript sa bude vykonavat kazdu nultu minutu, kazdu tretiu hodinu, kazdy v tyzdni, vsetky mesiace, a lubovolny den v tyzdni
 -ulozime

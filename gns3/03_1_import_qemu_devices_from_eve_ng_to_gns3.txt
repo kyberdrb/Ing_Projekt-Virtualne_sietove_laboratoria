@@ -1,0 +1,24 @@
+Download the QEMU folder from EVE-ng (/opt/unetlab/addons/qemu/) or from a backup server to the GNS3 server e.g. via FileZilla.
+The EVE-ng QEMU folder contains directories that represent particular device. They are named after device, they contain.
+Inside them there are qcow2 files named as "hda", "virtioa", "sataa" or similar to the manner.
+This is undesirable, beacuse if we would copy and paste these qcow2 files into GNS3, then all QEMU devices would be named the same (if they would be detected at all).
+Therefore we need to change the generic names of the original qcow2 files to the names of the subdirectory they are in and move them to the QEMU directory in GNS3.
+That is the purpose of the import script ("import_qemu_devices_from_eve_ng_to_gns3_script.txt").
+
+
+Firstly, run the import script with one parameter: the location of the qemu folder
+
+  ./import_script.sh ./location/of/the/eveng/qemu/folder/
+
+i.e.
+
+  ./import_script.sh ./qemu/
+
+After everything is finished, the script will list all files in default GNS3 QEMU directory and delete the downloaded QEMU directory.
+The images are saved in default GNS3 directory '/opt/gns3/images/QEMU'
+
+Sources:
+https://stackoverflow.com/questions/20895290/count-number-of-files-within-a-directory-in-linux-not-using-wc
+https://stackoverflow.com/questions/1848415/remove-slash-from-the-end-of-a-variable
+http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_02.html
+https://stackoverflow.com/questions/3294072/bash-get-last-dirname-filename-in-a-file-path-argument
