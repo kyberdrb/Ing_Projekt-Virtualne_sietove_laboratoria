@@ -1,0 +1,84 @@
+Cisco ASAv
+
+-Zariadenie pridame standardnym sposobom podla QCOW2 formatu opisanym v subore "pridavanie_zariadeni_do_eve_ng". Nezabudneme opravit opravnenia!
+-Potom si v EVE-ng vytvorime lab, do ktoreho pridame uzol Cisco ASAv.
+-Nechame predvolene hodnoty, akurat zmenime typ vzdialeneho pristupu z 'telnet' na 'vnc' (budeme potrebovat VNC Viewer - Linux: tightvnc, Windows: RealVNC).
+-Spustime uzol.
+-Do VNC Viewera zadame IP adresu servera a port uzla oddelenych dvojbodkou (IP_ADRESA:PORT).
+-Zobrazi sa konzola
+
+  ciscoasa>
+
+-Ignorujeme hlasenie o chybajucej licencii.
+
+-Teraz sme v konzole Cisco ASAv. Ale konzola je vo VNC Vieweri a nemozeme do zariadenia kopirovat a vkladat prikazy (Ctrl+C a Ctrl+V nefunguju => prikazy musime zadavat rucne, co moze byt nepohodlne). Preto zmenime typ vzdialeneho pristupu k uzlu VNC na TELNET nasledujucimi prikazmi (Na zadavanie cisel pouzijeme numericku klavesnicu):
+
+  ciscoasa>ena
+    <predvolene heslo je prazdne>
+
+  ciscoasa#conf t
+    <na otravnu otazku o anonymnom zbierani statistik stlacime klavesu 'n' -> 'No'>
+
+  ciscoasa(config)# cd coredumpinfo
+  ciscoasa(config)# copy coredump.cfg disk0:/use_ttyS0  (that's  S zero not S and the letter O)
+    <Klavesou Enter potvrdime otazku "Source filename" aj "Destination">
+
+-Overime, ci sa subor zapisal prikazom:
+
+  dir disk0:/
+
+(vid: https://gns3.com/api/v2/assets/photo/57436982b4f9a2cf7636c6a9/asa8.png)
+
+
+Teraz sme priamo na Cisco ASAv QCOW2 disku (disk0) zapisali subor 'use_ttyS0', cim sme presmerovali interaktivnu konzolu z VNC (VGA console) na TELNET (Serial console).
+
+Once it's there, reload the ASA. 
+ 
+  end
+  reload
+    <Na otazku, ci chceme ulozit konfiguraciu odpovieme stacime 'n' pre 'No'>
+    <Nasledne stlacime Enter pre potvrdenie restartu>
+
+There's no need to save the config at this point. We just want the ASA to reload with that file in place. It should show the GRUB boot loader, and boot, but the interaction will stop with the message
+  "Lina to use serial port /dev/ttyS0 for console IO".
+At this point it has transferred the interactive control to the serial port. 
+
+Vypneme Cisco ASAv.
+Klikneme nan pravym -> Edit -> Zmenime vzdialeny pristup z 'vnc' na 'telnet'. Ulozime.
+Spustime Cisco ASAv.
+Teraz otestujeme telnet pristup. V PuTTY / terminali otvorime telnet relaciu s Cisco ASAv.
+Ak sa nam v terminali zobrazi 'ciscoasa>' riadok, telnet konzola funguje.
+Od teraz sa mozeme na Cisco ASAv stale prihlasovat cez telnet.
+Kvoli poriadku mozeme adresar prislusneho Cisco ASAv QCOW2 suboru premenovat na "asav-<verzia_asav>-telnet.qcow2". Slovo "telnet" v nazve suboru nam povie, ze zariadenie bolo upravene tak, aby sa nan dalo pripojit cez telnet.
+
+Ak budeme chciet VNC konzolu naspat, vymazeme subor 'use_ttyS0'. Pouzijeme rovnaky postup, ako pri vytvarani tohto suboru, len namiesto prikazu "copy ..." subor vymazeme prikazom:
+
+  rm use_ttyS0
+
+a overime
+
+  dir disk0:/
+
+Subor "use_ttyS0" by sa tam nemal nachadzat. Restartujeme zariadenie:
+
+  reload
+
+Potom vypneme zariadenie a zmenime v nastaveni zariadenia sposob vzdialeneho pristupu z 'telnet' na 'vnc'.
+Po opatovnom spusteni zariadenia sa pripojime na zariadenie cez VNC Viewer.
+
+
+********************************************************************************
+
+Pokial chceme, aby boli zmeny trvale, urobime to v GNS3 podla tohto navodu:
+https://gns3.com/discussions/how-to-configure-any-asav-qcow2-
+
+********************************************************************************
+
+Ked chceme do Cisco ASAv pridat ASDM, postupujeme podla tohto navodu:
+http://www.xerunetworks.com/2012/03/asa-84-asdm-on-gns3-step-by-step-guide/
+
+********************************************************************************
+
+Zdroje:
+https://gns3.com/discussions/how-to-configure-any-asav-qcow2-
+https://learningnetwork.cisco.com/message/568790#568790

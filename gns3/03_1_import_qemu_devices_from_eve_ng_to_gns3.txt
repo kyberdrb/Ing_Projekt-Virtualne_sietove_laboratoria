@@ -20,5 +20,8 @@ The images are saved in default GNS3 directory '/opt/gns3/images/QEMU'
 Sources:
 https://stackoverflow.com/questions/20895290/count-number-of-files-within-a-directory-in-linux-not-using-wc
 https://stackoverflow.com/questions/1848415/remove-slash-from-the-end-of-a-variable
-http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_02.html
 https://stackoverflow.com/questions/3294072/bash-get-last-dirname-filename-in-a-file-path-argument
+https://stackoverflow.com/a/7820227
+https://stackoverflow.com/questions/5927369/recursively-look-for-files-with-a-specific-extension
+https://stackoverflow.com/questions/22727107/how-to-find-the-last-field-using-cut
+https://stackoverflow.com/questions/669452/is-preferable-over-in-bash

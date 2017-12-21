@@ -1,0 +1,8 @@
+Postupujeme podla tohto navodu:
+
+  https://gns3.com/discussions/how-to-configure-any-asav-qcow2-
+
+Navod funguje aj na ine zariadenia.
+Do GNS3 si pridame zariadenie, s ktorym chceme pracovat.
+Najdolezitejsie je, aby sme odskrtli v "Advanced settings" moznost "Use as a linked base VM"! Presne toto nam zabezpeci, ze zmeny, ktore urobime na tomto zariadeni sa ZAPISU PRIAMO DO QCOW2 suboru daneho zariadenia.
+Ked sme doupravovali zariadenie, vypneme ho a qcow2 subor mozeme napr. skopirovat do EVE-ng.

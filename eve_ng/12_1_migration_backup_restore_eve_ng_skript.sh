@@ -33,7 +33,6 @@ MAIN_GNS3_DIR=/opt/gns3
 # methods reflect the directory structure
 ##########################################
 
-#synchronize () {
 backup () {
   LOCAL_FILE_OR_DIR=$1
   REMOTE_DIR=$2
@@ -151,6 +150,7 @@ backup_gns3_specific_files () {
   backup /home/gns3/gns3-server/gns3server/appliances \
     $REMOTE_MAIN_BACKUP_DIR/gns3_specific/home_gns3_gns3-server_gns3server_appliances
 
+  # alebo to je v home/gns3???
   backup /opt/gns3/projects/ \
     $REMOTE_MAIN_BACKUP_DIR/gns3_specific/opt_gns3_projects
 }

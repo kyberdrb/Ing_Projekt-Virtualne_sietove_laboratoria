@@ -1,0 +1,5 @@
+GNS3 devices, projects and other files are backed up as is to the backup server.
+
+Import script takes care for converting eve-ng QEMU device file structure to GNS3 file structure.
+
+Vid "migration_backup_restore_eve_ng_skript"

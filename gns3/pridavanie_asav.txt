@@ -1,0 +1,11 @@
+********************************************************************************
+
+Pokial chceme, aby boli zmeny trvale, urobime to v GNS3 podla navodu
+"trvale_upravenie_zariadeni.txt"
+
+********************************************************************************
+
+Ked chceme do Cisco ASAv pridat ASDM, postupujeme podla tohto navodu:
+http://www.xerunetworks.com/2012/03/asa-84-asdm-on-gns3-step-by-step-guide/
+
+********************************************************************************

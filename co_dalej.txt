@@ -1,0 +1,74 @@
+Tipy:
+-EVE-ng: Namiesto c2691 pouzijeme c3725, pretoze c2691 sa mi nepodarilo integrovat do EVE-ng. Ale nasiel som IOS v rovnakej verzii ako ma c2691 pre c3725, takze funkcionalita je zachovana.
+-V GNS3 nepripajame koncove zariadenia priamo k oblaciku, ale oblacik prepojime s Ethernet prepinacom. Vsetky dalsie zariadenia pripajame k tomuto prepinacu.
+
+Zazitky:
+-20.12. o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
+-Navvyse z prikazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplyva, ze na server utocia z Ciny
+
+Ulohy:
+
+-upravit vsetky Cisco ASAv imidze na telnet pristup
+
+  -odskusat v eve-ng aj gns3 alpine linux
+    -odskusat ako qemu aj ako docker
+    -nainstalovat don wireshark
+
+  -odskusat neodskusane imidze na sirene (su v adresari 'neotestovane'):
+    -csr1000v 3.17 (tusim ze duplicita, ale nevadi: porovnam s uz existujucim csrkom podla 'show version' a duplicitny vymazem)
+    -csr1000v 16.2.2
+    -titanium 7.3.0
+    -vios SPA 15.6 -> imidz je vo formate vmdk -> skonvertovat do qcow2
+    -xrv9k full
+  
+  -postahovat a otestovat doposial chybajuce zariadenia (4shared ;) 
+
+-upravit sumarny zoznam zariadeni tak, aby odzrkadloval doposial vykonane zmeny
+  -poodstranovat dynamips routre, ktore nikde nefunguju
+
+-zacat benchmarking and profiling vybraych EVE-ng zariadeni
+  -reboot
+  -vybrat si zariadenia, ktore budem benchmarkovat
+  -obenchmarkovat ich vytvorenym skriptom
+  -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
+  
+-zavriet vsetky porty na marekovom fw pre eve-backup (.45) okrem portu 22 (ssh)
+
+  -urobit pre segiho predbeznu prezentaciu mojho projektu (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
+   
+-vygenerovat Cisco IOU licenciu pre GNS3
+-pozriet konfiguraky v gns3:
+  -/home/gns3/.config/GNS3/gns3_server.conf
+
+  -vysledky profilingu v eve-ng sa premietnu do nastavenia parametrov (CPU, RAM) v sablonach pre jednotlive druhy virtualnych zariadeni v ramci aktualizacneho skriptu pre sablony (sablona obsahuje nastavenia daneho druhu virtualneho zariadenia)
+  -pouzit zistene parametre pre zariadenia v gns3
+  -ak sa to bude spravat podobne, upravit templejty v gns3 v $HOME/gns3/gns3-server/gns3server/appliances
+  -preskumat aj startup configy, na ktore sa odkazuju aj niektore appliances v gns3 v /home/gns3/gns3-server/gns3server/configs
+  -pohrabat sa v adresarovej strukture gns3
+    -/opt/gns3
+    -/home/gns3/gns3-server/
+    -/home/gns3/gns3-server/gns3server
+    
+  -zabezpecit gns3vm
+    -ssh
+    -autentifikacia voci gns3 klientovi
+    
+  -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm + upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
+    -urobit benchmarking a profiling vsetkych zariadeni podla parametrov zariadeni v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eveng
+    -vyhodnotit
+  
+  -ziskat materialy na ccna security (640-554)
+    -postahovat z torrentov a dalsich zdrojov na notase
+    -vypytat si ich od veduceho
+    
+  -do diplomky dat na koniec kapitolu "co dalej"
+
+Co dalej?
+-Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
+-Pridat HP VSR 1000
+  http://brezular.com/2014/07/31/hp-vsr1001-virtual-services-router-on-gns3/
+  https://h10145.www1.hp.com/Downloads/SoftwareReleases.aspx?ProductNumber=JG811AAE&lang=en&cc=us&prodSeriesId=5443163
+  https://lkhill.com/hp-vsr1000-getting-started/
+  google: "VSR1000 download"
+-Unified Networking Lab v2 (UNetLabv2)
+  http://www.routereflector.com/unetlab/

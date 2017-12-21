@@ -34,7 +34,8 @@ PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
 Would you like to enter the initial configuration dialog? [yes/no]:
 
 
-  Exit from initial configuration dialog, and quit to get the con0 prompt:
+[OPTIONAL !!!] - Exit from initial configuration dialog, and quit to get the con0 prompt:
+WARNING! - this may generate fewer IDLE PC values or the values might be less relevant
 
 Router>exit
 
@@ -96,7 +97,9 @@ c1710-bk9no3r2sy-mz.124-23_unpacked_with_gns3_as_c1700-adventerprisek9-mz.124-8.
 
 povodna hodnota		0x80369ac4
 
-vypocitane hodnoty	->0x80618b54 (count=59)
+vypocitane hodnoty
+
+      ->0x80618b54 (count=59)
 			0x80618b7c (count=40)
 			0x80618ba4 (count=20)
 			0x80340fb4 (count=73)
@@ -107,13 +110,43 @@ vypocitane hodnoty	->0x80618b54 (count=59)
 			0x8061760c (count=72)
 
 **************
+c2691
+c2691-adventerprisek9-mz.124-25d.image
+
+      ->0x60a48cb8 (count=75)
+      0x60246760 (count=71)
+      0x602467d8 (count=47)
+      0x60a4793c (count=78)
+
+**************
 c3725
 c3725-adventerprisek9-mz.124-15.T14.image
 
 povodna hodnota		0x60c08728
 
-vypocitane hodnoty	->0x60c09aa0 (count=58)
+vypocitane hodnoty
+ 
+      ->0x60c09aa0 (count=58)
 			0x6026be8c (count=44)
+
+**************
+c3725
+c3725-adventerprisek9-mz.124-25d.image
+
+povodna hodnota		0x60c08728
+
+vypocitane hodnoty
+
+      ->0x60a800f0 (count=66)
+      0x61231928 (count=62)
+      0x61231988 (count=57)
+      0x612319bc (count=49)
+      0x612319d0 (count=35)
+      0x602467a4 (count=41)
+      0x6024681c (count=28)
+      0x60a7ebcc (count=61)
+      0x60a7f644 (count=28)
+      0x60a7f680 (count=28)
 
 **************
 c7200
@@ -121,7 +154,9 @@ c7200-adventerprisek9-mz.152-4.S6.image
 
 povodna hodnota		0x62f21000
 
-vypocitane hodnoty	->0x62a5af34 (count=45)
+vypocitane hodnoty
+
+      ->0x62a5af34 (count=45)
 			0x6238d044 (count=64)
 
 
@@ -131,10 +166,31 @@ c7200-advipservicesk9-mz.152-4.S5.image
 
 povodna hodnota		0x62f21000
 
-vypocitane hodnoty	0x61e05870 (count=36)
+vypocitane hodnoty
+
+      0x61e05870 (count=36)
 			0x61e05874 (count=52)
 			->0x6318687c (count=62)
 			0x62cbf334 (count=40)
+
+**************
+c7200
+c7200-adventerprisek9-mz.152-4.M11.image
+
+povodna hodnota		0x62f21000
+
+vypocitane hodnoty
+
+      ->0x60189234 (count=20)
+      0x619c5a58 (count=46)
+      0x619c5ab8 (count=33)
+      0x619c5afc (count=41)
+      0x619c5b10 (count=30)
+      0x6062e5c0 (count=64)
+      0x6062ed34 (count=25)
+      0x6062ed50 (count=35)
+      0x6062ed90 (count=45)
+      0x6062f930 (count=41)
 
 Zdroje:
   https://netbrainstlearn.wordpress.com/2015/12/15/unl-adding-dynamips-images/

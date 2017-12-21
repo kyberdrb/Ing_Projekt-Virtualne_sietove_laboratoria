@@ -54,6 +54,13 @@ Prihlasovacie údaje na jednotlivé zariadenia by nemali byť žiadne. Ak naprie
     mv hda.qcow2 /opt/unetlab/addons/iol/bin/<nazov_bin_suboru>.bin
 
 2.3) DYNAMIPS - Ak je obraz disku vo formáte "image", vykonáme tieto príkazy:
+
+WARNING!!
+**************************************************************************************
+To prevent unforeseen bugs, use only MAINLINE releases of Cisco IOS operating system!
+see: https://www.cisco.com/c/dam/en_us/training-events/le21/le34/downloads/689/academy/2005/BRK-101.pdf
+**************************************************************************************
+
     # Nahráme obraz disku na server
     sftp root@<ip_adresa_UnetLabu>
     put <cesta_k_obrazu_disku_image_na_lokálnom_PC>
@@ -169,19 +176,6 @@ Práca s aplikáciou UltraVNC Viewer je jednoduchá: do adresného riadku zadám
 
 7) V prípade, že sme obraz disku daného zariadenia museli skonvertovať, môžeme vymazať pôvodný (img/vmdk) obraz disku na serveri, resp. vdi súbor na lokálnom počítači.
 
-Zariadenie	Spôsob virtualizácie	Spôsob pripojenia	Adresár pre obraz disku
-Cisco IOL	IOU/IOL			telnet			/opt/unetlab/addons/iol/bin
-Cisco 7206 VXR	dynamips		telnet			/opt/unetlab/addons/dynamips
-Cisco CSR 1000v	QEMU			telnet			/opt/unetlab/addons/qemu/csr-1000v-<verzia>
-Cisco ASAv	QEMU			vnc			/opt/unetlab/addons/qemu/asav-<verzia>
-Cisco vIOS L2	QEMU			telnet			/opt/unetlab/addons/qemu/viosl2-<verzia>
-Juniper vMX	QEMU			telnet			/opt/unetlab/addons/qemu/vmx-<verzia>
-Juniper vSRX	QEMU			telnet			/opt/unetlab/addons/qemu/vsrx-<verzia>
-Juniper Olive	QEMU			telnet			/opt/unetlab/addons/qemu/olive-<verzia>
-Mikrotik	QEMU			vnc			/opt/unetlab/addons/qemu/mikrotik-<verzia>
-Linux host	QEMU			vnc			/opt/unetlab/addons/qemu/linux-<nazov>-<verzia>
-Windows host	QEMU			vnc			/opt/unetlab/addons/qemu/win-<nazov>-<verzia>
-
 
 Zdroje:
     # Všeobecné
@@ -224,6 +218,11 @@ Zdroje:
 
     https://www.youtube.com/watch?v=fk0E8FvSdlo
     http://www.unetlab.com/2014/11/adding-cisco-iouiol-images
+
+    Cisco Dynamips
+    http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/#h.bkdmg1d37yl5
+    http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/#h.2wmadzgy2ym6
+    http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/#h.1i702f9cy8ho
 
     # Cisco vIOS
     https://www.youtube.com/watch?v=7ToRnfiHG80

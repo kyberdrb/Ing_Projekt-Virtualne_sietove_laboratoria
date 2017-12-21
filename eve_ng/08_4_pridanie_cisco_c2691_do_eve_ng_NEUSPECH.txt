@@ -1,0 +1,85 @@
+Podla Aristotelovskej logiky:
+
+EVE-ng ma dynamips
+C2691 bezi na dynamipse
+EVE-ng ma c2691.
+Ale EVE-ng nema c2691. Je ho tam potom mozne pridat? Ak ano, ako?
+*************************************
+
+
+Adding a new Dynamips device type
+
+
+-Firstly we need to test if the dynamips image can be run. In the process a few files will be created. We need to have a separate directory, to keep everything clean. Also, we must be the owner of the directory we want to run the dynamips image in.
+
+  cd ~
+  mkdir dynamips_playground
+  cd dynamips_playground
+  dynamips -P 2691 /opt/unetlab/addons/dynamips/<name_of_dynamips_c2691_router>.image -r 256 -n 128
+
+If it runs, then proceed to the next step. If it doesn't, try another image or change parameters.
+
+-Calculate IDLE PC value (see "vypocet_idle_pc_hodnot_pre_dynamips_zariadenia") and save it somewhere. We will need it for the template.
+
+-Add Dynamips node definition to initialization file 
+
+  sudo vim.tiny /opt/unetlab/html/includes/init.php
+  -Under line "$node_config =  Array(" it should look like this:
+
+                ...
+                'c1710'                 =>      'embedded',
+                'c2691'                 =>      'embedded',
+                'c3725'                 =>      'embedded',
+                'c7200'                 =>      'embedded',
+                ...
+
+  -Under line "$node_templates = Array(" it should look like this:
+
+                'c1710'                 =>      'Cisco IOS 1710 (Dynamips)',
+                'c2691'                 =>      'Cisco IOS 2691 (Dynamips)',
+                'c3725'                 =>      'Cisco IOS 3725 (Dynamips)',
+                'c7200'                 =>      'Cisco IOS 7206VXR (Dynamips)',
+
+  -Also change this line
+   
+     if ( $templ == "c1710" || $templ == "c3725" || $templ == "c7200" ) {
+
+   to this
+
+     if ( $templ == "c1710" || $templ == "c2691" || $templ == "c3725" || $templ == "c7200" ) {
+
+   This will enable image detection in /opt/unetlab/addons/dynamips/ directory. EVE-ng will the scan that folder according to the specified template.
+
+
+-Create a new Dynamips node template based on existing Dynamips node template.
+
+  cp /opt/unetlab/html/templates/c3725.php /opt/unetlab/html/templates/c2691.php
+
+-Edit the template file
+
+-Add Dynamips image to /opt/unetlab/addons/dynamips
+
+-At this point you should be able to navigate to UNL’s web interface and find a new node of type Dynamips.
+
+
+**************************************************************************************
+But when I tried to connect two c2691 routers, it didn't work - it doesn't show the
+dialog with interfaces. I don't know, what other files should I modify.
+There are other dynamips routers that can easily replace c2691 e.g. 3725 or 
+IOL router.
+**************************************************************************************
+
+
+
+
+
+
+
+Takto moze mat akykolvek router, ktory dynamips podporuje. Staci pren vytvorit novu sablonu (template).
+
+Zdroje:
+https://github.com/GNS3/dynamips/blob/master/common/dynamips.c
+http://networkop.co.uk/blog/2016/04/04/Dynamips-unl/
+https://github.com/GNS3/gns3-registry/blob/master/appliances/cisco-2691.gns3a
+man dynamips
+dynamips -h

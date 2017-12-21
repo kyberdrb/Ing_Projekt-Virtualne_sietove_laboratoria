@@ -148,6 +148,7 @@ https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
 https://unix.stackexchange.com/questions/92384/how-to-clean-log-file
 https://stackoverflow.com/questions/59838/check-if-a-directory-exists-in-a-shell-script
 https://stackoverflow.com/questions/8920245/bash-conditionals-how-to-and-expressions-if-z-var-e-var
+http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_02.html
 
 -RSYNC
 http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-directories-contained-in-a-folder#387543

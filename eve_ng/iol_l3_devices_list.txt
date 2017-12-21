@@ -1,0 +1,38 @@
+find -regex ".*\.\(image\|bin\)"
+
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.5.2T.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.3.1.3T.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.2.2.15T.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.4.2T4.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.4.1T.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.2.4M1.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.2.2.03T.bin
+./rozne_zariadenia/Cisco-IOU-L2-L3-Collection-v4/bin/i86bi-linux-l3-adventerprisek9-15.4.2T.bin
+
+
+Názov zariadenia                                                          Rok vydania
+ROUTER
+i86bi_linux-l3-adventerprisek9-ms.152-4.S7.bin                            2015  <- primarny
+i86bi-linux-l3-adventerprisek9-15.4.2T4.bin                               2015  <- zalozny
+i86bi-linux-l3-adventerprisek9-15.5.2T.bin                                2015  <- zalozny
+
+i86bi-linux-l3-adventerprisek9-15.2.2.03T.bin     2011
+i86bi-linux-l3-adventerprisek9-15.2.2.15T.bin     2012
+i86bi-linux-l3-adventerprisek9-15.2.4M1.bin       2012
+i86bi-linux-l3-adventerprisek9-15.3.1.3T.bin      2012
+i86bi-linux-l3-adventerprisek9-15.4.1T.bin        2013
+i86bi-linux-l3-adventerprisek9-15.4.2T.bin        2014
+
+
+
+
+
+
+SWITCH
+i86bi_linux_l2-adventerprise-ms.high_iron_20170202.bin                    2017
+i86bi_linux_l2-adventerprisek9-ms.156-0.9.S.bin                           2015
+
+
+Sources:
+https://unix.stackexchange.com/questions/28155/find-files-with-certain-extensions/28157
+http://docs.gns3.com/appliances/cisco-iou-l3.html#header

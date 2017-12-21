@@ -119,9 +119,16 @@ insert_card_in_slot6 () {
   replace "$SEARCH_FOR_WORD" "$REPLACE_IT_WITH" "$IN_FILE"
 }
 
+change_num_ethernet_4port_cards () {
+  SEARCH_FOR_WORD=.*\'ethernet\'.*
+  REPLACE_IT_WITH="\$p[\'ethernet\'] = $1;"
+  IN_FILE=$2
+  replace "$SEARCH_FOR_WORD" "$REPLACE_IT_WITH" "$IN_FILE"
+}
+
 change_num_serial_4port_cards () {
   SEARCH_FOR_WORD=.*\'serial\'.*
-  REPLACE_IT_WITH="\$p[\'serial\'] = \'$1\';"
+  REPLACE_IT_WITH="\$p[\'serial\'] = $1;"
   IN_FILE=$2
   replace "$SEARCH_FOR_WORD" "$REPLACE_IT_WITH" "$IN_FILE"
 }
@@ -206,30 +213,22 @@ update_templates () {
 
   TEMPLATES_DIR=/opt/unetlab/html/templates/
 
-  ASAV_TEMPLATE=asav.php
-  change_remote_access_type vnc $TEMPLATES_DIR$ASAV_TEMPLATE
-
   IOL_TEMPLATE=iol.php
-  change_ram_in_MB              240  $TEMPLATES_DIR$IOL_TEMPLATE
-  change_num_serial_4port_cards 1    $TEMPLATES_DIR$IOL_TEMPLATE
+  change_ram_in_MB                240  $TEMPLATES_DIR$IOL_TEMPLATE
+  change_num_ethernet_4port_cards 2    $TEMPLATES_DIR$IOL_TEMPLATE
+  change_num_serial_4port_cards   2    $TEMPLATES_DIR$IOL_TEMPLATE
 
   C1710_TEMPLATE=c1710.php
   change_idlepc_value  0x80618b54 $TEMPLATES_DIR$C1710_TEMPLATE
 
   C3725_TEMPLATE=c3725.php
-  insert_card_in_slot1 NM-1FE-TX  $TEMPLATES_DIR$C3725_TEMPLATE
-  insert_card_in_slot2 NM-16ESW   $TEMPLATES_DIR$C3725_TEMPLATE
-  change_idlepc_value  0x60c09aa0 $TEMPLATES_DIR$C3725_TEMPLATE
+  insert_card_in_slot1 NM-16ESW  $TEMPLATES_DIR$C3725_TEMPLATE
+  change_idlepc_value  0x60a800f0 $TEMPLATES_DIR$C3725_TEMPLATE
 
   C7200_TEMPLATE=c7200.php
   change_ram_in_MB     240        $TEMPLATES_DIR$C7200_TEMPLATE
-  insert_card_in_slot1 PA-FE-TX   $TEMPLATES_DIR$C7200_TEMPLATE
-  insert_card_in_slot2 PA-FE-TX   $TEMPLATES_DIR$C7200_TEMPLATE
-  insert_card_in_slot3 PA-FE-TX   $TEMPLATES_DIR$C7200_TEMPLATE
-  insert_card_in_slot4 PA-FE-TX   $TEMPLATES_DIR$C7200_TEMPLATE
-  insert_card_in_slot5 PA-4E      $TEMPLATES_DIR$C7200_TEMPLATE
-  insert_card_in_slot6 PA-8E      $TEMPLATES_DIR$C7200_TEMPLATE
-  change_idlepc_value  0x62a5af34 $TEMPLATES_DIR$C7200_TEMPLATE
+  insert_card_in_slot1 PA-8E      $TEMPLATES_DIR$C7200_TEMPLATE
+  change_idlepc_value  0x60189234 $TEMPLATES_DIR$C7200_TEMPLATE
 
    
 }

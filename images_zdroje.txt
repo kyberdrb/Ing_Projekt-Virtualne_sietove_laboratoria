@@ -2,36 +2,81 @@ Vseobecne zdroje:
   torrentz2.eu
   http://sfree.ws
   https://www.4shared.com
-  
+  https://netbrainstlearn.wordpress.com
+
+
+
+Vela roznych zariadeni
+  https://netbrainstlearn.wordpress.com/tag/images/
+
+
+
   https://netbrainstlearn.wordpress.com/tag/cisco-router/
+resp.
+  https://netbrainstlearn.wordpress.com/2015/12/25/gns3-1-4rc2-vm-with-iou-iosv-ios-xrv-csr1000v-nxosv/
 resp.
   https://mega.nz/#F!NshwWKrB!-pAJA_rGjGfY-Ay2JRZGdw
   
   http://tfr.org/
 
+
+
   http://www.mydemonoid.info/files/details/3571635/
 resp.
   https://mega.nz/#!dMlQ0ICY!6YmA14Vj4A4zb3J0jIwOpC-cakLs7i4tTsgzCLxtmPQ
+
+
 
   http://s9.bitdownload.ir/Software.2/Win/Internet.Network/fortinet/
 
 
 
+Cisco NXOS9k
+https://www.4shared.com/postDownload/OcsywlPPei/nxosv9k-7.html
+
+
+CSR1000V
+https://www.4shared.com/postDownload/FfXrgoKlce/csr1000v-universalk9031600S155.html
+https://www.4shared.com/postDownload/sdA0Bdazca/csr1000v-universalk9031606S155.html
+https://www.4shared.com/postDownload/Ni7JIXR7ba/csr1000v-universalk9031602S155.html
+https://www.4shared.com/postDownload/2gYNfL-2ce/csr1000v-universalk9031601aS15.html
+
+
+
+
+ASAv 9.7(1)
+  https://www.4shared.com/get/spD4cHFjca/asav971.html
+
+ASAv 9.7.1
+  https://dc687.4shared.com/download/spD4cHFjca?sbsr=95739ab69edd97eddd00cc836c4d09729c4&bip=NjkuMTY3LjE1Mi4yMDQ&lgfp=73&dsid=tjpdxiR9.634f4db4697838e8c5d1bcffa4d95118&bip=NjkuMTY3LjE1Mi4yMDQ&dd=c96efbff19884ce0c653e4cfaacb58cc&isApi=true
+
+Cisco IOL Switch 2017 + Cisco IOL Router 2015
+  https://netbrainstlearn.wordpress.com/2015/12/25/new-iou-dec-2105/
+resp.
+  https://mega.nz/#!zdkxBAaR!A1XqoshXhMxcsfV17LYnviUUiNAG8TTl69FmI1-1LOU
+
 
 Alpine Linux
 https://osdn.net/projects/sfnet_gns-3/downloads/Qemu%20Appliances/alpine-linux-3.2.3.qcow2/
 
+
+
 Arista Virtual Extensible Operating System (vEOS)
-http://simatinc.net/simatftp/4.14/EOS-4.14.6M/
+  -> Vsetok Arista softver sa da bezplatne stiahnut na
+
+        https://www.arista.com/en/support/software-download
+
+  Staci sa iba zaregistrovat.
+-nahradny link:
+  http://simatinc.net/simatftp/4.14/EOS-4.14.6M/
+
+
 
 Fortinet FortiGate
 http://s9.bitdownload.ir/Software.2/Win/Internet.Network/fortinet/
 
 Palo Alto 7.0.1
   https://dc583.4shared.com/download/SiJE2phFba?sbsr=328825ffb15bcc1dab8b15a5e8f611079c4&bip=MTg1LjUzLjE2OC4xMTc&lgfp=73&dsid=tjpdxiR9.85d3d658a90dd48b8c33ffcaf9af058f&bip=MTg1LjUzLjE2OC4xMTc&dd=cd5ada957c03b47674b4e8af0e937a1d&isApi=true
-
-ASAv 9.7.1
-  https://dc687.4shared.com/download/spD4cHFjca?sbsr=95739ab69edd97eddd00cc836c4d09729c4&bip=NjkuMTY3LjE1Mi4yMDQ&lgfp=73&dsid=tjpdxiR9.634f4db4697838e8c5d1bcffa4d95118&bip=NjkuMTY3LjE1Mi4yMDQ&dd=c96efbff19884ce0c653e4cfaacb58cc&isApi=true
 
 Cisco 3725-adventerprisek9-mz.124-15.T14.image
 http://www.4shared.one/file/DdrwyzwUba/c3725-adventerprisek9-mz124-15.html
