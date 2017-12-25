@@ -1,0 +1,8 @@
+kde som sa registroval
+-arista
+-fortinet - nedovoli stiahnut zadarmo
+-juniper (podciarknik namiesto medzery) - nedovoli stiahnut zadarmo
+-checkpoint.com - nedovoli stiahnut zadarmo
+-cumulus vx - stiahnut qcow2 verziu
+-alteon - vybrat Vmware verziu
+-certcollection.org - nasiel som tam diskusiu o CSR100V routroch a nasiel som tam aj najnovsie CSR1000V NG 16.X

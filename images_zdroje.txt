@@ -3,7 +3,68 @@ Vseobecne zdroje:
   http://sfree.ws
   https://www.4shared.com
   https://netbrainstlearn.wordpress.com
+  https://certcollection.org
 
+
+Popis Cisco VIRL 1.3 zariadeni
+  https://learningnetwork.cisco.com/docs/DOC-33132
+
+
+
+
+
+https://www.4shared.com/get/aO48wjWG/coeus-7-7-5-190-S000V.html
+
+Nokia
+  https://www.4shared.com/get/iYpj325uce/timos_for_unl.html
+  https://www.4shared.com/get/mz3b58moei/sros-vm-V13.html
+
+CheckPoint FW
+  https://www.4shared.com/get/HUGfsTQx/Check_Point_Install_and_Upgrad.html
+
+Cumulus VX (Select your version: <najnovsia>; nizsie vyberieme KVM (Qcow2) format)
+  https://cumulusnetworks.com/products/cumulus-vx/download/
+
+
+Cisco Prime Infra
+  https://www.4shared.com/file/Ao2hqdVEei/PI-VA-3200258zip.html
+  https://www.4shared.com/get/kSs6TT7fei/PI-VA-3200258zip.html
+  https://www.4shared.com/get/Tg2fpIEoei/PI-VA-3200258zip.html
+
+F5 BIG-IP
+  https://www.4shared.com/get/KZprj9Fpca/BIGIP-1153210196ALL-scsi.html
+  https://www.4shared.com/get/ld7OXikaei/BIGIP-121200249.html
+
+Huawei USG6000v
+  https://www.4shared.com/get/Zu2FYHO2ei/USG6000V.html
+
+vyOS (Stable Version)
+  https://vyos.io/#downloads
+
+Cisco vWLC
+  https://www.4shared.com/get/gLK-g9Wuba/AIR_CTVM_LARGE-K9_8_3_102_0.html
+  https://www.4shared.com/postDownload/wA3eUMvoba/AIR-CTVM-K9-8-1-102-0.html
+
+
+pfSense (File Type: Install; Architecture: Architecture: AMD64 (64-bit); Installer: CD Image (ISO) Installer; Mirror: Frankfurt, Germany)
+  https://www.pfsense.org/download/
+
+
+Radware Alteon (Alteon VA for VMware, Alteon pre KVM nefunguje)
+  http://stream1d.radware.net/cdn/SoftwareDownloads/NetworkAdminSoftware/AlteonVA/AlteonVAVmware.zip
+
+
+
+Vestky podporovane zaridenia - ale nikto neseeduje
+http://only-soft.org/viewtopic.php?t=71148#torrent
+
+
+
+Vsetky podporovane zariadenia - ale za poplatok 75 USD
+  https://unlcloud.com/unetlab-unl-eve-ng.html
+
+alebo rovno cele riesenie za pomerne vysoku cenu
+  https://www.netdevgroup.com/products/compare.html
 
 
 Vela roznych zariadeni
@@ -26,21 +87,49 @@ resp.
   https://mega.nz/#!dMlQ0ICY!6YmA14Vj4A4zb3J0jIwOpC-cakLs7i4tTsgzCLxtmPQ
 
 
-
+Rozne druhy Fortinet zariadeni
   http://s9.bitdownload.ir/Software.2/Win/Internet.Network/fortinet/
+konkretne
+  http://s9.bitdownload.ir/Software.2/Win/Internet.Network/fortinet/FGT_VM64_KVM-v5-build1484-FORTINET.out.kvm.zip
+  http://s9.bitdownload.ir/Software.2/Win/Internet.Network/fortinet/FOS_VM64_KVM-v5-build1484-FORTINET.out.kvm.zip  
+
 
 
 
 Cisco NXOS9k
-https://www.4shared.com/postDownload/OcsywlPPei/nxosv9k-7.html
+  https://www.4shared.com/postDownload/OcsywlPPei/nxosv9k-7.html
 
 
-CSR1000V
-https://www.4shared.com/postDownload/FfXrgoKlce/csr1000v-universalk9031600S155.html
-https://www.4shared.com/postDownload/sdA0Bdazca/csr1000v-universalk9031606S155.html
-https://www.4shared.com/postDownload/Ni7JIXR7ba/csr1000v-universalk9031602S155.html
-https://www.4shared.com/postDownload/2gYNfL-2ce/csr1000v-universalk9031601aS15.html
+CSR1000V legacy
+  https://www.4shared.com/postDownload/FfXrgoKlce/csr1000v-universalk9031600S155.html
+  https://www.4shared.com/postDownload/sdA0Bdazca/csr1000v-universalk9031606S155.html
+  https://www.4shared.com/postDownload/Ni7JIXR7ba/csr1000v-universalk9031602S155.html
+  https://www.4shared.com/postDownload/2gYNfL-2ce/csr1000v-universalk9031601aS15.html
 
+
+CSR1000V NG (serial console)
+  https://certcollection.org/forum/topic/278556-cisco-csr1000v-collections/page__st__98#entry1167437
+konkretne
+  magnet:?xt=urn:btih:a39e7f024879bfafc861e8cad71684a72d02d544&dn=csr1000v-universalk9.16.04.02-serial.qcow2
+
+  https://certcollection.org/forum/topic/278556-cisco-csr1000v-collections/page__st__126#entry1193634
+konkretne
+  magnet:?xt=urn:btih:0d78aa334b8bc1b98cdf7d020458253a8a5a6cd8&dn=csr1000v-universalk9.16.05.02-serial.qcow2
+
+  https://certcollection.org/forum/topic/278556-cisco-csr1000v-collections/page__st__140#entry1200992
+konkretne
+  magnet:?xt=urn:btih:9c78fe77d92506a21120e0b41eed57eaa64b076d&dn=csr1000v-universalk9.16.06.02-serial.qcow2
+
+  https://certcollection.org/forum/topic/278556-cisco-csr1000v-collections/page__st__154#entry1207101
+konkretne
+  magnet:?xt=urn:btih:c5033addb756f546a72554638628dd32e902ba26&dn=csr1000v-universalk9.16.07.01-serial.qcow2
+
+
+
+
+HP VSR1000
+  https://h10145.www1.hp.com/Downloads/SoftwareReleases.aspx?ProductNumber=JG811AAE&lang=en&cc=us&prodSeriesId=5443163
+  
 
 
 
@@ -51,13 +140,14 @@ ASAv 9.7.1
   https://dc687.4shared.com/download/spD4cHFjca?sbsr=95739ab69edd97eddd00cc836c4d09729c4&bip=NjkuMTY3LjE1Mi4yMDQ&lgfp=73&dsid=tjpdxiR9.634f4db4697838e8c5d1bcffa4d95118&bip=NjkuMTY3LjE1Mi4yMDQ&dd=c96efbff19884ce0c653e4cfaacb58cc&isApi=true
 
 Cisco IOL Switch 2017 + Cisco IOL Router 2015
-  https://netbrainstlearn.wordpress.com/2015/12/25/new-iou-dec-2105/
+  https://net
+brainstlearn.wordpress.com/2015/12/25/new-iou-dec-2105/
 resp.
   https://mega.nz/#!zdkxBAaR!A1XqoshXhMxcsfV17LYnviUUiNAG8TTl69FmI1-1LOU
 
 
 Alpine Linux
-https://osdn.net/projects/sfnet_gns-3/downloads/Qemu%20Appliances/alpine-linux-3.2.3.qcow2/
+  https://osdn.net/projects/sfnet_gns-3/downloads/Qemu%20Appliances/alpine-linux-3.2.3.qcow2/
 
 
 
@@ -72,7 +162,9 @@ Arista Virtual Extensible Operating System (vEOS)
 
 
 
-Fortinet FortiGate
+Fortinet Fortigate
+  https://www.4shared.com/get/PL7oRrGbca/FGT_VM64_VMX-v5-build1486-FORT.html
+  
 http://s9.bitdownload.ir/Software.2/Win/Internet.Network/fortinet/
 
 Palo Alto 7.0.1
@@ -101,6 +193,9 @@ Cisco-IOU-L2-L3-Collection-v4
 
 Cisco VIRL Images for GNS3 and Qemu
   https://torrentz2.eu/ddbc1da15e51079d0532eeef66fbba6b592afffa
+
+Mikrotik - softver na stiahnutie
+  https://mikrotik.com/download
 
 Mikrotik 5.20 with License
   https://torrentz2.eu/1b1d2e4ad0c2defa34eec1b22e7f2cd99a972014 

@@ -8,23 +8,19 @@ Zazitky:
 
 Ulohy:
 
--upravit vsetky Cisco ASAv imidze na telnet pristup
+-opravit automaticke spustanie zalohovacieho LXC kontajnera 'eve-backup' na hlavnom serveri
+-pridat nokia vsr a alcatel 7750 - vytiahnut z viro servera/vypytat od kultana/kaloca
 
   -odskusat v eve-ng aj gns3 alpine linux
     -odskusat ako qemu aj ako docker
     -nainstalovat don wireshark
 
-  -odskusat neodskusane imidze na sirene (su v adresari 'neotestovane'):
-    -csr1000v 3.17 (tusim ze duplicita, ale nevadi: porovnam s uz existujucim csrkom podla 'show version' a duplicitny vymazem)
-    -csr1000v 16.2.2
-    -titanium 7.3.0
-    -vios SPA 15.6 -> imidz je vo formate vmdk -> skonvertovat do qcow2
-    -xrv9k full
+-urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
+  https://www.youtube.com/watch?v=Ea4U93991dw
   
-  -postahovat a otestovat doposial chybajuce zariadenia (4shared ;) 
-
--upravit sumarny zoznam zariadeni tak, aby odzrkadloval doposial vykonane zmeny
-  -poodstranovat dynamips routre, ktore nikde nefunguju
+-gns3 podporuje aj klasicky firewall Cisco ASA, nie len ASAv -> pridat ho do GNS3
+https://gns3.com/discussions/how-to-extract-asa-bin-file
+http://www.brainbump.net/GNS3-How-to-emulate-ASA-8.4-2-under-QEMU
 
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -reboot
@@ -64,11 +60,7 @@ Ulohy:
   -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-na zariadeni "F5 BIG-IP" (bigip) zmenit VNC pristup na TELNET
 -Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
--Pridat HP VSR 1000
-  http://brezular.com/2014/07/31/hp-vsr1001-virtual-services-router-on-gns3/
-  https://h10145.www1.hp.com/Downloads/SoftwareReleases.aspx?ProductNumber=JG811AAE&lang=en&cc=us&prodSeriesId=5443163
-  https://lkhill.com/hp-vsr1000-getting-started/
-  google: "VSR1000 download"
 -Unified Networking Lab v2 (UNetLabv2)
   http://www.routereflector.com/unetlab/

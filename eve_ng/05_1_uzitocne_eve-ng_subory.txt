@@ -7,6 +7,15 @@ obsah suboru '/opt/unetlab/uksm' sa zrkadli zo systemoveho suboru '/sys/kernel/m
   cat /sys/kernel/mm/uksm/run
 
 *************
+Web
+
+Zoznam zariadeni v rozbalovacom menu
+  /opt/unetlab/html/includes/init.php
+
+Zoznam sablon pre zariadenia
+  /opt/unetlab/html/templates/
+
+*************
 Logy
 
 web:     System -> System logs
