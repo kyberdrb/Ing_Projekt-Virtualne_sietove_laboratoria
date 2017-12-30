@@ -1,11 +1,11 @@
-Záverečný report – GNS3
+Záverečný report – GNS3 (vzdialený server)
 
 Výhody
--Multiplatformový
--Jednoduché pridanie smerovačov rôznych výrobcov
+-Multiplatformový - klientská aplikacia existuje pre Windows/Linux/Mac
 -Možnosť nasadiť GNS3 ako vzdialený server (funguje od verzie 2, dovtedy mal GNS3 VM veľa chýb a nedalo sa naň pripojiť)
 -Schopnosť skonvertovať Cisco smerovač z BIN do IMAGE formátu.
+-Lepšia škálovateľnosť oproti EVE-ng - možnosť vytvorenia clustru GNS3 vzdialených serverov
 
 Nevýhody
--Náročný na procesor (pri lokálnom serveri - pri GNS3 VM je záťaž presunutá na vzdialený server)
--Zložitejšie prepojiteľný s lokálnou sieťou (jednoduchšie pri GNS3 VM)
+-Zložitejší na konfiguráciu
+-Zložitejšie vytváranie šablón pre zariadenia - nutnosť manuálne pridať každé zariadenie; pri GNS3 clustri treba každé zariadenie pridať samostatne na každý server v clustri

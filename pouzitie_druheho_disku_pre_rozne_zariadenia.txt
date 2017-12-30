@@ -1,0 +1,73 @@
+Potreboval som pouzit dalsi disk na rozne_zariadenia, pretoze mi dochadzalo miesto na primarnom disku "sda".
+
+-formatovanie druheho disku ako disku na rozne_zariadenia
+  sudo gdisk /dev/sdb
+    x
+    z
+    y
+    y
+  sudo cfdisk /dev/sdb
+    New -> odenterovat predvolene hodnoty -> Write -> yes -> Quit
+  sudo mkfs.ext4 /dev/sdb1
+  sudo mount /dev/sdb1 /opt/unetlab/addons/rozne_zariadenia_sdb   <- potom povodny adresar "rozne_zariadenia" rekurzivne skopirovat na tento disk a povodny adresar zmazat + zaistit automaticke mountovanie sdb1 po restarte
+
+  sudo cp -R /opt/unetlab/addons/rozne_zariadenia/* /opt/unetlab/addons/rozne_zariadenia_sdb
+  sudo rm -rf /opt/unetlab/addons/rozne_zariadenia/
+  sudo umount /dev/sdb1
+  sudo mkdir rozne_zariadenia
+  sudo mount /dev/sdb1 /opt/unetlab/addons/rozne_zariadenia/
+
+-Mountovanie particie (sdb1) po starte
+
+  blkid -s PARTUUID -o value /dev/sdb1
+  <vygenerovany kod si skopirujeme - Ctrl+Shift+C>
+  sudo vim.tiny /etc/fstab
+  <pridame riadok na koniec suboru>
+  
+  UUID=<uuid_vygenerovane_prikazom_uuidgen> /opt/unetlab/addons/rozne_zariadenia/    ext4    errors=remount-ro    0    1
+
+-Overenie, ci sa particia mountuje pri starte spravne
+  reboot
+
+
+TROUBLESHOOTING
+
+
+-Ak sa server spustil, overime ci sa particia pripojila prikazom
+  lsblk
+
+-Ak zadame nepravne udaje do "/etc/fstab" suboru, hrozi, ze sa server nespusti a znefunkcni sa aj SSH pristup. V mojom pripade som pouzil nespravny prikaz na vygenerovanie UUID pre particiu ("uuidgen" namiesto "blkid"). Vtedy je potrebne fyzicky restartovat server, vojst do GRUB zavadzaca (dlhsie podrzime "Shift" pocas zavadzania systemu - ked sa spusta BIOS).
+
+-Ak to nepojde, treba restartovat server znova a nabootovat z Live USB s napr. Ubuntu Desktop. V nom si otvorime terminal, pripojime systemovu particiu a vygenerujeme spravne UUID pre particiu /dev/sdb1 (vid "blkid" prikaz nizsie).
+
+    at the grub prompt, hit a to append options
+    add init=/bin/bash to the end of the kernel command line and press enter
+
+The system will boot to a prompt like 'bash-3.2#' enter the following commands at the prompt
+
+    mount -o remount,rw /
+alebo
+    mount -o remount,rw / --target /
+
+Vygenerujeme UUID pre particiu /dev/sdb1, ale tentokrat spravnym sposobom.
+
+    blkid -s PARTUUID -o value /dev/sdb1
+
+UUID si ulozime (napr. odfotime).
+Upravime fstab subor podla spravnej UUID hodnoty.
+
+    vim.tiny /etc/fstab
+
+Restartujeme
+
+    reboot -f
+
+
+
+Sources:
+  https://www.cyberciti.biz/faq/mount-drive-from-command-line-ubuntu-linux/
+  https://bsnetworking.blog/2017/01/16/eve-ng-initial-configs/
+  https://unix.stackexchange.com/questions/44027/how-to-fix-boot-failure-due-to-incorrect-fstab
+  https://wiki.debian.org/Part-UUID#Via_sysfs_Paths
+  https://askubuntu.com/questions/16042/how-to-get-to-the-grub-menu-at-boot-time
+  https://linuxconfig.org/how-to-retrieve-and-change-partitions-universally-unique-identifier-uuid-on-linux

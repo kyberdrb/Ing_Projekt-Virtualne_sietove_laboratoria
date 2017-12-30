@@ -8,20 +8,49 @@ Zazitky:
 
 Ulohy:
 
+Alpine Linux
+  -funguje perfektne
+  -urobit este par verzii v dockeri:
+    -CLI
+    -XFCE
+
+
+-skopirovat obsah skriptu zo sireny na upravu sablon do git repa
+-opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
+-uploadnut chybajuce imidze na lokali
+-odskusat apsolute vision, xrv, vios, iou, asav, vsrx, dynamips
+
+-urobit skript na upravu ASAv + pridat ho do zalohovacieho skriptu
+-upravit fstab subor tak, aby sa sdb1 mountovala do /opt/unetlab/addons/rozne_zariadenia
+-upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
+
+-zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
+-potom prist na to, ako na login stranke nastavit html5 konzolu ako predvolenu; potom otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
+
+
+
+
+Zdokumentovat pripojenie virtualiek na internet v EVE-ng
+  -Cloud0 (Management)
+  -nastavenie IPcky na zariadeni vnutri EVE-ng
+  -na Cloud0 moze byt pripojeych aj viacero zariadeni
+
+
+
+
 -opravit automaticke spustanie zalohovacieho LXC kontajnera 'eve-backup' na hlavnom serveri
--pridat nokia vsr a alcatel 7750 - vytiahnut z viro servera/vypytat od kultana/kaloca
+-pridat najnovsie nokia vsr - vytiahnut z viro servera/vypytat od kultana/kaloca
 
   -odskusat v eve-ng aj gns3 alpine linux
+    -CLI aj 
     -odskusat ako qemu aj ako docker
     -nainstalovat don wireshark
 
--urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
+-pridat do eve-ng firefox kontajner
+
+-urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration) - NETREBA! ved mame HTML5 integraciu!
   https://www.youtube.com/watch?v=Ea4U93991dw
   
--gns3 podporuje aj klasicky firewall Cisco ASA, nie len ASAv -> pridat ho do GNS3
-https://gns3.com/discussions/how-to-extract-asa-bin-file
-http://www.brainbump.net/GNS3-How-to-emulate-ASA-8.4-2-under-QEMU
-
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -reboot
   -vybrat si zariadenia, ktore budem benchmarkovat
@@ -45,7 +74,7 @@ http://www.brainbump.net/GNS3-How-to-emulate-ASA-8.4-2-under-QEMU
     -/home/gns3/gns3-server/
     -/home/gns3/gns3-server/gns3server
     
-  -zabezpecit gns3vm
+  -zabezpecit gns3 vzdialeny server
     -ssh
     -autentifikacia voci gns3 klientovi
     
@@ -57,10 +86,22 @@ http://www.brainbump.net/GNS3-How-to-emulate-ASA-8.4-2-under-QEMU
     -postahovat z torrentov a dalsich zdrojov na notase
     -vypytat si ich od veduceho
     
-  -do diplomky dat na koniec kapitolu "co dalej"
+
+
+-do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
--na zariadeni "F5 BIG-IP" (bigip) zmenit VNC pristup na TELNET
+-vyuzitie OpenStacku na vytvaranie topologii
+-pripojenie na internet z vnutra projektu - oblacik (v DMZ nie je DHCP server - mozne riesenie: pridat DHCP server, ktory bude pridelovat privatne IP adresy a bude robit preklad adries NAT, kvoli pristupu na internet. Ale ako potom budu studenti pristupovat ku zariadeniam, ked budu mat lokalnu IP adresu?)
+-zabezpecenie a izolacia pouzivatelov a ich suborov v EVE-ng a GNS3
+-google: "kvm in lxc container" - odskusat najprv na fyzickom serveri, potom na Odyseovi
+  https://blog.a2o.si/2015/10/26/how-to-run-ubuntu-kvm-host-in-an-unprivileged-lxc-container/
+  https://github.com/lxc/lxd/issues/3393
+-pridat Ostinato a Netem
+-vyskusat cracknutu verziu Mikrotik 5.2 vo VBoxe -> potom importovat do EVE-ng
+-vytvaranie vlastnych Docker kontajnerov a ich testovanie v GNS3 a EVE-ng (naucit sa pisat "Dockerfile")
+-Integrovat server do monitorovania cez Zabbix
 -Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
+-RancherVM / Project Atomic - spustanie KVM virtualiek ako Docker kontainery
 -Unified Networking Lab v2 (UNetLabv2)
   http://www.routereflector.com/unetlab/

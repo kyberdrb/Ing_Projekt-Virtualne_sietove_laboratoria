@@ -1,0 +1,16 @@
+Záverečný report – EVE-ng
+pouzivatelsky zazitok, administratorsky zazitok, referencia na benchmark zariadeni, referencia na kompatibilitu zariadeni
+
+Výhody
+-Web rozhranie namiesto samostatnej klientskej aplikácie v GNS3 (namiesto klientskej aplikácie musíme ale nainštalovať webový prehliadač)
+-Multiplatformový - všetky najpopulárnejšie webové prehliadače existujú pre Windows/Linux/Mac
+-Podpora viacerých používateľov
+-Jednoduchšie nasadenie na server v porovnaní s GNS3 (nainštalujeme EVE-ng server, zabezpečíme ho, pridáme doň zariadenia a môžeme vytvárať projekty)
+-Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
+
+Nevýhody
+-Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením.
+-Nevie skonvertovať (dekomprimovať) Cisco smerovač z BIN do IMAGE formátu.
+-Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov
+-Web server (Apache) nie je chránený modulmi “modsecurity” (ochrana napr. Proti SQL Injection) a “modevasive” (ochrana proti DoS a DDoS útokom)
+-EVE-ng sa nedá škálovať naprieč viacerými servermi t.j. nevieme urobiť EVE-ng cluster tak, ako to vieme urobiť v GNS3

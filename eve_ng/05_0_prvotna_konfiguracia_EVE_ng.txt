@@ -161,6 +161,10 @@ Finally you should upgrade system and EVE to latest version:
 
   sudo apt-get install bash-completion man-db tmux
 
+-pridame sa do skupiny "kvm" (kvoli guestfish utilitke)
+ 
+  sudo usermod -aG kvm $USER
+
 
 
 
@@ -178,9 +182,12 @@ s heslom
 	eve
 
 Po prihlásení sa do webového rozhrania môžeme spravovať topológie a zariadenia.
-Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača.
+Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača. Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
-Z bezpečnostných dôvodov odporucam okamžite zmenit heslo administrátorského účtu do web rozhrania. Heslá sú na EVE-ng serveri uložené v MySQL databázi (narozdiel od UNetLab-u, kde boli ulozene v SQLite databazi). (vid "http://www.eve-ng.net/index.php/faq"). Viac informácií o administrácií používateľov v rámci webového rozhrania EVE-ng nájdeme v súbore "Administrácia webových používateľov v EVE-ng".
+Vypneme UKMS (Universal Kernel Samepage Merging) v EVE-ng
+  Úlohou UKMS je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU zariadení rovnakého typu. To ale zvyšuje záťaž na procesor. Podľa EVE-ng dokumentácie treba UKMS vypnúť, keď chceme spúšťať na serveri viac ako 10 QEMU zariadení. Zrejme to zaťažuje procesor natoľko, že to ovplyvňuje výkon bežiacich QEMU zariadení.
+
+Z bezpečnostných dôvodov odporucam okamžite zmenit heslo administrátorského účtu do web rozhrania. Heslá sú na EVE-ng serveri uložené v MySQL databázi (narozdiel od UNetLab-u, kde boli ulozene v SQLite databazi). (vid "http://www.eve-ng.net/index.php/faq"). Viac informácií o administrácií používateľov v rámci webového rozhrania EVE-ng nájdeme v súbore "sprava_pouzivatelov".
 
 Ak SSH aj web rozhranie funguje (dovoli sa nam pripojit a prihlasit), pokracujeme zabezpecenim servera.
 
@@ -190,5 +197,6 @@ Sources:
 
   (First login  & Post-install EVE-ng)
   http://www.eve-ng.net/index.php/documentation/howto-s/65-howto-configure-eve-during-first-boot
+  https://bsnetworking.blog/2017/01/16/eve-ng-initial-configs/
 
-Takisto mozeme prvotnu konfiguraciu doplnit z "https://bsnetworking.blog/2017/01/16/eve-ng-initial-configs/"
+  https://stackoverflow.com/questions/14059916/is-there-a-command-to-list-all-unix-group-names
