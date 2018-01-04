@@ -1,6 +1,9 @@
 Záverečný report – EVE-ng
 pouzivatelsky zazitok, administratorsky zazitok, referencia na benchmark zariadeni, referencia na kompatibilitu zariadeni
 
+Schopnosti EVE-ng
+  https://certcollection.org/forum/topic/251691-new-unl-tool-review-home-rack-updated-100-x16-mar-2016-video-16/page__st__392#entry969786
+
 Výhody
 -Web rozhranie namiesto samostatnej klientskej aplikácie v GNS3 (namiesto klientskej aplikácie musíme ale nainštalovať webový prehliadač)
 -Multiplatformový - všetky najpopulárnejšie webové prehliadače existujú pre Windows/Linux/Mac

@@ -1,0 +1,3 @@
+See "(all git repositories directory)/Networking/run_kvm_inside_lxc_container.txt" -> from the beginning to the "ip a" command ;)
+
+The tutorial in "Networking/wireless_bridged_interface_tutorial.txt" I didn't manage to get it working :/

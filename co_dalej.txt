@@ -6,13 +6,18 @@ Zazitky:
 -20.12. o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
 -Navvyse z prikazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplyva, ze na server utocia z Ciny
 
+
+
+
 Ulohy:
 
 Alpine Linux
-  -funguje perfektne
-  -urobit este par verzii v dockeri:
-    -CLI
-    -XFCE
+  -funguje perfektne a vyuziva minimum systemovych prostriedkov
+  -Urobit tieto verzie:
+    -Alpine Linux QEMU CLI
+    -Alpine Linux QEMU XFCE
+    -Alpine Linux Docker CLI
+    -Alpine Linux Docker XFCE
 
 
 -skopirovat obsah skriptu zo sireny na upravu sablon do git repa
@@ -25,15 +30,7 @@ Alpine Linux
 -upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
 
 -zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
--potom prist na to, ako na login stranke nastavit html5 konzolu ako predvolenu; potom otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
-
-
-
-
-Zdokumentovat pripojenie virtualiek na internet v EVE-ng
-  -Cloud0 (Management)
-  -nastavenie IPcky na zariadeni vnutri EVE-ng
-  -na Cloud0 moze byt pripojeych aj viacero zariadeni
+-otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 
 
 
@@ -48,8 +45,11 @@ Zdokumentovat pripojenie virtualiek na internet v EVE-ng
 
 -pridat do eve-ng firefox kontajner
 
--urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration) - NETREBA! ved mame HTML5 integraciu!
+-urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration) - NETREBA! ved mame HTML5 integraciu! Ale treba odskusat wireshark odchytavanie.
   https://www.youtube.com/watch?v=Ea4U93991dw
+
+-rozbehnut KVM virtualku v LXC kontaineri -> ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+-EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
   
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -reboot
@@ -91,9 +91,32 @@ Zdokumentovat pripojenie virtualiek na internet v EVE-ng
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
--vyuzitie OpenStacku na vytvaranie topologii
+-rozdelenie EVE-ng do Community, Professional a Learning Centre edicie - Professional a Learning Centre opravuju mnozstvo nedostatkov, dufam ale, ze vsetky verzie zostanu open source a nespoplatnia ich
+  http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
+  http://eve-ng.net/index.php/features
+-Pridat predmet na bezpecnost: zabezpecenie Linux systemu (SELinux/AppArmor), SSH, Apache, MySQL, DNS, ako sa chranit proti DoS a DDoS utokom (IDS/IPS)
+  https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
+-Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
+-Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
+-Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP
+  https://www.youtube.com/watch?v=ttvWx27hI60
+  https://stgraber.org/2012/03/04/booting-an-ubuntu-12-04-virtual-machine-in-an-lxc-container/
+-Vytvorit okresanu distribuciu Windows 10 s ntlite
+-Importovat nastroj na generovanie sieti "Routem" z Cisco VIRL do EVE-ng a GNS3
+-Porovnat HTML5 integraciu s povodnou (starsou)
+  https://github.com/SmartFinn/eve-ng-integration
+-Vyskusat nove (vylepsene) web rozhranie pre EVE-ng
+  https://www.youtube.com/watch?v=8REzLm_-XH8
+  https://github.com/breakintheweb/eve-ng
+-GNS3 cluster
+  https://gns3.com/discussions/gns3-clustering-using-mpich
+  https://www.gns3.com/discussions/the-worlds-first-gns3-beowulf-cl
+  https://www.youtube.com/watch?v=i_r3z1jYHAc
+-vyuzitie OpenStacku na vytvaranie topologii - napr. s Docker kontajnermi (OKS)
 -pripojenie na internet z vnutra projektu - oblacik (v DMZ nie je DHCP server - mozne riesenie: pridat DHCP server, ktory bude pridelovat privatne IP adresy a bude robit preklad adries NAT, kvoli pristupu na internet. Ale ako potom budu studenti pristupovat ku zariadeniam, ked budu mat lokalnu IP adresu?)
 -zabezpecenie a izolacia pouzivatelov a ich suborov v EVE-ng a GNS3
+  -EVE-ng: pre Apache aplikovat “modsecurity” a “modevasive”
+  -EVE-ng: izolovat pouzivatelov v EVE-ng, aby mal napr. kazdy svoj vlastny priestor (adresar), ktory bude moct upravovat, a ku ziadnemu inemu nebude mat pristup -> https://gitlab.com/eve-ng-dev/eve-ng-public/blob/DEV/html/includes/api_folders.php
 -google: "kvm in lxc container" - odskusat najprv na fyzickom serveri, potom na Odyseovi
   https://blog.a2o.si/2015/10/26/how-to-run-ubuntu-kvm-host-in-an-unprivileged-lxc-container/
   https://github.com/lxc/lxd/issues/3393
@@ -102,6 +125,8 @@ Co dalej?
 -vytvaranie vlastnych Docker kontajnerov a ich testovanie v GNS3 a EVE-ng (naucit sa pisat "Dockerfile")
 -Integrovat server do monitorovania cez Zabbix
 -Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
--RancherVM / Project Atomic - spustanie KVM virtualiek ako Docker kontainery
+-Vytvaranie sablon pre neexistujuce zariadenia pre EVE-ng
+  http://www.brianlinkletter.com/build-custom-linux-router-image-unetlab-eve-ng-network-emulators/
+-RancherVM / Project Atomic - spustanie KVM virtualiek ako Docker kontainery => toto teoreticky umozni vytvorit windows virtualku, ktora sa zabali do docker kontajnera
 -Unified Networking Lab v2 (UNetLabv2)
   http://www.routereflector.com/unetlab/

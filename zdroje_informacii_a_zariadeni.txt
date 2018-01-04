@@ -2,7 +2,7 @@ Zdroje informacii:
   GNS3
     https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w  <= David Bombal
 
-  Materialy
+  Materialy / Certifikacie
     https://certcollection.org/forum/
     https://certcollection.org/forum/forum/147-linux-unix-shares/
     https://certcollection.org/forum/forum/1-training-offers-requests/
@@ -10,6 +10,9 @@ Zdroje informacii:
     https://certcollection.org/forum/forum/203-ios-and-related-cisco-files/page__prune_day__100__sort_by__Z-A__sort_key__last_post__topicfilter__all__st__50
     https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
     https://certcollection.org/forum/forum/148-security-shares/
+
+  Videonavody, ako vytvarat siete v GNS3
+    https://certcollection.org/forum/topic/319133-build-networks-in-gns3/
     
 
 
