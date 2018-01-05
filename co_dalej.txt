@@ -11,55 +11,46 @@ Zazitky:
 
 Ulohy:
 
-Alpine Linux
-  -funguje perfektne a vyuziva minimum systemovych prostriedkov
-  -Urobit tieto verzie:
-    -Alpine Linux QEMU CLI
-    -Alpine Linux QEMU XFCE
-    -Alpine Linux Docker CLI
-    -Alpine Linux Docker XFCE
-
-
--skopirovat obsah skriptu zo sireny na upravu sablon do git repa
+-skopirovat obsahy skriptov v HOME zo sireny do git repa
 -opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
--uploadnut chybajuce imidze na lokali
+-uploadnut imidze na sirenu z mojho notebooku
 -odskusat apsolute vision, xrv, vios, iou, asav, vsrx, dynamips
 
 -urobit skript na upravu ASAv + pridat ho do zalohovacieho skriptu
 -upravit fstab subor tak, aby sa sdb1 mountovala do /opt/unetlab/addons/rozne_zariadenia
 -upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
 
+-aktivivat podporu docker kontajnerov v EVE-ng
+-ako koncove zariadenie pridat ubuntu docker (6MB RAM nema ani alpine)
+  http://phusion.github.io/baseimage-docker/
+  https://github.com/phusion/baseimage-docker
+
 -zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
 -otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 
-
-
-
 -opravit automaticke spustanie zalohovacieho LXC kontajnera 'eve-backup' na hlavnom serveri
 -pridat najnovsie nokia vsr - vytiahnut z viro servera/vypytat od kultana/kaloca
-
-  -odskusat v eve-ng aj gns3 alpine linux
-    -CLI aj 
-    -odskusat ako qemu aj ako docker
-    -nainstalovat don wireshark
-
--pridat do eve-ng firefox kontajner
 
 -urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration) - NETREBA! ved mame HTML5 integraciu! Ale treba odskusat wireshark odchytavanie.
   https://www.youtube.com/watch?v=Ea4U93991dw
 
 -rozbehnut KVM virtualku v LXC kontaineri -> ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
 -EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
-  
+
+
+
+
+
+
+
+
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -reboot
   -vybrat si zariadenia, ktore budem benchmarkovat
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
-  
--zavriet vsetky porty na marekovom fw pre eve-backup (.45) okrem portu 22 (ssh)
 
-  -urobit pre segiho predbeznu prezentaciu mojho projektu (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
+-urobit pre segiho predbeznu prezentaciu mojho projektu (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
    
 -vygenerovat Cisco IOU licenciu pre GNS3
 -pozriet konfiguraky v gns3:
@@ -91,20 +82,22 @@ Alpine Linux
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-ak sa mi podari uspesne spustit eve-ng server v kontajneri na odyseovi t.j. spustim v nej dynamips, iol aj qemu uzol, myslim, ze to nemusi fungovat na 100%, lebo eve-ng bude pouzivat odyseov debianovsky kernel namiesto svojho upraveneho kernelu pre lepsiu podporu l2 technologii; alebo vyskusat frontend od "breaktheweb"
+-Installing GNS3 server on LXC container
+-GNS3 support for Linux Containers (LXC & LXD) in addition to VMs...
+-Vyskusat OKS s kontajnermi Docker/LXC/LXD - mozno by to vyriesilo problemy s ntp synchronizaciu
 -rozdelenie EVE-ng do Community, Professional a Learning Centre edicie - Professional a Learning Centre opravuju mnozstvo nedostatkov, dufam ale, ze vsetky verzie zostanu open source a nespoplatnia ich
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
   http://eve-ng.net/index.php/features
--Pridat predmet na bezpecnost: zabezpecenie Linux systemu (SELinux/AppArmor), SSH, Apache, MySQL, DNS, ako sa chranit proti DoS a DDoS utokom (IDS/IPS)
+-Pridat predmet na bezpecnost: zabezpecenie Linux systemu (SELinux/AppArmor), SSH, Apache, MySQL, DNS, ako sa chranit proti DoS a DDoS utokom (IDS/IPS), ako zabezpecit nezabezpecenu http premavku: "vytvorenie openvpn tunela" + "reverse https proxy server" + vytvorenie timu na monitorovanie bezpecnostnych zraniyelnosti linuxu a windowsu (najnovsie zranitelnisti: spectre a meltdown)
   https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
--Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
--Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
--Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP
+-Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie (napr. JavaScript) a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
+-Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker/LXC/LXD kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
+-Experiment: Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP
   https://www.youtube.com/watch?v=ttvWx27hI60
   https://stgraber.org/2012/03/04/booting-an-ubuntu-12-04-virtual-machine-in-an-lxc-container/
 -Vytvorit okresanu distribuciu Windows 10 s ntlite
 -Importovat nastroj na generovanie sieti "Routem" z Cisco VIRL do EVE-ng a GNS3
--Porovnat HTML5 integraciu s povodnou (starsou)
-  https://github.com/SmartFinn/eve-ng-integration
 -Vyskusat nove (vylepsene) web rozhranie pre EVE-ng
   https://www.youtube.com/watch?v=8REzLm_-XH8
   https://github.com/breakintheweb/eve-ng
@@ -112,17 +105,10 @@ Co dalej?
   https://gns3.com/discussions/gns3-clustering-using-mpich
   https://www.gns3.com/discussions/the-worlds-first-gns3-beowulf-cl
   https://www.youtube.com/watch?v=i_r3z1jYHAc
--vyuzitie OpenStacku na vytvaranie topologii - napr. s Docker kontajnermi (OKS)
+-vyuzitie OpenStacku na vytvaranie topologii
 -pripojenie na internet z vnutra projektu - oblacik (v DMZ nie je DHCP server - mozne riesenie: pridat DHCP server, ktory bude pridelovat privatne IP adresy a bude robit preklad adries NAT, kvoli pristupu na internet. Ale ako potom budu studenti pristupovat ku zariadeniam, ked budu mat lokalnu IP adresu?)
--zabezpecenie a izolacia pouzivatelov a ich suborov v EVE-ng a GNS3
-  -EVE-ng: pre Apache aplikovat “modsecurity” a “modevasive”
-  -EVE-ng: izolovat pouzivatelov v EVE-ng, aby mal napr. kazdy svoj vlastny priestor (adresar), ktory bude moct upravovat, a ku ziadnemu inemu nebude mat pristup -> https://gitlab.com/eve-ng-dev/eve-ng-public/blob/DEV/html/includes/api_folders.php
--google: "kvm in lxc container" - odskusat najprv na fyzickom serveri, potom na Odyseovi
-  https://blog.a2o.si/2015/10/26/how-to-run-ubuntu-kvm-host-in-an-unprivileged-lxc-container/
-  https://github.com/lxc/lxd/issues/3393
 -pridat Ostinato a Netem
 -vyskusat cracknutu verziu Mikrotik 5.2 vo VBoxe -> potom importovat do EVE-ng
--vytvaranie vlastnych Docker kontajnerov a ich testovanie v GNS3 a EVE-ng (naucit sa pisat "Dockerfile")
 -Integrovat server do monitorovania cez Zabbix
 -Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
 -Vytvaranie sablon pre neexistujuce zariadenia pre EVE-ng

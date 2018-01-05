@@ -1,12 +1,24 @@
-Záverečný report – EVE-ng
-pouzivatelsky zazitok, administratorsky zazitok, referencia na benchmark zariadeni, referencia na kompatibilitu zariadeni
-
-Schopnosti EVE-ng
-  https://certcollection.org/forum/topic/251691-new-unl-tool-review-home-rack-updated-100-x16-mar-2016-video-16/page__st__392#entry969786
-
+**********
+   GNS3
+**********
 Výhody
--Web rozhranie namiesto samostatnej klientskej aplikácie v GNS3 (namiesto klientskej aplikácie musíme ale nainštalovať webový prehliadač)
--Multiplatformový - všetky najpopulárnejšie webové prehliadače existujú pre Windows/Linux/Mac
+-Multiplatformový - klientská aplikacia existuje pre Windows/Linux/Mac
+-Možnosť nasadiť GNS3 aj ako vzdialený server
+-Schopnosť skonvertovať Cisco smerovač z BIN do IMAGE formátu (uzitovne pre Dynamips emulaciu)
+-Lepšia škálovateľnosť oproti EVE-ng - moznost vytvorit GNS3 cluster
+-Podpora viacerych pouzivatelov
+-Import pouzivatelskych uctov na vzdialeny GNS3 server z LDAP
+
+Nevýhody
+-Nutnost instalacie samostatnej klientskej aplikacie
+-Zložitejší na konfiguráciu
+-Zložitejšie vytváranie šablón pre zariadenia - nutnosť manuálne pridať každé zariadenie; pri GNS3 clustri treba každé zariadenie pridať samostatne na každý server v clustri
+
+**********
+  EVE-ng
+**********
+Výhody
+-Web rozhranie namiesto samostatnej klientskej aplikácie v GNS3
 -Podpora viacerých používateľov
 -Jednoduchšie nasadenie na server v porovnaní s GNS3 (nainštalujeme EVE-ng server, zabezpečíme ho, pridáme doň zariadenia a môžeme vytvárať projekty)
 -Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
