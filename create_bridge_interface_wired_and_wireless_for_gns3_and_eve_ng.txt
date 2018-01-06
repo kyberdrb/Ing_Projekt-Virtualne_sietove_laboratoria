@@ -1,3 +1,5 @@
-See "(all git repositories directory)/Linux_tutorials/ARCH_LXC_run_kvm_inside_lxc_lxd_container.txt" -> FROM the beginning TO the "ip a" command ;)
+To create a bridge interface from wired connection, use bridge-utils / openvswitch / ip.
+
+To bridge wireless connection, see "(all git repositories directory)/Linux_tutorials/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt" -> FROM the beginning TO the "ip a" command ;)
 
 The tutorial in "Networking/wireless_bridged_interface_tutorial.txt" I didn't manage to get it working :/
