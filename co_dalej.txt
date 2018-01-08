@@ -20,7 +20,7 @@ Ulohy:
 -upravit fstab subor tak, aby sa sdb1 mountovala do /opt/unetlab/addons/rozne_zariadenia
 -upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
 
--aktivivat podporu docker kontajnerov v EVE-ng
+-aktivivat podporu docker kontajnerov v EVE-ng (skusit najprv konzervativne: aktivovat to v defaultnom frontende - ked to nepojde, stiahnut novy frontend z breakintheweb, ktory uz Docker podporuje, aj odchytavanie do wireshark kontajnera)
 -ako koncove zariadenie pridat ubuntu docker (6MB RAM nema ani alpine)
   http://phusion.github.io/baseimage-docker/
   https://github.com/phusion/baseimage-docker
@@ -37,20 +37,16 @@ Ulohy:
 -rozbehnut KVM virtualku v LXC kontaineri -> ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
 -EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
 
-
-
-
-
-
-
-
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
-  -reboot
+  -urobit skript aj na profiling zariadeni (dstat)
+    -profiling, konkretne generovanie dat, urobit tak, aby to bolo SEAMLESS (copy paste do vopred pripraveneho generickeho calc dokumentu)
+    -zalohovat profiling skript zalohovacim skriptom (pridat do HOME adresara)
+  -reboot servera
   -vybrat si zariadenia, ktore budem benchmarkovat
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
--urobit pre segiho predbeznu prezentaciu mojho projektu (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
+-urobit prezentaciu mojho projektu na prezentacny den (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
    
 -vygenerovat Cisco IOU licenciu pre GNS3
 -pozriet konfiguraky v gns3:
@@ -82,6 +78,8 @@ Ulohy:
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-spustat zalohovanie potrebnych suborov a adresarov (uvedenych v zalohovacom skripte) nie podla casu cez cron, ale pri zmene tychto suborov a adresarov cez incron
+  https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
 -ak sa mi podari uspesne spustit eve-ng server v kontajneri na odyseovi t.j. spustim v nej dynamips, iol aj qemu uzol, myslim, ze to nemusi fungovat na 100%, lebo eve-ng bude pouzivat odyseov debianovsky kernel namiesto svojho upraveneho kernelu pre lepsiu podporu l2 technologii; alebo vyskusat frontend od "breaktheweb"
 -Installing GNS3 server on LXC container
 -GNS3 support for Linux Containers (LXC & LXD) in addition to VMs...
@@ -96,7 +94,9 @@ Co dalej?
 -Experiment: Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP
   https://www.youtube.com/watch?v=ttvWx27hI60
   https://stgraber.org/2012/03/04/booting-an-ubuntu-12-04-virtual-machine-in-an-lxc-container/
--Vytvorit okresanu distribuciu Windows 10 s ntlite
+-Vytvorit okresanu distribuciu Windows 10 cez ntlite + optimalizovat podla mojho navodu
+  https://github.com/kyberdrb/Windows_tutorials/blob/master/windows_post_install_and_optimization/windows_post_install_guide.txt
+  https://www.youtube.com/results?search_query=ntlite+windows
 -Importovat nastroj na generovanie sieti "Routem" z Cisco VIRL do EVE-ng a GNS3
 -Vyskusat nove (vylepsene) web rozhranie pre EVE-ng
   https://www.youtube.com/watch?v=8REzLm_-XH8
