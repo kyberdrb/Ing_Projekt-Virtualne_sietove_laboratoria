@@ -78,6 +78,7 @@ Ulohy:
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-upravit CiscoIOUKeygeny tak, aby sa rovno vygenerovali subory "iourc" a/alebo ".iourc" na spravne miesto podla toho ci sme v GNS3 alebo EVE-ng
 -spustat zalohovanie potrebnych suborov a adresarov (uvedenych v zalohovacom skripte) nie podla casu cez cron, ale pri zmene tychto suborov a adresarov cez incron
   https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
 -ak sa mi podari uspesne spustit eve-ng server v kontajneri na odyseovi t.j. spustim v nej dynamips, iol aj qemu uzol, myslim, ze to nemusi fungovat na 100%, lebo eve-ng bude pouzivat odyseov debianovsky kernel namiesto svojho upraveneho kernelu pre lepsiu podporu l2 technologii; alebo vyskusat frontend od "breaktheweb"

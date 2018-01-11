@@ -1,41 +1,20 @@
 Vytvorenie Cisco IOU/IOL licencie
 =================================
 
-4) Stiahneme skript na vygenerovanie Cisco IOU/IOL licencie:
+-Stiahneme skript na vygenerovanie Cisco IOU/IOL licencie
 
-https://drive.google.com/file/d/0BwTFjgBPz3MhZGlCc2tvSGxpVVU/view
+  https://drive.google.com/file/d/0BwTFjgBPz3MhZGlCc2tvSGxpVVU/view
 
+-Nahrámeho na server (scp. sftp, FileZilla, ...). FileZilla klienta si mozeme stiahnut z
 
-5) Nahráme tento stiahnutý skript na server.
+  https://filezilla-project.org/download.php?type=client
 
-	Linux:
-		Otvoríme ďalšie terminálové okno, v ktorom sa cez sftp pripojíme ku EVE-ng SFTP serveru príkazom:
+-Keygen presunieme do adresára “/opt/unetlab/addons/iol/bin/” v EVE-ng:
+-Vytvoríme IOU/IOL licenciu, aby sme mohli spúšťať Cisco IOL zariadenia. POZOR, licencia sa nema nachadzat v "~/.iourc" (ako hovorí oficiálna dokumentácia alebo skript "CiscoIOLKeygen.py")! - licenčný súbor pre Cisco IOL zariadenia musí byť v adresári "/opt/unetlab/addons/iol/bin" a musí mať názov "iourc" t.j. Cisco IOU zariadenia a Cisco IOU licencia "iourc" musia byt v rovnakom adresari
 
-		sftp root@<ip_adresa_EVE-ng>
-
-	Windows:
-		Otvoríme FTP klienta FileZilla. Ak ho nemáme nainštalovaný, stiahneme si ho z adresy
-
-https://sourceforge.net/projects/filezilla/files/FileZilla_Client/3.22.2.2/FileZilla_3.22.2.2_win64.zip/download
-
-
-Pokiaľ sme nemenili prihlasovacie údaje, prihlásime sa na EVE-ng server ako “root” pod heslom “unl”.
-
-6) Stiahnuté súbory skopírujeme do adresára “/opt/unetlab/addons/iol/bin/” v EVE-ng:
-Linux:
-# zmení priečinok na vzdialenom počítači
-	cd “/opt/unetlab/addons/iol/bin/
-# zmení priečinok na lokálnom počítači (tam, kde sú potrebné súbory)	
-	lcs /home/andrej/Downloads
-# skopírovanie skriptu na IOU licenciu súboru z lokálneho PC na vzdialený server
-put CiscoIOUKeygen.py
-Windows:
-	Drag&Drop CiscoIOUKeygen.py
-
-7) Teraz vytvoríme IOU/IOL licenciu, aby sme mohli spúšťať Cisco IOL zariadenia. POZOR, nie "~/.iourc" (ako hovorí oficiálna dokumentácia aj skript "CiscoIOLKeygen.py") ! - licenčný súbor pre Cisco IOL zariadenia musí byť v adresári "/opt/unetlab/addons/iol/bin" a musí mať názov "iourc".
-    su -
-    cd /opt/unetlab/addons/iol/bin
-    python CiscoKeygen.py > iourc
+  su -
+  cd /opt/unetlab/addons/iol/bin
+  python CiscoKeygen.py > iourc
 
 Upravíme súbor iourc.
 Takto vyzerá pôvodný súbor "iourc":
@@ -56,22 +35,24 @@ You can disable the phone home feature with something like:
 Súbor "iourc" musíme upraviť tak, že bude obsahovať iba dva riadky: značku "[license]" a samotné licenčné číslo tj. potrebujeme 
 vymazať prvých 5 a posledné 4 riadky.
 
-    vim.tiny iourc
-    :i
-    #vymazať spomenuté riadky
+  vim.tiny iourc
+  Stlačíme ':' a potom 'i'
+  #vymazať spomenuté riadky
 
-# Výsledný obsah súboru "iourc"
+Výsledný obsah súboru "iourc":
+
 [license]
 unetlab-server = a21569e17941c747
 
-# Uložíme a zatvoríme súbor:
-    :wq
+Uložíme a zatvoríme súbor:
+  :wq
 
-^Opravíme oprávnenia
-/opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+Opravíme oprávnenia
+
+  /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
 
 
-Pokiaľ licenciu nevytvoríme, Cisco IOL zariadenia sa nebudú dať spustiť!
+Pokiaľ licenciu nevytvoríme, Cisco IOL zariadenia sa nebude možné spustiť!
 
 
 

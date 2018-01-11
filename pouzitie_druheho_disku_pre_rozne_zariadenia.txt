@@ -38,22 +38,27 @@ TROUBLESHOOTING
 
 -Ak zadame nepravne udaje do "/etc/fstab" suboru, hrozi, ze sa server nespusti a znefunkcni sa aj SSH pristup. V mojom pripade som pouzil nespravny prikaz na vygenerovanie UUID pre particiu ("uuidgen" namiesto "blkid"). Vtedy je potrebne fyzicky restartovat server, vojst do GRUB zavadzaca (dlhsie podrzime "Shift" pocas zavadzania systemu - ked sa spusta BIOS).
 
--Ak to nepojde, treba restartovat server znova a nabootovat z Live USB s napr. Ubuntu Desktop. V nom si otvorime terminal, pripojime systemovu particiu a vygenerujeme spravne UUID pre particiu /dev/sdb1 (vid "blkid" prikaz nizsie).
+-Ak to nepojde, treba vypnut server na tvrdo.
+-Znova zapneme server
+-Po zmiznuti BIOS obrazoviek drzime klavesu "Shift", co nam umozni vojst do GRUB zavadzaca.
+-v GRUB zavadzaci stlacime 'a' - tak sa dostaneme k podrobnostiam a parametrom spustenia systemu
+-Na koniec riadku "kernel" (ten s 'vmlinuz') pridame
+  
+  init=/bin/bash
 
-    at the grub prompt, hit a to append options
-    add init=/bin/bash to the end of the kernel command line and press enter
+a stlacime Enter
 
-The system will boot to a prompt like 'bash-3.2#' enter the following commands at the prompt
+-System sa spusti do bash konzoly (Single User Mode).
+-Pripojime root particiu ako "rw", aby sme mohli vykonavat zmeny.
 
     mount -o remount,rw /
-alebo
+alebo (ak predchadzajuci prikaz nepojde)
     mount -o remount,rw / --target /
 
-Vygenerujeme UUID pre particiu /dev/sdb1, ale tentokrat spravnym sposobom.
+Vygenerujeme UUID pre novu particiu napr. /dev/sdb1, ale tentokrat spravnym sposobom (nie cez "uuidgen" :P )
 
-    blkid -s PARTUUID -o value /dev/sdb1
+    blkid -s PARTUUID -o value /dev/sdb1 >> /etc/fstab
 
-UUID si ulozime (napr. odfotime).
 Upravime fstab subor podla spravnej UUID hodnoty.
 
     vim.tiny /etc/fstab
