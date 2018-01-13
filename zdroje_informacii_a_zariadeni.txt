@@ -2,6 +2,11 @@ Zdroje informacii:
   GNS3
     https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w  <= David Bombal
 
+    https://www.itstudygroup.org/thread-655.html
+konkretne
+    https://www.youtube.com/playlist?list=PLF8yvsYkPZQ1SXH6K1JX5tXEqxRCeFtn7  <= Navody na UNL (EVE-ng) - prakticke priklady pouzitia
+    
+
   Materialy / Certifikacie
     https://certcollection.org/forum/
     https://certcollection.org/forum/forum/147-linux-unix-shares/
@@ -10,6 +15,9 @@ Zdroje informacii:
     https://certcollection.org/forum/forum/203-ios-and-related-cisco-files/page__prune_day__100__sort_by__Z-A__sort_key__last_post__topicfilter__all__st__50
     https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
     https://certcollection.org/forum/forum/148-security-shares/
+    https://www.itstudygroup.org/index.php
+
+
 
   Videonavody, ako vytvarat siete v GNS3
     https://certcollection.org/forum/topic/319133-build-networks-in-gns3/
@@ -22,13 +30,23 @@ Zdroje informacii:
 
 Vseobecne zdroje zariadeni:
   tfr.org
+  uloz.to
   sfree.ws
-  torrentz2.eu  
-  www.4shared.com
+  4shared.com
+  torrentz2.eu
   nathanash.id.au
+  itstudygroup.org
   certcollection.org
   netbrainstlearn.wordpress.com
   
+
+
+
+UNL Lite VM v1.0.0-12 UPDATE 06/JULY/2016 (UNL + ZARIADENIA + TOPOLOGIE!!!)
+  https://www.itstudygroup.org/thread-655.html
+konkretne
+  https://mega.nz/#F!C45DWCxA!X4YJq-kKKeytiofLa7ZBbA
+
 
 
 
@@ -37,14 +55,17 @@ OpenStack images
 
 
 
-MEGA vela zariadeni
+MEGA vela zariadeni I.
   https://certcollection.org/forum/topic/318683-massive-collection-of-iou-qcow2-images-50gb/#entry1204417
 konkretne
   https://mega.nz/#F!NThnWLYD!8Fdck05CIQGsRD_58gFz-Q
 
+MEGA vela zariadeni II.
+  https://www.itstudygroup.org/thread-830.html
+konkretne
+  https://mega.nz/#F!rJgXBLCL!zLtSnUXt1J9PCy3CiAlCvA!Xd4S3ApJ
 
-
-Velka databaza (nielen) Cisco zariadeni (zadarmo po registracii na stranke)
+Velka databaza (nielen) Cisco zariadeni
   https://certcollection.org/forum/forum/203-ios-and-related-cisco-files/page__prune_day__100__sort_by__Z-A__sort_key__last_post__topicfilter__all
 
 
@@ -290,6 +311,30 @@ Alpine Linux
 
 
 
+
+Cisco ASA 5500 series. ASA OS. ASDM. AnyConnect. AD Agent. SecurityPlus Keymaker
+  https://torrentz2.eu/7355e2f5dfcf05642f38557474cddf918d57387d
+
+
+Cisco VIRL (aj s CiscoIOLKeygen prepisaneho do Python3)
+  https://torrentz2.eu/718a46ad6846c0c4e52bcd9bb727fb7704fa97e7
+  https://btdb.to/torrent/0Zmo01XWPXCoNZEzQWYJT6lJOq6jdasa6zP.html
+konkretne
+  magnet:?xt=urn:btih:6765D9F1A055BDD745277558BF6D1196E43A7DDC&dn=virl.vT320.pc.ova&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce
+
+
+Cisco WEB-IOU: IOU Linux VM Machine to practice for CCIE R&S exam lab
+  https://www.itstudygroup.org/thread-658.html
+konkretne
+  https://drive.google.com/file/d/0B1Doj0gW-VB0REhDVXN2QWkwVWc/view?ts=56e0311b
+  
+
+
+
+
+
+
+
 Popis Cisco VIRL 1.3 zariadeni
   https://learningnetwork.cisco.com/docs/DOC-33132
 
@@ -308,8 +353,20 @@ resp.
   https://mega.nz/#!dMlQ0ICY!6YmA14Vj4A4zb3J0jIwOpC-cakLs7i4tTsgzCLxtmPQ
 
 
-Cisco ASA 5500 series. ASA OS. ASDM. AnyConnect. AD Agent. SecurityPlus Keymaker
-  https://torrentz2.eu/7355e2f5dfcf05642f38557474cddf918d57387d
+
+gns3.for.vmware.and.virtualbox.iso (dalsie zariadenia)
+  https://uloz.to/!kp6p4dYrQ/gns3-for-vmware-and-virtualbox-iso
+
+
+gns3.v1.2.labkit.iso (dalsie zariadenia)
+  https://uloz.to/!BGuyY7Qkr/gns3-v1-2-labkit-iso
+
+
+
+CCNA Voice GNS3
+  https://uloz.to/!qoAkVAApk/ccna-voice-with-gns3-iso
+
+
 
 
 Vestky podporovane zaridenia - ale nikto neseeduje

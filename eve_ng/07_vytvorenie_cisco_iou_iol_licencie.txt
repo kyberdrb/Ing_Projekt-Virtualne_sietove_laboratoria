@@ -5,16 +5,19 @@ Vytvorenie Cisco IOU/IOL licencie
 
   https://drive.google.com/file/d/0BwTFjgBPz3MhZGlCc2tvSGxpVVU/view
 
--Nahrámeho na server (scp. sftp, FileZilla, ...). FileZilla klienta si mozeme stiahnut z
+-Nahrámeho na server do domovskeho adresara cez scp/sftp/FileZilla/...
+FileZilla klienta si mozeme stiahnut z
 
   https://filezilla-project.org/download.php?type=client
 
--Keygen presunieme do adresára “/opt/unetlab/addons/iol/bin/” v EVE-ng:
+-Generator IOL licencie presunieme do adresára “/opt/unetlab/addons/iol/bin/” v EVE-ng.
+
+  sudo mv ~/CiscoKeygen.py /opt/unetlab/addons/iol/bin
+
 -Vytvoríme IOU/IOL licenciu, aby sme mohli spúšťať Cisco IOL zariadenia. POZOR, licencia sa nema nachadzat v "~/.iourc" (ako hovorí oficiálna dokumentácia alebo skript "CiscoIOLKeygen.py")! - licenčný súbor pre Cisco IOL zariadenia musí byť v adresári "/opt/unetlab/addons/iol/bin" a musí mať názov "iourc" t.j. Cisco IOU zariadenia a Cisco IOU licencia "iourc" musia byt v rovnakom adresari
 
-  su -
   cd /opt/unetlab/addons/iol/bin
-  python CiscoKeygen.py > iourc
+  su -c 'python CiscoKeygen.py > iourc'
 
 Upravíme súbor iourc.
 Takto vyzerá pôvodný súbor "iourc":
