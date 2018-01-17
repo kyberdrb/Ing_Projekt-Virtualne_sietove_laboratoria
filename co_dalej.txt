@@ -11,6 +11,7 @@ Zazitky:
 
 Ulohy:
 
+-uploadnut poslednu varku imidzov z /Downloads/EVE-NG na sirenu, ale este predtym nejako uvolnit miesto na systemovom disku na sirene
 -skopirovat obsahy skriptov v HOME zo sireny do git repa
 -opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
 -uploadnut imidze na sirenu z mojho notebooku
@@ -78,6 +79,8 @@ Ulohy:
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-NextCloud (nahrada za SharePoint a OneDrive a Skype For Business) - kvoli WebRTC videohovorom
+  https://www.youtube.com/watch?v=UYtFCpY0zuc
 -upravit CiscoIOUKeygeny tak, aby sa rovno vygenerovali subory "iourc" a/alebo ".iourc" na spravne miesto podla toho ci sme v GNS3 alebo EVE-ng
 -spustat zalohovanie potrebnych suborov a adresarov (uvedenych v zalohovacom skripte) nie podla casu cez cron, ale pri zmene tychto suborov a adresarov cez incron
   https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
