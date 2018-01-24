@@ -11,6 +11,17 @@ Zazitky:
 
 Ulohy:
 
+-zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
+  -neviem, hned ukonci TCP relaciu
+-opravit automaticke spustanie zalohovacieho LXC kontajnera 'eve-backup' na hlavnom serveri
+  -ok
+-znova spustit EVE-ng vo VMware na Odyseovi
+  -ok
+-rozbehnut KVM virtualku v LXC kontaineri (.51)-> ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+
+
+-upravit fstab subor tak, aby sa sdb1 mountovala do /opt/unetlab/addons/rozne_zariadenia
+
 -uploadnut poslednu varku imidzov z /Downloads/EVE-NG na sirenu, ale este predtym nejako uvolnit miesto na systemovom disku na sirene
 -skopirovat obsahy skriptov v HOME zo sireny do git repa
 -opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
@@ -18,24 +29,23 @@ Ulohy:
 -odskusat apsolute vision, xrv, vios, iou, asav, vsrx, dynamips
 
 -urobit skript na upravu ASAv + pridat ho do zalohovacieho skriptu
--upravit fstab subor tak, aby sa sdb1 mountovala do /opt/unetlab/addons/rozne_zariadenia
 -upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
 
--aktivivat podporu docker kontajnerov v EVE-ng (skusit najprv konzervativne: aktivovat to v defaultnom frontende - ked to nepojde, stiahnut novy frontend z breakintheweb, ktory uz Docker podporuje, aj odchytavanie do wireshark kontajnera)
+-aktivovat podporu docker kontajnerov v EVE-ng (skusit najprv konzervativne: aktivovat to v defaultnom frontende - ked to\ nepojde, stiahnut novy frontend z breakintheweb, ktory uz Docker podporuje, aj odchytavanie do wireshark kontajnera)
 -ako koncove zariadenie pridat ubuntu docker (6MB RAM nema ani alpine)
   http://phusion.github.io/baseimage-docker/
   https://github.com/phusion/baseimage-docker
 
--zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
+
 -otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 
--opravit automaticke spustanie zalohovacieho LXC kontajnera 'eve-backup' na hlavnom serveri
+
 -pridat najnovsie nokia vsr - vytiahnut z viro servera/vypytat od kultana/kaloca
 
 -urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration) - NETREBA! ved mame HTML5 integraciu! Ale treba odskusat wireshark odchytavanie.
   https://www.youtube.com/watch?v=Ea4U93991dw
 
--rozbehnut KVM virtualku v LXC kontaineri -> ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+
 -EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
 
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
@@ -91,8 +101,16 @@ Co dalej?
 -rozdelenie EVE-ng do Community, Professional a Learning Centre edicie - Professional a Learning Centre opravuju mnozstvo nedostatkov, dufam ale, ze vsetky verzie zostanu open source a nespoplatnia ich
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
   http://eve-ng.net/index.php/features
--Pridat predmet na bezpecnost: zabezpecenie Linux systemu (SELinux/AppArmor), SSH, Apache, MySQL, DNS, ako sa chranit proti DoS a DDoS utokom (IDS/IPS), ako zabezpecit nezabezpecenu http premavku: "vytvorenie openvpn tunela" + "reverse https proxy server" + vytvorenie timu na monitorovanie bezpecnostnych zraniyelnosti linuxu a windowsu (najnovsie zranitelnisti: spectre a meltdown)
+-Pridat predmet na bezpecnost: zabezpecenie Linux systemu:
+  -(SELinux/AppArmor)
+  -zabezpecenie SSH, Apache, MySQL, DNS
+  -ako sa chranit proti DoS a DDoS utokom (IDS/IPS)
+  -ako zabezpecit nezabezpecenu http premavku
+    -"vytvorenie openvpn tunela" + "reverse https proxy server"
+    -vytvorenie timu na monitorovanie bezpecnostnych zranitelnosti linuxu a windowsu
+    (najnovsie zranitelnosti: spectre a meltdown (linux), krack (wifi), blueborn (bluetooth))
   https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
+  http://xlab.tencent.com/special/spectre/spectre_check.html
 -Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie (napr. JavaScript) a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
 -Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker/LXC/LXD kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
 -Experiment: Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP

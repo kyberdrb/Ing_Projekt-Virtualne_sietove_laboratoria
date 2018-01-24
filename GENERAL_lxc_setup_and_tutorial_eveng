@@ -1,0 +1,34 @@
+sudo lxc-create -t download -n eve_ng
+
+debian
+stretch
+amd64
+
+lxc-attach --name eve_ng
+
+apt-get update
+apt-get upgrade
+apt-get install aptitude
+aptitude update
+aptitude upgrade
+adduser andrej
+aptitude install ssh wget sudo debian-keyring debian-archive-keyring software-properties-common build-essential
+usermod -aG sudo andrej
+
+connect to container via ssh to user andrej. the sudo should work.
+sudo aptitude update
+wget -O eveng.gpg.key http://www.eve-ng.net/repo/eczema@ecze.com.gpg.key
+sudo apt-key add eveng.gpg.key
+sudo aptitude update
+sudo add-apt-repository "deb [arch=amd64]  http://www.eve-ng.net/repo xenial main"
+sudo aptitude update
+DEBIAN_FRONTEND=noninteractive sudo aptitude -y install eve-ng
+
+
+Sources:
+https://feeding.cloud.geek.nz/posts/lxc-setup-on-debian-jessie/
+https://stgraber.org/2013/12/20/lxc-1-0-your-first-ubuntu-container/
+https://help.ubuntu.com/lts/serverguide/lxc.html
+http://www.eve-ng.net/index.php/documentation/installation/bare-install
+https://unix.stackexchange.com/questions/110932/what-is-the-equivalent-of-apt-key-in-aptitude
+https://unix.stackexchange.com/questions/215633/debians-corresponding-command-for-add-apt-repository
