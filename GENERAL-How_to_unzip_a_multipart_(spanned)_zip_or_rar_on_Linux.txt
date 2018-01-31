@@ -1,0 +1,7 @@
+dtrx <name_of_the_first_archive>
+7z x <name_of_the_first_archive>
+unrar x <name_of_the_first_archive>
+
+Sources:
+  https://unix.stackexchange.com/questions/40480/how-to-unzip-a-multipart-spanned-zip-on-linux/229852#229852
+  

@@ -5,6 +5,10 @@ Zdroje informacii:
     https://www.itstudygroup.org/thread-655.html
 konkretne
     https://www.youtube.com/playlist?list=PLF8yvsYkPZQ1SXH6K1JX5tXEqxRCeFtn7  <= Navody na UNL (EVE-ng) - prakticke priklady pouzitia
+
+
+Videonavody - vytvaranie sieti v GNS3
+    https://certcollection.org/forum/topic/319133-build-networks-in-gns3/
     
 
   Materialy / Certifikacie
@@ -18,9 +22,8 @@ konkretne
     https://www.itstudygroup.org/index.php
 
 
-
-  Videonavody, ako vytvarat siete v GNS3
-    https://certcollection.org/forum/topic/319133-build-networks-in-gns3/
+Laby
+  http://www.eve-ng.net/forum/
     
 
 
@@ -40,12 +43,6 @@ Vseobecne zdroje zariadeni:
   netbrainstlearn.wordpress.com
   
 
-
-
-UNL Lite VM v1.0.0-12 UPDATE 06/JULY/2016 (UNL + ZARIADENIA + TOPOLOGIE!!!)
-  https://www.itstudygroup.org/thread-655.html
-konkretne
-  https://mega.nz/#F!C45DWCxA!X4YJq-kKKeytiofLa7ZBbA
 
 
 
@@ -68,6 +65,8 @@ konkretne
 Velka databaza (nielen) Cisco zariadeni
   https://certcollection.org/forum/forum/203-ios-and-related-cisco-files/page__prune_day__100__sort_by__Z-A__sort_key__last_post__topicfilter__all
 
+Dalsie zariadenia
+  http://certcollection.org/forum/topic/268080-unetlab-images/
 
 
 Cisco VIRL Images for GNS3 and Qemu
@@ -316,18 +315,7 @@ Cisco ASA 5500 series. ASA OS. ASDM. AnyConnect. AD Agent. SecurityPlus Keymaker
   https://torrentz2.eu/7355e2f5dfcf05642f38557474cddf918d57387d
 
 
-Cisco VIRL (aj s CiscoIOLKeygen prepisaneho do Python3)
-  https://torrentz2.eu/718a46ad6846c0c4e52bcd9bb727fb7704fa97e7
-  https://btdb.to/torrent/0Zmo01XWPXCoNZEzQWYJT6lJOq6jdasa6zP.html
-konkretne
-  magnet:?xt=urn:btih:6765D9F1A055BDD745277558BF6D1196E43A7DDC&dn=virl.vT320.pc.ova&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce
-
-
-Cisco WEB-IOU: IOU Linux VM Machine to practice for CCIE R&S exam lab
-  https://www.itstudygroup.org/thread-658.html
-konkretne
-  https://drive.google.com/file/d/0B1Doj0gW-VB0REhDVXN2QWkwVWc/view?ts=56e0311b
-  
+ 
 
 
 
@@ -377,3 +365,29 @@ Vsetky podporovane zariadenia - ale za poplatok 75 USD ...
 
 ... alebo rovno cele riesenie za pomerne vysoku cenu
   https://www.netdevgroup.com/products/compare.html
+alebo
+  http://www.eve-cloud.com/
+alebo
+  https://cloudmylab.com/eve-ng/
+
+
+
+
+
+
+
+
+Cisco VIRL (aj s CiscoIOLKeygen prepisaneho do Python3)
+  https://torrentz2.eu/718a46ad6846c0c4e52bcd9bb727fb7704fa97e7
+  https://btdb.to/torrent/0Zmo01XWPXCoNZEzQWYJT6lJOq6jdasa6zP.html
+konkretne
+  magnet:?xt=urn:btih:6765D9F1A055BDD745277558BF6D1196E43A7DDC&dn=virl.vT320.pc.ova&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce
+
+
+
+
+
+Cisco WEB-IOU: IOU Linux VM Machine to practice for CCIE R&S exam lab
+  https://www.itstudygroup.org/thread-658.html
+konkretne
+  https://drive.google.com/file/d/0B1Doj0gW-VB0REhDVXN2QWkwVWc/view?ts=56e0311b

@@ -11,42 +11,59 @@ Zazitky:
 
 Ulohy:
 
--zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
-  -neviem, hned ukonci TCP relaciu
--opravit automaticke spustanie zalohovacieho LXC kontajnera 'eve-backup' na hlavnom serveri
-  -ok
--znova spustit EVE-ng vo VMware na Odyseovi
-  -ok
--rozbehnut KVM virtualku v LXC kontaineri (.51)-> ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+EVE-ng
+-otestovat a upratat imidze: iou, dynamips, ...
 
-
--upravit fstab subor tak, aby sa sdb1 mountovala do /opt/unetlab/addons/rozne_zariadenia
-
--uploadnut poslednu varku imidzov z /Downloads/EVE-NG na sirenu, ale este predtym nejako uvolnit miesto na systemovom disku na sirene
--skopirovat obsahy skriptov v HOME zo sireny do git repa
--opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
--uploadnut imidze na sirenu z mojho notebooku
--odskusat apsolute vision, xrv, vios, iou, asav, vsrx, dynamips
+-urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
+  https://www.youtube.com/watch?v=Ea4U93991dw
+  -autentifikacia cez SSH kluce by mohla sposobovat problemy s wireshark 
+  odchytavanim v EVE-ng => Riesenie: upravit subor:
+    (pred instalaciou)
+    ~/github/eve-ng-integration/bin/eve-ng-integration
+      resp.
+    (po instalacii)
+    /usr/bin/eve-ng-integration
+    -upravit ich tak, aby ssh prikaz nebol na "root" ucet ale na novovytvoreny
+    "wireshark" ucet s ssh klucom (upravit ssh prikaz s prepinacom "-i")
+    + upravit aj instalacny skript
+    + pridat do README navod/FAQ otazku, ako zmenit aplikacie, ktore eve-integration
+    spusta -> editovat vyssie uvedene subory (podla toho, ci tak potrebujeme urobit
+    pred/po instalacii) a zmenit otvarane aplikacie
+    -> mozno dat na to pull request
 
 -urobit skript na upravu ASAv + pridat ho do zalohovacieho skriptu
 -upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
+-opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
+-skopirovat obsahy skriptov v HOME zo sireny do git repa
 
 -aktivovat podporu docker kontajnerov v EVE-ng (skusit najprv konzervativne: aktivovat to v defaultnom frontende - ked to\ nepojde, stiahnut novy frontend z breakintheweb, ktory uz Docker podporuje, aj odchytavanie do wireshark kontajnera)
 -ako koncove zariadenie pridat ubuntu docker (6MB RAM nema ani alpine)
   http://phusion.github.io/baseimage-docker/
   https://github.com/phusion/baseimage-docker
 
-
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
-
-
--pridat najnovsie nokia vsr - vytiahnut z viro servera/vypytat od kultana/kaloca
-
--urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration) - NETREBA! ved mame HTML5 integraciu! Ale treba odskusat wireshark odchytavanie.
-  https://www.youtube.com/watch?v=Ea4U93991dw
+-rozbehnut KVM virtualku v LXC kontaineri (.51)->
+  -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+    ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
+    presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
+    -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
 
 
+-pridat najnovsie nokia vsr - vytiahnut z hadacovho viro servera/vypytat od 
+  kultana/kaloca; (najlepsie aj s licenciou, ak sa da) -> na hadacovom serveri je
+  novsia verzia TiMOS-u:
+    TiMOS-B-13.0.R4 both/i386 ALCATEL SR 7750 Copyright (c) 2000-2015 Alcatel-Lucent.
+  => skopirovat
+
+
+
+-odskusat wireshark odchytavanie
+  -nativna konzola: funguje po instalacii Linux/Windows Integration Pack-u
+  -html5 konzola: neda sa na nu pripojit
+
+-zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
+  -neviem, hned ukonci TCP relaciu -> skusit otvorit vsetky porty na FW pre eve-ng
 -EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
+-otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -urobit skript aj na profiling zariadeni (dstat)
@@ -58,7 +75,18 @@ Ulohy:
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
 -urobit prezentaciu mojho projektu na prezentacny den (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
-   
+-zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
+
+
+
+
+GNS3
+-odpovedat na otazku
+  https://www.gns3.com/discussions/what-is-difference-between-gns-2
+  ODPOVED: https://www.gns3.com/discussions/gns3-2-0-1-released
+-vyskusat GNS3 nainstalovat do GNS3 kontajnera (podobne ako pri EVE-ng)
+  https://gns3.com/discussions/gns3-support-for-linux-container
+  https://gns3.com/news/article/installing-gns3-server-on-lxc-co
 -vygenerovat Cisco IOU licenciu pre GNS3
 -pozriet konfiguraky v gns3:
   -/home/gns3/.config/GNS3/gns3_server.conf
@@ -89,6 +117,16 @@ Ulohy:
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-ntopng - kategorizacia sietovej premavky podla typu/protokolu (http, dns, dhcp, aplikacie, ...)
+-netdata - monitorovanie zdrojov v realnom case (treba doriesit zabezpecenie [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
+-Blockchain - matematika+siete+kryptomeny
+-Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng
+    http://www.eve-ng.net/forum/viewtopic.php?f=6&t=812
+-linux file sync backup
+  https://unix.stackexchange.com/questions/307046/real-time-file-synchronization
+  https://syncthing.net/
+-LXC Web GUI (ale podla FAQ nefunguje pod Debianom - otestovat?)
+  https://lxc-webpanel.github.io/faq.html
 -NextCloud (nahrada za SharePoint a OneDrive a Skype For Business) - kvoli WebRTC videohovorom
   https://www.youtube.com/watch?v=UYtFCpY0zuc
 -upravit CiscoIOUKeygeny tak, aby sa rovno vygenerovali subory "iourc" a/alebo ".iourc" na spravne miesto podla toho ci sme v GNS3 alebo EVE-ng
@@ -98,9 +136,32 @@ Co dalej?
 -Installing GNS3 server on LXC container
 -GNS3 support for Linux Containers (LXC & LXD) in addition to VMs...
 -Vyskusat OKS s kontajnermi Docker/LXC/LXD - mozno by to vyriesilo problemy s ntp synchronizaciu
--rozdelenie EVE-ng do Community, Professional a Learning Centre edicie - Professional a Learning Centre opravuju mnozstvo nedostatkov, dufam ale, ze vsetky verzie zostanu open source a nespoplatnia ich
+-rozdelenie EVE-ng do Community, Professional a Learning Centre edicie
+  -Professional a Learning Centre opravuju mnozstvo nedostatkov:
+    -Podpora Docker kontajnerov
+    -moznost prace viacerych ludi na jednom projekte
+    -rozne typy pouzivatelov: administrator, ucitel student
+  -Community verzia bude pre vlastnu spotrebu
+  -Pro a Learning verzie budu spoplatnene (cca 100$ za rok)
+  -ale problem je, ze gitlab repozitar uz nie je verejne pristupny
+    => projekt uz nie je open-source!
+    ALE po instalacii eve-ng na server budu vsetky subory pristupne
+    => Riesenia, pokial nechceme za nic platit:
+        -pouzivat community ediciu a upravit si ju po svojom
+          -integracia BigBlueButton a dalsich funkcionalit
+            http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696
+            http://www.eve-ng.net/forum/viewtopic.php?f=6&t=2569&sid=0ebc9abde97106cc3497d0d3aa8d171e
+            http://eve-ng.net/index.php/features
+          -vytvorenie vlastneho EVE-ng repozitara?
+        alebo prechod na staru verziu (UNetLab)
+          https://github.com/dainok/unetlab
+        alebo prechod na inu platformu (GNS3)
+    => Riesenia, pokial nevadi, ze budeme platit:
+        -kupime si Pro/Learning ediciu iba raz, a na nich budeme stavat
+        alebo si budeme Pro/Learning ediciu kupovat kazdy rok
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
-  http://eve-ng.net/index.php/features
+  http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
+  https://twitter.com/EVE_NG_TEAM/status/951560394765733888
 -Pridat predmet na bezpecnost: zabezpecenie Linux systemu:
   -(SELinux/AppArmor)
   -zabezpecenie SSH, Apache, MySQL, DNS
@@ -109,8 +170,8 @@ Co dalej?
     -"vytvorenie openvpn tunela" + "reverse https proxy server"
     -vytvorenie timu na monitorovanie bezpecnostnych zranitelnosti linuxu a windowsu
     (najnovsie zranitelnosti: spectre a meltdown (linux), krack (wifi), blueborn (bluetooth))
-  https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
-  http://xlab.tencent.com/special/spectre/spectre_check.html
+    https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
+    http://xlab.tencent.com/special/spectre/spectre_check.html
 -Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie (napr. JavaScript) a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
 -Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker/LXC/LXD kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
 -Experiment: Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP
@@ -127,6 +188,11 @@ Co dalej?
   https://gns3.com/discussions/gns3-clustering-using-mpich
   https://www.gns3.com/discussions/the-worlds-first-gns3-beowulf-cl
   https://www.youtube.com/watch?v=i_r3z1jYHAc
+-OpenStack redeployment, ale automatizovane - mozne vyriesenie dlhych odoziev z api
+  -nutna podpora kvm a lxd
+  -automatizovany deployment s juju, ansible, ...
+  -https://maas.io/?utm_expid=.-9HoJQVJQvy8JWjBxJYSpQ.0&utm_referrer=https%3A%2F%2Fwww.google.sk%2F
+  -https://www.linux.com/blog/learn/chapter/OpenStack/2017/7/how-install-openstack-less-hour
 -vyuzitie OpenStacku na vytvaranie topologii
 -pripojenie na internet z vnutra projektu - oblacik (v DMZ nie je DHCP server - mozne riesenie: pridat DHCP server, ktory bude pridelovat privatne IP adresy a bude robit preklad adries NAT, kvoli pristupu na internet. Ale ako potom budu studenti pristupovat ku zariadeniam, ked budu mat lokalnu IP adresu?)
 -pridat Ostinato a Netem
@@ -138,3 +204,4 @@ Co dalej?
 -RancherVM / Project Atomic - spustanie KVM virtualiek ako Docker kontainery => toto teoreticky umozni vytvorit windows virtualku, ktora sa zabali do docker kontajnera
 -Unified Networking Lab v2 (UNetLabv2)
   http://www.routereflector.com/unetlab/
+  https://www.indiegogo.com/projects/eve-ng-unified-networking-lab-2-0#/
