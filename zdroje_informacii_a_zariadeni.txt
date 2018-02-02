@@ -52,7 +52,7 @@ OpenStack images
 
 
 
-MEGA vela zariadeni I.
+MEGA vela zariadeni I. (aj nove zariadenia so sablonami)
   https://certcollection.org/forum/topic/318683-massive-collection-of-iou-qcow2-images-50gb/#entry1204417
 konkretne
   https://mega.nz/#F!NThnWLYD!8Fdck05CIQGsRD_58gFz-Q

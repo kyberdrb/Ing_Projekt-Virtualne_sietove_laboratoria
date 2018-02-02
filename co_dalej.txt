@@ -13,7 +13,9 @@ Ulohy:
 
 EVE-ng
 -otestovat a upratat imidze: iou, dynamips, ...
-
+-skusit naposledy pridat c2691
+  -zistit specifikacie/parametre zariadenia (kuknut gns3 templejt alebo cisco stranku)
+  -urobit navod
 -urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
   https://www.youtube.com/watch?v=Ea4U93991dw
   -autentifikacia cez SSH kluce by mohla sposobovat problemy s wireshark 
@@ -162,8 +164,8 @@ Co dalej?
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
   http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
   https://twitter.com/EVE_NG_TEAM/status/951560394765733888
--Pridat predmet na bezpecnost: zabezpecenie Linux systemu:
-  -(SELinux/AppArmor)
+-Pridat predmet na bezpecnost:
+  -zabezpecenie Linux systemu: SELinux/AppArmor, KASLR
   -zabezpecenie SSH, Apache, MySQL, DNS
   -ako sa chranit proti DoS a DDoS utokom (IDS/IPS)
   -ako zabezpecit nezabezpecenu http premavku
@@ -171,6 +173,7 @@ Co dalej?
     -vytvorenie timu na monitorovanie bezpecnostnych zranitelnosti linuxu a windowsu
     (najnovsie zranitelnosti: spectre a meltdown (linux), krack (wifi), blueborn (bluetooth))
     https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
+    https://www.xda-developers.com/wpa2-wifi-protocol-vulnerability-krack/
     http://xlab.tencent.com/special/spectre/spectre_check.html
 -Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie (napr. JavaScript) a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
 -Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker/LXC/LXD kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
