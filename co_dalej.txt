@@ -169,6 +169,8 @@ Co dalej?
   -Cisco hardening
     https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
   -zabezpecenie Linux systemu: SELinux/AppArmor, KASLR
+  -Spectre/Meltdown indikator zabezpecenia, vid link nizsie (/sys/devices/system/cpu/vulnerabilities/)
+    https://www.linux.com/blog/intro-to-linux/2018/1/linux-kernel-415-unusual-release-cycle
   -zabezpecenie SSH, Apache, MySQL, DNS
   -ako sa chranit proti DoS a DDoS utokom (IDS/IPS)
   -ako zabezpecit nezabezpecenu http premavku
