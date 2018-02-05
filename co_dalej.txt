@@ -13,6 +13,8 @@ Ulohy:
 
 EVE-ng
 -otestovat a upratat imidze: iou, dynamips, ...
+-upravit f5 bigip z vnc na telnet
+  http://www.eve-ng.net/index.php/documentation/howto-s/68-howto-add-f5-bigip
 -skusit naposledy pridat c2691
   -zistit specifikacie/parametre zariadenia (kuknut gns3 templejt alebo cisco stranku)
   -urobit navod
@@ -33,8 +35,7 @@ EVE-ng
     pred/po instalacii) a zmenit otvarane aplikacie
     -> mozno dat na to pull request
 
--urobit skript na upravu ASAv + pridat ho do zalohovacieho skriptu
--upravit zalohovaci skript: pridat don asav skript na konverziu do HOME, fstab subor do "etc" kvoli mountovaniu dalsieho disku 
+-upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 
 -opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
 -skopirovat obsahy skriptov v HOME zo sireny do git repa
 
@@ -165,6 +166,8 @@ Co dalej?
   http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
   https://twitter.com/EVE_NG_TEAM/status/951560394765733888
 -Pridat predmet na bezpecnost:
+  -Cisco hardening
+    https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
   -zabezpecenie Linux systemu: SELinux/AppArmor, KASLR
   -zabezpecenie SSH, Apache, MySQL, DNS
   -ako sa chranit proti DoS a DDoS utokom (IDS/IPS)

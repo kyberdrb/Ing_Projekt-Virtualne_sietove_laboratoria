@@ -12,6 +12,7 @@ Videonavody - vytvaranie sieti v GNS3
     
 
   Materialy / Certifikacie
+    https://certcommunity.org/forum/
     https://certcollection.org/forum/
     https://certcollection.org/forum/forum/147-linux-unix-shares/
     https://certcollection.org/forum/forum/1-training-offers-requests/
@@ -20,6 +21,7 @@ Videonavody - vytvaranie sieti v GNS3
     https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
     https://certcollection.org/forum/forum/148-security-shares/
     https://www.itstudygroup.org/index.php
+    http://www.anticisco.ru/forum/
 
 
 Laby
@@ -39,6 +41,7 @@ Vseobecne zdroje zariadeni:
   torrentz2.eu
   nathanash.id.au
   itstudygroup.org
+  certcommunity.org
   certcollection.org
   netbrainstlearn.wordpress.com
   

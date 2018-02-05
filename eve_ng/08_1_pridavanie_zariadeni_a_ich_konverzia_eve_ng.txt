@@ -93,7 +93,8 @@ see: https://www.cisco.com/c/dam/en_us/training-events/le21/le34/downloads/689/a
     mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
     mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
 
-2.6) QEMU - Ak je obraz disku vo formáte "iso", vykonáme tieto príkazy:
+2.6) Ak je obraz disku vo formáte "iso", môže to byť jedno zariadenie, alebo aj viacero
+suborov. Podľa toho, ktor
     # Nahráme obraz disku na server
     sftp root@<ip_adresa_UnetLabu>
     put <cesta_k_obrazu_disku_img_na_lokálnom_PC>
@@ -110,7 +111,10 @@ see: https://www.cisco.com/c/dam/en_us/training-events/le21/le34/downloads/689/a
     mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>/
 
 
-    Ak tento spôsob nefunguje, nainštalujeme iso obraz lokálne napr. cez VirtualBox (vyberieme disk typu "vmdk" pre jednoduchosť konverzie neskôr), a potom nahráme na server výsledný obraz disku, pričom pokračujeme podľa návodu pre "vmdk" obrazy. 
+    Ak tento spôsob nefunguje, nainštalujeme iso obraz lokálne 
+    napr. cez VirtualBox (vyberieme disk typu "vmdk" pre jednoduchosť konverzie 
+    neskôr), a potom nahráme na server výsledný obraz disku, pričom pokračujeme
+    podľa návodu pre "vmdk" obrazy. 
 
 2.7) QEMU - Ak je obraz disku vo formáte "ova", vykonáme tieto príkazy:
     # Nahráme obraz disku na server
