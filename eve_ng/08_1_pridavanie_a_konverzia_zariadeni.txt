@@ -13,17 +13,6 @@ Súbory budeme prenášať ako "root" používateľ, preto sa budú nachádzať 
 
 Predvolené prihlasovacie údaje na server, sú: root / eve
 
-Prihlasovacie údaje na jednotlivé zariadenia by nemali byť žiadne. Ak napriek tomu od nás zariadenie prihlasovacie údaje pýta, skúsime:
-
-    pre Cisco ASA, Juniper vMX / vSRX
-        root / <bez_hesla>
-    
-    pre Mikrotik
-        admin / <bez_hesla>
-
-    pre CentOS
-        cloud / cloud
-
 1) Stiahneme obraz disku daného zariadenia
 2) Zistíme, v akom formáte je obraz disku.
 2.1) QEMU - Ak je obraz disku vo formáte "qcow2", vykonáme tieto príkazy:
@@ -103,18 +92,21 @@ suborov. Podľa toho, ktor
     # Vytvoríme disk vo formáte qcow2, ktorý má 4GB (kapacitu si zvolíme podľa potreby)
     /opt/qemu/bin/qemu-img create -f qcow2 hda.qcow2 4G
 
-    # Necháme doň nainštalovať iso
+    # Necháme doň nainštalovať iso (ako napr. v pripade Cisco CSR)
     /opt/qemu/bin/qemu-system-x86_64 --enable-kvm -serial mon:stdio -nographic -boot order=c,once=d -smp 1 -m 3072 -usb -hda hda.qcow2 -cdrom csr1000v-universalk9.03.13.00.S.154-3.S-ext.iso
 
     # Presunieme obraz disku na správne miesto
     mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
     mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>/
 
-
-    Ak tento spôsob nefunguje, nainštalujeme iso obraz lokálne 
+    -Ak tento spôsob nefunguje, nainštalujeme iso obraz lokálne 
     napr. cez VirtualBox (vyberieme disk typu "vmdk" pre jednoduchosť konverzie 
     neskôr), a potom nahráme na server výsledný obraz disku, pričom pokračujeme
-    podľa návodu pre "vmdk" obrazy. 
+    podľa návodu pre "vmdk" obrazy.
+
+    -Ak sa ale jedna o ISO subor s viacerymi zariadeniami, jednoduchsie je, 
+    ked ISO subor pripojime ako disk podla nizsie uvedeneho navodu:
+        https://www.cyberciti.biz/tips/how-to-mount-iso-image-under-linux.html
 
 2.7) QEMU - Ak je obraz disku vo formáte "ova", vykonáme tieto príkazy:
     # Nahráme obraz disku na server

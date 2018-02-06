@@ -1,0 +1,157 @@
+
+Installing Docker in EVE-NG
+Posted on 2017-08-11 | In Labs
+
+Docker is a platform which allows you to create an application which can be run in a loosely isolated enviroment. When combined with EVE-NG, we can quickly create applications inside our lab envrioment. An example of this is, instead of insalling a linux server with apache, you can just deploy a prebuilt docker container with apache already installed and configured. This container can then be connected to a virtual router in your lab.
+Prerequisites
+
+This Document assumes you already have a EVE-NG installation up and running.
+Installing Docker
+
+The easiest way to get started is using the prebuilt docker package in the official ubuntu repository.
+
+sudo apt-get install docker.io
+
+
+
+#########################################
+sudo systemctl stop docker.service
+#########################################
+
+
+
+After installing, we will make some modifications to our docker config file. EVE-NG is built on top of Ubuntu 16.04 so it utilizes systemd. The perfered method of managing the docker configuration file is to use the daemon json.
+To do this, we need to create a file which overrides the execstart parameters. We must do this because the default execstart statement has a host paramater which will conflict with the options given later in our json file.
+
+Now we will change parameter "ExecStart" in file "docker.service":
+
+vim /lib/systemd/system/docker.service
+
+...
+[Service]
+...
+ExecStart=/usr/bin/dockerd
+...
+
+
+
+
+Next we will create our json configuration file.
+
+Formatting Mistakes
+Pay attention to the format because if you make a formatting mistake, the daemon won’t start.
+
+
+sudo vim /etc/docker/daemon.json
+
+{
+ "hosts": ["tcp://127.0.0.1:4243", "unix:///var/run/docker.sock"],
+ "storage-driver": "overlay2",
+ "log-driver": "json-file",
+ "log-opts": {
+ "max-size": "10M",
+ "max-file": "2"
+ }
+}
+
+
+After making these changes we will need to reload the daemon config and restart the service.
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+The docker daemon and service will start.
+We can now verify that the process is running with command:
+
+systemctl status docker.service
+
+root@lab:~# systemctl status docker.service 
+* docker.service - Docker Application Container Engine
+   Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: e
+  Drop-In: /etc/systemd/system/docker.service.d
+           `-service.conf
+   Active: active (running) since Wed 2017-08-16 12:51:07 EEST; 6 days ago
+     Docs: https://docs.docker.com
+ Main PID: 31852 (dockerd)
+    Tasks: 51
+   Memory: 452.3M
+      CPU: 42min 43.749s
+   CGroup: /system.slice/docker.service
+           |-31852 /usr/bin/dockerd
+           `-31861 containerd -l unix:///var/run/docker/libcontainerd/docker-con
+
+
+
+
+
+Modifying EVE-NG
+
+EVE-NG has support for Docker built in but it is currently commented out. In order to get things working, we’ll need to modify some files.
+
+You’ll need to uncomment the following line in the init.php file. This will allow EVE-NG to use the docker template.
+
+sudo vim /opt/unetlab/html/includes/init.php
+
+//'docker'		=>	'Docker.io',
+'docker'		=>	'Docker.io',
+
+
+
+
+[OPTIONAL - ALREADY DONE IN EVE-NG 2.0.3-86] Modify cli.php
+
+Docker nodes can have 1 of 4 different states inside EVE-NG. The states are:
+
+    0 - Stopped
+    1 - Stopped (Locked)
+    2 - Running
+    3 - Running (Locked)
+
+There is an issue in the current code where after stopping a docker node, the state is locked which prevents it from being started.
+
+The following patch comments out the creating of the lock file when a docker node is started.
+
+#########################################
+sudo vim /opt/unetlab/html/includes/cli.php
+#########################################
+
+Go to line 1083:
+
+:1083
+
+Make sure the section looks like this:
+
+                }
+                // Start configuration process
+                //touch($n -> getRunningPath().'/.lock');
+                //$cmd = 'nohup /opt/unetlab/scripts/config_'.$n -> getTemplate().'.py -a put -i '.$n -> getUuid().' -f '.$n -> getRunningPath().'/startup-config -t '.($n -> getDelay() + 300).' > /dev/null 2>&1 &';
+                $cmd = 'nohup /opt/unetlab/scripts/'.$GLOBALS['node_config'][$n -> getTemplate()].' -a put -i '.$n -> getUuid().' -f '.$n -> getRunningPath().'/startup-config -t '.($n -> getDelay() + 300).' > /dev/null 2>&1 &';
+                exec($cmd, $o, $rc);
+
+
+
+
+
+Adding Docker Images
+
+There is a public registry available that you can use to download existing docker images that others have built.
+
+Custom Docker Images
+Another option is to extend existing public iages or building your own from scratch
+
+sudo docker pull
+
+Let's pull for example an custom Ubuntu image:
+
+sudo docker pull phusion/baseimage
+
+
+
+Sources:
+  http://breakintheweb.com/2017/08/11/EVE-NG-Docker/
+  https://docs.docker.com/engine/reference/commandline/dockerd/
+  9.UNetLab. Компьютер в сетевой топологии - Docker
+    https://www.youtube.com/watch?v=oU01WlaORUA
+  EVE-NG docker demostration (repozitar odstraneny z githubu)
+    https://www.youtube.com/watch?v=8REzLm_-XH8

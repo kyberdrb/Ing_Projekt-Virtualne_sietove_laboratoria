@@ -12,12 +12,13 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--otestovat a upratat imidze: iou, dynamips, ...
--upravit f5 bigip z vnc na telnet
-  http://www.eve-ng.net/index.php/documentation/howto-s/68-howto-add-f5-bigip
--skusit naposledy pridat c2691
-  -zistit specifikacie/parametre zariadenia (kuknut gns3 templejt alebo cisco stranku)
-  -urobit navod
+-upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 
+-skopirovat obsahy skriptov v HOME zo sireny do git repa
+
+-otvorit vsetky porty na FW pre eve-ng
+-napisat cinanovi, co robil tie nove sablony, ake su prihlasovacie
+udaje k tym novym zariadeniam
+
 -urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
   https://www.youtube.com/watch?v=Ea4U93991dw
   -autentifikacia cez SSH kluce by mohla sposobovat problemy s wireshark 
@@ -34,15 +35,6 @@ EVE-ng
     spusta -> editovat vyssie uvedene subory (podla toho, ci tak potrebujeme urobit
     pred/po instalacii) a zmenit otvarane aplikacie
     -> mozno dat na to pull request
-
--upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 
--opravit skript na zalohovanie - nezalohuje skripty v HOME adresari (lebo ich som premenoval) + upravit aj v git dokumentacii
--skopirovat obsahy skriptov v HOME zo sireny do git repa
-
--aktivovat podporu docker kontajnerov v EVE-ng (skusit najprv konzervativne: aktivovat to v defaultnom frontende - ked to\ nepojde, stiahnut novy frontend z breakintheweb, ktory uz Docker podporuje, aj odchytavanie do wireshark kontajnera)
--ako koncove zariadenie pridat ubuntu docker (6MB RAM nema ani alpine)
-  http://phusion.github.io/baseimage-docker/
-  https://github.com/phusion/baseimage-docker
 
 -rozbehnut KVM virtualku v LXC kontaineri (.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
@@ -64,7 +56,7 @@ EVE-ng
   -html5 konzola: neda sa na nu pripojit
 
 -zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
-  -neviem, hned ukonci TCP relaciu -> skusit otvorit vsetky porty na FW pre eve-ng
+  -neviem, hned ukonci TCP relaciu
 -EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
 -otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 
@@ -102,13 +94,18 @@ GNS3
     -/opt/gns3
     -/home/gns3/gns3-server/
     -/home/gns3/gns3-server/gns3server
+
+  -otestovat docker: stiahnut ubuntu docker (6MB RAM nema ani alpine)
+    http://phusion.github.io/baseimage-docker/
+    https://github.com/phusion/baseimage-docker
     
   -zabezpecit gns3 vzdialeny server
     -ssh
     -autentifikacia voci gns3 klientovi
     
   -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm + upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
-    -urobit benchmarking a profiling vsetkych zariadeni podla parametrov zariadeni v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eveng
+    -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
+    v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
     -vyhodnotit
   
   -ziskat materialy na ccna security (640-554)
@@ -189,9 +186,6 @@ Co dalej?
   https://github.com/kyberdrb/Windows_tutorials/blob/master/windows_post_install_and_optimization/windows_post_install_guide.txt
   https://www.youtube.com/results?search_query=ntlite+windows
 -Importovat nastroj na generovanie sieti "Routem" z Cisco VIRL do EVE-ng a GNS3
--Vyskusat nove (vylepsene) web rozhranie pre EVE-ng
-  https://www.youtube.com/watch?v=8REzLm_-XH8
-  https://github.com/breakintheweb/eve-ng
 -GNS3 cluster
   https://gns3.com/discussions/gns3-clustering-using-mpich
   https://www.gns3.com/discussions/the-worlds-first-gns3-beowulf-cl
@@ -203,9 +197,9 @@ Co dalej?
   -https://www.linux.com/blog/learn/chapter/OpenStack/2017/7/how-install-openstack-less-hour
 -vyuzitie OpenStacku na vytvaranie topologii
 -pripojenie na internet z vnutra projektu - oblacik (v DMZ nie je DHCP server - mozne riesenie: pridat DHCP server, ktory bude pridelovat privatne IP adresy a bude robit preklad adries NAT, kvoli pristupu na internet. Ale ako potom budu studenti pristupovat ku zariadeniam, ked budu mat lokalnu IP adresu?)
--pridat Ostinato a Netem
 -vyskusat cracknutu verziu Mikrotik 5.2 vo VBoxe -> potom importovat do EVE-ng
--Integrovat server do monitorovania cez Zabbix
+-Ak bude EVE-ng/GNS3 bezan ta fyzickom serveri,
+  integrovat ho do monitorovania cez Zabbix
 -Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
 -Vytvaranie sablon pre neexistujuce zariadenia pre EVE-ng
   http://www.brianlinkletter.com/build-custom-linux-router-image-unetlab-eve-ng-network-emulators/
