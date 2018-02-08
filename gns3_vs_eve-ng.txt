@@ -1,12 +1,17 @@
+Spolocne parametre
+-Multiplatformový - klientská aplikacia existuje pre Windows/Linux/Mac
+-Možnosť nasadena ako vzdialené servery
+
 **********
    GNS3
 **********
 Výhody
--Multiplatformový - klientská aplikacia existuje pre Windows/Linux/Mac
--Možnosť nasadiť GNS3 aj ako vzdialený server
--Schopnosť skonvertovať Cisco smerovač z BIN do IMAGE formátu (uzitovne pre Dynamips emulaciu)
--Lepšia škálovateľnosť oproti EVE-ng - moznost vytvorit GNS3 cluster
+-Lepšia škálovateľnosť oproti EVE-ng
+  -moznost vytvorit GNS3 cluster
 -Podpora viacerych pouzivatelov
+  (trochu komplikovanejsia autentifikacia - treba este preskumat)
+-Podpora viacerych pouzivatelov pri praci na spolocnom projekte
+  (topologia sa pri zmene okamzite aktualizuje)
 -Import pouzivatelskych uctov na vzdialeny GNS3 server z LDAP
 
 Nevýhody
@@ -19,13 +24,19 @@ Nevýhody
 **********
 Výhody
 -Web rozhranie namiesto samostatnej klientskej aplikácie v GNS3
--Podpora viacerých používateľov
--Jednoduchšie nasadenie na server v porovnaní s GNS3 (nainštalujeme EVE-ng server, zabezpečíme ho, pridáme doň zariadenia a môžeme vytvárať projekty)
+  (nie je potrebne instalovat klientsku aplikaciu)
+-Podpora Telnet/VNC vzdialeneho pripojenia ku zariadeniam cez HTML5
+  reverse proxy (Apache Guacamole) -> netreba instalovat na klientsky
+  pocitac nic, okrem weboveho prehliadaca a WireShark
+-Podpora viacerých používateľov (prihlasenie cez web login stranku)
+-Podpora viacerych pouzivatelov pri praci na spolocnom projekte
+  (topologia sa aktualizuje az po kliknuti sa ikonku "Refresh topology")
+-Jednoduchšie nasadenie na server v porovnaní s GNS3 (nainštalujeme EVE-ng server, 
+  zabezpečíme ho, pridáme doň zariadenia a môžeme vytvárať projekty)
 -Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
 
 Nevýhody
 -Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením.
--Nevie skonvertovať (dekomprimovať) Cisco smerovač z BIN do IMAGE formátu.
 -Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov
 -Web server (Apache) nie je chránený modulmi “modsecurity” (ochrana napr. Proti SQL Injection) a “modevasive” (ochrana proti DoS a DDoS útokom)
 -EVE-ng sa nedá škálovať naprieč viacerými servermi t.j. nevieme urobiť EVE-ng cluster tak, ako to vieme urobiť v GNS3
