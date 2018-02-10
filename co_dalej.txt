@@ -16,8 +16,6 @@ EVE-ng
 -skopirovat obsahy skriptov v HOME zo sireny do git repa
 
 -otvorit vsetky porty na FW pre eve-ng
--napisat cinanovi, co robil tie nove sablony, ake su prihlasovacie
-udaje k tym novym zariadeniam
 
 -urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
   https://www.youtube.com/watch?v=Ea4U93991dw
@@ -63,13 +61,10 @@ udaje k tym novym zariadeniam
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -urobit skript aj na profiling zariadeni (dstat)
     -profiling, konkretne generovanie dat, urobit tak, aby to bolo SEAMLESS (copy paste do vopred pripraveneho generickeho calc dokumentu)
-    -zalohovat profiling skript zalohovacim skriptom (pridat do HOME adresara)
-  -reboot servera
   -vybrat si zariadenia, ktore budem benchmarkovat
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
--urobit prezentaciu mojho projektu na prezentacny den (sam povedal, ze ho napadaju otazky az vtedy, ked vidi prezentaciu)
 -zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
 
 
@@ -117,8 +112,14 @@ GNS3
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-Plotly - python kniznica pre vizualizaciu grafov
+-Graphana - web framework pre vizualizaciu grafov
+-netdata
+  -monitorovanie zdrojov v realnom case (treba doriesit zabezpecenie 
+  [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
+-urobit windows koncove zariadenie pre EVE-ng; najlepsie s virtio ovladacmi 
+  (windows 10 x86/x64, Windows Server 2016)
 -ntopng - kategorizacia sietovej premavky podla typu/protokolu (http, dns, dhcp, aplikacie, ...)
--netdata - monitorovanie zdrojov v realnom case (treba doriesit zabezpecenie [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
 -Blockchain - matematika+siete+kryptomeny
 -Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng
     http://www.eve-ng.net/forum/viewtopic.php?f=6&t=812
