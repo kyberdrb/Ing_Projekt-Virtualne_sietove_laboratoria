@@ -68,13 +68,46 @@ Postup pri merani systemovych poziadaviek virtualnych zariadeni
 Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do skriptu na aktualizaciu sablon (vid subor "uprava_sablon").
 
 
+*************
+ANALYZA VYSTUPNEHO CSV suboru
+
+excelovsky dokument je na mieru urceny pre CSV vystup prikazu
+
+  dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output vystup.csv
+
+Priklad pouzitia:
+-Otvorime CSV subor vystup.csv
+-Oznacime jeho obsah
+-Otvorime sablonu
+-Oznacime bunku A1
+-Ctrl+V
+-Prislusne stlpce a grafy sa automaticky zmenia
+  -stlpce sa pocitaju az do konca (po riadok 1048576)
+  
+Ako som vytvaral stlpce:
+  -napisal som rovnicu do prvej bunky v stlpci
+  -Zvolime bunky az po 15000
+    (Shift+PageDown alebo posuvnikom prejdeme ku 15000. bunke
+    a klikneme na nu pri stlacenej klavese Shift)
+  -Ctrl+D (vlozi vypocet do kazdej oznacenej bunky;
+    v tomto pripade do kazdej bunky v slpci)
+
+Ako som vytvaral grafy:
+  -vytvaral som X/Y Scatter plot grafy, lebo prave tym som mohol explicitne
+    priradit os X
+
 
 Zdroje:
-http://dag.wiee.rs/home-made/dstat/
-https://stackoverflow.com/a/39136984
-https://stackoverflow.com/a/31007290
-http://hadooppowered.com/2014/05/04/advanced-dstat/
-https://askubuntu.com/questions/218567/any-way-to-check-the-clock-speed-of-my-processor
-https://askubuntu.com/a/741219
-https://unix.stackexchange.com/a/55227
-https://askubuntu.com/a/532430
+  http://dag.wiee.rs/home-made/dstat/
+  https://stackoverflow.com/a/39136984
+  https://stackoverflow.com/a/31007290
+  http://hadooppowered.com/2014/05/04/advanced-dstat/
+  https://askubuntu.com/questions/218567/any-way-to-check-the-clock-speed-of-my-processor
+  https://askubuntu.com/a/741219
+  https://unix.stackexchange.com/a/55227
+  https://askubuntu.com/a/532430
+
+  https://superuser.com/questions/823260/how-to-adjust-the-y-axis-maximum-value-on-a-bar-chart-in-libreoffice-calc
+  https://ask.libreoffice.org/en/question/2060/assigning-x-axis-to-a-spreadsheet-column/
+  https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_ISBLANK_function
+  

@@ -112,7 +112,7 @@ GNS3
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
--Plotly - python kniznica pre vizualizaciu grafov
+-Plotly/matplotlib - python kniznica pre vizualizaciu grafov
 -Graphana - web framework pre vizualizaciu grafov
 -netdata
   -monitorovanie zdrojov v realnom case (treba doriesit zabezpecenie 

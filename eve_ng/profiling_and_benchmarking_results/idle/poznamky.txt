@@ -1,0 +1,2 @@
+iotop ukazal, ze za neustale zapisovanie do suborov je zodpovedny proces mysqld
+nethogs ukalaz, ze apache neustale pouziva sietovku
