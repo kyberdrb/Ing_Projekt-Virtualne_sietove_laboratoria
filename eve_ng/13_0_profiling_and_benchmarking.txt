@@ -3,9 +3,12 @@ Vyuzitie CPU celkovo + jednotlive jadra		dstat -T -c -C total,0,1,2,3,4,5,6,7	% 
 
 Vyuzitie operacnej pamate			dstat -T -m				MiB
 
-Vyuzitie disku					dstat -T -d -D sda			kB/s (citanie aj zapis)
-						dstat --disk-util			% (citanie aj zapis)
-						dstat --disk-tps			pocet operacii za sekundu (citanie aj zapis)
+Vyuzitie disku -  meriam ho preto, aby sme vedeli odhadnut, o kolko by sa zvysil vykon
+                  servera pri vymene pevnych diskov za SSD disky
+
+                        dstat -T -d -D sda			kB/s (citanie aj zapis)
+						            dstat --disk-util			% (citanie aj zapis)
+						            dstat --disk-tps			pocet operacii za sekundu (citanie aj zapis)
 
 Vyuzitie sietovej karty (up/down)		dstat -T -n				B/s
 
@@ -14,11 +17,14 @@ Ukladanie do suboru (CSV)			dstat --output			dstat --output profiling_<nazov_zar
 *************
 Kompletny prikaz
 
-dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output profiling_<nazov_zariadenia>.csv
+dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output profiling_<nazov_zariadenia>.csv --noheaders 
 
+Z man stranky dstatu
 
+"The default delay is 1 and count is unspecified (unlimited)" =>
+  data sa budu zberat kazdu hodinu
 *************
-Dalsie nastroje
+DALSIE NASTROJE
 
 nmap 		monitorovanie systemovych prostriedkov (vsetkych)
 iotop	 	monitorovanie procesov vzhladom na vyuzitie disku
@@ -27,10 +33,11 @@ nethogs		monitorovanie procesov vzhladom na vyuzitie sietoveho rozhrania
 
 
 *************
-VYNECHANE Z PROFILINGU
+DOVODY MERANIA/NEMERANIA KONKRETNYCH VELICIN
 
 -FREKVENCIA
-Frekvenciu cpu som vynechal, lebo procesor podla prikazu 'watch lscpu | grep "MHz"' striedal iba dve frekvencie: 2000.000 MHz (minimalna) a 2333.000 (maximalna)
+Frekvenciu cpu som vynechal, lebo procesor podla prikazu 'watch lscpu | grep "MHz"'
+  striedal iba dve frekvencie: 2000.000 MHz (minimalna) a 2333.000 (maximalna)
 
 CPU MHz:               2000.000
 CPU max MHz:           2333.0000
@@ -38,45 +45,121 @@ CPU min MHz:           2000.0000
 
 
 -VYTAZENIE SIETOVEHO ROZHRANIA
-Vytazenie sietovej karty (uplink a downlink) je zanedbatelne pri profilingu jednotlivych zariadeni, ale moze byt relevantne pri profilingu a benchmarkingu topologii od viacerych studentov v ramci vyucovacich predmetov.
+Vytazenie sietovej karty (uplink a downlink) je zanedbatelne pri profilingu 
+  jednotlivych zariadeni, ale moze byt relevantne pri profilingu a benchmarkingu 
+  topologii od viacerych studentov v ramci vyucovacich predmetov.
+
 
 *************
-Postup pri merani systemovych poziadaviek virtualnych zariadeni
+PRIPRAVA PRED MERANIM VYKONNOSTI ZARIADNIA
+
+Uvedeny postup zaznamenava najhorsi mozny scenar merania vykonnosti
+zariadenia. Navyse, vsetky zariadenia su na inom pevnom disku, takze pri
+spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
+cas navyse.
+Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
+operacnej pamate:
+
+  free
+  sudo swapoff -a
+  free
+  sudo sync
+  free
+  sudo su -c 'echo 1 >/proc/sys/vm/drop_caches'
+  free
+  sudo su -c 'echo 2 >/proc/sys/vm/drop_caches'
+  free
+  sudo su -c 'echo 3 >/proc/sys/vm/drop_caches'
+  free
+
+
+Vystup vyssie uvedenych prikazov:
+
+
+andrej@sirena:~$ free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      944116      372340      442680    48143020    47366420
+Swap:      50329596       70668    50258928
+andrej@sirena:~$   sudo swapoff -a
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      932336      377224      511172    48149916    47310296
+Swap:             0           0           0
+andrej@sirena:~$   sudo sync
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      934144      376488      510576    48148844    47309432
+Swap:             0           0           0
+andrej@sirena:~$   sudo su -c 'echo 1 >/proc/sys/vm/drop_caches'
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      933328    47327244      510536     1198904    47310032
+Swap:             0           0           0
+andrej@sirena:~$   sudo su -c 'echo 2 >/proc/sys/vm/drop_caches'
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      931416    47603940      510536      924120    47402604
+Swap:             0           0           0
+andrej@sirena:~$   sudo su -c 'echo 3 >/proc/sys/vm/drop_caches'
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      928772    47601472      510536      929232    47404504
+Swap:             0           0           0
+andrej@sirena:~$ 
+
+
+
+
+*************
+POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
 
 -Do projektu pridame jedno zariadenie daneho druhu
--Nastavime mu velmi vela pamate (8-10GB operacnej pamate)
--Spustime sledovanie systemovych prostriedkov spolu s ukladanim udajov do suboru
--Spustime zariadenie
--Pripojime sa na konzolu zariadenia
+-Nastavime mu velmi vela pamate (+30GB operacnej pamate), ak to zariadenie dovoli
+  a spusti sa
+-Pomocou skriptu spustime sledovanie systemovych prostriedkov, ktory bude ukladat 
+  udaje do suboru + zacneme merat cas
+-Hned na to spustime zariadenie
+-Pripojime sa na konzolu zariadenia. Pockame, kym neuvidime interaktivny prikazovy
+  riadok (CLI) alebo vyzvu na prihlasenie (login prompt)
 -Po uspesnom spusteni zariadenia sa nan prihlasime (ak je to vyzadovane)
--Akonahle nam zariadenie umozni pisat prikazy do konzoly, pockame este 1-2 minuty
+-Akonahle uvidime interaktivny prikazovy riadok (CLI):
+  -zastavime cas a hodnotu si docasne ulozime
+  -pockame este priblizne 1-3 minuty, aby sa zariadenie stabilizovalo
 -Zastavime zariadenie
 -Ukoncime sledovanie systemovych prostriedkov
 -Stiahneme si subor zo sledovania systemovych prostriedkov zo servera
--Ak je potrebne pridame zariadenie do sumarnej tabulky spolu s:
-  -predvolenymi prihlasovacimi udajmi (pozriet aj netbrainslearn GNS3 1.4 zariadenia)
+-Ak je potrebne pridame zariadenie do sumarnej tabulky zariadeni spolu s:
+  -predvolenymi prihlasovacimi udajmi
   -systemovymi poziadavkami (CPU, RAM)
-  -teoretickym maximalnym poctom spustitelnych zariadeni (v zavislosti od RAM)
-  -pribliznym casom spustania
--Analyzujeme ulozeny subor
-  -ak je potrebne skonvertujeme jednotky
-  -vygenerujeme grafy
--Na zaklade analyzy sa rozhodneme, ci a ako zmenime parametre daneho zariadenia (RAM zafixujem, CPU budem menit na 1, 2 a 3 jadra).
--Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
+-Vygenerovany subor so zaznamenanymi udajmi o behu zariadenia vlozime do
+  sablony pre meranie vykonnosti a zadame zmerany cas spustania zariadenia.
+  Vsetky grafy a tabulky sa prisposobia vstupnym udajom a je ich mozne okamzite
+  ulozit ako obrazok.
+-Na zaklade analyzy merania vykonnosti zariadenia sa rozhodneme, ci a ako zmenime 
+  jeho parametre:
+  -pocet CPU bude nastaveny na 1, ak to zariadenie dovoli a spusti sa
+  -mnozstvo operacnej pamate (RAM) nastavim na priemernu nameranu hodnotu 
+    po spusteni + rezerva
 
-
-Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do skriptu na aktualizaciu sablon (vid subor "uprava_sablon").
+-Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname 
+  vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
+-Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do
+  skriptu na aktualizaciu sablon (vid subor "uprava_sablon").
 
 
 *************
-ANALYZA VYSTUPNEHO CSV suboru
+ANALYZA VYSTUPNEHO CSV SUBORU
 
-excelovsky dokument je na mieru urceny pre CSV vystup prikazu
+LibreOffice Calc dokument je vytvoreny na mieru pre suborovy vystup prikazu:
 
   dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output vystup.csv
 
 Priklad pouzitia:
--Otvorime CSV subor vystup.csv
+-Skopirujeme subor vysup.csv do suboru s nazvom napr. vystup-edited.csv
+-Otvorime CSV subor vystup-edited.csv -> V dialogovom okne "Text Import" zvolime:
+  -Character set: Unicode (UTF-16)
+  -Default - English (USA)
+  -Separator Options -> Separated by -> zaskrtneme iba "Comma" a "Merge delimiters"
 -Oznacime jeho obsah
 -Otvorime sablonu
 -Oznacime bunku A1
@@ -87,14 +170,87 @@ Priklad pouzitia:
 Ako som vytvaral stlpce:
   -napisal som rovnicu do prvej bunky v stlpci
   -Zvolime bunky az po 15000
-    (Shift+PageDown alebo posuvnikom prejdeme ku 15000. bunke
-    a klikneme na nu pri stlacenej klavese Shift)
-  -Ctrl+D (vlozi vypocet do kazdej oznacenej bunky;
-    v tomto pripade do kazdej bunky v slpci)
+    -najrychlejsie je zadat do "Name box" pola v lavom hornom rohu (je tam vzdy
+    aktualna adresa bunky) rozsah XY1:XY15000 (rozsah podla potreby upravit) a
+    stlacit Enter
+    -alebo Shift+PageDown alebo posuvnikom prejdeme ku 15000. bunke
+    a klikneme na nu pri stlacenej klavese Shift
+  -do oznacenych buniek vlozime rovnaku funkciu stlacenim Ctrl+D
+    -v tomto pripade do kazdej bunky v slpci
+  -niekedy bolo potrebne zafixovat urcite suradnice bunky, aby sa nemenila s 
+    meniacimi sa bunkami. Na to treba oznacit suradnice bunky vo vzorci, ktoru 
+    chceme zafixovat, a stlacime klavesu F4 (zobrazia sa znaky '$')
 
 Ako som vytvaral grafy:
-  -vytvaral som X/Y Scatter plot grafy, lebo prave tym som mohol explicitne
-    priradit os X
+  -pre profiling som vytvaral X/Y Scatter plot grafy, lebo prave tym som mohol 
+    explicitne priradit os X
+  -pre benchmarking som vytvaral Bar Chart grafy, aby som mohol priamo porovnat
+    priemerne hodnoty meranych velicin pocas spustania a po spusteni
+  -grafom s percentualnou metrikou som nastavil maximalnu hodnotu osi Y na 100
+    -2x kliknut na graf alebo pravy klik -> Edit
+    -pravy klik na lubovolnu hodnotu na osi Y -> Format Axis... -> Scale
+    -odskrtneme Automatic pri hodnote Maximum a nastavime ho na 100 -> OK
+  -v grafoch z benchmarku som nastavil pismo osi X na bielu - cisla by boli na 
+  tomto mieste zbytocne matuce
+    -postupujeme rovnako, ako v pripade vyssie, iba klikneme na lubovolnu hodnotu
+    na osi X a namiesto karty Scale zvolime kartu Font Effects
+
+Grafy su interaktivne a reaguju na zmenu vstupnych udajov z prikazu dstat, uvedeneho
+na zaciatku tejto casti. Vstupne udaje musia mat najviac 15000 riadkov. Cislo 15000
+vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a poctom sekund
+v 4 hodinach zaokruhlenych na tisicky nahor, co je trvanie jedneho CCNA kurzu. Takto
+mozem nechat spustene meranie vykonnosti pocas celeho trvania vyucovaneho predmetu.
+
+Aj profiling, aj benchmarking grafy, vratane benchmarking tabulky, su interaktivne
+vzhladom na cas spustania.
+Cas spustania je mozne menit v bunke DA1 (nachadza sa nad benchmarking tabulkou).
+Tento cas je merany po pridani noveho zariadenia do topologie a nie uz existujuceho,
+co by mohlo skreslit (vylepsit) merane veliciny. Vzdy meriam vykonnost jedineho 
+zariadenia, ktore je v danom case ako jedine spustene (aktivne).
+Tato hodnota urcuje dlzku spustania zariadenia v sekundach. Zariadenie povazujem za
+spustene v momente, ked sa zobrazi interaktivny prikazovy riadok (CLI). V pripade,
+ze pre zobrazenie CLI je potrebne prihlasenie, je aj to zapocitane do casu spustania.
+V profiling grafoch je proces spustania oddeleny od procesu po spusteni oranzovou
+ciarou pretinajucu os X. Os X reprezentuje celkovy pocet sekund, pocas ktorych bolo
+zariadenie v topologii spustene. Tato ciara pretina os X v bode, ktory je definovany
+ v bunke DA1, v ktorej je ulozeny cas spustania zariadenia.
+Po spusteni zariadenia ho necham zapnute este 3 minuty. Tento cas by teoreticky mal 
+stacit na to, aby sa zariadenie ustalilo na jednej vykonnostnej hladine.
+
+
+*************
+MAPOVANIE CISEL GRAFOV K ICH NAZVOM
+
+-V adresari prislusneho zariadenia sa nachadza 19 obrazkov s grafmi.
+-Grafy su pomenovane podla poradia, v ktorom som ich exportoval.
+-Nizsie je vysvetleny vyznam a metrika nameranych dat.
+
+Profiling
+1  - Overall CPU usage (%)
+2  - cpu0 usage (%)
+3  - cpu1 usage (%)
+4  - cpu2 usage (%)
+5  - cpu3 usage (%)
+6  - cpu4 usage (%)
+7  - cpu5 usage (%)
+8  - cpu6 usage (%)
+9  - cpu7 usage (%)
+10 - All CPUs combined usage (%)
+11 - Relative memory usage (MB)
+12 - Disk: read (blue) and write (green) speed (kB/s)
+13 - Disk utilization (%)
+14 - Disk: Number of read (blue) and write (green) operations (ops/s)
+
+Benchmarking
+15 - Average overall CPU usage + All individual cores
+16 - Average relative memory usage (MB)
+17 - Average disk speed: read (blue) / write (green) (kB/s)
+18 - Average disk utilization (%)
+19 - Average number of operations of a disk: # of reads (blue) / # of writes (green) (ops/s)
+
+
+
+
 
 
 Zdroje:
@@ -110,4 +266,9 @@ Zdroje:
   https://superuser.com/questions/823260/how-to-adjust-the-y-axis-maximum-value-on-a-bar-chart-in-libreoffice-calc
   https://ask.libreoffice.org/en/question/2060/assigning-x-axis-to-a-spreadsheet-column/
   https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_ISBLANK_function
-  
+  https://stackoverflow.com/questions/22822536/excel-define-a-range-based-on-a-cell-value
+  https://ask.libreoffice.org/en/question/12639/multiple-graphs-in-one-chart/
+  https://help.libreoffice.org/Calc/Operators_in_Calc
+  https://www.ablebits.com/office-addins-blog/2016/11/30/excel-compare-strings/
+  https://support.office.com/en-us/article/Move-or-copy-a-formula-1f5cf825-9b07-41b1-8719-bf88b07450c6
+  http://www.notjustnumbers.co.uk/2013/06/excel-tip-quick-way-to-add-dollar-signs.html
