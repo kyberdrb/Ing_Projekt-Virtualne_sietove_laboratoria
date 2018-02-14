@@ -22,7 +22,19 @@ dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --outpu
 Z man stranky dstatu
 
 "The default delay is 1 and count is unspecified (unlimited)" =>
-  data sa budu zberat kazdu hodinu
+  data sa budu zberat kazdu sekundu (delay je 1) do nekonecna (count je 
+  predvolene unlimited)
+
+
+
+Meranie vytazenia operacnej pamate bude trochu zlozitejsie, pretoze potrebujem
+ziskat presne udaje.
+
+Mozne prikazy:
+ps -e -o user,pid,rss,command | grep unl0 | grep /opt/unetlab/addons/ | awk '{s+=$3} END {print s}'
+ps -U unl0 -u unl0 -o user,pid,rss,command | grep unl0 | awk '{s+=$3} END {print s}'
+
+
 *************
 DALSIE NASTROJE
 

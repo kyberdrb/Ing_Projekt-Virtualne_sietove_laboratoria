@@ -159,7 +159,7 @@ Finally you should upgrade system and EVE to latest version:
 
 -nainstalujeme doplnanie prikazov pre bash a dalsie nastroje
 
-  sudo apt-get install bash-completion man-db tmux
+  sudo apt-get install bash-completion man-db tmux python-pip
 
 -pridame sa do skupiny "kvm" (kvoli guestfish utilitke)
  

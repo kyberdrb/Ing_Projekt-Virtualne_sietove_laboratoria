@@ -12,7 +12,11 @@ Zazitky:
 Ulohy:
 
 EVE-ng
+-presunut obsah celeho adresara /opt/unetlab/addons/qemu na sdd
+
+
 -upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 
+  + dstat_custom skopirovat tiez do gitu a dat ho do backup skriptu
 -skopirovat obsahy skriptov v HOME zo sireny do git repa
 
 -otvorit vsetky porty na FW pre eve-ng
@@ -97,6 +101,8 @@ GNS3
   -zabezpecit gns3 vzdialeny server
     -ssh
     -autentifikacia voci gns3 klientovi
+      https://gns3.com/discussions/i-implemented-multiuser-gns3-s-2
+      http://forum.gns3.net/topic314.html
     
   -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm + upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
     -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
@@ -112,6 +118,7 @@ GNS3
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-Ako importovat pouzivatelske ucty z LDAP do databazy (MySQL)?
 -IPFS
 -Plotly/matplotlib - python kniznica pre vizualizaciu grafov
 -Graphana - web framework pre vizualizaciu grafov
