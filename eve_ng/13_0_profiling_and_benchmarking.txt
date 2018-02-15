@@ -100,11 +100,11 @@ funguje iba pri IOL zariadeniach v UNetLab/EVE-ng topologii.
 Nizsie uvedeny prikaz funguje aj pre QEMU a Dynamips zariadenia
 v UNetLab/EVE-ng topologii.
 
-  ps -e -o user,pid,rss,command | grep "/opt/unetlab\|/opt/qemu" | awk '{s+=$3} END {print s}'
+  ps -e -o user,pid,rss,command | grep "/opt/unetlab/addons\|/opt/qemu" | awk '{s+=$3} END {print s}'
   
 Este lepsi a rovnako univerzalny variant (bez "grep" procesu)
 
-  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu" | awk '{s+=$3} END {print s}'
+  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{s+=$3} END {print s}'
 
 
 # skuska spravnosti predchadzajuceho prikazu
@@ -112,8 +112,13 @@ Este lepsi a rovnako univerzalny variant (bez "grep" procesu)
   ps aux  (manualne)
   ps -o user,pid,rss,command (vybrane stlpce)
   ps -U unl0 -u unl0 -o user,pid,rss,command (vybrane stlpce + len procesy pouzivatela
-                                              "unl0" - IBA PRE IOL zariadenia)
-  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu" | awk '{print $2}'  
+                                              "unl0" - IBA PRE IOL zariadenia!)
+
+Zobrazenie procesov
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu"
+
+Zobrazenie PID cisel
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{print $2}'
 
 
 ******
@@ -126,41 +131,46 @@ v UNetLab/EVE-ng topologii:
   sudo python setup.py install
   sudo cp ps_mem.py /usr/bin/ps_mem
 
-  sudo ps_mem -p $(pgrep -d, -u "unl0") --total     (iba pre IOL zariadenia)
+  sudo ps_mem -p $(pgrep -d, -u "unl0") --total     (iba pre IOL zariadenia!)
   
 
 Univerzalny prikaz:
 
-  sudo ps_mem -p $(pgrep -d, -f unetlab\|qemu) --total
+  sudo ps_mem -p $(pgrep -d, -f /opt/unetlab/addons\|/opt/qemu) --total
   
 Vysledna hodnota je v bajtoch
   
 
 # skuska spravnosti predchadzajuceho prikazu
   
-  sudo python ps_mem.py -p $(pgrep -d, -u "unl0")   (iba pre IOL zariadenia)
-  pgrep -a -f unetlab\|qemu   (zoznam procesov pre spustene zariadenie v 
-                               UNetLab/EVE-ng; Univerzalne pre Dynamips/IOL/QEMU)
+  sudo python ps_mem.py -p $(pgrep -d, -u "unl0")   (iba pre IOL zariadenia!)
 
+Zobrazenie procesov (zoznam procesov pre spustene zariadenie v UNetLab/EVE-ng;
+univerzalne pre Dynamips/IOL/QEMU)
+
+  pgrep -a -f /opt/unetlab/addons\|/opt/qemu
+
+Zobrazenie PID cisel
+  pgrep -f /opt/unetlab/addons\|/opt/qemu
 
 *************
 ZHRNUTIE PRIKAZOV A OVERENI
 
 Rychle zobrazenie vybranych procesov spusteneho zariadenia v UNetLab/EVE-ng
 topologii:
-  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu"
-  pgrep -a -f unetlab\|qemu
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu"
+  pgrep -a -f /opt/unetlab/addons\|/opt/qemu
 
 
 Rychle zobrazenie PID cisel procesov spusteneho zariadenia
-  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab|/opt/qemu" | awk '{print $2}'
-  pgrep -f unetlab\|qemu   (PID cisla pre procesy spusteneho zariadenia v 
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{print $2}'
+  pgrep -f /opt/unetlab/addons\|/opt/qemu   (PID cisla pre procesy spusteneho zariadenia v 
                             UNetLab/EVE-ng; Univerzalne pre Dynamips/IOL/QEMU)
 
 
 Rychle porovnanie spotreby operacnej pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'
-  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu" | awk '{s+=$3} END {print s}'
-  sudo ps_mem -p $(pgrep -d, -f unetlab\|qemu) --total
+  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{s+=$3} END {print s}'
+  sudo ps_mem -p $(pgrep -d, -f /opt/unetlab/addons\|/opt/qemu) --total
   
 
 
