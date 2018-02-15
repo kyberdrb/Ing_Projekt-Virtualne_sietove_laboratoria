@@ -184,9 +184,16 @@ Preto som vykonal prikaz
 
   sudo cp /usr/bin/dstat /usr/bin/dstat_custom
 
-cim som si vytvoril kopiu existujuceho nastroja dstat, kedze dokaze merat vsetko 
+Tak som si vytvoril kopiu existujuceho nastroja dstat, kedze dokaze merat vsetko 
 okrem vytazenia pamate spusteneho zariadenia v UNetLab/EVE-ng topologii.
-Upravil som ho nasledovne
+Aby dokazal merat vyuzitie operacnej pamate zariadenim, boli potrebne upravy
+zdrojoveho kodu. Upravil som ho tak, ze sa porovnavaju vysledky dvoch roznych
+prikazov, pricom som kladol doraz na presnost a konzistenciu vystupu tychto
+prikazov. Oba prikazy musia merat tie iste procesy, inak by vysledky mohli
+byt skreslene. Pouzivam prikazy z casti "Rychle porovnanie spotreby operacnej 
+pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'"
+
+Upravil som ho nasledovne:
 
 (riadok 18 - import kniznice Sultan - vykonavanie BASH prikazov v Pythone)
 ...
