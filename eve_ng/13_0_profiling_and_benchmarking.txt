@@ -15,27 +15,6 @@ Vyuzitie sietovej karty (up/down)		dstat -T -n				B/s
 Ukladanie do suboru (CSV)			dstat --output			dstat --output profiling_<nazov_zariadenia>.csv
 
 *************
-Kompletny prikaz
-
-dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output profiling_<nazov_zariadenia>.csv --noheaders 
-
-Z man stranky dstatu
-
-"The default delay is 1 and count is unspecified (unlimited)" =>
-  data sa budu zberat kazdu sekundu (delay je 1) do nekonecna (count je 
-  predvolene unlimited)
-
-
-
-Meranie vytazenia operacnej pamate bude trochu zlozitejsie, pretoze potrebujem
-ziskat presne udaje.
-
-Mozne prikazy:
-ps -e -o user,pid,rss,command | grep unl0 | grep /opt/unetlab/addons/ | awk '{s+=$3} END {print s}'
-ps -U unl0 -u unl0 -o user,pid,rss,command | grep unl0 | awk '{s+=$3} END {print s}'
-
-
-*************
 DALSIE NASTROJE
 
 nmap 		monitorovanie systemovych prostriedkov (vsetkych)
@@ -43,9 +22,26 @@ iotop	 	monitorovanie procesov vzhladom na vyuzitie disku
 nethogs		monitorovanie procesov vzhladom na vyuzitie sietoveho rozhrania
 		pouzitie: sudo nethogs pnet0
 
+*************
+DOVODY VYBERU NASTROJOV NA MONITOROVANIE SYSTEMU
+
+Hlavnym dovodom, preco som si vybral a dalej upravoval nastroj "dstat"
+a uprednostnil ho pred nastroje z balicka sysstat alebo netdata, bolo ovladanie
+cez terminal a ukladanie ziskanych udajov do CSV suboru. V LibreOffice Calc som 
+si pripravil sablonu, do ktorej len nakopirujem obsah CSV sablonu. Sablona 
+nasledne vytvori grafy a tabulky pre profiling a benchmarking. Tie su okamzite
+pripravene na export.
 
 *************
-DOVODY MERANIA/NEMERANIA KONKRETNYCH VELICIN
+DOVODY MERANIA JENOTLIVYCH VELICIN
+
+Procesor - najviac vytazeny pri spustani zariadenia (moze byt vytazeny aj pocas spustenia)
+Operacna pamat - najviac vytazena po dokonceni spustania zariadenia
+Disk - najviac vytazeny pri spustani zariadenia (moze byt vytazeny aj pocas spustenia)
+
+
+*************
+VYNECHANE VELICINY Z MERANIA
 
 -FREKVENCIA
 Frekvenciu cpu som vynechal, lebo procesor podla prikazu 'watch lscpu | grep "MHz"'
@@ -60,6 +56,229 @@ CPU min MHz:           2000.0000
 Vytazenie sietovej karty (uplink a downlink) je zanedbatelne pri profilingu 
   jednotlivych zariadeni, ale moze byt relevantne pri profilingu a benchmarkingu 
   topologii od viacerych studentov v ramci vyucovacich predmetov.
+
+*************
+Meranie vytazenia procesorov a diskov
+
+  dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output profiling_<nazov_zariadenia>.csv --noheaders 
+
+Z man stranky dstatu
+
+"The default delay is 1 and count is unspecified (unlimited)" =>
+  data sa budu zberat kazdu sekundu (delay je 1) do nekonecna (count je 
+  predvolene unlimited)
+
+
+*************
+Meranie vytazenia operacnej pamate
+bude trochu zlozitejsie, pretoze potrebujem ziskat presne udaje.
+Zda sa, ze presne udaje ziskam zo stlpca RSS z vystupu prikazu "ps aux".
+
+Z manualoveh stranky ps:
+...
+(riadok 383)
+The SIZE and RSS fields don't count some parts of a process including the page 
+tables, kernel stack, struct thread_info, and struct task_struct.  This is 
+usually at least 20 KiB of memory that is always resident.  SIZE is the virtual
+size of the process (code+data+stack).
+...
+(riadok 673)
+rss         RSS       resident set size, the non-swapped physical memory that a
+task has used (in kiloBytes).  (alias rssize, rsz).
+
+UNetLab/EVE-ng spusta zariadenia v topologii ako pouzivate "unl0", preto ma
+zmysel filtrovat vystup podla tohto atributu, aby sme zmensili vystupnu mnozinu
+vysledkov a sustredili sa iba na relevantne udaje.
+
+Prikaz na zistenie vytazenia operacnej pamate zariadenim
+Ciselny udaj je uvedeny v kB:
+
+  ps -U unl0 -u unl0 -o user,pid,rss,command | grep unl0 | awk '{s+=$3} END {print s}'
+
+Univerzalnejsia varianta predchadzajuceho prikazu. Vyssie uvedeny prikaz
+funguje iba pri IOL zariadeniach v UNetLab/EVE-ng topologii.
+Nizsie uvedeny prikaz funguje aj pre QEMU a Dynamips zariadenia
+v UNetLab/EVE-ng topologii.
+
+  ps -e -o user,pid,rss,command | grep "/opt/unetlab\|/opt/qemu" | awk '{s+=$3} END {print s}'
+  
+Este lepsi a rovnako univerzalny variant (bez "grep" procesu)
+
+  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu" | awk '{s+=$3} END {print s}'
+
+
+# skuska spravnosti predchadzajuceho prikazu
+
+  ps aux  (manualne)
+  ps -o user,pid,rss,command (vybrane stlpce)
+  ps -U unl0 -u unl0 -o user,pid,rss,command (vybrane stlpce + len procesy pouzivatela
+                                              "unl0" - IBA PRE IOL zariadenia)
+  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu" | awk '{print $2}'  
+
+
+******
+Dalsi sposob merania vytazenia operacnej pamate pre spustene zariadenia
+v UNetLab/EVE-ng topologii:
+
+  git clone https://github.com/pixelb/ps_mem.git
+  cs ps_mem
+  python setup.py build
+  sudo python setup.py install
+  sudo cp ps_mem.py /usr/bin/ps_mem
+
+  sudo ps_mem -p $(pgrep -d, -u "unl0") --total     (iba pre IOL zariadenia)
+  
+
+Univerzalny prikaz:
+
+  sudo ps_mem -p $(pgrep -d, -f unetlab\|qemu) --total
+  
+Vysledna hodnota je v bajtoch
+  
+
+# skuska spravnosti predchadzajuceho prikazu
+  
+  sudo python ps_mem.py -p $(pgrep -d, -u "unl0")   (iba pre IOL zariadenia)
+  pgrep -a -f unetlab\|qemu   (zoznam procesov pre spustene zariadenie v 
+                               UNetLab/EVE-ng; Univerzalne pre Dynamips/IOL/QEMU)
+
+
+*************
+ZHRNUTIE PRIKAZOV A OVERENI
+
+Rychle zobrazenie vybranych procesov spusteneho zariadenia v UNetLab/EVE-ng
+topologii:
+  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu"
+  pgrep -a -f unetlab\|qemu
+
+
+Rychle zobrazenie PID cisel procesov spusteneho zariadenia
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab|/opt/qemu" | awk '{print $2}'
+  pgrep -f unetlab\|qemu   (PID cisla pre procesy spusteneho zariadenia v 
+                            UNetLab/EVE-ng; Univerzalne pre Dynamips/IOL/QEMU)
+
+
+Rychle porovnanie spotreby operacnej pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'
+  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab|/opt/qemu" | awk '{s+=$3} END {print s}'
+  sudo ps_mem -p $(pgrep -d, -f unetlab\|qemu) --total
+  
+
+
+
+*************
+INTEGRACIA DO JEDNEHO NASTROJA
+
+Teraz som potreboval tuto funkcionalitu integrovat do jedneho nastroja, aby bolo
+vsetko v jednom csv subore, bez nutnosti manualneho zasahu.
+Preto som vykonal prikaz
+
+  sudo cp /usr/bin/dstat /usr/bin/dstat_custom
+
+cim som si vytvoril kopiu existujuceho nastroja dstat, kedze dokaze merat vsetko 
+okrem vytazenia pamate spusteneho zariadenia v UNetLab/EVE-ng topologii.
+Upravil som ho nasledovne
+
+(riadok 18 - import kniznice Sultan - vykonavanie BASH prikazov v Pythone)
+...
+from sultan.api import Sultan
+...
+
+(riadok 1187 - v triede "class dstat_mem(dstat)" -> metody "def __init__(self)"
+a "def extract(self)")
+...
+class dstat_mem(dstat):
+    def __init__(self):
+        self.name = 'memory usage'
+        self.nick = ('ps', 'ps_mem', 'cach', 'free')
+        self.vars = ('MemUsed-ps', 'MemUsed-ps_mem', 'Cached', 'MemFree')
+        self.open('/proc/meminfo')
+
+    def extract(self):
+        for l in self.splitlines():
+            if len(l) < 2: continue
+            name = l[0].split(':')[0]
+            if name in self.vars + ('MemTotal', ):
+                self.val[name] = long(l[1]) * 1024.0
+        #self.val['MemUsed'] = self.val['MemTotal'] - self.val['MemFree'] - self.val['Buffers'] - self.val['Cached']
+
+        mem_usage_of_eve_ng_device_file_path = "/tmp/ram_consumed_by_eve_ng_device.txt"
+
+        s = Sultan()
+
+        # PS METHOD
+        # Sultan outputs logs by default-good for debugging, not useful for production
+        # To enable logging, remove "logging=False" from Sultan.load() method
+        with open(mem_usage_of_eve_ng_device_file_path, 'w') as mem_usage_of_eve_ng_device_file:
+            mem_usage_of_eve_ng_device_in_kb = 0
+            mem_usage_of_eve_ng_device_file.write(str(mem_usage_of_eve_ng_device_in_kb))
+
+        with Sultan.load(logging=False) as s:
+            s.ps('-U', 'unl0', '-u', 'unl0', '-o', 'user,pid,rss,command').pipe().grep('unl0').pipe().awk('\'{s+=$3} END {print s}\'').redirect(
+                mem_usage_of_eve_ng_device_file_path,
+                append=False,
+                stdout=True,
+                stderr=False).run()
+
+        with open(mem_usage_of_eve_ng_device_file_path, 'r') as mem_usage_of_eve_ng_device_file:
+            try:
+                mem_usage_of_eve_ng_device_in_kb = int(mem_usage_of_eve_ng_device_file.read())
+            except:
+                mem_usage_of_eve_ng_device_in_kb = 0
+
+        self.val['MemUsed-ps'] = mem_usage_of_eve_ng_device_in_kb * 1024
+
+        # PS_MEM METHOD 
+        # sudo ps_mem -p $(pgrep -d, -u "unl0") --total
+        with open(mem_usage_of_eve_ng_device_file_path, 'w') as mem_usage_of_eve_ng_device_file:
+            mem_usage_of_eve_ng_device_in_bytes = 0
+            mem_usage_of_eve_ng_device_file.write(str(mem_usage_of_eve_ng_device_in_bytes))
+
+        with Sultan.load(logging=False, sudo=True) as s:
+            s.ps_mem('-p', '$(pgrep -d, -u "unl0")', '--total').redirect(
+                mem_usage_of_eve_ng_device_file_path,
+                append=False,
+                stdout=True,
+                stderr=False).run()
+
+        with open(mem_usage_of_eve_ng_device_file_path, 'r') as mem_usage_of_eve_ng_device_file:
+            try:
+                mem_usage_of_eve_ng_device_in_bytes = int(mem_usage_of_eve_ng_device_file.read())
+            except:
+                mem_usage_of_eve_ng_device_in_bytes = 0
+
+        self.val['MemUsed-ps_mem'] = mem_usage_of_eve_ng_device_in_bytes
+...
+
+...
+(riadok 2343 - v "def main()" - vypnutie opakovanej hlavicky (verzia dstatu,
+  Cmdline, nazvy stlpcov) - zbytocne duplicity, ktore navyse skresluju vysledky)
+
+    ### Prepare CSV output file
+    if op.output:
+        #if os.path.exists(op.output):
+            outputfile = open(op.output, 'a', 0)
+            #outputfile.write('\n\n')
+        #else:
+            #outputfile = open(op.output, 'w', 0)
+            #outputfile.write('"Dstat %s CSV output"\n' % VERSION)
+            #outputfile.write('"Author:","Dag Wieers <dag@wieers.com>",,,,"URL:","http://dag.wieers.com/home-made/dstat/"\n')
+
+        #outputfile.write('"Host:","%s",,,,"User:","%s"\n' % (hostname, user))
+        #outputfile.write('"Cmdline:","dstat %s",,,,"Date:","%s"\n\n' % (' '.join(op.args), time.strftime('%d %b %Y %H:%M:%S %Z', time.localtime())))
+
+
+
+Vo vyslednom CSV subore sa stlpce "used" a "buffered" v casti "memory usage"
+nahradia stlpcami "MemUsed-ps" a "MemUsed-ps_mem".
+Stlpce "Cached" a "MemFree" zostanú rovnake.
+
+*************
+KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
+
+  dstat_custom -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --noheaders --output profiling_<nazov_zariadenia>.csv
+
+  --noheaders - zabranuje opakovanemu vypisovaniu hlavicky na terminal a do
+                suboru - vypise sa iba jedna na zaciatku suboru
 
 
 *************
@@ -267,13 +486,35 @@ Benchmarking
 
 Zdroje:
   http://dag.wiee.rs/home-made/dstat/
-  https://stackoverflow.com/a/39136984
-  https://stackoverflow.com/a/31007290
+  https://stackoverflow.com/questions/3342889/how-do-i-measure-separate-cpu-core-usage-for-a-process/39136984#39136984
+  https://stackoverflow.com/questions/20124508/how-to-dynamically-monitor-cpu-per-core-usage-on-linux/31007290#31007290
   http://hadooppowered.com/2014/05/04/advanced-dstat/
   https://askubuntu.com/questions/218567/any-way-to-check-the-clock-speed-of-my-processor
-  https://askubuntu.com/a/741219
-  https://unix.stackexchange.com/a/55227
-  https://askubuntu.com/a/532430
+  https://askubuntu.com/questions/3561/how-do-i-monitor-disk-activity-on-a-specific-drive/741219#741219
+  https://unix.stackexchange.com/questions/55212/how-can-i-monitor-disk-io/55227#55227
+  https://askubuntu.com/questions/532424/how-to-monitor-bandwidth-usage-per-process/532430#532430
+
+  https://stackoverflow.com/questions/131303/how-to-measure-actual-memory-usage-of-an-application-or-process/133444#133444
+  https://stackoverflow.com/questions/36945322/how-to-get-certain-columns-from-ps-aux/36945545#36945545
+  https://stackoverflow.com/questions/14432261/how-to-use-awk-command-to-cut-field/14432286#14432286
+  https://github.com/pixelb/ps_mem
+  https://stackoverflow.com/questions/450799/shell-command-to-sum-integers-one-per-line/450821#450821
+  https://stackoverflow.com/questions/4256107/running-bash-commands-in-python/39274980#39274980
+  https://stackoverflow.com/a/9926661
+  https://github.com/aeroxis/sultan
+  http://sultan.readthedocs.io/en/latest/install-sultan.html
+  http://sultan.readthedocs.io/en/latest/sultan-examples.html#example-4-redirecting-with-pipes
+  http://sultan.readthedocs.io/en/latest/sultan-examples.html#example-5-redirecting-output-to-file
+  http://sultan.readthedocs.io/en/latest/sultan-examples.html#example-9-disable-logging
+  https://stackoverflow.com/questions/7880784/what-is-rss-and-vsz-in-linux-memory-management/21049737#21049737
+  https://unix.stackexchange.com/a/263766
+  https://stackoverflow.com/questions/7409780/reading-entire-file-in-python/7409814#7409814
+  http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+  https://stackoverflow.com/questions/642154/how-to-convert-strings-into-integers-in-python/642169#642169
+  https://stackoverflow.com/questions/11160939/writing-integer-values-to-a-file-using-out-write/11160976#11160976
+  https://stackoverflow.com/questions/56011/single-quotes-vs-double-quotes-in-python/56190#56190
+
+  https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
 
   https://superuser.com/questions/823260/how-to-adjust-the-y-axis-maximum-value-on-a-bar-chart-in-libreoffice-calc
   https://ask.libreoffice.org/en/question/2060/assigning-x-axis-to-a-spreadsheet-column/
