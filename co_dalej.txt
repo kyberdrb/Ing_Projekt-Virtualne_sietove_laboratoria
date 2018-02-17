@@ -12,7 +12,21 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--presunut obsah celeho adresara /opt/unetlab/addons/qemu na sdd
+-presunut obsah celeho adresara /opt/unetlab/addons/qemu na sda
+  -zistit aktualne volne miesto na sda (df -h /dev/sda)
+  -zistit velkost adresara /opt/unetlab/addons/qemu_sda/ (du -h /opt/unetlab/addons/qemu_sda/)
+  -zistit velkost adresara qemu/ (du -h /opt/unetlab/addons/qemu/)
+  -pripocitat ku aktualnemu volnemu miestu na sda1 velkost adresara
+  /opt/unetlab/addons/qemu_sda/
+    -ak bude volne miesto pre qemu/ adresar dostacujuce
+      -vymazat adresar qemu_sda/ (sudo rm -rf /opt/unetlab/addons/qemu_sda/)
+      -vytvorit adresar qemu_new (sudo mkdir -p /opt/unetlab/addons/qemu_new)
+      -skopirovat obsah adresara qemu/ do adresara qemu_new/
+        (sudo cp -R /opt/unetlab/addons/qemu/* /opt/unetlab/addons/qemu_new)
+      -po dokonceni kopirovania dokoncit skript na benchmarking a zacat 
+      benchmarkovat zariadenia
+
+  -mozno ako docasne ulozisko pouzit sdd (vytvorit particiu a sformatovat)
 
 
 -upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 

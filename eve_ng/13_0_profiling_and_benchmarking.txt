@@ -104,7 +104,7 @@ v UNetLab/EVE-ng topologii.
   
 Este lepsi a rovnako univerzalny variant (bez "grep" procesu)
 
-  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{s+=$3} END {print s}'
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{s+=$3} END {print s}'
 
 
 # skuska spravnosti predchadzajuceho prikazu
@@ -115,10 +115,10 @@ Este lepsi a rovnako univerzalny variant (bez "grep" procesu)
                                               "unl0" - IBA PRE IOL zariadenia!)
 
 Zobrazenie procesov
-  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu"
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d"
 
 Zobrazenie PID cisel
-  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{print $2}'
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{print $2}'
 
 
 ******
@@ -145,8 +145,8 @@ Vysledna hodnota je v bajtoch
   
   sudo python ps_mem.py -p $(pgrep -d, -u "unl0")   (iba pre IOL zariadenia!)
 
-Zobrazenie procesov (zoznam procesov pre spustene zariadenie v UNetLab/EVE-ng;
-univerzalne pre Dynamips/IOL/QEMU)
+Zobrazenie procesov
+(zoznam procesov pre spustene zariadenie v UNetLab/EVE-ng; univerzalne pre Dynamips/IOL/QEMU)
 
   pgrep -a -f /opt/unetlab/addons\|/opt/qemu
 
@@ -156,21 +156,25 @@ Zobrazenie PID cisel
 *************
 ZHRNUTIE PRIKAZOV A OVERENI
 
-Rychle zobrazenie vybranych procesov spusteneho zariadenia v UNetLab/EVE-ng
-topologii:
-  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu"
-  pgrep -a -f /opt/unetlab/addons\|/opt/qemu
+-staci skopirovat a prilepit do terminalu
+
+  clear
+
+#Rychle zobrazenie vybranych procesov spusteneho zariadenia v UNetLab/EVE-ng topologii
+#(pre ps aj ps_mem, kvoli tomu, aby sa merali rovnake procesy)
+
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d"
 
 
-Rychle zobrazenie PID cisel procesov spusteneho zariadenia
-  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{print $2}'
-  pgrep -f /opt/unetlab/addons\|/opt/qemu   (PID cisla pre procesy spusteneho zariadenia v 
-                            UNetLab/EVE-ng; Univerzalne pre Dynamips/IOL/QEMU)
+#Rychle zobrazenie PID cisel procesov spusteneho zariadenia
+#(pre ps aj ps_mem, kvoli tomu, aby sa merali rovnake procesy)
+
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{print $2}'
 
 
-Rychle porovnanie spotreby operacnej pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'
-  ps -e -o user,pid,rss,command | egrep "root|unl0|php" | egrep "/opt/unetlab/addons|/opt/qemu" | awk '{s+=$3} END {print s}'
-  sudo ps_mem -p $(pgrep -d, -f /opt/unetlab/addons\|/opt/qemu) --total
+#Rychle porovnanie spotreby operacnej pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{s+=$3} END {print s}'
+  sudo ps_mem -p $(ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{print $2}' | datamash transpose -t,) --total
   
 
 
@@ -191,7 +195,7 @@ zdrojoveho kodu. Upravil som ho tak, ze sa porovnavaju vysledky dvoch roznych
 prikazov, pricom som kladol doraz na presnost a konzistenciu vystupu tychto
 prikazov. Oba prikazy musia merat tie iste procesy, inak by vysledky mohli
 byt skreslene. Pouzivam prikazy z casti "Rychle porovnanie spotreby operacnej 
-pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'"
+pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'".
 
 Upravil som ho nasledovne:
 
@@ -230,7 +234,7 @@ class dstat_mem(dstat):
             mem_usage_of_eve_ng_device_file.write(str(mem_usage_of_eve_ng_device_in_kb))
 
         with Sultan.load(logging=False) as s:
-            s.ps('-U', 'unl0', '-u', 'unl0', '-o', 'user,pid,rss,command').pipe().grep('unl0').pipe().awk('\'{s+=$3} END {print s}\'').redirect(
+            s.ps('-e', '-o', 'user,pid,rss,command').pipe().egrep('"root|unl0"').pipe().egrep('"/opt/unetlab/addons|/opt/qemu"').pipe().sed('"/$USER/d"').pipe().awk('\'{s+=$3} END {print s}\'').redirect(
                 mem_usage_of_eve_ng_device_file_path,
                 append=False,
                 stdout=True,
@@ -245,13 +249,12 @@ class dstat_mem(dstat):
         self.val['MemUsed-ps'] = mem_usage_of_eve_ng_device_in_kb * 1024
 
         # PS_MEM METHOD 
-        # sudo ps_mem -p $(pgrep -d, -u "unl0") --total
         with open(mem_usage_of_eve_ng_device_file_path, 'w') as mem_usage_of_eve_ng_device_file:
             mem_usage_of_eve_ng_device_in_bytes = 0
             mem_usage_of_eve_ng_device_file.write(str(mem_usage_of_eve_ng_device_in_bytes))
 
         with Sultan.load(logging=False, sudo=True) as s:
-            s.ps_mem('-p', '$(pgrep -d, -u "unl0")', '--total').redirect(
+            s.ps_mem('-p', '$(ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk \'{print $2}\' | datamash transpose -t,)', '--total').redirect(
                 mem_usage_of_eve_ng_device_file_path,
                 append=False,
                 stdout=True,
@@ -306,8 +309,12 @@ zariadenia. Navyse, vsetky zariadenia su na inom pevnom disku, takze pri
 spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
 cas navyse.
 Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
-operacnej pamate:
+operacnej pamate.
+Prikaz "sudo -l" je sa musi vykonat kvoli nastroju "ps_mem". Tak sa vyziada
+heslo pre sudo pouzivatela v predstihu a nebude sa vyzadovat az po spusteni
+dstat_custom, co by mohlo skreslit vysledky.
 
+  sudo -l
   free
   sudo swapoff -a
   free

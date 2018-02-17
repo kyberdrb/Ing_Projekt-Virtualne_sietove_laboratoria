@@ -9,6 +9,79 @@ Je veľmi vhodné zmeniť heslo do EVE-ng MySQL databázy.
 
 Spravovať používateľov môže iba používateľ s rolou "Administrator".
 
+===========================================================================
+===========================================================================
+PRIPOJENIE SA NA MYSQL SERVER CEZ SSH TUNEL
+
+Pripojenie na server je zabezpecene cez SSH tunel.
+SSH je zabezpecene RSA klucom.
+
+===========================================================================
+1) Terminal
+
+Otvorime terminal.
+Vytvorime SSH tunel ku MySQL databazi na vzdialenom serveri
+
+  ssh -L 3306:localhost:3306 <REMOTE_SERVER_IP>
+
+Otvorime dalsiu kartu v terminali alebo novy terminal.
+Pripojime sa ku MySQL databazi
+
+  mysql -h 127.0.0.1 -P 3306 -u root -p eve_ng_db
+
+Zadame heslo do databaze.
+Po zadani hesla mozeme vykonavat prikazy v MySQL konzole.
+
+===========================================================================
+2) MySQL Workbench
+
+-Klikneme na ikonku "+" vedla "MySQL Connections"
+-Otvori sa dialogove okno "Setup New Connection". Zadame nasledovne parametre
+  -Connection Name:     <nazov_pripojenia>
+  -Connection Method:   Standard TCP/IP over SSH  <= takto pristupime k MySQL databaze cez SSH port forwarding
+  -"Parameters" karta
+    -SSH Hostname:      <IP_adresa_MySQL_servera>:22
+    -SSH Username:      <meno_pouzivatela>
+    -SSH Password:      <nemusime zadavat, ak nechceme alebo pouzivame SSH kluc>
+    -SSH Key File:      <vyberieme_subor_s_nasim_privatnym_klucom>
+    -MySQL Hostname:    127.0.0.1   <= localhost (kvoli bezpecnosti)
+    -MySQL Server Port: 3306
+    -Username:          <meno_mysql_pouzivatela>   <= obvykle root
+    -Password:          <nemusime zadavat, ak nechceme>
+    -Default Schema:    <zadame nazov databazy, do ktorej sa predvolene pripojime>
+  -Ulozime nastavenia stlacenim tlacidla "OK"
+
+-Na uvodnej obrazovke sa objavi novovytvorene pripojenie. Klikneme
+nan pravym tlacidlom mysi -> Edit Connection
+  -Otvori sa dialogove okno "Manage Server Connections"
+  -V hornej casti klikneme na kartu "Remote Management"
+    -Zvolime "SSH login based management"
+      -Hostname:
+      -Port:
+      -Username:
+      -Password:
+      -Ak pouzivame SSH kluc, zaskrtneme "Authenticate Using SSH Key"
+        -SSH Key Path:  <zadame absolutnu cestu k nasmu privatnemu SSH klucu>
+  -Nastavenia ulozime kliknutim na tlacidlo "Close"
+
+-Klikneme na novovytvorene MySQL pripojenie lavym tlacidlom mysi.
+-Ak sa objavi dialogove okno "Conenct to MySQL Server", zadame heslo k databazi
+prislusneho MySQL pouzivatela.
+-Aby sme nacitali vysetky databazy, klikneme na tlacidlo "Reconnect to DBMS"
+(posledne tlacidlo na hornej liste - ikonka Databazoveho servera so sipkami).
+-Po kliknuti na toto tlacidlo sa nacita zoznam vsetkych databaz ulozenych
+na MySQL serveri v "/var/lib/mysql/". Zoznam databaz sa zobrazi v lavom
+dolnom rohu okna.
+-Teraz mozeme s databazou pracovat napr.
+  -otvorime si eve_ng_db -> Tables -> users
+  -klikneme na tabulku 'users' pravym tlacidlom mysi
+    -> Select rows - Limit 1000
+  -Otvori sa nova karta s vypisanym zoznamom pouzivatelov.
+
+===========================================================================
+===========================================================================
+
+
 VYTVORENIE POUŽÍVATEĽA
 Web GUI:
 -Klikneme na tlačidlo "Add user"
@@ -28,7 +101,15 @@ V prípade, že používateľa nemôžeme pridať z web rozhrania, musíme sa pr
   mysql --host=localhost --user=root --password=eve-ng eve_ng_db  
   INSERT INTO users VALUES ('nazov_pouzivatela',NULL,'upravit.mail@provider.com',-1,'Eve-NG Administrator','85262adf74518bbb70c7cb94cd6159d91669e5a81edf1efebd543eadbda9fa2b',NULL,'','admin','',1);
 
-Tento záznam pridá používateľa "admin" s heslom "eve" a s rolou "admin" (administrátor).
+Tento záznam pridá používateľa
+
+  admin
+
+s heslom
+
+  eve
+  
+a s rolou "admin" (administrátor).
 Overíme, či sa záznam vložil do tabuľky "users"
 
   mysql --host=localhost --user=root --password=eve-ng eve_ng_db
@@ -43,7 +124,7 @@ VYMAZANIE POUŽÍVATEĽA
 
 ===========================================================================
 
-ÚPRAVA POUŽÍVATEĽA
+ÚPRAVA POUŽÍVATEĽA / RESET HESLA
 Web GUI:
 -V riadku konkrétneho používateľa klikneme na ikonku zápisníka "Edit" v stĺpci "Actions".
 -Upravíme požadované údaje (položku "POD" neupravujeme!)
@@ -53,13 +134,34 @@ Databáza:
   mysql --host=localhost --user=root --password=eve-ng eve_ng_db
   update users set role='admin' where username='pavel';
 
-===========================================================================
+Pre reset hesla konkretneho pouzivatela zadame prikaz:
 
-Zmena hesla používateľa (v prípade zabudnutého hesla)
--Upravíme používateľove polia "Password" a "Password Confirmation"
+  UPDATE eve_ng_db.users
+  SET password = '85262adf74518bbb70c7cb94cd6159d91669e5a81edf1efebd543eadbda9fa2b'
+  WHERE username = 'meno_pouzivatela';
+
+To zmeni pouzivatelovi heslo na 'eve'. (tomu zodpoveda aj prislusna HASH hodnota)
+
+Heslo pouzivatela, ktory zabudol heslo, moze zmenit aj iny pouzivatel typu
+"administrator" z web rozhrania EVE-ng. Postupujeme rovnako, ako v casti
+"ÚPRAVA POUŽÍVATEĽA -> Web GUI", pricom upravíme používateľove polia "Password"
+ a "Password Confirmation".
+
+
 
 
 Zdroje:
+
+https://stackoverflow.com/questions/18644812/how-to-view-table-contents-in-mysql-workbench-gui
+Connect to a Database Schema - MySQL Workbench
+  https://www.youtube.com/watch?v=Zuxvc9KDr48
+https://www.inmotionhosting.com/support/website/database-connections/connect-database-remotely-mysql-workbench
+https://www.cyberciti.biz/faq/how-do-i-access-mysql-server-from-the-shell-prompt-command-line/
+https://wiki.archlinux.org/index.php/MySQL
+https://stackoverflow.com/questions/11657829/error-2002-hy000-cant-connect-to-local-mysql-server-through-socket-var-run
+https://dev.mysql.com/doc/refman/5.7/en/show-tables.html
+https://dev.mysql.com/doc/workbench/en/wb-mysql-connections-remote-management.html
+
 https://stackoverflow.com/questions/1346209/unknown-column-in-field-list-error-on-mysql-update-query
 https://alvinalexander.com/blog/post/mysql/list-tables-in-mysql-database
 http://www.eve-ng.net/index.php/faq
