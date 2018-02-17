@@ -6,15 +6,19 @@ Potreboval som pouzit dalsi disk na rozne_zariadenia, pretoze mi dochadzalo mies
     z
     y
     y
+
   sudo cfdisk /dev/sdX
     Select label type: dos
-    New -> 2x odenterovat predvolene hodnoty velkosti particie a suboroveho systemu -> Write -> yes -> Quit
+    New -> odenterovat predvolene hodnoty velkosti particie a suboroveho 
+    systemu -> Write -> yes -> Quit
 
   lsblk -> skontrolujeme novo vytvorenu particiu
   sudo mkfs.ext4 /dev/sdX1
 
   sudo mount /dev/sdX1 /kam/namountovat/particiu
-    potom povodny adresar "rozne_zariadenia" rekurzivne skopirovat na tento disk a povodny adresar zmazat
+  
+    potom povodny adresar "rozne_zariadenia" rekurzivne skopirovat na tento 
+      disk a povodny adresar zmazat
     + zaistit automaticke mountovanie sdX1 po restarte v fstab
 
   sudo cp -R /kam/namountovat/particiu/* /docasny/adresar/pre/sdX1

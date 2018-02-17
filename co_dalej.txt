@@ -14,12 +14,12 @@ Ulohy:
 EVE-ng
 -presunut obsah celeho adresara /opt/unetlab/addons/qemu na sda
   -zistit aktualne volne miesto na sda (df -h /dev/sda)
-  -zistit velkost adresara /opt/unetlab/addons/qemu_sda/ (du -h /opt/unetlab/addons/qemu_sda/)
-  -zistit velkost adresara qemu/ (du -h /opt/unetlab/addons/qemu/)
+  -zistit velkost adresara /opt/unetlab/addons/qemu_sda1/ (du -sh /opt/unetlab/addons/qemu_sda1/)
+  -zistit velkost adresara qemu/ (du -sh /opt/unetlab/addons/qemu/)
   -pripocitat ku aktualnemu volnemu miestu na sda1 velkost adresara
-  /opt/unetlab/addons/qemu_sda/
+  /opt/unetlab/addons/qemu_sda1/
     -ak bude volne miesto pre qemu/ adresar dostacujuce
-      -vymazat adresar qemu_sda/ (sudo rm -rf /opt/unetlab/addons/qemu_sda/)
+      -vymazat adresar qemu_sda1/ (sudo rm -rf /opt/unetlab/addons/qemu_sda1/)
       -vytvorit adresar qemu_new (sudo mkdir -p /opt/unetlab/addons/qemu_new)
       -skopirovat obsah adresara qemu/ do adresara qemu_new/
         (sudo cp -R /opt/unetlab/addons/qemu/* /opt/unetlab/addons/qemu_new)
