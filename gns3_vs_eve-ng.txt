@@ -1,23 +1,27 @@
 Spolocne parametre
 -Multiplatformový - klientská aplikacia existuje pre Windows/Linux/Mac
 -Možnosť nasadena ako vzdialené servery
+-Podpora viacerých používateľov (multi-user)
+-Podpora viacerých používateľov pri práci na spoločnom projekte
 
 **********
    GNS3
 **********
 Výhody
+-Podpora Docker kontajnerov
 -Lepšia škálovateľnosť oproti EVE-ng
   -moznost vytvorit GNS3 cluster
--Podpora viacerych pouzivatelov
-  (trochu komplikovanejsia autentifikacia - treba este preskumat)
--Podpora viacerych pouzivatelov pri praci na spolocnom projekte
-  (topologia sa pri zmene okamzite aktualizuje)
+-Pri práci viacerých používateľov na jednom projekte sa
+  topologia sa pri zmene okamžite aktualizuje všetkým používateľom
 -Import pouzivatelskych uctov na vzdialeny GNS3 server z LDAP
 
 Nevýhody
 -Nutnost instalacie samostatnej klientskej aplikacie
 -Zložitejší na konfiguráciu
--Zložitejšie vytváranie šablón pre zariadenia - nutnosť manuálne pridať každé zariadenie; pri GNS3 clustri treba každé zariadenie pridať samostatne na každý server v clustri
+  -zložitejšia konfigurácia autentifikacie
+-Zložitejšie vytváranie šablón pre zariadenia
+  -nutnosť manuálne pridať každé zariadenie; pri GNS3 clustri treba každé
+  zariadenie pridať samostatne na každý server v clustri
 
 **********
   EVE-ng
@@ -30,12 +34,14 @@ Výhody
   pocitac nic, okrem weboveho prehliadaca a WireShark
 -Podpora viacerých používateľov (prihlasenie cez web login stranku)
 -Podpora viacerych pouzivatelov pri praci na spolocnom projekte
-  (topologia sa aktualizuje az po kliknuti sa ikonku "Refresh topology")
+  (topologia sa aktualizuje az po kliknuti sa ikonku "Refresh topology"
+  nie okamzite po jej zmene v porovnani s GNS3)
 -Jednoduchšie nasadenie na server v porovnaní s GNS3 (nainštalujeme EVE-ng server, 
   zabezpečíme ho, pridáme doň zariadenia a môžeme vytvárať projekty)
 -Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
 
 Nevýhody
+-Nepodporuje Docker kontajnery
 -Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením.
 -Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov
 -Web server (Apache) nie je chránený modulmi “modsecurity” (ochrana napr. Proti SQL Injection) a “modevasive” (ochrana proti DoS a DDoS útokom)

@@ -295,7 +295,7 @@ Stlpce "Cached" a "MemFree" zostanú rovnake.
 *************
 KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
 
-  dstat_custom -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --noheaders --output profiling_<nazov_zariadenia>.csv
+  dstat_custom -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --noheaders --output <nazov_zariadenia>.csv
 
   --noheaders - zabranuje opakovanemu vypisovaniu hlavicky na terminal a do
                 suboru - vypise sa iba jedna na zaciatku suboru
@@ -491,7 +491,7 @@ Profiling
 8  - cpu6 usage (%)
 9  - cpu7 usage (%)
 10 - All CPUs combined usage (%)
-11 - Relative memory usage (MB)
+11 - Combined relative memory usage [ps + ps_mem] (MB)
 12 - Disk: read (blue) and write (green) speed (kB/s)
 13 - Disk utilization (%)
 14 - Disk: Number of read (blue) and write (green) operations (ops/s)
@@ -520,6 +520,13 @@ Zdroje:
 
   https://stackoverflow.com/questions/131303/how-to-measure-actual-memory-usage-of-an-application-or-process/133444#133444
   https://stackoverflow.com/questions/36945322/how-to-get-certain-columns-from-ps-aux/36945545#36945545
+
+  Transponovanie stlpca na riadok, lebo ps_mem chce zoznam PID cisel procesov
+  v riadku za sebou oddelenych ciarkami bez medzier
+    http://www.thelinuxrain.com/articles/transposing-rows-and-columns-3-methods
+
+  https://askubuntu.com/questions/76808/how-do-i-use-variables-in-a-sed-command/76842#76842
+  https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string/5410784#5410784
   https://stackoverflow.com/questions/14432261/how-to-use-awk-command-to-cut-field/14432286#14432286
   https://github.com/pixelb/ps_mem
   https://stackoverflow.com/questions/450799/shell-command-to-sum-integers-one-per-line/450821#450821

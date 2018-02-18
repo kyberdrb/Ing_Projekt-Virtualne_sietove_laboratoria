@@ -130,6 +130,11 @@ Ale v EVE-ng sa Windows virtualka nespustila - zamrzla na bootovacej obrazovke.
 
 
 Sources:
-  https://pve.proxmox.com/wiki/Windows_2012_guest_best_practices"
+  https://pve.proxmox.com/wiki/Windows_2012_guest_best_practices
+  https://fedoraproject.org/wiki/Windows_Virtio_Drivers
   https://www.suse.com/documentation/sles11/book_kvm/data/sec_libvirt_config_cdrom.html
   http://www.eve-ng.net/index.php/documentation/howto-s/103-how-to-install-own-windows-host-on-the-eve
+  
+  Windows Server 2012 install onto Qemu with Virtio drivers
+    https://www.youtube.com/watch?v=kSG6_A4MqFo
+

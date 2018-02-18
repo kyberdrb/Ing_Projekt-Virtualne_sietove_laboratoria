@@ -12,25 +12,15 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--presunut obsah celeho adresara /opt/unetlab/addons/qemu na sda
-  -zistit aktualne volne miesto na sda (df -h /dev/sda)
-  -zistit velkost adresara /opt/unetlab/addons/qemu_sda1/ (du -sh /opt/unetlab/addons/qemu_sda1/)
-  -zistit velkost adresara qemu/ (du -sh /opt/unetlab/addons/qemu/)
-  -pripocitat ku aktualnemu volnemu miestu na sda1 velkost adresara
-  /opt/unetlab/addons/qemu_sda1/
-    -ak bude volne miesto pre qemu/ adresar dostacujuce
-      -vymazat adresar qemu_sda1/ (sudo rm -rf /opt/unetlab/addons/qemu_sda1/)
-      -vytvorit adresar qemu_new (sudo mkdir -p /opt/unetlab/addons/qemu_new)
-      -skopirovat obsah adresara qemu/ do adresara qemu_new/
-        (sudo cp -R /opt/unetlab/addons/qemu/* /opt/unetlab/addons/qemu_new)
-      -po dokonceni kopirovania dokoncit skript na benchmarking a zacat 
-      benchmarkovat zariadenia
-
-  -mozno ako docasne ulozisko pouzit sdd (vytvorit particiu a sformatovat)
-
-
+-zapisat si, co obsahuje kazdy disk na sirene
+  -sda  - (aktivny) system
+  -sdb1 - (aktivny) /opt/unetlab/addons/rozne_zariadenia
+  -sdc1 - (zalozny - nemountovat po starte) /opt/unetlab/addons/qemu/
+  -sdd1 - (aktivny) /opt/unetlab/addons/qemu/zariadenia_v_zalohe/
+  
 -upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 
-  + dstat_custom skopirovat tiez do gitu a dat ho do backup skriptu
+  + dstat_custom skopirovat tiez do gitu a dat ho do backup skriptu (mozno
+  urobit fork dstatu a dat si ho na moj github)
 -skopirovat obsahy skriptov v HOME zo sireny do git repa
 
 -otvorit vsetky porty na FW pre eve-ng
@@ -117,8 +107,10 @@ GNS3
     -autentifikacia voci gns3 klientovi
       https://gns3.com/discussions/i-implemented-multiuser-gns3-s-2
       http://forum.gns3.net/topic314.html
+      https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
     
-  -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm + upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
+  -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm
+  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
     -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
     v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
     -vyhodnotit
@@ -132,7 +124,9 @@ GNS3
 -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
--Ako importovat pouzivatelske ucty z LDAP do databazy (MySQL)?
+-Ako importovat pouzivatelske ucty z LDAP do databazy (MySQL pre EVE-ng)?
+alebo
+do Linuxu (GNS3)
 -IPFS
 -Plotly/matplotlib - python kniznica pre vizualizaciu grafov
 -Graphana - web framework pre vizualizaciu grafov
@@ -152,6 +146,9 @@ Co dalej?
 -Blockchain - matematika+siete+kryptomeny
 -Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng
     http://www.eve-ng.net/forum/viewtopic.php?f=6&t=812
+Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
+  https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
+  https://www.youtube.com/watch?v=-EP_qtNQFsE&hd=1
 -linux file sync backup
   https://unix.stackexchange.com/questions/307046/real-time-file-synchronization
   https://syncthing.net/
