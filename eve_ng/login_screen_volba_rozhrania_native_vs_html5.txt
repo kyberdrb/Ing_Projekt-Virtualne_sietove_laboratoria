@@ -1,2 +1,3 @@
 Native - vyzaduje vsetko predinstalovane lokalne na PC
-HTML5 - s pouzitim HTTP proxy sa vsetka interakcia deje cez prehliadac - iba wireshark treba mat nainstalovany lokalne kvoli odchytavaniu
+HTML5 - s pouzitim HTTP proxy sa vsetka interakcia deje cez prehliadac
+    - iba wireshark treba mat nainstalovany lokalne kvoli odchytavaniu

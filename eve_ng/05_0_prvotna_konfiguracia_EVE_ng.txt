@@ -1,5 +1,6 @@
 **************   !!!!!!!!!!!!!!!!!!!!!!! **************
-Tento navod robime iba vtedy, ked sme EVE-ng instalovali do Ubuntu z eve-ng repozitara.
+Kroky, ktore sme už vykonali v predchádzajúcich častiach,
+môžeme vynechať
 **************   !!!!!!!!!!!!!!!!!!!!!!! **************
 
 Follow the Ubuntu server installation. During install please choose only OpenSSH server as a feature to be installed !!!!

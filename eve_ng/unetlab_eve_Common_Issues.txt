@@ -32,12 +32,12 @@ After reboot, everything work well.
 
 
 Zdroj:
-	https://disqus.com/home/discussion/unetlab/installing_unetlab_on_a_physical_server_baremetal_installation/#comment-2243311556
+  https://disqus.com/home/discussion/unetlab/installing_unetlab_on_a_physical_server_baremetal_installation/#comment-2243311556
 
 #######################################
 
 # Administrácia používateľov, časté problémy a riešenia
-http://rejohn.cuar.es/2015/08/24/unetlab-common-issues/
+  http://rejohn.cuar.es/2015/08/24/unetlab-common-issues/
 
 #######################################
 
@@ -47,4 +47,11 @@ V toolbare na ľavej strane klikneme na položku "Refresh topology". Pokiaľ ani
 #######################################
 
 # QEMU boxom by možno pomohol rozbehnúť sa tento link
-https://pve.proxmox.com/wiki/Nested_Virtualization
+  https://pve.proxmox.com/wiki/Nested_Virtualization
+
+#######################################
+
+Riesenia dalsich moznych komplikacii so zariadeniami
+napr.
+"INIT: Id "TO" respawning too fast: disabled for 5 minutes"
+  http://z0b.kapsi.fi/vyatta_vbox.php

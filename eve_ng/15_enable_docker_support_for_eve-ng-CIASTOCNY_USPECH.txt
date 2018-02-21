@@ -87,9 +87,11 @@ root@lab:~# systemctl status docker.service
 
 Modifying EVE-NG
 
-EVE-NG has support for Docker built in but it is currently commented out. In order to get things working, we’ll need to modify some files.
+EVE-NG has support for Docker built in but it is currently commented out.
+In order to get things working, we’ll need to modify some files.
 
-You’ll need to uncomment the following line in the init.php file. This will allow EVE-NG to use the docker template.
+You’ll need to uncomment the following line in the init.php file.
+This will allow EVE-NG to use the docker template.
 
 sudo vim /opt/unetlab/html/includes/init.php
 

@@ -47,13 +47,15 @@ Zmenit nastavenia v konfiguracnom subore SSH
   
 Protocol 2
 
-AllowUsers andrej
+#AllowUsers andrej  #toto je velmi striktne zabezpecenie
 DenyUsers root
 DenyGroups root
 
 # Authentication  
 PermitRootLogin no
 StrictMode no  -> toto umozni prihlasit sa certifikatom z Windowsu (lebo NTFS prepise prava na certifikate na 777; StrictMode ocakava 600)
+RSAAuthentication yes
+PubkeyAuthentication yes
 
 # To enable empty passwords, change to yes (NOT RECOMMENDED)
 PermitEmptyPasswords no
@@ -63,9 +65,9 @@ X11Forwarding no
 TCPKeepAlive no
 
 
--Nacitame nove nastavenia pre SSH
+-Nacitame novu konfiguraciu pre SSH
 
-    sudo service ssh reload
+    sudo systemctl reload ssh
 
   -potom odskusame prihlasenie ako root aj ako pouzivatel. Po zadani spravneho hesla pouzivatela sa okamzite prihlasime. Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
 
@@ -154,6 +156,9 @@ na
 -nacitame novu SSHkonfiguraciu
 
   sudo service ssh reload
+
+
+
 
 
 ************* ZABEZPECENIE APACHE *************

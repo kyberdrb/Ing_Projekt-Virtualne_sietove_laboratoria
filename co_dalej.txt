@@ -12,37 +12,16 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--zapisat si, co obsahuje kazdy disk na sirene
-  -sda  - (aktivny) system
-  -sdb1 - (aktivny) /opt/unetlab/addons/rozne_zariadenia
-  -sdc1 - (zalozny - nemountovat po starte) /opt/unetlab/addons/qemu/
-  -sdd1 - (aktivny) /opt/unetlab/addons/qemu/zariadenia_v_zalohe/
-  
--upravit zalohovaci skript: fstab subor do "etc" kvoli mountovaniu dalsieho disku 
-  + dstat_custom skopirovat tiez do gitu a dat ho do backup skriptu (mozno
-  urobit fork dstatu a dat si ho na moj github)
--skopirovat obsahy skriptov v HOME zo sireny do git repa
 
--otvorit vsetky porty na FW pre eve-ng
+-zacat benchmarking and profiling vybraych EVE-ng zariadeni
+  -urobit skript aj na profiling zariadeni (dstat)
+    -profiling, konkretne generovanie dat, urobit tak, aby to bolo SEAMLESS (copy paste do vopred pripraveneho generickeho calc dokumentu)
+  -vybrat si zariadenia, ktore budem benchmarkovat
+  -obenchmarkovat ich vytvorenym skriptom
+  -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
--urobit eve-ng integraciu do weboveho prehliadaca (EVE-ng integration)
-  https://www.youtube.com/watch?v=Ea4U93991dw
-  -autentifikacia cez SSH kluce by mohla sposobovat problemy s wireshark 
-  odchytavanim v EVE-ng => Riesenie: upravit subor:
-    (pred instalaciou)
-    ~/github/eve-ng-integration/bin/eve-ng-integration
-      resp.
-    (po instalacii)
-    /usr/bin/eve-ng-integration
-    -upravit ich tak, aby ssh prikaz nebol na "root" ucet ale na novovytvoreny
-    "wireshark" ucet s ssh klucom (upravit ssh prikaz s prepinacom "-i")
-    + upravit aj instalacny skript
-    + pridat do README navod/FAQ otazku, ako zmenit aplikacie, ktore eve-integration
-    spusta -> editovat vyssie uvedene subory (podla toho, ci tak potrebujeme urobit
-    pred/po instalacii) a zmenit otvarane aplikacie
-    -> mozno dat na to pull request
-
--rozbehnut KVM virtualku v LXC kontaineri (.51)->
+-rozbehnut KVM virtualku v LXC kontaineri na sirene (vyziadat IPcku .52)
+-rozbehnut KVM virtualku v LXC kontaineri na Odyseovi(.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
     ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
     presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
@@ -55,23 +34,9 @@ EVE-ng
     TiMOS-B-13.0.R4 both/i386 ALCATEL SR 7750 Copyright (c) 2000-2015 Alcatel-Lucent.
   => skopirovat
 
-
-
--odskusat wireshark odchytavanie
-  -nativna konzola: funguje po instalacii Linux/Windows Integration Pack-u
-  -html5 konzola: neda sa na nu pripojit
-
--zistit Wiresharkom, preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
-  -neviem, hned ukonci TCP relaciu
--EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
-
--zacat benchmarking and profiling vybraych EVE-ng zariadeni
-  -urobit skript aj na profiling zariadeni (dstat)
-    -profiling, konkretne generovanie dat, urobit tak, aby to bolo SEAMLESS (copy paste do vopred pripraveneho generickeho calc dokumentu)
-  -vybrat si zariadenia, ktore budem benchmarkovat
-  -obenchmarkovat ich vytvorenym skriptom
-  -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
+-skopirovat vsetky skripty v HOME zo sireny do git repa /eve-ng/skripty
+  + dat ich do adresara ./eve-ng/skripty, ale ponechat nazov, ako na gite,
+  nie ako su na vzdialenom serveri (aby bolo jasne kam patria)
 
 -zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
 
@@ -120,10 +85,14 @@ GNS3
     -vypytat si ich od veduceho
     
 
-
--do diplomky dat na koniec kapitolu "co dalej"
+Diplomka
+  -do diplomky dat na koniec kapitolu "co dalej"
 
 Co dalej?
+-zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
+  -neviem, hned ukonci TCP relaciu - mozno pomoze otvorit vsetky porty na FW pre eve-ng
+-EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
+-otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 -Ako importovat pouzivatelske ucty z LDAP do databazy (MySQL pre EVE-ng)?
 alebo
 do Linuxu (GNS3)

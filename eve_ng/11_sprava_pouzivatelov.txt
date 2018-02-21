@@ -22,7 +22,16 @@ SSH je zabezpecene RSA klucom.
 Otvorime terminal.
 Vytvorime SSH tunel ku MySQL databazi na vzdialenom serveri
 
-  ssh -L 3306:localhost:3306 <REMOTE_SERVER_IP>
+  ssh -f -o ExitOnForwardFailure=yes -L 3306:localhost:3306 <REMOTE_SERVER_IP> sleep 30
+
+Otvori sa SSH pripojenie (tunel) ku vzdialenemu serveru s definovanym 
+port-forwardingom. MySQL port sa presmeruje do SSH tunela.
+SSH pripojenie sa nasledne presunie na pozadie (prepinac "-f").
+Ak sa na MySQL server nepripojime pocas doby uvedenej za prikazom "sleep",
+pripojenie (tunel) bude automaticky zatvorene.
+Tunel zostane otvoreny pocas celeho pouzivania aplikacie (MySQL).
+Po ukonceni aplikacie (MySQL) sa SSH tunel automaticky ukonci.
+
 
 Otvorime dalsiu kartu v terminali alebo novy terminal.
 Pripojime sa ku MySQL databazi
@@ -151,7 +160,7 @@ Heslo pouzivatela, ktory zabudol heslo, moze zmenit aj iny pouzivatel typu
 
 
 Zdroje:
-
+https://gist.github.com/scy/6781836
 https://stackoverflow.com/questions/18644812/how-to-view-table-contents-in-mysql-workbench-gui
 Connect to a Database Schema - MySQL Workbench
   https://www.youtube.com/watch?v=Zuxvc9KDr48

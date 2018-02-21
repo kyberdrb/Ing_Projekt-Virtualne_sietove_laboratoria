@@ -1,0 +1,4 @@
+-sda  - (aktivny) system
+-sdb1 - (aktivny) /opt/unetlab/addons/rozne_zariadenia
+-sdc1 - (zalozny - nemountovat po starte) /opt/unetlab/addons/qemu/
+-sdd1 - (aktivny) /opt/unetlab/addons/qemu/zariadenia_v_zalohe/
