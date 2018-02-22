@@ -12,11 +12,10 @@ Zazitky:
 Ulohy:
 
 EVE-ng
-
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
-  -urobit skript aj na profiling zariadeni (dstat)
-    -profiling, konkretne generovanie dat, urobit tak, aby to bolo SEAMLESS (copy paste do vopred pripraveneho generickeho calc dokumentu)
-  -vybrat si zariadenia, ktore budem benchmarkovat
+  -KONZULTOVAT S VEDUCIM
+  -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
+    "profiling_sirena_sablona_nova-dstat_custom.ods"
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
@@ -39,6 +38,14 @@ EVE-ng
   nie ako su na vzdialenom serveri (aby bolo jasne kam patria)
 
 -zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
+
+
+
+
+
+
+
+
 
 
 
@@ -85,8 +92,26 @@ GNS3
     -vypytat si ich od veduceho
     
 
+
+
+
+
+
 Diplomka
   -do diplomky dat na koniec kapitolu "co dalej"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Co dalej?
 -zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
@@ -100,8 +125,8 @@ do Linuxu (GNS3)
 -Plotly/matplotlib - python kniznica pre vizualizaciu grafov
 -Graphana - web framework pre vizualizaciu grafov
 -netdata
-  -monitorovanie zdrojov v realnom case (treba doriesit zabezpecenie 
-  [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
+  -treba doriesit zabezpecenie 
+    [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
 -urobit windows koncove zariadenie pre EVE-ng; najlepsie s virtio ovladacmi 
   -Windows 10 x86/x64
   -Windows Server 2016

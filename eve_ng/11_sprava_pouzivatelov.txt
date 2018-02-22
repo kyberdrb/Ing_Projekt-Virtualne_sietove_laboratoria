@@ -161,6 +161,7 @@ Heslo pouzivatela, ktory zabudol heslo, moze zmenit aj iny pouzivatel typu
 
 Zdroje:
 https://gist.github.com/scy/6781836
+
 https://stackoverflow.com/questions/18644812/how-to-view-table-contents-in-mysql-workbench-gui
 Connect to a Database Schema - MySQL Workbench
   https://www.youtube.com/watch?v=Zuxvc9KDr48

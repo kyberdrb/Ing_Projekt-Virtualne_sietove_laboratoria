@@ -43,18 +43,24 @@ PermitRootLogin prohibit-password
 to
 PermitRootLogin yes
 
+
 5. Save settings (:wq) and do restart ssh server:
 
 sudo service ssh restart
+alebo
+sudo systemctl restart ssh
+
 
 6. Restart your server:
 
 reboot
 
+
 7. TENTO KROK NIE JE POTREBNY. After first boot, ssh IP to your server and modify:
 
 sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0"/'  /etc/default/grub
 update-grub
+
 
 8. IMPORTANT!!! Do adding’s and necessary changes for this file below. It can also to be a static IP as well, follow Linux Ubuntu how to set stat IP for the interface. example below showing DHCP IP settings.
 
@@ -98,8 +104,9 @@ reboot
 
 11. Update server:
 
-  sudo apt-get update
-  sudo apt-get install software-properties-common python3-software-properties python-software-properties
+  sudo apt-get install aptitude
+  sudo aptitude update
+  sudo aptitude install software-properties-common python3-software-properties python-software-properties
   sudo add-apt-repository "deb [arch=amd64]  http://www.eve-ng.net/repo xenial main"
   sudo apt-get update
 

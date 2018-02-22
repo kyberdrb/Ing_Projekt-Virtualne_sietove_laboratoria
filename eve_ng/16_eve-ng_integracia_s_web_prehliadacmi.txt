@@ -110,6 +110,7 @@ Zdroje:
   https://github.com/SmartFinn/eve-ng-integration
   https://github.com/kyberdrb/eve-ng-integration
   http://www.eve-ng.net/index.php/downloads/windows-client-side-pack
+  http://forum.802101.com/solved-doesn-t-work-wireshark-t163.html
   https://unix.stackexchange.com/questions/75902/how-to-run-xfce-terminal-with-different-commands-per-tab-and-keep-using-the-tabs
   https://gist.github.com/scy/6781836
   https://bbs.archlinux.org/viewtopic.php?pid=1474224#p1474224

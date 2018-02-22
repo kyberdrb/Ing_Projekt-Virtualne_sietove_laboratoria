@@ -88,6 +88,15 @@ Tak som zase v BIOSe nastavil "Flash Write" na Enabled (zapnutie ochrany BIOSu p
 Ukazalo sa, ze aktualizacia BIOSu na serveri je technicky narocna, preto som sa rozhodol nevykonat ju.
 
 ************* POSTUP INSTALACIE *************
+*************
+UBUNTU SERVER 16.04 x64
+
+Postupujeme podla
+  http://www.eve-ng.net/index.php/documentation/installation/bare-install
+
+
+*************
+EVE-NG ISO
 
 -Spustime prave nakonfigurovanu EVE virtualku.
 -Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
