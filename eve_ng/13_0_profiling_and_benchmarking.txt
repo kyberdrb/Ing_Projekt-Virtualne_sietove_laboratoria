@@ -276,7 +276,7 @@ class dstat_mem(dstat):
     ### Prepare CSV output file
     if op.output:
         #if os.path.exists(op.output):
-            outputfile = open(op.output, 'a', 0)
+            outputfile = open(op.output, 'w', 0)
             #outputfile.write('\n\n')
         #else:
             #outputfile = open(op.output, 'w', 0)
@@ -403,7 +403,7 @@ POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
 
 
 *************
-ANALYZA VYSTUPNEHO CSV SUBORU
+IMPORT A ANALYZA VYSTUPNEHO CSV SUBORU
 
 LibreOffice Calc dokument je vytvoreny na mieru pre suborovy vystup prikazu:
 
@@ -414,7 +414,8 @@ Priklad pouzitia:
 -Otvorime CSV subor vystup-edited.csv -> V dialogovom okne "Text Import" zvolime:
   -Character set: Unicode (UTF-16)
   -Default - English (USA)
-  -Separator Options -> Separated by -> zaskrtneme iba "Comma" a "Merge delimiters"
+  -Separator Options -> Separated by -> zaskrtneme iba "Comma" a 
+    odskrtneme "Merge delimiters"
 -Oznacime jeho obsah
 -Otvorime sablonu
 -Oznacime bunku A1
@@ -556,3 +557,4 @@ Zdroje:
   https://www.ablebits.com/office-addins-blog/2016/11/30/excel-compare-strings/
   https://support.office.com/en-us/article/Move-or-copy-a-formula-1f5cf825-9b07-41b1-8719-bf88b07450c6
   http://www.notjustnumbers.co.uk/2013/06/excel-tip-quick-way-to-add-dollar-signs.html
+  https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_ROUNDDOWN_function
