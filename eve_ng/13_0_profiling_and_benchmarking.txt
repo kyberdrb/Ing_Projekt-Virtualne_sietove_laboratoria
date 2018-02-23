@@ -390,6 +390,10 @@ POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
   sablony pre meranie vykonnosti a zadame zmerany cas spustania zariadenia.
   Vsetky grafy a tabulky sa prisposobia vstupnym udajom a je ich mozne okamzite
   ulozit ako obrazok.
+
+  !!!!!! OKREM GRAFU VYUZITIA OPERACNEJ PAMATE !!!!!! v ktorom treba manualne 
+  upravit os X na hodnotu blizku maximu!
+
 -Na zaklade analyzy merania vykonnosti zariadenia sa rozhodneme, ci a ako zmenime 
   jeho parametre:
   -pocet CPU bude nastaveny na 1, ak to zariadenie dovoli a spusti sa
@@ -439,7 +443,13 @@ Ako som vytvaral stlpce:
 
 Ako som vytvaral grafy:
   -pre profiling som vytvaral X/Y Scatter plot grafy, lebo prave tym som mohol 
-    explicitne priradit os X
+  explicitne priradit os X
+    -ako "Line Type" som zvolil "Stepped" pre vsetky profiling grafy, 
+      lebo pri "Smooth" ciare to v grafoch vytazenia CPU a disku presahovalo 
+      nad 100%, hoci v stlpci boli udaje iba v intervale <0; 100>
+    -dstat_custom aj netdata potvrdili, ze disk sda je v niektorych okamihoch
+      vyuzity na viac ako 100%, preto som hodnoty, ktore presahovali 100
+      zmenil na 100
   -pre benchmarking som vytvaral Bar Chart grafy, aby som mohol priamo porovnat
     priemerne hodnoty meranych velicin pocas spustania a po spusteni
   -grafom s percentualnou metrikou som nastavil maximalnu hodnotu osi Y na 100
