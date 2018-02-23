@@ -146,7 +146,7 @@ Type the domain name (default is example.com):
 Mind that hostname and domain name are critical for IOU/IOL license.
 
 Select if management IP address should be static or configured by DHCP (default is dhcp, use arrow keys and space to select, then enter to confirm):
-
+(ZVOLIME STATICKU IP)
 Static IP address will ask for IP address, netmask, default gateway, primary and secondary DNS servers.
 
 Type the NTP server or leave blank if not used (default is blank):

@@ -12,6 +12,8 @@ Zazitky:
 Ulohy:
 
 EVE-ng
+-do zalohovacieho skriptu dat konfigurak eve-ng-lxc
+  /var/
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
   -KONZULTOVAT S VEDUCIM
   -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
@@ -19,8 +21,8 @@ EVE-ng
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
--rozbehnut KVM virtualku v LXC kontaineri na sirene (IP: .53)
--rozbehnut KVM virtualku v LXC kontaineri na Odyseovi(.51)->
+-rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
+-rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
     ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
     presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
