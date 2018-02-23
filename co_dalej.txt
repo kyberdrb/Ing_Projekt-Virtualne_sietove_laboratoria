@@ -19,7 +19,7 @@ EVE-ng
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
 
--rozbehnut KVM virtualku v LXC kontaineri na sirene (vyziadat IPcku .52)
+-rozbehnut KVM virtualku v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v LXC kontaineri na Odyseovi(.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
     ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
@@ -114,6 +114,21 @@ Diplomka
 
 
 Co dalej?
+-Preskumat labaky
+  https://adamfromthefuture.blogspot.sk/2017/12/ccna-rs-prep-hero-level-rip.html
+  
+  https://certcollection.org/forum/topic/311957-collection-of-unetlab-iouios-and-qemu-for-eve-ng/#entry1161364
+    konkretne
+  https://mega.nz/#F!QWpTkL6I!aoxcgZ-c4hETZ5dK9udQLA!hWQzSazD
+
+  https://certcollection.org/forum/topic/316843-preloaded-eve-lite-edition-vm/#entry1191332
+    konkretne
+  https://cloud.mail.ru/public/MUgt/WFij4yTCB
+
+  https://certcollection.org/forum/topic/318612-eve-comm-edition-added-h1-h2-h3-ts1-ts2/#entry1203852
+    konkretne
+  https://mega.nz/#!EllR1DhZ!N4vfwBx1PqxF-MmGhziCi6S62vnT0r1WZlJqCOSbOcA
+
 -zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
   -neviem, hned ukonci TCP relaciu - mozno pomoze otvorit vsetky porty na FW pre eve-ng
 -EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
