@@ -12,14 +12,24 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--do zalohovacieho skriptu dat konfigurak eve-ng-lxc
-  /var/
+-zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
+  -> otvorit 8080 8005 porty -> nepomohlo - tam problem nebude
+  -neviem, hned ukonci TCP relaciu - mozno pomoze otvorit vsetky porty na FW pre eve-ng
+  -PO OTVORENI VSETKYCH PORTOV NA FW HTML KONZOLA FUNGUJE! -> ODCHYTIT WIRESHARKOM
+  A ZISTIT, KTORE PORTY SA POUZIVAJU!
+  -otvorit port 6653 - ovs-testcontrol (jedina sluzba, ktoru som nepovoloval otvorena
+  na internet)
+
 -zacat benchmarking and profiling vybraych EVE-ng zariadeni
-  -KONZULTOVAT S VEDUCIM
   -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
     "profiling_sirena_sablona_nova-dstat_custom.ods"
   -obenchmarkovat ich vytvorenym skriptom
   -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
+
+-otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
+
+-do zalohovacieho skriptu dat konfigurak eve-ng-lxc
+  /var/lib/lxc/eve-ng-lxc/config
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
@@ -116,6 +126,10 @@ Diplomka
 
 
 Co dalej?
+-Zabezpecit EVE-ng web server lepsie
+  -modsecurity, modevasive
+  -lepsie HTTPS zabezpecenie
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
 -Preskumat labaky
   https://adamfromthefuture.blogspot.sk/2017/12/ccna-rs-prep-hero-level-rip.html
   
@@ -131,10 +145,6 @@ Co dalej?
     konkretne
   https://mega.nz/#!EllR1DhZ!N4vfwBx1PqxF-MmGhziCi6S62vnT0r1WZlJqCOSbOcA
 
--zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW) -> otvorit 8080 8005 porty
-  -neviem, hned ukonci TCP relaciu - mozno pomoze otvorit vsetky porty na FW pre eve-ng
--EVE-ng: na login stranke nastavit html5 konzolu ako predvolenu
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 -Ako importovat pouzivatelske ucty z LDAP do databazy (MySQL pre EVE-ng)?
 alebo
 do Linuxu (GNS3)
