@@ -261,6 +261,9 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 158.193.152.0   0.0.0.0         255.255.255.128 U     0      0        0 pnet0
 
 
+# Teraz by uz mala byt internetova konektivita dnu aj von pre LXC kontajner
+
+
 
 
 Sources:

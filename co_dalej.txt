@@ -12,6 +12,12 @@ Zazitky:
 Ulohy:
 
 EVE-ng
+-zacat benchmarking and profiling vybraych EVE-ng zariadeni
+  -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
+    "profiling_sirena_sablona_nova-dstat_custom.ods"
+  -obenchmarkovat ich vytvorenym skriptom
+  -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
+
 -zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
   -> otvorit 8080 8005 porty -> nepomohlo - tam problem nebude
   -neviem, hned ukonci TCP relaciu - mozno pomoze otvorit vsetky porty na FW pre eve-ng
@@ -20,16 +26,11 @@ EVE-ng
   -otvorit port 6653 - ovs-testcontrol (jedina sluzba, ktoru som nepovoloval otvorena
   na internet)
 
--zacat benchmarking and profiling vybraych EVE-ng zariadeni
-  -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
-    "profiling_sirena_sablona_nova-dstat_custom.ods"
-  -obenchmarkovat ich vytvorenym skriptom
-  -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
-
 -otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
 
 -do zalohovacieho skriptu dat konfigurak eve-ng-lxc
   /var/lib/lxc/eve-ng-lxc/config
+-do konfiguracie EVE-ng v LXC dat cele konfiguraky
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->

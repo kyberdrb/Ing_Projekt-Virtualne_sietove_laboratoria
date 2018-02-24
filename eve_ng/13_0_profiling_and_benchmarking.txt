@@ -292,14 +292,6 @@ Vo vyslednom CSV subore sa stlpce "used" a "buffered" v casti "memory usage"
 nahradia stlpcami "MemUsed-ps" a "MemUsed-ps_mem".
 Stlpce "Cached" a "MemFree" zostanú rovnake.
 
-*************
-KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
-
-  dstat_custom -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --noheaders --output <nazov_zariadenia>.csv
-
-  --noheaders - zabranuje opakovanemu vypisovaniu hlavicky na terminal a do
-                suboru - vypise sa iba jedna na zaciatku suboru
-
 
 *************
 PRIPRAVA PRED MERANIM VYKONNOSTI ZARIADNIA
@@ -310,11 +302,14 @@ spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
 cas navyse.
 Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
 operacnej pamate.
-Prikaz "sudo -l" je sa musi vykonat kvoli nastroju "ps_mem". Tak sa vyziada
+Prikaz "sudo -v" je sa musi vykonat kvoli nastroju "ps_mem". Tak sa vyziada
 heslo pre sudo pouzivatela v predstihu a nebude sa vyzadovat az po spusteni
 dstat_custom, co by mohlo skreslit vysledky.
 
-  sudo -l
+*************
+KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
+
+  sudo -v
   free
   sudo swapoff -a
   free
@@ -327,7 +322,12 @@ dstat_custom, co by mohlo skreslit vysledky.
   sudo su -c 'echo 3 >/proc/sys/vm/drop_caches'
   free
 
+  dstat_custom -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --noheaders --output test.csv
 
+  --noheaders - zabranuje opakovanemu vypisovaniu hlavicky na terminal a do
+                suboru - vypise sa iba jedna na zaciatku suboru
+
+*************
 Vystup vyssie uvedenych prikazov:
 
 
@@ -368,11 +368,16 @@ andrej@sirena:~$
 *************
 POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
 
+1. FAZA
+
 -Do projektu pridame jedno zariadenie daneho druhu
--Nastavime mu velmi vela pamate (+30GB operacnej pamate), ak to zariadenie dovoli
-  a spusti sa
+-Nastavime mu velmi vela pamate (+30GB operacnej pamate), 
+  a 1 CPU, ak to zariadenie dovoli a spusti sa
+-Vyprazdnime operacnu pamat od docasnych dat
 -Pomocou skriptu spustime sledovanie systemovych prostriedkov, ktory bude ukladat 
-  udaje do suboru + zacneme merat cas
+  udaje do suboru (nazov suboru: <nazov_zariadenia>-#cpu.csv)
+  +
+  Zaroven zacneme merat cas.
 -Hned na to spustime zariadenie
 -Pripojime sa na konzolu zariadenia. Pockame, kym neuvidime interaktivny prikazovy
   riadok (CLI) alebo vyzvu na prihlasenie (login prompt)
@@ -380,8 +385,12 @@ POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
 -Akonahle uvidime interaktivny prikazovy riadok (CLI):
   -zastavime cas a hodnotu si docasne ulozime
   -pockame este priblizne 1-3 minuty, aby sa zariadenie stabilizovalo
--Zastavime zariadenie
 -Ukoncime sledovanie systemovych prostriedkov
+-Zastavime zariadenie
+
+
+2. FAZA
+
 -Stiahneme si subor zo sledovania systemovych prostriedkov zo servera
 -Ak je potrebne pridame zariadenie do sumarnej tabulky zariadeni spolu s:
   -predvolenymi prihlasovacimi udajmi
