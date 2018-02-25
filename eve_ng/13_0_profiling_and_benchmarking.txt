@@ -368,6 +368,10 @@ andrej@sirena:~$
 *************
 POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
 
+*************
+Pri meraní bolo UKSM vypnuté!
+*************
+
 1. FAZA
 
 -Do projektu pridame jedno zariadenie daneho druhu

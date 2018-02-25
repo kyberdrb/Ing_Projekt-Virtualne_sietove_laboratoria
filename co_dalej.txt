@@ -16,7 +16,11 @@ EVE-ng
   -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
     "profiling_sirena_sablona_nova-dstat_custom.ods"
   -obenchmarkovat ich vytvorenym skriptom
-  -vyhodnotit benchmarking a profiling a vytvorit grafy a zavery
+  -vlozit csv do calc dokumentu
+    -podla potreby upravit vstupne data:
+      -odstranit riadky, v ktorych su pod mnozstvom spotrebovanej operacnej pamate uvodne nuly
+  -vyexportovat grafy do png obrazkov
+  -ulozit cely dokument do adresara zariadenia (Save As...)
 
 -zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
   -> otvorit 8080 8005 porty -> nepomohlo - tam problem nebude
