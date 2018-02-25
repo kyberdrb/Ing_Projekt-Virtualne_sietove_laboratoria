@@ -9,6 +9,36 @@ debian
 stretch
 amd64
 
+
+sudo lxc-start --name eve-ng-lxc
+
+# Dostal som chybu:
+
+#lxc-start: tools/lxc_start.c: main: 366 The container failed to start.
+#lxc-start: tools/lxc_start.c: main: 368 To get more details, run the container in foreground mode.
+#lxc-start: tools/lxc_start.c: main: 370 Additional information can be obtained by setting the --logfile and --logpriority options.
+
+
+sudo lxc-start --name eve-ng-lxc --logfile eve-ng-lxc.log
+
+# Zaznam z logu:
+#      lxc-start 20180221185555.779 ERROR    lxc_apparmor - lsm/apparmor.c:apparmor_process_label_set:220 - If you really want to start this container, set
+#      lxc-start 20180221185555.779 ERROR    lxc_apparmor - lsm/apparmor.c:apparmor_process_label_set:221 - lxc.aa_allow_incomplete = 1
+#      lxc-start 20180221185555.779 ERROR    lxc_apparmor - lsm/apparmor.c:apparmor_process_label_set:222 - in your container configuration file
+#      lxc-start 20180221185555.779 ERROR    lxc_sync - sync.c:__sync_wait:57 - An error occurred in another process (expected sequence number 5)
+#      lxc-start 20180221185555.779 ERROR    lxc_start - start.c:__lxc_start:1358 - Failed to spawn container "eve-ng-lxc".
+#      lxc-start 20180221185601.286 ERROR    lxc_start_ui - tools/lxc_start.c:main:366 - The container failed to start.
+#      lxc-start 20180221185601.286 ERROR    lxc_start_ui - tools/lxc_start.c:main:368 - To get more details, run the container in foreground mode.
+#      lxc-start 20180221185601.286 ERROR    lxc_start_ui - tools/lxc_start.c:main:370 - Additional information can be obtained by setting the --logfile and --logpriority options.
+
+
+sudo vim /var/lib/lxc/eve-ng-lxc/config
+
+# Na vyriesenie vyssie uvedeneho problemu pridame na koniec suboru riadok
+lxc.aa_allow_incomplete = 1
+
+
+sudo lxc-start --name eve-ng-lxc
 lxc-attach --name eve_ng-lxc
 
 apt-get update
