@@ -101,14 +101,20 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - WEB-IOU
 - Cisco VIRL
 - UNetLab
-- EVE-ng - PRIMÁRNE!
+- EVE-ng + rozdiely rôznych verzií (špeciálne pre EVE-ng) - PRIMÁRNE!
 - GNS3 - podporný nástroj
 
 ### Analýza dostupných virtualizačných nástrojov
 - podpora zariadení, s ktorými sa na danom predmete pracuje
 - podpora technológií jednotlivých zariadení
 - typ používateľského rozhrania
-- možnosť práce viac ľudí naraz na viac projektoch
+- vzdialený prístup ku zariadeniam (telnet, vnc, rdp)
+- správa topológií
+  - vytvorenie/úprava/uloženie/odstránenie topológie
+  - koľko topológií môže mať jeden používateľ spustených
+- možnosť práce viac ľudí naraz na rovnakom projekte
+
+### Porovnanie GNS3 a EVE-ng
 
 ### Získavanie zariadení
 - zoznam získaných zariadení
@@ -120,8 +126,14 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - hardvér
 
 #### Inštalácia
+  - stručný postup
+  - úprava šablón
 
 #### Zabezpečenie
+  - Systém
+  - SSH
+  - Web server
+  - SSH tunely pre vzdialený prístup
 
 #### Spravovanie
 - zálohovanie
@@ -131,26 +143,22 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 #### Zoznam meraných zariadení
 #### Výsledky
 
-    • Návrh možností riešenia virtuálneho laboratória a virtuálnych topológií pre vyučovanie.
-        ◦ Pre predmety Počítačové siete 1/2 by virtuálne nástroje mohli slúžiť ako náhrada/doplnok Packet Tracera
-        ◦ Pre predmety Projektovanie sietí 1/2 by virtuálne nástroje mohli slúžiť ako náhrada/doplnok Dynamips servera – s takym vykonom, t.j. cca 10/15skupin po 10 routroch
-        ◦ remote access – vzdialený prístup ku zariadeniam(telnet, vnc, rdp, popr. SSH tunely)
-        ◦ multiuser
-        ◦ mal by byt zoznam vlasnosti ako napr, ci bude povolene spusatanie, editovanie topo, save/load, a podobne – to všetko je opísané na EVE-ng stránkach + rozdiely rôznych verzií EVE-ng
-
-    • Pilotné nasadenie a otestovanie vybraných riešení podľa stanovených kritérií. Vyhodnotenie kompatibility, výkonnosti,  stability, početnosti zariadení atď.
-
-    • Overenie funkčnosti pri vypracovávaní úloh z vybraných predmetov.
-        ◦ Projektovanie sietí 2
-            ▪ VPLS
-                • Cisco CSR
-            ▪ Seamless MPLS
-                • Cisco IOL
-                • Juniper vMX
-        ◦ CCNA
-            ▪ Sumárne laboratórne cvičenie “Packet Tracer Packet Tracer Skills Integration Challenge 8.6.1”
-
-    • Vyhodnotenie a dokumentácia získaných výsledkov.
-        ◦ Všetky dokumenty a výsledky práce sú prístupné na stránke https://github.com/kyberdrb/Ing-Projekt_Ing-Virtualne_sietove_laboratoria
+### Testovanie virtuálneho laboratória
+- meranie systémových požiadaviek vybraných topológií
+- vyhodnotenie kompatibility, výkonnosti, stability, početnosti zariadení atď.
+- overenie funkčnosti pri vypracovávaní úloh z vybraných predmetov.
+#### Počítačové siete 1/2 (CCNA)
+- náhrada/doplnok pre nástroj Packet Tracer
+- Sumárne laboratórne cvičenie “Packet Tracer Packet Tracer Skills Integration Challenge 8.6.1”
+#### Projektovanie sietí 1
+- náhrada/doplnok Dynamips servera (s takym vykonom, t.j. cca 10/15skupin po 10 routroch)
+#### Projektovanie sietí 2
+- VPLS
+- Seamless MPLS
+- MVPN-NG ?
+- eVPN ?
 
 
+
+- Vyhodnotenie a dokumentácia získaných výsledkov.
+- Všetky dokumenty a výsledky práce sú prístupné na stránke https://github.com/kyberdrb/Ing-Projekt_Ing-Virtualne_sietove_laboratoria
