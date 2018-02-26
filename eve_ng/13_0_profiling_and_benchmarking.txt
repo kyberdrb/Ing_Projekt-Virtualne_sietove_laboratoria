@@ -309,7 +309,13 @@ dstat_custom, co by mohlo skreslit vysledky.
 *************
 KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
 
+Najprv vykoname prikaz:
+
   sudo -v
+
+aby sme ziskali sudo heslo pre ps_mem (vyzaduje to).
+Potom vykoname zvysne prikazy:
+
   free
   sudo swapoff -a
   free

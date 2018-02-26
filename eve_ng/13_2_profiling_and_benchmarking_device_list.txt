@@ -2,6 +2,15 @@ asa-9.1.5.16_20141016
 asav-991-serial-console-with-asdm-79150_20171130
 csr1000vng-universalk9.16.07.01-fuji-serial-console_20171120
 csr1000v-universalk9.03.17.03.S.156-1.S3-std_20161121
+fortinet-fortigate-FGT-VM64-KVM-v5.6.1-build1484_20170727
+    -Eval license not valid with more than 1 vCPUs or 1024 MB RAM.
+        => ODPORUCANE MNOZSTVO RAM: 1024
+
+hpvsr-7.10.R0204P01_20150202
+hpvsr-VSR1000_HPE-CMW710-R0327L01-X64_20170631
+    -Pri 20000MB RAM sa obidve HPcka spravali cudne
+    -Pri 4096MB RAM sa spustili spravne.
+
 linux-alpine-virt-3.7.0-x86
 linux-debian-9.3.0-x64-xfce
 linux-netem
