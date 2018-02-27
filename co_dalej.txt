@@ -12,6 +12,10 @@ Zazitky:
 Ulohy:
 
 EVE-ng
+-do konfiguracie EVE-ng v LXC dat cele konfiguraky
+
+-preinstalovat eve-ng server pre chalanov na stvrtok
+
 -urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
   -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
     (fyzicky vs virtualny stroj (vs lxc?))
@@ -36,10 +40,6 @@ EVE-ng
   na internet)
 
 -otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
-
--do zalohovacieho skriptu dat konfigurak eve-ng-lxc
-  /var/lib/lxc/eve-ng-lxc/config
--do konfiguracie EVE-ng v LXC dat cele konfiguraky
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
