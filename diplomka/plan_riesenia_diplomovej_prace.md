@@ -71,22 +71,22 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 ### Analýza technológií, ktoré sa vyučujú vo vybraných predmetoch
 
 - Počítačové siete 1 (CCNA 1, CCNA 2)
-  -TODO - konkrétne technológie, vyučované na predmete
+  - TODO - konkrétne technológie, vyučované na predmete
 
 - Počítačové siete 2 (CCNA 3, CCNA 4)
-  -TODO - konkrétne technológie, vyučované na predmete
+  - TODO - konkrétne technológie, vyučované na predmete
 
 - Projektovanie sietí 1 - PRIMÁRNE!
-  -TODO - konkrétne technológie, vyučované na predmete
+  - TODO - konkrétne technológie, vyučované na predmete
 
 - Projektovanie sietí 2 - PRIMÁRNE!
-  -TODO - konkrétne technológie, vyučované na predmete
+  - TODO - konkrétne technológie, vyučované na predmete
 
 -CCNA Security
-  -TODO - konkrétne technológie, vyučované na predmete
+  - TODO - konkrétne technológie, vyučované na predmete
 
 - CCNP Routing & Switching
-  -TODO - konkrétne technológie, vyučované na predmete
+  - TODO - konkrétne technológie, vyučované na predmete
 
 ### Výber vhodných zariadení, ktoré podporujú potrebné technológie
 - technológia_1:
