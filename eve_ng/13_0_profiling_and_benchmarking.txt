@@ -300,11 +300,19 @@ Uvedeny postup zaznamenava najhorsi mozny scenar merania vykonnosti
 zariadenia. Navyse, vsetky zariadenia su na inom pevnom disku, takze pri
 spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
 cas navyse.
+
 Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
 operacnej pamate.
+
 Prikaz "sudo -v" je sa musi vykonat kvoli nastroju "ps_mem". Tak sa vyziada
 heslo pre sudo pouzivatela v predstihu a nebude sa vyzadovat az po spusteni
 dstat_custom, co by mohlo skreslit vysledky.
+
+V EVE-ng som vypol UKMS (Universal Kernel Samepage Merging). UKSM je 
+mechanizmus, ktorý umožňuje šetriť využitie operačnej pamäte, keď máme 
+spustených viacero QEMU zariadení rovnakého typu. Ale ak je UKMS aktívne
+a spustíme viac ako 10 QEMU zariadení, ich výkon by mohol byť dôsledkom
+tohto mechanizmu znížený.
 
 *************
 KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
@@ -424,6 +432,11 @@ Pri meraní bolo UKSM vypnuté!
 -Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do
   skriptu na aktualizaciu sablon (vid subor "uprava_sablon").
 
+
+
+-Po ukončení merania môžeme znova zapnúť "swap" partíciu
+
+  sudo swapon -a
 
 *************
 IMPORT A ANALYZA VYSTUPNEHO CSV SUBORU

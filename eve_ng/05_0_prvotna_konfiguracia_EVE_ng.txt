@@ -1,29 +1,27 @@
-**************   !!!!!!!!!!!!!!!!!!!!!!! **************
-Kroky, ktore sme už vykonali v predchádzajúcich častiach,
-môžeme vynechať
-**************   !!!!!!!!!!!!!!!!!!!!!!! **************
+************* ************* ************* *************
+NIŽŠIE UVDEDENÉ KROKY TREBA EŠTE VYKONAŤ LOKÁLNE NA SERVERI
+************* ************* ************* *************
 
-Follow the Ubuntu server installation. During install please choose only OpenSSH server as a feature to be installed !!!!
+1. Prihlasime sa pod takým prihlasovacím menom, aké sme si nakonfigurovali 
+   počas inštalácie Ubuntu
 
-After the installation of Ubuntu server is done, follow the steps below in order to install the EVE. For futher convenient choose hostname as eve-ng.
-
-1. Login with your user as root (via SSH or console). If we installed EVE-ng with the tutorial "4_instalacia_eve_ng_pre_vmware_player", then the default credentials are already set (root/eve) and jump to step 4.
-
-sudo su
+  login: <username>
 
 2. Change root password:
 
-This password change option is only for how to purposes, of course you can choose your own root password, but don't forget that it will be used in the Wireshark wrapper file!
+This password change option is only for how to purposes, 
+ of course you can choose your own root password, but don't forget 
+ that it will be used in the Wireshark wrapper file!
 
-sudo passwd root
-root@eve-ng:~# sudo passwd root
-Enter new UNIX password: eve
-Retype new UNIX password: eve
-passwd: password updated successfully
+  sudo passwd root
+  root@eve-ng:~# sudo passwd root
+  Enter new UNIX password: eve
+  Retype new UNIX password: eve
+  passwd: password updated successfully
 
 3. Change hostname if you like, for save settings do (:wq):
 
-vim.tiny /etc/hostname 
+  vim.tiny /etc/hostname 
 
 eve-ng
 
@@ -31,9 +29,12 @@ eve-ng
 
 vim.tiny /etc/hosts                                               
 
- GNU vim.tiny 2.5.3                       File: /etc/hosts                                                      
+
 127.0.0.1       localhost
-127.0.1.1       eve-ng.example.com      eve-ng
+127.0.1.1       eve-ng
+
+
+
 
 4. Allow access to use root user ssh, edit line below:
 
@@ -43,11 +44,15 @@ PermitRootLogin prohibit-password
 to
 PermitRootLogin yes
 
+Povolenie prihlasenia cez SSH ako "root" používateľ je nutné pre 
+predvolený balíček na EVE-ng integráciu do prehliadačov (telnet/vnc/rdp).
+V ňom je odchytávanie riešené cez prihlásenie sa na root účet.
+To môže byť bezpečnostné riziko, preto sa to budem snažiť
+ošetriť postupom opísaným v súbore "eve-ng_integracia_s_web_prehliadacmi.txt"
+
 
 5. Save settings (:wq) and do restart ssh server:
 
-sudo service ssh restart
-alebo
 sudo systemctl restart ssh
 
 
@@ -56,17 +61,39 @@ sudo systemctl restart ssh
 reboot
 
 
-7. TENTO KROK NIE JE POTREBNY. After first boot, ssh IP to your server and modify:
+7. Pokiaľ sa rozhranie pripojené na internet volá inak ako "eth0",
+   nespustí sa skript "/opt/ovf/ovfconfig.sh".
+   Odporúča sa vykonať tento krok, aby spomenutý skript fungoval
+   správne.
 
-sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0"/'  /etc/default/grub
-update-grub
+  sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0"/'  /etc/default/grub
+
+  resp.
+
+  sudo vim /etc/default/grub
+  
+  -Riadok
+
+    GRUB_CMDLINE_LINUX=""
+
+  nahradíme riadkom
+
+    GRUB_CMDLINE_LINUX="net.ifnames=0"
+  
+  a uložíme súbor.
+  
+7.1 Aktualizujeme GRUB konfiguráciu a reštartujeme server, aby sa
+    zmeny prejavili
+
+    update-grub
+    reboot
 
 
-8. IMPORTANT!!! Do adding’s and necessary changes for this file below. It can also to be a static IP as well, follow Linux Ubuntu how to set stat IP for the interface. example below showing DHCP IP settings.
 
-!!! Warning !!! after GRUB update changed interface names to ethX, original name after first boot will not work !!!!! Do edit the following below and reboot!!!
 
-vim.tiny /etc/network/interfaces
+8. Zmeníme nastavenia sieťových rozhraní
+
+  vim.tiny /etc/network/interfaces
 
 # This file describes the network interfaces available on your system
 # and how to activate them. For more information, see interfaces(5).
@@ -81,123 +108,248 @@ iface lo inet loopback
 # This is an autoconfigured IPv6 interface
 auto eth0
 iface eth0 inet static
-	address <verejna_ip_servera>
+	address <IP_ADRESA>
 	netmask <maska>
 	gateway <predvolena_brana>
-	dns-nameservers <ip_dns_servera>
 iface eth0 inet6 manual
 
+-Uložíme súbor
+-Reštartujeme sieťovú službu
+
+  sudo systemctl restart networking
+
+-Otestujeme konektivitu (ping)
+
+  ping 8.8.8.8
+
+  -Ak sú sieťové nastavenia správne, uvidíme ICMP odpovede na ping.
 
 
 
-   8.1. Option for Broadcom interfaces NetXtreme II 10Gb, not necessary for regular servers:
+-Nastavenie DNS serverov
+
+sudo cp -p \
+/etc/resolvconf/resolv.conf.d/head \
+/etc/resolvconf/resolv.conf.d/head.orig
+
+sudo vim /etc/resolvconf/resolv.conf.d/head
+
+# Add DNS nameservers
+nameserver <DNS1_IP>
+nameserver <DNS2_IP>
+
+sudo resolvconf -u
+
+-Overíme, či systém vidí DNS servery
+
+  cat /etc/resolv.conf
+
+  -Ak sa konfigurácia načítala úspečne, uvidíme vo výstupe 
+   "nameserver" záznamy.
+
+-Overíme DNS konfiguráciu
+
+  ping google.com
+
+  -Ak sú DNS servery funkčné, doménové meno sa preloží na IP adresu
+   a budeme mať konektivitu.
+
+
+
+
+8.1. [VOLITEĽNÉ] Option for Broadcom interfaces NetXtreme II 10Gb, not necessary for regular servers:
 
      apt-get install firmware-bnx2x
 
-9. Save :wq settings and reboot:
+  8.2 Save :wq settings
 
-reboot
 
-10. Get the eve key from repositary:
+
+
+-Otestujeme vzdialené prihlásenie cez SSH
+ Prihlásime sa na server ako štandardný používateľ
+
+  ssh <username>@<IP_ADRESA>
+ 
+-Ak sa cez SSH vieme prihlásiť, naposledy reštartujeme server, aby sme
+ mali istotu, že nastavenia sú správne.
+
+ Teraz môžeme pripojiť aj zvyšné disky.
+    
+  reboot
+
+-Znova otestujeme SSH prístup.
+ Ak sa nám cez SSH podarilo prihlásiť, pokračujeme ďalšími krokmi,
+ v ktorých nainštalujeme EVE-ng na server.
+
+
+
+
+
+************* ************* ************* *************
+
+
+
+************* ************* ************* *************
+NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
+************* ************* ************* *************
+
+9. Prihlásime sa na server cez SSH.
+   Nainštalujeme úvodné programy.
+
+  sudo apt-get update
+  sudo apt-get install aptitude
+  sudo aptitude update
+  sudo aptitude install bash-completion man-db tmux python-pip datamash
+  tmux
+
+10. Get the eve key from repository:
 
   wget -O - http://www.eve-ng.net/repo/eczema@ecze.com.gpg.key | sudo apt-key add -
 
-11. Update server:
+  -Keď sme vyzvaný, zadáme heslo pre používateľa <username>
 
-  sudo apt-get install aptitude
-  sudo aptitude update
+11. Update server:
+  
   sudo aptitude install software-properties-common python3-software-properties python-software-properties
   sudo add-apt-repository "deb [arch=amd64]  http://www.eve-ng.net/repo xenial main"
   sudo apt-get update
 
-("add-apt-repository" command not found => https://askubuntu.com/questions/493460/how-to-install-add-apt-repository-using-the-terminal)
 
-12. Install the EVE:
-  (as root)
-  DEBIAN_FRONTEND=noninteractive apt-get -y install eve-ng
+12. Nainštalujeme balíček "eve-ng". Uistíme sa, že tmux relácia je
+    stále aktívna:
+  
+  -ako sudo
+    DEBIAN_FRONTEND=noninteractive sudo apt-get -y install eve-ng
 
-  (as sudo)
-  DEBIAN_FRONTEND=noninteractive sudo apt-get -y install eve-ng
+  
+  -ak sme vyzvaný, zadáme nové heslo pre "root" používateľa v MySQL
+  -pri dialógu "Modified configuration file" zakaždým zvolíme možnosť
+   "install the package maintainer's version"
+  -Keďže je inštalácia EVE-ng spustená v nástroji tmux, môžeme sa zo serveru
+   odhlásiť, pričom inštalácia bude aj naďalej prebiehať.
+   Urobíme tak klávesovou skratkou
 
-13. Restartujeme server
+    Ctrl+B, D (stlačíme samostatne)
+   
+   Tak ukončíme tmux reláciu, ktorá sa následne uloží.
+   tmux reláciu obnovíme príkazom
 
-  reboot
+    tmux a
 
-14. Continue with post installation
+   a môžeme pokračovať tam, kde sme skončili.
 
-=========================
+13. Po dokončení inštalácie sa server automaticky reštartuje.
+    Ak sa tak nestane, reštartujeme ho manuálne
 
-In this guide we'll go over steps to configure proxy, DNS, IP and other settings on EVE:
+      reboot
 
- 
+14. Predchádzajúci príkaz ukončí SSH reláciu.
+    Po chvíli sa môžeme znova prihlásiť na server cez SSH
+    AKO POUŽÍVATEĽ (nie root, lebo ten je v SSH zablokovaný) !!!
 
-The first boot requires additional configuration. Start the EVE VM/BareMetal Server:
+15. Po prihlásení sa objaví výzva na zadanie hesla pre "root" používateľa.
+    Ukončíme ju klávesovou skratkou
+    
+      Ctrl+C
 
-After a while the console login prompt will be available. If not, log in as root and run:
+-Vykonáme príkaz
 
   sudo /opt/ovf/ovfconfig.sh
 
-By default the EVE will look for an IP address using DHCP protocol. Login as root with default password eve and start the configuration. Insert the root password twice:
+-Zobrazí sa výzva na zadanie hesla pre "root" používateľa.
+-Následne sa zobrazí výzva na potvrdenie tohto hesla.
 
-Type the hostname (default is eve-ng):
+-Type the hostname (default is eve-ng):           sirena
+-Type the domain name (default is example.com):   kis.fri.uniza.sk
 
-Type the domain name (default is example.com):
+ Mind that hostname and domain name are critical for IOU/IOL license.
 
-Mind that hostname and domain name are critical for IOU/IOL license.
+-Select if management IP address should be static or configured by 
+ DHCP (default is dhcp, use arrow keys and space to select,
+ then enter to confirm) -> ZVOLÍME STATICKÚ IP
 
-Select if management IP address should be static or configured by DHCP (default is dhcp, use arrow keys and space to select, then enter to confirm):
-(ZVOLIME STATICKU IP)
-Static IP address will ask for IP address, netmask, default gateway, primary and secondary DNS servers.
+-Static IP address will ask following questions:
+  -Type the IP address of the Management Network:
+    -zadáme IP adresu servera
+  -netmask
+  -default gateway
+  -primary and secondary DNS servers
 
-Type the NTP server or leave blank if not used (default is blank):
+-Type the NTP server or leave blank if not used (default is blank):
 
-Configure how the EVE VM/BareMetal Server can access Internet (default is direct connection, use arrow keys and space to select, then enter to confirm):
+-Configure how the EVE VM/BareMetal Server can access Internet
+ (default is direct connection, use arrow keys and space to select, 
+ then enter to confirm):
 
-None default options will require proxy hostname and port (default is proxy.example.com:8080) and username/password with authenticated proxy.
+-None default options will require proxy hostname and port 
+ (default is proxy.example.com:8080) and username/password with authenticated proxy.
 
-After the last confirm EVE will reboot. When the VM/BareMetal Server is up and running, SSH can be used to manage it, not before.
+-Skript následne upraví potrebné súbory, vygeneruje nové SSH kľúče a nakoniec
+ reštartuje server.
+ Tým, že sa vygenerujú nové SSH kľúče pre server, SSH prihlásenie zlyhá 
+ so správou:
+ "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!".
+ To je dôsledok nanovo vygenerovaných SSH kľúčov, ktoré nie sú zhodné 
+ s pôvodnými na lokálnom počítači.
+ Riešením je si pôvodný serverový SSH kľúč vymazať z lokálneho počítača:
 
-Finally you should upgrade system and EVE to latest version:
+  vim ~/.ssh/known_hosts
 
-  apt-get update
-  apt-get upgrade
+  Zadáme '/' (hľadanie)
+  Napíšeme IP adresu vzdialeného servera.
+  Kurzor skočí na riadok s pôvodným kľúčom servera.
+  2x stlačíme klávesu 'd'. Tak vymažeme celý riadok.
+  Zadáme ":wq" (uložiť súbor a ukončiť editor).
+
+-Znova sa pokúsime prihlásiť ako ŠTANDARDNÝ POUŽÍVATEĽ cez SSH.
+ Tentokrát sme vyzvaní na uloženie si nového serverového SSH kľúča.
+ Uloženie potvrdíme zadaním "yes" a stlačením klávesy Enter.
+ Po zadaní hesla sa znovu ocitneme v konzole.
+
+-Zálohujeme základný EVE-ng adresár pred vykonaním akýchkoľvek zmien
+
+  sudo cp -R /opt/unetlab/ /opt/unetlab_original
 
 
 
 
--nainstalujeme doplnanie prikazov pre bash a dalsie nastroje
-
-  sudo apt-get install bash-completion man-db tmux python-pip datamash
-
--pridame sa do skupiny "kvm" (kvoli guestfish utilitke)
- 
-  sudo usermod -aG kvm $USER
 
 
 
 
-EVE-ng server je teraz nainstalovany. Na to, aby bol pripravený na použtie z webového rozhrania, musime pridat vynimky do firewallu pre porty:
+EVE-ng server je teraz nainstalovany. Na to, aby bol pripravený na použtie 
+z webového rozhrania, musime pridat vynimky do firewallu pre porty:
+
   80/443 - HTTP/HTTPS
   22 - SSH
   32768-64536 - TCP aj UDP - zariadenia (telnet/vnc/rdp)
 
 
-Po uprave pravidiel vo firewalle otvoríme internetový prehľadávač a zadáme doň adresu EVE-ng serveru (napr. 192.168.1.137 - IPčku zistíme príkazom “ip a” na interface-i “pnet0”)
+Po úprave pravidiel vo firewalle otvoríme internetový prehliadač a zadáme doň 
+adresu EVE-ng serveru (napr. 192.168.1.137 - IP adresu zistíme príkazom "ip a" 
+na rozhraní "pnet0")
 
-Prihlásime sa ako
-	admin
-s heslom
-	eve
+Prihlasovacie údaje do webového rozhrania sú:
+
+username:   admin
+password:   eve
+
 
 Po prihlásení sa do webového rozhrania môžeme spravovať topológie a zariadenia.
-Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača. Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
+Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača.
+Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
-Vypneme UKMS (Universal Kernel Samepage Merging) v EVE-ng
-  Úlohou UKMS je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU zariadení rovnakého typu. To ale zvyšuje záťaž na procesor. Podľa EVE-ng dokumentácie treba UKMS vypnúť, keď chceme spúšťať na serveri viac ako 10 QEMU zariadení. Zrejme to zaťažuje procesor natoľko, že to ovplyvňuje výkon bežiacich QEMU zariadení.
+-Vypneme UKMS (Universal Kernel Samepage Merging) v EVE-ng
+ Úlohou UKMS je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU 
+ zariadení rovnakého typu. To ale zvyšuje záťaž na procesor. 
+ Podľa EVE-ng dokumentácie treba UKMS vypnúť, keď chceme spúšťať na 
+ serveri viac ako 10 QEMU zariadení. Zrejme to zaťažuje procesor natoľko, 
+ že to ovplyvňuje výkon bežiacich QEMU zariadení.
 
-Z bezpečnostných dôvodov odporucam okamžite zmenit heslo administrátorského účtu do web rozhrania. Heslá sú na EVE-ng serveri uložené v MySQL databázi (narozdiel od UNetLab-u, kde boli ulozene v SQLite databazi). (vid "http://www.eve-ng.net/index.php/faq"). Viac informácií o administrácií používateľov v rámci webového rozhrania EVE-ng nájdeme v súbore "sprava_pouzivatelov".
 
-Ak SSH aj web rozhranie funguje (dovoli sa nam pripojit a prihlasit), pokracujeme zabezpecenim servera.
+-Pokračujeme zabezpečením servera, ktoré je opísané v súbore 
+ "zabezpecenie_servera.txt"
 
 Sources:
   (Instalacia EVE-ng do Ubuntu)
@@ -206,5 +358,8 @@ Sources:
   (First login  & Post-install EVE-ng)
   http://www.eve-ng.net/index.php/documentation/howto-s/65-howto-configure-eve-during-first-boot
   https://bsnetworking.blog/2017/01/16/eve-ng-initial-configs/
+
+  "add-apt-repository" command not found
+  https://askubuntu.com/questions/493460/how-to-install-add-apt-repository-using-the-terminal
 
   https://stackoverflow.com/questions/14059916/is-there-a-command-to-list-all-unix-group-names

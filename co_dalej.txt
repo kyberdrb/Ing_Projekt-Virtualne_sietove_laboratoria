@@ -12,20 +12,20 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--do skriptu na upravu sablon zmenit zariadeniam pocet CPU
-  -obenchmarkovanym QEMU zariadeniam
--skor ci neskor budem musiet aj tak automatizovat generovanie
-benchmarkingovych a profilingovych grafov (zrejme pythonom)
-
--preinstalovat eve-ng server pre chalanov na stvrtok
 
 -po preinstalacii vyskusat odchytavanie zo osobitneho pouzivatelskeho
  uctu "wireshark_capture"
-  -iba vytvorit pouzivatela "wireshark_capture", nainstalovat wireshark, 
+  -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
+  -potom vytvorit pouzivatela "wireshark_capture", nainstalovat wireshark, 
    priradit pouzivatela "wireshark_capture" do skupiny wireshark a 
    restartovat server
   -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
    ci maju konektivitu (ping)
+
+-do skriptu na upravu sablon zmenit zariadeniam pocet CPU
+  -obenchmarkovanym QEMU zariadeniam
+-skor ci neskor budem musiet aj tak automatizovat generovanie
+benchmarkingovych a profilingovych grafov (zrejme pythonom)
 
 -lepsie HTTPS zabezpecenie po uspesnej preinstalacii
     https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04

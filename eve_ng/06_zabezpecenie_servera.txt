@@ -481,6 +481,15 @@ Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
 
 
 
+*************
+ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM V TOPOLÓGII
+A ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA V TOPOLÓGII
+
+viď súbor "eve-ng_integracia_s_web_prehliadacmi.txt"
+
+
+
+
 ************* ZAVERECNE KROKY *************
 
 -vymazeme historiu bash prikazov v termináli pre kazdeho pouzivatela (lokalne 

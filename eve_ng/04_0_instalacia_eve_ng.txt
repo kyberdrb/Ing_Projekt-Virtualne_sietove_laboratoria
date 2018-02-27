@@ -87,33 +87,93 @@ Tak som zase v BIOSe nastavil "Flash Write" na Enabled (zapnutie ochrany BIOSu p
 
 Ukazalo sa, ze aktualizacia BIOSu na serveri je technicky narocna, preto som sa rozhodol nevykonat ju.
 
+
+************* ************* ************* ************* *************
+
+TESNE PRED INŠTALÁCIOU ODPOJÍME VŠETKY DISKY OKREM DISKU, NA KTORÝ
+CHCEME EVE-NG/UBUNTU NAINŠTALOVAŤ! ZJEDNODUŠÍME TAK INŠTALAČNÝ PROCES
+A PREDÍDEME CHYBÁM PRI PARTÍCIOVANÍ A NÁHODNEJ STRATE DÁT Z INÝCH DISKOV.
+
+************* ************* ************* ************* *************
+
 ************* POSTUP INSTALACIE *************
-*************
-UBUNTU SERVER 16.04 x64
 
-Postupujeme podla
-  http://www.eve-ng.net/index.php/documentation/installation/bare-install
+VYTVORENIE SPUSTITEĽNÉHO USB S UBUNTU SERVER
+
+  -Vytvoriť spustiteľné USB z Ubuntu Server 16.04 ISO súboru je istejšie,
+   než z EVE ISO, pretože to s EVE sa nemusí spustiť. Aj Etcher napíše, 
+   že ISO súbor nie je spustiteľný ("not bootable").
+  
+  -USB môžeme vytvoriť buď príkazom "dd", alebo nástrojom 
+   "Etcher" (odporúčaná a bezpečnejšia voľba).
 
 
-*************
-EVE-NG ISO
 
--Spustime prave nakonfigurovanu EVE virtualku.
+-Spustime prave nakonfigurovanu EVE virtualku
+ resp.
+ Spustíme/reštartujeme server a pri BOOT obrazovke opakovane stláčame klávesu
+ (v mojom prípade klávesu F8) vyberieme USB zariadenie. Spustí sa inštalačná
+ procedúra
+
 -Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
--Zvolime moznost "Install EVE Bare".
--Zvolíme krajinu (Slovensko).
--Rozloženie klávesnice (SK / EN podľa preferencie).
--Preskočíme automatickú detekciu rozloženia podľa klávesnice.
--Zvolíme krajinu (SK)
--Zvolíme rozloženie klávesnice.
--Nastavíme hostname. Pre jednoduchost ho nastavime na "eve-ng"
--Zadáme celé meno používateľa.
--Zadáme názov používateľského účtu.
+
+-Zvolime moznost Install Ubuntu Server (prvá možnosť)
+ resp.
+ "Install EVE Bare" pri inštalácií z EVE ISO
+
+-Zvolíme krajinu (other->Europe->Slovakia).
+-Rozloženie klávesnice (en_US.UTF-8)
+-Preskočíme automatickú detekciu rozloženia podľa klávesnice
+  -zvolíme "No"
+  -nastavíme rozloženie klávesnice na "[English (US)]"
+-Zvolíme "[English (US)]"
+-V prípade, že máme viac siťových kariet, sme vyzvaní vybrať si
+ tú, ktorá bude pripojená na internet
+-"Nameserver adresses" môžeme preskočiť -> Continue (Enter)
+-Nastavíme ľubovoľný hostname
+-Zadáme celé meno používateľa
+-Zadáme názov používateľského účtu
 -Zopakujeme heslo pre používateľa
--Na otázku, či chceme zabezpečiť “home” adresár používateľa potvrdíme voľbu “No” - jednoduchšie zálohovanie
--Pri partíciovaní odporúčam z vlastnej skúsenosti  zvoliť “Guided – use entire disk” - vyhradíme celý disk pre Ubuntu.
--Nastavíme proxy (ak nemáme žiaden, necháme prázdne).
--Pri dotaze na automatické aktualizácie zvolíme “No automatic updates”, aby sme predišli nepredvídaným následkom. Aktualizácia servera bude na vyžiadanie (on demand) a je za ňu zodpovedný administrátor.
+-"Encrypt home directory"
+ vyberieme voľbu "No" - jednoduchšie zálohovanie
+
+-PARTÍCIOVANIE
+
+MOŽNOSŤ 1:
+Pri partíciovaní odporúčam z vlastnej skúsenosti 
+ zvoliť "Guided – use entire disk" - vyhradíme celý disk pre Ubuntu.
+ 
+ Táto možnosť ale vyhradí príliš veľké miesto pre swap partíciu.
+ 
+ Preto na obrazovke "Write changes" sa navigujeme na swap partíciu,
+ zvolíme ju klávesou Enter a zvolíme "Delete partition".
+ Následne primárnu ext4 partíciu rozšírime -> zvolíme ju a zvolíme možnosť
+ "Resize partition" -> zadáme (väčší) rozmer partície a potvrdíme.
+
+ Ak je potrebné, vyberieme primárnej ext4 partícií prípojný bod (mount 
+ point) "/".
+
+ Nakoniec potvrdíme zmeny -> "Write changes to disk"
+
+MOŽNOSŤ 2:
+-podľa EVE-ng dokumentácie
+-potvrdíme všetky predvolené hodnoty
+
+> Partition disks: Guided - use entire disk and setup LVM
+> Partition disks: Choose your main HDD were ubuntu will be installed.
+  Usually it will be single HDD, if your raid is set right.
+
+> Write changes to disk and create LVM: YES
+> Amount of volume: leave all offered size
+> Force UEFI Installation: YES (na starších serveroch zvolíme "No")
+> Write changes to disk: YES
+
+
+-Nastavíme proxy (ak nemáme žiaden proxy server, necháme prázdne).
+
+-Pri dotaze na automatické aktualizácie zvolíme "No automatic updates", 
+ aby sme predišli nepredvídaným následkom. Aktualizácia servera bude na 
+ vyžiadanie (on demand) a je za ňu zodpovedný administrátor.
 
 Ak sme aj napriek tomu zvolili automaticke aktualizacie, vieme ich vypnut:
 
@@ -130,15 +190,22 @@ APT::Periodic::Update-Package-Lists "0";
 APT::Periodic::Unattended-Upgrade "0";
 
 !!
-Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt"
+Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, 
+ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt"
 !!
 
--Pridáme balíček “OpenSSH server” (ak sme vyzvaní).
--Nainštalujeme GRUB na disk.
--Pokiaľ v sieti nie je IPv4 DHCP server, prepneme sa do virtuálnej konzoly (Ctrl+Alt+2) a upravíme súbor "/etc/network/interfaces", v ktorom serveru pridelíme statickú IPv4 (potrebná pre post-install EVE-ng).
--Prepneme sa naspäť do pôvodného terminálu (skúšame Ctrl+Alt+1 až 7).
--Po nainstalovavi GRUBu potvrdime restart volbou “Continue”. Server sa nasledne restartuje.
--Po restarte sa prihlasime s predvolenymi prihlasovacimi udajmi "root/eve". Po prvom prihlasenie treba vykonat prvotnu konfiguraciu, ktora je opisana v subore "5_prvotna_konfiguracia_EVE_ng".
+-Pridáme balíček "OpenSSH server" (ak sme vyzvaní).
+-Nainštalujeme GRUB na disk. Ak sme vopred odpojili všetky pevné disky
+ okrem jediného alebo sme vytvorili RAID zväzok, bude to jediná položka
+ v zozname spolu s USB kľúčom.
+-Po nainštalovaní GRUB zavádzača potvrdíme reštart voľbou "Continue".
+ Server sa následne reštartuje.
+ Ak sa po reštarte nespustí, vypneme ho dlhším podržaním napájacieho tlačidla.
+ Následne ho znovu zapneme.
+
+-Po reštarte sa prihlásime s predvolenymi prihlasovacimi udajmi "root/eve".
+ Po prvom prihlasenie treba vykonat prvotnu konfiguraciu, ktora je opisana
+ v subore "prvotna_konfiguracia_EVE_ng".
 
 
 Zdroje:

@@ -90,8 +90,11 @@ uctom na vzdialenom serveri a klientom (pouzivatelskym pocitacom) zabezpecena
 pomocou SSH klucov. Tak odpada nutnost zadavat heslo pri kazdom odchytavani.
 
   Na serveri:
+
     sudo aptitude install wireshark
+
         Na otazku "Should non-superusers capture packets?" odpovieme "Yes".
+        
     sudo useradd -m -g users -G wireshark -s /bin/bash wireshark_capture
     sudo passwd wireshark_capture
 

@@ -81,6 +81,11 @@ Skript, ktory sa spusta pri prvom prihlaseni do systemu
 Aj pomocou tohto skriptu mozeme okrem ineho zmenit aj hostname systemu.
 
 *************
+Dalsi zaujimavy subor. Zrejme sa stara o post-install
+
+/var/lib/dpkg/info/eve-ng.postinst configure
+
+*************
 Tento subor (link) urcuje, ktoru z verzii QEMU bude EVE-ng pouzivat
   /opt/qemu
 
