@@ -19,7 +19,8 @@ EVE-ng
   -vlozit csv do calc dokumentu
     -podla potreby upravit vstupne data:
       -odstranit riadky, v ktorych su pod mnozstvom spotrebovanej operacnej pamate uvodne nuly
-  -vyexportovat grafy do png obrazkov
+  -vyexportovat grafy "Celkoveho vytazenia CPU" a "Vyuzitia operacnej pamate" do png obrazkov
+  IBA pre Cisco, Juniper, Linux a Windows
   -ulozit cely dokument do adresara zariadenia (Save As...)
 
 -zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
