@@ -5,13 +5,23 @@ Po uvodnej instalacii a konfiguracii systemu pokracujeme zabezpecenim jeho sucas
 Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, nez priamo ako root.
 
 -nainstalovat sudo
+
   apt-get update
   apt-get install sudo
+
 -vytvorit noveho pouzivatela
-  adduser andrej
+
+  adduser <username>
+
 -pridelit mu sudo pravomoci
+
   sudo usermod -aG sudo <username>
-  -parameter -a je dolezity: zachovava pouzivatelove uz existujuce clenstva v inych skupinach.
+
+resp.
+
+  sudo gpasswd -a sudo <username>
+
+parameter -a je dolezity: zachovava pouzivatelove uz existujuce clenstva v inych skupinach.
 
 *************
 Pridavanie noveho pouzivatela
@@ -27,15 +37,19 @@ Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
 *************
 Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani lokalne, a uz vobec nie vzdialene). Aj po "sudo -i" vie tak zblbnut, ze nepozna ani zakladne prikazy (napr "ls"): vypise chybu "Command not found". V kazdom pripade tak predideme dalsim komplikaciam.
 
-*************
-Nastavime heslo pre BIOS.
-Tento krok som nevykonal.
-Spolieham sa na fyzicke zabezpecenie pristupu k serverovni.
 
 *************
-Pouzijeme iptables firewall na zabezpecenie servera
-Tento krok som nevykonal.
-Spolieham sa na katedrovy firewall.
+Mozeme nastavit heslo pre BIOS,
+ale spolieham sa na fyzicke zabezpecenie pristupu k serverovni.
+
+
+*************
+Mozeme pouzit iptables firewall na zabezpecenie servera,
+ale spolieham sa na katedrovy firewall.
+
+
+
+
 
 
 ************* ZABEZPECENIE SSH *************
@@ -43,22 +57,41 @@ Spolieham sa na katedrovy firewall.
 SSH pouzivame na vzdialenu administraciu servera.
 
 Zmenit nastavenia v konfiguracnom subore SSH
+
   sudo vim.tiny /etc/ssh/sshd_config
   
+
+...
 Protocol 2
+...
 
-#AllowUsers andrej  #toto je velmi striktne zabezpecenie
-DenyUsers root
-DenyGroups root
 
+# toto je velmi striktne zabezpecenie
+# zakazat root ucet znefunkcni odchytavanie s predvolenym EVE-ng integracnym
+# balickom 
+...
+#AllowUsers andrej
+#DenyUsers root
+#DenyGroups root
+...
+
+
+# "StrictMode no" umozni prihlasit sa certifikatom z Windowsu,
+# lebo NTFS prepise prava na certifikate na 777,
+# ale StrictMode ocakava 600
+...
 # Authentication  
 PermitRootLogin no
-StrictMode no  -> toto umozni prihlasit sa certifikatom z Windowsu (lebo NTFS prepise prava na certifikate na 777; StrictMode ocakava 600)
+StrictMode no
 RSAAuthentication yes
 PubkeyAuthentication yes
+...
 
+
+...
 # To enable empty passwords, change to yes (NOT RECOMMENDED)
 PermitEmptyPasswords no
+...
 
 # ... pod GSSAPI
 X11Forwarding no
@@ -67,22 +100,29 @@ TCPKeepAlive no
 
 -Nacitame novu konfiguraciu pre SSH
 
-    sudo systemctl reload ssh
+  sudo systemctl reload ssh
 
-  -potom odskusame prihlasenie ako root aj ako pouzivatel. Po zadani spravneho hesla pouzivatela sa okamzite prihlasime. Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
+-potom odskusame prihlasenie ako root aj ako pouzivatel.
+  -Po zadani spravneho hesla pouzivatela <username> sa okamzite prihlasime.
+  -Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
 
 *************
 -aktivujeme autentifikaciu SSH klucom.
-  -vygenerujeme SSH kluce (verejny a privatny) na lokalnom pocitaci
+  -ak este nemame vygenerovane na lokalnom pocitaci SSH kluce (verejny
+   a privatny) vygenerujeme ich
+
     ssh-keygen
 
   -skopirujeme verejny kluc nasho pocitaca na server
+
     ssh-copy-id <pouzivatel>@<ip_adresa_servera>
 
   -skusime sa prihlasit na server pomocou SSH
     ssh <pouzivatel>@<ip_adresa_servera>
 
-  -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu heslom, pretoze budeme pouzivat vylucne autentifikaciu SSH klucmi t.j. zmenime subor nasledovne (odkomentujeme riadok 'PasswordAuthentication')
+  -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu
+   heslom (riadok 'PasswordAuthentication'), pretoze budeme pouzivat vylucne
+   autentifikaciu SSH klucmi. Zmenime subor nasledovne:
 
   sudo vim.tiny /etc/ssh/sshd_config  
 
@@ -94,30 +134,41 @@ PasswordAuthentication no
 
     sudo service ssh reload
 
+
+
 *************
 Zmena SSH portu
--Mozeme zmenit SSH port kvoli potencionalnym utokom na port 22 (vid riadok "Port" na zaciatku suboru)
-Tento krok som nevykonal.
+-Mozeme zmenit SSH port kvoli potencionalnym utokom na port 22 (vid 
+ riadok "Port" na zaciatku suboru). Tento krok som nevykonal.
+
+
 
 *************
 Zobrazime spravu pouzivatelovi pred prihlasenim
 
 -upravime subor:
+
   sudo vim.tiny /etc/issue.net
 
 mozeme don vlozit lubovolny text, napr.:
+
   EVE-ng server
   Na prihlasenie je potrebny SSH kluc!
 
 -ulozime
 -upravime subor:
+
   sudo vim.tiny /etc/ssh/sshd_config
 
 odkomentujeme riadok "Banner" (nachadza sa pod "GSSAPI")
+
   Banner /etc/issue.net
 
 restartujeme SSH server
+
   sudo service ssh reload
+
+
 
 *************
 Zobrazime spravu pouzivatelovi po prihlaseni (MOTD - Message Of The Day)
@@ -139,31 +190,12 @@ mozeme don vlozit lubovolny text, napr.:
 Ukoncime SSH spojenie a znovu sa prihlasime.
 Uvidime MOTD.
 
-*************
-Nastavime pocuvanie SSH iba na jednej IP adrese
-
-Tento krok som nevykonal.
-
-V /etc/ssh/sshd_conf upravime riadok
-
-  #Listen 0.0.0.0
-
-na
-
-  Listen <IP_adresa_servera>
-
--ulozime
--nacitame novu SSHkonfiguraciu
-
-  sudo service ssh reload
-
-
 
 
 
 ************* ZABEZPECENIE APACHE *************
 
-Apache sa pouziva ako server, ktory umoznuje pouzivanie EVE-ng cez web prehliadac.
+EVE-ng pouziva Apache ako svoj webový server
 
 -aktivacia HTTPS pre EVE-ng
 
@@ -218,37 +250,17 @@ EOF
 
   exit
   sudo /etc/init.d/apache2 restart
-  ->overime https pristup. do prehliadaca zadame:
+
+
+  -overime https pristup. do prehliadaca zadame:
 
     https://<ip_adresa_servera>
 
-    -nasledne pridame vynimku do prehliadaca
+    -nasledne pridame vynimku do prehliadaca, pretože sa používa
+    "selfsigned" certifikát
+     
 
-*************
 
--nastavime pocuvanie iba na konkretnej IP adrese
-  -Apache bude pocuvat iba na tej IPcke, ktora mu bola priradena.
-  -upravime potrebne subory
-
-    sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
-
-zmenime riadok
-    '<VirtualHost *:80>'
-na
-    '<VirtualHost IP_ADRESA_SERVERA:80>'
-
--ulozime
-
-    sudo vim.tiny /etc/apache2/sites-enabled/default-ssl.conf
-
-zmenime riadok
-    '<VirtualHost _default_:443>'
-na
-    '<VirtualHost IP_ADRESA_SERVERA:443>'
-
--ulozime
--restartujeme apache
-  sudo systemctl restart apache2.service
     
 *************
 
@@ -286,16 +298,18 @@ ServerTokens Prod
 -restartujeme apache
     sudo systemctl restart apache2.service
 
+
+
 *************
 5. Run Apache as separate User and Group
 -toto by malo byt uz defaultne nastavene:
 Nastavuje sa to v subore
 
-/etc/apache2/apache2.conf
+  /etc/apache2/apache2.conf
 
 Ten ma pre premenne APACHE_RUN_USER a APACHE_RUN_GROUP odkazy na premenne v subore
 
-/etc/apache2/envvars
+  /etc/apache2/envvars
 
   export APACHE_RUN_USER=www-data
   export APACHE_RUN_GROUP=www-data
@@ -304,7 +318,9 @@ aby sa spustal v pouzivatelskom ucte.
 
 -ulozime
 -restartujeme apache
-    sudo systemctl restart apache2.service
+
+  sudo systemctl restart apache2.service
+
 
 *************
 mod_security
@@ -323,13 +339,22 @@ mod_evasive
 Tento krok som nevykonal.
 Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
 
-************* ZABEZPECENIE MYSQL *************
+
+************* ZABEZPECENIE MYSQL [VOLITEĽNÉ] *************
 
 MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
+
+MySQL server nemusíme explicitne zabezpečovať, pretože je prístupný
+iba lokálne. Pokiaľ chceme pristupovať k databáze vzdialene, je nutné vytvoriť
+SSH tunel (vid "sprava_pouzivatelov.txt")
+
+NASLEDÚJUCE KROKY SÚ VOLITEĽNÉ
+
 Predvolene heslo je slabe, preto ho treba ho zmenit.
 Mozeme ho zmenit viacerymi sposobmi. Ja som pouzil prvy sposob.
 
-MYSQL_SECURE_INSTALLATIOM - ZMENA ROOT HESLA
+1) MYSQL_SECURE_INSTALLATIOM - ZMENA ROOT HESLA
+
   mysql_secure_installation
 
 Securing the MySQL server deployment.
@@ -412,25 +437,14 @@ All done!
 
 
 
-MYSQLADMIN - ZMENA HESLA INEMU POUZIVATELOVI
+2) MYSQLADMIN - ZMENA HESLA INEMU POUZIVATELOVI
+-UPOZORNENIE!!!
+ V MySQL SA RETAZCE ZADAVAJU DO APOSTROFOV '', NIE DO UVODZOVIEK "" !!!
+
   mysqladmin -u root -p'oldpassword' password newpass
 repsp.
   mysqladmin -u root -p'oldpassword' password 'newpass'
 
-MYSQL WORKBENCH
--Dalsi sposob je cez MySQL Workbench. Na to je potrebne aktivovat vzdialeny pristup v konfiguracnom subore MySQL:
-  sudo vim.tiny /etc/mysql/mysql.conf.d/mysqld.cnf
-
-  najdeme riadok
-"bind-address = 127.0.0.1"
-
-  a zakomentujeme ho
-#bind-address = 127.0.0.1"
-
-restartujeme MySQL sluzbu
-  sudo service mysql restart
-
-Teraz sa mozeme pripojit k MySQL serveru cez MySQL Workbench.
 
 
 ************* ZABEZPECENIE WEB ROZHRANIA *************
@@ -445,6 +459,7 @@ Teraz sa mozeme pripojit k MySQL serveru cez MySQL Workbench.
 
 Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
   https://howsecureismypassword.net/
+
 
 
 ************* ZAVERECNE KROKY *************

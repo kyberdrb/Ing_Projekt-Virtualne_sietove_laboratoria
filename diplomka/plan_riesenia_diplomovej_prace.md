@@ -85,7 +85,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 -CCNA Security
   - TODO - konkrétne technológie, vyučované na predmete
 
-- CCNP Routing & Switching
+- CCNP Routing & Switching - PRIMÁRNE!
   - TODO - konkrétne technológie, vyučované na predmete
 
 ### Výber vhodných zariadení, ktoré podporujú potrebné technológie
@@ -106,11 +106,13 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - podpora zariadení, s ktorými sa na danom predmete pracuje
 - podpora technológií jednotlivých zariadení
 - typ používateľského rozhrania
+- prideľovanie portových čísel zariadeniam
 - vzdialený prístup ku zariadeniam (telnet, vnc, rdp)
 - správa topológií
   - vytvorenie/úprava/uloženie/odstránenie topológie
   - koľko topológií môže mať jeden používateľ spustených
 - možnosť práce viac ľudí naraz na rovnakom projekte
+- možnosť prepojiť topológiu so živou sieťou
 
 ### Porovnanie GNS3 a EVE-ng
 
@@ -134,7 +136,11 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - SSH tunely pre vzdialený prístup
 
 #### Spravovanie
-- zálohovanie
+##### Adresárova štruktúra EVE-ng
+-adresárový strom
+##### Monitorovanie
+- netdata
+##### Zálohovanie
 
 ### Meranie systémových požiadaviek zariadení
 #### Metodika
@@ -144,10 +150,10 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 ### Testovanie virtuálneho laboratória
 - meranie systémových požiadaviek vybraných topológií
 - vyhodnotenie kompatibility, výkonnosti, stability, početnosti zariadení atď.
-- overenie funkčnosti pri vypracovávaní úloh z vybraných predmetov.
+- overenie funkčnosti pri vypracovávaní úloh z vybraných predmetov
 #### Počítačové siete 1/2 (CCNA)
 - náhrada/doplnok pre nástroj Packet Tracer
-- Sumárne laboratórne cvičenie “Packet Tracer Packet Tracer Skills Integration Challenge 8.6.1”
+- sumárne laboratórne cvičenie “Packet Tracer Packet Tracer Skills Integration Challenge 8.6.1”
 #### Projektovanie sietí 1
 - náhrada/doplnok Dynamips servera (s takym vykonom, t.j. cca 10/15skupin po 10 routroch)
 #### Projektovanie sietí 2

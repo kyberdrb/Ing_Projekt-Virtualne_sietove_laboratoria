@@ -12,6 +12,11 @@ Zazitky:
 Ulohy:
 
 EVE-ng
+-do skriptu na upravu sablon zmenit zariadeniam pocet CPU
+  -obenchmarkovanym QEMU zariadeniam
+-skor ci neskor budem musiet aj tak automatizovat generovanie
+benchmarkingovych a profilingovych grafov (zrejme pythonom)
+
 -preinstalovat eve-ng server pre chalanov na stvrtok
 
 -urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
@@ -224,6 +229,7 @@ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
   http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
   https://twitter.com/EVE_NG_TEAM/status/951560394765733888
+  
 -Pridat predmet na bezpecnost:
   -Cisco hardening
     https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
