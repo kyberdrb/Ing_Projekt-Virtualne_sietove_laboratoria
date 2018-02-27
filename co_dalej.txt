@@ -12,7 +12,11 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--zacat benchmarking and profiling vybraych EVE-ng zariadeni
+-urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
+  -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
+    (fyzicky vs virtualny stroj (vs lxc?))
+
+-benchmarking and profiling vybraych EVE-ng zariadeni
   -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
     "profiling_sirena_sablona_nova-dstat_custom.ods"
   -obenchmarkovat ich vytvorenym skriptom
@@ -120,7 +124,7 @@ GNS3
 
 
 Diplomka
-  - pridat CCNA technologie
+  - pridat CCNA technologie (vid fb)
   - do diplomky dat na koniec kapitolu "co dalej"
 
 
