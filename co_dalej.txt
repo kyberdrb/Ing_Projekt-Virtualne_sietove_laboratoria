@@ -16,6 +16,24 @@ EVE-ng
 -po preinstalacii vyskusat odchytavanie zo osobitneho pouzivatelskeho
  uctu "wireshark_capture"
   -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
+   a odchytit ich premavku (z root uctu)
+
+  -potom zmenit toto v /bin/eve-ng-integration
+
+      if url.scheme == 'capture':
+        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+        wireshark_cmd = 'wireshark -k -i -'
+
+   na toto (pridame "sudo" pred tcpdump)
+
+    if url.scheme == 'capture':
+        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+              -l wireshark_capture {host} sudo tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+        wireshark_cmd = 'wireshark -k -i -'
+
+
+
   -potom vytvorit pouzivatela "wireshark_capture", nainstalovat wireshark, 
    priradit pouzivatela "wireshark_capture" do skupiny wireshark a 
    restartovat server
