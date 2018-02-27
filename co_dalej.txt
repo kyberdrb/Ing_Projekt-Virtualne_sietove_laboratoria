@@ -25,7 +25,8 @@ EVE-ng
               -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
         wireshark_cmd = 'wireshark -k -i -'
 
-   na toto (pridame "sudo" pred tcpdump)
+   na toto (pridame "sudo" pred tcpdump => aj uzivatel wireshark_capture bude v 
+   sudo skupine, ale bude moct vykonavat VYLUCNE PRIKAZ TCPDUMP AKO SUDO!!!)
 
     if url.scheme == 'capture':
         cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
