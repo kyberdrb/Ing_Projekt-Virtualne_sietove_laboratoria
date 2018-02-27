@@ -6,12 +6,13 @@ Spolocne parametre
 -Eventualne mozny import pouzivatelskych uctov na vzdialeny GNS3 server z LDAP
   -pre GNS3 do Linuxu
   -pre EVE-ng do Linuxu/MySQL databazy
+-Podpora Docker kontajnerov
 
 **********
    GNS3
 **********
 Výhody
--Podpora Docker kontajnerov
+-Podpora grafických Docker kontajnerov
 -Lepšia škálovateľnosť oproti EVE-ng
   -moznost vytvorit GNS3 cluster
 -Pri práci viacerých používateľov na jednom projekte sa
@@ -43,9 +44,9 @@ Výhody
 -Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
 
 Nevýhody
--Nepodporuje Docker kontajnery
+-Podporované iba konzolové Docker kontajnery
+-Podporu Docker kontajnerov treba aktivovať dodatočne
 -Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením.
 -Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov
 -Web server (Apache) nie je chránený modulmi “modsecurity” (ochrana napr. Proti SQL Injection) a “modevasive” (ochrana proti DoS a DDoS útokom)
 -EVE-ng sa nedá škálovať naprieč viacerými servermi t.j. nevieme urobiť EVE-ng cluster tak, ako to vieme urobiť v GNS3
--Podporu Docker kontajnerov treba aktivovať dodatočne
