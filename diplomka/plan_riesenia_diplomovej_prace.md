@@ -1,11 +1,12 @@
-# Plán riešenia diplomovej práce
+# Plán riešenia diplomovej práce #
 
 
-## Motivácia
+## Motivácia ##
+
 Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje výučbu, zameranú aj na osvojenie praktických zručností zo správy sieťových prvkov. Za týmto účelom prevádzkuje dve laboratória so sieťovými prvkami. Tieto prvky sú stále vhodné na vyučovanie, avšak ich aktualizácia je čím ďalej náročnejšia. S nástupom systémov virtuálizácie sa objavujú  jednak riešenia výrobcov sieťových prvkov, ktoré sú navrhnuté na beh vo virtualizovanom prostredí, ako aj dostupné riešenia umožňujúce ich využívanie a vlastné budovanie virtuálnych laboratórií. Cieľom práce je analyzovať vyučovanie KIS. Následne na základe analýzy vykonať prieskum dostupnosti virtuálnych sieťových prvkov a rôznych virtualizačných platforiem na ich virtualizáciu. Potom vykonať ich vyhodnotenie podľa stanovených kritérií a vypracovať systém ich nasadenia pre vybrané predmety podľa potrieb katedry.
 
 
-## Zoznam úloh a ich riešení
+## Zoznam úloh a ich riešení ##
 
 ### Výber predmetov, v ktorých je vhodné použiť virtuálne laboratórium
 - Počítačové siete 1
