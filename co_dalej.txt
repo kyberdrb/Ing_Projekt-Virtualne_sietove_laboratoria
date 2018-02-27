@@ -55,6 +55,10 @@ EVE-ng
   + dat ich do adresara ./eve-ng/skripty, ale ponechat nazov, ako na gite,
   nie ako su na vzdialenom serveri (aby bolo jasne kam patria)
 
+
+
+
+
 -zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
 
 
@@ -116,7 +120,8 @@ GNS3
 
 
 Diplomka
-  -do diplomky dat na koniec kapitolu "co dalej"
+  - pridat CCNA technologie
+  - do diplomky dat na koniec kapitolu "co dalej"
 
 
 

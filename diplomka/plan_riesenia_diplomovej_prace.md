@@ -158,5 +158,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - MVPN-NG ?
 - eVPN ?
 
-- Vyhodnotenie a dokumentácia získaných výsledkov.
+### Vyhodnotenie a dokumentácia získaných výsledkov.
 - Všetky dokumenty a výsledky práce sú prístupné na stránke https://github.com/kyberdrb/Ing-Projekt_Ing-Virtualne_sietove_laboratoria
+
+### Čo ďalej
