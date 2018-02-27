@@ -273,11 +273,13 @@ EOF
     
     Redirect / https://<ip_adresa_servera>/
 
-restartujeme apache
+-restartujeme apache
+
     sudo systemctl restart apache2.service
 
-Overime, ci sa zmeny prejavili.
-V prehliadaci zadame
+-Overime, ci sa zmeny prejavili.
+ V prehliadaci zadame
+
   http://IP_ADRESA_SERVERA
 
 Malo by nas to okamzite presmerovat na HTTPS verziu stranky.
@@ -337,14 +339,26 @@ mod_evasive
 -ochrana Apache web servera proti DoS a DDoS utokom
 
 Tento krok som nevykonal.
-Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
+Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu 
+a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
+
+
+
+************* APACHE GUACAMOLE (REVERSE PROXY SERVER) [VOLITEĽNÉ] *************
+Reverse Proxy slúži na vzdialený prístup k zariadeniam v topológií 
+cez web prehliadač bez nutnosti inštalácie ďalších nástrojov na klientský
+počítač (okrem nástroja Wireshark)
+
+Netreba zabezpečovať, pretože na serveri je prístupný iba lokálne.
+
+
 
 
 ************* ZABEZPECENIE MYSQL [VOLITEĽNÉ] *************
 
 MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
 
-MySQL server nemusíme explicitne zabezpečovať, pretože je prístupný
+MySQL server nemusíme explicitne zabezpečovať, pretože na serveri je prístupný
 iba lokálne. Pokiaľ chceme pristupovať k databáze vzdialene, je nutné vytvoriť
 SSH tunel (vid "sprava_pouzivatelov.txt")
 
@@ -447,9 +461,14 @@ repsp.
 
 
 
-************* ZABEZPECENIE WEB ROZHRANIA *************
+************* ZABEZPECENIE WEB ROZHRANIA EVE-ng *************
+-Až po zabezpečení webového servera zmeníme predvolené heslo
+ administrátorského účtu pre prístup do webového rozhrania.
+ Pokiaľ by sme toto heslo zmenili pred zabezpečením webového
+ servera, heslo by bolo nezašifrované a dalo by sa jednoducho 
+ odchytiť napr. nástrojom Wireshark.
 
--Okamzite zabezpecime 'admin' ucet:
+-Zabezpečíme 'admin' účet:
   -zadame IP/web adresu web servera
   -prihlasime sa ako admin
   -pojdeme do Management -> User Management -> v riadku admin klikneme na "Edit"
@@ -464,7 +483,9 @@ Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
 
 ************* ZAVERECNE KROKY *************
 
--vymazeme historiu bash prikazov pre kazdeho pouzivatela (lokalne aj cez SSH)
+-vymazeme historiu bash prikazov v termináli pre kazdeho pouzivatela (lokalne 
+ aj cez SSH)
+ 
   history -c
   history -w
 
@@ -488,7 +509,10 @@ https://www.tecmint.com/apache-security-tips/
 https://askubuntu.com/a/185049
 https://askubuntu.com/questions/184791/how-to-disable-non-ssl-connection-on-apache-2-2
 https://wiki.apache.org/httpd/RedirectSSL
-http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve     <-- tento návod som použil na vygenerovanie SSL certifikatu pre Apache
+
+#tento návod som použil na vygenerovanie SSL certifikatu pre Apache
+http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve
+
 http://www.eve-ng.net/index.php/documentation/howto-s/82-howto-enable-letsencrypt-on-eve-2
 
 -MySQL

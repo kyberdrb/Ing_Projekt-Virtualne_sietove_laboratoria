@@ -19,6 +19,17 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
 
 -preinstalovat eve-ng server pre chalanov na stvrtok
 
+-po preinstalacii vyskusat odchytavanie zo osobitneho pouzivatelskeho
+ uctu "wireshark_capture"
+  -iba vytvorit pouzivatela "wireshark_capture", nainstalovat wireshark, 
+   priradit pouzivatela "wireshark_capture" do skupiny wireshark a 
+   restartovat server
+  -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
+   ci maju konektivitu (ping)
+
+-lepsie HTTPS zabezpecenie po uspesnej preinstalacii
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+
 -urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
   -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
     (fyzicky vs virtualny stroj (vs lxc?))
@@ -147,8 +158,7 @@ Co dalej?
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
 -Zabezpecit EVE-ng web server lepsie
   -modsecurity, modevasive
-  -lepsie HTTPS zabezpecenie
-    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+  
 -Preskumat labaky
   https://adamfromthefuture.blogspot.sk/2017/12/ccna-rs-prep-hero-level-rip.html
   
