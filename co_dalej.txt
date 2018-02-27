@@ -12,8 +12,6 @@ Zazitky:
 Ulohy:
 
 EVE-ng
--do konfiguracie EVE-ng v LXC dat cele konfiguraky
-
 -preinstalovat eve-ng server pre chalanov na stvrtok
 
 -urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
@@ -125,7 +123,6 @@ GNS3
 
 Diplomka
   - pridat CCNA technologie (vid fb)
-  - do diplomky dat na koniec kapitolu "co dalej"
 
 
 
@@ -141,6 +138,8 @@ Diplomka
 
 
 Co dalej?
+-LACP Nexus 9000v - IOSv Bug fix
+  https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
 -Zabezpecit EVE-ng web server lepsie
   -modsecurity, modevasive
   -lepsie HTTPS zabezpecenie

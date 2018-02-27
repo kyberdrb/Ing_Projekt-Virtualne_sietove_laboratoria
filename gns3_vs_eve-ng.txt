@@ -5,7 +5,7 @@ Spolocne parametre
 -Podpora viacerých používateľov pri práci na spoločnom projekte
 -Eventualne mozny import pouzivatelskych uctov na vzdialeny GNS3 server z LDAP
   -pre GNS3 do Linuxu
-  -pre EVE-ng do Linuxu/MySQL databazy
+  -pre EVE-ng do Linuxu a MySQL databázy
 -Podpora Docker kontajnerov
 
 **********
@@ -14,17 +14,16 @@ Spolocne parametre
 Výhody
 -Podpora grafických Docker kontajnerov
 -Lepšia škálovateľnosť oproti EVE-ng
-  -moznost vytvorit GNS3 cluster
--Pri práci viacerých používateľov na jednom projekte sa
-  topologia sa pri zmene okamžite aktualizuje všetkým používateľom
+  -možnosť vytvoriť GNS3 cluster
+-Pri práci viacerých používateľov na jednom projekte sa topológia sa pri
+ zmene okamžite aktualizuje všetkým používateľom
 
 Nevýhody
 -Nutnost instalacie samostatnej klientskej aplikacie
--Zložitejší na konfiguráciu
-  -zložitejšia konfigurácia autentifikacie
+-Zložitejšia konfigurácia na autentifikáciu používateľov
 -Zložitejšie vytváranie šablón pre zariadenia
-  -nutnosť manuálne pridať každé zariadenie; pri GNS3 clustri treba každé
-  zariadenie pridať samostatne na každý server v clustri
+  -nutnosť manuálne pridať každé zariadenie
+  -pri GNS3 clustri treba každé zariadenie pridať samostatne na každý server v clustri
 
 **********
   EVE-ng
