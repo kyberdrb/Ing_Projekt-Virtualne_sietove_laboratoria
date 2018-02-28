@@ -15,7 +15,7 @@ EVE-ng
 
 -po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
  v topologii
- 
+
   -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
    a odchytit ich premavku (z root uctu)
 
@@ -41,6 +41,10 @@ EVE-ng
    restartovat server
   -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
    ci maju konektivitu (ping)
+
+-do zalohovacieho skriptu pridat subor /opt/unetlab/scripts/unl_wrapper.php
+  -upravene nastavovanie pouzivatela a skupiny pre "/opt/unetlab/addons/" 
+   adresar
 
 -do skriptu na upravu sablon zmenit zariadeniam pocet CPU
   -obenchmarkovanym QEMU zariadeniam

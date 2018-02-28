@@ -9,6 +9,9 @@ DÔLEŽITÉ ADRESÁRE
 
   /opt/unetlab/labs
     -projektové súbory (topológie)
+    -všetky súbory a adresáre patria používateľovi a skupine "www-data",
+     inak sa pri práci s nimi vyskytnú rôzne chyby napr. pri presúvaní 
+     alebo odstraňovaní.
 
   /opt/unetlab/html/templates
     -šablóny pre jednotlivé typy zariadení
@@ -179,8 +182,39 @@ napr.
     -vlastníka  (chown)
     -skupinu    (chown)
     -mód        (chmod)
+  
+  Skript má názov "unl_wrapper" a nachádza sa v "/opt/unetlab/wrappers/".
+  Skript bol upravený tak, aby menil používateľa aj skupinu na "root" pre
+  všetky súbory a adresáre v "/opt/unetlab/addons/". Tam sa nachádzajú
+  všetky zariadenia, ktoré je možné použiť v EVE-ng topológií, okrem 
+  VPCS (to sa nachádza v adresári "/opt/vpcsu/").
+
+  Bez tejto úpravy "unl_wrapper" skriptu nemusia byť niektoré zariadenia
+  v topoloógii spustiteľné.
+
+  Úprava spočívala v pridaní nižšie uvedených riadkov nad riadok
+      "// /opt/unetlab/addons/iol/bin"
+
+
+    ...
+
+    // /opt/unetlab/addons
+    $cmd = '/bin/chown -R root:root /opt/unetlab/addons > /dev/null 2>&1';
+    exec($cmd, $o, $rc);
+
+    ...
+
+
+    
+    Obsah celého súboru je uložený na zálohovacom serveri v adresári
+      "~/zalohy_virtualnych_sietovych_laboratorii/eve_ng_specific/opt_unetlab_wrappers"
+
+
+-Uložíme súbor
+-Vykonáme práve upravený skript tak, ako je uvedené nižšie
 
     sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
 
 
 
