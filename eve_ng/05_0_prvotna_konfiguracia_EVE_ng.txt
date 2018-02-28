@@ -285,8 +285,9 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
 -None default options will require proxy hostname and port 
  (default is proxy.example.com:8080) and username/password with authenticated proxy.
 
--Skript následne upraví potrebné súbory, vygeneruje nové SSH kľúče a nakoniec
- reštartuje server.
+-Skript následne upraví potrebné súbory, vygeneruje nové SSH kľúče pre root
+ používateľa (nie pre ostatných používateľov v systéme) a nakoniec reštartuje
+ server.
  Tým, že sa vygenerujú nové SSH kľúče pre server, SSH prihlásenie zlyhá 
  so správou:
  "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!".
@@ -311,24 +312,18 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
 
   sudo cp -R /opt/unetlab/ /opt/unetlab_original
 
-
-
-
-
-
-
-
-EVE-ng server je teraz nainstalovany. Na to, aby bol pripravený na použtie 
-z webového rozhrania, musime pridat vynimky do firewallu pre porty:
+-EVE-ng server je teraz nainštalovaný. Na to, aby bol pripravený na použtie 
+ z webového rozhrania, musíme pridať výnimky do firewallu na IP adresu EVE-ng 
+ servera pre porty:
 
   80/443 - HTTP/HTTPS
   22 - SSH
   32768-64536 - TCP aj UDP - zariadenia (telnet/vnc/rdp)
 
 
-Po úprave pravidiel vo firewalle otvoríme internetový prehliadač a zadáme doň 
-adresu EVE-ng serveru (napr. 192.168.1.137 - IP adresu zistíme príkazom "ip a" 
-na rozhraní "pnet0")
+-Po úprave pravidiel v firewalle otvoríme internetový prehliadač a zadáme doň 
+ adresu EVE-ng serveru (napr. 192.168.1.137 - IP adresu zistíme príkazom "ip a" 
+ na rozhraní "pnet0")
 
 Prihlasovacie údaje do webového rozhrania sú:
 
@@ -336,7 +331,8 @@ username:   admin
 password:   eve
 
 
-Po prihlásení sa do webového rozhrania môžeme spravovať topológie a zariadenia.
+-Po prihlásení sa do webového rozhrania môžeme spravovať topológie a zariadenia.
+
 Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača.
 Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
@@ -350,6 +346,13 @@ Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
 -Pokračujeme zabezpečením servera, ktoré je opísané v súbore 
  "zabezpecenie_servera.txt"
+
+ alebo
+
+ obnovením súborov zo záložného servera, ktoré je opísané v súbore
+ "migracia_zalohovanie_obnovenie_eve_ng.txt"
+
+
 
 Sources:
   (Instalacia EVE-ng do Ubuntu)

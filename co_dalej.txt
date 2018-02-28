@@ -13,8 +13,9 @@ Ulohy:
 
 EVE-ng
 
--po preinstalacii vyskusat odchytavanie zo osobitneho pouzivatelskeho
- uctu "wireshark_capture"
+-po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
+ v topologii
+ 
   -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
    a odchytit ich premavku (z root uctu)
 

@@ -1,10 +1,11 @@
-************* ZOZNAM SUBOROV A ADRESAROV NA MIGRACIU *************
+************* ZOZNAM SÚBOROV A ADRESÁROV NA MIGRÁCIU *************
 
 *************
-DOLEZITE ADRESARE
+DÔLEŽITÉ ADRESÁRE
 
   /opt/unetlab/addons
-    -obrazy diskov (z adresára addons musíme vylúčiť podadresár "/opt/unetlab/addons/iol/lib", aby nedošlo ku konfliktu súborov!)
+    -obrazy diskov (z adresára addons musíme vylúčiť podadresár 
+     "/opt/unetlab/addons/iol/lib", aby nedošlo ku konfliktu súborov!)
 
   /opt/unetlab/labs
     -projektové súbory (topológie)
@@ -14,11 +15,12 @@ DOLEZITE ADRESARE
     -šablóny aktualizujem skriptom, ktorý opisujem v subore "uprava_sablon"
 
   /var/lib/mysql
-    -adresar s mysql databazami
-    -neda sa zalohovat kopirovanim adresara na iny pocitac - musime pouzit mysqldump
+    -adresár s mysql databázami
+    -nedá sa zálohovať kopírovaním adresára na iný počítač - musíme
+     použiť "mysqldump"
 
 *************
-DOLEZITE SUBORY
+DÔLEŽITÉ SÚBORY
 
   /etc/hostname
     -ak chceme zmenit hostname servera, potrebujeme ho zmenit aj v:
@@ -42,9 +44,15 @@ DOLEZITE SUBORY
     -zmena - pocuvanie na konkretnej IPcke '<VirtualHost _default_:443>' na '<VirtualHost IP_ADRESA_SERVERA:443>'
     -zmenene ServerName na sirena (ak je pritomne)
 
-  /etc/ssh/sshd_config -> SSH konfiguracia - upravena podla suboru "zabezpecenie_servera"
-  /etc/issue.net -> SSH sprava pred prihlasenim
-  /etc/motd -> SSH sprava po prihlaseni
+  /etc/ssh/sshd_config
+    -SSH konfigurácia -> upravená podľa súboru "zabezpecenie_servera.txt"
+
+  /etc/issue.net
+    -SSH správa pred prihlásením
+
+  /etc/motd
+    -SSH správa po prihlásení
+
 
 
 ************* POSTUP ZALOHOVANIA *************
@@ -60,6 +68,9 @@ vim.tiny zaloha_na_eve_backup.sh
 Obsah skriptu je v subore "migracia_a_zalohovanie_eve_ng_skript".
 
 Pri zalohovani GNS3 QEMU zariadeni budu vznikat duplicity, pretoze suborova struktura v GNS3 je ina ako v EVE-ng.
+
+
+
 
 *************
 Periodicke vykonavanie zalohovacieho skriptu
@@ -110,7 +121,9 @@ Ked sme sa presvedcili, ze nas skript sa vykonava kazdu minutu, zakomentujeme ho
 *************
 Skript na lokalne zalohovanie.
 
-Ale najlepsie by bolo, keby sa hlavny disk zalohoval klonovanim na dalsie lokalne disky na serveri aj vzdialene, aby sme sa nemuseli spoliehat na lokalny system. Zalohovanie sa bude vykonavat kazdy den, najlepsie v noci.
+Ale najlepsie by bolo, keby sa hlavny disk zalohoval klonovanim na dalsie 
+lokalne disky na serveri aj vzdialene, aby sme sa nemuseli spoliehat len na 
+lokalny system. Zalohovanie sa bude vykonavat kazdy den, najlepsie v noci.
 
 
 dd bootsektor
@@ -121,11 +134,31 @@ rsync /
 
 ************* POSTUP OBNOVY *************
 
--Obsah adresárov na zálohovacom serveri skopírujeme do príslušných adresárov na primárnom serveri. To, kam dáta v danom adresári na zálohovacom serveri patria, hovorí názov daného adresára.
--Pomenovanie adresárov na zálohovacom serveri je odvodený od absolútnej cesty zálohovaných súborov s tým, že namiesto lomítok '/' som použil podčiarknik '_' (úvodné lomítko som vynechal).
-Napr. keď boli súbory zálohované z primárneho servera z cesty '/opt/unetlab/addons', potom súbory, ktoré sa z tohto adresára zálohujú budú patriť do adresára 'opt_unetlab_addons' (úvodné lomítko vynechané, zvyšné lomítka nahradené podčiarknikom). Na rovnakú cestu ich aj obnovíme.
+-Obsah adresárov na zálohovacom serveri skopírujeme najprv do domovského 
+ adresára "~". Z neho potom presunieme súbory do príslušných adresárov 
+ na primárnom serveri. Keďže prístup ku zálohovaciemu serveru bol zabezpečený
+ SSH kľúčom, musel som si ho pre svoj používateľský účet nanovo vygenerovať
+ 
+  ssh-keygen
+  ssh-copy-id <pouzivatel>@<IP_ADRESA_ZALOHOVACIEHO_SERVERA>
+  sftp andrej@<IP_ADRESA_ZALOHOVACIEHO_SERVERA>
+  get -R /absolutna/cesta/ku/suborom/alebo/adresarom/
+ 
+-To, kam dáta v danom adresári na zálohovacom serveri patria, hovorí názov 
+ daného adresára.
+ Pomenovanie adresárov na zálohovacom serveri je odvodený od absolútnej cesty 
+ zálohovaných súborov s tým, že namiesto lomítok '/' som použil podčiarknik '_' 
+ (úvodné lomítko som vynechal).
+ Napr. keď boli súbory zálohované z primárneho servera z cesty 
+    '/opt/unetlab/addons', 
+ potom súbory, ktoré sa z tohto adresára zálohujú budú patriť do adresára 
+    'opt_unetlab_addons' 
+ (úvodné lomítko vynechané, zvyšné lomítka nahradené podčiarknikom). 
+ Na rovnakú cestu ich aj obnovíme.
 
--Obsah adresára '/var/lib/mysql' nekopírujeme priamo do rovnakého adresára na primárnom serveri. Namiesto toho pouzijeme príkaz:
+
+-Obsah adresára '/var/lib/mysql' nekopírujeme priamo do rovnakého adresára
+ na primárnom serveri. Namiesto toho pouzijeme príkaz:
 
   mysql -u root -ptecmint rsyslog < rsyslog.sql
 napr.
@@ -133,11 +166,21 @@ napr.
 
 Takto obnovíme všetky zálohované databázy.
 
--Pokiaľ obnovujeme databázu, ktorá už existuje, použijeme príkaz:
+
+-Pokiaľ obnovujeme databázu, ktorá už existuje, použijeme príkaz "mysqlimport":
 
   mysqlimport -u root -ptecmint rsyslog < rsyslog.sql
 napr.
   mysqlimport -u root --password='<pouzivatelske_heslo>' eve_ng_db < /home/andrej/eve_ng_db.sql
+
+
+-Po obnovení všetkých potrebných súborov a adresárov, vykonáme skript,
+ ktorý opraví ich atribúty:
+    -vlastníka  (chown)
+    -skupinu    (chown)
+    -mód        (chmod)
+
+    sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
 
 
 
