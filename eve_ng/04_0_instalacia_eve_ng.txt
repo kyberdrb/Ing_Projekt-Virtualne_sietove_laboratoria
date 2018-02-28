@@ -205,7 +205,7 @@ ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt"
 
 -Po reštarte sa prihlásime s predvolenymi prihlasovacimi udajmi "root/eve".
  Po prvom prihlasenie treba vykonat prvotnu konfiguraciu, ktora je opisana
- v subore "prvotna_konfiguracia_EVE_ng".
+ v subore "prvotna_konfiguracia_EVE_ng.txt".
 
 
 Zdroje:

@@ -5,16 +5,93 @@ Poznámka: POD je identifikačné číslo používateľa, podľa ktorého sa ur�
 
 Všetci používatelia sú uložení v MySQL databáze.
 
-Je veľmi vhodné zmeniť heslo do EVE-ng MySQL databázy.
+Z hľadiska bezpečnosti je vhodné zmeniť heslo do MySQL databázy v EVE-ng.
 
 Spravovať používateľov môže iba používateľ s rolou "Administrator".
+
+
+===========================================================================
+===========================================================================
+
+OBNOVA HESLA KU ROOT ÚČTU V MYSQL DATABÁZE
+
+
+-V prípade, že sa nevieme prihlásiť k MySQL databáze ani lokálne alebo SSH
+ príkazmi
+
+    mysql -u root --password='heslo_ku_databazi' eve_ng_db
+    mysql -u root -p eve_ng_db
+
+ môžeme ho zmeniť nasledovne:
+
+  -Zastavíme MySQL službu
+
+    sudo systemctl stop mysql
+  
+  -Vytvoríme adresár pre MySQL socket, pretože vo verzii 5.7 sa tento
+   adresár vymaže po zastavení MySQL služby. Keby sme tento krok nevykonali,
+   núdzové prihlásenie sa do databázy pomocou "mysqld_safe" by zlyhalo s 
+   chybovým hlásením
+   "mysqld_safe Directory '/var/run/mysqld' for UNIX socket file don't exists."
+
+    mkdir -p /var/run/mysqld
+    chown mysql:mysql /var/run/mysqld
+
+  -Spustíme MySQL službu v núdzovom režime a presunieme ju na pozadie
+   (znakom '&' na konci príkazu), aby sme mohli aj naďalej pracovať
+   s konzolou.
+    
+    sudo mysqld_safe --skip-grant-tables --skip-networking &
+
+  -Prihlásime sa do databázy. Keďže MySQL služba je spustená v núdzovom
+   režime, výzva na zadanie hesla pre "root" používateľa bude preskočená.
+
+    mysql -u root
+
+  -V príkazovom riadku MySQL vykonáme príkaz na znovunačítanie "Grant" 
+   tabuliek (tabuliek s informáciami o používateľských účtoch v MySQL)
+
+    FLUSH PRIVILEGES;
+
+  -Zmeníme heslo pre "root" používateľa v MySQL
+
+    ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+
+  -Po zmene hesla sa objaví hlásenie
+   "Query OK, 0 rows affected (0.00 sec)"
+
+  -Ukončíme MySQL službu spustenú v núdzovom režime
+   
+    sudo kill $(sudo cat /var/run/mysqld/mysqld.pid) 
+
+  -Spustíme MySQL službu v štandardnom režime
+
+    sudo systemctl start mysql
+
+  -Prihlásime sa do databázy ako "root" používateľ s novým heslom
+
+    mysql -u root -p eve_ng_db
+
+  -Ak sme sa prihlásili, heslo bolo úspešne zmenené.
+
+
+Zdroje
+  https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password
+  https://stackoverflow.com/questions/42153059/mysqld-safe-directory-var-run-mysqld-for-unix-socket-file-dont-exists/42169345#42169345
+  https://stackoverflow.com/questions/42153059/mysqld-safe-directory-var-run-mysqld-for-unix-socket-file-dont-exists/42169345#comment75732997_42169345
+  https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html
+
+===========================================================================
+===========================================================================
+
+
 
 ===========================================================================
 ===========================================================================
 PRIPOJENIE SA NA MYSQL SERVER CEZ SSH TUNEL
 
 Pripojenie na server je zabezpecene cez SSH tunel.
-SSH je zabezpecene RSA klucom.
+SSH prístup je zabezpečený SSH kľúčom.
 
 ===========================================================================
 1) Terminal

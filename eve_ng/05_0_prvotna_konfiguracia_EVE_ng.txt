@@ -201,7 +201,33 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
   sudo apt-get install aptitude
   sudo aptitude update
   sudo aptitude install bash-completion man-db tmux python-pip datamash
-  tmux
+
+  Ešte pred spustením tmux relácie môžeme vytvoriť konfiguračný súbor pre 
+  tmux, ktorý nám umožní používať klávesové skratky
+    "Ctrl+šípka doľava/doprava"
+  na preskakovanie slov v príkazovom riadku.
+
+  Odpojíme sa od existujúcej tmux relácie, ak je tp potrebné
+
+    Ctrl+b d
+
+  Vytvoríme konfiguračný súbor pre tmux
+
+    vim ~/.tmux.conf
+  
+  Zadáme do súboru
+
+    set-window-option -g xterm-keys on
+
+  Uložíme súbor a obnovíme tmux reláciu
+
+    tmux a
+
+  V tmux relácií nastavíme tmux tak, aby používal nami vytvorený
+  konfiguračný súbor
+
+    Ctrl+b :source-file ~/.tmux.conf
+
 
 10. Get the eve key from repository:
 
@@ -330,27 +356,41 @@ Prihlasovacie údaje do webového rozhrania sú:
 username:   admin
 password:   eve
 
-
--Po prihlásení sa do webového rozhrania môžeme spravovať topológie a zariadenia.
+-Vyskúšame sa prihlásiť aj s "Native console" aj s "Html5 console".
+-Po prihlásení sa do webového rozhrania môžeme spravovať topológie a 
+ zariadenia.
+-Po úspešnom prihlásení sa okamžite odhlásime.
 
 Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača.
 Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
--Vypneme UKMS (Universal Kernel Samepage Merging) v EVE-ng
- Úlohou UKMS je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU 
+-Vypneme UKSM (Universal Kernel Samepage Merging) v EVE-ng.
+ UKSM je v EVE-ng predvolene zapnuté.
+ Úlohou UKSM je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU 
  zariadení rovnakého typu. To ale zvyšuje záťaž na procesor. 
- Podľa EVE-ng dokumentácie treba UKMS vypnúť, keď chceme spúšťať na 
+ Podľa EVE-ng dokumentácie treba UKSM vypnúť, keď chceme spúšťať na 
  serveri viac ako 10 QEMU zariadení. Zrejme to zaťažuje procesor natoľko, 
  že to ovplyvňuje výkon bežiacich QEMU zariadení.
 
+ UKSM v EVE-ng vypneme tak, že buď vo webovom rozhraní nastavíme pod
+ "System -> System status" a úplne dole klikneme na prepínač pri
+ "UKSM status", aby sa nastavil do stavu "OFF". Skontrolujeme, či
+ sa nastavenie uložilo stlačením F5. UKSM by malo zostať v stave "OFF".
 
--Pokračujeme zabezpečením servera, ktoré je opísané v súbore 
- "zabezpecenie_servera.txt"
+
+-Pokračujeme
+
+ obnovením súborov zo záložného servera, ktoré je opísané v súbore
+  "migracia_zalohovanie_obnovenie_eve_ng.txt"
+ v časti
+  "POSTUP OBNOVY"
 
  alebo
 
- obnovením súborov zo záložného servera, ktoré je opísané v súbore
- "migracia_zalohovanie_obnovenie_eve_ng.txt"
+ zabezpečením servera, ktoré je opísané v súbore 
+  "zabezpecenie_servera.txt"
+
+ 
 
 
 

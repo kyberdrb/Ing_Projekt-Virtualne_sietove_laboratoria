@@ -126,7 +126,17 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - hardvér
 
 #### Inštalácia
-  - stručný postup
+  - Postup
+    - Inštalácia Ubuntu Server 16.03
+    - Konfigurácia Ubuntu Server
+    - Inštalácia EVE-ng do Ubuntu Server
+    - Konfigurácia EVE-ng
+      - Obnovenie súborov a adresárov
+        - Skripty
+        - Zariadenia
+        - Databázy
+      - Automatizácia zálohovania nástrojom "cron"
+      - Zabezpečenie servera
   - úprava šablón
 
 #### Zabezpečenie

@@ -15,7 +15,7 @@ DÔLEŽITÉ ADRESÁRE
 
   /opt/unetlab/html/templates
     -šablóny pre jednotlivé typy zariadení
-    -šablóny aktualizujem skriptom, ktorý opisujem v subore "uprava_sablon"
+    -šablóny aktualizujem skriptom, ktorý opisujem v subore "uprava_sablon.txt"
 
   /var/lib/mysql
     -adresár s mysql databázami
@@ -63,14 +63,16 @@ DÔLEŽITÉ SÚBORY
 *************
 Skript na zalohovanie na vzdialeny server.
 
-Pouzivam 'rsync' na zalohovanie najdolezitejsich adresarov suborov do LXC kontajnera. EVE-ng server sa voci LXC kontaineru autentifikuje SSH certifikatom, takze sa nemusi manualne zadavat heslo a cely proces je plne automatizovany.
+-Pouzivam 'rsync' na zalohovanie najdolezitejsich adresarov suborov do LXC 
+ kontajnera. EVE-ng server sa voci LXC kontaineru autentifikuje SSH 
+ certifikatom, takze sa nemusi manualne zadavat heslo a cely proces je 
+ plne automatizovany.
 
+-Obsah skriptu je v subore 
+ "./eve-ng/skripty/migracia_zalohovanie_obnovenie_eve_ng_skript.sh".
 
-vim.tiny zaloha_na_eve_backup.sh
-
-Obsah skriptu je v subore "migracia_a_zalohovanie_eve_ng_skript".
-
-Pri zalohovani GNS3 QEMU zariadeni budu vznikat duplicity, pretoze suborova struktura v GNS3 je ina ako v EVE-ng.
+-Pri zalohovani GNS3 QEMU zariadeni budu vznikat duplicity, pretoze suborova
+ struktura v GNS3 je ina ako v EVE-ng.
 
 
 
@@ -159,21 +161,41 @@ rsync /
  (úvodné lomítko vynechané, zvyšné lomítka nahradené podčiarknikom). 
  Na rovnakú cestu ich aj obnovíme.
 
+-Najpr zálohujeme všetky existujúce MySQL databázy
+
+    mysqldump -u root -p --all-databases > ~/vsetky_eve_ng_databazy.sql
+
+  -Zadáme heslo pre "root" používateľa.
+  -Ak sa príkaz ukončí s chybovým hlásením
+
+   "mysqldump: Got error: 1045: Access denied for user 'root'@'localhost' (using password: YES) when trying to connect"
+
+   zadali sme nesprávne heslo.
+   Heslo pre "root" používateľa v MySQL môžeme zmeniť podľa návodu,
+   ktorý je opísaný v súbore
+
+    "/eve-ng/sprava_pouzivatelov_a_MySQL_databazy.txt"
+
+  v časti
+
+    "OBNOVA HESLA KU ROOT ÚČTU V MYSQL DATABÁZE"
+
 
 -Obsah adresára '/var/lib/mysql' nekopírujeme priamo do rovnakého adresára
- na primárnom serveri. Namiesto toho pouzijeme príkaz:
+ na primárnom serveri. Namiesto toho použijeme príkaz:
 
-  mysql -u root -ptecmint rsyslog < rsyslog.sql
-napr.
+  mysql -u root -ptecmint rsyslog < <nazov_suboru>.sql
+ konkrétne
   mysql -u root --password='<pouzivatelske_heslo>' eve_ng_db < /home/andrej/eve_ng_db.sql
 
-Takto obnovíme všetky zálohované databázy.
+ Takto obnovíme databázu "eve_ng_db" zo zálohy.
+ Lenže EVE-ng má 3 MySQL databázy.
 
 
 -Pokiaľ obnovujeme databázu, ktorá už existuje, použijeme príkaz "mysqlimport":
 
-  mysqlimport -u root -ptecmint rsyslog < rsyslog.sql
-napr.
+  mysqlimport -u <pouzivatel> --p='heslo' <nazov_databazy> < <nazov_suboru>.sql
+
   mysqlimport -u root --password='<pouzivatelske_heslo>' eve_ng_db < /home/andrej/eve_ng_db.sql
 
 
@@ -193,7 +215,8 @@ napr.
   v topoloógii spustiteľné.
 
   Úprava spočívala v pridaní nižšie uvedených riadkov nad riadok
-      "// /opt/unetlab/addons/iol/bin"
+      "// /opt/unetlab/addons/iol/bin",
+  aby boli všetky úpravy zariadení na jednom mieste.
 
 
     ...
