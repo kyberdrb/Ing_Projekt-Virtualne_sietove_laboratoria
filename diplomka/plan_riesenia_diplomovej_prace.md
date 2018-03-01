@@ -74,6 +74,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - TODO - konkrétne technológie, vyučované na predmete
 
 - Počítačové siete 2 (CCNA 3, CCNA 4)
+  - aktualny stav: zakladny routing (7200) a switching l2 aj l3 (nevieme zatial)
   - TODO - konkrétne technológie, vyučované na predmete
 
 - Projektovanie sietí 1 - PRIMÁRNE!
@@ -86,6 +87,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - TODO - konkrétne technológie, vyučované na predmete
 
 - CCNP Routing & Switching - PRIMÁRNE!
+  - routing
   - TODO - konkrétne technológie, vyučované na predmete
 
 ### Výber vhodných zariadení, ktoré podporujú potrebné technológie

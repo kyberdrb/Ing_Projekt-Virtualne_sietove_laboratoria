@@ -13,6 +13,8 @@ Ulohy:
 
 EVE-ng
 
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+
 -po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
  v topologii
 

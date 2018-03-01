@@ -163,7 +163,8 @@ rsync /
 
 -Najpr zálohujeme všetky existujúce MySQL databázy
 
-    mysqldump -u root -p --all-databases > ~/vsetky_eve_ng_databazy.sql
+    mysqldump -u root -p --all-databases > ~/vsetky_povodne_eve_ng_databazy_interaktivne_heslo.sql
+    mysqldump -u root --password='Str0ng Un3tl4b' --all-databases > ~/vsetky_povodne_eve_ng_databazy_vopred_zadane_heslo.sql
 
   -Zadáme heslo pre "root" používateľa.
   -Ak sa príkaz ukončí s chybovým hlásením
@@ -181,15 +182,20 @@ rsync /
     "OBNOVA HESLA KU ROOT ÚČTU V MYSQL DATABÁZE"
 
 
--Obsah adresára '/var/lib/mysql' nekopírujeme priamo do rovnakého adresára
- na primárnom serveri. Namiesto toho použijeme príkaz:
+-Stiahneme si zo zálohovacieho servera súbor so všetkými EVE-ng
+ databázami (súbor "vsetky_mysql_databazy.sql")
 
-  mysql -u root -ptecmint rsyslog < <nazov_suboru>.sql
- konkrétne
-  mysql -u root --password='<pouzivatelske_heslo>' eve_ng_db < /home/andrej/eve_ng_db.sql
+ V spomenutom súbore sú uložené všetky EVE-ng databázy:
+  -eve_ng_db
+    -obsahuje údaje o používateľoch vo webovom rozhraní
+  -guacdb
+    -Apache Guacamole databáza pre HTML5 vzdialený prístup
+  -sys
+    -systémová databáza
 
- Takto obnovíme databázu "eve_ng_db" zo zálohy.
- Lenže EVE-ng má 3 MySQL databázy.
+ Všetky databázy zo spomenutého súboru obnovíme príkazom
+
+    mysql -u root -p < vsetky_mysql_databazy.sql
 
 
 -Pokiaľ obnovujeme databázu, ktorá už existuje, použijeme príkaz "mysqlimport":
