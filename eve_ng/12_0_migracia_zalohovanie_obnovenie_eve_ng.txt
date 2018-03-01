@@ -1,0 +1,273 @@
+************* ZOZNAM SÚBOROV A ADRESÁROV NA MIGRÁCIU *************
+
+*************
+DÔLEŽITÉ ADRESÁRE
+
+  /opt/unetlab/addons
+    -obrazy diskov (z adresára addons musíme vylúčiť podadresár 
+     "/opt/unetlab/addons/iol/lib", aby nedošlo ku konfliktu súborov!)
+
+  /opt/unetlab/labs
+    -projektové súbory (topológie)
+    -všetky súbory a adresáre patria používateľovi a skupine "www-data",
+     inak sa pri práci s nimi vyskytnú rôzne chyby napr. pri presúvaní 
+     alebo odstraňovaní.
+
+  /opt/unetlab/html/templates
+    -šablóny pre jednotlivé typy zariadení
+    -šablóny aktualizujem skriptom, ktorý opisujem v subore "uprava_sablon.txt"
+
+  /var/lib/mysql
+    -adresár s mysql databázami
+    -nedá sa zálohovať kopírovaním adresára na iný počítač - musíme
+     použiť "mysqldump"
+
+*************
+DÔLEŽITÉ SÚBORY
+
+  /etc/hostname
+    -ak chceme zmenit hostname servera, potrebujeme ho zmenit aj v:
+      -/etc/apache2/apache2.conf
+      -/etc/apache2/sites-enabled/unetlab.conf
+
+  /etc/network/interfaces
+    -kvoli statickej IPv4
+    -vypnuta IPv6 (manual)
+
+  /etc/apache2/conf/apache2.conf
+    -upravene podla suboru "06_zabezpecenie_servera.txt"
+    -zmenene ServerName na sirena
+
+  /etc/apache2/sites-enabled/unetlab.conf
+    -pocuvanie na konkretnej IPcke: zmena z '<VirtualHost *:80>' na '<VirtualHost IP_ADRESA_SERVERA:80>'
+    -presmerovanie HTTP (port 80) na HTTPS (port 443): pridany riadok 'Redirect / https://IP_ADRESA_SERVERA/' pod '<VirtualHost *:80>' resp. '<VirtualHost IP_ADRESA_SERVERA:80>'
+    -zmenene ServerName na sirena
+
+  /etc/apache2/sites-enabled/default-ssl.conf
+    -zmena - pocuvanie na konkretnej IPcke '<VirtualHost _default_:443>' na '<VirtualHost IP_ADRESA_SERVERA:443>'
+    -zmenene ServerName na sirena (ak je pritomne)
+
+  /etc/ssh/sshd_config
+    -SSH konfigurácia -> upravená podľa súboru "zabezpecenie_servera.txt"
+
+  /etc/issue.net
+    -SSH správa pred prihlásením
+
+  /etc/motd
+    -SSH správa po prihlásení
+
+
+
+************* POSTUP ZALOHOVANIA *************
+
+*************
+Skript na zalohovanie na vzdialeny server.
+
+-Pouzivam 'rsync' na zalohovanie najdolezitejsich adresarov suborov do LXC 
+ kontajnera. EVE-ng server sa voci LXC kontaineru autentifikuje SSH 
+ certifikatom, takze sa nemusi manualne zadavat heslo a cely proces je 
+ plne automatizovany.
+
+-Obsah skriptu je v subore 
+ "./eve-ng/skripty/migracia_zalohovanie_obnovenie_eve_ng_skript.sh".
+
+-Pri zalohovani GNS3 QEMU zariadeni budu vznikat duplicity, pretoze suborova
+ struktura v GNS3 je ina ako v EVE-ng.
+
+
+
+
+*************
+Periodicke vykonavanie zalohovacieho skriptu
+
+-Tento zalohovaci skript sa bude vykonavat periodicky: napr. kazdy den o 3:00.
+Preto vytvorime cron job, ktory sa bude starat o periodicke vykonavanie tohto skriptu.
+(ako textovy EDITOR mozeme pouzit napr. 'vim.tiny')
+
+  EDITOR=vim.tiny crontab -e
+
+
+-Ak je toto prva cron uloha, najprv sa presvedcime, ci sa cron ulohy vobec vykonavaju. na koniec suboru pridame riadok:
+
+  * * * * * /home/andrej/<nazov_zalohovacieno_skriptu>.sh >/dev/null 2>&1
+
+-tato uloha sa bude vykonavat kazdu minutu.
+-ulozime
+-restartujeme cron sluzbu, aby sa zmeny prejavili
+
+  sudo service cron restart
+
+-Zoznam cron uloh (pre nas pouzivatelsky ucet) zobrazime prikazom:
+
+  crontab -l
+
+Uvidime obsah crontab suboru s ulohami.
+
+-Stav vykonavania uloh zobrazime prikazom:
+
+  sudo service cron status
+
+Uvidime, ako kazdu minutu cron spusta nas skript.
+
+Ked sme sa presvedcili, ze nas skript sa vykonava kazdu minutu, zakomentujeme ho a nahradime ho finalnou verziou:
+
+  0 3 * * * /home/andrej/<nazov_zalohovacieho_skriptu>.sh >/dev/null 2>&1
+
+-tento skript sa bude vykonavat kazdu nultu minutu, kazdu tretiu hodinu, kazdy v tyzdni, vsetky mesiace, a lubovolny den v tyzdni
+-ulozime
+-skontrolujeme crontab, ci sa uloha zmenila:
+
+  crontab -l
+
+-restartujeme cron sluzbu, aby sa zmeny prejavili
+
+  sudo service cron restart
+
+*************
+Skript na lokalne zalohovanie.
+
+Ale najlepsie by bolo, keby sa hlavny disk zalohoval klonovanim na dalsie 
+lokalne disky na serveri aj vzdialene, aby sme sa nemuseli spoliehat len na 
+lokalny system. Zalohovanie sa bude vykonavat kazdy den, najlepsie v noci.
+
+
+dd bootsektor
+rsync /
+
+
+
+
+************* POSTUP OBNOVY *************
+
+-Obsah adresárov na zálohovacom serveri skopírujeme najprv do domovského 
+ adresára "~". Z neho potom presunieme súbory do príslušných adresárov 
+ na primárnom serveri. Keďže prístup ku zálohovaciemu serveru bol zabezpečený
+ SSH kľúčom, musel som si ho pre svoj používateľský účet nanovo vygenerovať
+ 
+  ssh-keygen
+  ssh-copy-id <pouzivatel>@<IP_ADRESA_ZALOHOVACIEHO_SERVERA>
+  sftp andrej@<IP_ADRESA_ZALOHOVACIEHO_SERVERA>
+  get -R /absolutna/cesta/ku/suborom/alebo/adresarom/
+ 
+-To, kam dáta v danom adresári na zálohovacom serveri patria, hovorí názov 
+ daného adresára.
+ Pomenovanie adresárov na zálohovacom serveri je odvodený od absolútnej cesty 
+ zálohovaných súborov s tým, že namiesto lomítok '/' som použil podčiarknik '_' 
+ (úvodné lomítko som vynechal).
+ Napr. keď boli súbory zálohované z primárneho servera z cesty 
+    '/opt/unetlab/addons', 
+ potom súbory, ktoré sa z tohto adresára zálohujú budú patriť do adresára 
+    'opt_unetlab_addons' 
+ (úvodné lomítko vynechané, zvyšné lomítka nahradené podčiarknikom). 
+ Na rovnakú cestu ich aj obnovíme.
+
+-Najpr zálohujeme všetky existujúce MySQL databázy
+
+    mysqldump -u root -p --all-databases > ~/vsetky_povodne_eve_ng_databazy_interaktivne_heslo.sql
+    mysqldump -u root --password='Str0ng Un3tl4b' --all-databases > ~/vsetky_povodne_eve_ng_databazy_vopred_zadane_heslo.sql
+
+  -Zadáme heslo pre "root" používateľa.
+  -Ak sa príkaz ukončí s chybovým hlásením
+
+   "mysqldump: Got error: 1045: Access denied for user 'root'@'localhost' (using password: YES) when trying to connect"
+
+   zadali sme nesprávne heslo.
+   Heslo pre "root" používateľa v MySQL môžeme zmeniť podľa návodu,
+   ktorý je opísaný v súbore
+
+    "/eve-ng/sprava_pouzivatelov_a_MySQL_databazy.txt"
+
+  v časti
+
+    "OBNOVA HESLA KU ROOT ÚČTU V MYSQL DATABÁZE"
+
+
+-Stiahneme si zo zálohovacieho servera súbor so všetkými EVE-ng
+ databázami (súbor "vsetky_mysql_databazy.sql")
+
+ V spomenutom súbore sú uložené všetky EVE-ng databázy:
+  -eve_ng_db
+    -obsahuje údaje o používateľoch vo webovom rozhraní
+  -guacdb
+    -Apache Guacamole databáza pre HTML5 vzdialený prístup
+  -sys
+    -systémová databáza
+
+ Všetky databázy zo spomenutého súboru obnovíme príkazom
+
+    mysql -u root -p < vsetky_mysql_databazy.sql
+
+
+-Pokiaľ obnovujeme databázu, ktorá už existuje, použijeme príkaz "mysqlimport":
+
+  mysqlimport -u <pouzivatel> --p='heslo' <nazov_databazy> < <nazov_suboru>.sql
+
+  mysqlimport -u root --password='<pouzivatelske_heslo>' eve_ng_db < /home/andrej/eve_ng_db.sql
+
+
+-Po obnovení všetkých potrebných súborov a adresárov, vykonáme skript,
+ ktorý opraví ich atribúty:
+    -vlastníka  (chown)
+    -skupinu    (chown)
+    -mód        (chmod)
+  
+  Skript má názov "unl_wrapper" a nachádza sa v "/opt/unetlab/wrappers/".
+  Skript bol upravený tak, aby menil používateľa aj skupinu na "root" pre
+  všetky súbory a adresáre v "/opt/unetlab/addons/". Tam sa nachádzajú
+  všetky zariadenia, ktoré je možné použiť v EVE-ng topológií, okrem 
+  VPCS (to sa nachádza v adresári "/opt/vpcsu/").
+
+  Bez tejto úpravy "unl_wrapper" skriptu nemusia byť niektoré zariadenia
+  v topoloógii spustiteľné.
+
+  Úprava spočívala v pridaní nižšie uvedených riadkov nad riadok
+      "// /opt/unetlab/addons/iol/bin",
+  aby boli všetky úpravy zariadení na jednom mieste.
+
+
+    ...
+
+    // /opt/unetlab/addons
+    $cmd = '/bin/chown -R root:root /opt/unetlab/addons > /dev/null 2>&1';
+    exec($cmd, $o, $rc);
+
+    ...
+
+
+    
+    Obsah celého súboru je uložený na zálohovacom serveri v adresári
+      "~/zalohy_virtualnych_sietovych_laboratorii/eve_ng_specific/opt_unetlab_wrappers"
+
+
+-Uložíme súbor
+-Vykonáme práve upravený skript tak, ako je uvedené nižšie
+
+    sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
+
+
+
+Zdroje:
+
+-BASH
+https://stackoverflow.com/questions/818255/in-the-shell-what-does-21-mean
+https://unix.stackexchange.com/questions/92384/how-to-clean-log-file
+https://stackoverflow.com/questions/59838/check-if-a-directory-exists-in-a-shell-script
+https://stackoverflow.com/questions/8920245/bash-conditionals-how-to-and-expressions-if-z-var-e-var
+http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_02.html
+
+-RSYNC
+http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-directories-contained-in-a-folder#387543
+http://www.eve-ng.net/index.php/faq
+https://unix.stackexchange.com/questions/127352/specify-identity-file-id-rsa-with-rsync
+https://www.liquidweb.com/kb/using-rsync-to-transfer-and-synchronize-local-and-remote-systems/
+https://www.tecmint.com/mysql-backup-and-restore-commands-for-database-administration/
+https://stackoverflow.com/questions/1636889/rsync-how-can-i-configure-it-to-create-target-directory-on-server
+http://www.schwertly.com/2013/07/forcing-rsync-to-create-a-remote-path-using-rsync-path/
+
+-CRON
+https://crontab-generator.org/
+https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working
+http://www.ubuntututorials.com/use-crontab-ubuntu/
+https://askubuntu.com/questions/222512/cron-info-no-mta-installed-discarding-output-error-in-the-syslog
+https://www.cyberciti.biz/faq/howto-linux-unix-start-restart-cron/

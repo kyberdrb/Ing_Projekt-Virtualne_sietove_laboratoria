@@ -1,0 +1,12 @@
+cd /etc/resolvconf/resolv.conf.d/
+sudo cp -p head head.orig
+sudo vim head
+
+# Add DNS nameservers
+nameserver <DNS1_IP>
+nameserver <DNS2_IP>
+
+sudo resolvconf -u
+
+
+https://askubuntu.com/questions/130452/how-do-i-add-a-dns-server-via-resolv-conf/51332#51332

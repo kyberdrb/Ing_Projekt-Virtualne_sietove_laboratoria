@@ -1,0 +1,80 @@
+Inštalácia GNS3
+	Tento dokument obsahuje návody na inštaláciu GNS3 klienta na rôzne operačné systémy. GNS3 bude používať lokálny GNS3 server, ktorý spolupracuje s lokálnymi hypervisormi (Dynamips, QEMU, VirtualBox, Vmware) podľa toho, aký druh zariadenia chceme simulovať.
+	Výkon lokálnych hypervisorov je rovnaký pre Windows aj linuxové distribúcie. Pri použití lokálnych hypervisorov sa množstvo virtuálnych zariadení odvíja od toho, aký výkonný je počítač, na ktorom simulujeme. Táto vlastnosť ale môže byť prekážkou pri výučbe na rozsiahlejších topológiách, pretože ak počítač nemá dostatočný výkon, simulácia môže príliš vyťažovať zdroje operačného systému. To môže mať za následok spomalenie operačného systému resp. simulácie.
+	Tento nedostatok je do istej miery možné vyriešiť použitím GNS3 VM ako vzdialený server. Použitím takéhoto riešenia sa budeme zaoberať v ďalšom návode.
+
+
+Debian 8.6.0 x64
+
+A) Cez repozitár
+sudo apt-get update
+sudo apt-get upgrade
+
+-Pridáme tieto riadky na koniec súboru "/etc/apt/sources.list":
+deb http://ppa.launchpad.net/gns3/ppa/ubuntu trusty main
+deb-src http://ppa.launchpad.net/gns3/ppa/ubuntu trusty main
+
+-V termináli vykonáme tieto príkazy:
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A2E3EF7B
+sudo apt-get update
+sudo apt-get install gns3-gui
+
+Pre IOU podporu:
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install gns3-iou
+
+
+Počas inštalácie GNS3 sa zobrazí oznam, či chceme aktivovať Dumpcap na odchytávanie paketov aj pre non-root používateľov. Predvolene je Dumpcap pre non-root používateľov vypnutý. Návod na aktiváciu odchytávania paketov v Dumpcap-e je na stranke https://wiki.wireshark.org/CaptureSetup/CapturePrivileges
+
+https://wiki.wireshark.org/CaptureSetup/CapturePrivilegesGNS3 potom spustíme napríklad aj z terminálu príkazom "gns3".
+
+B) Zo zdrojových kódov (neotestované)
+Viď návod na
+https://www.gns3.com/support/docs/installing-gns3-1-4-on-ubuntu-li
+
+
+Fedora 24
+
+Inštalácia zo drojových kódov pomocou skriptu
+    1. Pôjdeme na stránku
+       https://github.com/lricardo/gns3-for-fedora
+       a klikneme na "Clone or download" -> "Download ZIP"
+    2. Rozbalíme stiahnutý archív
+    3. V termináli pôjdeme do vytvoreného priečinka a spustiť "sudo ./aio-install.sh". Skript najprv nainštaluje systémové aktualizácie a potom nainštaluje, a podľa potreby nakonfiguruje, zavislé balíčky
+    4. Po inštalacií treba spustiť GNS3 a v nastaveniach (Edit -> Preferences -> VPCS) zmeniť cestu k VPCS na "/opt/vpcs/src/vpcs"
+
+
+openSUSE Leap 42.1
+
+YaST 1-Click Install
+
+    1. Pôjdeme na stránku
+       https://software.opensuse.org/package/gns3
+    2. Klikneme na "Show other versions" -> "openSUSE Leap 42.1" -> Show unstable packages -> Zvolíme verziu 1.5.2 -> Uložíme súbor
+    3. Otvoríme stiahnutý súbor
+    4. Next -> Next -> Yes  -> Trust (certifikát)
+    5. Zvolíme možnosť 1 a potom "Ok - Try again" -> Accept -> Continue
+    6. Teraz keď spustíme GNS3, server sa nerozbehne, lebo nemá nainštalovaný balíček "multidict". Tento balíček súvisí s balíčkom "aiohttp" z python3 knižníc. Pre vyriešenie problému vykonáme príkaz:
+       sudo pip install aiohttp
+    7. Nainštalujeme "iouyap". Pôjdeme na stránku:
+       https://github.com/GNS3/iouyap
+       
+       potom vykonáme príkaz:
+
+sudo zypper install git bison flex
+
+Potom sa treba riadiť inštrukciami v README.rst súbore na uvedenej stránke.
+
+Poznámka: ak už sme naklonovali iouyap repozitár z githubu, vykonáme príkaz
+
+sudo zypper install libcap-progs
+    8. Spustíme GNS3
+
+Windows
+    1. Stiahneme si poslednú stabilnú verziu GNS3 zo stránky
+       https://github.com/GNS3/gns3-gui/releases
+       Inštalačný súbor pre Windows má názov “GNS3-<vezia>-all-in-one.exe”.
+    2. Spustíme stiahnutý súbor.
+    3. Riadime sa pokynmi na obrazovke. Na obrazovke s voľbou súčastí zvolíme všetky. Ak sme vyzvaní na inštaláciu SolarWinds nástrojov, odmietneme ju kliknutí na voľbu “No”.
+       

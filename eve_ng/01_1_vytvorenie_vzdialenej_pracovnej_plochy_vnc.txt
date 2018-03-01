@@ -1,0 +1,52 @@
+Vytvorenie vzdialenej pracovnej plochy s XFCE4 a VNC na headless Debian 9 Stretch
+
+Nainstalujeme graficke prostredie
+
+  sudo aptitude xfce4
+
+stiahneme si balicek "tightvncserver"
+
+  sudo aptitude install tightvncserver
+
+Spustime VNC server
+
+  vncserver
+
+Ak sme vyzvany, zadame heslo. Na zadanie "view-only" hesla mozeme odpovedat "n", pretoze VNC bude sluzit iba na nainstalovanie EVE-ng a nie je nutne sa ho viac chytat.
+
+Zobrazi sa napr. sprava
+
+  "New 'X' desktop is eve-ng:1"
+
+eve-ng:1 znamena, ze VNC virtualna plocha je dostupna na vzdialenom porte 5901 resp. na lokalnom porte ako virtualna obrazovka 1.
+Pri prvom spusteni VNC servera sa vytvoria konfiguracne subory.
+Upravime potrebne subory:
+
+  nano ~/.vnc/xstartup
+  
+na zaciatok skriptu vlozime riadok
+
+  exec startxfce4
+
+To pri pripojeni klienta spusti graficke prostredie.
+Ulozime a zatvorime subor.
+Opravime opravnenia (xstartup subor musi byt executable)
+
+  chmod +x ~/.vnc/xstartup
+
+Restartujeme VNC server
+
+  vncserver -kill :1
+  vncserver
+
+Nasledne sa na server mozeme pripojit z VNC klienta. Ak mame firewall, povolime porty 5901-5903.
+
+VNC server ukoncime prikazom
+
+  vncserver -kill :1
+
+
+Navod som testoval vo virtualnom Debian 9 Stretch vo VirtualBoxe, takze sa mi po restarte hned rozbehlo graficke prostredie lightdm s xfce4. To nie je ziaduce, pretoze server je headless. Preto v "/etc/X11//etc/X11/default-display-manager" zakomentujeme jediny riadok, ktory tam je (mal by to byt z "/usr/bin/lightdm" na "#/usr/bin/lightdm". Graficke prostredie sa tak nespusti, co umozni spolahlivejsiu validaciu.
+
+Sources:
+http://www.penguintutor.com/linux/tightvnc

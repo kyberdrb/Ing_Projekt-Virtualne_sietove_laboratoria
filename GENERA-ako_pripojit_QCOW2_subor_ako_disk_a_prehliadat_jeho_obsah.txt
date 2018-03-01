@@ -1,0 +1,3 @@
+Ako pripojiť QCOW2 súbor ako disk a prehliadať jeho obsah
+
+viď súbor "eve-ng/08_8_pridavanie_zariadeni_do_eve_ng_cisco_asav.txt"

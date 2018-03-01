@@ -1,0 +1,124 @@
+Potreboval som pouzit dalsi disk na rozne_zariadenia, pretoze mi dochadzalo miesto na primarnom disku "sda".
+
+-formatovanie druheho disku ako disku na rozne_zariadenia
+  sudo gdisk /dev/sdX
+    x
+    z
+    y
+    y
+
+  sudo cfdisk /dev/sdX
+    Select label type: dos
+    New -> odenterovat predvolene hodnoty velkosti particie a suboroveho 
+    systemu -> Write -> yes -> Quit
+
+  lsblk -> skontrolujeme novo vytvorenu particiu
+  sudo mkfs.ext4 /dev/sdX1
+
+  sudo mount /dev/sdX1 /kam/namountovat/particiu
+  
+    potom povodny adresar "rozne_zariadenia" rekurzivne skopirovat na tento 
+      disk a povodny adresar zmazat
+    + zaistit automaticke mountovanie sdX1 po restarte v fstab
+
+  sudo cp -R /kam/namountovat/particiu/* /docasny/adresar/pre/sdX1
+  sudo rm -rf /kam/namountovat/particiu/
+  sudo umount /dev/sdX1
+  sudo mkdir rozne_zariadenia
+  sudo mount /dev/sdX1 /kam/namountovat/particiu/
+
+-Mountovanie particie (sdX1) po starte
+
+Zistime UUID particie sdX1
+  sudo blkid -s UUID -o value /dev/sdX1
+  echo $(sudo blkid -s UUID -o value /dev/sdX1) | sudo tee -a /etc/fstab
+  
+  sudo vim.tiny /etc/fstab
+  
+Na konci suboru sa objavi UUID vytvorenej particie.
+Riadok upravime do nizsie uvedenej podoby:
+  
+  UUID=<uuid_particie> /kam/namountovat/particiu/    ext4    errors=remount-ro    0    1
+
+-Overenie, ci subor '/etc/fstab' je upraveny spravne
+  
+  sudo mount -favn
+
+Vystup:
+  /                        : ignored
+  none                     : ignored
+  /media/floppy0           : ignored
+  /opt/unetlab/addons/rozne_zariadenia/: already mounted
+  /opt/unetlab/addons/qemu : successfully mounted
+
+Sprava "successfully mounted" znamena, ze /etc/fstab subor ma korektnu syntax.
+
+OVERENIE KOREKTNEHO FORMATU SUBORU /etc/fstab JE KRITICKE,
+PRETOZE PRI JEHO NESPRAVNEJ UPRAVE SA SYSTEM PO RESTARTE NESPUSTI!
+
+Mozeme pokracovat bud namountovanim vsetkych bodov v /etc/fstab (bez restartu) ...
+
+  sudo mount -a
+
+... alebo restartom servera (pre uplnu validaciu)
+
+  sudo reboot
+
+
+
+
+
+
+TROUBLESHOOTING
+
+
+-Ak sa server spustil, overime ci sa particia pripojila prikazom
+  lsblk
+
+-Ak zadame nepravne udaje do "/etc/fstab" suboru, hrozi, ze sa server nespusti a znefunkcni sa aj SSH pristup. V mojom pripade som pouzil nespravny prikaz na vygenerovanie UUID pre particiu ("uuidgen" namiesto "blkid"). Vtedy je potrebne fyzicky restartovat server, vojst do GRUB zavadzaca (dlhsie podrzime "Shift" pocas zavadzania systemu - ked sa spusta BIOS).
+
+-Ak to nepojde, treba vypnut server na tvrdo.
+-Znova zapneme server
+-Po zmiznuti BIOS obrazoviek drzime klavesu "Shift", co nam umozni vojst do GRUB zavadzaca.
+-v GRUB zavadzaci stlacime 'a' - tak sa dostaneme k podrobnostiam a parametrom spustenia systemu
+-Na koniec riadku "kernel" (ten s 'vmlinuz') pridame
+  
+  init=/bin/bash
+
+a stlacime Enter
+
+-System sa spusti do bash konzoly (Single User Mode).
+-Pripojime root particiu ako "rw", aby sme mohli vykonavat zmeny.
+
+    mount -o remount,rw /
+alebo (ak predchadzajuci prikaz nepojde)
+    mount -o remount,rw / --target /
+
+Vygenerujeme UUID pre novu particiu napr. /dev/sdX1, ale tentokrat spravnym sposobom (nie cez "uuidgen" :P )
+
+    blkid -s PARTUUID -o value /dev/sdX1 >> /etc/fstab
+
+Upravime fstab subor podla spravnej UUID hodnoty.
+
+    vim.tiny /etc/fstab
+
+Restartujeme
+
+    reboot -f
+
+
+
+Sources:
+  https://www.cyberciti.biz/faq/mount-drive-from-command-line-ubuntu-linux/
+  https://bsnetworking.blog/2017/01/16/eve-ng-initial-configs/
+  https://superuser.com/questions/136646/how-to-append-to-a-file-as-sudo
+  https://serverfault.com/questions/174181/how-do-you-validate-fstab-without-rebooting/174182#174182
+  https://serverfault.com/questions/174181/how-do-you-validate-fstab-without-rebooting/509014#509014
+  https://serverfault.com/questions/174181/how-do-you-validate-fstab-without-rebooting/509014#comment812741_509014
+  https://askubuntu.com/questions/754091/what-is-the-difference-between-etc-fstab-and-etc-mtab/754275#754275
+  man mount
+
+  https://unix.stackexchange.com/questions/44027/how-to-fix-boot-failure-due-to-incorrect-fstab
+  https://wiki.debian.org/Part-UUID#Via_sysfs_Paths
+  https://askubuntu.com/questions/16042/how-to-get-to-the-grub-menu-at-boot-time
+  https://linuxconfig.org/how-to-retrieve-and-change-partitions-universally-unique-identifier-uuid-on-linux

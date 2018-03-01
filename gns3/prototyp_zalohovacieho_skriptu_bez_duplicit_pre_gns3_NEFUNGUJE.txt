@@ -1,0 +1,149 @@
+#!/bin/bash
+
+REMOTE_USER=andrej
+REMOTE_IP=158.193.152.45
+REMOTE_MAIN_BACKUP_DIR=/home/$REMOTE_USER/zalohy_virtualnych_sietovych_laboratorii
+SSH_KEY_FILE=$HOME/.ssh/id_rsa
+
+EVE_NG_DB_LOCAL_BACKUP=$HOME/eve_ng_db.sql
+GUACDB_LOCAL_BACKUP=$HOME/guacdb.sql
+ALL_DB_LOCAL_BACKUP=$HOME/vsetky_mysql_databazy.sql
+
+MAIN_EVE_NG_DIR=/opt/unetlab
+MAIN_GNS3_DIR=/opt/gns3
+GNS3_QEMU_DIR=$MAIN_GNS3_DIR/images/QEMU/
+
+backup () {
+  LOCAL_FILE_OR_DIR=$1
+  REMOTE_DIR=$2
+  
+  rsync -a -e "ssh -i $SSH_KEY_FILE" \
+    --rsync-path="mkdir -p $REMOTE_DIR && rsync" \
+    $LOCAL_FILE_OR_DIR \
+    $REMOTE_USER@$REMOTE_IP:$REMOTE_DIR
+}
+
+# ONLY FOR one-to-one name mapping
+rename_qcow2_to_eve_ng_format () {
+  IMG_NAME=$1
+
+  HDA=hda.qcow2
+  VIRTIOA=virtioa.qcow2
+  SATAA=sataa.qcow2
+  SCSIA=scsia.qcow2
+
+  OLD_NAME=$GNS3_QEMU_DIR$IMG_NAME/$IMG_NAME.qcow2
+  
+  if  [[ $IMG_NAME =~ ^a10-.* ]] || \
+      [[ $IMG_NAME =~ ^acs-.* ]] || \
+      [[ $IMG_NAME =~ ^asa-.* ]] || \
+      [[ $IMG_NAME =~ ^barracuda-.* ]] || \
+      [[ $IMG_NAME =~ ^brocadevadx-.* ]] || \
+      [[ $IMG_NAME =~ ^cda-.* ]] || \
+      [[ $IMG_NAME =~ ^cpsg-.* ]] || \
+      [[ $IMG_NAME =~ ^cumulus-.* ]] || \
+      [[ $IMG_NAME =~ ^extremexos-.* ]] || \
+      [[ $IMG_NAME =~ ^hpvsr-.* ]] || \
+      [[ $IMG_NAME =~ ^huaweiusg6kv-.* ]] || \
+      [[ $IMG_NAME =~ ^jspace-.* ]] || \
+      [[ $IMG_NAME =~ ^linux-.* ]] || \
+      [[ $IMG_NAME =~ ^mikrotik-.* ]] || \
+      [[ $IMG_NAME =~ ^olive-.* ]] || \
+      [[ $IMG_NAME =~ ^ostinato-.* ]] || \
+      [[ $IMG_NAME =~ ^pfsense-.* ]] || \
+      [[ $IMG_NAME =~ ^sonicwall-.* ]] || \
+      [[ $IMG_NAME =~ ^timos-.* ]] || \
+      [[ $IMG_NAME =~ ^veos-.* ]] || \
+      [[ $IMG_NAME =~ ^vmx-.* ]] || \
+      [[ $IMG_NAME =~ ^vnam-.* ]] || \
+      [[ $IMG_NAME =~ ^vqfxpfe-.* ]] || \
+      [[ $IMG_NAME =~ ^vqfxre-.* ]] || \
+      [[ $IMG_NAME =~ ^vsrxng-.* ]] || \
+      [[ $IMG_NAME =~ ^win-.* ]] || \
+      [[ $IMG_NAME =~ ^winserver-.* ]] || \
+      [[ $IMG_NAME =~ ^xrv-.* ]]
+  then
+    NEW_NAME=$GNS3_QEMU_DIR$IMG_NAME/$HDA
+    echo $OLD_NAME
+    echo $NEW_NAME
+    mv $OLD_NAME $NEW_NAME
+
+  
+
+  else
+    echo "$OLD_NAME is an unsupported image/device"
+  fi
+}
+
+backup_shared_resources () {
+
+  
+
+  
+
+
+  echo
+
+
+  echo "QCOW2 FILES"
+  echo "**************************************"
+
+  for i in $(find $GNS3_QEMU_DIR -maxdepth 1 -type f -name "*.qcow2")
+  do
+
+    #echo "Creating subdirecotry with the same name"
+    IMAGE_NAME=$(basename $i .qcow2)
+    mkdir $GNS3_QEMU_DIR$IMAGE_NAME
+
+    #echo "Moving the QCOW2 file to this subdirectory"
+    mv $i $GNS3_QEMU_DIR$IMAGE_NAME
+
+    #echo "Renaming the QCOW2 file to hda/virtioa/sataa.qcow2 according to the EVE-ng naming table (EVE-ng convention)"
+    rename_qcow2_to_eve_ng_format $IMAGE_NAME
+
+    
+    echo
+
+
+    #echo "Backing up this subdirectory to $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_qemu_-_opt_gns3_images_QEMU"
+
+    #cp -R $i ~/backup_adapter_test/
+
+    #backup $i/<subdirectory>/ \
+    #  $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_qemu_-_opt_gns3_images_QEMU
+
+
+    #echo "Renaming back hda/virtioa/sataa.qcow2 to the <name_of_the_subdirectory>.qcow2"
+    #echo "Moving QCOW2 image away from the subdirectory to the parent directory"
+    #echo "Removing the subdirectory"
+
+  done
+
+
+  echo "DIRECTORIES"
+  echo "**************************************"
+
+  for i in $(find $GNS3_QEMU_DIR -maxdepth 1 -type d)
+  do
+
+    if [ $i == $GNS3_QEMU_DIR ]; then
+      #echo "This is the GNS3 QEMU directory itself. Skipping..."
+      #echo
+      continue
+    fi
+
+    echo $i
+
+    cp -R $i ~/backup_adapter_test/
+
+    #backup $i \
+    #  $REMOTE_MAIN_BACKUP_DIR/shared_resources/images/opt_unetlab_addons_qemu_-_opt_gns3_images_QEMU
+  done
+
+
+
+  
+
+}
+
+backup_shared_resources

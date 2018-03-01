@@ -1,0 +1,57 @@
+kolko pamate a cpu vyzaduju jednotlive stroje?
+odskusat spravanie, ked sa spusti niekolko desiatok zariadeni naraz? ako sa bude eve spravat pri 100 routroch? otestovat vsetky boxy.
+A co windows a kvm_acceleration v template?
+A co cisco csr a ukms v kerneli?
+
+UKSM sa v EVE-ng verzii 2.0.3-68 da vypnut v lavej menu liste -> Status -> UKSM status. Defaultne by mal byt "ON". Vypneme ho vtedy, ked potrebujeme spustat viac ako 10 QEMU zariadeni (CISCO CSR, Juniper, ... Nevztahuje sa na Cisco IOL, tomu UKSM nevadi!)
+
+Udaje o zatazeni pochadzaju z polozky "Status" v lavej menu liste.
+
+Na domovskej stranke EVE-ng (FAQ) odporucaju vypnut UKSM pre QEMU zariadenia, pokial ich spustame viac ako 10.
+
+Nepridavat 50 zariadeni naraz, inak EVE-ng web gui zblbne. Zariadenia pridavat najviac po 25.
+
+=============================
+-Juniper Olive:
+  UKSM zapnute:
+    
+  UKSM vypnute:
+=============================
+-Juniper VMx 17
+  UKSM zapnute: 
+    
+  UKSM vypnute:
+    
+=============================
+-Juniper VSRx
+  -VSRx po par minutach prestane hlasit syslogy o Scheduler Oinker
+
+  UKSM zapnute: 4 zariadenia	CPU	RAM	ked ich spustim 5, tak stvrty sa po case sam vypne a vypisuje chybovu hlasku "Scheduler Oinker"
+  
+  UKSM vypnute:
+    
+=============================
+-Cisco Dynamips
+  Cisco IOS 1710
+  UKMS zapnute: 48 zariadeni	100% CPU	9%  RAM (celkova nestabilinta web gui a eve-ng, nezname chybove hlasky pod "Notifications")
+  UKMS vypnute: 48 zariadeni	100% CPU	17% RAM (podobny ako so zapnutym UKMS: odozva a chybove hlasky)
+  bezpecny pocet zariadeni (UKSM zapnuty/vypnuty): 15	99% CPU		7% RAM
+
+  Cisco IOS 7206VXR
+  UKMS zapnute: 13 zariadeni	100% CPU	9%  RAM (mierne vyssia odozva, nezname chybove hlasky pod "Notifications")
+  UKMS vypnute: 13 zariadeni	100% CPU	17% RAM (podobny ako so zapnutym UKMS: odozva a chybove hlasky)
+  bezpecny pocet zariadeni (UKSM zapnuty/vypnuty): 10	91% CPU		8% RAM
+=============================
+-Cisco IOL router
+  UKSM zapnute: 64	6%  RAM		13% CPU
+  UKSM vypnute: 55-64	13% RAM		8%  CPU
+=============================
+-Cisco IOL switch
+  UKSM zapnute: 64	5% RAM		13% CPU
+  UKSM vypnute: 64	9% RAM		11% CPU
+=============================
+-Benchmark 4 semestralky
+  UKMS vypnute: 30 Cisco IOL routrov, 5 Juniper vMX, 3 Debian PC (CLI); 11% CPU, 17% RAM
+                vsetko ide plynule
+  UKMS zapnute: 30 Cisco IOL routrov, 5 Juniper vMX, 3 Debian PC (CLI); 7% CPU, 7% RAM
+                vsetko ide plynule

@@ -1,9 +1,0 @@
-KROK 1:
-	choď do suboru /etc/network/interfaces.d/50_cloud_init.cfg
-	niekde na zaciatku suboru bude odkaz na iny subor ktory treba vymazat alebo zakomentovat
-
-KROK 2:
-	choď do suboru /etc/cloud/cloud.cfg.d/90_dpkg.cfg
-	riadok datasource_list: [ TU BUDE VELA BLBOSTI ] zmen na datasource_list: [ None ]
-	rebootni stroj
-	

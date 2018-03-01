@@ -1,0 +1,602 @@
+						Prikaz					Jednotky
+Vyuzitie CPU celkovo + jednotlive jadra		dstat -T -c -C total,0,1,2,3,4,5,6,7	% (vyzaduje odcitat nameranu hodnotu od 100 zo stlpca 'idl')
+
+Vyuzitie operacnej pamate			dstat -T -m				MiB
+
+Vyuzitie disku -  meriam ho preto, aby sme vedeli odhadnut, o kolko by sa zvysil vykon
+                  servera pri vymene pevnych diskov za SSD disky
+
+                        dstat -T -d -D sda			kB/s (citanie aj zapis)
+						            dstat --disk-util			% (citanie aj zapis)
+						            dstat --disk-tps			pocet operacii za sekundu (citanie aj zapis)
+
+Vyuzitie sietovej karty (up/down)		dstat -T -n				B/s
+
+Ukladanie do suboru (CSV)			dstat --output			dstat --output profiling_<nazov_zariadenia>.csv
+
+*************
+DALSIE NASTROJE
+
+nmap 		monitorovanie systemovych prostriedkov (vsetkych)
+iotop	 	monitorovanie procesov vzhladom na vyuzitie disku
+nethogs		monitorovanie procesov vzhladom na vyuzitie sietoveho rozhrania
+		pouzitie: sudo nethogs pnet0
+
+*************
+DOVODY VYBERU NASTROJOV NA MONITOROVANIE SYSTEMU
+
+Hlavnym dovodom, preco som si vybral a dalej upravoval nastroj "dstat"
+a uprednostnil ho pred nastroje z balicka sysstat alebo netdata, bolo ovladanie
+cez terminal a ukladanie ziskanych udajov do CSV suboru. V LibreOffice Calc som 
+si pripravil sablonu, do ktorej len nakopirujem obsah CSV sablonu. Sablona 
+nasledne vytvori grafy a tabulky pre profiling a benchmarking. Tie su okamzite
+pripravene na export.
+
+*************
+DOVODY MERANIA JENOTLIVYCH VELICIN
+
+Procesor - najviac vytazeny pri spustani zariadenia (moze byt vytazeny aj pocas spustenia)
+Operacna pamat - najviac vytazena po dokonceni spustania zariadenia
+Disk - najviac vytazeny pri spustani zariadenia (moze byt vytazeny aj pocas spustenia)
+
+
+*************
+VYNECHANE VELICINY Z MERANIA
+
+-FREKVENCIA
+Frekvenciu cpu som vynechal, lebo procesor podla prikazu 'watch lscpu | grep "MHz"'
+  striedal iba dve frekvencie: 2000.000 MHz (minimalna) a 2333.000 (maximalna)
+
+CPU MHz:               2000.000
+CPU max MHz:           2333.0000
+CPU min MHz:           2000.0000
+
+
+-VYTAZENIE SIETOVEHO ROZHRANIA
+Vytazenie sietovej karty (uplink a downlink) je zanedbatelne pri profilingu 
+  jednotlivych zariadeni, ale moze byt relevantne pri profilingu a benchmarkingu 
+  topologii od viacerych studentov v ramci vyucovacich predmetov.
+
+*************
+Meranie vytazenia procesorov a diskov
+
+  dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output profiling_<nazov_zariadenia>.csv --noheaders 
+
+Z man stranky dstatu
+
+"The default delay is 1 and count is unspecified (unlimited)" =>
+  data sa budu zberat kazdu sekundu (delay je 1) do nekonecna (count je 
+  predvolene unlimited)
+
+
+*************
+Meranie vytazenia operacnej pamate
+bude trochu zlozitejsie, pretoze potrebujem ziskat presne udaje.
+Zda sa, ze presne udaje ziskam zo stlpca RSS z vystupu prikazu "ps aux".
+
+Z manualoveh stranky ps:
+...
+(riadok 383)
+The SIZE and RSS fields don't count some parts of a process including the page 
+tables, kernel stack, struct thread_info, and struct task_struct.  This is 
+usually at least 20 KiB of memory that is always resident.  SIZE is the virtual
+size of the process (code+data+stack).
+...
+(riadok 673)
+rss         RSS       resident set size, the non-swapped physical memory that a
+task has used (in kiloBytes).  (alias rssize, rsz).
+
+UNetLab/EVE-ng spusta zariadenia v topologii ako pouzivate "unl0", preto ma
+zmysel filtrovat vystup podla tohto atributu, aby sme zmensili vystupnu mnozinu
+vysledkov a sustredili sa iba na relevantne udaje.
+
+Prikaz na zistenie vytazenia operacnej pamate zariadenim
+Ciselny udaj je uvedeny v kB:
+
+  ps -U unl0 -u unl0 -o user,pid,rss,command | grep unl0 | awk '{s+=$3} END {print s}'
+
+Univerzalnejsia varianta predchadzajuceho prikazu. Vyssie uvedeny prikaz
+funguje iba pri IOL zariadeniach v UNetLab/EVE-ng topologii.
+Nizsie uvedeny prikaz funguje aj pre QEMU a Dynamips zariadenia
+v UNetLab/EVE-ng topologii.
+
+  ps -e -o user,pid,rss,command | grep "/opt/unetlab/addons\|/opt/qemu" | awk '{s+=$3} END {print s}'
+  
+Este lepsi a rovnako univerzalny variant (bez "grep" procesu)
+
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{s+=$3} END {print s}'
+
+
+# skuska spravnosti predchadzajuceho prikazu
+
+  ps aux  (manualne)
+  ps -o user,pid,rss,command (vybrane stlpce)
+  ps -U unl0 -u unl0 -o user,pid,rss,command (vybrane stlpce + len procesy pouzivatela
+                                              "unl0" - IBA PRE IOL zariadenia!)
+
+Zobrazenie procesov
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d"
+
+Zobrazenie PID cisel
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{print $2}'
+
+
+******
+Dalsi sposob merania vytazenia operacnej pamate pre spustene zariadenia
+v UNetLab/EVE-ng topologii:
+
+  git clone https://github.com/pixelb/ps_mem.git
+  cs ps_mem
+  python setup.py build
+  sudo python setup.py install
+  sudo cp ps_mem.py /usr/bin/ps_mem
+
+  sudo ps_mem -p $(pgrep -d, -u "unl0") --total     (iba pre IOL zariadenia!)
+  
+
+Univerzalny prikaz:
+
+  sudo ps_mem -p $(pgrep -d, -f /opt/unetlab/addons\|/opt/qemu) --total
+  
+Vysledna hodnota je v bajtoch
+  
+
+# skuska spravnosti predchadzajuceho prikazu
+  
+  sudo python ps_mem.py -p $(pgrep -d, -u "unl0")   (iba pre IOL zariadenia!)
+
+Zobrazenie procesov
+(zoznam procesov pre spustene zariadenie v UNetLab/EVE-ng; univerzalne pre Dynamips/IOL/QEMU)
+
+  pgrep -a -f /opt/unetlab/addons\|/opt/qemu
+
+Zobrazenie PID cisel
+  pgrep -f /opt/unetlab/addons\|/opt/qemu
+
+*************
+ZHRNUTIE PRIKAZOV A OVERENI
+
+-staci skopirovat a prilepit do terminalu
+
+  clear
+
+#Rychle zobrazenie vybranych procesov spusteneho zariadenia v UNetLab/EVE-ng topologii
+#(pre ps aj ps_mem, kvoli tomu, aby sa merali rovnake procesy)
+
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d"
+
+
+#Rychle zobrazenie PID cisel procesov spusteneho zariadenia
+#(pre ps aj ps_mem, kvoli tomu, aby sa merali rovnake procesy)
+
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{print $2}'
+
+
+#Rychle porovnanie spotreby operacnej pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'
+  ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{s+=$3} END {print s}'
+  sudo ps_mem -p $(ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk '{print $2}' | datamash transpose -t,) --total
+  
+
+
+
+*************
+INTEGRACIA DO JEDNEHO NASTROJA
+
+Teraz som potreboval tuto funkcionalitu integrovat do jedneho nastroja, aby bolo
+vsetko v jednom csv subore, bez nutnosti manualneho zasahu.
+Preto som vykonal prikaz
+
+  sudo cp /usr/bin/dstat /usr/bin/dstat_custom
+
+Tak som si vytvoril kopiu existujuceho nastroja dstat, kedze dokaze merat vsetko 
+okrem vytazenia pamate spusteneho zariadenia v UNetLab/EVE-ng topologii.
+Aby dokazal merat vyuzitie operacnej pamate zariadenim, boli potrebne upravy
+zdrojoveho kodu. Upravil som ho tak, ze sa porovnavaju vysledky dvoch roznych
+prikazov, pricom som kladol doraz na presnost a konzistenciu vystupu tychto
+prikazov. Oba prikazy musia merat tie iste procesy, inak by vysledky mohli
+byt skreslene. Pouzivam prikazy z casti "Rychle porovnanie spotreby operacnej 
+pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'".
+
+Upravil som ho nasledovne:
+
+(riadok 18 - import kniznice Sultan - vykonavanie BASH prikazov v Pythone)
+...
+from sultan.api import Sultan
+...
+
+(riadok 1187 - v triede "class dstat_mem(dstat)" -> metody "def __init__(self)"
+a "def extract(self)")
+...
+class dstat_mem(dstat):
+    def __init__(self):
+        self.name = 'memory usage'
+        self.nick = ('ps', 'ps_mem', 'cach', 'free')
+        self.vars = ('MemUsed-ps', 'MemUsed-ps_mem', 'Cached', 'MemFree')
+        self.open('/proc/meminfo')
+
+    def extract(self):
+        for l in self.splitlines():
+            if len(l) < 2: continue
+            name = l[0].split(':')[0]
+            if name in self.vars + ('MemTotal', ):
+                self.val[name] = long(l[1]) * 1024.0
+        #self.val['MemUsed'] = self.val['MemTotal'] - self.val['MemFree'] - self.val['Buffers'] - self.val['Cached']
+
+        mem_usage_of_eve_ng_device_file_path = "/tmp/ram_consumed_by_eve_ng_device.txt"
+
+        s = Sultan()
+
+        # PS METHOD
+        # Sultan outputs logs by default-good for debugging, not useful for production
+        # To enable logging, remove "logging=False" from Sultan.load() method
+        with open(mem_usage_of_eve_ng_device_file_path, 'w') as mem_usage_of_eve_ng_device_file:
+            mem_usage_of_eve_ng_device_in_kb = 0
+            mem_usage_of_eve_ng_device_file.write(str(mem_usage_of_eve_ng_device_in_kb))
+
+        with Sultan.load(logging=False) as s:
+            s.ps('-e', '-o', 'user,pid,rss,command').pipe().egrep('"root|unl0"').pipe().egrep('"/opt/unetlab/addons|/opt/qemu"').pipe().sed('"/$USER/d"').pipe().awk('\'{s+=$3} END {print s}\'').redirect(
+                mem_usage_of_eve_ng_device_file_path,
+                append=False,
+                stdout=True,
+                stderr=False).run()
+
+        with open(mem_usage_of_eve_ng_device_file_path, 'r') as mem_usage_of_eve_ng_device_file:
+            try:
+                mem_usage_of_eve_ng_device_in_kb = int(mem_usage_of_eve_ng_device_file.read())
+            except:
+                mem_usage_of_eve_ng_device_in_kb = 0
+
+        self.val['MemUsed-ps'] = mem_usage_of_eve_ng_device_in_kb * 1024
+
+        # PS_MEM METHOD 
+        with open(mem_usage_of_eve_ng_device_file_path, 'w') as mem_usage_of_eve_ng_device_file:
+            mem_usage_of_eve_ng_device_in_bytes = 0
+            mem_usage_of_eve_ng_device_file.write(str(mem_usage_of_eve_ng_device_in_bytes))
+
+        with Sultan.load(logging=False, sudo=True) as s:
+            s.ps_mem('-p', '$(ps -e -o user,pid,rss,command | egrep "root|unl0" | egrep "/opt/unetlab/addons|/opt/qemu" | sed "/$USER/d" | awk \'{print $2}\' | datamash transpose -t,)', '--total').redirect(
+                mem_usage_of_eve_ng_device_file_path,
+                append=False,
+                stdout=True,
+                stderr=False).run()
+
+        with open(mem_usage_of_eve_ng_device_file_path, 'r') as mem_usage_of_eve_ng_device_file:
+            try:
+                mem_usage_of_eve_ng_device_in_bytes = int(mem_usage_of_eve_ng_device_file.read())
+            except:
+                mem_usage_of_eve_ng_device_in_bytes = 0
+
+        self.val['MemUsed-ps_mem'] = mem_usage_of_eve_ng_device_in_bytes
+...
+
+...
+(riadok 2343 - v "def main()" - vypnutie opakovanej hlavicky (verzia dstatu,
+  Cmdline, nazvy stlpcov) - zbytocne duplicity, ktore navyse skresluju vysledky)
+
+    ### Prepare CSV output file
+    if op.output:
+        #if os.path.exists(op.output):
+            outputfile = open(op.output, 'w', 0)
+            #outputfile.write('\n\n')
+        #else:
+            #outputfile = open(op.output, 'w', 0)
+            #outputfile.write('"Dstat %s CSV output"\n' % VERSION)
+            #outputfile.write('"Author:","Dag Wieers <dag@wieers.com>",,,,"URL:","http://dag.wieers.com/home-made/dstat/"\n')
+
+        #outputfile.write('"Host:","%s",,,,"User:","%s"\n' % (hostname, user))
+        #outputfile.write('"Cmdline:","dstat %s",,,,"Date:","%s"\n\n' % (' '.join(op.args), time.strftime('%d %b %Y %H:%M:%S %Z', time.localtime())))
+
+
+
+Vo vyslednom CSV subore sa stlpce "used" a "buffered" v casti "memory usage"
+nahradia stlpcami "MemUsed-ps" a "MemUsed-ps_mem".
+Stlpce "Cached" a "MemFree" zostanú rovnake.
+
+
+*************
+PRIPRAVA PRED MERANIM VYKONNOSTI ZARIADNIA
+
+Uvedeny postup zaznamenava najhorsi mozny scenar merania vykonnosti
+zariadenia. Navyse, vsetky zariadenia su na inom pevnom disku, takze pri
+spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
+cas navyse.
+
+Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
+operacnej pamate.
+
+Prikaz "sudo -v" je sa musi vykonat kvoli nastroju "ps_mem". Tak sa vyziada
+heslo pre sudo pouzivatela v predstihu a nebude sa vyzadovat az po spusteni
+dstat_custom, co by mohlo skreslit vysledky.
+
+V EVE-ng som vypol UKMS (Universal Kernel Samepage Merging). UKSM je 
+mechanizmus, ktorý umožňuje šetriť využitie operačnej pamäte, keď máme 
+spustených viacero QEMU zariadení rovnakého typu. Ale ak je UKMS aktívne
+a spustíme viac ako 10 QEMU zariadení, ich výkon by mohol byť dôsledkom
+tohto mechanizmu znížený.
+
+*************
+KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
+
+Najprv vykoname prikaz:
+
+  sudo -v
+
+aby sme ziskali sudo heslo pre ps_mem (vyzaduje to).
+Potom vykoname zvysne prikazy:
+
+  free
+  sudo swapoff -a
+  free
+  sudo sync
+  free
+  sudo su -c 'echo 1 >/proc/sys/vm/drop_caches'
+  free
+  sudo su -c 'echo 2 >/proc/sys/vm/drop_caches'
+  free
+  sudo su -c 'echo 3 >/proc/sys/vm/drop_caches'
+  free
+
+  dstat_custom -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --noheaders --output test.csv
+
+  --noheaders - zabranuje opakovanemu vypisovaniu hlavicky na terminal a do
+                suboru - vypise sa iba jedna na zaciatku suboru
+
+*************
+Vystup vyssie uvedenych prikazov:
+
+
+andrej@sirena:~$ free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      944116      372340      442680    48143020    47366420
+Swap:      50329596       70668    50258928
+andrej@sirena:~$   sudo swapoff -a
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      932336      377224      511172    48149916    47310296
+Swap:             0           0           0
+andrej@sirena:~$   sudo sync
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      934144      376488      510576    48148844    47309432
+Swap:             0           0           0
+andrej@sirena:~$   sudo su -c 'echo 1 >/proc/sys/vm/drop_caches'
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      933328    47327244      510536     1198904    47310032
+Swap:             0           0           0
+andrej@sirena:~$   sudo su -c 'echo 2 >/proc/sys/vm/drop_caches'
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      931416    47603940      510536      924120    47402604
+Swap:             0           0           0
+andrej@sirena:~$   sudo su -c 'echo 3 >/proc/sys/vm/drop_caches'
+andrej@sirena:~$   free
+              total        used        free      shared  buff/cache   available
+Mem:       49459476      928772    47601472      510536      929232    47404504
+Swap:             0           0           0
+andrej@sirena:~$ 
+
+
+
+
+*************
+POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
+
+*************
+Pri meraní bolo UKSM vypnuté!
+*************
+
+1. FAZA
+
+-Do projektu pridame jedno zariadenie daneho druhu
+-Nastavime mu velmi vela pamate (+30GB operacnej pamate), 
+  a 1 CPU, ak to zariadenie dovoli a spusti sa
+-Vyprazdnime operacnu pamat od docasnych dat
+-Pomocou skriptu spustime sledovanie systemovych prostriedkov, ktory bude ukladat 
+  udaje do suboru (nazov suboru: <nazov_zariadenia>-#cpu.csv)
+  +
+  Zaroven zacneme merat cas.
+-Hned na to spustime zariadenie
+-Pripojime sa na konzolu zariadenia. Pockame, kym neuvidime interaktivny prikazovy
+  riadok (CLI) alebo vyzvu na prihlasenie (login prompt)
+-Po uspesnom spusteni zariadenia sa nan prihlasime (ak je to vyzadovane)
+-Akonahle uvidime interaktivny prikazovy riadok (CLI):
+  -zastavime cas a hodnotu si docasne ulozime
+  -pockame este priblizne 1-3 minuty, aby sa zariadenie stabilizovalo
+-Ukoncime sledovanie systemovych prostriedkov
+-Zastavime zariadenie
+
+
+2. FAZA
+
+-Stiahneme si subor zo sledovania systemovych prostriedkov zo servera
+-Ak je potrebne pridame zariadenie do sumarnej tabulky zariadeni spolu s:
+  -predvolenymi prihlasovacimi udajmi
+  -systemovymi poziadavkami (CPU, RAM)
+-Vygenerovany subor so zaznamenanymi udajmi o behu zariadenia vlozime do
+  sablony pre meranie vykonnosti a zadame zmerany cas spustania zariadenia.
+  Vsetky grafy a tabulky sa prisposobia vstupnym udajom a je ich mozne okamzite
+  ulozit ako obrazok.
+
+  !!!!!! OKREM GRAFU VYUZITIA OPERACNEJ PAMATE !!!!!! v ktorom treba manualne 
+  upravit os X na hodnotu blizku maximu!
+
+-Na zaklade analyzy merania vykonnosti zariadenia sa rozhodneme, ci a ako zmenime 
+  jeho parametre:
+  -pocet CPU bude nastaveny na 1, ak to zariadenie dovoli a spusti sa
+  -mnozstvo operacnej pamate (RAM) nastavim na priemernu nameranu hodnotu 
+    po spusteni + rezerva
+
+-Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname 
+  vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
+-Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do
+  skriptu na aktualizaciu sablon (vid subor "uprava_sablon").
+
+
+
+-Po ukončení merania môžeme znova zapnúť "swap" partíciu
+
+  sudo swapon -a
+
+*************
+IMPORT A ANALYZA VYSTUPNEHO CSV SUBORU
+
+LibreOffice Calc dokument je vytvoreny na mieru pre suborovy vystup prikazu:
+
+  dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output vystup.csv
+
+Priklad pouzitia:
+-Skopirujeme subor vysup.csv do suboru s nazvom napr. vystup-edited.csv
+-Otvorime CSV subor vystup-edited.csv -> V dialogovom okne "Text Import" zvolime:
+  -Character set: Unicode (UTF-16)
+  -Default - English (USA)
+  -Separator Options -> Separated by -> zaskrtneme iba "Comma" a 
+    odskrtneme "Merge delimiters"
+-Oznacime jeho obsah
+-Otvorime sablonu
+-Oznacime bunku A1
+-Ctrl+V
+-Prislusne stlpce a grafy sa automaticky zmenia
+  -stlpce sa pocitaju az do konca (po riadok 1048576)
+  
+Ako som vytvaral stlpce:
+  -napisal som rovnicu do prvej bunky v stlpci
+  -Zvolime bunky az po 15000
+    -najrychlejsie je zadat do "Name box" pola v lavom hornom rohu (je tam vzdy
+    aktualna adresa bunky) rozsah XY1:XY15000 (rozsah podla potreby upravit) a
+    stlacit Enter
+    -alebo Shift+PageDown alebo posuvnikom prejdeme ku 15000. bunke
+    a klikneme na nu pri stlacenej klavese Shift
+  -do oznacenych buniek vlozime rovnaku funkciu stlacenim Ctrl+D
+    -v tomto pripade do kazdej bunky v slpci
+  -niekedy bolo potrebne zafixovat urcite suradnice bunky, aby sa nemenila s 
+    meniacimi sa bunkami. Na to treba oznacit suradnice bunky vo vzorci, ktoru 
+    chceme zafixovat, a stlacime klavesu F4 (zobrazia sa znaky '$')
+
+Ako som vytvaral grafy:
+  -pre profiling som vytvaral X/Y Scatter plot grafy, lebo prave tym som mohol 
+  explicitne priradit os X
+    -ako "Line Type" som zvolil "Stepped" pre vsetky profiling grafy, 
+      lebo pri "Smooth" ciare to v grafoch vytazenia CPU a disku presahovalo 
+      nad 100%, hoci v stlpci boli udaje iba v intervale <0; 100>
+    -dstat_custom aj netdata potvrdili, ze disk sda je v niektorych okamihoch
+      vyuzity na viac ako 100%, preto som hodnoty, ktore presahovali 100
+      zmenil na 100
+  -pre benchmarking som vytvaral Bar Chart grafy, aby som mohol priamo porovnat
+    priemerne hodnoty meranych velicin pocas spustania a po spusteni
+  -grafom s percentualnou metrikou som nastavil maximalnu hodnotu osi Y na 100
+    -2x kliknut na graf alebo pravy klik -> Edit
+    -pravy klik na lubovolnu hodnotu na osi Y -> Format Axis... -> Scale
+    -odskrtneme Automatic pri hodnote Maximum a nastavime ho na 100 -> OK
+  -v grafoch z benchmarku som nastavil pismo osi X na bielu - cisla by boli na 
+  tomto mieste zbytocne matuce
+    -postupujeme rovnako, ako v pripade vyssie, iba klikneme na lubovolnu hodnotu
+    na osi X a namiesto karty Scale zvolime kartu Font Effects
+
+Grafy su interaktivne a reaguju na zmenu vstupnych udajov z prikazu dstat, uvedeneho
+na zaciatku tejto casti. Vstupne udaje musia mat najviac 15000 riadkov. Cislo 15000
+vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a poctom sekund
+v 4 hodinach zaokruhlenych na tisicky nahor, co je trvanie jedneho CCNA kurzu. Takto
+mozem nechat spustene meranie vykonnosti pocas celeho trvania vyucovaneho predmetu.
+
+Aj profiling, aj benchmarking grafy, vratane benchmarking tabulky, su interaktivne
+vzhladom na cas spustania.
+Cas spustania je mozne menit v bunke DA1 (nachadza sa nad benchmarking tabulkou).
+Tento cas je merany po pridani noveho zariadenia do topologie a nie uz existujuceho,
+co by mohlo skreslit (vylepsit) merane veliciny. Vzdy meriam vykonnost jedineho 
+zariadenia, ktore je v danom case ako jedine spustene (aktivne).
+Tato hodnota urcuje dlzku spustania zariadenia v sekundach. Zariadenie povazujem za
+spustene v momente, ked sa zobrazi interaktivny prikazovy riadok (CLI). V pripade,
+ze pre zobrazenie CLI je potrebne prihlasenie, je aj to zapocitane do casu spustania.
+V profiling grafoch je proces spustania oddeleny od procesu po spusteni oranzovou
+ciarou pretinajucu os X. Os X reprezentuje celkovy pocet sekund, pocas ktorych bolo
+zariadenie v topologii spustene. Tato ciara pretina os X v bode, ktory je definovany
+ v bunke DA1, v ktorej je ulozeny cas spustania zariadenia.
+Po spusteni zariadenia ho necham zapnute este 3 minuty. Tento cas by teoreticky mal 
+stacit na to, aby sa zariadenie ustalilo na jednej vykonnostnej hladine.
+
+
+*************
+MAPOVANIE CISEL GRAFOV K ICH NAZVOM
+
+-V adresari prislusneho zariadenia sa nachadza 19 obrazkov s grafmi.
+-Grafy su pomenovane podla poradia, v ktorom som ich exportoval.
+-Nizsie je vysvetleny vyznam a metrika nameranych dat.
+
+Profiling
+1  - Overall CPU usage (%)
+2  - cpu0 usage (%)
+3  - cpu1 usage (%)
+4  - cpu2 usage (%)
+5  - cpu3 usage (%)
+6  - cpu4 usage (%)
+7  - cpu5 usage (%)
+8  - cpu6 usage (%)
+9  - cpu7 usage (%)
+10 - All CPUs combined usage (%)
+11 - Combined relative memory usage [ps + ps_mem] (MB)
+12 - Disk: read (blue) and write (green) speed (kB/s)
+13 - Disk utilization (%)
+14 - Disk: Number of read (blue) and write (green) operations (ops/s)
+
+Benchmarking
+15 - Average overall CPU usage + All individual cores
+16 - Average relative memory usage (MB)
+17 - Average disk speed: read (blue) / write (green) (kB/s)
+18 - Average disk utilization (%)
+19 - Average number of operations of a disk: # of reads (blue) / # of writes (green) (ops/s)
+
+
+
+
+
+
+Zdroje:
+  http://dag.wiee.rs/home-made/dstat/
+  https://stackoverflow.com/questions/3342889/how-do-i-measure-separate-cpu-core-usage-for-a-process/39136984#39136984
+  https://stackoverflow.com/questions/20124508/how-to-dynamically-monitor-cpu-per-core-usage-on-linux/31007290#31007290
+  http://hadooppowered.com/2014/05/04/advanced-dstat/
+  https://askubuntu.com/questions/218567/any-way-to-check-the-clock-speed-of-my-processor
+  https://askubuntu.com/questions/3561/how-do-i-monitor-disk-activity-on-a-specific-drive/741219#741219
+  https://unix.stackexchange.com/questions/55212/how-can-i-monitor-disk-io/55227#55227
+  https://askubuntu.com/questions/532424/how-to-monitor-bandwidth-usage-per-process/532430#532430
+
+  https://stackoverflow.com/questions/131303/how-to-measure-actual-memory-usage-of-an-application-or-process/133444#133444
+  https://stackoverflow.com/questions/36945322/how-to-get-certain-columns-from-ps-aux/36945545#36945545
+
+  Transponovanie stlpca na riadok, lebo ps_mem chce zoznam PID cisel procesov
+  v riadku za sebou oddelenych ciarkami bez medzier
+    http://www.thelinuxrain.com/articles/transposing-rows-and-columns-3-methods
+
+  https://askubuntu.com/questions/76808/how-do-i-use-variables-in-a-sed-command/76842#76842
+  https://stackoverflow.com/questions/5410757/delete-lines-in-a-text-file-that-contain-a-specific-string/5410784#5410784
+  https://stackoverflow.com/questions/14432261/how-to-use-awk-command-to-cut-field/14432286#14432286
+  https://github.com/pixelb/ps_mem
+  https://stackoverflow.com/questions/450799/shell-command-to-sum-integers-one-per-line/450821#450821
+  https://stackoverflow.com/questions/4256107/running-bash-commands-in-python/39274980#39274980
+  https://stackoverflow.com/a/9926661
+  https://github.com/aeroxis/sultan
+  http://sultan.readthedocs.io/en/latest/install-sultan.html
+  http://sultan.readthedocs.io/en/latest/sultan-examples.html#example-4-redirecting-with-pipes
+  http://sultan.readthedocs.io/en/latest/sultan-examples.html#example-5-redirecting-output-to-file
+  http://sultan.readthedocs.io/en/latest/sultan-examples.html#example-9-disable-logging
+  https://stackoverflow.com/questions/7880784/what-is-rss-and-vsz-in-linux-memory-management/21049737#21049737
+  https://unix.stackexchange.com/a/263766
+  https://stackoverflow.com/questions/7409780/reading-entire-file-in-python/7409814#7409814
+  http://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+  https://stackoverflow.com/questions/642154/how-to-convert-strings-into-integers-in-python/642169#642169
+  https://stackoverflow.com/questions/11160939/writing-integer-values-to-a-file-using-out-write/11160976#11160976
+  https://stackoverflow.com/questions/56011/single-quotes-vs-double-quotes-in-python/56190#56190
+
+  https://unix.stackexchange.com/questions/87908/how-do-you-empty-the-buffers-and-cache-on-a-linux-system
+
+  https://superuser.com/questions/823260/how-to-adjust-the-y-axis-maximum-value-on-a-bar-chart-in-libreoffice-calc
+  https://ask.libreoffice.org/en/question/2060/assigning-x-axis-to-a-spreadsheet-column/
+  https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_ISBLANK_function
+  https://stackoverflow.com/questions/22822536/excel-define-a-range-based-on-a-cell-value
+  https://ask.libreoffice.org/en/question/12639/multiple-graphs-in-one-chart/
+  https://help.libreoffice.org/Calc/Operators_in_Calc
+  https://www.ablebits.com/office-addins-blog/2016/11/30/excel-compare-strings/
+  https://support.office.com/en-us/article/Move-or-copy-a-formula-1f5cf825-9b07-41b1-8719-bf88b07450c6
+  http://www.notjustnumbers.co.uk/2013/06/excel-tip-quick-way-to-add-dollar-signs.html
+  https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_ROUNDDOWN_function

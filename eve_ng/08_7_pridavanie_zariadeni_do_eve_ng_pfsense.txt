@@ -1,0 +1,40 @@
+pfSense instalacia
+
+
+-Instalacia pfSense v EVE-ng ako Linux sa nepodarila - zariadenie sa nedalo spustit. Preto som pfSense nainstaloval lokalne do VirtualBoxu.
+
+-Rozbalime stiahnuty archiv
+sudo gunzip pfSense-CE-2.3.5-RELEASE-amd64.iso.gz
+
+-vytvorime VirtualBox virtualku: 1 CPU, 1024MB RAM, 16GB dynamicky alokovaneho VMDK disku, 2 sietove karty: 1. je Internal, 2. Bridged + "Allow All" pre "Promiscuous Mode", v Storage do "Optical drive" pridame rozbaleny ISO subor.
+-Spustime pfSense virtualku
+-Nainstalujeme pfSense (nechavame predvolene nastavenia)
+-Akonahle nas vyzve na "Reboot", odstranime ISO z optickej mechaniky: Devices -> Optical Drives -> odskrtneme zaskrtnute policko (ak je nutne, zvolime "Force Unmount")
+-Zvolime "Reboot" na dokoncenie pfSense instalacie.
+-Po opatovnom spusteni sa objavi hlavne menu. Zvolime moznost "Halt system" stlacenim cisla '6' na klavesnici a potvrdenim klavesou Enter. Potvrdime vypnutie pri zobrazeni vyzvy - "yes".
+-VMDK subor skopirujeme na EVE-ng server do domovskeho adresara (~)
+-Presunieme ho do vytvoreneho pfsense podadresara v QEMU adresari
+
+
+sudo mkdir -p /opt/unetlab/addons/qemu/pfsense-CE-2.3.5-RELEASE-amd64/
+cd /opt/unetlab/addons/qemu/pfsense-CE-2.3.5-RELEASE-amd64/
+sudo mv ~/pfsense_2.4.vmdk .
+sudo /opt/qemu/bin/qemu-img convert -O qcow2 pfsense_2.4.vmdk hda.qcow2
+sudo rm pfsense_2.4.vmdk
+
+
+-pridame pfSense do EVE-ng projektu: zmenime konzolu z telnet na VNC
+-spustime zariadenie
+-pripojime sa na jeho VNC konzolu
+-vykoname uvodne nastavenia (ak je potrebne)
+  Configure VLANs?          n 
+  WAN interface:            vtnet0
+  LAN interface:            vtnet1
+  Do you want to proceed?   y
+-po dokonceni uvodnych nastaveni sa objavi hlavne menu; z neho mozeme nastavit zakladnu konektivitu na pripojenie sa ku pfSense web rozhraniu (priradenie WAN a LAN rozhrani, zmena IP adresy pre WAN a LAN rozhranie a pod.)
+
+
+
+Zdroje
+https://www.cyberciti.biz/faq/howto-compress-expand-gz-files/
+https://github.com/OverFlowJAMK/General/wiki/Installing-PFSense-into-OpenStack

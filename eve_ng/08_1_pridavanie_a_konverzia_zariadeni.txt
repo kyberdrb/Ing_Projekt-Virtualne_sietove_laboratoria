@@ -1,0 +1,184 @@
+Pridávanie zariadení do EVE-ng servera
+V tomto dokumente opisujeme, ako pridávať zariadenia do nástroja EVE-ng. Pridávanie zariadení je totožné pre inštaláciu vo VirtualBox-e aj pre fyzickú inštaláciu na server s Ubuntu Server 14.04 x64.
+Poznámka: Pri pridávaní zariadenia cez QEMU je dôležité v adresári "/opt/unetlab/addons/qemu" vytvárať nový adresár pre každé zariadenie. Názov adresára smie obsahovať iba alfanumerické znaky a uvedené špeciálne znaky (. - ). Názov adresára nesmie obsahovať podtržník ( _ ), úvodzovky ( " ).
+V tomto adresári vytvárame podadresáre pre jednotlivé zariadenia. V týchto podadresároch sa musí nachádzať jediný súbor - obraz disku daného zariadenia. Obraz disku musí spĺňať tieto požiadavky:
+Musí byť vo formáte "qcow2". Ak je v inom formáte , musíme ho skonvertovať do formátu "qcow2".
+Musí sa volať "hda.qcow2". (inak zariadenie nenaštartuje - neuvidíme nič na telnet / vnc)
+Ak podpriečinky nevytvoríme, zariadenie nebude nikde použiteľné.
+Zariadenia sa do EVE-ng pridávajú jednoducho. Dajú sa pridávať aj za behu servera, bez nutnosti reštartu, aj za behu simulácie (aj keď odporúčame zastaviť simuláciu a potom pridať zariadenie).
+
+Návody na Windows nie sú uvedené, pretože nahrávanie súborov na server cez FTP resp. SFTP je možné vykonať cez FileZill-u a SSH pripojenie cez PuTTY.
+
+Súbory budeme prenášať ako "root" používateľ, preto sa budú nachádzať v adresári "/root/"
+
+Predvolené prihlasovacie údaje na server, sú: root / eve
+
+1) Stiahneme obraz disku daného zariadenia
+2) Zistíme, v akom formáte je obraz disku.
+2.1) QEMU - Ak je obraz disku vo formáte "qcow2", vykonáme tieto príkazy:
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_qcow2_na_lokálnom_PC>
+    quit
+    
+    # Presunieme obraz disku na správne miesto
+    ssh root@<ip_adresa_UnetLabu>
+    mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+    mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+
+    Názvy adresárov podľa typu zariadení uvádzame v tabuľke.
+
+2.2) IOL - Ak je obraz disku vo formáte "bin", vykonáme tieto príkazy:
+    Buď ho skonvertujeme do "image" formátu v GNS3 a postupujeme podľa kroku "2.3) DYNAMIPS"
+
+    Alebo nahráme obraz disku priamo na server. (alebo mozeme spravit oboje a vyskusat, ktore zariadenie sa spusti)
+
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_bin_na_lokálnom_PC>
+    quit
+
+    # Presunieme obraz disku na správne miesto
+    ssh root@<ip_adresa_UnetLabu>
+    mv hda.qcow2 /opt/unetlab/addons/iol/bin/<nazov_bin_suboru>.bin
+
+2.3) DYNAMIPS - Ak je obraz disku vo formáte "image", vykonáme tieto príkazy:
+
+WARNING!!
+**************************************************************************************
+To prevent unforeseen bugs, use only MAINLINE releases of Cisco IOS operating system!
+see: https://www.cisco.com/c/dam/en_us/training-events/le21/le34/downloads/689/academy/2005/BRK-101.pdf
+**************************************************************************************
+
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_image_na_lokálnom_PC>
+    quit
+
+    # Presunieme obraz disku na správne miesto
+    ssh root@<ip_adresa_UnetLabu>
+    mv <nazov_image_suboru>.image /opt/unetlab/addons/dynamips/
+
+2.4) QEMU - Ak je obraz disku vo formáte "vdi", vykonáme tieto príkazy:
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_img_na_lokálnom_PC>
+    quit
+
+    # Presunieme obraz disku na správne miesto
+    ssh root@<ip_adresa_UnetLabu>
+    qemu-img convert -f vdi -O qcow2 vMX.vdi hda.qcow2
+
+2.5) QEMU - Ak je obraz disku vo formáte "vmdk", vykonáme tieto príkazy:
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_img_na_lokálnom_PC>
+    quit
+
+    # Skonvertujeme ho do formátu "qcow2"
+    /opt/qemu/bin/qemu-img convert -f vmdk -O qcow2 <vmdk_disk>.vmdk hda.qcow2
+
+    # Presunieme obraz disku na správne miesto
+    mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+    mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+
+2.6) Ak je obraz disku vo formáte "iso", môže to byť jedno zariadenie, alebo aj viacero
+suborov. Podľa toho, ktor
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_img_na_lokálnom_PC>
+    quit
+
+    # Vytvoríme disk vo formáte qcow2, ktorý má 4GB (kapacitu si zvolíme podľa potreby)
+    /opt/qemu/bin/qemu-img create -f qcow2 hda.qcow2 4G
+
+    # Necháme doň nainštalovať iso (ako napr. v pripade Cisco CSR)
+    /opt/qemu/bin/qemu-system-x86_64 --enable-kvm -serial mon:stdio -nographic -boot order=c,once=d -smp 1 -m 3072 -usb -hda hda.qcow2 -cdrom csr1000v-universalk9.03.13.00.S.154-3.S-ext.iso
+
+    # Presunieme obraz disku na správne miesto
+    mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+    mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>/
+
+    -Ak tento spôsob nefunguje, nainštalujeme iso obraz lokálne 
+    napr. cez VirtualBox (vyberieme disk typu "vmdk" pre jednoduchosť konverzie 
+    neskôr), a potom nahráme na server výsledný obraz disku, pričom pokračujeme
+    podľa návodu pre "vmdk" obrazy.
+
+    -Ak sa ale jedna o ISO subor s viacerymi zariadeniami, jednoduchsie je, 
+    ked ISO subor pripojime ako disk podla nizsie uvedeneho navodu:
+        https://www.cyberciti.biz/tips/how-to-mount-iso-image-under-linux.html
+
+2.7) QEMU - Ak je obraz disku vo formáte "ova", vykonáme tieto príkazy:
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_img_na_lokálnom_PC>
+    quit
+
+    # Extrahujeme ova súbor
+    tar xf ../csr1000v-universalk9.03.13.00.S.154-3.S-ext.ova
+
+    # Skonvertujeme extrahovaný vmdk disk do formátu qcow2
+    /opt/qemu/bin/qemu-img convert -O qcow2 <vmdk_disk>.vmdk hda.qcow2
+
+    # Presunieme obraz disku na správne miesto
+    mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+    mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+
+2.8) QEMU - Ak je obraz disku vo formáte "img", vykonáme tieto príkazy:
+    # Nahráme obraz disku na server
+    sftp root@<ip_adresa_UnetLabu>
+    put <cesta_k_obrazu_disku_img_na_lokálnom_PC>
+    quit
+    
+    # Vyčistíme "img" obraz
+    sudo virt-sysprep -a <obraz>.img
+
+    # Skonvertujeme ho z "img" na "qcow2" formát
+    sudo qemu-img convert -c -f raw -O qcow2 <obraz>.img <obraz>.qcow2
+
+    # Zmenšíme výslednú veľkosť obrazu (skomprimujeme ho)
+    sudo virt-sparsify --compress <obraz>.qcow2 <obraz2>.qcow2
+
+    # Presunieme obraz disku na správne miesto
+    mkdir -p /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+    mv hda.qcow2 /opt/unetlab/addons/qemu/<nazov_adresara_podla_typu_qemu_zariadenia>
+
+    Tieto kroky vytvoria funkčný obraz disku optimálnej veľkosti z formátu "img" do formátu "qcow2".
+
+3) Ak je potrebné, vykonáme špecifické úpravy pre jednotlivé zariadenia:
+    - Cisco IOL - uistíme sa, že máme v adresári "/opt/unetlab/addons/iol/bin" súbor s názvom "iourc", ktorý obsahuje licenciu pre spúšťanie Cisco IOU/IOL zariadení. Cisco IOL ako jediné podporujú sériové porty.
+    
+    - Aby sme mohli pridať obraz disku "c1700-adventerprisek9-mz.124-8.image", musíme ho premenovať na "c1710-c1700-adventerprisek9-mz.124-8.image", aby sa objavil vo webovom rozhraní EVE-ng. Potom pri zozname zariadení "Add node" vyberieme typ zariadenia "Cisco IOS 1710 (Dynamips)".
+    
+4) Opravíme oprávnenia
+    sudo chown -R root:root /opt/unetlab/addons/
+    /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
+5) Odskúšame pridané zariadenie vo webovom rozhraní. Zariadenie stačí pridať na pracovnú plochu, buď cez ikonku "plus" v nástrojovej lište, alebo pravým tlačidlom a zvoliť možnosť "Add node". Z rozbaľovacieho zoznamu vyberieme druh zariadenia, ktorý sme pridávali, ponecháme predvolené nastavenia a klikneme na "Add". Zariadenie spustíme tak, že naň klikneme pravým tlačidlom a zvolíme možnosť "Start".
+
+Pre problémy so spúšťamím zariadenia, viď "riesenie_problemov_so_zariadeniami.txt"
+
+6) Teraz sa pokúsime k zariadeniu pripojiť. V EVE-ng sa k zariadeniam dá pripojiť buď cez "telnet", alebo cez "vnc". To, ktorý spôsob zvoliť sa líši podľa zariadenia (spôsob, ako sa pripojiť ku zariadeniam je uvedený v tabuľke).
+Pokiaľ máme pre zariadenie použiť spôsob pripojenia "telnet", použijeme terminál (pre linuxové distribúcie) resp. PuTTY (alebo iný emuátor terminálu pre Windows)
+Pre spôsob pripojenia "vnc" použijeme "UltraVNC Viewer" zo sady nástrojov "UltraVNC". Inštalačný balíček si môžeme stiahnuť na tejto adrese:
+http://www.uvnc.com/downloads/ultravnc/118-download-ultravnc-1212.html
+A vyberieme si balíček podľa architektúry operačného systému:
+"ultravnc 1212 X86 setup" pre 32 bitový Windows
+"ultravnc 1212 X64 setup" pre 64 bitový Windows
+Práca s aplikáciou UltraVNC Viewer je jednoduchá: do adresného riadku zadáme adresu zariadenia a jeho port (tieto informácie sú uvedené v pravom dolnom rohu prehliadača, keď na zariadenie prejdeme myškou). Klikneme na "Connect" a mali by sme vidieť grafický výstup daného virtualizovaného zariadenia.
+
+6.1) Ak sme sa k zariadeniu pripojili, môžeme vypnúť zariadenie tak, že naň klikneme pravým tlačidlom a zvolíme možnosť "Stop".
+6.2) Ak sa nám k zariadeniu nepodarilo pripojiť, skontrolujeme, či sme správne vykonali predchádzajúce kroky.
+
+7) V prípade, že sme obraz disku daného zariadenia museli skonvertovať, môžeme vymazať pôvodný (img/vmdk) obraz disku na serveri, resp. vdi súbor na lokálnom počítači.
+
+
+Zdroje:
+    # Všeobecné
+    http://www.eve-ng.net/index.php/documentation/howto-s    <-- oficiálne návody na pridávanie zariadení (a ďalšie užitočné veci)
+    http://www.eve-ng.net/index.php/documentation/images-table    <-- ktoré zariadenia patria do ktorého priečinka a ako sa má volať qcow2 súbor
+
+    http://www.randomhacks.co.uk/how-to-convert-virtualbox-vdi-to-kvm-qcow2/
+    https://www.youtube.com/watch?v=fk0E8FvSdlo 
+    https://www.digitalocean.com/community/tutorials/how-to-use-sftp-to-securely-transfer-files-with-a-remote-server
+    http://stackoverflow.com/questions/17080466/telnet-to-port-8089-correct-command
