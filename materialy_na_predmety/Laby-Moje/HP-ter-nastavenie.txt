@@ -1,0 +1,6 @@
+158.193.139.11
+Porty
+* 3001 - 300x
+
+V putty pre telnet treba nastavit ze:
+odskrtnut Return key sends Telner New line instead of
