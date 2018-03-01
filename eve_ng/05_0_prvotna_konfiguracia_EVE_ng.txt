@@ -200,14 +200,21 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
   sudo apt-get update
   sudo apt-get install aptitude
   sudo aptitude update
-  sudo aptitude install bash-completion man-db tmux python-pip datamash
+  sudo aptitude install bash-completion man-db tmux python-pip datamash dtrx
+
+    bash-completion - doplnanie prikazov klavesou Tab
+    man-db - manualove stranky
+    tmux - terminal multiplexor - viacero SSH relacii v jednej
+    python-pip - instalacia balickov
+    datamash - transponovanie stlpca do riadku
+    dtrx - nastroj na jednoduche rozbalovanie komprimovanych suborov
 
   Ešte pred spustením tmux relácie môžeme vytvoriť konfiguračný súbor pre 
   tmux, ktorý nám umožní používať klávesové skratky
     "Ctrl+šípka doľava/doprava"
   na preskakovanie slov v príkazovom riadku.
 
-  Odpojíme sa od existujúcej tmux relácie, ak je tp potrebné
+  Odpojíme sa od existujúcej tmux relácie, ak je to potrebné
 
     Ctrl+b d
 

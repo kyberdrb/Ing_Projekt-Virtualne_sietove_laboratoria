@@ -13,7 +13,19 @@ Ulohy:
 
 EVE-ng
 
+-pozret sa v telefone na obrazok tabule od veduceho
+  -predmety
+  -zariadenia na ne
+
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+
+-zmensit swap particiu na 10GB a rozsirit systemovu particiu
+
+-vyskusat nokiacke imidze od jakuba
+  -specialne obenchmarkovat verziu 14.0.R6 ako CPM a IOM (osobitne a 
+   dohromady), ked maju priradene CPM aj IOM po 1 CPU a potom po 2 CPU
+   -> zistit, ci sa po pridani 2 jadier nejako dramaticky nezvysi vyuzitie
+   CPU
 
 -po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
  v topologii
@@ -26,7 +38,6 @@ EVE-ng
       if url.scheme == 'capture':
         cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
               -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-        wireshark_cmd = 'wireshark -k -i -'
 
    na toto (pridame "sudo" pred tcpdump => aj uzivatel wireshark_capture bude v 
    sudo skupine, ale bude moct vykonavat VYLUCNE PRIKAZ TCPDUMP AKO SUDO!!!)
@@ -34,7 +45,6 @@ EVE-ng
     if url.scheme == 'capture':
         cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
               -l wireshark_capture {host} sudo tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-        wireshark_cmd = 'wireshark -k -i -'
 
 
 

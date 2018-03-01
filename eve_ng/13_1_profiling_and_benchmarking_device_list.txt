@@ -17,9 +17,17 @@ linux-netem
 nxosv9k-nxosv-final.7.0.3.I7.1_20170831
 olive-12.1-R1-9_20120324
 ostinato-drone-8.0
+
+-Nokia routre potrebuju aspon 2 CPU
 timos-C-13.0.R1_20150227
+    -potrebuje 2 CPU
+
 timoscpm-C-13.0.R1_20150227
+    -potrebuje 2 CPU
+
 timosiom-C-13.0.R1_20150227
+    -potrebuje 2 CPU
+
 timoscpm-C-13.0.R1_20150227+timosiom-C-13.0.R1_20150227
 titanium-d1-kickstart.7.3.0.D1.1_20161101
 vios-adventerprisek9-m.vmdk.SPA.156-2.T_20160322
