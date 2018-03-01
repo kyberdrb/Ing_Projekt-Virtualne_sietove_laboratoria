@@ -13,6 +13,8 @@ Ulohy:
 
 EVE-ng
 
+-skontrolovat, ci sa zalohoval jakubov timos na lxc backup server
+
 -pozret sa v telefone na obrazok tabule od veduceho
   -predmety
   -zariadenia na ne
