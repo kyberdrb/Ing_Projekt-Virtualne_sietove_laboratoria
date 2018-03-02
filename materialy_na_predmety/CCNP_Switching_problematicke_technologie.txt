@@ -1,0 +1,28 @@
+Not supported/working on Layer 2 IOL (Linux)
+
+-Problematicke funkcie su oznacene '*'
+  802.1q Tunneling
+  Cisco ISL trunks
+  *DHCP Snooping
+  *HSRP address not pingable
+  *L2 PortChannel (not working on 12.2, working on 15.0)
+  L3 PortChannel
+  NVI NAT (classic NAT works on TPGEN images only)
+  *PVLAN
+  QinQ
+  Routing loops (IOL will crash)
+  *SPAN/RSPAN/ERSPAN
+  *VTP version 2 (VTP version 1 works)
+
+-Vadi, ze na IOL switchoch nefunguje:
+  *DHCP Snooping
+  *HSRP address not pingable
+  *L2 PortChannel (not working on 12.2, working on 15.0)
+  *PVLAN
+  *SPAN/RSPAN/ERSPAN
+  *VTP version 2 (VTP version 1 works)
+
+-Preferovany je Cisco IOL switch, pretoze vyzaduje menej systemovych
+ zdrojov nez Cisco vIOS L2. Ale podla 
+  http://www.keyboardbanger.com/cisco-iou-unsupported-features/
+ podporuje omnoho viac funkcii

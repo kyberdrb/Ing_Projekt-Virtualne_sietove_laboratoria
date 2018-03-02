@@ -13,19 +13,18 @@ Ulohy:
 
 EVE-ng
 
--skontrolovat, ci sa zalohoval jakubov timos na lxc backup server
-
 -pozret sa v telefone na obrazok tabule od veduceho
   -predmety
   -zariadenia na ne
 
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
-
--zmensit swap particiu na 10GB a rozsirit systemovu particiu
+  -zoznam features je uz stiahnuty
 
 -vyskusat nokiacke imidze od jakuba
-  -specialne obenchmarkovat verziu 14.0.R6 ako CPM a IOM (osobitne a 
-   dohromady), ked maju priradene CPM aj IOM po 1 CPU a potom po 2 CPU
+  -a potom ich upratat na spravne miesto
+  -specialne obenchmarkovat nokiacke imidze od jakuba verziu 14.0.R6 
+   ako CPM a IOM (osobitne a dohromady)
+   -> ked maju priradene CPM aj IOM po 1 CPU a potom po 2 CPU
    -> zistit, ci sa po pridani 2 jadier nejako dramaticky nezvysi vyuzitie
    CPU
 
@@ -55,10 +54,6 @@ EVE-ng
    restartovat server
   -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
    ci maju konektivitu (ping)
-
--do zalohovacieho skriptu pridat subor /opt/unetlab/scripts/unl_wrapper.php
-  -upravene nastavovanie pouzivatela a skupiny pre "/opt/unetlab/addons/" 
-   adresar
 
 -do skriptu na upravu sablon zmenit zariadeniam pocet CPU
   -obenchmarkovanym QEMU zariadeniam
@@ -234,7 +229,7 @@ do Linuxu (GNS3)
 -Blockchain - matematika+siete+kryptomeny
 -Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng
     http://www.eve-ng.net/forum/viewtopic.php?f=6&t=812
-Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
+ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
   https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
   https://www.youtube.com/watch?v=-EP_qtNQFsE&hd=1
 -linux file sync backup
@@ -244,7 +239,6 @@ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
   https://lxc-webpanel.github.io/faq.html
 -NextCloud (nahrada za SharePoint a OneDrive a Skype For Business) - kvoli WebRTC videohovorom
   https://www.youtube.com/watch?v=UYtFCpY0zuc
--upravit CiscoIOUKeygeny tak, aby sa rovno vygenerovali subory "iourc" a/alebo ".iourc" na spravne miesto podla toho ci sme v GNS3 alebo EVE-ng
 -spustat zalohovanie potrebnych suborov a adresarov (uvedenych v zalohovacom skripte) nie podla casu cez cron, ale pri zmene tychto suborov a adresarov cez incron
   https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
 -ak sa mi podari uspesne spustit eve-ng server v kontajneri na odyseovi t.j. spustim v nej dynamips, iol aj qemu uzol, myslim, ze to nemusi fungovat na 100%, lebo eve-ng bude pouzivat odyseov debianovsky kernel namiesto svojho upraveneho kernelu pre lepsiu podporu l2 technologii; alebo vyskusat frontend od "breaktheweb"

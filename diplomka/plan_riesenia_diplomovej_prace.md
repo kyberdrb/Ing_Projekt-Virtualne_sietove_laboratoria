@@ -138,6 +138,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
         - Zariadenia
         - Databázy
       - Automatizácia zálohovania nástrojom "cron"
+      - Cisco IOL/IOU licencia
       - Zabezpečenie servera
   - úprava šablón
 

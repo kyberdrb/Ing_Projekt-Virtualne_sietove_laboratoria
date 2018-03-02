@@ -157,7 +157,47 @@ OBNOVA SÚBOROV A ADRESÁROV
  potom súbory, ktoré sa z tohto adresára zálohujú budú patriť do adresára 
     'opt_unetlab_addons' 
  (úvodné lomítko vynechané, zvyšné lomítka nahradené podčiarknikom). 
- Na rovnakú cestu ich aj obnovíme.
+ Na rovnakú cestu ich aj obnovíme, ALE EŠTE PRED OBNOVENÍM SI OVERÍME, ČI
+ MÁME NA DISKU DOSTATOK VOĽNÉHO MIESTA príkazom "df" resp. "df -h".
+
+ V mojom prípade som musel zmenšiť swap partíciu a rozšíriť systémovú partíciu.
+ Disk bol partíciovaný pri inštalácií pomocou LVM.
+
+
+  -Zmenšenie swap partície
+
+  free -h | grep -i swap
+Výstup: 
+  Swap:           47G          0B         47G
+
+  sudo lvs
+Výstup:
+  LV     VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   sirena-vg -wi-ao---- 249.61g                                                    
+  swap_1 sirena-vg -wi-ao----  48.00g
+
+  sudo swapoff /dev/sirena-vg/swap_1
+  sudo lvresize -L-40G /dev/sirena-vg/swap_1
+  sudo mkswap /dev/sirena-vg/swap_1
+  sudo swapon /dev/sirena-vg/swap_1
+  free -h | grep -i swap
+Výstup:
+  Swap:          8.0G          0B        8.0G
+
+
+
+  -Zväčšenie systémovej partície
+
+  sudo partprobe /dev/sda
+  sudo lvresize -L+40G /dev/sirena-vg/root
+  sudo sudo resize2fs /dev/sirena-vg/root
+  sudo lvs
+
+Výstup:
+  LV     VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   sirena-vg -wi-ao---- 289.61g                                                    
+  swap_1 sirena-vg -wi-ao----   8.00g
+
 
 
 *************
@@ -209,51 +249,7 @@ OBNOVA DATABÁZ
 
     Query OK, 0 rows affected
 
-
-*************
-FINÁLNA ÚPRAVA DOKUMENTOV
-
--Po obnovení všetkých potrebných súborov a adresárov, vykonáme skript,
- ktorý opraví ich atribúty:
-    -vlastníka  (chown)
-    -skupinu    (chown)
-    -mód        (chmod)
-  
-  Skript má názov "unl_wrapper" a nachádza sa v "/opt/unetlab/wrappers/".
-  Skript bol upravený tak, aby menil používateľa aj skupinu na "root" pre
-  všetky súbory a adresáre v "/opt/unetlab/addons/". Tam sa nachádzajú
-  všetky zariadenia, ktoré je možné použiť v EVE-ng topológií, okrem 
-  VPCS (to sa nachádza v adresári "/opt/vpcsu/").
-
-  Bez tejto úpravy "unl_wrapper" skriptu nemusia byť niektoré zariadenia
-  v topoloógii spustiteľné.
-
-  Úprava spočívala v pridaní nižšie uvedených riadkov nad riadok
-      "// /opt/unetlab/addons/iol/bin",
-  aby boli všetky úpravy zariadení na jednom mieste.
-
-
-    ...
-
-    // /opt/unetlab/addons
-    $cmd = '/bin/chown -R root:root /opt/unetlab/addons > /dev/null 2>&1';
-    exec($cmd, $o, $rc);
-
-    ...
-
-
-    
-    Obsah celého súboru je uložený na zálohovacom serveri v adresári
-      "~/zalohy_virtualnych_sietovych_laboratorii/eve_ng_specific/opt_unetlab_wrappers"
-
-
--Uložíme súbor
--Vykonáme práve upravený skript tak, ako je uvedené nižšie
-
-    sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
-
--Atribúty všetkých potrebných súborov a adresárov sa upravia tak,
- aby bol zabezpečený spoľahlivý chod EVE-ng.
+  čo znamená, že údaje sa do databázy importovali úspešne.
 
 
 Zdroje:
@@ -281,5 +277,10 @@ https://askubuntu.com/questions/222512/cron-info-no-mta-installed-discarding-out
 https://www.cyberciti.biz/faq/howto-linux-unix-start-restart-cron/
 
 -MYSQL
-https://www.tecmint.com/mysql-backup-and-restore-commands-for-database-administration/
 https://makandracards.com/makandra/595-dumping-and-importing-from-to-mysql-in-an-utf-8-safe-way
+
+-LVM RESIZE
+https://askubuntu.com/questions/226520/how-to-modify-size-of-swap-with-a-lvm-partition/303723#303723
+https://www.rootusers.com/lvm-resize-how-to-decrease-an-lvm-partition/
+https://serverfault.com/questions/36038/reread-partition-table-without-rebooting/36047#36047
+https://askubuntu.com/questions/24027/how-can-i-resize-an-ext-root-partition-at-runtime/119458#119458

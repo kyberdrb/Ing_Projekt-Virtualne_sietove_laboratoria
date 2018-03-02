@@ -70,9 +70,9 @@ Mozeme pokracovat bud namountovanim vsetkych bodov v /etc/fstab (bez restartu) .
 
 
 TROUBLESHOOTING
-
-
--Ak sa server spustil, overime ci sa particia pripojila prikazom
+-AK SA SERVER NESPUSTIL,
+ overime ci sa particia pripojila prikazom
+ 
   lsblk
 
 -Ak zadame nepravne udaje do "/etc/fstab" suboru, hrozi, ze sa server nespusti a znefunkcni sa aj SSH pristup. V mojom pripade som pouzil nespravny prikaz na vygenerovanie UUID pre particiu ("uuidgen" namiesto "blkid"). Vtedy je potrebne fyzicky restartovat server, vojst do GRUB zavadzaca (dlhsie podrzime "Shift" pocas zavadzania systemu - ked sa spusta BIOS).
