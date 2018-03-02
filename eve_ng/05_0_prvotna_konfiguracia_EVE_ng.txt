@@ -210,7 +210,8 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
   sudo apt-get update
   sudo apt-get install aptitude
   sudo aptitude update
-  sudo aptitude install bash-completion man-db tmux python-pip datamash dtrx htop
+  sudo aptitude install bash-completion man-db tmux python-pip datamash dtrx \
+    htop eve-ng-addons-ostinato-drone eve-ng-addons-netem
 
     bash-completion - doplnanie prikazov klavesou Tab
     man-db - manualove stranky
@@ -219,6 +220,9 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
     datamash - transponovanie stlpca do riadku
     dtrx - nastroj na jednoduche rozbalovanie komprimovanych suborov
     htop - monitorovanie systémových prostriedkov
+    eve-ng-addons-ostinato-drone - generátor sieťovej prevádzky
+    eve-ng-addons-netem - tvarovač sieťovej prevádzky
+    
 
   Ešte pred spustením tmux relácie môžeme vytvoriť konfiguračný súbor pre 
   tmux, ktorý nám umožní používať klávesové skratky
