@@ -11,7 +11,17 @@ Zazitky:
 
 Ulohy:
 
-EVE-ng
+-v boot_time txt suboroch nahradit ':' s medzerami znakom ',' medzi
+ Start/Stop a casom (bez medzery - tesno), aby som to mohol rovno vkladat
+ do spreadsheetu
+
+-prekonzultovat s veducim, ci ten benchmarking bude dostatocny
+      
+-odkazat sa v sumarnom zozname zariadeni na subor 
+  "profiling_and_benchmarking_device_list.txt"
+ pre zainteresovane zariadenia
+
+-upravit skript na upravu sablon podla benchmarkov
 
 -pozret sa v telefone na obrazok tabule od veduceho
   -predmety
@@ -22,6 +32,12 @@ EVE-ng
 -ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
 -pozriet sa na
  "/materialy_na_predmety/CCNP_Switching_problematicke_technologie.txt"
+ 
+ -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
+ podporovane ani v IOL routri, ani v IOL switchi
+
+
+
 
 -po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
  v topologii
@@ -51,7 +67,8 @@ EVE-ng
   -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
    ci maju konektivitu (ping)
   -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
-   FORWARD predvolenu politiku DROP - mala by byť ACCEPT
+   FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
+   nedokazali zariadenia preposielat spravy cez rozhrania
 
 
 
@@ -88,12 +105,6 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
 -obenchmarkovat vmx 15
   -jedno zariadenie (vmx)
   -kompozit (vcp+vfp) - osobitne aj dohromady
-
--obenchmarkovat nokiacke imidze od jakuba, ktore zostali ako najnovsie
- ako CPM a IOM (osobitne a dohromady) + timos-13 aj ako VSR-I
-   -> ked maju priradene CPM aj IOM po 1 CPU a potom po 2 CPU
-   -> zistit, ci sa po pridani 2 jadier nejako dramaticky nezvysi vyuzitie
-   CPU
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
 

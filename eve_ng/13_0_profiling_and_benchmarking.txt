@@ -70,7 +70,8 @@ Z man stranky dstatu
 
 
 *************
-Meranie vytazenia operacnej pamate
+MERANIE VYŤAŽENIA OPERAČNEJ PAMÄTE
+
 bude trochu zlozitejsie, pretoze potrebujem ziskat presne udaje.
 Zda sa, ze presne udaje ziskam zo stlpca RSS z vystupu prikazu "ps aux".
 
@@ -122,19 +123,24 @@ Zobrazenie PID cisel
 
 
 ******
+MERANIE VYŤAŽENIA OPERAČNEJ PAMÄTE - PS_MEM
+
 Dalsi sposob merania vytazenia operacnej pamate pre spustene zariadenia
-v UNetLab/EVE-ng topologii:
+v UNetLab/EVE-ng topologii je použiť nástroj "ps_mem".
 
   git clone https://github.com/pixelb/ps_mem.git
-  cs ps_mem
+  cd ps_mem
   python setup.py build
   sudo python setup.py install
-  sudo cp ps_mem.py /usr/bin/ps_mem
+
+
+-Nástroj "ps_mem" môžeme otestovať napr. tak, že spustíme IOL smerovač
+ a na serveri vykonáme príkaz:
 
   sudo ps_mem -p $(pgrep -d, -u "unl0") --total     (iba pre IOL zariadenia!)
   
 
-Univerzalny prikaz:
+Univerzálny príkaz:
 
   sudo ps_mem -p $(pgrep -d, -f /opt/unetlab/addons\|/opt/qemu) --total
   
@@ -155,10 +161,6 @@ Zobrazenie PID cisel
 
 *************
 ZHRNUTIE PRIKAZOV A OVERENI
-
--staci skopirovat a prilepit do terminalu
-
-  clear
 
 #Rychle zobrazenie vybranych procesov spusteneho zariadenia v UNetLab/EVE-ng topologii
 #(pre ps aj ps_mem, kvoli tomu, aby sa merali rovnake procesy)
@@ -182,22 +184,47 @@ ZHRNUTIE PRIKAZOV A OVERENI
 *************
 INTEGRACIA DO JEDNEHO NASTROJA
 
-Teraz som potreboval tuto funkcionalitu integrovat do jedneho nastroja, aby bolo
-vsetko v jednom csv subore, bez nutnosti manualneho zasahu.
-Preto som vykonal prikaz
+-Teraz som potreboval tuto funkcionalitu integrovat do jedneho nastroja, aby bolo
+ vsetko v jednom csv subore, bez nutnosti manualneho zasahu.
+ Preto som vykonal prikaz
 
   sudo cp /usr/bin/dstat /usr/bin/dstat_custom
 
-Tak som si vytvoril kopiu existujuceho nastroja dstat, kedze dokaze merat vsetko 
-okrem vytazenia pamate spusteneho zariadenia v UNetLab/EVE-ng topologii.
-Aby dokazal merat vyuzitie operacnej pamate zariadenim, boli potrebne upravy
-zdrojoveho kodu. Upravil som ho tak, ze sa porovnavaju vysledky dvoch roznych
-prikazov, pricom som kladol doraz na presnost a konzistenciu vystupu tychto
-prikazov. Oba prikazy musia merat tie iste procesy, inak by vysledky mohli
-byt skreslene. Pouzivam prikazy z casti "Rychle porovnanie spotreby operacnej 
-pamate zariadenia medzi 'ps' a 'ps_mem/pgrep'".
+-Tak som si vytvoril kopiu existujuceho nastroja dstat, kedze dokaze merat vsetko 
+ okrem vytazenia pamate spusteneho zariadenia v UNetLab/EVE-ng topologii.
+ Aby dokazal merat vyuzitie operacnej pamate zariadenim, boli potrebne upravy
+ zdrojoveho kodu. Upravil som ho tak, ze sa porovnavaju vysledky dvoch roznych
+ prikazov, pricom som kladol doraz na presnost a konzistenciu vystupu tychto
+ prikazov. Oba prikazy musia merat tie iste procesy, inak by vysledky mohli
+ byt skreslene. Pouzivam prikazy z casti
+  "Rychle porovnanie spotreby operacnej pamate ...".
 
-Upravil som ho nasledovne:
+-Vykonané úpravy sú opísané nižšie. Už upravený nástroj je možné nájsť na 
+ zálohovacom serveri v adresári
+  "eve_ng_specific/usr_bin/dstat_custom".
+
+-Aby sa nástroj "dstat_custom" dal spustiť, musia byť nainštalované balíčky
+ "dstat", "Sultan" a "ps_mem".
+
+ TODO - na čo slúžia jednotlivé nástroje!
+
+-Nástroj "dstat" nainštalujeme príkazom:
+
+  sudo aptitude install dstat
+
+
+-Nástroj "Sultan" nainštalujeme príkazom:
+
+  pip install --upgrade sultan
+
+
+-Nástroj "ps_mem" nainštalujeme príkazmi, ktoré sú uvedené v tomto dokumente,
+ v časti
+  "MERANIE VYŤAŽENIA OPERAČNEJ PAMÄTE - PS_MEM"
+
+
+
+
 
 (riadok 18 - import kniznice Sultan - vykonavanie BASH prikazov v Pythone)
 ...
@@ -317,7 +344,7 @@ tohto mechanizmu znížený.
 *************
 KOMPLETNY PRIKAZ NA MERANIE SYSTEMOVYCH PROSTRIEDKOV
 
-Najprv vykoname prikaz:
+Najprv vykonáme príkaz
 
   sudo -v
 
@@ -389,8 +416,9 @@ Pri meraní bolo UKSM vypnuté!
 1. FAZA
 
 -Do projektu pridame jedno zariadenie daneho druhu
--Nastavime mu velmi vela pamate (+30GB operacnej pamate), 
-  a 1 CPU, ak to zariadenie dovoli a spusti sa
+-Nastavime mu velmi vela pamate (+30GB operacnej pamate alebo maximalne 
+ mnozstvo pamate, ktore je zariadenie schopne zvladnut), 
+ a 1 CPU (ak to zariadenie dovoli)
 -Vyprazdnime operacnu pamat od docasnych dat
 -Pomocou skriptu spustime sledovanie systemovych prostriedkov, ktory bude ukladat 
   udaje do suboru (nazov suboru: <nazov_zariadenia>-#cpu.csv)
@@ -453,15 +481,14 @@ Priklad pouzitia:
   -Separator Options -> Separated by -> zaskrtneme iba "Comma" a 
     odskrtneme "Merge delimiters"
 -Oznacime jeho obsah
+  -mysou alebo cez adresny riadok (Name Box) zadame rozsah napr. A1:BL3600
 -Otvorime sablonu
--Oznacime bunku A1
--Ctrl+V
--Prislusne stlpce a grafy sa automaticky zmenia
-  -stlpce sa pocitaju az do konca (po riadok 1048576)
-  
+-Oznacime bunku A1 v harku "SuroveUdaje" a vlozime skopirovane udaje
+
+
 Ako som vytvaral stlpce:
   -napisal som rovnicu do prvej bunky v stlpci
-  -Zvolime bunky az po 15000
+  -Zvolime bunky az po 3600
     -najrychlejsie je zadat do "Name box" pola v lavom hornom rohu (je tam vzdy
     aktualna adresa bunky) rozsah XY1:XY15000 (rozsah podla potreby upravit) a
     stlacit Enter
@@ -484,6 +511,7 @@ Ako som vytvaral grafy:
       zmenil na 100
   -pre benchmarking som vytvaral Bar Chart grafy, aby som mohol priamo porovnat
     priemerne hodnoty meranych velicin pocas spustania a po spusteni
+  -Data Series -> Data in rows!
   -grafom s percentualnou metrikou som nastavil maximalnu hodnotu osi Y na 100
     -2x kliknut na graf alebo pravy klik -> Edit
     -pravy klik na lubovolnu hodnotu na osi Y -> Format Axis... -> Scale
@@ -517,34 +545,12 @@ stacit na to, aby sa zariadenie ustalilo na jednej vykonnostnej hladine.
 
 
 *************
-MAPOVANIE CISEL GRAFOV K ICH NAZVOM
+GARFY
 
--V adresari prislusneho zariadenia sa nachadza 19 obrazkov s grafmi.
+-V adresari prislusneho zariadenia sa mozu nachadzat grafy exportovane
+ do obrazkov.
 -Grafy su pomenovane podla poradia, v ktorom som ich exportoval.
 -Nizsie je vysvetleny vyznam a metrika nameranych dat.
-
-Profiling
-1  - Overall CPU usage (%)
-2  - cpu0 usage (%)
-3  - cpu1 usage (%)
-4  - cpu2 usage (%)
-5  - cpu3 usage (%)
-6  - cpu4 usage (%)
-7  - cpu5 usage (%)
-8  - cpu6 usage (%)
-9  - cpu7 usage (%)
-10 - All CPUs combined usage (%)
-11 - Combined relative memory usage [ps + ps_mem] (MB)
-12 - Disk: read (blue) and write (green) speed (kB/s)
-13 - Disk utilization (%)
-14 - Disk: Number of read (blue) and write (green) operations (ops/s)
-
-Benchmarking
-15 - Average overall CPU usage + All individual cores
-16 - Average relative memory usage (MB)
-17 - Average disk speed: read (blue) / write (green) (kB/s)
-18 - Average disk utilization (%)
-19 - Average number of operations of a disk: # of reads (blue) / # of writes (green) (ops/s)
 
 
 

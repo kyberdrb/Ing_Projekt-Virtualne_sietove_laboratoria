@@ -88,7 +88,13 @@ Cisco IOS (Dynamips)
   https://mega.nz/#F!nJR3BTjJ!N5wZsncqDkdKyFQLELU1wQ
 
 
-Cisco IOSv
+Cisco IOSv/IOSvL2 (vIOS/vIOS L2)
+
+  https://certcollection.org/forum/topic/314237-cisco-iosv-l2-v152-qemu-kvm-and-vmware-images/#entry1176561
+konkretne
+  https://rapidgator.net/file/acbc68bc15f5a882a1e30bc36aae2454/cisco-iosv-l2-152-2017.vmdk.html?referer=http://festyy.com/qZ3gTF
+  https://rapidgator.net/file/0b5a6002d8cb327ecba5c7258c9e10c7/cisco-iosv-l2-152-2017.qcow2.html?referer=http://festyy.com/qZ3gPn#
+
   https://certcollection.org/forum/topic/314237-cisco-iosv-l2-v152-qemu-kvm-and-vmware-images/page__st__14#entry1186526
 konkretne
   http://www9.zippyshare.com/v/3r6D3KkQ/file.html
@@ -116,7 +122,9 @@ konkretne
 konkretne
   http://www92.zippyshare.com/v/TmQD3AUr/file.html
 
-  Cisco IOL Switch 2017 + Cisco IOL Router 2015
+
+
+Cisco IOL Switch 2017 + Cisco IOL Router 2015
   https://netbrainstlearn.wordpress.com/2015/12/25/new-iou-dec-2105/
 resp.
   https://mega.nz/#!zdkxBAaR!A1XqoshXhMxcsfV17LYnviUUiNAG8TTl69FmI1-1LOU
@@ -126,20 +134,25 @@ konkretne
   https://www.4shared.com/get/bwEFDj-2ca/new1.html
   https://www.4shared.com/get/Ci1BPr95ei/new2.html
 
- cisco_iou_ccie_rack_v3.rar
+
+
+cisco_iou_ccie_rack_v3.rar
   https://torrentz2.eu/42d2bfbea6238114f53b901839225eac9d41d230
 
- Cisco-IOU-L2-L3-Collection-v2
+
+Cisco-IOU-L2-L3-Collection-v2
   https://torrentz2.eu/1414d2c2b5f0614c02ef94de048aae6278a7f497
 
- Cisco-IOU-L2-L3-Collection-v3
+Cisco-IOU-L2-L3-Collection-v3
   https://torrentz2.eu/55ead4b54e75a459176e0605f8be32c9706e2cba
 
- Cisco-IOU-L2-L3-Collection-v4
+Cisco-IOU-L2-L3-Collection-v4
   https://torrentz2.eu/629b5de73dd81506c0b22e07e9658974072ac732
 
   https://drive.google.com/file/d/0BwTFjgBPz3MhLWpUTDVwMHp3amM/view
-      https://drive.google.com/file/d/0BwTFjgBPz3MhaFpvTlJKb08wbVE/view
+  https://drive.google.com/file/d/0BwTFjgBPz3MhaFpvTlJKb08wbVE/view
+
+
 
 
 Cisco IOL/IOU Keygen (Python 2)

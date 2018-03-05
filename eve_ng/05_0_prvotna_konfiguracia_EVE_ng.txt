@@ -410,6 +410,9 @@ Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
  -vygenerovaním Cisco IOL/IOU licencie, ktoré je opísané v súbore
   "vytvorenie_cisco_iou_iol_licencie.txt"
 
+ -upravením šablón pre zariadenia pomocou skriptu, ktoré je opísané v súbore
+  "TODO - ?"
+
  -zabezpečením servera, ktoré je opísané v súbore 
   "zabezpecenie_servera.txt"
 

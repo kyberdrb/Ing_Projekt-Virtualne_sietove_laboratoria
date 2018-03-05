@@ -25,4 +25,16 @@ Not supported/working on Layer 2 IOL (Linux)
 -Preferovany je Cisco IOL switch, pretoze vyzaduje menej systemovych
  zdrojov nez Cisco vIOS L2. Ale podla 
   http://www.keyboardbanger.com/cisco-iou-unsupported-features/
- podporuje omnoho viac funkcii
+a
+  https://learningnetwork.cisco.com/docs/DOC-30404
+ vIOSL2 podporuje omnoho viac funkcii
+
+Zdroje:
+  https://www.reddit.com/r/ccnp/comments/69txbc/for_ccnp_switch_will_unet_labeve_ng_allow_me_to/
+  http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/
+  www.keyboardbanger.com/cisco-iou-unsupported-features/
+  https://learningnetwork.cisco.com/docs/DOC-30160#jive_content_id_Supported_Cisco_OS_Features_in_VIRL
+  https://learningnetwork.cisco.com/docs/DOC-30469
+  https://learningnetwork.cisco.com/docs/DOC-30404
+  https://gns3.com/qa/does-iou-switch-support-not-l2-e
+  
