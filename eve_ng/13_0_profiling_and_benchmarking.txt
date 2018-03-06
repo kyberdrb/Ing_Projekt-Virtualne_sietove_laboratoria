@@ -483,16 +483,30 @@ Priklad pouzitia:
 -Oznacime jeho obsah
   -mysou alebo cez adresny riadok (Name Box) zadame rozsah napr. A1:BL3600
 -Otvorime sablonu
+-Klikneme na harok "SuroveUdaje"
+-Vymazeme udaje z celeho harku
+  -Ctrl+HOME
+  -Ctrl + A
+  -klávesa "Delete"
+-V textovom editore otvorime CSV subor s nameranymi udajmi
+  -Vsetky ich oznacime (Ctrl+A) a skopirujeme (Ctrl+C)
 -Oznacime bunku A1 v harku "SuroveUdaje" a vlozime skopirovane udaje
+-Klineme na harok "VstupVystup"
+-Upravime udaje pre bunky so zelenym podfarbenim.
+ Na zaklade udajov v zelenych bunkach sa aktualizuju udaje v zltych bunkach.
+-Vlozime casy spustania zo suboru "boot_time.txt" prislusneho zariadenia.
+ Cas spustania zariadenia sa aktualizuje.
+-Upravime hodnotu "Mnozstvo volnej RAM na serveri (MB)"
+-Hodnoty 
 
 
 Ako som vytvaral stlpce:
   -napisal som rovnicu do prvej bunky v stlpci
   -Zvolime bunky az po 3600
     -najrychlejsie je zadat do "Name box" pola v lavom hornom rohu (je tam vzdy
-    aktualna adresa bunky) rozsah XY1:XY15000 (rozsah podla potreby upravit) a
+    aktualna adresa bunky) rozsah XY1:XY3600 (rozsah podla potreby upravit) a
     stlacit Enter
-    -alebo Shift+PageDown alebo posuvnikom prejdeme ku 15000. bunke
+    -alebo Shift+PageDown alebo posuvnikom prejdeme ku 3600. bunke
     a klikneme na nu pri stlacenej klavese Shift
   -do oznacenych buniek vlozime rovnaku funkciu stlacenim Ctrl+D
     -v tomto pripade do kazdej bunky v slpci
@@ -522,7 +536,7 @@ Ako som vytvaral grafy:
     na osi X a namiesto karty Scale zvolime kartu Font Effects
 
 Grafy su interaktivne a reaguju na zmenu vstupnych udajov z prikazu dstat, uvedeneho
-na zaciatku tejto casti. Vstupne udaje musia mat najviac 15000 riadkov. Cislo 15000
+na zaciatku tejto casti. Vstupne udaje musia mat najviac 3600 riadkov. Cislo 3600
 vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a poctom sekund
 v 4 hodinach zaokruhlenych na tisicky nahor, co je trvanie jedneho CCNA kurzu. Takto
 mozem nechat spustene meranie vykonnosti pocas celeho trvania vyucovaneho predmetu.
