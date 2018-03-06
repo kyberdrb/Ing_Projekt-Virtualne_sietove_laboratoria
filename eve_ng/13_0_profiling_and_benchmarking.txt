@@ -549,6 +549,14 @@ GARFY
 
 -V adresari prislusneho zariadenia sa mozu nachadzat grafy exportovane
  do obrazkov.
+ Aj napriek tomu, ze grafy isli vygenerovat na prvy krat, LibreOffice
+ pri zmene vstupnych dat (v harku SuroveUdaje) neaktualizoval grafy tak,
+ aby odzrkadlovali vstupne data. Pri prvotnom vytvoreni grafov sa grafy
+ aktualizovali, avsak pri zatvoreni a znovuotvoreni sablony sa aktualizacia
+ grafov znefunkcnila. Preto som sa rozhodol grafy odstranit zo sablony.
+ Ponechal som vsak benchmarking tabulku a finalne vyhodnotenie nameranych
+ dat v textovej podobe.
+
 -Grafy su pomenovane podla poradia, v ktorom som ich exportoval.
 -Nizsie je vysvetleny vyznam a metrika nameranych dat.
 
