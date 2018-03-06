@@ -5,7 +5,8 @@ csr1000vng-universalk9.16.07.01-fuji-serial-console_20171120
 csr1000v-universalk9.03.17.03.S.156-1.S3-std_20161121
 fortinet-fortigate-FGT-VM64-KVM-v5.6.1-build1484_20170727
     -Eval license not valid with more than 1 vCPUs or 1024 MB RAM.
-        => ODPORUCANE MNOZSTVO RAM: 1024
+        => preto: ODPORUCANE MNOZSTVO RAM: 1024
+           pocet CPU je v sablone uz nastaveny na 1
 
 hpvsr-7.10.R0204P01_20150202
 hpvsr-VSR1000_HPE-CMW710-R0327L01-X64_20170631
