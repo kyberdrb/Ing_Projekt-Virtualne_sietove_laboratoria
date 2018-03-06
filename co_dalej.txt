@@ -16,12 +16,17 @@ Ulohy:
  do spreadsheetu
 
 -prekonzultovat s veducim, ci ten benchmarking bude dostatocny
-      
+  (zatial sa venovat zabezpeceniu servera a bezpecnemu odchytavaniu)
+  
 -odkazat sa v sumarnom zozname zariadeni na subor 
   "profiling_and_benchmarking_device_list.txt"
  pre zainteresovane zariadenia
 
 -upravit skript na upravu sablon podla benchmarkov
+
+
+
+
 
 -pozret sa v telefone na obrazok tabule od veduceho
   -predmety
