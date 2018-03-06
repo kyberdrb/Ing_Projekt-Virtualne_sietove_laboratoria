@@ -485,19 +485,22 @@ Priklad pouzitia:
 -Otvorime sablonu
 -Klikneme na harok "SuroveUdaje"
 -Vymazeme udaje z celeho harku
-  -Ctrl+HOME
+  -Ctrl + HOME
   -Ctrl + A
   -klávesa "Delete"
+  -Ctrl + HOME
 -V textovom editore otvorime CSV subor s nameranymi udajmi
   -Vsetky ich oznacime (Ctrl+A) a skopirujeme (Ctrl+C)
 -Oznacime bunku A1 v harku "SuroveUdaje" a vlozime skopirovane udaje
 -Klineme na harok "VstupVystup"
 -Upravime udaje pre bunky so zelenym podfarbenim.
- Na zaklade udajov v zelenych bunkach sa aktualizuju udaje v zltych bunkach.
+  -Vlozime casy spustania v subore "...boot_time.txt" pre dane zariadenie.
+  -Na zaklade udajov v zelenych bunkach sa aktualizuju udaje v zltych bunkach.
 -Vlozime casy spustania zo suboru "boot_time.txt" prislusneho zariadenia.
  Cas spustania zariadenia sa aktualizuje.
--Upravime hodnotu "Mnozstvo volnej RAM na serveri (MB)"
--Hodnoty 
+-Ak je potrebne, upravime hodnotu "Mnozstvo volnej RAM na serveri (MB)"
+-Hodnoty ulozime do adresara prislusneho zariadenia s rovnakym nazvom ako
+ CSV subor klavesovou skratkou "Ctrl+Shift+S"
 
 
 Ako som vytvaral stlpce:
@@ -534,12 +537,12 @@ Ako som vytvaral grafy:
   tomto mieste zbytocne matuce
     -postupujeme rovnako, ako v pripade vyssie, iba klikneme na lubovolnu hodnotu
     na osi X a namiesto karty Scale zvolime kartu Font Effects
+  -Lenze v LibreOffice bol bug, ktory znefunkcnoval aktualizaciu grafov podla
+   vstuplnych udajov, takze som grafy odstranil.
 
 Grafy su interaktivne a reaguju na zmenu vstupnych udajov z prikazu dstat, uvedeneho
 na zaciatku tejto casti. Vstupne udaje musia mat najviac 3600 riadkov. Cislo 3600
-vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a poctom sekund
-v 4 hodinach zaokruhlenych na tisicky nahor, co je trvanie jedneho CCNA kurzu. Takto
-mozem nechat spustene meranie vykonnosti pocas celeho trvania vyucovaneho predmetu.
+vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a dlzkou merania.
 
 Aj profiling, aj benchmarking grafy, vratane benchmarking tabulky, su interaktivne
 vzhladom na cas spustania.
@@ -559,7 +562,7 @@ stacit na to, aby sa zariadenie ustalilo na jednej vykonnostnej hladine.
 
 
 *************
-GARFY
+GRAFY
 
 -V adresari prislusneho zariadenia sa mozu nachadzat grafy exportovane
  do obrazkov.

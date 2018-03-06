@@ -11,20 +11,23 @@ Zazitky:
 
 Ulohy:
 
--v boot_time txt suboroch nahradit ':' s medzerami znakom ',' medzi
- Start/Stop a casom (bez medzery - tesno), aby som to mohol rovno vkladat
- do spreadsheetu
+-vmx 17 vcp+vfp konfiguraciu dohromady aj oddelene (vcp [1CPU] aj vfp [3CPU]) 
+ (20GB RAM kazdy uzol)
+ +
+ xrv9k s 1/2/3 CPU (30GB RAM kazdy uzol)
+ obenchmarkovat znova
 
--prekonzultovat s veducim, ci ten benchmarking bude dostatocny
-  (zatial sa venovat zabezpeceniu servera a bezpecnemu odchytavaniu)
+-upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
+ zariadenia
+  -upravit pocet CPU a RAM
 
 -odkazat sa v sumarnom zozname zariadeni na subor 
   "profiling_and_benchmarking_device_list.txt"
  pre zainteresovane zariadenia
 
--upravit skript na upravu sablon podla benchmarkov
-
-
+-obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
+ a potvrdenie nameranych udajov
+  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17
 
 
 
