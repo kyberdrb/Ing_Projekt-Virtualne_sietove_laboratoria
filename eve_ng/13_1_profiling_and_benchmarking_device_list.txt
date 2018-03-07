@@ -196,6 +196,9 @@ vsrxng-15.1X49-D20.2_20150913
 vsrxng-15.1X49-D80.4_20170323
 
 xrv9k-fullk9-x-6.2.25_20170928
+    -to iste, ako pri xrv9k-fullk9-x.vrr-6.2.25_20170928
+
+xrv9k-fullk9-x.vrr-6.2.25_20170928
     -ODPORUCANE MNOZSTVO RAM = 13GB RAM
         -nechal som ho bezat cez noc
          (z 5GB to narastlo na 12GB)
@@ -209,8 +212,11 @@ xrv9k-fullk9-x-6.2.25_20170928
         Data plane core assignment: 1-2
         Control plane core assignment: 0
 
-xrv9k-fullk9-x.vrr-6.2.25_20170928
-    -to iste, ako pri xrv9k-fullk9-x-6.2.25_20170928
+    OPTIMALNY POCET CPU = 2
+
+    -Aj ked som sa uz prihlasil do konzoly, stale viac ci menej vytazoval 
+     disk. Navyse boli neustale vytazene obidve pridelene CPU na 100%,
+     ked som zariadeniu pridelil 2 CPU.
 
 xrv-iosxrv-k9-demo-6.0.1_20160506
 

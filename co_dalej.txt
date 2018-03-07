@@ -11,8 +11,9 @@ Zazitky:
 
 Ulohy:
 
--REBENCHMARK
- xrv9k s 2 CPU (30GB RAM kazdy uzol)
+-nechat bezat xrv9k cez noc a rano sa nan pripojit na konzolu
+ +
+ zistit vyuzitie systemovych zdrojov (dstat / htop)
 
 -upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
  zariadenia
