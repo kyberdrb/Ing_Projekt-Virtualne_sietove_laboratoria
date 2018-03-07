@@ -154,26 +154,41 @@ vmx-14.1R1.10_20140607
 
 vmx-15.1F6.9_20160616
 vmxvcp-15.1F6.9_20160616+vmxvfp-15.1F6.9_20160616
-    -Pri prideleni 1 CPU VMX VFP sa po prihlaseni sa do VMX VCP zobrazi chyba
+    -po prihlaseni sa do konzoly vypneme otravnu spravu o upgrade tymito
+     prikazmi:
+        cli
+        edit
+        delete chassis auto-image-upgrade
+        commit
+        quit
+
+    -Pri prideleni 1 CPU VMX VFP sa po prihlaseni sa do VMX VFP zobrazi chyba
         "vFP Error! Insufficient number of CPUs 1
          root: vFP Error! Insufficient number of CPUs 1"
-    -Pri prideleni 2 CPU VMX VFP sa po prihlaseni sa do VMX VCP zobrazi chyba
+    -Pri prideleni 2 CPU VMX VFP sa po prihlaseni sa do VMX VFP zobrazi chyba
         "vFP Error! Insufficient number of CPUs 2
          root: vFP Error! Insufficient number of CPUs 2"
-    -VMX VFP musi mat pridelene 3 CPU!
+    -VMX VFP musi mat pridelene 3 CPU, aby bolo prevadzkyschopne!
     -vsetky rozhrania ge-x/y/z sa vo vcp vo vypise prikazu
         "show interfaces terse"
      objavia priblizne po 2 minutach po prihlaseni
-
-     ZMENIT VMXVCP.PHP SABLONU
-        ODPORUCANE MNOZSTVO RAM = 14336 MB
-     ZMENIT VMXVFP.PHP SABLONU
-        ODPORUCANE MNOZSTVO RAM = 5120 MB
+     
 
 vmx-17.3R1.10_20170731
 vmxvcp-17.3R1.10_20170731
+    -ZMENIT VMXVCP.PHP SABLONU
+     ->ODPORUCANE MNOZSTVO RAM = 14336 MB
+
 vmxvfp-17.3R1.10_20170731
+    -ZMENIT VMXVFP.PHP SABLONU
+     ->ODPORUCANE MNOZSTVO RAM = 5120 MB
+
 vmxvcp-17.3R1.10_20170731+vmxvfp-17.3R1.10_20170731
+    -Pri prideleni zdrojov
+        -VCP - 1 CPU, 20000 MB RAM
+        -VFP - 3 CPU, 20000 MB RAM
+     boli vytazene 2 CPU na 100%!!! => nevhodne pre pouzitie v topologiach!
+
 
 vsrx-12.1X47-D15.4-firefly-perimeter_20141112
 vsrx-12.1X47-D20.7-firefly-perimeter_20150303
