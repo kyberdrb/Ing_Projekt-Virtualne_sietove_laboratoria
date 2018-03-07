@@ -20,8 +20,6 @@ Ulohy:
 -upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
  zariadenia
   -upravit pocet CPU a RAM
-  -pre 3725 upravit idlepc hodnotu podla imidzu
-    "c3725-adventerprisek9-mz.124-25d_0x60a800f0_20100818.image"
 
 -odkazat sa v sumarnom zozname zariadeni na subor 
   "profiling_and_benchmarking_device_list.txt"
