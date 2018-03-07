@@ -12,6 +12,7 @@ Zazitky:
 Ulohy:
 
 -nechat bezat xrv9k cez noc a rano sa nan pripojit na konzolu
+ (cez sirenin tmux session - window #4)
  +
  zistit vyuzitie systemovych zdrojov (dstat / htop)
 
