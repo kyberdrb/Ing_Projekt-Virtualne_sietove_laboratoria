@@ -12,10 +12,7 @@ Zazitky:
 Ulohy:
 
 -REBENCHMARK
- vmx 17 vcp+vfp konfiguraciu dohromady aj oddelene (vcp [1CPU] aj vfp [3CPU]) 
- (20GB RAM kazdy uzol)
- +
- xrv9k s 1/2/3 CPU (30GB RAM kazdy uzol)
+ xrv9k s 2 CPU (30GB RAM kazdy uzol)
 
 -upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
  zariadenia
