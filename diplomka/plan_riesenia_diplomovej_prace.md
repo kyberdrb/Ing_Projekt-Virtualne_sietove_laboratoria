@@ -152,8 +152,10 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 
 ##### Adresárova štruktúra EVE-ng
 -adresárový strom
+
 ##### Monitorovanie
 - netdata
+
 ##### Zálohovanie
 
 ### Meranie systémových požiadaviek zariadení
