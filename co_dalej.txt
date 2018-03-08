@@ -47,6 +47,18 @@ Ulohy:
 
   -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
    a odchytit ich premavku (z root uctu) - IDE :D
+  -potom root pouzivatela zmenit na bezneho (andrej) a nastavit opravnenia
+
+    sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/dumpcap
+   
+   a vyskusat odchytavanie
+
+   navod na "http://daydreamer66.blogspot.sk/2014/06/rhel-how-can-non-root-users-can-run.html"
+
+
+
+
+
 
   -potom zmenit toto v /bin/eve-ng-integration
 
