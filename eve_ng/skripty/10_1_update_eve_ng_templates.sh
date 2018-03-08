@@ -147,6 +147,68 @@ change_num_ethernet_interfaces () {
 #replace ".*idlepc.*" "$p[\'idlepc\'] = \'0x11111118\';" "/home/andrej/sed_test.txt"
 #change_idlepc_value 0x11111118 /home/andrej/sed_test.txt
 
+##################
+#     TESTS
+##################
+
+run_tests () {
+  #Setup
+  TEMPLATE_C1710=/opt/unetlab/html/templates/c1710.php
+  TEMPLATE_ASAV=/opt/unetlab/html/templates/asav.php
+  TEMPLATE_C7200=/opt/unetlab/html/templates/c7200.php
+  TEMPLATE_IOL=/opt/unetlab/html/templates/iol.php
+  
+  SED_TEST_C1710=$HOME/sed_test_1.txt
+  SED_TEST_2_ASAV=$HOME/sed_test_2.txt
+  SED_TEST_3_C7200=$HOME/sed_test_3.txt
+  SED_TEST_4_IOL=$HOME/sed_test_4.txt
+
+  cat $TEMPLATE_C1710 > $SED_TEST_C1710
+  cat $TEMPLATE_ASAV > $SED_TEST_2_ASAV
+  cat $TEMPLATE_C7200 > $SED_TEST_3_C7200
+  cat $TEMPLATE_IOL > $SED_TEST_4_IOL
+
+  # Testing methods
+  #replace ".*idlepc.*" "$p[\'idlepc\'] = \'0x11111118\';" "$SED_TEST_C1710"
+
+  change_idlepc_value 0x11111111 $SED_TEST_C1710
+  change_ram_in_MB 222 $SED_TEST_C1710
+
+  change_num_of_cpu_cores 3 $SED_TEST_2_ASAV
+  change_remote_access_type vnc $SED_TEST_2_ASAV
+
+  insert_card_in_slot1 PA-FE-TX $SED_TEST_3_C7200
+  insert_card_in_slot2 PA-FE-TX $SED_TEST_3_C7200
+  insert_card_in_slot3 PA-FE-TX $SED_TEST_3_C7200
+  insert_card_in_slot4 PA-FE-TX $SED_TEST_3_C7200
+  insert_card_in_slot5 PA-4E $SED_TEST_3_C7200
+  insert_card_in_slot6 PA-8E $SED_TEST_3_C7200
+
+  change_num_serial_4port_cards 1 $SED_TEST_4_IOL
+
+  ##############
+  # COMPARISONS
+  ##############
+  echo "#############################################################"
+  echo "c1710: Original vs Edited"
+  diff $TEMPLATE_C1710 $SED_TEST_C1710
+
+  echo
+  echo "#############################################################"
+  echo "ASAv: Original vs Edited"
+  diff $TEMPLATE_ASAV $SED_TEST_2_ASAV
+
+  echo
+  echo "#############################################################"
+  echo "c7200: Original vs Edited"
+  diff $TEMPLATE_C7200 $SED_TEST_3_C7200
+
+  echo
+  echo "#############################################################"
+  echo "IOL: Original vs Edited"
+  diff $TEMPLATE_IOL $SED_TEST_4_IOL
+}
+
 ###########################################
 #             TEMPLATES
 ###########################################
@@ -155,21 +217,14 @@ update_templates () {
 
   TEMPLATES_DIR=/opt/unetlab/html/templates/
 
-  A10_TEMPLATE=a10.php
-  change_remote_access_type       vnc        $TEMPLATES_DIR$A10_TEMPLATE
-
-  ALTEON_TEMPLATE=alteon.php
-  change_remote_access_type       vnc        $TEMPLATES_DIR$ALTEON_TEMPLATE
-
-  BIGIP_TEMPLATE=bigip.php
-  change_remote_access_type       vnc        $TEMPLATES_DIR$BIGIP_TEMPLATE
+  
 
   C1710_TEMPLATE=c1710.php
   change_ram_in_MB                256        $TEMPLATES_DIR$C1710_TEMPLATE
   change_idlepc_value             0x80618b54 $TEMPLATES_DIR$C1710_TEMPLATE
 
   C3725_TEMPLATE=c3725.php
-  change_ram_in_MB                320        $TEMPLATES_DIR$C3725_TEMPLATE
+  change_ram_in_MB                320        $TEMPLATES_DIR$C1710_TEMPLATE
   insert_card_in_slot1            NM-1FE-TX  $TEMPLATES_DIR$C3725_TEMPLATE
   insert_card_in_slot2            NM-16ESW   $TEMPLATES_DIR$C3725_TEMPLATE
   change_idlepc_value             0x60a800f0 $TEMPLATES_DIR$C3725_TEMPLATE
@@ -183,6 +238,16 @@ update_templates () {
   insert_card_in_slot5            PA-4E      $TEMPLATES_DIR$C7200_TEMPLATE
   insert_card_in_slot6            PA-8E      $TEMPLATES_DIR$C7200_TEMPLATE
   change_idlepc_value             0x60189234 $TEMPLATES_DIR$C7200_TEMPLATE
+
+
+  A10_TEMPLATE=a10.php
+  change_remote_access_type       vnc        $TEMPLATES_DIR$A10_TEMPLATE
+
+  ALTEON_TEMPLATE=alteon.php
+  change_remote_access_type       vnc        $TEMPLATES_DIR$ALTEON_TEMPLATE
+
+  BIGIP_TEMPLATE=bigip.php
+  change_remote_access_type       vnc        $TEMPLATES_DIR$BIGIP_TEMPLATE
 
   CSRNG_TEMPLATE=csr1000vng.php
   change_ram_in_MB                5120       $TEMPLATES_DIR$CSRNG_TEMPLATE
@@ -260,6 +325,14 @@ update_templates () {
   change_remote_access_type       vnc        $TEMPLATES_DIR$VWAAS_TEMPLATE
 
 }
+
+###########################################
+#           RUN ALL THE TESTS
+#
+#       after making some changes
+###########################################
+
+#run_tests
 
 ###########################################
 #             CHANGE TEMPLATES
