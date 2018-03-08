@@ -11,12 +11,6 @@ Zazitky:
 
 Ulohy:
 
--odkazat sa v sumarnom zozname zariadeni na subor 
-  "profiling_and_benchmarking_device_list.txt"
- pre zainteresovane zariadenia
-
--odstranit pcap "nejde_pripojit_k_eve-ng_cez_html5.pcapng"
-
 -obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
  a potvrdenie nameranych udajov
   -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
