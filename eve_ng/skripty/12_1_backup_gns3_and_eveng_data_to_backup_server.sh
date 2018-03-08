@@ -16,7 +16,7 @@ PATH=/home/andrej:/home/andrej/bin:/home/andrej/.local/bin:/home/andrej/bin:/hom
 ##############################################################################
 
 REMOTE_USER=andrej
-REMOTE_IP=<IP_ADDRESS_OF_REMOTE_SERVER>
+REMOTE_IP=158.193.152.45
 REMOTE_MAIN_BACKUP_DIR=/home/$REMOTE_USER/zalohy_virtualnych_sietovych_laboratorii
 SSH_KEY_FILE=$HOME/.ssh/id_rsa
 
@@ -33,6 +33,7 @@ MAIN_GNS3_DIR=/opt/gns3
 # methods reflect the directory structure
 ##########################################
 
+#synchronize () {
 backup () {
   LOCAL_FILE_OR_DIR=$1
   REMOTE_DIR=$2
@@ -45,15 +46,9 @@ backup () {
 
 backup_shared_resources () {
 
-  backup $HOME/backup_gns3_and_eveng_data_to_backup_server.sh \
+  backup $HOME \
     $REMOTE_MAIN_BACKUP_DIR/shared_resources/HOME/
 
-  backup $HOME/update_templates.sh \
-    $REMOTE_MAIN_BACKUP_DIR/shared_resources/HOME/
-
-  backup $HOME/import_eveng_qemu_devices_to_gns3.sh \
-    $REMOTE_MAIN_BACKUP_DIR/shared_resources/HOME/
-  
   if [ -d "$MAIN_EVE_NG_DIR" ] && [ -d "$MAIN_GNS3_DIR" ]; then
     echo  "If you are able to have EVE-ng and GNS3 on the same server, \
           then you also are able to edit this script to decide, which directory \
@@ -97,9 +92,9 @@ backup_shared_resources () {
 
 backup_eve_ng_specific_files () {
 
-  mysqldump -u root --password='<MYSQL_PASSWORD>' eve_ng_db > $EVE_NG_DB_LOCAL_BACKUP 2>&1
-  mysqldump -u root --password='<MYSQL_PASSWORD>' guacdb > $GUACDB_LOCAL_BACKUP 2>&1
-  mysqldump -u root --password='<MYSQL_PASSWORD>' --all-databases > $ALL_DB_LOCAL_BACKUP 2>&1
+  mysqldump --user='root' --password='Str0ng Un3tl4b' eve_ng_db -r $EVE_NG_DB_LOCAL_BACKUP
+  mysqldump --user='root' --password='Str0ng Un3tl4b' guacdb    -r $GUACDB_LOCAL_BACKUP
+  mysqldump --user='root' --password='Str0ng Un3tl4b' --all-databases -r $ALL_DB_LOCAL_BACKUP
 
   backup $EVE_NG_DB_LOCAL_BACKUP \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/var_lib_mysql
@@ -143,6 +138,16 @@ backup_eve_ng_specific_files () {
 
   backup /etc/apache2/sites-enabled/default-ssl.conf \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/etc_apache2_sites_enabled/
+
+  backup /usr/bin/dstat_custom \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/usr_bin/
+
+  backup /var/lib/lxc/eve-ng-lxc/config \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/var_lib_lxc_eve-ng-lxc
+
+  backup /opt/unetlab/wrappers/unl_wrapper \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_wrappers/
+
 }
 
 backup_gns3_specific_files () {
@@ -150,7 +155,6 @@ backup_gns3_specific_files () {
   backup /home/gns3/gns3-server/gns3server/appliances \
     $REMOTE_MAIN_BACKUP_DIR/gns3_specific/home_gns3_gns3-server_gns3server_appliances
 
-  # alebo to je v home/gns3???
   backup /opt/gns3/projects/ \
     $REMOTE_MAIN_BACKUP_DIR/gns3_specific/opt_gns3_projects
 }
@@ -169,3 +173,4 @@ fi
 if [ -d "$MAIN_GNS3_DIR" ]; then
   backup_gns3_specific_files
 fi
+
