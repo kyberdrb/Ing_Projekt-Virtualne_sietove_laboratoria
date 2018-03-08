@@ -155,14 +155,21 @@ update_templates () {
 
   TEMPLATES_DIR=/opt/unetlab/html/templates/
 
-  
+  A10_TEMPLATE=a10.php
+  change_remote_access_type       vnc        $TEMPLATES_DIR$A10_TEMPLATE
+
+  ALTEON_TEMPLATE=alteon.php
+  change_remote_access_type       vnc        $TEMPLATES_DIR$ALTEON_TEMPLATE
+
+  BIGIP_TEMPLATE=bigip.php
+  change_remote_access_type       vnc        $TEMPLATES_DIR$BIGIP_TEMPLATE
 
   C1710_TEMPLATE=c1710.php
   change_ram_in_MB                256        $TEMPLATES_DIR$C1710_TEMPLATE
   change_idlepc_value             0x80618b54 $TEMPLATES_DIR$C1710_TEMPLATE
 
   C3725_TEMPLATE=c3725.php
-  change_ram_in_MB                320        $TEMPLATES_DIR$C1710_TEMPLATE
+  change_ram_in_MB                320        $TEMPLATES_DIR$C3725_TEMPLATE
   insert_card_in_slot1            NM-1FE-TX  $TEMPLATES_DIR$C3725_TEMPLATE
   insert_card_in_slot2            NM-16ESW   $TEMPLATES_DIR$C3725_TEMPLATE
   change_idlepc_value             0x60a800f0 $TEMPLATES_DIR$C3725_TEMPLATE
@@ -176,16 +183,6 @@ update_templates () {
   insert_card_in_slot5            PA-4E      $TEMPLATES_DIR$C7200_TEMPLATE
   insert_card_in_slot6            PA-8E      $TEMPLATES_DIR$C7200_TEMPLATE
   change_idlepc_value             0x60189234 $TEMPLATES_DIR$C7200_TEMPLATE
-
-
-  A10_TEMPLATE=a10.php
-  change_remote_access_type       vnc        $TEMPLATES_DIR$A10_TEMPLATE
-
-  ALTEON_TEMPLATE=alteon.php
-  change_remote_access_type       vnc        $TEMPLATES_DIR$ALTEON_TEMPLATE
-
-  BIGIP_TEMPLATE=bigip.php
-  change_remote_access_type       vnc        $TEMPLATES_DIR$BIGIP_TEMPLATE
 
   CSRNG_TEMPLATE=csr1000vng.php
   change_ram_in_MB                5120       $TEMPLATES_DIR$CSRNG_TEMPLATE
