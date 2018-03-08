@@ -11,13 +11,11 @@ Zazitky:
 
 Ulohy:
 
--upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
- zariadenia
-  -upravit pocet CPU a RAM
-
 -odkazat sa v sumarnom zozname zariadeni na subor 
   "profiling_and_benchmarking_device_list.txt"
  pre zainteresovane zariadenia
+
+-odstranit pcap "nejde_pripojit_k_eve-ng_cez_html5.pcapng"
 
 -obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
  a potvrdenie nameranych udajov
