@@ -11,14 +11,6 @@ Zazitky:
 
 Ulohy:
 
--zistil som vyrazne rozdiely medzi behom xrv9k a xrv9k-vrr zariadenim
-  => xrv9k-vrr nie je vhodne na pouzitie, lebo hoci vyuziva menej RAM
-     neustale vytazuje 1 CPU jadro, hoci uz bezal aj cez noc t.j. viac
-     ako 12 hodin.
- => Otestovat spravanie klasickeho xrv9k routra
-     -ked pridem do skoly, skontrolovat stav xrv9k
-      -prihlasit sa xrv9k konzolu cez tmux (panel #4)
-
 -upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
  zariadenia
   -upravit pocet CPU a RAM
