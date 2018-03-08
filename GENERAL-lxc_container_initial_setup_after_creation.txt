@@ -1,0 +1,10 @@
+apt-get update
+apt-get install aptitude
+aptitude update
+aptitude install openssh bash-completion
+
+# Perzistentne nastavenie DNS serverov v LXC kontajneri
+# vid ./GENERAL_edit_DNS_nameservers_via_resolvconf.txt
+
+# Nastavime ip adresu rozhrania eth0 bud na staticku IP adresu -> rychlejsia
+# dostupnost z internetu

@@ -1,0 +1,76 @@
+GNS3 v klient – server architektúre
+GNS3 VM ako lokálny server
+
+GNS3 VM je možné spúšťať vnútri VirtualBox-u alebo Vmware. V nižšie uvedenom návode je uvedený import GNS3 VM do VirtualBox-u.
+
+Stiahneme si GNS3 VM zo stránky
+https://github.com/GNS3/gns3-gui/releases
+
+V našom prípade si stiahneme súbor "GNS3.VM.VirtualBox.1.5.2.zip", pretože budeme spúšťať GNS3 server vo VirtualBoxe. GNS3 klient aj server musia byť v rovnakej verzii. Keďže používame GNS3 klienta vo verzii 1.5.2, musíme stiahnuť GNS3 VM vo verzii 1.5.2.
+Stiahnuť môžeme aj verziu pre VMware alebo ESXi (obe podporuju VTx/AMDv)
+
+Rozbalíme archív.
+Rozbalený súbor importujeme do VirtualBox-u cez "File -> Import Appliance".
+Ponecháme predvolené parametre a necháme ju importovať.
+Po importovaní si otvoríme nastavenia GNS3 VM -> Network.
+GNS3 VM by mala mať dva sieťové adaptéry - prvý je "Host-only Adapter" a druhý "NAT". Niekedy (v linuxových distribúciách) vzniknú problémy pri prvotnom spustení GNS3 VM práve s "Host-only" adaptérom, kedy VirtualBox hlási, že ešte žiadny taký adaptér neexistuje, Riešením je vytvorenie takéhoto sieťového adaptéra cez "File -> Preferences -> Network -> Host-only Networks". Následne klikneme na ikonku zeleného pluska, čím sa vytvorí "Host-only" sieťový adaptér. Teraz môžeme overiť, či sa tento adaptér správne priradil ku GNS3 VM v jej nastaveniach. Ak áno, uložíme nastavenia.
+
+Otvoríme GNS3 klienta (ako používateľ - nie je potrebné spúšťať ho ako root).
+Ak sa nám zobrazila úvodná obrazovka s výberom servera, zaškrtneme voľbu "GNS3 VM" -> Next. Vyberieme také parametre GNS3 VM servera, aké sme zvolili pri nastavovaní GNS3 VM vo VirtualBox-e.
+
+Ak sa nám ale úvodná obrazovka s výberom servera zobrazila , klikneme na "Edit -> Preferences -> Server -> GNS3 VM server". V časti Virtualization software si vyberieme "Virtualbox" a ako "VM name" si vyberieme virtuálny stroj s názvom "GNS3 VM".
+
+Počkáme, kým sa GNS3 VM nespustí. Keď už GNS3 VM beží, otvoríme internetový prehľadávač a zadáme doň adresu "192.168.56.101:3080", kde IP adresa je uvedená v GNS3 VM v časti "Information" (prvá možnosť). Prostredníctvom tohto web-rozhrania vieme pridávať do GNS3 VM zariadenia.
+
+Poznámka: Aby GNS3 VM server fungoval, musí byť tiež aktívny (zaškrtnutý) aj lokálny server.
+
+
+
+
+GNS3 VM ako vzdialený server
+
+GNS3 VM vyzaduje otvorit tieto porty na firewalle:
+  22 - SSH
+  3080 - HTTP a interna komunikacia GNS3 klienta s GNS3 VM
+  32768-64536 - TCP aj UDP - zariadenia (telnet/vnc/rdp)
+
+    1. Nainštalujeme Ubuntu Server 14.04 x64, ktorý stiahneme z:
+http://releases.ubuntu.com/14.04/
+Pokiaľ inštalujeme spomenutý operačný systém do VirtualBox-u / VMware, nastavíme sieťovú kartu do módu “bridge” (všetky ostatné sieťové karty vypneme).
+    2. Zadáme tieto príkazy:
+curl https://raw.githubusercontent.com/GNS3/gns3-server/master/scripts/remote-install.sh > gns3-remote-install.sh
+bash gns3-remote-install.sh --with-openvpn --with-iou –with-i386-repository
+
+    3. Spustíme server príkazom
+gns3server
+
+Server teraz beží na adrese pridelenej sieťovému rozhraniu a na porte 3080.
+    4. Nakonfigurujeme GNS3 klienta
+        1. Edit → Preferences → Server → odškrtneme “Enable local server”
+        2. Zadáme požadované informácie ako IP, port a autentifikáciu.
+        3. V prípade potreby otvoríme požadované porty vo firewalle.
+Teraz máme dve možnosti, ako nahrať obraz operačného systému na vzdialený server (od verzie 2.0 je možné pridať zariadenie do GNS3 VM iba cez GNS3 klienta)
+    5. Web rozhraním (NEPLATÍ OD VERZIE 2.0.0)
+        1. Na klientskom počítači otvoríme internetový prehľadávač a zadáme doň adresu a port GNS3 servera.
+        2. Klikneme na “Upload” a môžme na server nahrať obraz operačného systému požadovaného typu. Typ vkladaného súboru si zvolíme.
+        3. Klikneme na tlačidlo “Browse” a vyberieme želaný súbor.
+        4. Z rozbaľovacieho menu si zvolíme typ vkladaného súboru.
+        5. Klikneme na tlačidlo “Upload”. Súbor by sa mal úspešne nahrať na vzdialený server.
+    6. GNS3 klientom
+        1. Otvoríme GNS3 klienta → Edit → Preferences → Qemu VMs (napríklad).
+        2. Pridáme napr. nový Qemu router kliknutím na tlačidlo “New” a zadáme mu názov a v ďalších krokoch veľkosť RAM a typ konzoly.
+        3. Pri výbere image zaškrtneme “Existing image”, kde nám klient ponúkne všetky image nachádzajúce sa na serveri. Vyberieme poždaovaný image a klikneme “Finish”.
+        4. V prípade nutnej zmeny nastavení template prejdeme na: GNS3 klienta → Edit → Preferences → Qemu VMs (napríklad), vyberieme požadovaný template a klikneme na “Edit”.
+-gns3 vm -> ked to pada na generovani idle pc value na vm, potom ju vygenerovat lokalne a potom ju skopirovat do idle pc fieldu pri vytvarani routra na gns3 vm
+
+
+Zdroje:
+https://www.gns3.com/support/docs/install-on-a-remote-server
+https://www.gns3.com/support/docs/gns3-configuration-file-for-adva
+https://www.gns3.com/support/docs/-what-is-the-gns3-vm
+https://www.gns3.com/support/docs/the-new-setup-wizard-for-gns3--4
+https://www.youtube.com/watch?v=dP4-JyKazZg
+https://www.youtube.com/watch?v=W8mRIUzL3JU
+https://gns3.com/qa/http-1-0-500-internal-server-err
+https://gns3.com/qa/gns3-gui-against-remote-gns3serv
+https://gns3.com/discussions/how-to-setup-remote-server-with-

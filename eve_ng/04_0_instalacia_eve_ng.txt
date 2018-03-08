@@ -1,0 +1,215 @@
+EVE-ng mozeme instalovat bud:
+  -z EVE.iso stiahnuteho z "eve-ng.net" alebo
+  -alebo nainstalujeme Ubuntu, do ktoreho pridame eve-ng repozitar.
+
+Tu opisujem instalaciu EVE-ng z EVE.iso.
+
+************* PRED INSTALACIOU NA FYZICKY SERVER *************
+
+*************
+Vycistenie servera od prachu
+-Stlacenym vzduchom prefukneme ventilatory a tesne priestory
+
+*************
+Test disku na chybne sektory
+
+Pred instalaciou na fyzicky server otestujeme disk na chybne sektory!
+-Prevencia proti chybam, ktore mozu vzniknut az po 
+
+-Vytvorime live linux USB (napr. s Ubuntu Desktop)
+-nabootujeme z live USB
+-otvorime terminal a zadame prikaz
+  sudo -i
+  lsblk
+-zistime nazov disku napr. /dev/sdb
+-nechame vyhladat chybne bloky na disku prikazom
+  sudo badblocks -v /dev/sdb > badsectors_sdb.txt
+
+-operacia chvilu trva (na 320GB disku mi to trvalu cac hodinu). Prikaz zapise vsetky zle sektory do suboru "badsectors_sdb.txt"
+-po dokonceni prikazu sa zobrazi vysledok napr.
+  0 bad blocks
+
+-skontrolujeme obsah suboru "badsectors_sdb.txt"
+  cat badsectors_sdb.txt
+
+-ak je subor prazdny, disk je v poriadku a mozeme ho pouzit. v opacnom pripade si ulozime textovy subor na ine miesto (externy HDD, email, ...). Tento subor obsahuje zoznam poskodenych sektorov pevneho disku.
+-prikazom "e2fsck" alebo "fsck" vieme zabezpecit, ze sa zabrani operacnemu systemu pouzivat chybne sektory na konkretnom pevnom disku.
+
+  ------------ Specifically for ext2/ext3/ext4 file-systems ------------ 
+  $ sudo e2fsck -l badsectors.txt /dev/sda10
+
+  OR
+
+  ------------ For other file-systems ------------ 
+  $ sudo fsck -l badsectors.txt /dev/sda10
+
+
+*************
+Rozpustenie RAID zvazku
+
+Najprv som nainstaloval eve-ng na server, ked boli disky este v RAIDe. Ked server uz nejaku tu hodinku bezal, zacal na lokalnej konzole vypisovat chybove hlasenia ohladom diskov. Nic sa ale nevypisovalo do SSH konzoly. Tak som rozpustil RAID, vsetky disky vybral, zvolil som si prvy disk, vlozil som ho naspat (aby bol zapojeny iba jeden jediny disk) a otestoval som ho na chybne sektory. Disk bol v poriadku, preto som nan nainstaloval eve-ng. Ani po niekolkych hodinach sa neobjavilo ziadne chybove hlasenie ani na lokalnej, ani na SSH konzole. Neskor som zapojil a otestoval aj zvysne 3 disky na serveri. Vsetky boli v poriadku (0 bad blocks). Preto si myslim, ze chyby s diskami v eve-ng sposoboval s velkou pravdepodobnostou hardverovy RAID radic.
+
+*************
+Nastavenie BIOSu
+  -aktivovany Asus Smart Fan II (ale stale huci ako vysavac)
+  -Restore on AC loss: Power On (aby sa znovu zapol pri vypadku elektriny)
+  -v Boot Priority Options nastavime na bootovanie iba jediny hlavny pevny disk; ostatne disky budu sluzit ako zalozne, na ktore budem klonovat tento hlavny disk. Najprv odstranime vsetky zariadenia z Boot Priority Options a restartujeme. Malo by sa objavit hlasenie, ze nenasiel bootovatelne zariadenie. Potom restartujeme znovu, vojdeme do BIOSu a pridame jedno zariadenie do zoznamu a restartujeme. Ked server nabootuje, nastavenie je spravne. Inak znovu vojdeme do BIOSu, odstranime aktualne zariadenie v Boot Priority Options a vyberieme dalsie, kym nenajdeme to spravne zariadenie.
+  -Mozeme este nastavit heslo do BIOSu. Tento krok som vynechal.
+
+
+*************
+Upgrade BIOSu
+-ak je mozne, aktualizujeme BIOS na najnovsiu verziu.
+V mojom pripade to mozne nebolo, pretoze by to vyzadovalo vytvorenie diskety s aktualizacnymi subormi. A jedina disketova mechanika je v tom serveri.
+
+Postup vytvorenia aktualizacnej diskety
+-stiahneme si Rufus
+-nastavime ho
+  -Device: zvolime si disk
+  -Partition scheme and target system type: MBR partition scheme for BIOS or UEFI computers
+  -File System: FAT alebo FAT32
+  -Cluster size: default
+  -New volume label: odstranime vsetko (prazdny)
+  -Quick Format: zaskrtnute
+  -Create a bootable disk using: MS-DOS
+  -Create extenden label and icon files: odskrtnute
+-Start
+
+Vytvorene USBcko pripojime ku serveru a zapneme ho.
+Vojdeme do BIOSu a zmenime prioritu bootovania tak, aby bolo USB na prvom mieste.
+V BIOSe este nastavime "Flash Write" na Disabled, aby sme vypli ochranu BIOSu proti zapisu a mohli BIOS aktualizovat.
+Stlacime F10 (Ulozime nastavenia) -> Yes
+
+Server sa restartuje.
+Po chvili sa objavi MS-DOS s obrazovkov vyberu rozlozenia klavesnice. Odporucam vybrat "English-US".
+Ale po spusteni aktualizacneho skriptu sa objavi chybova hlaska "Cannot flash if Memory Managers (e.g. HIMEM) present"
+Tak som zase v BIOSe nastavil "Flash Write" na Enabled (zapnutie ochrany BIOSu pred prepisanim), vybral som USBcko a restartoval server.
+
+Ukazalo sa, ze aktualizacia BIOSu na serveri je technicky narocna, preto som sa rozhodol nevykonat ju.
+
+
+************* ************* ************* ************* *************
+
+TESNE PRED INŠTALÁCIOU ODPOJÍME VŠETKY DISKY OKREM DISKU, NA KTORÝ
+CHCEME EVE-NG/UBUNTU NAINŠTALOVAŤ! ZJEDNODUŠÍME TAK INŠTALAČNÝ PROCES
+A PREDÍDEME CHYBÁM PRI PARTÍCIOVANÍ A NÁHODNEJ STRATE DÁT Z INÝCH DISKOV.
+
+************* ************* ************* ************* *************
+
+************* POSTUP INSTALACIE *************
+
+VYTVORENIE SPUSTITEĽNÉHO USB S UBUNTU SERVER
+
+  -Vytvoriť spustiteľné USB z Ubuntu Server 16.04 ISO súboru je istejšie,
+   než z EVE ISO, pretože to s EVE sa nemusí spustiť. Aj Etcher napíše, 
+   že ISO súbor nie je spustiteľný ("not bootable").
+  
+  -USB môžeme vytvoriť buď príkazom "dd", alebo nástrojom 
+   "Etcher" (odporúčaná a bezpečnejšia voľba).
+
+
+
+-Spustime prave nakonfigurovanu EVE virtualku
+ resp.
+ Spustíme/reštartujeme server a pri BOOT obrazovke opakovane stláčame klávesu
+ (v mojom prípade klávesu F8) vyberieme USB zariadenie. Spustí sa inštalačná
+ procedúra
+
+-Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
+
+-Zvolime moznost Install Ubuntu Server (prvá možnosť)
+ resp.
+ "Install EVE Bare" pri inštalácií z EVE ISO
+
+-Zvolíme krajinu (other->Europe->Slovakia).
+-Rozloženie klávesnice (en_US.UTF-8)
+-Preskočíme automatickú detekciu rozloženia podľa klávesnice
+  -zvolíme "No"
+  -nastavíme rozloženie klávesnice na "[English (US)]"
+-Zvolíme "[English (US)]"
+-V prípade, že máme viac siťových kariet, sme vyzvaní vybrať si
+ tú, ktorá bude pripojená na internet
+-"Nameserver adresses" môžeme preskočiť -> Continue (Enter)
+-Nastavíme ľubovoľný hostname
+-Zadáme celé meno používateľa
+-Zadáme názov používateľského účtu
+-Zopakujeme heslo pre používateľa
+-"Encrypt home directory"
+ vyberieme voľbu "No" - jednoduchšie zálohovanie
+
+-PARTÍCIOVANIE
+
+MOŽNOSŤ 1:
+Pri partíciovaní odporúčam z vlastnej skúsenosti 
+ zvoliť "Guided – use entire disk" - vyhradíme celý disk pre Ubuntu.
+ 
+ Táto možnosť ale vyhradí príliš veľké miesto pre swap partíciu.
+ 
+ Preto na obrazovke "Write changes" sa navigujeme na swap partíciu,
+ zvolíme ju klávesou Enter a zvolíme "Delete partition".
+ Následne primárnu ext4 partíciu rozšírime -> zvolíme ju a zvolíme možnosť
+ "Resize partition" -> zadáme (väčší) rozmer partície a potvrdíme.
+
+ Ak je potrebné, vyberieme primárnej ext4 partícií prípojný bod (mount 
+ point) "/".
+
+ Nakoniec potvrdíme zmeny -> "Write changes to disk"
+
+MOŽNOSŤ 2:
+-podľa EVE-ng dokumentácie
+-potvrdíme všetky predvolené hodnoty
+
+> Partition disks: Guided - use entire disk and setup LVM
+> Partition disks: Choose your main HDD were ubuntu will be installed.
+  Usually it will be single HDD, if your raid is set right.
+
+> Write changes to disk and create LVM: YES
+> Amount of volume: leave all offered size
+> Force UEFI Installation: YES (na starších serveroch zvolíme "No")
+> Write changes to disk: YES
+
+
+-Nastavíme proxy (ak nemáme žiaden proxy server, necháme prázdne).
+
+-Pri dotaze na automatické aktualizácie zvolíme "No automatic updates", 
+ aby sme predišli nepredvídaným následkom. Aktualizácia servera bude na 
+ vyžiadanie (on demand) a je za ňu zodpovedný administrátor.
+
+Ak sme aj napriek tomu zvolili automaticke aktualizacie, vieme ich vypnut:
+
+  sudo vim.tiny /etc/apt/apt.conf.d/20auto-upgrades
+
+zmenime
+
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+
+na
+
+APT::Periodic::Update-Package-Lists "0";
+APT::Periodic::Unattended-Upgrade "0";
+
+!!
+Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, 
+ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt"
+!!
+
+-Pridáme balíček "OpenSSH server" (ak sme vyzvaní).
+-Nainštalujeme GRUB na disk. Ak sme vopred odpojili všetky pevné disky
+ okrem jediného alebo sme vytvorili RAID zväzok, bude to jediná položka
+ v zozname spolu s USB kľúčom.
+-Po nainštalovaní GRUB zavádzača potvrdíme reštart voľbou "Continue".
+ Server sa následne reštartuje.
+ Ak sa po reštarte nespustí, vypneme ho dlhším podržaním napájacieho tlačidla.
+ Následne ho znovu zapneme.
+
+-Po reštarte sa prihlásime s predvolenymi prihlasovacimi udajmi "root/eve".
+ Po prvom prihlasenie treba vykonat prvotnu konfiguraciu, ktora je opisana
+ v subore "prvotna_konfiguracia_EVE_ng.txt".
+
+
+Zdroje:
+https://blogs.technet.microsoft.com/csstwplatform/2012/06/25/how-to-create-a-ms-dos-bootable-usb-flash-drive/
+https://www.computing.net/answers/windows-xp/phoenix-bios-upgrade-himem-message/192069.html#1
+https://www.garron.me/en/linux/turn-off-stop-ubuntu-automatic-update.html
+https://askubuntu.com/a/172527

@@ -1,0 +1,9 @@
+1. problem: zle hardverove parametre pre Juniper: Juniper vMX nepotrebuje 4 CPU, staci mu jedno, ako sa ukazalo pocas rychleho testovania s chalanmi na projekte s Juniper vMX 17.3.
+
+2. problem: VMware: komplikacie mohol sposobovat aj VMware
+
+3. problem: nedostatok casu na testovanie: Pocas semestra sme pracovali v EVE-ng, ktory bol nainstalovany vo VMware Workstation Player. Este pred zaciatkom semestra som tuto konfiguraciu testoval (EVE-ng vo VMware, 16 virtualnych CPU, 64GB RAM). Ked som tam spustil 4 Juniper vMX routre, islo to celkom dobre, mierne zasekavanie a mierna, ale zanedbatelna odozva klavesnice. Ked som ale spustil 5+ vMX routrov, tak sa to zacalo zasekavat coraz viac, az nastroj kompletne zamrzol a stal sa prakticky nepouzitelnym. Vtedy som musel vypinat virtualky cez "kill", lebo z web rohrania nic neslo, a ked aj ano, tak s odozvou niekolkych minut na 30 pokus. SSH malo v takychto podmienkach tiez vyrazne vyssiu odozvu z klavesnice, ale bolo to dostatocne na to, aby som mohol server stabilizovat.
+
+4. problem: EVE-ng v LXC kontajneri:
+
+Systemove poziadavky juniperu (navod na nile nebol dobry: nie je treba 4 cpu iba 1 - pocas rychleho testovania s chalanmi na projekte sa ukazalo, ze juniper vMX 17.3 nevie efektivne vyuzivat viacero jadier v GNS3 - najviac sa vyuziva jedno, , ale viac RAM pre lepsiu odozvu z klavesnice - to treba otestovat)

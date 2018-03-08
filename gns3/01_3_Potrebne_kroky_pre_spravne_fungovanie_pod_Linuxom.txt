@@ -1,0 +1,5 @@
+Potrebujeme pouzivatela pridat do skupiny ubridge:
+
+#GNS3 ubridge
+sudo groupadd ubridge
+sudo adduser andrej ubridge

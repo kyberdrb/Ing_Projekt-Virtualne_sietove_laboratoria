@@ -1,0 +1,228 @@
+Cisco ASAv
+
+Existuje viacero sposobov, ako pridat Cisco ASAv do EVE-ng.
+Vsetky sposoby su ekvivalentne - vsetky upravia ASAv QCOW2 subor tak,
+ze zmenia VNC konzolu na telnet (pridanim suboru 'use_ttyS0' do korenoveho
+adresara v ASAv) a pridaju subor 'ASDM.bin' (tiez do korenoveho adresara).
+
+
+SPOSOB 1 (qemu-nbd):
+
+rmmod nbd
+
+sudo modprobe nbd max_part=8
+
+sudo qemu-nbd --connect=/dev/nbd0 virtioa.qcow2
+  # ak nam vypise chybu 'Failed to set NBD socket'
+  # vykoname prikaz
+  sudo qemu-nbd --disconnect /dev/nbd0
+
+  # ak nam vypise chybu 'VMDK version 3 must be read only'
+  # pri pripajani VMDK disku, vykoname prikaz
+sudo qemu-nbd --connect=/dev/nbd0 GNS3ESX-disk2.vmdk --read-only
+
+
+Overovanie - mozeme preskocit ...
+lsblk
+NAME     MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+...
+nbd0      43:0    0     2G  0 disk 
+└─nbd0p1  43:1    0     2G  0 part 
+...
+
+Overovanie - mozeme preskocit ...
+sudo fdisk /dev/nbd0 -l
+Disk /dev/nbd0: 8.5 GiB, 9126805504 bytes, 17825792 sectors
+...
+Device      Boot   Start      End  Sectors  Size Id Type
+/dev/nbd0p1 *       4096  1048575  1044480  510M  c W95 FAT32 (LBA)
+/dev/nbd0p2      1052672 17825791 16773120    8G  c W95 FAT32 (LBA)
+
+
+mkdir ~/mount   -> nazov adresara, do ktoreho chceme pripojit qcow2 subor
+
+
+sudo blockdev --rereadpt /dev/nbd0
+  # upovedomime kernel o novo pripojenom disku 'nbd0'
+  # bez vyssie uvedeneho prikazu vypise hlasku "mount: special device /dev/nbd0p1 does not exist"
+
+
+sudo mount /dev/nbd0p2 ~/mount/
+  # mozeme najprv vyskusat pripojit particiu 'nbd0p1' prikazom
+
+  sudo mount /dev/nbd0p1 ~/mount/
+
+  # ci sa tam nenachadza nahodou asdm.bin subor.
+  # Ten by sme potom mohli skopirovat do osobitneho adresara
+  # a neskor pridat do particie 'nbd0p2'
+
+
+cd ~/mount/
+
+
+ls  -> uvidime subory obsiahnute v qcow2 subore
+
+sudo touch use_ttyS0              -> aktivujeme telnet konzolu
+
+ls  ->  uvidime novy subor ''.
+        Ak nevidime subor s nazvom 'asdm-....bin',
+        nasledujucim prikazom ho mozeme do ASAv pridat
+ 
+sudo cp <CESTA_KU_ASDM.BIN> .     -> pridame ASDM podporu
+
+cd /opt/unetlab/addons/qemu/asav-991-serial-console-with-asdm-79150
+
+sudo umount ~/mount/
+
+rmdir ~/mount/
+
+sudo qemu-nbd --disconnect /dev/nbd0
+/dev/nbd0 disconnected
+
+rmmod nbd
+
+
+
+Takto vytvorene ASAv zariadenie pridame do EVE-ng projektu a spustime.
+Pripojime sa nan cez telnet. Mali by sme vidiet konzolu.
+
+enable
+<Enter - prazdne heslo>
+dir disk0:/
+
+v zozname suborov uvidime subor 'use_ttyS0' aj asdm.bin subor
+
+Sources:
+  http://ask.xmodulo.com/mount-qcow2-disk-image-linux.html
+  https://askubuntu.com/questions/334022/mount-error-special-device-does-not-exist
+  https://blogs.gnome.org/muelli/2010/03/mounting-qemu-qcow2-image-using-nbd/
+
+
+
+
+
+SPOSOB 2 (guestfish):
+
+-Aktivacia seriovej konzoly pre telnet pristup na ASAv a importovanie ASDM (791) do ASAv (991 - posledne dvojcislia by mali byt rovnake, kvoli kompatibilite) QCOW2 suboru
+-V guestfish utilitke je bug - nevie vykonavat prikazy pre bezneho pouzivatela, iba pre roota alebo pre pouzivatela patriaceho do skupiny "kvm" (na to treba pouzivatela odhlasit a znovu prihlasit, ale da sa to aj rychlejsie)
+-UPOZORNENIE! Zariadenie pocas uprav cez guestfish musi byt vypnute, inak sa QCOW2 obraz nenavratne poskodi!
+
+cp asav.qcow asav-with-asdm-and-telnet.qcow2
+sudo -i
+guestfish -a asav-with-asdm-and-telnet.qcow2
+run
+list-filesystems
+mount /dev/sda2 /
+touch /use_ttyS0
+copy-in local <CESTA_KU_ASDM.BIN>
+umount
+
+sudo mkdir /opt/unetlab/addons/qemu/asav-with-asdm-and-telnet
+sudo mv asav-with-asdm-and-telnet.qcow2 /opt/unetlab/addons/qemu/asav-with-asdm-and-telnet/virtioa.qcow2
+cd /opt/unetlab/addons/qemu/asav-with-asdm-and-telnet
+
+
+Takto vytvorene ASAv zariadenie pridame do EVE-ng projektu a spustime.
+Pripojime sa nan cez telnet. Mali by sme vidiet konzolu.
+
+enable
+<Enter - prazdne heslo>
+dir disk0:/
+
+v zozname suborov uvidime subor 'use_ttyS0' aj asdm.bin subor
+
+
+
+
+
+
+
+
+SPOSOB 3 (cez GNS3):
+
+-Zariadenie pridame standardnym sposobom podla QCOW2 formatu opisanym v subore "pridavanie_zariadeni_do_eve_ng". Nezabudneme opravit opravnenia!
+-Potom si v EVE-ng vytvorime lab, do ktoreho pridame uzol Cisco ASAv.
+-Nechame predvolene hodnoty, akurat zmenime typ vzdialeneho pristupu z 'telnet' na 'vnc' (budeme potrebovat VNC Viewer - Linux: tightvnc, Windows: RealVNC).
+-Spustime uzol.
+-Do VNC Viewera zadame IP adresu servera a port uzla oddelenych dvojbodkou (IP_ADRESA:PORT).
+-Zobrazi sa konzola
+
+  ciscoasa>
+
+-Ignorujeme hlasenie o chybajucej licencii.
+
+-Teraz sme v konzole Cisco ASAv. Ale konzola je vo VNC Vieweri a nemozeme do zariadenia kopirovat a vkladat prikazy (Ctrl+C a Ctrl+V nefunguju => prikazy musime zadavat rucne, co moze byt nepohodlne). Preto zmenime typ vzdialeneho pristupu k uzlu VNC na TELNET nasledujucimi prikazmi (Na zadavanie cisel pouzijeme numericku klavesnicu):
+
+  ciscoasa>ena
+    <predvolene heslo je prazdne>
+
+  ciscoasa#conf t
+    <na otravnu otazku o anonymnom zbierani statistik stlacime klavesu 'n' -> 'No'>
+
+  ciscoasa(config)# cd coredumpinfo
+  ciscoasa(config)# copy coredump.cfg disk0:/use_ttyS0  (that's  S zero not S and the letter O)
+    <Klavesou Enter potvrdime otazku "Source filename" aj "Destination">
+
+-Overime, ci sa subor zapisal prikazom:
+
+  dir disk0:/
+
+(vid: https://gns3.com/api/v2/assets/photo/57436982b4f9a2cf7636c6a9/asa8.png)
+
+
+Teraz sme priamo na Cisco ASAv QCOW2 disku (disk0) zapisali subor 'use_ttyS0', cim sme presmerovali interaktivnu konzolu z VNC (VGA console) na TELNET (Serial console).
+
+Once it's there, reload the ASA. 
+ 
+  end
+  reload
+    <Na otazku, ci chceme ulozit konfiguraciu odpovieme stacime 'n' pre 'No'>
+    <Nasledne stlacime Enter pre potvrdenie restartu>
+
+There's no need to save the config at this point. We just want the ASA to reload with that file in place. It should show the GRUB boot loader, and boot, but the interaction will stop with the message
+  "Lina to use serial port /dev/ttyS0 for console IO".
+At this point it has transferred the interactive control to the serial port. 
+
+Vypneme Cisco ASAv.
+Klikneme nan pravym -> Edit -> Zmenime vzdialeny pristup z 'vnc' na 'telnet'. Ulozime.
+Spustime Cisco ASAv.
+Teraz otestujeme telnet pristup. V PuTTY / terminali otvorime telnet relaciu s Cisco ASAv.
+Ak sa nam v terminali zobrazi 'ciscoasa>' riadok, telnet konzola funguje.
+Od teraz sa mozeme na Cisco ASAv stale prihlasovat cez telnet.
+Kvoli poriadku mozeme adresar prislusneho Cisco ASAv QCOW2 suboru premenovat na "asav-<verzia_asav>-telnet.qcow2". Slovo "telnet" v nazve suboru nam povie, ze zariadenie bolo upravene tak, aby sa nan dalo pripojit cez telnet.
+
+Ak budeme chciet VNC konzolu naspat, vymazeme subor 'use_ttyS0'. Pouzijeme rovnaky postup, ako pri vytvarani tohto suboru, len namiesto prikazu "copy ..." subor vymazeme prikazom:
+
+  rm use_ttyS0
+
+a overime
+
+  dir disk0:/
+
+Subor "use_ttyS0" by sa tam nemal nachadzat. Restartujeme zariadenie:
+
+  reload
+
+Potom vypneme zariadenie a zmenime v nastaveni zariadenia sposob vzdialeneho pristupu z 'telnet' na 'vnc'.
+Po opatovnom spusteni zariadenia sa pripojime na zariadenie cez VNC Viewer.
+
+
+********************************************************************************
+
+Pokial chceme, aby boli zmeny v GNS3 trvale, postupujeme podla tohto navodu:
+https://gns3.com/discussions/how-to-configure-any-asav-qcow2-
+
+********************************************************************************
+
+Ked chceme do Cisco ASAv pridat ASDM v GNS3, postupujeme podla tohto navodu:
+http://www.xerunetworks.com/2012/03/asa-84-asdm-on-gns3-step-by-step-guide/
+
+********************************************************************************
+
+Zdroje:
+https://gns3.com/discussions/how-to-configure-any-asav-qcow2-
+https://learningnetwork.cisco.com/message/568790#568790
+https://rwmj.wordpress.com/2010/09/10/copy-incopy-out/
+https://bugs.launchpad.net/fuel/+bug/1467579
+http://libguestfs.org/guestfish.1.html
+https://stackoverflow.com/questions/17983586/bash-how-can-i-get-the-variable-value-inside-the-eof-tags

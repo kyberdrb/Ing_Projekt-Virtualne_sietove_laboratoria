@@ -1,0 +1,535 @@
+************* ZABEZPECENIE SYSTEMU *************
+
+Po uvodnej instalacii a konfiguracii systemu pokracujeme zabezpecenim jeho sucasti.
+
+Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, nez priamo ako root.
+
+-nainstalovat sudo
+
+  apt-get update
+  apt-get install sudo
+
+-vytvorit noveho pouzivatela
+
+  adduser <username>
+
+-pridelit mu sudo pravomoci
+
+  sudo usermod -aG sudo <username>
+
+resp.
+
+  sudo gpasswd -a sudo <username>
+
+parameter -a je dolezity: zachovava pouzivatelove uz existujuce clenstva v inych skupinach.
+
+*************
+Pridavanie noveho pouzivatela
+-Noveho pouzivatela vytvorime prikazom:
+  adduser <meno_pouzivatela>
+
+Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
+  -nesmie mat prazdne heslo
+  -musi mat vygenerovany SSH kluce (verejny aj privatny) prikazom 'ssh-keygen'
+  -musime ho pridat do riadku "AllowUsers" v /etc/ssh/sshd_config
+  -ak je potrebne, pridame pouzivatela do sudo skupiny
+
+*************
+Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani lokalne, a uz vobec nie vzdialene). Aj po "sudo -i" vie tak zblbnut, ze nepozna ani zakladne prikazy (napr "ls"): vypise chybu "Command not found". V kazdom pripade tak predideme dalsim komplikaciam.
+
+
+*************
+Mozeme nastavit heslo pre BIOS,
+ale spolieham sa na fyzicke zabezpecenie pristupu k serverovni.
+
+
+*************
+Mozeme pouzit iptables firewall na zabezpecenie servera,
+ale spolieham sa na katedrovy firewall.
+
+
+
+
+
+
+************* ZABEZPECENIE SSH *************
+
+SSH pouzivame na vzdialenu administraciu servera.
+
+Zmenit nastavenia v konfiguracnom subore SSH
+
+  sudo vim.tiny /etc/ssh/sshd_config
+  
+
+...
+Protocol 2
+...
+
+
+# toto je velmi striktne zabezpecenie
+# zakazat root ucet znefunkcni odchytavanie s predvolenym EVE-ng integracnym
+# balickom 
+...
+#AllowUsers andrej
+#DenyUsers root
+#DenyGroups root
+...
+
+
+# "StrictMode no" umozni prihlasit sa certifikatom z Windowsu,
+# lebo NTFS prepise prava na certifikate na 777,
+# ale StrictMode ocakava 600
+...
+# Authentication  
+PermitRootLogin no
+StrictMode no
+RSAAuthentication yes
+PubkeyAuthentication yes
+...
+
+
+...
+# To enable empty passwords, change to yes (NOT RECOMMENDED)
+PermitEmptyPasswords no
+...
+
+# ... pod GSSAPI
+X11Forwarding no
+TCPKeepAlive no
+
+
+-Nacitame novu konfiguraciu pre SSH
+
+  sudo systemctl reload ssh
+
+-potom odskusame prihlasenie ako root aj ako pouzivatel.
+  -Po zadani spravneho hesla pouzivatela <username> sa okamzite prihlasime.
+  -Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
+
+*************
+-aktivujeme autentifikaciu SSH klucom.
+  -ak este nemame vygenerovane na lokalnom pocitaci SSH kluce (verejny
+   a privatny) vygenerujeme ich
+
+    ssh-keygen
+
+  -skopirujeme verejny kluc nasho pocitaca na server
+
+    ssh-copy-id <pouzivatel>@<ip_adresa_servera>
+
+  -skusime sa prihlasit na server pomocou SSH
+    ssh <pouzivatel>@<ip_adresa_servera>
+
+  -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu
+   heslom (riadok 'PasswordAuthentication'), pretoze budeme pouzivat vylucne
+   autentifikaciu SSH klucmi. Zmenime subor nasledovne:
+
+  sudo vim.tiny /etc/ssh/sshd_config  
+
+# Change to no to disable tunnelled clear text passwords
+PasswordAuthentication no
+
+
+-Nacitame nove nastavenia pre SSH
+
+    sudo service ssh reload
+
+
+
+*************
+Zmena SSH portu
+-Mozeme zmenit SSH port kvoli potencionalnym utokom na port 22 (vid 
+ riadok "Port" na zaciatku suboru). Tento krok som nevykonal.
+
+
+
+*************
+Zobrazime spravu pouzivatelovi pred prihlasenim
+
+-upravime subor:
+
+  sudo vim.tiny /etc/issue.net
+
+mozeme don vlozit lubovolny text, napr.:
+
+  EVE-ng server
+  Na prihlasenie je potrebny SSH kluc!
+
+-ulozime
+-upravime subor:
+
+  sudo vim.tiny /etc/ssh/sshd_config
+
+odkomentujeme riadok "Banner" (nachadza sa pod "GSSAPI")
+
+  Banner /etc/issue.net
+
+restartujeme SSH server
+
+  sudo service ssh reload
+
+
+
+*************
+Zobrazime spravu pouzivatelovi po prihlaseni (MOTD - Message Of The Day)
+
+-Vytvorime subor (ak este nie je pritomny):
+  sudo vim.tiny /etc/motd
+
+mozeme don vlozit lubovolny text, napr.:
+
+
+************* ************* *************
+              EVE-ng server
+           Courtesy of kyberdrb
+************* ************* *************
+
+
+-ulozime
+
+Ukoncime SSH spojenie a znovu sa prihlasime.
+Uvidime MOTD.
+
+
+
+
+************* ZABEZPECENIE APACHE *************
+
+EVE-ng pouziva Apache ako svoj webový server
+
+-aktivacia HTTPS pre EVE-ng
+
+  sudo a2enmod ssl
+  sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+  -> vyplnime vsetky potrebne udaje:
+
+Country Name (2 letter code) [AU]:SK
+State or Province Name (full name) [Some-State]:Slovakia
+Locality Name (eg, city) []:Zilina
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNIZA
+Organizational Unit Name (eg, section) []:FRI
+Common Name (e.g. server FQDN or YOUR name) []: KIS
+Email Address []: <nechal som prazdne>
+  
+  
+  sudo -i
+  cat << EOF > /etc/apache2/sites-enabled/default-ssl.conf
+<IfModule mod_ssl.c>
+    <VirtualHost _default_:443>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /opt/unetlab/html/
+        ErrorLog /opt/unetlab/data/Logs/ssl-error.log
+        CustomLog /opt/unetlab/data/Logs/ssl-access.log combined
+        Alias /Exports /opt/unetlab/data/Exports
+        Alias /Logs /opt/unetlab/data/Logs
+        SSLEngine on
+        SSLCertificateFile    /etc/ssl/certs/apache-selfsigned.crt
+        SSLCertificateKeyFile /etc/ssl/private/apache-selfsigned.key
+        <FilesMatch "\.(cgi|shtml|phtml|php)$">
+                SSLOptions +StdEnvVars
+        </FilesMatch>
+        <Directory /usr/lib/cgi-bin>
+                SSLOptions +StdEnvVars
+        </Directory>
+        <Location /html5/>
+                Order allow,deny
+                Allow from all
+                ProxyPass http://127.0.0.1:8080/guacamole/ flushpackets=on
+                ProxyPassReverse http://127.0.0.1:8080/guacamole/
+        </Location>
+
+        <Location /html5/websocket-tunnel>
+                Order allow,deny
+                Allow from all
+                ProxyPass ws://127.0.0.1:8080/guacamole/websocket-tunnel
+                ProxyPassReverse ws://127.0.0.1:8080/guacamole/websocket-tunnel
+        </Location>
+    </VirtualHost>
+</IfModule>
+EOF
+
+  exit
+  sudo /etc/init.d/apache2 restart
+
+
+  -overime https pristup. do prehliadaca zadame:
+
+    https://<ip_adresa_servera>
+
+    -nasledne pridame vynimku do prehliadaca, pretože sa používa
+    "selfsigned" certifikát
+     
+
+
+    
+*************
+
+-presmerujeme HTTP poziadavky (port 80) na HTTPS (port 443)
+  -upravime potrebne subory
+
+    sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
+
+-pod riadok '<VirtualHost *:80>' vlozime:
+    
+    Redirect / https://<ip_adresa_servera>/
+
+-restartujeme apache
+
+    sudo systemctl restart apache2.service
+
+-Overime, ci sa zmeny prejavili.
+ V prehliadaci zadame
+
+  http://IP_ADRESA_SERVERA
+
+Malo by nas to okamzite presmerovat na HTTPS verziu stranky.
+Teraz staci do prehliadaca zadavat iba IP adresu servera.
+
+*************
+1. How to hide Apache Version and OS Identity from Errors
+
+-upravime subor:
+  sudo vim.tiny /etc/apache2/apache2.conf
+
+  na koniec suboru pridame riadky
+
+ServerSignature Off
+ServerTokens Prod
+
+-ulozime
+-restartujeme apache
+    sudo systemctl restart apache2.service
+
+
+
+*************
+5. Run Apache as separate User and Group
+-toto by malo byt uz defaultne nastavene:
+Nastavuje sa to v subore
+
+  /etc/apache2/apache2.conf
+
+Ten ma pre premenne APACHE_RUN_USER a APACHE_RUN_GROUP odkazy na premenne v subore
+
+  /etc/apache2/envvars
+
+  export APACHE_RUN_USER=www-data
+  export APACHE_RUN_GROUP=www-data
+
+aby sa spustal v pouzivatelskom ucte.
+
+-ulozime
+-restartujeme apache
+
+  sudo systemctl restart apache2.service
+
+
+*************
+mod_security
+
+-firewall pre webové aplikácie
+-ochrana napr. proti SQL Injection
+
+Tento krok som nevykonal.
+Mohlo by to znemoznit vytvaranie pouzivatelov cez web rozhranie.
+
+*************
+mod_evasive
+
+-ochrana Apache web servera proti DoS a DDoS utokom
+
+Tento krok som nevykonal.
+Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu 
+a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
+
+
+
+************* APACHE GUACAMOLE (REVERSE PROXY SERVER) [VOLITEĽNÉ] *************
+Reverse Proxy slúži na vzdialený prístup k zariadeniam v topológií 
+cez web prehliadač bez nutnosti inštalácie ďalších nástrojov na klientský
+počítač (okrem nástroja Wireshark)
+
+Netreba zabezpečovať, pretože na serveri je prístupný iba lokálne.
+
+
+
+
+************* ZABEZPECENIE MYSQL [VOLITEĽNÉ] *************
+
+MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
+
+MySQL server nemusíme explicitne zabezpečovať, pretože na serveri je prístupný
+iba lokálne. Pokiaľ chceme pristupovať k databáze vzdialene, je nutné vytvoriť
+SSH tunel (vid "sprava_pouzivatelov.txt")
+
+NASLEDÚJUCE KROKY SÚ VOLITEĽNÉ
+
+Predvolene heslo je slabe, preto ho treba ho zmenit.
+Mozeme ho zmenit viacerymi sposobmi. Ja som pouzil prvy sposob.
+
+1) MYSQL_SECURE_INSTALLATIOM - ZMENA ROOT HESLA
+
+  mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password for user root: 
+
+VALIDATE PASSWORD PLUGIN can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+
+Press y|Y for Yes, any other key for No: y
+
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+
+Invalid option provided.
+
+There are three levels of password validation policy:
+
+LOW    Length >= 8
+MEDIUM Length >= 8, numeric, mixed case, and special characters
+STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+
+Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+Using existing password for root.
+
+Estimated strength of the password: 25 
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : y
+
+New password: 
+
+Re-enter new password: 
+
+Estimated strength of the password: 100 
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done!
+
+
+
+2) MYSQLADMIN - ZMENA HESLA INEMU POUZIVATELOVI
+-UPOZORNENIE!!!
+ V MySQL SA RETAZCE ZADAVAJU DO APOSTROFOV '', NIE DO UVODZOVIEK "" !!!
+
+  mysqladmin -u root -p'oldpassword' password newpass
+repsp.
+  mysqladmin -u root -p'oldpassword' password 'newpass'
+
+
+
+************* ZABEZPECENIE WEB ROZHRANIA EVE-ng *************
+-Až po zabezpečení webového servera zmeníme predvolené heslo
+ administrátorského účtu pre prístup do webového rozhrania.
+ Pokiaľ by sme toto heslo zmenili pred zabezpečením webového
+ servera, heslo by bolo nezašifrované a dalo by sa jednoducho 
+ odchytiť napr. nástrojom Wireshark.
+
+-Zabezpečíme 'admin' účet:
+  -zadame IP/web adresu web servera
+  -prihlasime sa ako admin
+  -pojdeme do Management -> User Management -> v riadku admin klikneme na "Edit"
+  -zadame nove heslo a validny email
+  -klikneme na zelene tlacidlo "Edit"
+  -odhlasime sa a znovu sa prihlasime ako admin s novym heslom na overenie
+
+Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
+  https://howsecureismypassword.net/
+
+
+
+*************
+ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM V TOPOLÓGII
+A ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA V TOPOLÓGII
+
+viď súbor "eve-ng_integracia_s_web_prehliadacmi.txt"
+
+
+
+
+************* ZAVERECNE KROKY *************
+
+-vymazeme historiu bash prikazov v termináli pre kazdeho pouzivatela (lokalne 
+ aj cez SSH)
+ 
+  history -c
+  history -w
+
+
+Zdroje:
+-System
+https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
+https://www.tecmint.com/check-linux-hard-disk-bad-sectors-bad-blocks/
+
+-SSH
+https://askubuntu.com/a/2224 -> priradenie pouzivatela do sudo skupiny
+https://www.cyberciti.biz/tips/openssh-deny-or-restrict-access-to-users-and-groups.html
+https://ubuntuforums.org/showthread.php?t=831372
+https://ubuntuforums.org/showthread.php?t=1914662
+https://www.youtube.com/watch?v=5Fcf-8LPvws (Linux Tutorial for Beginners - 15 - SSH Key Authentication)
+https://askubuntu.com/questions/2271/how-to-harden-an-ssh-server
+https://www.tecmint.com/protect-ssh-logins-with-ssh-motd-banner-messages/
+
+-Apache
+https://www.tecmint.com/apache-security-tips/
+https://askubuntu.com/a/185049
+https://askubuntu.com/questions/184791/how-to-disable-non-ssl-connection-on-apache-2-2
+https://wiki.apache.org/httpd/RedirectSSL
+
+#tento návod som použil na vygenerovanie SSL certifikatu pre Apache
+http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve
+
+http://www.eve-ng.net/index.php/documentation/howto-s/82-howto-enable-letsencrypt-on-eve-2
+
+-MySQL
+https://www.howtoforge.com/setting-changing-resetting-mysql-root-passwords
+https://dev.mysql.com/doc/refman/5.7/en/mysql-secure-installation.html
+https://www.cyberciti.biz/faq/mysql-change-root-password/
+https://stackoverflow.com/questions/11223235/mysql-root-access-from-all-hosts
+
+-Zaverecne kroky
+https://askubuntu.com/a/280451
+https://ubuntuforums.org/showthread.php?t=1291340&p=8104827#post8104827

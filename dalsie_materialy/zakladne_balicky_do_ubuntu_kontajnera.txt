@@ -1,0 +1,5 @@
+apt-get install aptitude nano vim joe mcedit ssh iputils-* traceroute less gcc
+
+nano vim joe mcedit ssh iputils-* traceroute less gcc 
+
+build-util libreoffice

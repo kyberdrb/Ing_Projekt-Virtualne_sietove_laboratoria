@@ -1,0 +1,57 @@
+Vytvorenie Cisco IOU/IOL licencie
+=================================
+
+-Stiahneme skript na vygenerovanie Cisco IOU/IOL licencie zo zálohovacieho
+ servera.
+
+ Skripty sú uložené na záložnom serveri v adresári
+    "/shared_resources/images/opt_unetlab_addons_iol_bin_-_opt_gns3_images_IOU/generatory_iol_licencie"
+
+ Skripty som upravil tak, aby sa po ich vykonaní vytvoril súbor s licenciou
+ v tom správnom adresári.
+
+ Zároveň sa do súboru "/etc/hosts" pridá riadok, ktorý deaktivuje funkciu
+ "Cisco Phone Home".
+
+-Vytvoríme IOU/IOL licenciu, aby sme mohli spúšťať Cisco IOL zariadenia.
+ POZOR, Licencia sa nemá nachádzať v "~/.iourc", tak ako hovorí EVE-ng 
+ dokumentácia alebo skript "CiscoIOLKeygen.py")!
+
+ Licenčný súbor pre Cisco IOL zariadenia musí byť v adresári 
+  "/opt/unetlab/addons/iol/bin"
+ a musí mať názov "iourc", pretože Cisco IOU zariadenia a Cisco IOU licencia
+  "iourc"
+ musia byť v rovnakom adresári.
+
+-Licenciu vygenerujeme príkazom
+
+
+        sudo python  CiscoIOUKeygen_iougen_eve-ng_python2.py
+  alebo
+        sudo python3 CiscoIOUKeygen_iougen_eve-ng_python3.py
+
+
+
+-Po vygenerovaní licencie môžeme okamžite používať Cisco IOL zariadenia
+ v EVE-ng topológiách.
+
+Opravíme oprávnenia
+
+  /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+
+
+Pokiaľ licenciu nevytvoríme, Cisco IOL zariadenia sa nebude možné spustiť!
+
+
+
+
+Zdroje:
+  https://www.youtube.com/watch?v=fk0E8FvSdlo
+  http://askubuntu.com/questions/496520/vim-installation-in-ubuntu-14-04
+  http://www.eve-ng.net/index.php/faq
+  http://www.eve-ng.net/index.php/documentation/howto-s/62-howto-add-cisco-iou-iol
+  https://www.cisco.com/c/en/us/support/customer-collaboration/icm-phone-home-snmp-feature/model.html
+  https://stackoverflow.com/questions/9536714/python-save-to-file/9536741#9536741
+  https://stackoverflow.com/questions/4706499/how-do-you-append-to-a-file/4706520#4706520
+  https://www.cisco.com/c/en/us/support/customer-collaboration/icm-phone-home-snmp-feature/model.html
+  

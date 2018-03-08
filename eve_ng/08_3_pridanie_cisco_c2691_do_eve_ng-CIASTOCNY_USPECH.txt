@@ -1,0 +1,128 @@
+Podla Aristotelovskej logiky:
+
+EVE-ng ma dynamips
+C2691 bezi na dynamipse
+EVE-ng ma c2691.
+Ale EVE-ng nema c2691. Je ho tam potom mozne pridat? Ak ano, ako?
+*************************************
+
+
+Adding a new Dynamips device type
+
+
+-Firstly we need to test if the dynamips image can be run. In the process a few files will be created. We need to have a separate directory, to keep everything clean. Also, we must be the owner of the directory we want to run the dynamips image in.
+
+  cd ~
+  mkdir dynamips_playground
+  cd dynamips_playground
+  dynamips -P 2691 /opt/unetlab/addons/dynamips/<name_of_dynamips_c2691_router>.image -r 256 -n 128
+
+If it runs, proceed to the next step. If it doesn't, try another image or change parameters.
+
+-Add Dynamips image to /opt/unetlab/addons/dynamips
+
+-Calculate IDLE PC value (see "vypocet_idle_pc_hodnot_pre_dynamips_zariadenia") and save it somewhere. We will need it for the template.
+
+-Add Dynamips node definition to initialization file 
+
+
+sudo vim.tiny /opt/unetlab/html/includes/init.php
+
+
+  -Under line "$node_config =  Array(" it should look like this:
+
+                ...
+                'c1710'                 =>      'embedded',
+                'c2691'                 =>      'embedded',
+                'c3725'                 =>      'embedded',
+                'c7200'                 =>      'embedded',
+                ...
+
+  -Under line "$node_templates = Array(" it should look like this:
+
+                'c1710'                 =>      'Cisco IOS 1710 (Dynamips)',
+                'c2691'                 =>      'Cisco IOS 2691 (Dynamips)',
+                'c3725'                 =>      'Cisco IOS 3725 (Dynamips)',
+                'c7200'                 =>      'Cisco IOS 7206VXR (Dynamips)',
+
+  -Also change this line
+   
+     if ( $templ == "c1710" || $templ == "c3725" || $templ == "c7200" ) {
+
+   to this (adding the check for c2691)
+
+     if ( $templ == "c1710" || $templ == "c2691" || $templ == "c3725" || $templ == "c7200" ) {
+
+   This will enable image detection in /opt/unetlab/addons/dynamips/ directory. EVE-ng will the scan that folder according to the specified template.
+
+
+-Create a new Dynamips node template based on existing Dynamips node template.
+
+  cp /opt/unetlab/html/templates/c3725.php /opt/unetlab/html/templates/c2691.php
+
+-Edit the template file
+
+$p['type'] = 'dynamips'; 
+$p['name'] = '2691'; 
+$p['cpulimit'] = 1;
+$p['icon'] = 'Router.png'; 
+$p['idlepc'] = '0x60a48cb8';
+$p['nvram'] = 128; 
+$p['ram'] = 256; 
+$p['slot1'] = 'NM-1FE-TX';
+$p['slot2'] = 'NM-1FE-TX';
+$p['modules'] = Array(
+'' => 'Empty', 
+'NM-1FE-TX' => 'NM-1FE-TX'
+);
+$p['dynamips_options'] = '-P 2691 -o 4 -c 0x2102 -X --disk0 128 --disk1 128';
+?>
+
+
+
+-Edit file "__node.php"
+
+sudo vim /opt/unetlab/html/includes/__node.php
+
+Two sections are interesting
+  -around line 1802 and
+  -around lines 3145 and 3146
+
+
+Above lines ~1802 and ~3146 (i.e. above line with "case 'c3725':") add:
+
+case 'c2691':
+
+(with proper formatting, of course)
+
+
+-At this point you should be able to navigate to UNL’s web interface and find a new node of type Dynamips.
+
+
+**************************************************************************************
+But when I tried to connect two c2691 routers, it didn't work - it doesn't show the
+dialog with interfaces. I don't know, what other files should I modify.
+There are other dynamips routers that can easily replace c2691 e.g. 3725 or 
+IOL router.
+**************************************************************************************
+
+**************************************************************************************
+Now I can connect two c2691 routers, telnet to them, configure interfaces. But
+the routers can't ping each other.
+**************************************************************************************
+
+Note:
+  Files, I found the files that needed to be edited with command
+
+  grep -rnw '/opt/unetlab/html/' -e 'c3725'
+
+
+
+Zdroje:
+https://github.com/GNS3/dynamips/blob/master/common/dynamips.c
+http://networkop.co.uk/blog/2016/04/04/Dynamips-unl/
+https://github.com/GNS3/gns3-registry/blob/master/appliances/cisco-2691.gns3a
+man dynamips
+dynamips -h
+https://www.cisco.com/en/US/docs/routers/access/3700/hardware/notes/3725fips.html
+https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux
