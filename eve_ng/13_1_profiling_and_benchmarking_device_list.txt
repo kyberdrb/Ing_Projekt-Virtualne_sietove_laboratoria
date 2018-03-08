@@ -1,10 +1,12 @@
 asa-9.1.5.16_20141016
+    -NEVHODNA NA POUZIVANIE!! VYTAZUJE PRIDELENE CPU NA 100%!
 asav-991-serial-console-with-asdm-79150_20171130
 csr1000vng-universalk9.16.07.01-fuji-serial-console_20171120
 csr1000v-universalk9.03.17.03.S.156-1.S3-std_20161121
 fortinet-fortigate-FGT-VM64-KVM-v5.6.1-build1484_20170727
     -Eval license not valid with more than 1 vCPUs or 1024 MB RAM.
-        => ODPORUCANE MNOZSTVO RAM: 1024
+        => preto: ODPORUCANE MNOZSTVO RAM: 1024
+           pocet CPU je v sablone uz nastaveny na 1
 
 hpvsr-7.10.R0204P01_20150202
 hpvsr-VSR1000_HPE-CMW710-R0327L01-X64_20170631
@@ -17,37 +19,204 @@ linux-netem
 nxosv9k-nxosv-final.7.0.3.I7.1_20170831
 olive-12.1-R1-9_20120324
 ostinato-drone-8.0
-timos-C-13.0.R1_20150227
-timoscpm-C-13.0.R1_20150227
-timosiom-C-13.0.R1_20150227
-timoscpm-C-13.0.R1_20150227+timosiom-C-13.0.R1_20150227
+
+
+-Nokia routre potrebuju aspon 2 CPU, aj ked primarne je vytazene iba 
+ 1 CPU
+ -lepsie je nezvysovat RAM na viac ako 2048 -> 2048 je odporucane mnozstvo
+  operacnej pamate pre nokia (timos) zariadenia do verzie 13.
+  Od verzie 14 timos vie vyuzit pre iom aj cpm 3071MB pamate.
+
+    ZVYSIT MNOZSTVO PRIDELENEJ RAM PRE TIMOS, TIMOSIOM A TIMOSCPM NA
+    3072 MB?
+    to by znamenalo, ze timos je schopny pracovat iba s 3072 MB pamate
+    (vid "Total Memory" v boot vypise pre VSR-I, IOM aj CPM).
+
+
+
+ -Nokie sa spravaju velmi cudne pri viac ako 2048MB RAM.
+  Pri 4096 GB mi timos-B-13.0.R4_ver1_20150729 rozdeleny na timosiom (2CPU) 
+  a timoscpm (2CPU)
+  napisal hlasenie
+    "64Bit extending memory support to 5+Gig"
+  a spustenie trvalo ovela dlhsie, nez pri 2048MB RAM.
+  timoscpm-B-13.0.R4_ver1_20150729 sa pri 4096MB RAM dokonca spustal v 32bit 
+  mode (chcel sa spustit aj v 64 bitovom, ale zasekol sa tam a ja som nechcel
+  stracat cas cakanim na to, kym sa zobudi).
+  Tento jav nenastal pri timos verzii >=14.
+ -Tiez je zaujimve, ze timos-B-13.0.R4_ver1_20150729 rozdeleny na timosiom 
+  a timoscpm pri 2048MB pridelenej RAM v skutocnosti zaberal v operacnej pamati
+  viac miesta, nez ked som dal aj cpm aj iom modulu po 4096MB RAM. timoscpm 
+  sa spustil v 64 bitovom mode, zatial co timosiom v 32 bitovom.
+  Timos od verzie 14 pri 2048MB RAM a 2 CPU sa konzistentne spusti v 64 
+  mode (aj cpm, aj iom) a pri 2048MB RAM a 1 CPU sa konzistentne spusti 
+  v 32 bitovom mode (aj cpm, aj iom).
+ -Pre timos vo verzii <=13 je preferovany sposob pridavania do topologie
+  ako jedno zariadenie "Nokia VSR-I" s 1 CPU,
+    
+    pretoze zabera menej operacnej pamate a menej vytazuje CPU, 
+    nez keby sme ho pridali ako dva uzly cpm a iom.
+
+ -Pre timos vo verzii 14=> je preferovany sposob pridavania do topologie
+  ako dve zariadenia "Nokia CPM" (1 CPU) a "Nokia IOM" (1 CPU).
+    
+    pretoze tak donutime timos, aby sa spustil v 32 bitovom mode, co ma za
+    nasledok nizsiu spotrebu operacnej pamate, nez keby sme ho pridali ako 
+    jeden uzol vsr-i.
+
+  Ak pridame zariadenie ako jeden uzol "Nokia VSR-I", potom sa zariadenie
+  bude spustat dookola (bootloop) bez ohladu na mnozstvo pridelenych CPU 
+  alebo RAM.
+  
+
+
+timos-B-13.0.R4_ver1_20150729
+    -vzdy sa spusti v 32 bitovom mode (pri 1 CPU da Warning) nezavisle
+     na pocte pridelenych CPU
+
+timoscpm-B-13.0.R4_ver1_20150729
+    -vzdy sa spusti v 32 bitovom mode (pri 1 CPU da Warning) nezavisle
+     na pocte pridelenych CPU
+
+timosiom-B-13.0.R4_ver1_20150729
+    -pri 1 CPU sa spusti v 32 bitovom mode
+    -pri 2+ CPU sa spusti v 64 bitovom mode
+
+
+timoscpm-C-14.0.R6_ver1_20162111
+    -pri 1 CPU sa spusti v 32 bitovom mode
+    -pri 2+ CPU sa spusti v 64 bitovom mode
+
+timosiom-C-14.0.R6_ver1_20162111
+    -pri 1 CPU sa spusti v 32 bitovom mode
+    -pri 2+ CPU sa spusti v 64 bitovom mode
+
+timoscpm-C-14.0.R6_ver1_20162111__timosiom-C-14.0.R6_ver1_20162111
+
+
+    FINALNE PARAMETRE NOKIA (TIMOS) ZARIADENI
+
+    -3072 MB RAM je maximum, co timos v 32 bit mode vie vyuzit, nezavisle
+     na mnozstve alokovanej pamate (vid hlasenie "Total Memory:" vo vypise
+     pri spustani)
+    -Ked sa timos spusti v 64 bitovom mode, potom vie vyuzit aj viac ako
+     3072 MB RAM.
+     Timos vo verzii <=13 sa napr. pri 20 GB RAM spustal dlhsie, pricom zostal
+     chvilu na hlaseni
+        "64Bit extending memory support to 20+Gig"
+     a nakoniec efektivne vyuzil, ako vzdy, o 1 MB menej t.j. 19999 MB,
+     co je zrejme z vypisu zo spustania v sprave
+        "Total Memory: 19999MB ..."
+     Timov vo verzii >=14 sa spustal pri 20 GB bez takehoto hlasenia a trvalo
+     mu to kratsie.
+     Vyssie uvedene plati aj pre VSR-I (1 uzol), aj pre CPM s IOM (2 uzly)
+
+    timos-B-13.0.R4_ver1_20150729
+        -pri 1  CPU (32 bit):   3072 MB
+        -pri 2+ CPU (32 bit):   3072 MB
+            -timos vo verzii <=13 sa spusti ako 1 VSR-I uzol v 32 bitovom
+             mode nezavisle na pocte CPU alebo RAM
+    
+    timoscpm-B-13.0.R4_ver1_20150729
+        -pri 1  CPU (32 bit):   3072 MB
+        -pri 2+ CPU (64 bit):   3072 MB
+
+    timosiom-B-13.0.R4_ver1_20150729
+        -pri 1  CPU (32 bit):   3072 MB
+        -pri 2+ CPU (32 bit):   3072 MB
+            -timosiom vo verzii <=13 sa spusti v 32 bitovom mode nezavisle
+             na pocte CPU alebo RAM
+---------------------------------------------
+    timos-C-14.0.R6_ver1_20162111
+        -pri 1  CPU (32 bit):   bootloop (nezavisle na mnozstve RAM)
+            -bootloop sposobuje 100% vytazenie 1 jadra procesora!
+        -pri 2+ CPU (64 bit):   3072 MB 
+                                (2934 MB po dokonceni spustania v pokoji)
+
+    timoscpm-C-14.0.R6_ver1_20162111
+        -pri 1  CPU (32 bit):   3072 MB
+        -pri 2+ CPU (64 bit):   3072 MB
+
+    timosiom-C-14.0.R6_ver1_20162111
+        -pri 1  CPU (32 bit):   3072 MB
+        -pri 2+ CPU (64 bit):   3072 MB
+
+
+
 titanium-d1-kickstart.7.3.0.D1.1_20161101
 vios-adventerprisek9-m.vmdk.SPA.156-2.T_20160322
 viosl2-adventerprisek9-m.15.2_20170321
+
 vmx-14.1R1.10_20140607
+    -je iba 32 bitová => ODPORUCANE MNOZSTVO PARAMETRE = 4096 MB
+     lebo pri spustani sa objavilo hlasenie
+        "16809984K of memory above 4GB ignored"
+
+vmx-15.1F6.9_20160616
+vmxvcp-15.1F6.9_20160616+vmxvfp-15.1F6.9_20160616
+    -po prihlaseni sa do konzoly vypneme otravnu spravu o upgrade tymito
+     prikazmi:
+        cli
+        edit
+        delete chassis auto-image-upgrade
+        commit
+        quit
+
+    -Pri prideleni 1 CPU VMX VFP sa po prihlaseni sa do VMX VFP zobrazi chyba
+        "vFP Error! Insufficient number of CPUs 1
+         root: vFP Error! Insufficient number of CPUs 1"
+    -Pri prideleni 2 CPU VMX VFP sa po prihlaseni sa do VMX VFP zobrazi chyba
+        "vFP Error! Insufficient number of CPUs 2
+         root: vFP Error! Insufficient number of CPUs 2"
+    -VMX VFP musi mat pridelene 3 CPU, aby bolo prevadzkyschopne!
+    -vsetky rozhrania ge-x/y/z sa vo vcp vo vypise prikazu
+        "show interfaces terse"
+     objavia priblizne po 2 minutach po prihlaseni
+     
+
 vmx-17.3R1.10_20170731
 vmxvcp-17.3R1.10_20170731
+    -ZMENIT VMXVCP.PHP SABLONU
+     ->ODPORUCANE MNOZSTVO RAM = 14336 MB
+
 vmxvfp-17.3R1.10_20170731
+    -ZMENIT VMXVFP.PHP SABLONU
+     ->ODPORUCANE MNOZSTVO RAM = 5120 MB
+
 vmxvcp-17.3R1.10_20170731+vmxvfp-17.3R1.10_20170731
+    -Pri prideleni zdrojov
+        -VCP - 1 CPU, 20000 MB RAM
+        -VFP - 3 CPU, 20000 MB RAM
+     boli vytazene 2 CPU na 100%!!! => nevhodne pre pouzitie v topologiach!
+
+
 vsrx-12.1X47-D15.4-firefly-perimeter_20141112
 vsrx-12.1X47-D20.7-firefly-perimeter_20150303
 vsrxng-15.1X49-D20.2_20150913
 vsrxng-15.1X49-D80.4_20170323
 
 xrv9k-fullk9-x-6.2.25_20170928
-    -potrebuje 13GB RAM (nechal som to bezat cez noc)
+    -to iste, ako pri xrv9k-fullk9-x.vrr-6.2.25_20170928
+
+xrv9k-fullk9-x.vrr-6.2.25_20170928
+    -ODPORUCANE MNOZSTVO RAM = 13GB RAM
+        -nechal som ho bezat cez noc
+         (z 5GB to narastlo na 12GB)
     -1 cpu - priserne pomaly beh a spustanie
         Data plane core assignment: 0
         Control plane core assignment: 0
-    -2 cpu - oprimum
+    -2 cpu - OPTIMUM
         Data plane core assignment: 0-1
         Control plane core assignment: 0
     -3 cpu - system sa spusti, ale mne zamrzol
         Data plane core assignment: 1-2
         Control plane core assignment: 0
 
-xrv9k-fullk9-x.vrr-6.2.25_20170928
-    -to iste, ako pri xrv9k-fullk9-x-6.2.25_20170928
+    OPTIMALNY POCET CPU = 2
+
+    -Aj ked som sa uz prihlasil do konzoly, stale viac ci menej vytazoval 
+     disk. Navyse boli neustale vytazene obidve pridelene CPU na 100%,
+     ked som zariadeniu pridelil 2 CPU. => NEVHODNE NA POUZITIE V TOPOLOGIACH!!!
 
 xrv-iosxrv-k9-demo-6.0.1_20160506
 
@@ -74,4 +243,4 @@ c3725-adventerprisek9-mz.124-25d_0x60a800f0_20100818.image
     -Aj ked pridelime tomuto Dynamips zariadeniu urcite mnozstvo operacnej pamate, zariadenie zaberie v skutocnosti v operacnej pamati viac (pri 320MB RAM je to cca. 400MB)
 
 c7200-adventerprisek9-mz.152-4.M11_0x60189234_20161016.image
-    -ODPORUCANE MNOZSTVO RAM: cca. 280 MB (namerane 263 MB MAX)
+    -ODPORUCANE MNOZSTVO RAM: cca. 512 MB (namerane 263 MB MAX)

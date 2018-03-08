@@ -11,22 +11,55 @@ Zazitky:
 
 Ulohy:
 
-EVE-ng
+-zistil som vyrazne rozdiely medzi behom xrv9k a xrv9k-vrr zariadenim
+  => xrv9k-vrr nie je vhodne na pouzitie, lebo hoci vyuziva menej RAM
+     neustale vytazuje 1 CPU jadro, hoci uz bezal aj cez noc t.j. viac
+     ako 12 hodin.
+ => Otestovat spravanie klasickeho xrv9k routra
+     -ked pridem do skoly, skontrolovat stav xrv9k
+      -prihlasit sa xrv9k konzolu cez tmux (panel #4)
+
+-upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
+ zariadenia
+  -upravit pocet CPU a RAM
+
+-odkazat sa v sumarnom zozname zariadeni na subor 
+  "profiling_and_benchmarking_device_list.txt"
+ pre zainteresovane zariadenia
+
+-obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
+ a potvrdenie nameranych udajov
+  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
+
+
+
+-pozret sa v telefone na obrazok tabule od veduceho
+  -predmety
+  -zariadenia na ne
 
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty
+-ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
+-pozriet sa na
+ "/materialy_na_predmety/CCNP_Switching_problematicke_technologie.txt"
+ 
+ -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
+ podporovane ani v IOL routri, ani v IOL switchi
+
+
+
 
 -po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
  v topologii
 
   -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
-   a odchytit ich premavku (z root uctu)
+   a odchytit ich premavku (z root uctu) - IDE :D
 
   -potom zmenit toto v /bin/eve-ng-integration
 
       if url.scheme == 'capture':
         cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
               -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-        wireshark_cmd = 'wireshark -k -i -'
 
    na toto (pridame "sudo" pred tcpdump => aj uzivatel wireshark_capture bude v 
    sudo skupine, ale bude moct vykonavat VYLUCNE PRIKAZ TCPDUMP AKO SUDO!!!)
@@ -34,27 +67,35 @@ EVE-ng
     if url.scheme == 'capture':
         cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
               -l wireshark_capture {host} sudo tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-        wireshark_cmd = 'wireshark -k -i -'
 
 
-
-  -potom vytvorit pouzivatela "wireshark_capture", nainstalovat wireshark, 
-   priradit pouzivatela "wireshark_capture" do skupiny wireshark a 
+  -mozno pridat pouzivatela "andrej" do pcap skupiny a vyskusat integraciu
+   bez "sudo" prikazu pri "tcpdump"
+  -potom vytvorit pouzivatela "wireshark_capture", 
+   priradit pouzivatela "pcap" do skupiny wireshark a 
    restartovat server
   -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
    ci maju konektivitu (ping)
+  -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
+   FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
+   nedokazali zariadenia preposielat spravy cez rozhrania
 
--do zalohovacieho skriptu pridat subor /opt/unetlab/scripts/unl_wrapper.php
-  -upravene nastavovanie pouzivatela a skupiny pre "/opt/unetlab/addons/" 
-   adresar
+
+
+
+
+-lepsie HTTPS zabezpecenie po uspesnej preinstalacii
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+
+
+
+
+
 
 -do skriptu na upravu sablon zmenit zariadeniam pocet CPU
   -obenchmarkovanym QEMU zariadeniam
 -skor ci neskor budem musiet aj tak automatizovat generovanie
 benchmarkingovych a profilingovych grafov (zrejme pythonom)
-
--lepsie HTTPS zabezpecenie po uspesnej preinstalacii
-    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
 
 -urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
   -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
@@ -71,15 +112,17 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
   IBA pre Cisco, Juniper, Linux a Windows
   -ulozit cely dokument do adresara zariadenia (Save As...)
 
--zistit (Wiresharkom), preco nejde HTML5 konzola (tipujem zatvoreny port na FW)
-  -> otvorit 8080 8005 porty -> nepomohlo - tam problem nebude
-  -neviem, hned ukonci TCP relaciu - mozno pomoze otvorit vsetky porty na FW pre eve-ng
-  -PO OTVORENI VSETKYCH PORTOV NA FW HTML KONZOLA FUNGUJE! -> ODCHYTIT WIRESHARKOM
-  A ZISTIT, KTORE PORTY SA POUZIVAJU!
-  -otvorit port 6653 - ovs-testcontrol (jedina sluzba, ktoru som nepovoloval otvorena
-  na internet)
+-obenchmarkovat vmx 15
+  -jedno zariadenie (vmx)
+  -kompozit (vcp+vfp) - osobitne aj dohromady
 
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly + ci funguje odchytavanie cez wireshark
+-vypytat si od mareka windows a windows server a pridat ho do eve-ng
+
+
+
+
+
+-otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
@@ -88,12 +131,6 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
     presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
     -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
 
-
--pridat najnovsie nokia vsr - vytiahnut z hadacovho viro servera/vypytat od 
-  kultana/kaloca; (najlepsie aj s licenciou, ak sa da) -> na hadacovom serveri je
-  novsia verzia TiMOS-u:
-    TiMOS-B-13.0.R4 both/i386 ALCATEL SR 7750 Copyright (c) 2000-2015 Alcatel-Lucent.
-  => skopirovat
 
 -skopirovat vsetky skripty v HOME zo sireny do git repa /eve-ng/skripty
   + dat ich do adresara ./eve-ng/skripty, ale ponechat nazov, ako na gite,
@@ -104,59 +141,11 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
 
 
 -zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
+-ziskat materialy na ccna security (640-554)
+  -postahovat z torrentov a dalsich zdrojov na notase
+  -vypytat si ich od veduceho
 
 
-
-
-
-
-
-
-
-
-
-
-GNS3
--odpovedat na otazku
-  https://www.gns3.com/discussions/what-is-difference-between-gns-2
-  ODPOVED: https://www.gns3.com/discussions/gns3-2-0-1-released
--vyskusat GNS3 nainstalovat do GNS3 kontajnera (podobne ako pri EVE-ng)
-  https://gns3.com/discussions/gns3-support-for-linux-container
-  https://gns3.com/news/article/installing-gns3-server-on-lxc-co
--vygenerovat Cisco IOU licenciu pre GNS3
--pozriet konfiguraky v gns3:
-  -/home/gns3/.config/GNS3/gns3_server.conf
-
-  -vysledky profilingu v eve-ng sa premietnu do nastavenia parametrov (CPU, RAM) v sablonach pre jednotlive druhy virtualnych zariadeni v ramci aktualizacneho skriptu pre sablony (sablona obsahuje nastavenia daneho druhu virtualneho zariadenia)
-  -pouzit zistene parametre pre zariadenia v gns3
-  -ak sa to bude spravat podobne, upravit templejty v gns3 v $HOME/gns3/gns3-server/gns3server/appliances
-  -preskumat aj startup configy, na ktore sa odkazuju aj niektore appliances v gns3 v /home/gns3/gns3-server/gns3server/configs
-  -pohrabat sa v adresarovej strukture gns3
-    -/opt/gns3
-    -/home/gns3/gns3-server/
-    -/home/gns3/gns3-server/gns3server
-
-  -otestovat docker: stiahnut ubuntu docker (6MB RAM nema ani alpine)
-    http://phusion.github.io/baseimage-docker/
-    https://github.com/phusion/baseimage-docker
-    
-  -zabezpecit gns3 vzdialeny server
-    -ssh
-    -autentifikacia voci gns3 klientovi
-      https://gns3.com/discussions/i-implemented-multiuser-gns3-s-2
-      http://forum.gns3.net/topic314.html
-      https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
-    
-  -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm
-  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
-    -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
-    v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
-    -vyhodnotit
-  
-  -ziskat materialy na ccna security (640-554)
-    -postahovat z torrentov a dalsich zdrojov na notase
-    -vypytat si ich od veduceho
-    
 
 
 
@@ -164,7 +153,7 @@ GNS3
 
 
 Diplomka
-  - pridat CCNA technologie (vid fb)
+  -?
 
 
 
@@ -205,6 +194,7 @@ alebo
 do Linuxu (GNS3)
 -IPFS
 -Plotly/matplotlib - python kniznica pre vizualizaciu grafov
+-gnuplot - vizualizaciu grafov v Linuxe
 -Graphana - web framework pre vizualizaciu grafov
 -netdata
   -treba doriesit zabezpecenie 
@@ -222,7 +212,7 @@ do Linuxu (GNS3)
 -Blockchain - matematika+siete+kryptomeny
 -Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng
     http://www.eve-ng.net/forum/viewtopic.php?f=6&t=812
-Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
+ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
   https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
   https://www.youtube.com/watch?v=-EP_qtNQFsE&hd=1
 -linux file sync backup
@@ -232,7 +222,6 @@ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
   https://lxc-webpanel.github.io/faq.html
 -NextCloud (nahrada za SharePoint a OneDrive a Skype For Business) - kvoli WebRTC videohovorom
   https://www.youtube.com/watch?v=UYtFCpY0zuc
--upravit CiscoIOUKeygeny tak, aby sa rovno vygenerovali subory "iourc" a/alebo ".iourc" na spravne miesto podla toho ci sme v GNS3 alebo EVE-ng
 -spustat zalohovanie potrebnych suborov a adresarov (uvedenych v zalohovacom skripte) nie podla casu cez cron, ale pri zmene tychto suborov a adresarov cez incron
   https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
 -ak sa mi podari uspesne spustit eve-ng server v kontajneri na odyseovi t.j. spustim v nej dynamips, iol aj qemu uzol, myslim, ze to nemusi fungovat na 100%, lebo eve-ng bude pouzivat odyseov debianovsky kernel namiesto svojho upraveneho kernelu pre lepsiu podporu l2 technologii; alebo vyskusat frontend od "breaktheweb"
@@ -308,3 +297,41 @@ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
 -Unified Networking Lab v2 (UNetLabv2)
   http://www.routereflector.com/unetlab/
   https://www.indiegogo.com/projects/eve-ng-unified-networking-lab-2-0#/
+
+  GNS3
+-Rozdiel medzi klasickou GNS3 a GNS3-SW
+  -SW je skratka pre SolarWinds (pridane balicky navyse)
+  https://www.gns3.com/discussions/what-is-difference-between-gns-2
+  ODPOVED: https://www.gns3.com/discussions/gns3-2-0-1-released
+-vyskusat GNS3 nainstalovat do GNS3 kontajnera (podobne ako pri EVE-ng)
+  https://gns3.com/discussions/gns3-support-for-linux-container
+  https://gns3.com/news/article/installing-gns3-server-on-lxc-co
+-vygenerovat Cisco IOU licenciu pre GNS3
+-pozriet konfiguraky v gns3:
+  -/home/gns3/.config/GNS3/gns3_server.conf
+
+  -vysledky profilingu v eve-ng sa premietnu do nastavenia parametrov (CPU, RAM) v sablonach pre jednotlive druhy virtualnych zariadeni v ramci aktualizacneho skriptu pre sablony (sablona obsahuje nastavenia daneho druhu virtualneho zariadenia)
+  -pouzit zistene parametre pre zariadenia v gns3
+  -ak sa to bude spravat podobne, upravit templejty v gns3 v $HOME/gns3/gns3-server/gns3server/appliances
+  -preskumat aj startup configy, na ktore sa odkazuju aj niektore appliances v gns3 v /home/gns3/gns3-server/gns3server/configs
+  -pohrabat sa v adresarovej strukture gns3
+    -/opt/gns3
+    -/home/gns3/gns3-server/
+    -/home/gns3/gns3-server/gns3server
+
+  -otestovat docker: stiahnut ubuntu docker (6MB RAM nema ani alpine)
+    http://phusion.github.io/baseimage-docker/
+    https://github.com/phusion/baseimage-docker
+    
+  -zabezpecit gns3 vzdialeny server
+    -ssh
+    -autentifikacia voci gns3 klientovi
+      https://gns3.com/discussions/i-implemented-multiuser-gns3-s-2
+      http://forum.gns3.net/topic314.html
+      https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
+    
+  -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm
+  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
+    -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
+    v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
+    -vyhodnotit

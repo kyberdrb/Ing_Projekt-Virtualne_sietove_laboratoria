@@ -78,66 +78,64 @@ Skript na zalohovanie na vzdialeny server.
 
 
 *************
-Periodicke vykonavanie zalohovacieho skriptu
+PERIODICKE VYKONAVANIE ZALOHOVACIEHO SKRIPTU
 
 -Tento zalohovaci skript sa bude vykonavat periodicky: napr. kazdy den o 3:00.
-Preto vytvorime cron job, ktory sa bude starat o periodicke vykonavanie tohto skriptu.
-(ako textovy EDITOR mozeme pouzit napr. 'vim.tiny')
+ Preto vytvorime cron job, ktory sa bude starat o periodicke vykonavanie 
+ tohto skriptu.
+ (ako textovy EDITOR mozeme pouzit napr. 'vim.tiny')
 
   EDITOR=vim.tiny crontab -e
 
 
--Ak je toto prva cron uloha, najprv sa presvedcime, ci sa cron ulohy vobec vykonavaju. na koniec suboru pridame riadok:
+-Ak je toto prva cron uloha, najprv sa presvedcime, ci sa cron ulohy vobec 
+ vykonavaju. na koniec suboru pridame riadok:
 
-  * * * * * /home/andrej/<nazov_zalohovacieno_skriptu>.sh >/dev/null 2>&1
+  0 3 * * * /home/andrej/backup_gns3_and_eveng_data_to_backup_server.sh >/dev/null 2>&1
 
--tato uloha sa bude vykonavat kazdu minutu.
--ulozime
--restartujeme cron sluzbu, aby sa zmeny prejavili
+ Tento skript sa bude vykonavat
+  -kazdu celu minutu,
+  -kazdu tretiu hodinu, 
+  -kazdy v tyzdni, 
+  -vsetky mesiace, 
+  -a lubovolny den v tyzdni
 
-  sudo service cron restart
+  -Pokiaľ chceme skript otestovať a vyskúšať, či sa spustí,
+   zmeníme 
 
--Zoznam cron uloh (pre nas pouzivatelsky ucet) zobrazime prikazom:
+   0 3 * * *
+
+   na 
+
+   x y * * *
+
+   kde x je minúta a y je hodina, v ktorú skript chceme vykonať.
+   Pre testovacie účely je vhodné voliť čas blízky aktuálnemu.
+
+   
+-Uložíme (:wq)
+-Reštartujeme cron službu, aby sa zmeny prejavili
+
+  sudo systemctl restart cron.service
+
+-Zoznam cron úloh pre aktuálneho používateľa zobrazíme príkazom:
 
   crontab -l
 
-Uvidime obsah crontab suboru s ulohami.
+ Uvidíme obsah crontab súboru s úlohami.
 
--Stav vykonavania uloh zobrazime prikazom:
+-Stav služby a cron úloh zobrazíme príkazom
 
-  sudo service cron status
+  sudo systemctl status cron.service
 
-Uvidime, ako kazdu minutu cron spusta nas skript.
-
-Ked sme sa presvedcili, ze nas skript sa vykonava kazdu minutu, zakomentujeme ho a nahradime ho finalnou verziou:
-
-  0 3 * * * /home/andrej/<nazov_zalohovacieho_skriptu>.sh >/dev/null 2>&1
-
--tento skript sa bude vykonavat kazdu nultu minutu, kazdu tretiu hodinu, kazdy v tyzdni, vsetky mesiace, a lubovolny den v tyzdni
--ulozime
--skontrolujeme crontab, ci sa uloha zmenila:
-
-  crontab -l
-
--restartujeme cron sluzbu, aby sa zmeny prejavili
-
-  sudo service cron restart
-
-*************
-Skript na lokalne zalohovanie.
-
-Ale najlepsie by bolo, keby sa hlavny disk zalohoval klonovanim na dalsie 
-lokalne disky na serveri aj vzdialene, aby sme sa nemuseli spoliehat len na 
-lokalny system. Zalohovanie sa bude vykonavat kazdy den, najlepsie v noci.
-
-
-dd bootsektor
-rsync /
-
+ 
 
 
 
 ************* POSTUP OBNOVY *************
+
+*************
+OBNOVA SÚBOROV A ADRESÁROV
 
 -Obsah adresárov na zálohovacom serveri skopírujeme najprv do domovského 
  adresára "~". Z neho potom presunieme súbory do príslušných adresárov 
@@ -159,12 +157,56 @@ rsync /
  potom súbory, ktoré sa z tohto adresára zálohujú budú patriť do adresára 
     'opt_unetlab_addons' 
  (úvodné lomítko vynechané, zvyšné lomítka nahradené podčiarknikom). 
- Na rovnakú cestu ich aj obnovíme.
+ Na rovnakú cestu ich aj obnovíme, ALE EŠTE PRED OBNOVENÍM SI OVERÍME, ČI
+ MÁME NA DISKU DOSTATOK VOĽNÉHO MIESTA príkazom "df" resp. "df -h".
+
+ V mojom prípade som musel zmenšiť swap partíciu a rozšíriť systémovú partíciu.
+ Disk bol partíciovaný pri inštalácií pomocou LVM.
+
+
+  -Zmenšenie swap partície
+
+  free -h | grep -i swap
+Výstup: 
+  Swap:           47G          0B         47G
+
+  sudo lvs
+Výstup:
+  LV     VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   sirena-vg -wi-ao---- 249.61g                                                    
+  swap_1 sirena-vg -wi-ao----  48.00g
+
+  sudo swapoff /dev/sirena-vg/swap_1
+  sudo lvresize -L-40G /dev/sirena-vg/swap_1
+  sudo mkswap /dev/sirena-vg/swap_1
+  sudo swapon /dev/sirena-vg/swap_1
+  free -h | grep -i swap
+Výstup:
+  Swap:          8.0G          0B        8.0G
+
+
+
+  -Zväčšenie systémovej partície
+
+  sudo partprobe /dev/sda
+  sudo lvresize -L+40G /dev/sirena-vg/root
+  sudo sudo resize2fs /dev/sirena-vg/root
+  sudo lvs
+
+Výstup:
+  LV     VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root   sirena-vg -wi-ao---- 289.61g                                                    
+  swap_1 sirena-vg -wi-ao----   8.00g
+
+
+
+*************
+OBNOVA DATABÁZ
+
 
 -Najpr zálohujeme všetky existujúce MySQL databázy
 
-    mysqldump -u root -p --all-databases > ~/vsetky_povodne_eve_ng_databazy_interaktivne_heslo.sql
-    mysqldump -u root --password='Str0ng Un3tl4b' --all-databases > ~/vsetky_povodne_eve_ng_databazy_vopred_zadane_heslo.sql
+    mysqldump --user='root' -p --all-databases -r /home/andrej/vsetky_povodne_eve_ng_databazy.sql
 
   -Zadáme heslo pre "root" používateľa.
   -Ak sa príkaz ukončí s chybovým hlásením
@@ -193,58 +235,21 @@ rsync /
   -sys
     -systémová databáza
 
- Všetky databázy zo spomenutého súboru obnovíme príkazom
+-Všetky databázy zo spomenutého súboru obnovíme príkazom
 
-    mysql -u root -p < vsetky_mysql_databazy.sql
-
-
--Pokiaľ obnovujeme databázu, ktorá už existuje, použijeme príkaz "mysqlimport":
-
-  mysqlimport -u <pouzivatel> --p='heslo' <nazov_databazy> < <nazov_suboru>.sql
-
-  mysqlimport -u root --password='<pouzivatelske_heslo>' eve_ng_db < /home/andrej/eve_ng_db.sql
-
-
--Po obnovení všetkých potrebných súborov a adresárov, vykonáme skript,
- ktorý opraví ich atribúty:
-    -vlastníka  (chown)
-    -skupinu    (chown)
-    -mód        (chmod)
-  
-  Skript má názov "unl_wrapper" a nachádza sa v "/opt/unetlab/wrappers/".
-  Skript bol upravený tak, aby menil používateľa aj skupinu na "root" pre
-  všetky súbory a adresáre v "/opt/unetlab/addons/". Tam sa nachádzajú
-  všetky zariadenia, ktoré je možné použiť v EVE-ng topológií, okrem 
-  VPCS (to sa nachádza v adresári "/opt/vpcsu/").
-
-  Bez tejto úpravy "unl_wrapper" skriptu nemusia byť niektoré zariadenia
-  v topoloógii spustiteľné.
-
-  Úprava spočívala v pridaní nižšie uvedených riadkov nad riadok
-      "// /opt/unetlab/addons/iol/bin",
-  aby boli všetky úpravy zariadení na jednom mieste.
-
-
-    ...
-
-    // /opt/unetlab/addons
-    $cmd = '/bin/chown -R root:root /opt/unetlab/addons > /dev/null 2>&1';
-    exec($cmd, $o, $rc);
-
-    ...
-
-
+    mysql --user='root' -p --default-character-set=utf8
     
-    Obsah celého súboru je uložený na zálohovacom serveri v adresári
-      "~/zalohy_virtualnych_sietovych_laboratorii/eve_ng_specific/opt_unetlab_wrappers"
+  -Do MySQL príkazového riadku zadáme:
 
+    SET names 'utf8';
+    SOURCE vsetky_mysql_databazy.sql;
 
--Uložíme súbor
--Vykonáme práve upravený skript tak, ako je uvedené nižšie
+  -Údaje v databáze sa začnú obnovovať.
+   Počas obnovovania budeme vidieť hlásenie
 
-    sudo /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
+    Query OK, 0 rows affected
 
-
+  čo znamená, že údaje sa do databázy importovali úspešne.
 
 
 Zdroje:
@@ -261,7 +266,6 @@ http://superuser.com/questions/387477/sftp-upload-all-files-directories-and-sub-
 http://www.eve-ng.net/index.php/faq
 https://unix.stackexchange.com/questions/127352/specify-identity-file-id-rsa-with-rsync
 https://www.liquidweb.com/kb/using-rsync-to-transfer-and-synchronize-local-and-remote-systems/
-https://www.tecmint.com/mysql-backup-and-restore-commands-for-database-administration/
 https://stackoverflow.com/questions/1636889/rsync-how-can-i-configure-it-to-create-target-directory-on-server
 http://www.schwertly.com/2013/07/forcing-rsync-to-create-a-remote-path-using-rsync-path/
 
@@ -271,3 +275,12 @@ https://askubuntu.com/questions/23009/why-crontab-scripts-are-not-working
 http://www.ubuntututorials.com/use-crontab-ubuntu/
 https://askubuntu.com/questions/222512/cron-info-no-mta-installed-discarding-output-error-in-the-syslog
 https://www.cyberciti.biz/faq/howto-linux-unix-start-restart-cron/
+
+-MYSQL
+https://makandracards.com/makandra/595-dumping-and-importing-from-to-mysql-in-an-utf-8-safe-way
+
+-LVM RESIZE
+https://askubuntu.com/questions/226520/how-to-modify-size-of-swap-with-a-lvm-partition/303723#303723
+https://www.rootusers.com/lvm-resize-how-to-decrease-an-lvm-partition/
+https://serverfault.com/questions/36038/reread-partition-table-without-rebooting/36047#36047
+https://askubuntu.com/questions/24027/how-can-i-resize-an-ext-root-partition-at-runtime/119458#119458

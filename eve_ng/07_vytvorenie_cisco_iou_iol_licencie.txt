@@ -1,54 +1,39 @@
 Vytvorenie Cisco IOU/IOL licencie
 =================================
 
--Stiahneme skript na vygenerovanie Cisco IOU/IOL licencie
+-Stiahneme skript na vygenerovanie Cisco IOU/IOL licencie zo zálohovacieho
+ servera.
 
-  https://drive.google.com/file/d/0BwTFjgBPz3MhZGlCc2tvSGxpVVU/view
+ Skripty sú uložené na záložnom serveri v adresári
+    "/shared_resources/images/opt_unetlab_addons_iol_bin_-_opt_gns3_images_IOU/generatory_iol_licencie"
 
--Nahrámeho na server do domovskeho adresara cez scp/sftp/FileZilla/...
-FileZilla klienta si mozeme stiahnut z
+ Skripty som upravil tak, aby sa po ich vykonaní vytvoril súbor s licenciou
+ v tom správnom adresári.
 
-  https://filezilla-project.org/download.php?type=client
+ Zároveň sa do súboru "/etc/hosts" pridá riadok, ktorý deaktivuje funkciu
+ "Cisco Phone Home".
 
--Generator IOL licencie presunieme do adresára “/opt/unetlab/addons/iol/bin/” v EVE-ng.
+-Vytvoríme IOU/IOL licenciu, aby sme mohli spúšťať Cisco IOL zariadenia.
+ POZOR, Licencia sa nemá nachádzať v "~/.iourc", tak ako hovorí EVE-ng 
+ dokumentácia alebo skript "CiscoIOLKeygen.py")!
 
-  sudo mv ~/CiscoKeygen.py /opt/unetlab/addons/iol/bin
+ Licenčný súbor pre Cisco IOL zariadenia musí byť v adresári 
+  "/opt/unetlab/addons/iol/bin"
+ a musí mať názov "iourc", pretože Cisco IOU zariadenia a Cisco IOU licencia
+  "iourc"
+ musia byť v rovnakom adresári.
 
--Vytvoríme IOU/IOL licenciu, aby sme mohli spúšťať Cisco IOL zariadenia. POZOR, licencia sa nema nachadzat v "~/.iourc" (ako hovorí oficiálna dokumentácia alebo skript "CiscoIOLKeygen.py")! - licenčný súbor pre Cisco IOL zariadenia musí byť v adresári "/opt/unetlab/addons/iol/bin" a musí mať názov "iourc" t.j. Cisco IOU zariadenia a Cisco IOU licencia "iourc" musia byt v rovnakom adresari
+-Licenciu vygenerujeme príkazom
 
-  cd /opt/unetlab/addons/iol/bin
-  su -c 'python CiscoKeygen.py > iourc'
 
-Upravíme súbor iourc.
-Takto vyzerá pôvodný súbor "iourc":
-
-*********************************************************************
-Cisco IOU License Generator - Kal 2011, python port of 2006 C version
-hostid=007f0101, hostname=unetlab-server, ioukey=7f06b0
-
-Add the following text to ~/.iourc:
-[license]
-unetlab-server = a21569e17941c747;
-
-You can disable the phone home feature with something like:
- echo '127.0.0.127 xml.cisco.com' >> /etc/hosts
+        sudo python  CiscoIOUKeygen_iougen_eve-ng_python2.py
+  alebo
+        sudo python3 CiscoIOUKeygen_iougen_eve-ng_python3.py
 
 
 
-Súbor "iourc" musíme upraviť tak, že bude obsahovať iba dva riadky: značku "[license]" a samotné licenčné číslo tj. potrebujeme 
-vymazať prvých 5 a posledné 4 riadky.
-
-  vim.tiny iourc
-  Stlačíme ':' a potom 'i'
-  #vymazať spomenuté riadky
-
-Výsledný obsah súboru "iourc":
-
-[license]
-unetlab-server = a21569e17941c747
-
-Uložíme a zatvoríme súbor:
-  :wq
+-Po vygenerovaní licencie môžeme okamžite používať Cisco IOL zariadenia
+ v EVE-ng topológiách.
 
 Opravíme oprávnenia
 
@@ -65,3 +50,8 @@ Zdroje:
   http://askubuntu.com/questions/496520/vim-installation-in-ubuntu-14-04
   http://www.eve-ng.net/index.php/faq
   http://www.eve-ng.net/index.php/documentation/howto-s/62-howto-add-cisco-iou-iol
+  https://www.cisco.com/c/en/us/support/customer-collaboration/icm-phone-home-snmp-feature/model.html
+  https://stackoverflow.com/questions/9536714/python-save-to-file/9536741#9536741
+  https://stackoverflow.com/questions/4706499/how-do-you-append-to-a-file/4706520#4706520
+  https://www.cisco.com/c/en/us/support/customer-collaboration/icm-phone-home-snmp-feature/model.html
+  

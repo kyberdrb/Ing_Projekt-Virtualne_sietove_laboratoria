@@ -43,6 +43,7 @@ Výhody
 -Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
 
 Nevýhody
+-Pomale HTML5 webove rozhranie
 -Podporované iba konzolové Docker kontajnery
 -Podporu Docker kontajnerov treba aktivovať dodatočne
 -Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením.

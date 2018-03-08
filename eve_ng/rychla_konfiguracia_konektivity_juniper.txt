@@ -1,0 +1,13 @@
+delete interfaces ge-0/0/1
+set interfaces ge-0/0/1 unit 0 family inet address 192.168.0.1/8
+commit
+run show interfaces terse
+
+
+delete interfaces ge-0/0/9
+set interfaces ge-0/0/9 unit 0 family inet address 192.168.0.2/8
+commit
+run show interfaces terse
+
+Zdroje:
+  https://kb.juniper.net/InfoCenter/index?page=content&id=KB10880
