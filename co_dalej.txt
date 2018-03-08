@@ -11,10 +11,11 @@ Zazitky:
 
 Ulohy:
 
--nechat bezat xrv9k cez noc a rano sa nan pripojit na konzolu
- (cez sirenin tmux session - window #4)
- +
- zistit vyuzitie systemovych zdrojov (dstat / htop)
+-zistil som vyrazne rozdiely medzi behom xrv9k a xrv9k-vrr zariadenim
+  => xrv9k-vrr nie je vhodne na pouzitie, lebo hoci vyuziva menej RAM
+     neustale vytazuje 1 CPU jadro, hoci uz bezal aj cez noc t.j. viac
+     ako 12 hodin.
+ => Otestovat spravanie klasickeho xrv9k routra
 
 -upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
  zariadenia

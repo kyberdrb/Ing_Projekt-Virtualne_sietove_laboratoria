@@ -216,7 +216,7 @@ xrv9k-fullk9-x.vrr-6.2.25_20170928
 
     -Aj ked som sa uz prihlasil do konzoly, stale viac ci menej vytazoval 
      disk. Navyse boli neustale vytazene obidve pridelene CPU na 100%,
-     ked som zariadeniu pridelil 2 CPU.
+     ked som zariadeniu pridelil 2 CPU. => NEVHODNE NA POUZITIE V TOPOLOGIACH!!!
 
 xrv-iosxrv-k9-demo-6.0.1_20160506
 
