@@ -149,10 +149,13 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - SSH tunely pre vzdialený prístup
 
 #### Spravovanie
+
 ##### Adresárova štruktúra EVE-ng
 -adresárový strom
+
 ##### Monitorovanie
 - netdata
+
 ##### Zálohovanie
 
 ### Meranie systémových požiadaviek zariadení
