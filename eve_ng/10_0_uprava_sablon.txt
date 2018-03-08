@@ -1,5 +1,6 @@
 Šablóny pre jednotlivé zariadenia sú uložené v adresári
-/opt/unetlab/html/templates
+  
+  /opt/unetlab/html/templates
 
 Na úpravu šablón sa používa skript "update_templates.sh" uložený v HOME adresári (aj tu v dokumentacii v súbore "uprava_sablon_skript").
 Šablóny sa po aktualizácií eve-ng prepíšu na predvolené - všetky vlastné úpravy sa stratia.
@@ -7,3 +8,13 @@ Zvažoval som dva spôsoby, ako obnoviť upravené šablóny:
   -zálohovať upravené šablóny na zálohovací server a po aktualizácií ich skopírovať naspäť
   -pomocou skriptu, ktorý vo vopred definovaných šablónach upraví vopred definované atribúty na nami definované hodnoty.
 Úprava šablón skriptom je bezpečnejšia než spätné kopírovanie upravených šablón, pretože pri aktualizácií EVE-ng sa môže stať aj to, že do šablón pribudnú nové atribúty, ktoré v predchádzajúcej verzií neboli, a ktoré v zálohovaných šablónach neexistujú, čo môže spôsobiť rôzne komplikácie pri interakcií s virtuálnymi zariadeniami vo web rozhraní.
+
+Zdroje:
+https://stackoverflow.com/questions/8822097/how-to-replace-whole-line-with-sed
+http://krypted.com/mac-os-x/quick-dirty-sed-findreplace/
+https://stackoverflow.com/questions/5171901/sed-command-find-and-replace-in-file-and-overwrite-file-doesnt-work-it-empties
+https://www.freeformatter.com/javascript-escape.html#ad-output
+https://regex101.com/
+https://unix.stackexchange.com/questions/69112/how-can-i-use-variables-when-doing-a-sed
+https://stackoverflow.com/questions/6212219/passing-parameters-to-a-bash-function
+https://stackoverflow.com/questions/1983048/passing-a-string-with-spaces-as-a-function-argument-in-bash
