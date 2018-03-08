@@ -1,8 +1,0 @@
-Start,1520424223
-Stop,1520424682
-
-vsetky interfejsy zobrazene v
-  1520424808
-
-auto-image-upgrade vypnute v
-  1520424877

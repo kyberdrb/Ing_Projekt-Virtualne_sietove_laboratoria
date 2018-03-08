@@ -1,4 +1,0 @@
-Start,1520436654
-Stop,1520439473
-
-V 1520439571 vypisalo poslednu hlasku, ale stale vytazuje disk
