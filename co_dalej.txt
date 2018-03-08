@@ -16,6 +16,8 @@ Ulohy:
      neustale vytazuje 1 CPU jadro, hoci uz bezal aj cez noc t.j. viac
      ako 12 hodin.
  => Otestovat spravanie klasickeho xrv9k routra
+     -ked pridem do skoly, skontrolovat stav xrv9k
+      -prihlasit sa xrv9k konzolu cez tmux (panel #4)
 
 -upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
  zariadenia
