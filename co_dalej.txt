@@ -11,72 +11,27 @@ Zazitky:
 
 Ulohy:
 
+-popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
+ v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
 
+-vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
+ "wireshark_capture")
+  -nastavit umask v subore /etc/login.defs zo 022 na 027
+   -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
+      pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
+        => domovske adresare budu citatelne pre vlastnikov domovskych 
+            adresarov, ale nie pre niekoho ineho
 
--po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
- v topologii
-
-  -zmenit root pouzivatela na bezneho (andrej) a nastavit opravnenia
-
-    sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
-   
-   a vyskusat odchytavanie
-
-   navod na "http://daydreamer66.blogspot.sk/2014/06/rhel-how-can-non-root-users-can-run.html"
-   
-   FUNGUJE => ZAPRACOVAT DO EVE-NG INTEGRACNEHO BALICKA
-
-  NAJPRV
-
-    if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l andrej {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-
-  POTOM vytvorit noveho pouzivatela "wireshark_capture"
-
-      if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-
-  KED TO POJDE, ZVYSOK JE IRELEVANTNY :D
-
-  -potom zmenit toto v /bin/eve-ng-integration
-
-      if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-   na toto (pridame "sudo" pred tcpdump => aj uzivatel wireshark_capture bude v 
-   sudo skupine, ale bude moct vykonavat VYLUCNE PRIKAZ TCPDUMP AKO SUDO!!!)
-
-    if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} sudo tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-
-  -mozno pridat pouzivatela "andrej" do pcap skupiny a vyskusat integraciu
-   bez "sudo" prikazu pri "tcpdump"
-  -potom vytvorit pouzivatela "wireshark_capture", 
-   priradit pouzivatela "pcap" do skupiny wireshark a 
-   restartovat server
-  -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
-   ci maju konektivitu (ping)
-  -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
+-problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
    FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
    nedokazali zariadenia preposielat spravy cez rozhrania
-
-
-
+    -> tato hypoteza sa ukazala ako NEPRAVDIVA!, kedze zariadenia sa medzi
+        sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
 
 
 
 -lepsie HTTPS zabezpecenie po uspesnej preinstalacii
     https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
-
-
-
 
 
 
