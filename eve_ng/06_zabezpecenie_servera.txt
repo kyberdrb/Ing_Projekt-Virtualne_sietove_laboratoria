@@ -485,9 +485,15 @@ Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
 ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM V TOPOLÓGII
 A ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA V TOPOLÓGII
 
-viď súbor "eve-ng_integracia_s_web_prehliadacmi.txt"
+Zabezpečenie spomenutých funkcii je opísane v súbore
 
+  "eve-ng_integracia_s_web_prehliadacmi.txt"
 
+v častiach
+
+  "ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM"
+a 
+  "ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA"
 
 
 ************* ZAVERECNE KROKY *************

@@ -92,9 +92,9 @@ backup_shared_resources () {
 
 backup_eve_ng_specific_files () {
 
-  mysqldump --user='root' --password='Str0ng Un3tl4b' eve_ng_db -r $EVE_NG_DB_LOCAL_BACKUP
-  mysqldump --user='root' --password='Str0ng Un3tl4b' guacdb    -r $GUACDB_LOCAL_BACKUP
-  mysqldump --user='root' --password='Str0ng Un3tl4b' --all-databases -r $ALL_DB_LOCAL_BACKUP
+  mysqldump --user='root' --password='MYSQL_PASSWORD' eve_ng_db -r $EVE_NG_DB_LOCAL_BACKUP
+  mysqldump --user='root' --password='MYSQL_PASSWORD' guacdb    -r $GUACDB_LOCAL_BACKUP
+  mysqldump --user='root' --password='MYSQL_PASSWORD' --all-databases -r $ALL_DB_LOCAL_BACKUP
 
   backup $EVE_NG_DB_LOCAL_BACKUP \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/var_lib_mysql

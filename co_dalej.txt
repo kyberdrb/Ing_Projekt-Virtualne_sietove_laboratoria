@@ -3,42 +3,13 @@ Tipy:
 -V GNS3 nepripajame koncove zariadenia priamo k oblaciku, ale oblacik prepojime s Ethernet prepinacom. Vsetky dalsie zariadenia pripajame k tomuto prepinacu.
 
 Zazitky:
--20.12. o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
+-20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
 -Navvyse z prikazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplyva, ze na server utocia z Ciny
 
 
 
 
 Ulohy:
-
--obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
- a potvrdenie nameranych udajov
-  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
-
-
-
-
-
--vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
- CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
-
--pozret sa v telefone na obrazok tabule od veduceho
-  -predmety
-  -zariadenia na ne
-
--pozriet si laby od veduceho
-
--cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
-  -zoznam features je uz stiahnuty
--ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
--pozriet sa na
-  "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
- a
-  "/materialy_na_predmety/Cisco_problematicke_technologie.ods"
- 
- -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
- podporovane ani v IOL routri, ani v IOL switchi
-
 
 
 
@@ -109,25 +80,47 @@ Ulohy:
 
 
 
--do skriptu na upravu sablon zmenit zariadeniam pocet CPU
-  -obenchmarkovanym QEMU zariadeniam
--skor ci neskor budem musiet aj tak automatizovat generovanie
-benchmarkingovych a profilingovych grafov (zrejme pythonom)
 
--urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
-  -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
+
+-obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
+ a potvrdenie nameranych udajov
+  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
+ a dokaz, ze vytazenie operacnej pamate je nezavisle od platformy
     (fyzicky vs virtualny stroj (vs lxc?))
 
--benchmarking and profiling vybraych EVE-ng zariadeni
-  -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
-    "profiling_sirena_sablona_nova-dstat_custom.ods"
-  -obenchmarkovat ich vytvorenym skriptom
-  -vlozit csv do calc dokumentu
-    -podla potreby upravit vstupne data:
-      -odstranit riadky, v ktorych su pod mnozstvom spotrebovanej operacnej pamate uvodne nuly
-  -vyexportovat grafy "Celkoveho vytazenia CPU" a "Vyuzitia operacnej pamate" do png obrazkov
-  IBA pre Cisco, Juniper, Linux a Windows
-  -ulozit cely dokument do adresara zariadenia (Save As...)
+
+
+
+-vytvorit dotaznik na technologie vyucovane na predmetoch PS1, PS2, CCNP
+ Routing a CCNP Switching
+
+
+
+
+-vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
+ CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
+
+-pozret sa v telefone na obrazok tabule od veduceho
+  -predmety
+  -zariadenia na ne
+
+-pozriet si laby od veduceho
+
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty
+-ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
+-pozriet sa na
+  "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
+ a
+  "/materialy_na_predmety/Cisco_problematicke_technologie.ods"
+ 
+ -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
+ podporovane ani v IOL routri, ani v IOL switchi
+
+
+
+
+
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
 

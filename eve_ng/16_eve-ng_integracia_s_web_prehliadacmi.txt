@@ -37,6 +37,7 @@ PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
   rdp     -> xrdpviewer/vinagre
   vnc     -> vinagre
 
+
 *************
 ÚPRAVA OTVÁRANÝCH APLIKÁCII
 
@@ -45,7 +46,8 @@ PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
 
 
 *************
-SSH TUNELY
+ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM
+
 
 Zatial sa do SSH tunelov presmerovavaju protokoly VNC a telnet.
 
@@ -77,7 +79,7 @@ pripojenie vytvori skor ako SSH port-forwarding.
 
 
 *************
-WIRESHARK ODCHYTAVANIE
+ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA
 
 Predvolene je na odchytavanie pouzivany root ucet na EVE-ng serveri.
 Bezpecnejsie je, ked vytvorime noveho standardneho pouzivatela, ktory bude mat
