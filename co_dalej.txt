@@ -11,6 +11,9 @@ Zazitky:
 
 Ulohy:
 
+-zistit, ako pridat role editor a user do EVE-ng
+  -následne pridať upravené súbory do zálohovacieho skriptu
+
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
 
@@ -27,6 +30,7 @@ Ulohy:
    nedokazali zariadenia preposielat spravy cez rozhrania
     -> tato hypoteza sa ukazala ako NEPRAVDIVA!, kedze zariadenia sa medzi
         sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
+        -> ZDOKUMENTOVAT!
 
 
 

@@ -1,0 +1,72 @@
+GNS3 Documentation - TREBA SI JU PRECITAT CELU, OD ZACIATKU AZ DO KONCA!
+    https://docs.gns3.com/1FFbs5hOBbx8O855KxLetlCwlbymTN8L1zXXQzCqfmy4/index.html
+
+Installing GNS3 server on LXC container.
+    https://gns3.com/news/article/installing-gns3-server-on-lxc-co
+
+Cisco Network Emulation with GNS3 in a Docker container
+    http://www.digiampietro.com/2014/1109/cisco_network_emulation_gns3_docker_container.html
+    https://github.com/digiampietro/gns3-large
+
+GNS3 Virtualization questions: Local server vs Virtualbox vs VMware - which is best? (Part 1)
+    https://www.youtube.com/watch?v=z-IrTVIi0Ew
+
+GNS3 Virtualization questions: Local server vs Virtualbox vs VMware - which is best? (Part 2)
+    https://www.youtube.com/watch?v=ht1vqcXaqPM
+
+GNS3 Talks: How to import Docker containers into GNS3: your own or others available on Docker Hub.
+    https://www.youtube.com/watch?v=06wQQN1eXcs
+
+GNS3 VM integration using VMware Workstation Player and the GNS3 GUI. Free virtualization (Part 1)
+    https://www.youtube.com/watch?v=_EblCywJqBs
+
+GNS3 VT-x Issues: Troubleshooting and fixing Intel VT-x Issues with the GNS3 VM
+    https://www.youtube.com/watch?v=4FXRyjkM-IY
+
+GNS3 Talks: Building insane (large scale) GNS3 networks (Part 1). What do you want to see?
+    https://www.youtube.com/watch?v=Q7EHAzecMos
+
+GNS3 server configuration file
+    https://docs.gns3.com/1f6uXq05vukccKdMCHhdki5MXFhV8vcwuGwiRvXMQvM0/
+
+GNS3 Setup wizard with the GNS3 VM
+    https://docs.gns3.com/1wdfvS-OlFfOf7HWZoSXMbG58C4pMSy7vKJFiKKVResc/
+
+GNS3 Security
+    https://docs.gns3.com/1ON9JBXSeR7Nt2-Qum2o3ZX0GU86BZwlmNSUgvmqNWGY/index.html
+
+Scale GNS3
+    https://docs.gns3.com/1eG69mVsKDzA4ExMAIiWuDUCqffQpyDbyQth-M03qco8/index.html
+
+Install GNS3 on a remote server
+    https://docs.gns3.com/1c2Iyiczy6efnv-TS_4Hc7p11gn03-ytz9ukgwFfckDk/index.html
+
+One GNS3 server, multiple clients
+    https://docs.gns3.com/1K_OVfincey0cUw6CP4dWVgs_pBXMdIJ6gdFGjNy8EZQ/index.html
+
+Settings profiles
+    https://docs.gns3.com/1nCRIQ3AfdPbiYeL8RSC28Y_skgRJOfxPlz1MCeX94U4/index.html
+
+Configure GNS3 to use an additional remote server
+    https://docs.gns3.com/1xU3oU5dMljU3-wkGPy5-GM4EBlwjrQrlAEEKBotAEmg/index.html
+    https://docs.gns3.com/1xU3oU5dMljU3-wkGPy5-GM4EBlwjrQrlAEEKBotAEmg/a76d66e9ea31caa6753d54fd322267e8.jpg
+
+Docker support in GNS3
+    https://docs.gns3.com/1KGkv1Vm5EgeDusk1qS1svacpuQ1ZUQSVK3XqJ01WKGc/
+
+Youtube: gns3 cluster
+    https://www.youtube.com/results?search_query=gns3+cluster&pbjreload=10
+
+Multiuser GNS3 server
+    https://gns3.com/discussions/i-implemented-multiuser-gns3-s-2
+    http://forum.gns3.net/topic314.html
+    https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
+
+GNS3 Talks: Use the NAT node to connect GNS3 to the Internet easily!
+    https://www.youtube.com/watch?v=2zeoC2Q4mW0
+
+GNS3 Multiple Servers and Single GUI: Scale your GNS3 networks
+    Part 1
+        https://www.youtube.com/watch?v=NsnVpN2WIWk
+    Part 2
+        https://www.youtube.com/watch?v=Anc7ckVO_kI

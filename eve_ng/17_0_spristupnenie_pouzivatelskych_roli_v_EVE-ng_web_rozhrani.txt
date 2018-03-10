@@ -1,0 +1,238 @@
+Z odchytenej komunikácie pomocou nástroja Wireshark pri vytváraní používateľa z EVE-ng web rozhrania sa mi podarilo zachytiť JSON objekt, v ktorom boli uvedené používateľské role pre EVE-ng web používateľov. Web stránka ešte nebola zabezpečená pomocou HTTPS, preto bola odchytená komunikácia dostupná v nezašifrovanom texte.
+
+  ...
+  String value: Successfully listed user roles (60041)
+  ...
+
+Uvedená správa má identifikačné číslo "60041". Preto som začal hľadať výskyty tohto čísla v adresári s webovou stránkou EVE-ng.
+
+  grep -rnw '/opt/unetlab/html/' -e '60041' | less
+
+Uvedený príkaz vypíše zoznam súborov, ktoré obsahujú reťazec "60041". Výstup z uvedeného príkazu ma nasmeroval na viacero súborov. Pre mňa bol najzaujímavejší súbor "/opt/unetlab/html/api.php".
+
+Otvoril som si tento súbor a nechal som si vyhľadať číslo spomenutej správy. V celom súbore "api.php" sa vyskytovalo toto číslo iba raz.
+
+  ...
+  $output['code'] = 200;
+  $output['status'] = 'success';
+  $output['message'] = $GLOBALS['messages']['60041'];
+  $output['data'] = listRoles();
+  ...
+
+Tento výpis ma nasmeroval na funkciu s názvom "listRoles()", ktorá pravdepodobne má za úlohu, získať zoznam používateľských rolí. Preto som začal znova hľadať súbory v EVE-ng web adresári, ktoré obsahujú názov tejto funkcie.
+
+  grep -rnw '/opt/unetlab/html/' -e 'listRoles'
+
+Výstup z uvedeného príkazu ma nasmeroval na súbory "/opt/unetlab/html/api.php" a "/opt/unetlab/html/includes/functions.php". Keďže súbor "api.php" som už preskúmal, otvoril som si zatiaľ nepreskúmaný súbor "functions.php". V ňom som začal hľadať reťazec "listRoles". Opäť sa tento reťazec vyskytoval v súbore "functions.php" iba raz.
+
+  ...
+  function listRoles() {
+          $results = Array();
+          $results['admin'] = 'Administrator';
+          //$results['editor'] = 'Editor';
+          //$results['user'] = 'User';
+          return $results;
+  }
+  ...
+
+Ako je zrejmé z vyššie uvedeného výpisu, dostupná je iba rola administrátora. Zvyšné role sú zakomentované, čo ich robí neprístupnými z web rohrania. Po ich odkomentovaní uložíme súbor "functions.php" a odhlásime sa z EVE-ng web rozhrania. Po opätovnom prihláseni skúsime pridať nového používateľa ako "User", čo je bežný používateľ. Po jeho pridaní sa však jeho rola zmenila na "admin".
+Znova som teda začal odchytávať komunikáciu pri vytváraní web používateľa s rolou "user" pomocou nástroja Wireshark. Hľadal som správu, ktorá obsahovala zoznam používateľov.
+
+  ...
+  String value: Successfully listed users (60040)
+  ...
+
+Znova som si nechal vyhľadať súbory v webovom adresári, ktoré obsahovali kód uvedenej správy t.j. reťazec "60040".
+
+  grep -rnw '/opt/unetlab/html/' -e '60040' | less
+
+To ma nasmerovalo na viacero súborov. Pre mňa bol najzaujímavejší súbor "/opt/unetlab/html/includes/api_uusers.php". V tomto súbore sa kód zachytenej správy vyskytoval dva krát. Zaujímavejší bol pre mňa druhý výskyt. Ten sa nachádzal vo funkcii "apiGetUUser". Táto funkcia získavala z MySQL databázy informácie o jednom konkrétnom web použvateľov v EVE-ng. Na získavanie používala príkaz "SELECT".
+
+  $query = 'SELECT users.username AS username, email, users.expiration AS expiration, name, session, "admin" as role , ip, pods.id AS pod, pods.expiration AS pexpiration FROM users LEFT JOIN pods ON users.username = pods.username WHERE users.username = :username;';
+
+Preto skontroloval obsah MySQL databázy "eve_ng_db" na EVE-ng serveri. V nej sú uložené informácie o web používateľoch. Vypísal som si zoznam všetkých používateľov s vybranými stĺpcami príkazom
+
+  SELECT username,password,role,folder FROM eve_ng_db.users;
+
+Ale po prihlásení sa do MySQL databázy sa nový používateľ uložil správne - pod rolou "user".
+Znova som sa pozrel na "SELECT", ktorý bol použítý v funkcii "apiGetUUser". Zistil som, že použitý "SELECT" mal napevno zadanú rolu "admin". Preto sa všetci web používatelia zobrazovali ako administrátori vo web rozhraní EVE-ng. Príkaz "SELECT" som upravil tak, aby získaval skutočnú rolu web používateľa, a neprepisoval ju na "admin".
+
+  $query = 'SELECT users.username AS username, email, users.expiration AS expiration, name, session, role, ip, pods.id AS pod, pods.expiration AS pexpiration FROM users LEFT JOIN pods ON users.username = pods.username WHERE users.username = :username;';
+
+Uložíme súbor "api_uusers.php" a odhlásime sa z EVE-ng web rozhrania. Po opätovnom prihláseni skúsime najprv zobraziť web používateľov. Ale aj napriek tejto zmene boli všetci používatelia administrátori. Po kliknutí na tlačidlo "Edit" pre nového používateľa sa ale zobrazila správna rola "User".
+
+Znova som začal odchytávať komunikáciu, ale tentokrát pri prihlasovaní nového používateľa. správa o načítaní používateľa po prihlásení, lebo aj vtedy sa prihlasuje pod rolou administrátora
+
+  ...
+  String value: User has been loaded (90002)
+  ...
+
+
+Vyhľadal som všetky súbory, ktoré obsahovali kód správy "90002".
+
+  grep -rnw '/opt/unetlab/html/' -e '90002' | less
+
+Najzaujímavejší bol súbor "/opt/unetlab/html/api.php", konkrétne nižšie uvedená funkcia.
+
+  $app -> get('/api/auth', function() use ($app, $db) {
+          list($user, $tenant, $output) = apiAuthorization($db, $app -> getCookie('unetlab_session'));
+          if ($user === False) {
+                  // Set 401 not 412 for this page only -> used to refresh after a logout
+                  $output['code'] = 401;
+                  $app -> response -> setStatus($output['code']);
+                  $app -> response -> setBody(json_encode($output));
+                  return;
+          }
+
+          if (checkFolder(BASE_LAB.$user['folder']) !== 0) {
+                  // User has an invalid last viewed folder
+                  $user['folder'] = '/';
+          }
+
+          $output['code'] = 200;
+          $output['status'] = 'success';
+          $output['message'] = $GLOBALS['messages']['90002'];
+          $output['data'] = $user;
+
+          $app -> response -> setStatus($output['code']);
+          $app -> response -> setBody(json_encode($output));
+  });
+
+Keďže vo vyššie uvedenej funkcii sa nikde explicitne nenastavuje typ role, rozhodol som sa ďalej preskúmať funkcie "list" a "apiAuthorization" .
+
+  grep -rnw '/opt/unetlab/html/' -e 'list(' | less
+a
+  grep -rnw '/opt/unetlab/html/' -e 'apiAuthorization(' | less
+
+Pri hľadaní funkcie "apiAuthorization" ma výstup príkazu "grep" nasmeroval na súbor "/opt/unetlab/html/includes/api_authentication.php". Otvoril som ho a vyhľadal názov spomenutej funkcie.
+
+
+function apiAuthorization($db, $cookie) {
+        $output = Array();
+        $user = getUserByCookie($db, $cookie);  // This will check session/web/pod expiration too
+
+        if (empty($user)) {
+                // Used not logged in
+                $output['code'] = 412;
+                $output['status'] = 'unauthorized';
+                $output['message'] = $GLOBALS['messages']['90001'];
+                return Array(False, False, $output);
+        } else {
+                // User logged in
+                $rc = updateUserCookie($db, $user['username'], $cookie);
+                if ($rc !== 0) {
+                        // Cannot update user cookie
+                        $output['code'] = 500;
+                        $output['status'] = 'error';
+                        $output['message'] = $GLOBALS['messages'][$rc];
+                        return Array(False, False, $output);
+                }
+        }
+
+        return Array($user, $user['tenant'], False);
+}
+
+Opäť nikde v uvedenej funkcii nie je zrejmé, kde sa rola používateľovi nastavuje. Hľadal som teda ďalej súbory, ktoré obsahovali názvy funkcii "getUserByCookie" a "updateUserCookie".
+
+    grep -rnw '/opt/unetlab/html/' -e 'getUserByCookie(' | less
+a
+    grep -rnw '/opt/unetlab/html/' -e 'updateUserCookie(' | less
+
+
+Pri hľadaní funkcie "getUserByCookie" ma výstup príkazu "grep" nasmeroval na súbor "/opt/unetlab/html/includes/functions.php", presnejšie na funkciu "apiAuthorization".
+
+  ...
+  function getUserByCookie($db, $cookie) {
+  ...
+                  if (isset($result['username'])) {
+                          return Array(
+                                  'email' => $result['email'],
+                                  'folder' => $result['folder'],
+                                  'lab' => $result['lab'],
+                                  'lang' => 'en', // TODO: must deal with multiple lang
+                                  'name' => $result['name'],
+                                  //'role' => $result['role'],
+                                  'role' => "admin",
+                                  'tenant' => $result['pod'],
+                                  'html5' => $result['html5'],
+                                  'username' => $result['username
+
+Z výpisu je zriejmé, že až v tejto funkcii sa nastavuje rola danému používateľovi. Tá je však napevno nastavená na "admin", namiesto toho, aby sa načítala z databázy. Preto odkomentujeme riadok
+  " 'role' => $result['role'], "
+a zakomentujeme riadok 
+  " 'role' => "admin", ".
+
+Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime.
+Spustil som odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng pod ako používateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_ADRESA_SERVERA>/api/users". Chyba bude pravdepodobne v UNetLab API.
+
+
+
+
+Hľadáme zradu...
+
+  grep -rnw '/opt/unetlab/html/' -e 'User management'
+
+Zaujímavé súbory
+
+  "/opt/unetlab/html/themes/adminLTE/unl_data/pages/usermgmt.html"
+
+Súbor "usermgmt.html" ma naviedol na kľúčové slovo "userdata"
+
+  grep -rnw '/opt/unetlab/html/' -e 'userdata'
+
+To ma naviedlo na súbor
+
+  "/opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/usermgmtCtrl.js"
+
+Tento súbor ma naviedol na API, ktoré sprostredkúva zoznam používateľov t.j. "api/users/"
+
+  grep -rnw '/opt/unetlab/html/' -e 'api/users/'
+
+To ma naviedlo na súbor
+
+  "/opt/unetlab/html/api.php"
+
+Súbor "api.php" obsahoval funkciu na získavanie informácii o používateľoch.
+
+  $app -> get('/api/users/(:uuser)', function($uuser = False) use ($app, $db) {
+  ...
+          if (empty($uuser)) {
+                  $output = apiGetUUsers($db);
+          } else {
+                  $output = apiGetUUser($db, $uuser);
+          }
+  ...
+
+Rozhodol som sa preskúmať funkcie
+
+  grep -rnw '/opt/unetlab/html/' -e 'apiGetUUsers'
+a
+  grep -rnw '/opt/unetlab/html/' -e 'apiGetUUser'
+
+Keďže funkciu "apiGetUUser" som už upravoval, rozhodol som sa vyhľadať súbory, v ktorých sa vyskytuje funkcia "apiGetUUsers". Jej implementácia sa nachádzala v súbore "/opt/unetlab/html/includes/api_uusers.php".
+
+  function apiGetUUsers($db) {
+  ...
+          $query = 'SELECT users.username AS username, email, users.expiration AS expiration, folder, name, session, "admin" as role, ip, pods.id AS pod, pods.expiration AS pexpiration, pods.lab_id AS lab FROM users LEFT JOIN pods ON users.username = pods.username ORDER BY users.username ASC;';
+          ...
+                  while ($row = $statement -> fetch(PDO::FETCH_ASSOC)) {
+                          $data[$row['username']] = Array();
+                          $data[$row['username']]['username'] = $row['username'];
+                          $data[$row['username']]['email'] = $row['email'];
+                          $data[$row['username']]['expiration'] = $row['expiration'];
+                          $data[$row['username']]['name'] = $row['name'];
+                          $data[$row['username']]['session'] = $row['session'];
+                          $data[$row['username']]['role'] = $row['role'];
+                          $data[$row['username']]['ip'] = $row['ip'];
+                          $data[$row['username']]['folder'] = $row['folder'];
+                          $data[$row['username']]['lab'] = $row['lab'];
+  ...
+
+NAHRADIT " "admin" as role " IBA NAZVOM STLPCA S ROLAMI "role"!!!!
+
+
+Odporúčam odchytenú prevádzku v pcap súboroch filtrovať podľa pravidla
+  'http contains "application"'
+alebo
+  'http contains "json"'.
+To odstráni šum a zanechá iba správy vymieňané medzi klientom a serverom prostredníctvom UNetLab API.
