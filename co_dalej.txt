@@ -13,6 +13,7 @@ Ulohy:
 
 -zistit, ako pridat role editor a user do EVE-ng
   -následne pridať upravené súbory do zálohovacieho skriptu
+    -> NAHRADIT " "admin" as role " IBA NAZVOM STLPCA S ROLAMI "role"!!!! (vid 17_0 txt)
 
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
