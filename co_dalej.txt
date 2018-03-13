@@ -3,7 +3,7 @@ Tipy:
 -V GNS3 nepripajame koncove zariadenia priamo k oblaciku, ale oblacik prepojime s Ethernet prepinacom. Vsetky dalsie zariadenia pripajame k tomuto prepinacu.
 
 Zazitky:
--20.12. o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
+-20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
 -Navvyse z prikazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplyva, ze na server utocia z Ciny
 
 
@@ -11,67 +11,41 @@ Zazitky:
 
 Ulohy:
 
--upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
- zariadenia
-  -upravit pocet CPU a RAM
-
--odkazat sa v sumarnom zozname zariadeni na subor 
-  "profiling_and_benchmarking_device_list.txt"
- pre zainteresovane zariadenia
+-Popisat testovanie pouzivatelskych uctov Editor a User
 
 -obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
  a potvrdenie nameranych udajov
   -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
+ a dokaz, ze vytazenie operacnej pamate je nezavisle od platformy
+    (fyzicky vs virtualny stroj (vs lxc?))
+ -> ALE JE TO NUTNE? - ukazat benchmarky vMX 17 (samostatne aj vcp+vfp) a CSR
 
+-popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
+ v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
 
+-vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
+ "wireshark_capture")
+  -> zabezpecenie adresara "~/.ssh" kazdeho pouzivatela, aby nedoslo k uniku 
+     privatnych klucov
+  -nastavit umask v subore /etc/login.defs zo 022 na 027
+   -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
+      pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
+        => domovske adresare budu citatelne pre vlastnikov domovskych 
+            adresarov, ale nie pre niekoho ineho
 
--pozret sa v telefone na obrazok tabule od veduceho
-  -predmety
-  -zariadenia na ne
-
--cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
-  -zoznam features je uz stiahnuty
--ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
--pozriet sa na
- "/materialy_na_predmety/CCNP_Switching_problematicke_technologie.txt"
- 
- -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
- podporovane ani v IOL routri, ani v IOL switchi
-
-
-
-
--po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
- v topologii
-
-  -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
-   a odchytit ich premavku (z root uctu) - IDE :D
-
-  -potom zmenit toto v /bin/eve-ng-integration
-
-      if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-   na toto (pridame "sudo" pred tcpdump => aj uzivatel wireshark_capture bude v 
-   sudo skupine, ale bude moct vykonavat VYLUCNE PRIKAZ TCPDUMP AKO SUDO!!!)
-
-    if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} sudo tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-
-  -mozno pridat pouzivatela "andrej" do pcap skupiny a vyskusat integraciu
-   bez "sudo" prikazu pri "tcpdump"
-  -potom vytvorit pouzivatela "wireshark_capture", 
-   priradit pouzivatela "pcap" do skupiny wireshark a 
-   restartovat server
-  -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
-   ci maju konektivitu (ping)
-  -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
+-problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
    FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
    nedokazali zariadenia preposielat spravy cez rozhrania
+    -> tato hypoteza sa ukazala ako NEPRAVDIVA!, kedze zariadenia sa medzi
+        sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
+        -> ZDOKUMENTOVAT!
 
+-opravit bug: vypnut hlasenie o nizkom rozliseni obrazovky v otvorenej 
+ topologii
+  ->"Display too small This device is not large enough, you need 992px width at least."
+
+-opravit bug: email a meno je sticky
+  -da sa nastavit raz, ale neda sa vymazat, iba zmenit na neprazdny retazec
 
 
 
@@ -84,37 +58,51 @@ Ulohy:
 
 
 
--do skriptu na upravu sablon zmenit zariadeniam pocet CPU
-  -obenchmarkovanym QEMU zariadeniam
--skor ci neskor budem musiet aj tak automatizovat generovanie
-benchmarkingovych a profilingovych grafov (zrejme pythonom)
+-vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
+ CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
 
--urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
-  -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
-    (fyzicky vs virtualny stroj (vs lxc?))
+ -PRE CHALANOV
+  -vytvorit dotaznik na technologie vyucovane na predmetoch PS1, PS2, CCNP
+ Routing a CCNP Switching
+  -Urobit sumarny tabulkovy dokument s podporovanymi technologiami jednotlivych
+   zariadeni a vyucovanymi technologiami na predmety
 
--benchmarking and profiling vybraych EVE-ng zariadeni
-  -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
-    "profiling_sirena_sablona_nova-dstat_custom.ods"
-  -obenchmarkovat ich vytvorenym skriptom
-  -vlozit csv do calc dokumentu
-    -podla potreby upravit vstupne data:
-      -odstranit riadky, v ktorych su pod mnozstvom spotrebovanej operacnej pamate uvodne nuly
-  -vyexportovat grafy "Celkoveho vytazenia CPU" a "Vyuzitia operacnej pamate" do png obrazkov
-  IBA pre Cisco, Juniper, Linux a Windows
-  -ulozit cely dokument do adresara zariadenia (Save As...)
+    -1. harok
+      -nazov harku: Podporované technológie pre zariadenia
+      -1. riadok - skumane zariadenia
+      -1. stlpec - vyzadovane technologie
+    -2. az n-ty harok
+      -nazov harku: <Názov_Predmetu>
+      -1. riadok - skumane zariadenia
+      -1. stlpec - vyzadovane technologi
 
--obenchmarkovat vmx 15
-  -jedno zariadenie (vmx)
-  -kompozit (vcp+vfp) - osobitne aj dohromady
+-pozret sa v telefone na obrazok tabule od veduceho
+  -predmety
+  -zariadenia na ne
+
+-pozriet si laby od veduceho
+
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty
+-ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
+-pozriet sa na
+  "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
+ a
+  "/materialy_na_predmety/Cisco_problematicke_technologie.ods"
+ 
+ -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
+ podporovane ani v IOL routri, ani v IOL switchi
+
+
+
+
+
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
 
 
 
 
-
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
@@ -124,28 +112,9 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
     -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
 
 
--skopirovat vsetky skripty v HOME zo sireny do git repa /eve-ng/skripty
-  + dat ich do adresara ./eve-ng/skripty, ale ponechat nazov, ako na gite,
-  nie ako su na vzdialenom serveri (aby bolo jasne kam patria)
-
-
-
-
-
--zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
--ziskat materialy na ccna security (640-554)
-  -postahovat z torrentov a dalsich zdrojov na notase
-  -vypytat si ich od veduceho
-
-
-
-
-
-
-
 
 Diplomka
-  -?
+  -pisat spisovne do navodov
 
 
 
@@ -161,6 +130,11 @@ Diplomka
 
 
 Co dalej?
+-pridat feature do EVE-ng - odchytavanie seriovych liniek cez wireshark
+  -pouzit grep na klucove slovo "Capture" v kontextovej ponuke uzla
+      grep -rnw '/opt/unetlab/html/' -e 'Export CFG' | less -> /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
+      grep -rnw '/opt/unetlab/html/' -e 'fa-search' | less -> 
+
 -LACP Nexus 9000v - IOSv Bug fix
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
 -Zabezpecit EVE-ng web server lepsie

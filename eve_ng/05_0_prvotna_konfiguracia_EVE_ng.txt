@@ -402,24 +402,46 @@ Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
 -Pokračujeme
 
- -obnovením súborov zo záložného servera, ktoré je opísané v súbore
+  -obnovením súborov zo záložného servera, ktoré je opísané v súbore
+
     "migracia_zalohovanie_obnovenie_eve_ng.txt"
+
   v časti
+
     "POSTUP OBNOVY"
 
- -vygenerovaním Cisco IOL/IOU licencie, ktoré je opísané v súbore
-  "vytvorenie_cisco_iou_iol_licencie.txt"
 
- -upravením šablón pre zariadenia pomocou skriptu, ktoré je opísané v súbore
-  "TODO - ?"
+  -vygenerovaním Cisco IOL/IOU licencie, ktoré je opísané v súbore
 
- -zabezpečením servera, ktoré je opísané v súbore 
-  "zabezpecenie_servera.txt"
-
- -Nakoniec vykonáme finálnu úpravu súborov a adresárov, ktorá je opísaná nižšie.
+    "vytvorenie_cisco_iou_iol_licencie.txt"
 
 
+  -upravením šablón pre zariadenia spustením skriptu
 
+    sudo ./10_1_update_eve_ng_templates.sh
+
+  Skript sa nachádza v adresári "eve_ng/skripty"
+
+
+  -zabezpečením servera, ktoré je opísané v súbore 
+
+    "zabezpecenie_servera.txt"
+
+
+  -inštaláciou monitorovacieho nástroja "netdata", ktorý je opísaný v súbore
+
+    "monitorovanie_servera_netdata.txt"
+
+  v koreňovom adresári projektu
+
+
+  -nasadením integračného balíčka pre EVE-ng na klientské zariadenia,
+  ktoré je opísané v súbore 
+
+    "eve-ng_integracia_s_web_prehliadacmi.txt"
+
+
+  -Nakoniec vykonáme finálnu úpravu súborov a adresárov, ktorá je opísaná nižšie.
 
 *************
 FINÁLNA ÚPRAVA DOKUMENTOV

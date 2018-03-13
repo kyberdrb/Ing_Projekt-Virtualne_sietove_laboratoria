@@ -37,6 +37,7 @@ PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
   rdp     -> xrdpviewer/vinagre
   vnc     -> vinagre
 
+
 *************
 ÚPRAVA OTVÁRANÝCH APLIKÁCII
 
@@ -45,7 +46,8 @@ PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
 
 
 *************
-SSH TUNELY
+ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM
+
 
 Zatial sa do SSH tunelov presmerovavaju protokoly VNC a telnet.
 
@@ -77,34 +79,84 @@ pripojenie vytvori skor ako SSH port-forwarding.
 
 
 *************
-WIRESHARK ODCHYTAVANIE
+ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA
 
 Predvolene je na odchytavanie pouzivany root ucet na EVE-ng serveri.
 Bezpecnejsie je, ked vytvorime noveho standardneho pouzivatela, ktory bude mat
 opravnenie odchytavat prevadzku na rozhraniach.
-Pouzivatel bude patrit, kvoli bezpecnosti, iba do 2 pouzivatelskych skupin:
-  -users
-  -wireshark
-Pre pohodlnejsie a bezpecnejsie pouzivanie je autentifikacia medzi odchytavacim
-uctom na vzdialenom serveri a klientom (pouzivatelskym pocitacom) zabezpecena
-pomocou SSH klucov. Tak odpada nutnost zadavat heslo pri kazdom odchytavani.
+
+
+
+
+
+-zmenit root pouzivatela na bezneho (andrej) a nastavit opravnenia
+
+    sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
+   
+   a vyskusat odchytavanie
+
+   navod na "http://daydreamer66.blogspot.sk/2014/06/rhel-how-can-non-root-users-can-run.html"
+   
+   FUNGUJE !!! => ZAPRACOVAT DO EVE-NG INTEGRACNEHO BALICKA
+
+  T.J.
+
+  NAJPRV
+
+    if url.scheme == 'capture':
+        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+              -l andrej {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+
+
+  POTOM vytvorit noveho pouzivatela "wireshark_capture"
+
+      if url.scheme == 'capture':
+        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+
+    
+  -ak bude fungovat aj to, VSETKO ZDOKUMENTOVAT DO SUBORU
+    "16_eve-ng_integracia_s_web_prehliadacmi.txt"
+    a upravit potrebne subory v repozitari "eve-ng-integration_kis"
+
+
+
+
+
+
+
+
+
+Používateľský účet "wireshark_capture" bude slúžiť výlučne na odchytávanie
+prevádzky. Kvôli bezpečnosti bude patriť do osobitnej skupiny a nebude mať 
+pridelené žiadne ďalšie oprávnenia.
+
+Pre pohodlnejsie a bezpecnejsie pouzivanie môže byť autentifikacia medzi 
+odchytavacim uctom na vzdialenom serveri a klientom (pouzivatelskym pocitacom)
+zabezpecena pomocou SSH klucov. Tak odpada nutnost zadavat heslo pri kazdom 
+odchytavani.
 
   Na serveri:
 
-    sudo aptitude install wireshark
-
-        Na otazku "Should non-superusers capture packets?" odpovieme "Yes".
-        
-    sudo useradd -m -g users -G wireshark -s /bin/bash wireshark_capture
+    sudo useradd wireshark_capture -m -s /bin/bash
     sudo passwd wireshark_capture
+    sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
 
-  Na hostovi:
+  Príkaz "setcap" aktivuje odchytávanie prevádzky nástrojom "tcpdump"
+  pre všetkých štandardných používateľov t.j. aj pre používateľa 
+  "wireshark_capture".
+  Je nutné vykonať spomenutý príkaz, pretože nástroj "tcpdump" môže používať
+  iba "root" alebo používatelia, ktorí sú oprávnený používať príkaz "sudo".
+
+  
+  Na klientskom počítači:
+
     ssh-copy-id wireshark_capture@<ip_adresa_servera>
 
-Nasledne restartujeme vzdialeny server, aby sa odchytavanie aktivovalo.
-V EVE-ng potom otestujeme, ci funguje odchytavanie paketov.
 
-Ak nie, vykoname na EVE-ng serveri prikaz:
+V EVE-ng topológii potom otestujeme, ci funguje odchytavanie paketov.
+
+
 
 
 Zdroje:
