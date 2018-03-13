@@ -11,8 +11,6 @@ Zazitky:
 
 Ulohy:
 
--usporiadat technologie v subore "vyucovane_technologie.ods"
-
 -Otestovat + Popisat testovanie pouzivatelskych uctov Editor a User
 
 -opravit bug: vypnut hlasenie o nizkom rozliseni obrazovky v otvorenej 
@@ -28,6 +26,10 @@ Ulohy:
 -pridat zmenene subory do zalohovacieho skriptu podla navodov:
   -17
   -18
+
+
+
+
 
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
