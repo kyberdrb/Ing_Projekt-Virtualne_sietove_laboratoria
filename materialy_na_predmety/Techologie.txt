@@ -1,0 +1,82 @@
+VLANs Access ports
+VLANs Default VLAN
+Trunk ports
+DTP, VTP (v1&v2), and 802.1Q
+Native VLAN
+STP mode (PVST+ and RPVST+)
+STP root bridge selection
+STP PortFast
+STP BPDU guard
+Cisco Discovery Protocol
+L2 protocol LLDP
+EtherChannel PAGP
+EtherChannel LACP
+inter-VLAN routing
+inter-VLAN routing Router on a stick
+inter-VLAN routing SVI
+IPv4 static routing
+IPv4 Default route
+IPv4 Network route
+IPv4 Host route
+IPv4 Floating static
+IPv6 static routing
+IPv6 Default route
+IPv6 Network route
+IPv6 Host route
+IPv6 Floating static
+single area OSPFv2
+multi-area OSPFv2
+OSPFv2 authentication
+OSPFv2 filtering
+OSPFv2 manual summarization
+OSPFv2 redistribution
+OSPFv2 stub
+OSPFv2 virtual-link
+single area and multi-area OSPFv3
+single area OSPFv3
+multi-area OSPFv3
+OSPFv3 authentication
+OSPFv3 filtering
+OSPFv3 manual summarization
+OSPFv3 redistribution
+OSPFv3 stub
+OSPFv3 virtual-link
+single area and multi-area OSPFv3
+EIGRP for IPv4 
+EIGRP authentication
+EIGRP filtering
+EIGRP manual summarization
+EIGRP redistribution
+EIGRP stub
+EIGRP for IPv6 
+EIGRP for IPv6 authentication
+EIGRP for IPv6 filtering
+EIGRP for IPv6 manual summarization
+EIGRP for IPv6 redistribution
+EIGRP for IPv6 stub
+RIPv2 for IPv4 
+RIPv2 for IPv4 authentication
+RIPv2 for IPv4 filtering
+RIPv2 for IPv4 manual summarization
+RIPv2 for IPv4 redistribution
+PPP and MLPPP on WAN interfaces using local authentication
+PPPoE client-side interfaces using local authentication
+GRE tunnel connectivity
+eBGP IPv4
+BGP
+BGP L3 VPN
+BGP mVPN
+MPLS
+IS-IS
+IGMP
+IGMP v2
+IGMP v3
+IGMP Snooping
+PIM SM
+PIM DM
+Draft Rosen
+BSR
+Manual RP
+Auto-RP
+Anycast RP
+VPLS
