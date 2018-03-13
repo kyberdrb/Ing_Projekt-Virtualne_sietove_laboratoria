@@ -80,7 +80,8 @@ Ulohy:
   -predmety
   -zariadenia na ne
 
--pozriet si laby od veduceho
+-konzultovat laby s veducim
+  -ITA domain
 
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
   -zoznam features je uz stiahnuty
