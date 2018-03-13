@@ -11,14 +11,23 @@ Zazitky:
 
 Ulohy:
 
--Popisat testovanie pouzivatelskych uctov Editor a User
+-usporiadat technologie v subore "vyucovane_technologie.ods"
 
--obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
- a potvrdenie nameranych udajov
-  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
- a dokaz, ze vytazenie operacnej pamate je nezavisle od platformy
-    (fyzicky vs virtualny stroj (vs lxc?))
- -> ALE JE TO NUTNE? - ukazat benchmarky vMX 17 (samostatne aj vcp+vfp) a CSR
+-Otestovat + Popisat testovanie pouzivatelskych uctov Editor a User
+
+-opravit bug: vypnut hlasenie o nizkom rozliseni obrazovky v otvorenej 
+ topologii
+  ->"Display too small This device is not large enough, you need 992px width at least."
+
+-opravit bug: email a meno je sticky
+  -da sa nastavit raz, ale neda sa vymazat, iba zmenit na neprazdny retazec
+
+-opravit bug:
+  -pri vymazani suboru/adresara sa nezobrazi chybove oznamenie o nedostatocnych opravneniach
+
+-pridat zmenene subory do zalohovacieho skriptu podla navodov:
+  -17
+  -18
 
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
@@ -40,13 +49,6 @@ Ulohy:
         sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
         -> ZDOKUMENTOVAT!
 
--opravit bug: vypnut hlasenie o nizkom rozliseni obrazovky v otvorenej 
- topologii
-  ->"Display too small This device is not large enough, you need 992px width at least."
-
--opravit bug: email a meno je sticky
-  -da sa nastavit raz, ale neda sa vymazat, iba zmenit na neprazdny retazec
-
 
 
 
@@ -62,8 +64,6 @@ Ulohy:
  CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
 
  -PRE CHALANOV
-  -vytvorit dotaznik na technologie vyucovane na predmetoch PS1, PS2, CCNP
- Routing a CCNP Switching
   -Urobit sumarny tabulkovy dokument s podporovanymi technologiami jednotlivych
    zariadeni a vyucovanymi technologiami na predmety
 
@@ -87,9 +87,10 @@ Ulohy:
   -zoznam features je uz stiahnuty
 -ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
 -pozriet sa na
+
   "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
  a
-  "/materialy_na_predmety/Cisco_problematicke_technologie.ods"
+  "/materialy_na_predmety/vyucovane_technologie.ods"
  
  -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
  podporovane ani v IOL routri, ani v IOL switchi
