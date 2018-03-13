@@ -163,7 +163,7 @@ a zakomentujeme riadok
   " 'role' => "admin", ".
 
 Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime.
-Spustil som odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng pod ako používateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_ADRESA_SERVERA>/api/users". Chyba bude pravdepodobne v UNetLab API.
+Spustil som odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng pod ako používateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_ADRESA_SERVERA>/api/users". Chyba bude pravdepodobne v UNetLab/EVE-ng API.
 
 
 
@@ -238,4 +238,4 @@ Odporúčam odchytenú prevádzku v pcap súboroch filtrovať podľa pravidla
 alebo
   'http contains "json"'.
 
-To odstráni šum a zanechá iba správy vymieňané medzi klientom a serverom prostredníctvom UNetLab API.
+To odstráni šum a zanechá iba správy vymieňané medzi klientom a serverom prostredníctvom UNetLab/EVE-ng API.
