@@ -1,5 +1,13 @@
 Z odchytenej komunikácie pomocou nástroja Wireshark pri vytváraní používateľa z EVE-ng web rozhrania sa mi podarilo zachytiť JSON objekt, v ktorom boli uvedené používateľské role pre EVE-ng web používateľov. Web stránka ešte nebola zabezpečená pomocou HTTPS, preto bola odchytená komunikácia dostupná v nezašifrovanom texte.
 
+Odporúčam odchytenú prevádzku v pcap súboroch filtrovať podľa pravidla
+
+  'http contains "application"'
+alebo
+  'http contains "json"'
+
+To odstráni šum a zanechá iba správy vymieňané medzi klientom a serverom prostredníctvom UNetLab/EVE-ng API.
+
   ...
   String value: Successfully listed user roles (60041)
   ...
@@ -163,20 +171,21 @@ a zakomentujeme riadok
   " 'role' => "admin", ".
 
 Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime.
-Spustil som odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng pod ako používateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_ADRESA_SERVERA>/api/users". Chyba bude pravdepodobne v UNetLab/EVE-ng API.
+
+Potom som spustil odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng ako oužívateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_ADRESA_SERVERA>/api/users". Avšak pri dotazovaní sa na konkrétneho používateľa sa jeho rola načítaná správne. Chyba bude pravdepodobne v UNetLab/EVE-ng API.
 
 
 
 
-Hľadáme zradu...
+Rozhodol som sa preskúmať stránku "User management", keďže práve na nej sa ešte vyskytovali chyby s používateľskými rolami.
 
   grep -rnw '/opt/unetlab/html/' -e 'User management'
 
-Zaujímavé súbory
+Zaujímavý bol súbor
 
   "/opt/unetlab/html/themes/adminLTE/unl_data/pages/usermgmt.html"
 
-Súbor "usermgmt.html" ma naviedol na kľúčové slovo "userdata"
+Súbor "usermgmt.html" ma naviedol na kľúčové slovo "userdata", čo bol zoznam  používateľov, ktorý sa vypisoval do tabuľky na stránke.
 
   grep -rnw '/opt/unetlab/html/' -e 'userdata'
 
@@ -184,7 +193,7 @@ To ma naviedlo na súbor
 
   "/opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/usermgmtCtrl.js"
 
-Tento súbor ma naviedol na API, ktoré sprostredkúva zoznam používateľov t.j. "api/users/"
+Tento súbor ma naviedol na API, konkrétne "api/users/", ktoré sprostredkúva zoznam používateľov pre zoznam "userdata"
 
   grep -rnw '/opt/unetlab/html/' -e 'api/users/'
 
@@ -192,7 +201,7 @@ To ma naviedlo na súbor
 
   "/opt/unetlab/html/api.php"
 
-Súbor "api.php" obsahoval funkciu na získavanie informácii o používateľoch.
+Súbor "api.php" obsahoval funkciu na získavanie informácii o používateľoch z koncového bodu "api/users/" v UNetLab/EVE-ng API.
 
   $app -> get('/api/users/(:uuser)', function($uuser = False) use ($app, $db) {
   ...
@@ -228,14 +237,26 @@ Keďže funkciu "apiGetUUser" som už upravoval, rozhodol som sa vyhľadať súb
                           $data[$row['username']]['lab'] = $row['lab'];
   ...
 
-NAHRADIT " "admin" as role " IBA NAZVOM STLPCA S ROLAMI "role"!!!!
+V riadku "$query" nahradíme časť ' "admin" as role ' iba názvom stĺpca používateľskej role v databázi t.j. "role".
+
+Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime do EVE-ng ako používateľ typu "admin". Otvoril som si zoznam používateľov v "Management" -> "User management". Teraz boli používateľské role zobrazené správne. Výpis všetkých používateľov aj konkrétneho štandardného používateľa typu "user" z UNetLab/EVE-ng API tiež obsahoval správne role. To isté potvrdzujú aj výpisy zachytených JSON objektov z nástroja Wireshark.
 
 
+TESTOVANIE POUŽÍVATEĽSKÝCH ROLÍ
 
-Odporúčam odchytenú prevádzku v pcap súboroch filtrovať podľa pravidla
+Činnosti, ktoré môžu vykonávať jednotlivé používateľské role je definované v súbore "/opt/unetlab/html/api.php", konkrétne riadkom
 
-  'http contains "application"'
-alebo
-  'http contains "json"'.
+  ...
+  if (!in_array($user['role'], Array('admin'))) {
+  ...
 
-To odstráni šum a zanechá iba správy vymieňané medzi klientom a serverom prostredníctvom UNetLab/EVE-ng API.
+resp.
+
+  ...
+  if (!in_array($user['role'], Array('admin', 'editor'))) {
+  ...
+
+Tak sa kontroluje, či používateľ nepatrí do povolenej skupiny, aby mohol vykonať želanú operáciu napr. vytvoriť používateľa, premenovať adresár, presunúť súbory do adresára a pod.
+
+TODO - Zoznam úloh ktoré môže robiť admin, editor a user:
+...

@@ -11,16 +11,14 @@ Zazitky:
 
 Ulohy:
 
+-Popisat testovanie pouzivatelskych uctov Editor a User
+
 -obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
  a potvrdenie nameranych udajov
   -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
  a dokaz, ze vytazenie operacnej pamate je nezavisle od platformy
     (fyzicky vs virtualny stroj (vs lxc?))
  -> ALE JE TO NUTNE? - ukazat benchmarky vMX 17 (samostatne aj vcp+vfp) a CSR
-
--zistit, ako pridat role editor a user do EVE-ng
-  -následne pridať upravené súbory do zálohovacieho skriptu
-    -> NAHRADIT " "admin" as role " IBA NAZVOM STLPCA S ROLAMI "role"!!!! (vid 17_0 txt)
 
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
@@ -134,7 +132,8 @@ Diplomka
 Co dalej?
 -pridat feature do EVE-ng - odchytavanie seriovych liniek cez wireshark
   -pouzit grep na klucove slovo "Capture" v kontextovej ponuke uzla
-      grep -rnw '/opt/unetlab/html/' -e 'Capture'
+      grep -rnw '/opt/unetlab/html/' -e 'Export CFG' | less -> /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
+      grep -rnw '/opt/unetlab/html/' -e 'fa-search' | less -> 
 
 -LACP Nexus 9000v - IOSv Bug fix
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
