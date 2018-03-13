@@ -11,6 +11,13 @@ Zazitky:
 
 Ulohy:
 
+-obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
+ a potvrdenie nameranych udajov
+  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
+ a dokaz, ze vytazenie operacnej pamate je nezavisle od platformy
+    (fyzicky vs virtualny stroj (vs lxc?))
+ -> ALE JE TO NUTNE? - ukazat benchmarky vMX 17 (samostatne aj vcp+vfp) a CSR
+
 -zistit, ako pridat role editor a user do EVE-ng
   -následne pridať upravené súbory do zálohovacieho skriptu
     -> NAHRADIT " "admin" as role " IBA NAZVOM STLPCA S ROLAMI "role"!!!! (vid 17_0 txt)
@@ -20,6 +27,8 @@ Ulohy:
 
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
  "wireshark_capture")
+  -> zabezpecenie adresara "~/.ssh" kazdeho pouzivatela, aby nedoslo k uniku 
+     privatnych klucov
   -nastavit umask v subore /etc/login.defs zo 022 na 027
    -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
       pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
@@ -33,6 +42,14 @@ Ulohy:
         sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
         -> ZDOKUMENTOVAT!
 
+-opravit bug: vypnut hlasenie o nizkom rozliseni obrazovky v otvorenej 
+ topologii
+  ->"Display too small This device is not large enough, you need 992px width at least."
+
+-opravit bug: email a meno je sticky
+  -da sa nastavit raz, ale neda sa vymazat, iba zmenit na neprazdny retazec
+
+
 
 
 -lepsie HTTPS zabezpecenie po uspesnej preinstalacii
@@ -42,23 +59,24 @@ Ulohy:
 
 
 
--obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
- a potvrdenie nameranych udajov
-  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
- a dokaz, ze vytazenie operacnej pamate je nezavisle od platformy
-    (fyzicky vs virtualny stroj (vs lxc?))
-
-
-
-
--vytvorit dotaznik na technologie vyucovane na predmetoch PS1, PS2, CCNP
- Routing a CCNP Switching
-
-
-
 
 -vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
  CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
+
+ -PRE CHALANOV
+  -vytvorit dotaznik na technologie vyucovane na predmetoch PS1, PS2, CCNP
+ Routing a CCNP Switching
+  -Urobit sumarny tabulkovy dokument s podporovanymi technologiami jednotlivych
+   zariadeni a vyucovanymi technologiami na predmety
+
+    -1. harok
+      -nazov harku: Podporované technológie pre zariadenia
+      -1. riadok - skumane zariadenia
+      -1. stlpec - vyzadovane technologie
+    -2. az n-ty harok
+      -nazov harku: <Názov_Predmetu>
+      -1. riadok - skumane zariadenia
+      -1. stlpec - vyzadovane technologi
 
 -pozret sa v telefone na obrazok tabule od veduceho
   -predmety
@@ -88,8 +106,6 @@ Ulohy:
 
 
 
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly
-
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
@@ -98,28 +114,9 @@ Ulohy:
     -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
 
 
--skopirovat vsetky skripty v HOME zo sireny do git repa /eve-ng/skripty
-  + dat ich do adresara ./eve-ng/skripty, ale ponechat nazov, ako na gite,
-  nie ako su na vzdialenom serveri (aby bolo jasne kam patria)
-
-
-
-
-
--zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
--ziskat materialy na ccna security (640-554)
-  -postahovat z torrentov a dalsich zdrojov na notase
-  -vypytat si ich od veduceho
-
-
-
-
-
-
-
 
 Diplomka
-  -?
+  -pisat spisovne do navodov
 
 
 
@@ -135,6 +132,10 @@ Diplomka
 
 
 Co dalej?
+-pridat feature do EVE-ng - odchytavanie seriovych liniek cez wireshark
+  -pouzit grep na klucove slovo "Capture" v kontextovej ponuke uzla
+      grep -rnw '/opt/unetlab/html/' -e 'Capture'
+
 -LACP Nexus 9000v - IOSv Bug fix
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
 -Zabezpecit EVE-ng web server lepsie

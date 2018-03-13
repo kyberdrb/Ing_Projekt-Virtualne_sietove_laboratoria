@@ -231,8 +231,11 @@ Keďže funkciu "apiGetUUser" som už upravoval, rozhodol som sa vyhľadať súb
 NAHRADIT " "admin" as role " IBA NAZVOM STLPCA S ROLAMI "role"!!!!
 
 
+
 Odporúčam odchytenú prevádzku v pcap súboroch filtrovať podľa pravidla
+
   'http contains "application"'
 alebo
   'http contains "json"'.
+
 To odstráni šum a zanechá iba správy vymieňané medzi klientom a serverom prostredníctvom UNetLab API.
