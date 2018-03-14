@@ -1,20 +1,6 @@
 E-mailová adresa a meno pre používateľov (pozor, nie prihlasovacie meno) sa djú nastaviť a neskôr aj zmeniť na inú hodnotu, ale nedajú sa odstrániť t.j. nastaviť na prázdny reťazec.
 
-
-
-
-
-
-UPRAVIT TEXT NIZSIE!!!
-
-Wireshark->odchyt->upravil som nejakeho pouzivatela->pozrel som sa na odchytenu komunikáciu z nástroja Wireshark->Našiel som správu "60042"
-
-UPRAVIT TEXT VYSSIE!!!
-
-
-
-
-
+Spustil som odchytávanie prevádzky nástrojom Wireshark. Potom som sa prihlásil do EVE-ng ako administrátor a upravil som emailovú adresu používateľa. Zastavil som odchytávanie a analyzoval som odchytenú komunikáciu. Zistil som, že po úprave používateľa server odpovie správou s kódom "60042" - "User saved".
 
 Preto som začal vyhľadávať súbory obsahujúce kód tejto správy.
 
@@ -37,12 +23,4 @@ Problém bol v kontrole vstupov z webového formulára, ktoré boli príliš str
     
 Následne som odstránil časť "&& !empty($p['nazov_atributu'])". Tak sa umožnila úprava používateľských atribútov na prázdny vstup z webového formulára. Rozhodol som sa, že má zmysel povoliť prázdne atribúty pre meno používateľa "name" (nie "username") a e-mailovú adresu.
 
-
-
-
-
-UPRAVIT TEXT NIZSIE
-
-urobit screenshot databazy pred zmenou mailu a mena konkretneho pouzivatela a po zmene tychto atributov + po zmene atributu dat screen z "User management" web rohrania.
-
-UPRAVIT TEXT VYSSIE
+Pred každou zmenou som vykonal snímky z výpisu používateľov v EVE-ng webovom rozhraní, MySQL databázy a odchytenej komunikácie z nástroja Wireshark v danom momente. Snímky som vykonával pred zmenou atribútu (emailu) vybraného používateľa, po zmene tohto atribútu a po odstránení atribútu t.j. jeho nastavení na prázdny reťazec.
