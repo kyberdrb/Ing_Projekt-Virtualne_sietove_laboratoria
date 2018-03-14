@@ -20,7 +20,10 @@ Ulohy:
 -pridat zmenene subory do zalohovacieho skriptu podla navodov:
   -17
   -18
+  -19
 
+-vytvorit zoznam úloh, ktoré môže robiť admin, editor a user podla suboru
+  "/opt/unetlab/html/api.php"
 
 
 

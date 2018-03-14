@@ -1,0 +1,48 @@
+E-mailová adresa a meno pre používateľov (pozor, nie prihlasovacie meno) sa djú nastaviť a neskôr aj zmeniť na inú hodnotu, ale nedajú sa odstrániť t.j. nastaviť na prázdny reťazec.
+
+
+
+
+
+
+UPRAVIT TEXT NIZSIE!!!
+
+Wireshark->odchyt->upravil som nejakeho pouzivatela->pozrel som sa na odchytenu komunikáciu z nástroja Wireshark->Našiel som správu "60042"
+
+UPRAVIT TEXT VYSSIE!!!
+
+
+
+
+
+
+Preto som začal vyhľadávať súbory obsahujúce kód tejto správy.
+
+    grep -rnw '/opt/unetlab/html/' -e '60042' | less
+
+Z výstupu príkazu "grep" ma naviedol na súbor "/opt/unetlab/html/includes/api_uusers.php". Súbor "api_uusers.php" obsahoval kód správy "60042" na viacerých miestach. Konkrétne ma zaujímalo, ktorá funkcia bola zodpovedná za aktualizáciu atribútov pre používateľa. V spomenutom súbore tomu zodpovedala funkcia "apiEditUUser". Tá ziskava informácie o používateľovi z webového formulára pri úprave tohto používateľa. Následne skontroluje ich správny formát. V prípade, že informácie zadané do webového formulára sú platné, aktualizujú sa atribúty pre konkrétneho používateľa v databáze.
+
+Problém bol v kontrole vstupov z webového formulára, ktoré boli príliš striktné.
+    -> Vo funkcii "apiEditUUser" som našiel všetky výskyty podmienok v nižšie uvedenom formáte.
+    
+        ...
+        if (isset($p['name']) && !empty($p['name'])) {
+        ...
+        if (isset($p['email']) && !empty($p['email'])) {
+        ...
+                if (isset($p['name']) && !empty($p['name'])) {
+                ...
+                if (isset($p['email']) && !empty($p['email'])) {
+        ...
+    
+Následne som odstránil časť "&& !empty($p['nazov_atributu'])". Tak sa umožnila úprava používateľských atribútov na prázdny vstup z webového formulára. Rozhodol som sa, že má zmysel povoliť prázdne atribúty pre meno používateľa "name" (nie "username") a e-mailovú adresu.
+
+
+
+
+
+UPRAVIT TEXT NIZSIE
+
+urobit screenshot databazy pred zmenou mailu a mena konkretneho pouzivatela a po zmene tychto atributov + po zmene atributu dat screen z "User management" web rohrania.
+
+UPRAVIT TEXT VYSSIE
