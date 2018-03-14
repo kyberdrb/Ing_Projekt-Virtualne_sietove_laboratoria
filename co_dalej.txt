@@ -11,12 +11,6 @@ Zazitky:
 
 Ulohy:
 
--Otestovat + Popisat testovanie pouzivatelskych uctov Editor a User
-
--opravit bug: vypnut hlasenie o nizkom rozliseni obrazovky v otvorenej 
- topologii
-  ->"Display too small This device is not large enough, you need 992px width at least."
-
 -opravit bug: email a meno je sticky
   -da sa nastavit raz, ale neda sa vymazat, iba zmenit na neprazdny retazec
 
@@ -134,6 +128,9 @@ Diplomka
 
 
 Co dalej?
+-Opravit deformovany posuvnik na priblizovanie/oddalovanie topologie pri zmensovani topologie pod istu hranicu (cca 950px)
+  -Navrhy na riesenie su v subore "eve_ng-Display_too_small_BUG.txt"
+
 -pridat feature do EVE-ng - odchytavanie seriovych liniek cez wireshark
   -pouzit grep na klucove slovo "Capture" v kontextovej ponuke uzla
       grep -rnw '/opt/unetlab/html/' -e 'Export CFG' | less -> /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
