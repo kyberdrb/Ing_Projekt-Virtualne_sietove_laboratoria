@@ -9,13 +9,7 @@ Zazitky:
 
 
 
-Ulohy:
-
--opravit bug: email a meno je sticky
-  -da sa nastavit raz, ale neda sa vymazat, iba zmenit na neprazdny retazec
-
--opravit bug:
-  -pri vymazani suboru/adresara sa nezobrazi chybove oznamenie o nedostatocnych opravneniach
+Ulohy: 
 
 -pridat zmenene subory do zalohovacieho skriptu podla navodov:
   -17
@@ -24,6 +18,8 @@ Ulohy:
 
 -vytvorit zoznam úloh, ktoré môže robiť admin, editor a user podla suboru
   "/opt/unetlab/html/api.php"
+
+
 
 
 
@@ -131,6 +127,11 @@ Diplomka
 
 
 Co dalej?
+
+-opravit bug:
+  -pri vymazani suboru/adresara ako pouzivatel s rolou "user" sa nezobrazi chybove oznamenie o nedostatocnych opravneniach
+    Možné riešenie -> viď súbor "eve_ng-Nezobrazuje_sa_chybove_hlasenie_o_nedostatocnych_opravneniach_pre_BUG_UNRESOLVED.txt"
+
 -Opravit deformovany posuvnik na priblizovanie/oddalovanie topologie pri zmensovani topologie pod istu hranicu (cca 950px)
   -Navrhy na riesenie su v subore "eve_ng-Display_too_small_BUG.txt"
 

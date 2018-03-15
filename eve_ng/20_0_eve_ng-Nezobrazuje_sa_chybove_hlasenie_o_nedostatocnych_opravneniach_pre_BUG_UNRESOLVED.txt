@@ -1,0 +1,29 @@
+Prihlásil som sa do EVE-ng ako používateľ typu "user". Pokúsil sa vymazať nejakú topológiu. Preto som klikol pravým tlačidlom na ikonku koša v riadku s novým súborom topológie. V kontextovej ponuke som zvolil "Inspect Element". To mi otvorilo "Debugger console" s označeným prvkom. Zistil som, že po kliknutí na tlačidlo sa zavolá funkcia "deleteElement". Príkaz
+      
+    "grep -rnw '/opt/unetlab/html/' -e 'deleteElement'"
+
+ukázal, že sa vyskytovala v súboroch
+
+    /opt/unetlab/html/themes/adminLTE/pages_old/main_layout/main.html
+    /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/mainCtrl.js
+    /opt/unetlab/html/themes/adminLTE/unl_data/pages/constant/labView.html
+    /opt/unetlab/html/themes/adminLTE/unl_data/pages/main.html
+
+Wireshark ukázal, že pri vymazaní súboru alebo adresára server vyšle správu s kódom "60022" - "Lab has been deleted". Kód tejto správy sa podľa príkazu
+
+    "grep -rnw '/opt/unetlab/html/' -e '60022'"
+
+vyskytoval o.i. aj v súbore
+
+    /opt/unetlab/html/includes/api_labs.php
+
+Súbor "api_labs.php" obsahuje funkciu "apiDeleteLab". Lenže tá neobsahuje premennú "$user", ktorá je potrebná na získanie používateľskej role pouzívateľa. Potom som vyhľadal, v ktorých súboroch sa vyskytuje názov funkcie "apiDeleteLab".
+
+    grep -rnw '/opt/unetlab/html/' -e 'apiDeleteLab'
+
+Výstup príkazu ukazoval na súbory
+
+    /opt/unetlab/html/api.php
+    /opt/unetlab/html/includes/api_labs.php
+
+Aj keď súbor "api.php" kontroloval používateľské role pri vymazávaní súboru a adresára, správa sa napriek tomu nezobrazila, hoci napr. pri pokuse o vytvorenie novej topológie rovnaká podmienka pracovala správne a chybové oznámenie o nedostatočných právach sa objavilo.
