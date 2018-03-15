@@ -1,0 +1,21 @@
+Topológiu sa nepodarí zatvoriť, pokiaľ obsahuje spustené zariadenia. Pri zatvorení topológie so spustenými zariadeniami sa vypíše chybové hlásenie "There are running nodes, you need to power off them before closing the lab.". Preto som vyhľadal, v ktorých súboroch sa vyskytuje táto chybová správa.
+
+    grep -rnw '/opt/unetlab/html/' -e 'There are running nodes'
+    
+Výstup príkazu ukazoval na nižšie uvedené súbory.
+
+    /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
+    /opt/unetlab/html/themes/default/js/messages_en.js
+
+Keďže v súbore "messages_en.js" sa vyskytujú iba definície chybových hlásení, rozhodol som sa upravovať súbor "labCtrl.js". V súbore "/opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js" sa síce táto správa vyskytuje, ale zakomentovanie ľubovoľnej relevantnej časti kódu v metóde "closeLab" nemá vplyv na funkčnosť t.j. chybové hlásenie sa pri zatvorení topológie napriek tomu zobrazí.
+
+Preto som sa rozhodol, pozrieť sa do súboru "messages_en.js". V ňom bola chybová správa definovaná v poli "MESSAGES" ako "MESSAGES[131]". Znova som začal hľadať výskyty tohto reťazca v súboroch.
+
+    grep -rnw '/opt/unetlab/html/' -e 'MESSAGES\[131\]'
+
+Výstup príkazu ukazoval na nižšie uvedené súbory.
+
+    /opt/unetlab/html/themes/default/js/functions.js
+    /opt/unetlab/html/themes/default/js/messages_en.js
+
+Keďže súbor "messages_en.js" som už pozeral, pokračoval som súborom "functions.js". V ňom sa vyskytovala aj funkcia "closeLab". Tá obsahovala nielen chybové hlásenie, ale aj kontrolu, či v topológii sú už spustené zariadenia. Zakomentoval som riadok s podmienkou "if" a celú vetvu "else". Potom som sa odhlásil, vymazal vyrovnávaciu pamäť webového prehliadača, prihlásil sa do EVE-ng ako používateľ s rolou "admin". Potom som otvoril súbor s topológiou, pridal do nej niekoľko zariadení. Spustil som zariadenie a pokúsil sa zatvoriť topológiu. Teraz sa chybové hlásenie nezobrazilo a topológia sa úspešne zatvorila. Po znovuotvorení topológie zostali zariadenia spustené. Tiež sa dajú spustiť ďalšie zariadenia. Keď som sa ešte predtým pokúsil vyriešiť problém zakomentovaním celého "for" cyklu v riadku "$.each(values, function (node_id, node)..." v súbore "functions.js" vo funkcii "closeLab", topológia sa síce dala zatvoriť aj pri spustených zariadeniach, ale nedalo sa s nimi pracovať - zastaviť už spustené resp. spustiť ďalšie zariadenia.

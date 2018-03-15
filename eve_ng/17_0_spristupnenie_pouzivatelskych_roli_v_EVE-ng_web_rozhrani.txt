@@ -244,7 +244,7 @@ Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime do
 
 TESTOVANIE POUŽÍVATEĽSKÝCH ROLÍ
 
-Činnosti, ktoré môžu vykonávať jednotlivé používateľské role je definované v súbore "/opt/unetlab/html/api.php", konkrétne riadkom
+Činnosti, ktoré môžu vykonávať jednotlivé používateľské role je definované v súbore "/opt/unetlab/html/api.php", konkrétne riadkami
 
   ...
   if (!in_array($user['role'], Array('admin'))) {
@@ -256,7 +256,26 @@ resp.
   if (!in_array($user['role'], Array('admin', 'editor'))) {
   ...
 
-Tak sa kontroluje, či používateľ nepatrí do povolenej skupiny, aby mohol vykonať želanú operáciu napr. vytvoriť používateľa, premenovať adresár, presunúť súbory do adresára a pod.
+Vyššie uvedené podmienky kontrolujú, či je používateľ s danou rolou oprávnený vykonať požadovanú operáciu. Napr. vytvoriť používateľa, premenovať adresár, presunúť súbory do adresára a pod.
 
-TODO - Zoznam úloh ktoré môže robiť admin, editor a user:
-...
+Zoznam úloh, ktoré môže robiť používateľ s rolou "user"
+  -prehliadať súbory a adresáre
+  -prehliadať topológiu
+
+Zoznam úloh, ktoré môže robiť používateľ s rolou "editor"
+  -všetko, čo môže robit používateľ s rolou "user"
+  -spravovať súbory a adresáre - vytváranie, presúvanie, premenovanie, odstránenie
+  -upravovať prvky v topológii - pridávanie, presúvanie, premenovanie, odstránenie
+  -upravovať vybrané atribúty používateľov - meno, email
+  -exportovať/importovať súbory s topológiami
+  -zamknúť topológiu, aby bola pre používateľov typu "user" iba na čítanie
+
+Zoznam úloh, ktoré môže robiť používateľ s rolou "admin"
+  -všetko, čo môže robit používateľ s rolou "editor"
+  -zastaviť všetky zariadenia v "System -> Stop All Nodes"
+  -zobraziť informácie o konkrétnom používateľovi cez API
+  -spravovať všetkých používateľov - pridať, upraviť, odstrániť
+  -zapnúť/vypnúť UKSM v "System -> System status"
+  -zapnúť/vypnúť KSM v "System -> System status", ak je KSM dostupné
+  -zapnúť/vypnúť CPULimit v "System -> System status"
+  -aktualizovať EVE-ng z web rozhrania cez koncový bod "/api/update" v UNetLab/EVE-ng API
