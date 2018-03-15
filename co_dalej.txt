@@ -11,21 +11,23 @@ Zazitky:
 
 Ulohy: 
 
+-vytvorit zoznam úloh, ktoré môže robiť admin, editor a user podla suboru
+  "/opt/unetlab/html/api.php"
+
 -pridat zmenene subory do zalohovacieho skriptu podla navodov:
   -17
   -18
   -19
-
--vytvorit zoznam úloh, ktoré môže robiť admin, editor a user podla suboru
-  "/opt/unetlab/html/api.php"
-
-
 
 
 
 
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
+
+
+
+
 
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
  "wireshark_capture")
