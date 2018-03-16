@@ -63,7 +63,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - Cvičenia:
     - doc. Ing. Pavel Segeč, PhD.
                 
-- CCNP Routing & Switching
+- CCNP Routing & Switching - PRIMÁRNE!
   - Zariadenia
     - prepínače: Cisco
     - smerovače: Cisco
