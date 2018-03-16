@@ -27,7 +27,8 @@ Ulohy:
 
 
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
- "wireshark_capture")
+ "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
+ casti "ZABEZPECENIE SYSTEMU"
   -> zabezpecenie adresara "~/.ssh" kazdeho pouzivatela, aby nedoslo k uniku 
      privatnych klucov
   -nastavit umask v subore /etc/login.defs zo 022 na 027
