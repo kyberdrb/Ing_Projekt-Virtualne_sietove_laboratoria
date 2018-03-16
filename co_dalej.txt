@@ -68,7 +68,7 @@ Ulohy:
   -zariadenia na ne
 
 -konzultovat laby s veducim
-  -ITA domain
+  -Co je "ITA domain"?
 
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
   -zoznam features je uz stiahnuty
@@ -93,6 +93,13 @@ Ulohy:
 
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
+  -Instalacia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_01_install_lxc_lxd_container_support.txt
+  -Spristupnenie adresara z hostovskeho systemu pre LXC kontajner - uzitocne pre adresare so zariadeniami - nemusia sa kopirovat do kazdeho kontajnera, ale bude existovat jeden adresar, ktory bude pristupny vylucne na citanie (nie na zapis!) kazdemu EVE-ng LXC kontajneru
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_02_mount_host_directory_to_container.txt
+  -Aktivacia spustania KVM virtualky v LXC kontajneri - uzitocne pre QEMU zariadenia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt
+    
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
     ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
