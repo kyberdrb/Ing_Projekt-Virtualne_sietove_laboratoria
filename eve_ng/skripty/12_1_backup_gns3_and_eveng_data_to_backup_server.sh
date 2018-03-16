@@ -8,13 +8,12 @@
 
 PATH=/home/andrej:/home/andrej/bin:/home/andrej/.local/bin:/home/andrej/bin:/home/andrej/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
 
-
 ##############################################################################
 #
 # DON'T FORGET TO CHANGE THE "REMOTE_IP" variable to <IP_ADDRESS_OF_REMOTE_SERVER> 
 # and MYSQL_PASSWD to "<MYSQL_PASSWORD>"!
 #
-REMOTE_IP=<IP_ADDRESS_OF_REMOTE_SERVER>
+REMOTE_IP=<IP_ADDRESS_OF_REMOTE_SERVER> 
 MYSQL_PASSWD="<MYSQL_PASSWORD>"
 ##############################################################################
 
@@ -158,6 +157,9 @@ backup_eve_ng_specific_files () {
 
   backup /opt/unetlab/html/includes/functions.php \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html_includes/
+
+  backup /opt/unetlab/html/themes/default/index.html \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html_themes_default/
 }
 
 backup_gns3_specific_files () {
