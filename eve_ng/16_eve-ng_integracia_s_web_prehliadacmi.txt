@@ -8,32 +8,41 @@ INŠTALÁCIA
   https://www.youtube.com/watch?v=6Pvx5d6x_SA
 
 2) WINDOWS
-  -Stiahneme si instalacni balicek z
+  -Stiahneme si inštaláčný balíček z
     http://www.eve-ng.net/index.php/downloads/windows-client-side-pack
-  konkretne:
+  konkrétne z
     https://mega.nz/#!uw5AHIwT!3YiQZKBUvf8WyzjIn3B4_fSD9FUDPC-v2rhqTJ-V8z0
   alebo
     https://cloud.mail.ru/public/B58R/6mRpyWyi6
 
-  Nainstalujeme vsetky sucasti v ramci instalacie.
+  Nainštalujeme všetky súčasti v rámci inštalácie.
 
 *************
 NASTAVENIE WEB PREHLIADAČOV
 
+Integračný balíček by sa mal aktivovať okamžite aj bez reštartu prehliadača. Ak sa tak nestane, vykonáme nižšie uvedené kroky.
+
 1) Firefox
   https://github.com/kyberdrb/eve-ng-integration
-  (hladat
-  "Does not work in Firefox but works in another browser"
+  
+  v odpovediach na otázky:
+
+    "Does not work in Firefox but works in another browser"
   a
-  "Firefox says The address wasn't understood when you clicked on a node")
+    "Firefox says The address wasn't understood when you clicked on a node")
 
 2) Chrome
-  https://github.com/kyberdrb/eve-ng-integration
+  Na rovnakej adrese ako pri prehliadači Firefox, len v odpovediach na otázky:
+
+    "Does not work in Google Chrome but works in another browser"
+  a
+    "Chrome/Chromium downloads RDP files instead of opening"
 
 *************
 PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
-  telnet  -> standardna aplikacia pre terminal
-  docker  -> standardna aplikacia pre terminal
+
+  telnet  -> štandardná aplikácia pre terminál
+  docker  -> štandardná aplikácia pre terminál
   rdp     -> xrdpviewer/vinagre
   vnc     -> vinagre
 
@@ -41,25 +50,22 @@ PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
 *************
 ÚPRAVA OTVÁRANÝCH APLIKÁCII
 
-  vid cast "SSH TUNELY" pre zoznam upravovanych suborov
-  v casti "PO INSTALACII"
+  Úprave otváraných aplikácii  sa venujem v časti "ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM" v časti ""
 
 
 *************
 ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM
 
 
-Zatial sa do SSH tunelov presmerovavaju protokoly VNC a telnet.
+Integračný balíček som upravil tak, že sa do SSH tunelov presmerovavajú protokoly VNC a telnet. Táto funkcionalita je dostupná okamžite po inštalácii upraveného balíčka. Pokiaľ je už nainštalovaný predvolený integračný balíček, môžeme dodatočne upraviť potrebné súbory.
 
-Bud upravime subory pred alebo po instalacii integracnych nastrojov:
-
-PRED INSTALACIOU
-    upravene subory pred instalaciou:
+PRED INŠTALÁCIOU
+    upravene subory pred inštaláciou:
         ./MAKEFILE
         ./bin/eve-ng-integration
 
-PO INSTALACII
-    upravene subory po instalacii:
+PO INŠTALÁCII
+    upravene subory po inštalácii:
         /bin/eve-ng-integration
         /usr/share/applications/eve-ng-integration.desktop
 
@@ -166,7 +172,7 @@ Zdroje:
   https://github.com/kyberdrb/eve-ng-integration
   http://www.eve-ng.net/index.php/downloads/windows-client-side-pack
   http://forum.802101.com/solved-doesn-t-work-wireshark-t163.html
-  https://unix.stackexchange.com/questions/75902/how-to-run-xfce-terminal-with-different-commands-per-tab-and-keep-using-the-tabs
+  https://unix.stackexchange.com/questions/75902/how-to-run-xfce-terminál-with-different-commands-per-tab-and-keep-using-the-tabs
   https://gist.github.com/scy/6781836
   https://bbs.archlinux.org/viewtopic.php?pid=1474224#p1474224
   https://wiki.wireshark.org/CaptureSetup/CapturePrivileges#Other_Linux_based_systems_or_other_installation_methods
