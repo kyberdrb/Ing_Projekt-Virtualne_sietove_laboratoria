@@ -116,29 +116,15 @@ Pri hľadaní funkcie "apiAuthorization" ma výstup príkazu "grep" nasmeroval n
 
 
 function apiAuthorization($db, $cookie) {
-        $output = Array();
-        $user = getUserByCookie($db, $cookie);  // This will check session/web/pod expiration too
+        ...
+        $user = getUserByCookie($db, $cookie);
 
         if (empty($user)) {
-                // Used not logged in
-                $output['code'] = 412;
-                $output['status'] = 'unauthorized';
-                $output['message'] = $GLOBALS['messages']['90001'];
-                return Array(False, False, $output);
+                ...
         } else {
-                // User logged in
+                ...
                 $rc = updateUserCookie($db, $user['username'], $cookie);
-                if ($rc !== 0) {
-                        // Cannot update user cookie
-                        $output['code'] = 500;
-                        $output['status'] = 'error';
-                        $output['message'] = $GLOBALS['messages'][$rc];
-                        return Array(False, False, $output);
-                }
-        }
-
-        return Array($user, $user['tenant'], False);
-}
+                ...
 
 Opäť nikde v uvedenej funkcii nie je zrejmé, kde sa rola používateľovi nastavuje. Hľadal som teda ďalej súbory, ktoré obsahovali názvy funkcii "getUserByCookie" a "updateUserCookie".
 
@@ -172,7 +158,7 @@ a zakomentujeme riadok
 
 Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime.
 
-Potom som spustil odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng ako oužívateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_ADRESA_SERVERA>/api/users". Avšak pri dotazovaní sa na konkrétneho používateľa sa jeho rola načítaná správne. Chyba bude pravdepodobne v UNetLab/EVE-ng API.
+Potom som spustil odchytávanie nástrojom Wireshark a prihlásil som sa do EVE-ng ako oužívateľ typu "user" t.j. ako štandardný používateľ. Teraz už v JSON objekte je uvedená správna rola pre používateľa. Ale po zobrazení všetkých používateľov na karte "Management" -> "User management" sú stále všetci používatelia označení ako "admin". API tiež ukazuje, že bežný používateľ je "admin" a nie "user", keď zadáme adresu "<IP_adresa_servera>/api/users". Avšak pri dotazovaní sa na konkrétneho používateľa adresou "<IP_adresa_servera>/api/users/<meno_používateľa>" sa jeho rola načítaná správne. Chyba bude pravdepodobne ešte niekde v UNetLab/EVE-ng API.
 
 
 
@@ -185,7 +171,7 @@ Zaujímavý bol súbor
 
   "/opt/unetlab/html/themes/adminLTE/unl_data/pages/usermgmt.html"
 
-Súbor "usermgmt.html" ma naviedol na kľúčové slovo "userdata", čo bol zoznam  používateľov, ktorý sa vypisoval do tabuľky na stránke.
+Súbor "usermgmt.html" ma naviedol na kľúčové slovo "userdata", čo bol zoznam používateľov, ktorý sa vypisoval do tabuľky na stránke.
 
   grep -rnw '/opt/unetlab/html/' -e 'userdata'
 
@@ -237,11 +223,11 @@ Keďže funkciu "apiGetUUser" som už upravoval, rozhodol som sa vyhľadať súb
                           $data[$row['username']]['lab'] = $row['lab'];
   ...
 
-V riadku "$query" nahradíme časť ' "admin" as role ' iba názvom stĺpca používateľskej role v databázi t.j. "role".
+V riadku "$query" nahradíme časť ' "admin" as role ' reťazcom "role" t.j. iba názvom stĺpca používateľskej role v databázi.
 
 Súbor uložíme, odhlásime sa z EVE-ng web rozhrania a znova sa prihlásime do EVE-ng ako používateľ typu "admin". Otvoril som si zoznam používateľov v "Management" -> "User management". Teraz boli používateľské role zobrazené správne. Výpis všetkých používateľov aj konkrétneho štandardného používateľa typu "user" z UNetLab/EVE-ng API tiež obsahoval správne role. To isté potvrdzujú aj výpisy zachytených JSON objektov z nástroja Wireshark.
 
-
+*************
 TESTOVANIE POUŽÍVATEĽSKÝCH ROLÍ
 
 Činnosti, ktoré môžu vykonávať jednotlivé používateľské role je definované v súbore "/opt/unetlab/html/api.php", konkrétne riadkami

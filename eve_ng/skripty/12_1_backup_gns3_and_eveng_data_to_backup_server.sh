@@ -11,12 +11,14 @@ PATH=/home/andrej:/home/andrej/bin:/home/andrej/.local/bin:/home/andrej/bin:/hom
 
 ##############################################################################
 #
-# DON'T FORGET TO CHANGE THE IP_ADDRESS_OF_REMOTE_SERVER and MYSQL_PASSWORD!
+# DON'T FORGET TO CHANGE THE "REMOTE_IP" variable to <IP_ADDRESS_OF_REMOTE_SERVER> 
+# and MYSQL_PASSWD to "<MYSQL_PASSWORD>"!
 #
+REMOTE_IP=<IP_ADDRESS_OF_REMOTE_SERVER>
+MYSQL_PASSWD="<MYSQL_PASSWORD>"
 ##############################################################################
 
 REMOTE_USER=andrej
-REMOTE_IP=158.193.152.45
 REMOTE_MAIN_BACKUP_DIR=/home/$REMOTE_USER/zalohy_virtualnych_sietovych_laboratorii
 SSH_KEY_FILE=$HOME/.ssh/id_rsa
 
@@ -92,9 +94,9 @@ backup_shared_resources () {
 
 backup_eve_ng_specific_files () {
 
-  mysqldump --user='root' --password='MYSQL_PASSWORD' eve_ng_db -r $EVE_NG_DB_LOCAL_BACKUP
-  mysqldump --user='root' --password='MYSQL_PASSWORD' guacdb    -r $GUACDB_LOCAL_BACKUP
-  mysqldump --user='root' --password='MYSQL_PASSWORD' --all-databases -r $ALL_DB_LOCAL_BACKUP
+  mysqldump --user='root' --password="$MYSQL_PASSWD" eve_ng_db -r $EVE_NG_DB_LOCAL_BACKUP
+  mysqldump --user='root' --password="$MYSQL_PASSWD" guacdb    -r $GUACDB_LOCAL_BACKUP
+  mysqldump --user='root' --password="$MYSQL_PASSWD" --all-databases -r $ALL_DB_LOCAL_BACKUP
 
   backup $EVE_NG_DB_LOCAL_BACKUP \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/var_lib_mysql
@@ -148,6 +150,14 @@ backup_eve_ng_specific_files () {
   backup /opt/unetlab/wrappers/unl_wrapper \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_wrappers/
 
+  backup /opt/unetlab/html/api.php \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html/
+
+  backup /opt/unetlab/html/includes/api_uusers.php \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html_includes/
+
+  backup /opt/unetlab/html/includes/functions.php \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html_includes/
 }
 
 backup_gns3_specific_files () {
