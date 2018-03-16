@@ -1,6 +1,6 @@
 Prihlásil som sa do EVE-ng ako používateľ typu "user". Pokúsil sa vymazať nejakú topológiu. Preto som klikol pravým tlačidlom na ikonku koša v riadku s novým súborom topológie. V kontextovej ponuke som zvolil "Inspect Element". To mi otvorilo "Debugger console" s označeným prvkom. Zistil som, že po kliknutí na tlačidlo sa zavolá funkcia "deleteElement". Príkaz
       
-    "grep -rnw '/opt/unetlab/html/' -e 'deleteElement'"
+    grep -rnw '/opt/unetlab/html/' -e 'deleteElement'
 
 ukázal, že sa vyskytovala v súboroch
 
@@ -11,7 +11,7 @@ ukázal, že sa vyskytovala v súboroch
 
 Wireshark ukázal, že pri vymazaní súboru alebo adresára server vyšle správu s kódom "60022" - "Lab has been deleted". Kód tejto správy sa podľa príkazu
 
-    "grep -rnw '/opt/unetlab/html/' -e '60022'"
+    grep -rnw '/opt/unetlab/html/' -e '60022'
 
 vyskytoval o.i. aj v súbore
 

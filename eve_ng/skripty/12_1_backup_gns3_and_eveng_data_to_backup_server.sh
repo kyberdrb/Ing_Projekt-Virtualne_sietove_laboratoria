@@ -160,6 +160,9 @@ backup_eve_ng_specific_files () {
 
   backup /opt/unetlab/html/themes/default/index.html \
     $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html_themes_default/
+
+  backup /opt/unetlab/html/themes/default/js/functions.js \
+    $REMOTE_MAIN_BACKUP_DIR/eve_ng_specific/opt_unetlab_html_themes_default_js/
 }
 
 backup_gns3_specific_files () {

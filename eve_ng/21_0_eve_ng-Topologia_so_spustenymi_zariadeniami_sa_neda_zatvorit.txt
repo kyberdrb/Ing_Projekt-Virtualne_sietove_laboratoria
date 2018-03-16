@@ -18,4 +18,12 @@ Výstup príkazu ukazoval na nižšie uvedené súbory.
     /opt/unetlab/html/themes/default/js/functions.js
     /opt/unetlab/html/themes/default/js/messages_en.js
 
-Keďže súbor "messages_en.js" som už pozeral, pokračoval som súborom "functions.js". V ňom sa vyskytovala aj funkcia "closeLab". Tá obsahovala nielen chybové hlásenie, ale aj kontrolu, či v topológii sú už spustené zariadenia. Zakomentoval som riadok s podmienkou "if" a celú vetvu "else". Potom som sa odhlásil, vymazal vyrovnávaciu pamäť webového prehliadača, prihlásil sa do EVE-ng ako používateľ s rolou "admin". Potom som otvoril súbor s topológiou, pridal do nej niekoľko zariadení. Spustil som zariadenie a pokúsil sa zatvoriť topológiu. Teraz sa chybové hlásenie nezobrazilo a topológia sa úspešne zatvorila. Po znovuotvorení topológie zostali zariadenia spustené. Tiež sa dajú spustiť ďalšie zariadenia. Keď som sa ešte predtým pokúsil vyriešiť problém zakomentovaním celého "for" cyklu v riadku "$.each(values, function (node_id, node)..." v súbore "functions.js" vo funkcii "closeLab", topológia sa síce dala zatvoriť aj pri spustených zariadeniach, ale nedalo sa s nimi pracovať - zastaviť už spustené resp. spustiť ďalšie zariadenia.
+Keďže súbor "messages_en.js" som už pozeral, pokračoval som súborom "functions.js". V ňom sa vyskytovala aj funkcia "closeLab". Tá obsahovala nielen chybové hlásenie, ale aj kontrolu, či v topológii sú už spustené zariadenia. Zakomentoval som riadok s podmienkou "if" a celú vetvu "else", ako je uvedené v ukážke kódu nižšie.
+
+        //if (running_nodes == false) {
+            ...
+        //} else {
+        //    deferred.reject(MESSAGES[131]);
+        //}
+
+Potom som sa odhlásil, vymazal vyrovnávaciu pamäť webového prehliadača, prihlásil sa do EVE-ng ako používateľ s rolou "admin". Potom som otvoril súbor s topológiou, pridal do nej niekoľko zariadení. Spustil som zariadenie a pokúsil sa zatvoriť topológiu. Teraz sa chybové hlásenie nezobrazilo a topológia sa úspešne zatvorila. Po znovuotvorení topológie zostali zariadenia spustené. Tiež sa dajú spustiť ďalšie zariadenia. Keď som sa ešte predtým pokúsil vyriešiť problém zakomentovaním celého "for" cyklu v riadku "$.each(values, function (node_id, node)..." v súbore "functions.js" vo funkcii "closeLab", topológia sa síce dala zatvoriť aj pri spustených zariadeniach, ale nedalo sa s nimi pracovať - zastaviť už spustené resp. spustiť ďalšie zariadenia.

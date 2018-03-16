@@ -11,14 +11,6 @@ Zazitky:
 
 Ulohy: 
 
--pridat zmenene subory do zalohovacieho skriptu podla navodov:
-  -17
-  -18
-  -19
-
-
-
-
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
 
@@ -87,8 +79,7 @@ Ulohy:
  a
   "/materialy_na_predmety/vyucovane_technologie.ods"
  
- -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
- podporovane ani v IOL routri, ani v IOL switchi
+ -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
 
 
 
