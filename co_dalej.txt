@@ -11,6 +11,8 @@ Zazitky:
 
 Ulohy: 
 
+-prelozit všetky navody do spisovnej slovenčiny pre eventualne použitie v diplomke
+
 -popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
  v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
 
