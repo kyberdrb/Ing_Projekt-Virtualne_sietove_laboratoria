@@ -10,27 +10,13 @@ Zazitky:
 
 Ulohy: 
 
--vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
- "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
- casti "ZABEZPECENIE SYSTEMU"
-  -> zabezpecenie adresarov 
-      "~/.ssh"
-    a
-      "/etc/ssl/"
-    kazdeho pouzivatela, aby nedoslo k uniku privatnych klucov
-  -nastavit umask v subore /etc/login.defs zo 022 na 027
-   -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
-      pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
-        => domovske adresare budu citatelne pre vlastnikov domovskych 
-            adresarov, ale nie pre niekoho ineho
-
 -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
    FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
    nedokazali zariadenia preposielat spravy cez rozhrania
     -> tato hypoteza sa ukazala ako NEPRAVDIVA!, kedze zariadenia sa medzi
         sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
-        -> ZDOKUMENTOVAT do navodu s LXC kontajnerom!
     -> mozno to ale bolo tym, ze som nainstaloval Docker na EVE-ng server - neviem
+    -> VSETKO ZDOKUMENTOVAT do navodu s LXC kontajnerom!
 
 
 
@@ -115,8 +101,20 @@ Diplomka
 
 
 Co dalej?
--aktualizovať EVE-ng
 
+-vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
+ "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
+ casti "ZABEZPECENIE SYSTEMU"
+  -> zabezpecenie adresarov na xx0 (chmod)
+      "~/.ssh"
+    a
+      "/etc/ssl/"
+    kazdeho pouzivatela, aby nedoslo k uniku privatnych klucov
+  -nastavit umask v subore /etc/login.defs zo 022 na 027
+   -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
+      pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
+        => domovske adresare budu citatelne pre vlastnikov domovskych 
+            adresarov, ale nie pre niekoho ineho
 
 -lepsie zabezpecenie pre Apache
   -lepsie HTTPS
