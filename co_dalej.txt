@@ -10,6 +10,13 @@ Zazitky:
 
 Ulohy: 
 
+-pokracovat v prekladoch navodov - 06 -> modsecurity
+
+-dohodnut sa s veducim, ako pisat diplomku
+  -ci ako navod alebo z nadhladu a odkazovat sa na navody na CD
+
+-vypytat si od mareka windows a windows server a pridat ho do eve-ng
+
 -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
    FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
    nedokazali zariadenia preposielat spravy cez rozhrania
@@ -21,8 +28,6 @@ Ulohy:
 
 
 
-
-
 -vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
  CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
 
@@ -30,14 +35,11 @@ Ulohy:
   -Urobit sumarny tabulkovy dokument s podporovanymi technologiami jednotlivych
    zariadeni a vyucovanymi technologiami na predmety
 
-    -1. harok
+    -1 harok
       -nazov harku: Podporované technológie pre zariadenia
       -1. riadok - skumane zariadenia
       -1. stlpec - vyzadovane technologie
-    -2. az n-ty harok
-      -nazov harku: <Názov_Predmetu>
-      -1. riadok - skumane zariadenia
-      -1. stlpec - vyzadovane technologi
+      -vnutro buniek - predmety + poznamky
 
 -pozret sa v telefone na obrazok tabule od veduceho
   -predmety
@@ -45,6 +47,7 @@ Ulohy:
 
 -konzultovat laby s veducim
   -Co je "ITA domain"?
+  -Co je "IP SLA"?
 
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
   -zoznam features je uz stiahnuty
@@ -56,31 +59,10 @@ Ulohy:
   "/materialy_na_predmety/vyucovane_technologie.ods"
  
  -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
+    Etherswitch modul features
+    https://www.cisco.com/c/en/us/td/docs/routers/access/interfaces/software/feature/guide/eesm_sw.html#pgfId-1921769
 
 
-
-
-
-
--vypytat si od mareka windows a windows server a pridat ho do eve-ng
-
-
-
-
-
--rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
-  -Instalacia
-    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_01_install_lxc_lxd_container_support.txt
-  -Spristupnenie adresara z hostovskeho systemu pre LXC kontajner - uzitocne pre adresare so zariadeniami - nemusia sa kopirovat do kazdeho kontajnera, ale bude existovat jeden adresar, ktory bude pristupny vylucne na citanie (nie na zapis!) kazdemu EVE-ng LXC kontajneru
-    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_02_mount_host_directory_to_container.txt
-  -Aktivacia spustania KVM virtualky v LXC kontajneri - uzitocne pre QEMU zariadenia
-    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt
-    
--rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
-  -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
-    ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
-    presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
-    -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
 
 
 
@@ -102,6 +84,21 @@ Diplomka
 
 Co dalej?
 
+-rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
+  -Instalacia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_01_install_lxc_lxd_container_support.txt
+  -Spristupnenie adresara z hostovskeho systemu pre LXC kontajner - uzitocne pre adresare so zariadeniami - nemusia sa kopirovat do kazdeho kontajnera, ale bude existovat jeden adresar, ktory bude pristupny vylucne na citanie (nie na zapis!) kazdemu EVE-ng LXC kontajneru
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_02_mount_host_directory_to_container.txt
+  -Aktivacia spustania KVM virtualky v LXC kontajneri - uzitocne pre QEMU zariadenia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt
+    
+-rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
+  -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+    ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
+    presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
+    -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
+
+
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
  "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
  casti "ZABEZPECENIE SYSTEMU"
@@ -115,6 +112,8 @@ Co dalej?
       pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
         => domovske adresare budu citatelne pre vlastnikov domovskych 
             adresarov, ale nie pre niekoho ineho
+  https://serverfault.com/questions/333745/isolating-a-user
+  https://superuser.com/questions/303910/ubuntu-default-access-mode-permissions-for-users-home-dir-home-user
 
 -lepsie zabezpecenie pre Apache
   -lepsie HTTPS
