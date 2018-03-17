@@ -4,7 +4,6 @@ Tipy:
 
 Zazitky:
 -20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
--Navvyse z prikazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplyva, ze na server utocia z Ciny
 
 
 
@@ -14,8 +13,11 @@ Ulohy:
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
  "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
  casti "ZABEZPECENIE SYSTEMU"
-  -> zabezpecenie adresara "~/.ssh" kazdeho pouzivatela, aby nedoslo k uniku 
-     privatnych klucov
+  -> zabezpecenie adresarov 
+      "~/.ssh"
+    a
+      "/etc/ssl/"
+    kazdeho pouzivatela, aby nedoslo k uniku privatnych klucov
   -nastavit umask v subore /etc/login.defs zo 022 na 027
    -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
       pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)

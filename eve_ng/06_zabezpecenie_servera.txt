@@ -1,60 +1,47 @@
-************* ZABEZPECENIE SYSTEMU *************
+************* ZABEZPEČENIE SYSTEMU *************
 
-Po uvodnej instalacii a konfiguracii systemu pokracujeme zabezpecenim jeho sucasti.
+Po úvodnej inštalácii a konfigurácii systému pokračujeme zabezpečením jeho súčastí.
 
-Je vzdy bezpecnejsie prihlasovat sa ako bezny pouzivatel so sudo pravomocami, nez priamo ako root.
+Je vždy bezpečnejšie prihlasovať sa ako štandardný používateľ so "sudo" oprávneniami, než priamo ako "root" používateľ.
 
--nainstalovat sudo
+-Nainštalujeme balíček "sudo"
 
   apt-get update
   apt-get install sudo
 
--vytvorit noveho pouzivatela
+-Vytvoríme nového používateľa
 
   adduser <username>
 
--pridelit mu sudo pravomoci
+-Pridelíme mu členstvo v "sudo" skupine, aby mohol používať príkaz "sudo"
 
   sudo usermod -aG sudo <username>
-
 resp.
-
   sudo gpasswd -a sudo <username>
 
-parameter -a je dolezity: zachovava pouzivatelove uz existujuce clenstva v inych skupinach.
+Parameter "-a" v oboch príkazoch je dôležitý; zachováva používateľove už existujúce členstvá v skupinách, do ktorých už je priradený.
+
+Ak chceme, aby sa tento používateľ mohol prihlasovať na server cez SSH, musí spĺňať nasledujúce podmienky:
+  - Nesmie mať prazdne heslo
+  - [Voliteľné - Odporúčané] Vygenerujeme pre používateľa SSH kľúče (verený aj privátny)
+  - Ak je potrebné, pridáme ho do riadku "AllowUsers" v súbore "/etc/ssh/sshd_config"
+  - [Voliteľné] pridáme používateľa do skupiny "sudo"
+
+Navyše z príkazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplýva, že na server útočia počítače z Číny. Tie sa snažia prelomiť "root" heslo. Preto sa na server prihlasujeme výhradne ako "sudo" používateľ, nikdy nie ako "root"; ani lokálne, a už von koncom nie vzdialene. Stalo sa mi, že aj po vykonaní príkazu "sudo -i" vie tak zblbnut, že nepozna ani zakladne prikazy (napr "ls"): vypíše chybu "Command not found". V každom prípade treba vzdialený prístup k "root" účtu v SSH konfigurácii úplne vypnúť. To ale znefunkční funkciu odchytávania prevádzky pre zariadenia v EVE-ng topológii pre predvolený integračný balíček.
 
 *************
-Pridavanie noveho pouzivatela
--Noveho pouzivatela vytvorime prikazom:
-  adduser <meno_pouzivatela>
+FIREWALL
 
-Ak chceme, aby sa tento pouzivatel prihlasil cez SSH na server
-  -nesmie mat prazdne heslo
-  -musi mat vygenerovany SSH kluce (verejny aj privatny) prikazom 'ssh-keygen'
-  -musime ho pridat do riadku "AllowUsers" v /etc/ssh/sshd_config
-  -ak je potrebne, pridame pouzivatela do sudo skupiny
-
-*************
-Na server sa prihlasujeme vyhradne ako sudo pouzivatel, nikdy nie ako root (ani lokalne, a uz vobec nie vzdialene). Aj po "sudo -i" vie tak zblbnut, ze nepozna ani zakladne prikazy (napr "ls"): vypise chybu "Command not found". V kazdom pripade tak predideme dalsim komplikaciam.
-
-
-*************
-Mozeme nastavit heslo pre BIOS,
-ale spolieham sa na fyzicke zabezpecenie pristupu k serverovni.
-
-
-*************
-Mozeme pouzit iptables firewall na zabezpecenie servera,
-ale spolieham sa na katedrovy firewall.
+Na filtrovanie prevádzky pre server som mohol použiť o.i. nástroj "iptables" priamo na serveri alebo katedrový firewall. Nakoniec som sa rozhodol pre použitie katedrového firewall zariadenia, aby som presunul časť záťaže mimo server.
 
 
 
 
 
 
-************* ZABEZPECENIE SSH *************
+************* ZABEZPEČENIE SSH *************
 
-SSH pouzivame na vzdialenu administraciu servera.
+SSH použivame na vzdialenu administraciu servera.
 
 Zmenit nastavenia v konfiguracnom subore SSH
 
@@ -66,7 +53,7 @@ Protocol 2
 ...
 
 
-# toto je velmi striktne zabezpecenie
+# toto je velmi striktne zabezpečenie
 # zakazat root ucet znefunkcni odchytavanie s predvolenym EVE-ng integracnym
 # balickom 
 ...
@@ -102,26 +89,26 @@ TCPKeepAlive no
 
   sudo systemctl reload ssh
 
--potom odskusame prihlasenie ako root aj ako pouzivatel.
-  -Po zadani spravneho hesla pouzivatela <username> sa okamzite prihlasime.
+-potom odskusame prihlasenie ako root aj ako používateľ.
+  -Po zadani spravneho hesla používateľa <username> sa okamzite prihlasime.
   -Na server sa ale neprihlasime ako root, aj keby sme zadali spravne heslo.
 
 *************
 -aktivujeme autentifikaciu SSH klucom.
-  -ak este nemame vygenerovane na lokalnom pocitaci SSH kluce (verejny
-   a privatny) vygenerujeme ich
+  -ak este nemame vygenerovane na lokalnom pocitaci SSH kľúče (verený
+   a privátny) vygenerujeme ich
 
     ssh-keygen
 
-  -skopirujeme verejny kluc nasho pocitaca na server
+  -skopirujeme verený kluc nasho pocitaca na server
 
-    ssh-copy-id <pouzivatel>@<ip_adresa_servera>
+    ssh-copy-id <používateľ>@<ip_adresa_servera>
 
   -skusime sa prihlasit na server pomocou SSH
-    ssh <pouzivatel>@<ip_adresa_servera>
+    ssh <používateľ>@<ip_adresa_servera>
 
   -po uspesnom prihlaseni vypneme v "/etc/ssh/sshd_config" autentifikaciu
-   heslom (riadok 'PasswordAuthentication'), pretoze budeme pouzivat vylucne
+   heslom (riadok 'PasswordAuthentication'), pretože budeme použivat vylucne
    autentifikaciu SSH klucmi. Zmenime subor nasledovne:
 
   sudo vim.tiny /etc/ssh/sshd_config  
@@ -138,19 +125,19 @@ PasswordAuthentication no
 
 *************
 Zmena SSH portu
--Mozeme zmenit SSH port kvoli potencionalnym utokom na port 22 (vid 
+-Možeme zmenit SSH port kvoli potencionalnym utokom na port 22 (vid 
  riadok "Port" na zaciatku suboru). Tento krok som nevykonal.
 
 
 
 *************
-Zobrazime spravu pouzivatelovi pred prihlasenim
+Zobrazime spravu používateľovi pred prihlasenim
 
 -upravime subor:
 
   sudo vim.tiny /etc/issue.net
 
-mozeme don vlozit lubovolny text, napr.:
+možeme don vlozit lubovolny text, napr.:
 
   EVE-ng server
   Na prihlasenie je potrebny SSH kluc!
@@ -171,12 +158,12 @@ restartujeme SSH server
 
 
 *************
-Zobrazime spravu pouzivatelovi po prihlaseni (MOTD - Message Of The Day)
+Zobrazime spravu používateľovi po prihlaseni (MOTD - Message Of The Day)
 
 -Vytvorime subor (ak este nie je pritomny):
   sudo vim.tiny /etc/motd
 
-mozeme don vlozit lubovolny text, napr.:
+možeme don vlozit lubovolny text, napr.:
 
 
 ************* ************* *************
@@ -193,9 +180,9 @@ Uvidime MOTD.
 
 
 
-************* ZABEZPECENIE APACHE *************
+************* ZABEZPEČENIE WEBOVÉHO SERVERA *************
 
-EVE-ng pouziva Apache ako svoj webový server
+EVE-ng použiva Apache ako svoj webový server.
 
 -aktivacia HTTPS pre EVE-ng
 
@@ -256,7 +243,7 @@ EOF
 
     https://<ip_adresa_servera>
 
-    -nasledne pridame vynimku do prehliadaca, pretože sa používa
+    -nasledne pridáme vynimku do prehliadaca, pretože sa používa
     "selfsigned" certifikát
      
 
@@ -291,7 +278,7 @@ Teraz staci do prehliadaca zadavat iba IP adresu servera.
 -upravime subor:
   sudo vim.tiny /etc/apache2/apache2.conf
 
-  na koniec suboru pridame riadky
+  na koniec suboru pridáme riadky
 
 ServerSignature Off
 ServerTokens Prod
@@ -304,7 +291,7 @@ ServerTokens Prod
 
 *************
 5. Run Apache as separate User and Group
--toto by malo byt uz defaultne nastavene:
+-toto by malo byt už defaultne nastavene:
 Nastavuje sa to v subore
 
   /etc/apache2/apache2.conf
@@ -316,7 +303,7 @@ Ten ma pre premenne APACHE_RUN_USER a APACHE_RUN_GROUP odkazy na premenne v subo
   export APACHE_RUN_USER=www-data
   export APACHE_RUN_GROUP=www-data
 
-aby sa spustal v pouzivatelskom ucte.
+aby sa spustal v používateľskom ucte.
 
 -ulozime
 -restartujeme apache
@@ -331,7 +318,7 @@ mod_security
 -ochrana napr. proti SQL Injection
 
 Tento krok som nevykonal.
-Mohlo by to znemoznit vytvaranie pouzivatelov cez web rozhranie.
+Mohlo by to znemoznit vytvaranie používateľov cez web rozhranie.
 
 *************
 mod_evasive
@@ -354,18 +341,18 @@ Netreba zabezpečovať, pretože na serveri je prístupný iba lokálne.
 
 
 
-************* ZABEZPECENIE MYSQL [VOLITEĽNÉ] *************
+************* ZABEZPEČENIE MYSQL [VOLITEĽNÉ] *************
 
-MySQL sa pouziva na ukladanie si udajov o pouzivateloch v ramci web rozhrania.
+MySQL sa použiva na ukladanie si udajov o používateľoch v ramci web rozhrania.
 
 MySQL server nemusíme explicitne zabezpečovať, pretože na serveri je prístupný
-iba lokálne. Pokiaľ chceme pristupovať k databáze vzdialene, je nutné vytvoriť
-SSH tunel (vid "sprava_pouzivatelov.txt")
+iba lokálne. Pokiaľ chceme pristupovať k databáže vzdialene, je nutné vytvoriť
+SSH tunel (vid "sprava_používateľov.txt")
 
 NASLEDÚJUCE KROKY SÚ VOLITEĽNÉ
 
 Predvolene heslo je slabe, preto ho treba ho zmenit.
-Mozeme ho zmenit viacerymi sposobmi. Ja som pouzil prvy sposob.
+Možeme ho zmenit viacerymi sposobmi. Ja som použil prvy sposob.
 
 1) MYSQL_SECURE_INSTALLATIOM - ZMENA ROOT HESLA
 
@@ -401,14 +388,14 @@ STRONG Length >= 8, numeric, mixed case, special characters and dictionary      
 Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
 Using existing password for root.
 
-Estimated strength of the password: 25 
+Estimaťed strength of the password: 25 
 Change the password for root ? ((Press y|Y for Yes, any other key for No) : y
 
 New password: 
 
 Re-enter new password: 
 
-Estimated strength of the password: 100 
+Estimaťed strength of the password: 100 
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
 By default, a MySQL installation has an anonymous user,
 allowing anyone to log into MySQL without having to have
@@ -461,11 +448,11 @@ repsp.
 
 
 
-************* ZABEZPECENIE WEB ROZHRANIA EVE-ng *************
+************* ZABEZPEČENIE WEB ROZHRANIA EVE-ng *************
 -Až po zabezpečení webového servera zmeníme predvolené heslo
  administrátorského účtu pre prístup do webového rozhrania.
  Pokiaľ by sme toto heslo zmenili pred zabezpečením webového
- servera, heslo by bolo nezašifrované a dalo by sa jednoducho 
+ servera, heslo by bolo nežašifrované a dalo by sa jednoducho 
  odchytiť napr. nástrojom Wireshark.
 
 -Zabezpečíme 'admin' účet:
@@ -476,7 +463,7 @@ repsp.
   -klikneme na zelene tlacidlo "Edit"
   -odhlasime sa a znovu sa prihlasime ako admin s novym heslom na overenie
 
-Hesla novych pouzivatelov musia byt overene napr. pomocou stranky
+Hesla novych používateľov musia byt overene napr. pomocou stranky
   https://howsecureismypassword.net/
 
 
@@ -496,22 +483,21 @@ a
   "ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA"
 
 
-************* ZAVERECNE KROKY *************
+************* ZÁVEREČNÉ KROKY *************
 
--vymazeme historiu bash prikazov v termináli pre kazdeho pouzivatela (lokalne 
- aj cez SSH)
+Po vykonaní vyššie uvedených krokov vymažeme históriu príkazov v termináli pre každého používateľa (lokálne aj cez SSH)
  
   history -c
   history -w
 
 
 Zdroje:
--System
+-Systém
 https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
 https://www.tecmint.com/check-linux-hard-disk-bad-sectors-bad-blocks/
 
 -SSH
-https://askubuntu.com/a/2224 -> priradenie pouzivatela do sudo skupiny
+https://askubuntu.com/a/2224 -> priradenie používateľa do sudo skupiny
 https://www.cyberciti.biz/tips/openssh-deny-or-restrict-access-to-users-and-groups.html
 https://ubuntuforums.org/showthread.php?t=831372
 https://ubuntuforums.org/showthread.php?t=1914662
@@ -525,8 +511,8 @@ https://askubuntu.com/a/185049
 https://askubuntu.com/questions/184791/how-to-disable-non-ssl-connection-on-apache-2-2
 https://wiki.apache.org/httpd/RedirectSSL
 
-#tento návod som použil na vygenerovanie SSL certifikatu pre Apache
-http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve
+#Tento návod som použil na vygenerovanie SSL certifikátu pre Apache
+  http://www.eve-ng.net/index.php/documentation/howto-s/81-howto-enable-ssl-on-eve
 
 http://www.eve-ng.net/index.php/documentation/howto-s/82-howto-enable-letsencrypt-on-eve-2
 
@@ -536,6 +522,6 @@ https://dev.mysql.com/doc/refman/5.7/en/mysql-secure-installation.html
 https://www.cyberciti.biz/faq/mysql-change-root-password/
 https://stackoverflow.com/questions/11223235/mysql-root-access-from-all-hosts
 
--Zaverecne kroky
+-Záverečné kroky
 https://askubuntu.com/a/280451
 https://ubuntuforums.org/showthread.php?t=1291340&p=8104827#post8104827
