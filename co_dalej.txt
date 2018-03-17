@@ -35,12 +35,6 @@ Ulohy:
 
 
 
--lepsie HTTPS zabezpecenie po uspesnej preinstalacii
-    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
-
-
-
-
 
 
 -vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
@@ -121,6 +115,13 @@ Diplomka
 
 
 Co dalej?
+-aktualizovať EVE-ng
+
+
+-lepsie zabezpecenie pre Apache
+  -lepsie HTTPS
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+  -modsecurity, modevasive
 
 -opravit bug:
   -pri vymazani suboru/adresara ako pouzivatel s rolou "user" sa nezobrazi chybove oznamenie o nedostatocnych opravneniach
@@ -134,8 +135,6 @@ Co dalej?
 
 -LACP Nexus 9000v - IOSv Bug fix
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
--Zabezpecit EVE-ng web server lepsie
-  -modsecurity, modevasive
   
 -Preskumat labaky
   https://adamfromthefuture.blogspot.sk/2017/12/ccna-rs-prep-hero-level-rip.html
@@ -165,7 +164,7 @@ do Linuxu (GNS3)
 -urobit windows koncove zariadenie pre EVE-ng; najlepsie s virtio ovladacmi 
   -Windows 10 x86/x64
   -Windows Server 2016
-  -zrejme bude treba vytvorit novu sablonu pre windowsy, lebo na mojom notebooku
+  -zrejme bude treba vytvorit novu sablonu pre windowsy akebo upravit "unl_wreapper", lebo na mojom notebooku
   som spustil Win10 x86 s plnou virtio podporou. Vsimol som si odlisne QEMU parametre,
   akymi EVE-ng spusta Windows zariadenia, v porovnani s mojou Windows virtualkou.
   Okrem upravy sablony bude treba upravit aj "qemu_wrapper" (ale qemu wrapper je binarka) ->
@@ -192,6 +191,8 @@ do Linuxu (GNS3)
 -GNS3 support for Linux Containers (LXC & LXD) in addition to VMs...
 -Vyskusat OKS s kontajnermi Docker/LXC/LXD - mozno by to vyriesilo problemy s ntp synchronizaciou
 -rozdelenie EVE-ng do Community, Professional a Learning Centre edicie
+  POROVNANIE
+    http://www.eve-ng.net/index.php/features/compare
   -Professional a Learning Centre opravuju mnozstvo nedostatkov:
     -Podpora Docker kontajnerov
     -moznost prace viacerych ludi na jednom projekte
@@ -214,6 +215,7 @@ do Linuxu (GNS3)
     => Riesenia, pokial nevadi, ze budeme platit:
         -kupime si Pro/Learning ediciu iba raz, a na nich budeme stavat
         alebo si budeme Pro/Learning ediciu kupovat kazdy rok
+        ALEBO HACKNEME EVE-NG PRO EDÍCIU, ABY FUNGOVALA AJ BEZ LICENCIE :D
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
   http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
   https://twitter.com/EVE_NG_TEAM/status/951560394765733888
@@ -282,9 +284,11 @@ do Linuxu (GNS3)
     -/home/gns3/gns3-server/
     -/home/gns3/gns3-server/gns3server
 
-  -otestovat docker: stiahnut ubuntu docker (6MB RAM nema ani alpine)
-    http://phusion.github.io/baseimage-docker/
+  -otestovat docker v EVE-ng
     https://github.com/phusion/baseimage-docker
+    https://hub.docker.com/_/busybox/
+    https://hub.docker.com/r/socketplane/openvswitch/
+    https://hub.docker.com/_/debian/
     
   -zabezpecit gns3 vzdialeny server
     -ssh
@@ -294,7 +298,7 @@ do Linuxu (GNS3)
       https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
     
   -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm
-  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
+  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng skriptu na upravu sablon
     -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
     v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
     -vyhodnotit
