@@ -129,10 +129,8 @@ Co dalej?
 -Opravit deformovany posuvnik na priblizovanie/oddalovanie topologie pri zmensovani topologie pod istu hranicu (cca 950px)
   -Navrhy na riesenie su v subore "eve_ng-Display_too_small_BUG.txt"
 
--pridat feature do EVE-ng - odchytavanie seriovych liniek cez wireshark
-  -pouzit grep na klucove slovo "Capture" v kontextovej ponuke uzla
-      grep -rnw '/opt/unetlab/html/' -e 'Export CFG' | less -> /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
-      grep -rnw '/opt/unetlab/html/' -e 'fa-search' | less -> 
+-Este lepsi sposob izolacie odchytavacieho uctu "wireshark_capture"
+  https://unix.stackexchange.com/questions/208960/how-to-restrict-a-user-to-one-folder-and-not-allow-them-to-move-out-his-folder/209065#209065
 
 -LACP Nexus 9000v - IOSv Bug fix
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
