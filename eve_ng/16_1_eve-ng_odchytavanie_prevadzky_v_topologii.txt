@@ -8,6 +8,6 @@ Položku "<IP_adresa_EVE-ng_servera>" nahradíme IP adresou EVE-ng servera. Polo
 
     capture://<IP_adresa_EVE-ng_servera>/vunlX_Y_Z
 
-Virtuálny port je uvedený na konci URL adresy t.j. "vunlX_Y_Z", kde X, Y a Z sú čísla priradené konkrétnemu rozhraniu na zariadení. Virtuálny port následne dosadíme do vyššie uvedeného SSH príkazu. Po vykonaní SSH príkazu sa tiež otvorí nástroj Wireshark, rovnako ako pri odchytávaní s integračným balíčkom.
+Virtuálny port je uvedený na konci URL adresy t.j. "vunlX_Y_Z", kde X, Y a Z sú čísla priradené konkrétnemu rozhraniu na zariadení napr. "vunl0_9_16". Virtuálny port následne dosadíme do vyššie uvedeného SSH príkazu. Po vykonaní SSH príkazu sa tiež otvorí nástroj Wireshark, rovnako ako pri odchytávaní s integračným balíčkom.
 
 V prípade, že ešte nemáme autentifikáciu na odchytávací účet zabezpečenú SSH kľúčom, zobrazí sa výzva na zadanie hesla. Po zadaní hesla sa aktivuje odchytávanie vybraného rozhrania v nástroji Wireshark. Odchytenú prevádzku si môžeme uložiť lokálne, bez nutnosti sťahovať si ju z EVE-ng servera.

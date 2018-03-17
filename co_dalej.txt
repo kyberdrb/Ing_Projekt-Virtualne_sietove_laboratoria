@@ -11,10 +11,6 @@ Zazitky:
 
 Ulohy: 
 
--prelozit všetky navody do spisovnej slovenčiny pre eventualne použitie v diplomke
-
-
-
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
  "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
  casti "ZABEZPECENIE SYSTEMU"
