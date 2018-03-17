@@ -182,23 +182,28 @@ Uložíme súbor, ukončíme SSH spojenie a znovu sa prihlásime. Po prihlásen�
 
 ************* ZABEZPEČENIE WEBOVÉHO SERVERA *************
 
-EVE-ng používa Apache ako svoj webový server.
+EVE-ng používa Apache ako svoj webový server. Webový server som zabezpečoval až po odladení rôznych problémov s EVE-ng. Nezabezpečený webový prístup ku stránkam cez HTTP mi umožnil bližšie preskúmať komunikáciu medzi klientskou a serverovou časťou 
 
--aktivacia HTTPS pre EVE-ng
+*************
+Aktivácia HTTPS
+
+Na EVE-ng serveri zapneme SSL modul a vygenerujeme SSL certifikát.
 
   sudo a2enmod ssl
   sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
-  -> vyplnime vsetky potrebne udaje:
 
-Country Name (2 letter code) [AU]:SK
-State or Province Name (full name) [Some-State]:Slovakia
-Locality Name (eg, city) []:Zilina
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNIZA
-Organizational Unit Name (eg, section) []:FRI
-Common Name (e.g. server FQDN or YOUR name) []: KIS
-Email Address []: <nechal som prazdne>
+Vyplníme všetky potrebné údaje.
+
+  Country Name (2 letter code) [AU]:SK
+  State or Province Name (full name) [Some-State]:Slovakia
+  Locality Name (eg, city) []:Zilina
+  Organization Name (eg, company) [Internet Widgits Pty Ltd]:UNIZA
+  Organizational Unit Name (eg, section) []:FRI
+  Common Name (e.g. server FQDN or YOUR name) []: KIS
+  Email Address []: <nechal som prázdne>
   
-  
+Ďalej vytvoríme pre webový server konfiguračný súbor, ktorý bude používať SSL certifikát.
+
   sudo -i
   cat << EOF > /etc/apache2/sites-enabled/default-ssl.conf
 <IfModule mod_ssl.c>
@@ -236,77 +241,95 @@ Email Address []: <nechal som prazdne>
 EOF
 
   exit
-  sudo /etc/init.d/apache2 restart
 
+Reštartujeme Apache server.
 
-  -overime https pristup. do prehliadaca zadame:
+  sudo systemctl restart apache2
 
-    https://<ip_adresa_servera>
+Overíme HTTPS pristup. Do prehliadača zadáme adresu:
 
-    -nasledne pridáme vynimku do prehliadaca, pretože sa používa
-    "selfsigned" certifikát
+  https://<IP_adresa_servera>
+
+Následne pridáme vynimku do prehliadača, pretože sa používa tzv. samopodpísaný ("selfsigned") certifikát
      
 
 
     
 *************
+Presmerovanie HTTP na HTTPS
 
--presmerujeme HTTP poziadavky (port 80) na HTTPS (port 443)
-  -Upravíme potrebne súbory
+Presmerujeme požiadaviek z portu 80 na porte 443 v konfigurácii webového servera Apache.
+
+Upravíme súbor so základnou Apache konfiguráciou pre EVE-ng.
 
     sudo vim.tiny /etc/apache2/sites-enabled/unetlab.conf
 
--pod riadok '<VirtualHost *:80>' vlozime:
+Pod riadok '<VirtualHost *:80>' vložíme:
     
     Redirect / https://<ip_adresa_servera>/
 
--restartujeme apache
+Reštartujeme Apache.
 
     sudo systemctl restart apache2.service
 
--Overime, ci sa zmeny prejavili.
- V prehliadaci zadame
+-Overíme, či sa zmeny prejavili. Do prehliadača zadáme adresu:
 
-  http://IP_ADRESA_SERVERA
+  http://<IP_adresa_servera>
 
-Malo by nas to okamžite presmerovat na HTTPS verziu stranky.
-Teraz staci do prehliadaca zadavat iba IP adresu servera.
+HTTP požiadavka sa okamžite presmeruje na HTTPS verziu stránky. Teraz stačí do prehliadača zadávať iba IP adresu servera resp. jeho doménové meno.
+
+Ak presmerovanie požiadaviek funguje, nastavíme ho v konfigurácii Apache servera ako trvalé. Otvoríme si znovu súbor "unetlab.conf" a nájdeme riadok s príkazom "Redirect". Nahradíme ho riadkom
+
+  Redirect permanent "/" "https://<ip_adresa_servera>/"
+
+Znova reštartujeme Apache.
+
+  sudo systemctl restart apache2.service
+
+Overíme funkčnosť vykonaných zmien. Do prehliadača zadáme adresu:
+
+  http://<IP_adresa_servera>
+
+Tak, ako v predošlom prípade, aj teraz sme okamžite presmerovaní z HTTP na HTTPS verziu stránky.
+
 
 *************
-1. How to hide Apache Version and OS Identity from Errors
+Ukrytie verzie Apache servera a typu operačného systému pri chybovej obrazovke
 
--Upravíme súbor:
+Upravíme súbor:
   sudo vim.tiny /etc/apache2/apache2.conf
 
-  na koniec súboru pridáme riadky
+Na koniec súboru pridáme riadky
 
-ServerSignature Off
-ServerTokens Prod
+  ServerSignature Off
+  ServerTokens Prod
 
--uložíme
--restartujeme apache
-    sudo systemctl restart apache2.service
+Uložíme súbor a reštartujeme Apache
 
+  sudo systemctl restart apache2.service
 
 
 *************
-5. Run Apache as separate User and Group
--toto by malo byt už defaultne nastavene:
-Nastavuje sa to v súbore
+Spúšťanie Apache ako osobitný používateľ a skupina
+
+Toto by malo byť už aktívne v predvolených nastaveniach.
+
+Nastavenie overíme v súbore:
 
   /etc/apache2/apache2.conf
 
-Ten ma pre premenne APACHE_RUN_USER a APACHE_RUN_GROUP odkazy na premenne v súbore
+Ten obsahuje premenné "APACHE_RUN_USER" a "APACHE_RUN_GROUP". V nich sa odkazuje na premenné v súbore
 
   /etc/apache2/envvars
+
+Ten obsahuje definície spomenutých premenných. V oboch prípadoch boli nastavené správne.
 
   export APACHE_RUN_USER=www-data
   export APACHE_RUN_GROUP=www-data
 
-aby sa spustal v používateľskom ucte.
+Tak sa zaistí, aby sa Apache spúšťal bezpečne v používateľskom účte.
 
--uložíme
--restartujeme apache
+Ak sme vykonali zmeny v ľubovoľnom súbore, uložíme ho a reštartujeme Apache
 
   sudo systemctl restart apache2.service
 
@@ -330,7 +353,6 @@ Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu
 a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
 
 
-
 ************* APACHE GUACAMOLE (REVERSE PROXY SERVER) [VOLITEĽNÉ] *************
 Reverse Proxy slúži na vzdialený prístup k zariadeniam v topológií 
 cez web prehliadač bez nutnosti inštalácie ďalších nástrojov na klientský
@@ -339,9 +361,7 @@ počítač (okrem nástroja Wireshark)
 Netreba zabezpečovať, pretože na serveri je prístupný iba lokálne.
 
 
-
-
-************* ZABEZPEČENIE MYSQL [VOLITEĽNÉ] *************
+************* ZABEZPEČENIE MYSQL *************
 
 MySQL sa používa na ukladanie si udajov o používateľoch v ramci web rozhrania.
 
@@ -444,14 +464,14 @@ Až po zabezpečení webového servera zmeníme predvolené heslo administrátor
 servera, heslo by bolo nežašifrované a dalo by sa jednoducho odchytiť napr. nástrojom Wireshark.
 
 -Zabezpečíme 'admin' účet:
-  -zadame IP/web adresu web servera
+  -zadáme IP/web adresu web servera
   -prihlásime sa ako admin
   -pojdeme do Management -> User Management -> v riadku admin klikneme na "Edit"
-  -zadame nove heslo a validny email
-  -klikneme na zelene tlacidlo "Edit"
+  -zadáme nove heslo a validny email
+  -klikneme na zelene tlačidlo "Edit"
   -odhlasime sa a znovu sa prihlásime ako admin s novym heslom na overenie
 
-Hesla novych používateľov musia byt overene napr. pomocou stranky
+Hesla novych používateľov musia byť overene napr. pomocou stranky
   https://howsecureismypassword.net/
 
 
