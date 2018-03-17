@@ -13,11 +13,6 @@ Ulohy:
 
 -prelozit všetky navody do spisovnej slovenčiny pre eventualne použitie v diplomke
 
--popisat potup, ako otestovat odchytavanie prevadzky v EVE-ng topologii
- v subore "eve-ng_integracia_s_web_prehliadacmi.txt"
-
-
-
 
 
 -vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
@@ -36,7 +31,8 @@ Ulohy:
    nedokazali zariadenia preposielat spravy cez rozhrania
     -> tato hypoteza sa ukazala ako NEPRAVDIVA!, kedze zariadenia sa medzi
         sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
-        -> ZDOKUMENTOVAT!
+        -> ZDOKUMENTOVAT do navodu s LXC kontajnerom!
+    -> mozno to ale bolo tym, ze som nainstaloval Docker na EVE-ng server - neviem
 
 
 

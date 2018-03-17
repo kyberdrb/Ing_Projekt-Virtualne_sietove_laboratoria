@@ -1,5 +1,7 @@
 EVE-ng integrácia s web prehliadačmi
 
+Integračný balíček pre EVE-ng slúži na pohodlnejšiu prácu so zariadeniami v topológii vo web rozhraní. Baliček umožňuje po kliknutí na zariadenie otvoriť vzdialenú konzolu zariadenia. Nemusíme sa tak pripájať na zariadenia manuálne, neustálym zadávaním IP adresy servera, portu a protokolu pre dané zariadenie v topológii.
+
 *************
 INŠTALÁCIA
 
@@ -29,7 +31,7 @@ Integračný balíček by sa mal aktivovať okamžite aj bez reštartu prehliada
 
     "Does not work in Firefox but works in another browser"
   a
-    "Firefox says The address wasn't understood when you clicked on a node")
+    "Firefox says The address wasn't understood when you clickeď on a node")
 
 2) Chrome
   Na rovnakej adrese ako pri prehliadači Firefox, len v odpovediach na otázky:
@@ -50,7 +52,7 @@ PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
 *************
 ÚPRAVA OTVÁRANÝCH APLIKÁCII
 
-  Úprave otváraných aplikácii  sa venujem v časti "ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM" v časti ""
+  Úprave otváraných aplikácii  sa venujem v časti "ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM" , konkrétne v časti "PO INŠTALÁCII".
 
 
 *************
@@ -76,91 +78,51 @@ PO INŠTALÁCII
 
 
 
-Pri SSH autentifikaci pomocou hesla treba VNC zariadenia kliknut 2x
-    -prvy krat sa vytvori SSH tunel s port-forwardingom a pripojenie zlyha
-    -druhy krat sa ale pripojenie podari.
-Pri SSH autentifikaci pomocou klucov sa pripojenie podari na prvy krat,
-ale je potrebne pridat dodatocne zdrzanie, lebo prvy krat sa VNC
-pripojenie vytvori skor ako SSH port-forwarding.
+Pri SSH autentifikácii pomocou hesla je potrebné pripojiť zariadenia s VNC prístupom v dvoch krokoch:
+  - Prvý krát sa vytvorí port-forwarding v rámci SSH tunela a pripojenie zlyhá.
+  - Druhý krát sa ale pripojenie podarí aj bez opätovného zadania hesla, pretože príkaz vytvárajúci SSH tunel ho drží otvorený určitý čas.
+ 
+Pri SSH autentifikácii pomocou kľúčov sa pripojenie podarí na prvý krát, ale je potrebné pridať dodatočné zdržanie, lebo prvý krát sa VNC pripojenie vytvorí skôr ako SSH port-forwarding.
 
 
 *************
 ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA
 
-Predvolene je na odchytavanie pouzivany root ucet na EVE-ng serveri.
-Bezpecnejsie je, ked vytvorime noveho standardneho pouzivatela, ktory bude mat
-opravnenie odchytavat prevadzku na rozhraniach.
-
-
-
-
-
--zmenit root pouzivatela na bezneho (andrej) a nastavit opravnenia
-
-    sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
-   
-   a vyskusat odchytavanie
-
-   navod na "http://daydreamer66.blogspot.sk/2014/06/rhel-how-can-non-root-users-can-run.html"
-   
-   FUNGUJE !!! => ZAPRACOVAT DO EVE-NG INTEGRACNEHO BALICKA
-
-  T.J.
-
-  NAJPRV
-
-    if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l andrej {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-
-  POTOM vytvorit noveho pouzivatela "wireshark_capture"
-
-      if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-    
-  -ak bude fungovat aj to, VSETKO ZDOKUMENTOVAT DO SUBORU
-    "16_eve-ng_integracia_s_web_prehliadacmi.txt"
-    a upravit potrebne subory v repozitari "eve-ng-integration_kis"
-
-
-
-
-
-
-
-
+Predvolene je na odchytávanie používaný účet "root" na EVE-ng serveri. Bezpečnejšie je, keď vytvoríme nového štandardného používateľa, ktorý bude mať opravnenie odchytavat prevadzku na rozhraniach. Takéhoto používateľa som nazval "wireshark_capture".
 
 Používateľský účet "wireshark_capture" bude slúžiť výlučne na odchytávanie
 prevádzky. Kvôli bezpečnosti bude patriť do osobitnej skupiny a nebude mať 
 pridelené žiadne ďalšie oprávnenia.
 
-Pre pohodlnejsie a bezpecnejsie pouzivanie môže byť autentifikacia medzi 
-odchytavacim uctom na vzdialenom serveri a klientom (pouzivatelskym pocitacom)
-zabezpecena pomocou SSH klucov. Tak odpada nutnost zadavat heslo pri kazdom 
-odchytavani.
+Na serveri preto vykonáme nasledovné príkazy:
 
-  Na serveri:
+  sudo useradd wireshark_capture -m -s /bin/bash
+  sudo passwd wireshark_capture
+  sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
 
-    sudo useradd wireshark_capture -m -s /bin/bash
-    sudo passwd wireshark_capture
-    sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
+Príkaz "setcap" aktivuje odchytávanie prevádzky nástrojom "tcpdump" pre všetkých štandardných používateľov t.j. aj pre používateľa "wireshark_capture".
 
-  Príkaz "setcap" aktivuje odchytávanie prevádzky nástrojom "tcpdump"
-  pre všetkých štandardných používateľov t.j. aj pre používateľa 
-  "wireshark_capture".
-  Je nutné vykonať spomenutý príkaz, pretože nástroj "tcpdump" môže používať
-  iba "root" alebo používatelia, ktorí sú oprávnený používať príkaz "sudo".
-
+Je nutné vykonať spomenutý príkaz, pretože nástroj "tcpdump" môžu v predvolene používať iba používateľ "root" a tí používatelia, ktorí sú oprávnený používať príkaz "sudo".
   
-  Na klientskom počítači:
+Na klientskom počítači preto vykonáme nasledovné príkazy:
 
-    ssh-copy-id wireshark_capture@<ip_adresa_servera>
+  ssh-copy-id wireshark_capture@<ip_adresa_servera>
 
+V prípade, že je nainštalovaný predvolený EVE-ng integračný balíček, musíme vykonať zmeny v súbore "/bin/eve-ng-integration".
 
-V EVE-ng topológii potom otestujeme, ci funguje odchytavanie paketov.
+V riadku
+
+  if url.scheme == 'capture':
+      cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+            -l root {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+
+zmeníme názov používateľského účtu, pomocou ktorého budeme odchytávať prevádzku v topológii, z "root" na "wireshark_capture".
+
+  if url.scheme == 'capture':
+    cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+          -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+
+Súbor uložíme a v EVE-ng topológii potom otestujeme, či odchytávanie prevádzky funguje správne. Postup odchytávania prevádzky je uvedený v súbore "eve-ng_odchytavanie_prevadzky_v_topologii.txt".
 
 
 
@@ -168,6 +130,7 @@ V EVE-ng topológii potom otestujeme, ci funguje odchytavanie paketov.
 Zdroje:
   EVE install Telnet VNC Wireshark Local management
     https://www.youtube.com/watch?v=Ea4U93991dw
+    
   https://github.com/SmartFinn/eve-ng-integration
   https://github.com/kyberdrb/eve-ng-integration
   http://www.eve-ng.net/index.php/downloads/windows-client-side-pack
@@ -177,3 +140,6 @@ Zdroje:
   https://bbs.archlinux.org/viewtopic.php?pid=1474224#p1474224
   https://wiki.wireshark.org/CaptureSetup/CapturePrivileges#Other_Linux_based_systems_or_other_installation_methods
   https://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html
+  
+  Konečne vyriešené odchytávanie ako štandardný používateľ
+    http://daydreamer66.blogspot.sk/2014/06/rhel-how-can-non-root-users-can-run.html

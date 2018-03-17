@@ -1,0 +1,13 @@
+Odchytávanie prevádzky v EVE-ng topológii
+
+V EVE-ng si otvoríme ľubovoľnú topológiu. Ak žiadna nie je k dispozícii, môžeme si vytvoriť jednoduchú topológiu s dvomi zariadeniami. Tie prepojíme ľubovoľnými rozhraniami. Spustíme zariadenia. Potom, čo sa zariadenia dospúšťali, nastavíme IP adresy na vybraných. Následne overíme konektivitu nástrojom "ping". Ak bola konektivita potvrdená, pravým tlačidlom klikneme na ľubovoľné zariadenie. Otvorí sa kontextová ponuka, v ktorej klikneme na položku "Capture". Otvorí sa zoznam rozhraní, z ktorých je možné odchytávať prevádzku. Vyberieme si to rozhranie, ktoré je pripojené k ďalšiemu zariadeniu. Ak máme nainštalovaný integračný balíček, automaticky sa otvorí nástroj Wireshark. Ak integračný balíček nainštalovaný nie je, prevádzku je možné odchytiť príkazom 
+
+    ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l wireshark_capture <IP_adresa_EVE-ng_servera> tcpdump -i <Virtuálny_port> -n -s 0 -U -w - | wireshark -k -i -
+
+Položku "<IP_adresa_EVE-ng_servera>" nahradíme IP adresou EVE-ng servera. Položku "<Virtuálny_port>" nahradíme rozhraním, ktorého prevádzku chceme odchytiť. Virtuálny port zistíme tak, že namiesto toho, aby sme na rozhranie v zozname rozhraní položky "Capture" klikli, naň iba ukážeme kurzorom myši. Následne sa v pravom dolnom rohu zobrazí URL adresa v tvare
+
+    capture://<IP_adresa_EVE-ng_servera>/vunlX_Y_Z
+
+Virtuálny port je uvedený na konci URL adresy t.j. "vunlX_Y_Z", kde X, Y a Z sú čísla priradené konkrétnemu rozhraniu na zariadení. Virtuálny port následne dosadíme do vyššie uvedeného SSH príkazu. Po vykonaní SSH príkazu sa tiež otvorí nástroj Wireshark, rovnako ako pri odchytávaní s integračným balíčkom.
+
+V prípade, že ešte nemáme autentifikáciu na odchytávací účet zabezpečenú SSH kľúčom, zobrazí sa výzva na zadanie hesla. Po zadaní hesla sa aktivuje odchytávanie vybraného rozhrania v nástroji Wireshark. Odchytenú prevádzku si môžeme uložiť lokálne, bez nutnosti sťahovať si ju z EVE-ng servera.
