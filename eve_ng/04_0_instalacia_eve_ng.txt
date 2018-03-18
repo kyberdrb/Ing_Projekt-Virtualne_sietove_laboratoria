@@ -1,10 +1,10 @@
-Nástroj EVE-ng môžeme nainštalovať buď z ISO súboru dostupného na stiahnutie zo stránky "http://www.eve-ng.net/index.php/community" alebo nainštalujeme operačný systém "Ubuntu Server", do ktorého neskôr pridáme nástroj EVE-ng. Nižšie opisujem kroky pred a počas inštalácie EVE-ng servera. Operačný systém "Ubuntu Server" inštalujem vo verzii 16.04, pretože ten je oficiálne podporovaný pre nástroj EVE-ng vo verzii v2.0.3-86.
+Nástroj EVE-ng môžeme nainštalovať buď z ISO súboru dostupného na stiahnutie zo stránky "http://www.eve-ng.net/index.php/community" alebo nainštalujeme operačný systém Ubuntu Server, do ktorého neskôr pridáme nástroj EVE-ng. Nižšie opisujem kroky pred a počas inštalácie EVE-ng servera. Operačný systém Ubuntu Server inštalujem vo verzii 16.04, pretože ten je oficiálne podporovaný pre nástroj EVE-ng vo verzii v2.0.3-86.
 
 
 
 ************* PRED INŠTALÁCIOU NA FYZICKÝ SERVER *************
 
-Snažil som sa minimalizovať komplikácie, ku ktorým by mohlo dôjsť pri inštalácii EVE-ng servera. Preto som vyčistil server od prachu, otestoval som všetky disky na chybné sektory, rozpustil RAID zväzok, nastavil BIOS, vytvoril inštalačné USB médium s operačným systémom "Ubuntu Server x64 16.04" a nainštaloval spomínaný operačný systém z USB média na server.
+Snažil som sa minimalizovať komplikácie, ku ktorým by mohlo dôjsť pri inštalácii EVE-ng servera. Preto som vyčistil server od prachu, otestoval som všetky disky na chybné sektory, rozpustil RAID zväzok, nastavil BIOS, vytvoril inštalačné USB médium s operačným systémom Ubuntu Server x64 16.04 a nainštaloval spomínaný operačný systém z USB média na server.
 
 
 *************
@@ -24,7 +24,7 @@ Po stiahnutí ISO súboru vytvoríme inštalačný USB disk. V Linux distribúci
 
 Môžeme si vybrať ľubovoľný z vyššie uvedených nástrojov. avšak postup pri vytváraní "live" USB disku pre každý zo spomenutý nástroj nie je predmetom tejto práce.
 
-Akonáhle sme "live" USB disk vytvorili, pripojíme ho ku serveru. Následne pripojený USB disk zvolíme na spustenie; buď v nástroji BIOS alebo v tzv. "Boot Menu".
+Akonáhle sme "live" USB disk vytvorili, pripojíme ho ku serveru. Následne pripojený USB disk zvolíme na spusteníe; buď v nástroji BIOS alebo v tzv. "Boot Menu".
 
 Po spustení operačného systému z USB disku otvoríme terminál a zadáme príkaz
 
@@ -75,153 +75,109 @@ Môžeme ešte nastaviť heslo do nástroja BIOS. Tento krok som vynechal, keď�
 
 
 *************
-Upgrade nástroja BIOS
--ak je mozne, aktualizujeme BIOS na najnovsiu verziu.
-V mojom prípade to mozne nebolo, pretoze by to vyzadovalo vytvorenie diskety s aktualizacnymi subormi. A jedina disketova mechanika je v tom serveri.
+Pokus o aktualizáciu nástroja BIOS
 
-Postup vytvorenia aktualizacnej diskety
--stiahneme si Rufus
--nastavime ho
-  -Device: zvolime si disk
+Pokúsil som sa aktualizovať nástroj BIOS na serveri.
+
+Postup vytvorenia aktualizačného USB v operačnom systéme Windows:
+- Stiahneme si nástroj "Rufus".
+- Zvolíme nasledovné nastavenia:
+  -Device: zvolíme USB disk
   -Partition scheme and target system type: MBR partition scheme for BIOS or UEFI computers
   -File System: FAT alebo FAT32
   -Cluster size: default
-  -New volume label: odstránime vsetko (prazdny)
-  -Quick Format: zaskrtnute
+  -New volume label: odstránime všetko - necháme prazdne
+  -Quick Format: zaškrtnuté
   -Create a bootable disk using: MS-DOS
-  -Create extenden label and icon files: odskrtnute
--Start
+  -Create extended label and icon files: odškrtnuté
+- klikneme na tlačidlo "Start"
 
-Vytvorene USBcko pripojime ku serveru a zapneme ho.
-Vojdeme do nástroja BIOS a zmenime prioritu spúšťania tak, aby bolo USB na prvom mieste.
-V BIOSe ešte nastavime "Flash Write" na Disabled, aby sme vypli ochranu nástroja BIOS proti zapisu a mohli BIOS aktualizovat.
-Stlacime F10 (Ulozime nastavenia) -> Yes
+Vytvorený USB disk pripojíme ku serveru a zapneme ho. Vôjdeme do nástroja BIOS a zmeníme prioritu spúšťania tak, aby bol USB disk na prvom mieste. Stlačíme klávesu F10 a na otázku, či chceme uložiť nastavenia, odpovieme "Yes". Server sa následne reštartuje.
 
-Server sa restartuje.
-Po chvili sa objavi MS-DOS s obrazovkov vyberu rozlozenia klavesnice. Odporucam vybrat "English-US".
-Ale po spusteni aktualizacneho skriptu sa objavi chybova hlaska "Cannot flash if Memory Managers (e.g. HIMEM) present"
-Tak som zase v BIOSe nastavil "Flash Write" na Enabled (zapnutie ochrany nástroja BIOS pred prepisanim), vybral som USBcko a restartoval server.
+Preto som opakoval rovnaký postup, ale s disketou vloženou do externej disketovej mechaniky.
 
-Ukazalo sa, že aktualizacia nástroja BIOS na serveri je technicky narocna, preto som sa rozhodol nevykonat ju.
+Po spustení servera z diskety sa po chvíli objavila MS-DOS obrazovka s výberom rozloženia klávesnice. Vyberieme "English-US". Ale po spustení aktualizačného skriptu sa objavilo chybové hlásenie "Cannot flash if Memory Managers (e.g. HIMEM) present".
+
+V nástroji BIOS bola prítomná funkcia "Flash Write". Bola nastavená na hodnotu "Enabled", čím chránila BIOS proti zápisu. Nastavil som ju na "Disabled" a uložil nastavenia. Skúsil som BIOS aktualizovať znova, ale aj napriek tomu sa BIOS nenechal aktualizovať a vypísal rovnaké chybové hlásenie.
+
+Ukázalo sa, že aktualizácia nástroja BIOS na serveri je technicky náročná, preto som sa rozhodol nevykonať ju.
 
 
-************* ************* ************* ************* *************
+************* VYTVORENIE SPUSTITEĽNÉHO USB S UBUNTU SERVER *************
 
-TESNE PRED INŠTALÁCIOU ODPOJÍME VŠETKY DISKY OKREM DISKU, NA KTORÝ
-CHCEME EVE-NG/UBUNTU NAINŠTALOVAŤ! ZJEDNODUŠÍME TAK INŠTALAČNÝ PROCES
-A PREDÍDEME CHYBÁM PRI PARTÍCIOVANÍ A NÁHODNEJ STRATE DÁT Z INÝCH DISKOV.
-
-************* ************* ************* ************* *************
-
-************* POSTUP INSTALACIE *************
-
-VYTVORENIE SPUSTITEĽNÉHO USB S UBUNTU SERVER
-
-  -Vytvoriť spustiteľné USB z Ubuntu Server 16.04 ISO súboru je istejšie,
-   než z EVE ISO, pretože to s EVE sa nemusí spustiť. Aj Etcher napíše, 
-   že ISO súbor nie je spustiteľný ("not bootable").
-  
-USB médium vytvoríme podľa návodu uvedeného v časti "Testovanie diskov na chybné sektory".
+Vytvoriť spustiteľné USB z Ubuntu Server 16.04 ISO súboru je istejšie, než z ISO súboru z EVE-ng stránky, pretože USB vytvorené z EVE-ng ISO súboru sa nemusí spustiť. Aj nástroj "Etcher" zobrazil chybové hlásenie, že ISO súbor nie je spustiteľný ("not bootable"). USB disk vytvoríme podľa návodu uvedeného v časti "Testovanie diskov na chybné sektory".
 
 
+************* POSTUP INŠTALÁCIE *************
 
--Spustime prave nakonfigurovanu EVE virtualku
- resp.
- Spustíme/reštartujeme server a pri BOOT obrazovke opakovane stláčame klávesu
- (v mojom prípade klávesu F8) vyberieme USB zariadenie. Spustí sa inštalačná
- procedúra
+Tesne pred inštaláciou odpojíme všetky disky okrem disku, na ktorý chceme EVE-ng/Ubuntu nainštalovať! Zjednodušíme a sprehľadníme tak inštalačný proces a predídeme chybám pri partíciovaní disku a prípadnej strate dát z iných diskov.
 
--Vyberieme Anglicky jazyk (pre jednoduchsi troubleshooting)
+Spustíme/reštartujeme server a pri spúšťacej "BOOT" obrazovke opakovane stláčame klávesu na zobrazenie "Boot Options Menu" napr. F8. Objaví sa zoznam zariadení, z ktorých chceme spustiť server. Vyberieme USB disk. Následne sa spustí inštalačná procedúra.
 
--Zvolime moznost Install Ubuntu Server (prvá možnosť)
- resp.
- "Install EVE Bare" pri inštalácií z EVE ISO
-
--Zvolíme krajinu (other->Europe->Slovakia).
--Rozloženie klávesnice (en_US.UTF-8)
+- Zo zoznamu jazykov vyberieme "English" - anglický jazyk.
+- Zobrazí sa inštalačné menu. Zvolíme možnosť
+  "Install Ubuntu Server" (prvá možnosť)
+resp.
+  "Install EVE Bare" pri inštalácií z EVE ISO
+-Zvolíme krajinu.
+  other->Europe->Slovakia
+-Zvolíme rozloženie klávesnice:
+  en_US.UTF-8
 -Preskočíme automatickú detekciu rozloženia podľa klávesnice
   -zvolíme "No"
   -nastavíme rozloženie klávesnice na "[English (US)]"
--Zvolíme "[English (US)]"
--V prípade, že máme viac siťových kariet, sme vyzvaní vybrať si
- tú, ktorá bude pripojená na internet
--"Nameserver adresses" môžeme preskočiť -> Continue (Enter)
--Nastavíme ľubovoľný hostname
--Zadáme celé meno používateľa
--Zadáme názov používateľského účtu
--Zopakujeme heslo pre používateľa
--"Encrypt home directory"
- vyberieme voľbu "No" - jednoduchšie zálohovanie
+-V zobrazenom zozname jazykov znovu zvolíme
+  "[English (US)]"
+-V prípade, že máme viac siťových kariet, sme vyzvaní vybrať si tú, ktorú budeme chcieť primárne používať. Obvykle vyberieme tú, ktorá je pripojená na internet.
+-Dotazovanie sa na "Nameserver adresses" môžeme preskočiť výberom možnosti "Continue".
+-Nastavíme tzv. "hostname" - doménové meno servera
+-Zadáme celé meno používateľa.
+-Zadáme názov používateľského účtu.
+-Zopakujeme heslo pre používateľa.
+-Pri otázke "Encrypt home directory" vyberieme voľbu "No".
 
 -PARTÍCIOVANIE
 
-MOŽNOSŤ 1:
-Pri partíciovaní odporúčam z vlastnej skúsenosti 
- zvoliť "Guided – use entire disk" - vyhradíme celý disk pre Ubuntu.
+MOŽNOSŤ 1 - S použitím LVM
+
+Tento spôsob je uprednostňovaný pred druhým uvedeným spôsobom. Navyše je odporúčaný aj v  EVE-ng dokumentácii. LVM poskytuje množstvo výhod, o.i. aj zmenu veľkosti partícii počas behu systému.
+
+Pri výbere spôsobu partíciovania disku vyberieme možnosť "Guided - use entire disk and setup LVM". Následne potvrdíme všetky predvolené hodnoty.
+
+Ak sme vyzvaní na zadanie nižšie uvedených parametrov, odpovieme na ne nasledovne:
+
+- Partition disks: Zvolíme hlavný disk, na ktorý má byť systém nainštalovaný. V prípade, že máme nakonfigurovaný RAID zväzok, mali by sme vidieť iba jeden pevný disk s menom RAID radiča.
+- Write changes to disk and create LVM: YES
+- Amount of volume: ponecháme všetku kapacitu
+- Force UEFI Installation: YES (na starších serveroch zvolíme "No")
+- Write changes to disk: YES
+
+Aj napriek tomu, že predvolené hodnoty vyhradia príliš veľa miesta pre swap partíciu, vieme s použitím LVM nástrojov meniť parametre jednotlivých partícii, a to aj počas behu systému.
+
+
+MOŽNOSŤ 2 - Bez použitia LVM
+
+Pri výbere spôsobu partíciovania disku vyberieme možnosť "Guided - use entire disk". Aj táto možnosť vyhradí príliš veľké miesto pre swap partíciu.
  
- Táto možnosť ale vyhradí príliš veľké miesto pre swap partíciu.
- 
- Preto na obrazovke "Write changes" sa navigujeme na swap partíciu,
- zvolíme ju klávesou Enter a zvolíme "Delete partition".
- Následne primárnu ext4 partíciu rozšírime -> zvolíme ju a zvolíme možnosť
- "Resize partition" -> zadáme (väčší) rozmer partície a potvrdíme.
+Preto na obrazovke "Write changes" sa navigujeme na swap partíciu, zvolíme ju klávesou Enter a vyberieme možnosť "Delete partition".
 
- Ak je potrebné, vyberieme primárnej ext4 partícií prípojný bod (mount 
- point) "/".
-
- Nakoniec potvrdíme zmeny -> "Write changes to disk"
-
-MOŽNOSŤ 2:
--podľa EVE-ng dokumentácie
--potvrdíme všetky predvolené hodnoty
-
-> Partition disks: Guided - use entire disk and setup LVM
-> Partition disks: Choose your main HDD were ubuntu will be installed.
-  Usually it will be single HDD, if your raid is set right.
-
-> Write changes to disk and create LVM: YES
-> Amount of volume: leave all offered size
-> Force UEFI Installation: YES (na starších serveroch zvolíme "No")
-> Write changes to disk: YES
+Následne primárnu ext4 partíciu rozšírime. Zvolíme ju a vyberieme možnosť "Resize partition". Následne zadáme väčšiu kapacitu partície a potvrdíme. Ak je potrebné, vyberieme primárnej ext4 partícií prípojný bod (mount point) "/". Na otázku "Write changes to disk" vyberieme voľbu "Yes", čím potvrdíme zmeny.
 
 
--Nastavíme proxy (ak nemáme žiaden proxy server, necháme prázdne).
+Nastavíme proxy server (ak nemáme žiaden proxy server, necháme prázdne).
 
--Pri dotaze na automatické aktualizácie zvolíme "No automatic updates", 
- aby sme predišli nepredvídaným následkom. Aktualizácia servera bude na 
- vyžiadanie (on demand) a je za ňu zodpovedný administrátor.
+Pri dotaze na automatické aktualizácie zvolíme "No automatic updates", aby sme predišli nepredvídaným následkom. Aktualizácia servera bude diať na vyžiadanie administrátora. Ak sme aj napriek tomu zvolili automatické aktualizácie, vieme ich vypnúť dodatočne. Dodatočné vypnutie automatických aktualizácii opisujem v súbore "prvotna_konfiguracia_EVE_ng.txt" v časti "20auto-upgrades".
 
-Ak sme aj napriek tomu zvolili automaticke aktualizacie, vieme ich vypnut:
+Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt".
 
-  sudo vim.tiny /etc/apt/apt.conf.d/20auto-upgrades
+Ak sme vyzvaní, na obrazovke "tasksel" (medzerníkom) označíme balíček "OpenSSH server".
 
-zmenime
+Nainštalujeme GRUB na disk. Ak sme vopred odpojili všetky pevné disky okrem jediného alebo sme vytvorili RAID zväzok, bude to jediná položka v zozname spolu s USB kľúčom.
 
-APT::Periodic::Update-Package-Lists "1";
-APT::Periodic::Unattended-Upgrade "1";
+Po nainštalovaní GRUB zavádzača potvrdíme reštart voľbou "Continue". Server sa následne reštartuje. Ak sa po reštarte nespustí, vypneme ho dlhším podržaním napájacieho tlačidla.
+Následne ho znovu zapneme.
 
-na
-
-APT::Periodic::Update-Package-Lists "0";
-APT::Periodic::Unattended-Upgrade "0";
-
-!!
-Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, 
-ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt"
-!!
-
--Pridáme balíček "OpenSSH server" (ak sme vyzvaní).
--Nainštalujeme GRUB na disk. Ak sme vopred odpojili všetky pevné disky
- okrem jediného alebo sme vytvorili RAID zväzok, bude to jediná položka
- v zozname spolu s USB kľúčom.
--Po nainštalovaní GRUB zavádzača potvrdíme reštart voľbou "Continue".
- Server sa následne reštartuje.
- Ak sa po reštarte nespustí, vypneme ho dlhším podržaním napájacieho tlačidla.
- Následne ho znovu zapneme.
-
--Po reštarte sa prihlásime s predvolenymi prihlasovacimi udajmi "root/eve".
- Po prvom prihlasenie treba vykonat prvotnu konfiguraciu, ktora je opisana
- v subore "prvotna_konfiguracia_EVE_ng.txt".
+Po reštarte sa prihlásime s predvolenymi prihlasovacimi udajmi "root/eve". Po prvom prihlasení treba vykonať prvotnú konfiguráciu, ktorá je opísaná v súbore "prvotna_konfiguracia_EVE_ng.txt".
 
 
 *************

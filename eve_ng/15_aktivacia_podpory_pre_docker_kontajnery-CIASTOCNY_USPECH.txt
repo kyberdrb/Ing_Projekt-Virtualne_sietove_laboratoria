@@ -1,4 +1,3 @@
-
 Installing Docker in EVE-NG
 Posted on 2017-08-11 | In Labs
 
@@ -156,6 +155,8 @@ Podarilo sa mi rozbehnut https://hub.docker.com/r/phusion/baseimage/
 Docker kontainer lokalne v terminali, ale nie v EVE-ng GUI.
 
 To vie UNetLab (zastarale) alebo GNS3.
+
+Je tiež možné, že kontajner "phusion/baseimage" je zly, pretože sa nevedel spustiť ani lokálne s predvolenými nastaveniami. Zasekol sa pri vykonávaní predvoleného spúšťacieho skriptu "my_init".
 ====================================================================
 
 
