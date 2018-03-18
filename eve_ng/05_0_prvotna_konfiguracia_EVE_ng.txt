@@ -398,7 +398,7 @@ Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
  "UKSM status", aby sa nastavil do stavu "OFF". Skontrolujeme, či
  sa nastavenie uložilo stlačením F5. UKSM by malo zostať v stave "OFF".
 
- Nakoniec vypneme automatické aktualizácie. Upravíme súbor "20auto-upgrades":
+Nakoniec vypneme automatické aktualizácie. Upravíme súbor "20auto-upgrades":
 
  sudo vim.tiny /etc/apt/apt.conf.d/20auto-upgrades
 
