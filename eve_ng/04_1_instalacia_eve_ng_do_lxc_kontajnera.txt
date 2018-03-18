@@ -2,8 +2,8 @@ EVE-ng v EVE-ng
 
 EVE-ng LXC kontajner na EVE-ng fyzickom serveri
     - testovanie nasadenia EVE-ng ako LXC kontajner
-    - Motivacia: izolacia jednotlivych pouzivatelov
-    - EVE-ng kernel je vyzadovany, kvoli minimalizacii premennych
+    - Motivacia: izolacia jednotlivych pouzivatelov. škálovateľnosť
+    - EVE-ng kernel je vyzadovany, kvoli minimalizacii premennych a neštandardného správania
 
 apt-get update
 apt-get install aptitude
@@ -27,7 +27,8 @@ adduser andrej
 aptitude install ssh wget sudo debian-keyring debian-archive-keyring software-properties-common build-essential
 usermod -aG sudo andrej
 
-connect to container via ssh to user andrej. the sudo should work.
+Pripojíme sa do LXC kontajnera cez SSH ako štandardný používateľ. Príkaz "sudo" pre štandardného používateľa by mal fungovať bez dodatočnej konfigurácie.
+
 sudo aptitude update
 wget -O eveng.gpg.key http://www.eve-ng.net/repo/eczema@ecze.com.gpg.key
 sudo apt-key add eveng.gpg.key

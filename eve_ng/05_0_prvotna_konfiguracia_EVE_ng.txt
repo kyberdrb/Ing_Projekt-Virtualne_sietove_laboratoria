@@ -2,115 +2,90 @@
 NIŽŠIE UVDEDENÉ KROKY TREBA EŠTE VYKONAŤ LOKÁLNE NA SERVERI
 ************* ************* ************* *************
 
-1. Prihlásime sa pod takým prihlasovacím menom, aké sme si nakonfigurovali 
-   počas inštalácie Ubuntu
+Prihlásime sa pod takým prihlasovacím menom, aké sme si nakonfigurovali počas inštalácie systému
 
   login: <username>
 
-2. Zmeníme heslo root používateľa.
-   Odporúčam zvoliť silné heslo: 
-    -aspoň 20 znakov
-    -kombinácia veľkých písmen, malých písmen, číslic a špeciálnych znakov
-     napr. medzier
+Zmeníme heslo pre "root" používateľa. Pri vytváraní nového hesla dbáme na bezpečnosť, preto by heslo malo mať aspoň 20 znakov a malo by byť kombináciou veľkých a malých písmen, číslic a špeciálnych znakov napr. medzier.
    
-   Toto heslo sa použije na odchytávanie prevádzky
-   v súbore pre Wireshark wrapper.
-
   sudo passwd root
   root@eve-ng:~# sudo passwd root
   Enter new UNIX password:
   Retype new UNIX password:
   passwd: password updated successfully
 
-3. Zmeníme hostname
+Toto heslo sa použije na odchytávanie prevádzky v obaľovacom súbore pre Wireshark na Windows aj Linux platformách.
+
+Zmeníme doménové meno.
 
   vim.tiny /etc/hostname 
 
 sirena
 
-
-  -Zmeníme hosts súbor
+Zmeníme "hosts" súbor.
 
   vim.tiny /etc/hosts                                               
-
 
 127.0.0.1       localhost
 127.0.1.1       eve-ng
 
-
-
-
-4. Allow access to use root user ssh, edit line below:
-   Povolíme SSH prístup pre root používateľa.
+Povolíme SSH prístup pre "root" používateľa.
 
   vim.tiny /etc/ssh/sshd_config
 
+Zmeníme riadok
+  
+  PermitRootLogin prohibit-password
 
-PermitRootLogin prohibit-password
-to
-PermitRootLogin yes
+na
 
+  PermitRootLogin yes
 
-Povolenie prihlasenia cez SSH ako "root" používateľ je nutné pre 
-predvolený balíček na EVE-ng integráciu do prehliadačov (telnet/vnc/rdp)
-a slúži iba na to, aby sme mohli otestovať odchytávanie paketov cez Wireshark.
-To môže byť bezpečnostné riziko, preto sa to budem snažiť
-ošetriť postupom opísaným v súbore "eve-ng_integracia_s_web_prehliadacmi.txt"
+Uložíme súbor.
 
+Povolenie prihlásenia cez SSH ako "root" používateľ je nutné pre predvolený balíček na EVE-ng integráciu do prehliadačov (telnet/vnc/rdp) a slúži iba na to, aby sme mohli otestovať odchytávanie paketov cez Wireshark. To je vážne bezpečnostné riziko. Ošetrenie tohto nedostatku je opísané v súbore "eve-ng_integracia_s_web_prehliadacmi.txt"
 
-5. Reštartujeme SSH
+Reštartujeme SSH server.
 
   sudo systemctl restart ssh
 
-
-6. Reštartujeme server
+Reštartujeme server.
 
   reboot
 
-
-7. Pokiaľ sa rozhranie pripojené na internet volá inak ako "eth0",
-   nespustí sa skript "/opt/ovf/ovfconfig.sh".
-   Odporúča sa vykonať tento krok, aby spomenutý skript fungoval
-   správne.
+Nastavíme názvy sieťových rozhraní na formát "ethX". Pokiaľ sa rozhranie pripojené na internet volá inak ako "eth0", nespustí sa skript "/opt/ovf/ovfconfig.sh". Odporúča sa vykonať tento krok, aby spomenutý skript spustil a vykonal potrebné zmeny. Upravíme súbor "grub".
 
   sudo vim /etc/default/grub
   
-  -Riadok
+Zmeníme riadok
 
-    GRUB_CMDLINE_LINUX=""
+  GRUB_CMDLINE_LINUX=""
 
-  nahradíme riadkom
+na
 
-    GRUB_CMDLINE_LINUX="net.ifnames=0"
+  GRUB_CMDLINE_LINUX="net.ifnames=0"
+
+Uložíme súbor.
+
+Spomenutý problém s názvami sieťových rozhraní vieme vyriešiť aj príkazom:
+
+sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0"/'  /etc/default/grub
   
-  a uložíme súbor.
 
-  -Spomenutý problém s názvami sieťových rozhraní vieme vyriešiť aj príkazom
+Aktualizujeme GRUB konfiguráciu a reštartujeme server, aby sa zmeny prejavili.
 
-  sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0"/'  /etc/default/grub
-  
+  update-grub
+  reboot
 
-7.1 Aktualizujeme GRUB konfiguráciu a reštartujeme server, aby sa
-    zmeny prejavili
+Po reštarte overíme názvy rozhraní príkazom "ip link" resp. "ip a".
 
-    update-grub
-    reboot
-
-  -Po reštarte overíme názvy rozhraní príkazom "ip link" resp. "ip a"
-
-
-8. Zmeníme nastavenia sieťových rozhraní
+Zmeníme nastavenia sieťových rozhraní.
 
 
   vim.tiny /etc/network/interfaces
 
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
-source /etc/network/interfaces.d/*
-
-# The loopback network interface
+...
 auto lo
 iface lo inet loopback
 
@@ -122,25 +97,23 @@ iface eth0 inet static
 	netmask <maska>
 	gateway <predvolena_brana>
 iface eth0 inet6 manual
+...
 
--Uložíme súbor
--Reštartujeme sieťovú službu
+Uložíme súbor a reštartujeme sieťovú službu.
 
   sudo systemctl restart networking
 
--Otestujeme konektivitu (ping)
+Otestujeme konektivitu nástrojom ping.
 
   ping 8.8.8.8
 
-  -Ak sú sieťové nastavenia správne, uvidíme ICMP odpovede na ping.
+Ak sú sieťové nastavenia správne, uvidíme ICMP odpovede.
 
-
-
--Nastavenie DNS serverov
+Nastavenie DNS serverov
 
 sudo cp -p \
-/etc/resolvconf/resolv.conf.d/head \
-/etc/resolvconf/resolv.conf.d/head.orig
+  /etc/resolvconf/resolv.conf.d/head \
+  /etc/resolvconf/resolv.conf.d/head.orig
 
 sudo vim /etc/resolvconf/resolv.conf.d/head
 
@@ -150,62 +123,36 @@ nameserver <DNS2_IP>
 
 sudo resolvconf -u
 
--Overíme, či systém vidí DNS servery
+Overíme, či systém vidí DNS servery
 
   cat /etc/resolv.conf
 
-  -Ak sa konfigurácia načítala úspečne, uvidíme vo výstupe 
-   "nameserver" záznamy.
+Ak sa konfigurácia načítala úspešne, uvidíme vo výstupe "nameserver" záznamy.
 
--Overíme DNS konfiguráciu
+Overíme DNS konfiguráciu
 
   ping google.com
 
-  -Ak sú DNS servery funkčné, doménové meno sa preloží na IP adresu
-   a budeme mať konektivitu.
+Ak sú DNS servery funkčné, doménové meno sa preloží na IP adresu a budeme mať konektivitu k dotazovanej doméne.
 
-
-
-
-  8.1. [VOLITEĽNÉ] Option for Broadcom interfaces NetXtreme II 10Gb, not necessary for regular servers:
+V prípade, že disponujeme sieťovou kartou Broadcom NetXtreme II 10Gb, musíme pre ňu nainštalovať ovládače
 
      apt-get install firmware-bnx2x
 
-  8.2 Save :wq settings
-
-
-
-
--Otestujeme vzdialené prihlásenie cez SSH
- Prihlásime sa na server ako štandardný používateľ
+Potom, čo sme otestoval konektivitu na internet, otestujeme vzdialené prihlásenie cez SSH. Prihlásime sa na server ako štandardný používateľ
 
   ssh <username>@<IP_ADRESA>
  
--Ak sa cez SSH vieme prihlásiť, naposledy reštartujeme server, aby sme
- mali istotu, že nastavenia sú správne.
+Ak sa cez SSH vieme prihlásiť, vypneme server. Teraz môžeme pripojiť aj zvyšné disky, ak sme ich doposiaľ nepripojili. Zapneme server, aby sme sa uistili, že nastavenia sú uložené správne a pretrvávajú aj po reštarte servera.
 
- Teraz môžeme pripojiť aj zvyšné disky.
-    
-  reboot
-
--Znova otestujeme SSH prístup.
- Ak sa nám cez SSH podarilo prihlásiť, pokračujeme ďalšími krokmi,
- v ktorých nainštalujeme EVE-ng na server.
-
-
-
-
-
-************* ************* ************* *************
-
+Znova otestujeme SSH prístup. Ak sa nám cez SSH podarilo prihlásiť, pokračujeme ďalšími krokmi, v ktorých nainštalujeme nástroj EVE-ng na server.
 
 
 ************* ************* ************* *************
 NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
 ************* ************* ************* *************
 
-9. Prihlásime sa na server cez SSH.
-   Nainštalujeme úvodné programy.
+Prihlásime sa na server cez SSH. Nainštalujeme potrebné balíčky.
 
   sudo apt-get update
   sudo apt-get install aptitude
@@ -213,105 +160,101 @@ NIŽŠIE UVDEDENÉ KROKY UŽ MÔŽEME VYKONAŤ CEZ SSH
   sudo aptitude install bash-completion man-db tmux python-pip datamash dtrx \
     htop eve-ng-addons-ostinato-drone eve-ng-addons-netem
 
-    bash-completion - doplnanie prikazov klavesou Tab
-    man-db - manualove stranky
-    tmux - terminal multiplexor - viacero SSH relacii v jednej
-    python-pip - instalacia balickov
-    datamash - transponovanie stlpca do riadku
-    dtrx - nastroj na jednoduche rozbalovanie komprimovanych suborov
-    htop - monitorovanie systémových prostriedkov
-    eve-ng-addons-ostinato-drone - generátor sieťovej prevádzky
-    eve-ng-addons-netem - tvarovač sieťovej prevádzky
+Význam jednotlivých balíčkov
+
+  bash-completion - dopĺňanie príkazov klávesou "Tab"
+  man-db - manuálove stránky pre terminálové príkazy
+  tmux - Terminal MUltipleXor - nástroj na správu viacerých SSH relacii
+  python-pip - inštalácia balíčkov pre programovací jazyk Python
+  datamash - transponovanie stĺpca do riadku
+  dtrx - nástroj na jednoduché rozbaľovanie komprimovaných súborov
+  htop - monitorovanie systémových prostriedkov
+  eve-ng-addons-ostinato-drone - generátor sieťovej prevádzky Ostinato
+  eve-ng-addons-netem - nástroj na úpravu parametrov sieťovej prevádzky NetEm
     
 
-  Ešte pred spustením tmux relácie môžeme vytvoriť konfiguračný súbor pre 
-  tmux, ktorý nám umožní používať klávesové skratky
-    "Ctrl+šípka doľava/doprava"
-  na preskakovanie slov v príkazovom riadku.
+Ešte pred spustením tmux relácie môžeme vytvoriť konfiguračný súbor pre 
+tmux, ktorý nám umožní používať klávesové skratky "Ctrl+šípka doľava/doprava" na preskakovanie slov v príkazovom riadku.
 
-  Odpojíme sa od existujúcej tmux relácie, ak je to potrebné
+Odpojíme sa od existujúcej tmux relácie, ak je to potrebné
 
-    Ctrl+b d
+  Ctrl+b d
 
-  Vytvoríme konfiguračný súbor pre tmux
+Vytvoríme konfiguračný súbor pre tmux
 
-    vim ~/.tmux.conf
-  
-  Zadáme do súboru
+  vim ~/.tmux.conf
 
-    set-window-option -g xterm-keys on
+Zadáme do súboru
 
-  Uložíme súbor a obnovíme tmux reláciu
+  set-window-option -g xterm-keys on
 
-    tmux a
+Uložíme súbor a obnovíme tmux reláciu
 
-  V tmux relácií nastavíme tmux tak, aby používal nami vytvorený
-  konfiguračný súbor
+  tmux a
 
-    Ctrl+b :source-file ~/.tmux.conf
+V tmux relácií nastavíme tmux tak, aby používal nami vytvorený
+konfiguračný súbor
+
+  Ctrl+b :source-file ~/.tmux.conf
 
 
-10. Get the eve key from repository:
+Po vykonaní vyššie uvedených krokov je všetko pripravené na inštaláciu nástroja EVE-ng. Stiahneme si kľúč z z EVE-ng repozitára.
 
   wget -O - http://www.eve-ng.net/repo/eczema@ecze.com.gpg.key | sudo apt-key add -
 
-  -Keď sme vyzvaný, zadáme heslo pre používateľa <username>
+Keď sme vyzvaný, zadáme heslo pre používateľa <username>.
 
-11. Update server:
+Pridáme repozitár do zoznamu pre správcu balíčkov "apt".
   
   sudo aptitude install software-properties-common python3-software-properties python-software-properties
   sudo add-apt-repository "deb [arch=amd64]  http://www.eve-ng.net/repo xenial main"
+
+Aktualizujeme server, aby sa zoznam balíčkov z nového repozitára načítal do lokálnej databázy balíčkov.
+
   sudo apt-get update
 
+Nainštalujeme balíček "eve-ng", najlepšie s použitím príkazu "sudo" ako štandardný používateľ. Uistíme sa, že tmux relácia je stále aktívna. Inštalačná procedúra trvá určitý čas. Počas inštalácie balíčkov musí byť SSH relácia otvorená. V momente, keď sa inštalačná procedúra preruší, riskujeme, že sa nástroj nenainštaluje správne. Inštaláciou balíčkov s použitím nástroja tmux môžeme kedykoľvek SSH reláciu uložiť a prerušiť, pričom však inštalácia bude aj naďalej prebiehať. Neskôr ju môžeme obnoviť a pokračovať tam, kde sme prestali napr. vidieť, ako postupuje inštalácia. Balíček "eve-ng" nainštalujeme príkazom:
 
-12. Nainštalujeme balíček "eve-ng". Uistíme sa, že tmux relácia je
-    stále aktívna:
+  DEBIAN_FRONTEND=noninteractive sudo apt-get -y install eve-ng
+
+Ak sme vyzvaný, zadáme nové heslo pre "root" používateľa v MySQL.
+
+Pri dialógu "Modified configuration file" zakaždým zvolíme možnosť "install the package maintainer's version".
+
+Keďže je inštalácia EVE-ng spustená v nástroji tmux, môžeme sa zo serveru odhlásiť a uložiť stav SSH relácie, pričom inštalácia bude aj naďalej prebiehať. Urobíme tak klávesovou skratkou:
+
+  Ctrl+b, D
   
-  -ako sudo
-    DEBIAN_FRONTEND=noninteractive sudo apt-get -y install eve-ng
+Písmeno 'D' stlačíme samostatne. Tak ukončíme tmux reláciu, ktorá sa následne uloží.
 
-  
-  -ak sme vyzvaný, zadáme nové heslo pre "root" používateľa v MySQL
-  -pri dialógu "Modified configuration file" zakaždým zvolíme možnosť
-   "install the package maintainer's version"
-  -Keďže je inštalácia EVE-ng spustená v nástroji tmux, môžeme sa zo serveru
-   odhlásiť, pričom inštalácia bude aj naďalej prebiehať.
-   Urobíme tak klávesovou skratkou
+tmux reláciu obnovíme príkazom:
 
-    Ctrl+B, D (stlačíme samostatne)
-   
-   Tak ukončíme tmux reláciu, ktorá sa následne uloží.
-   tmux reláciu obnovíme príkazom
+  tmux a
 
-    tmux a
+Otvorí sa naposledy uložená tmux relácia, v ktorej môžeme pokračovať tam, kde sme skončili.
 
-   a môžeme pokračovať tam, kde sme skončili.
+Po dokončení inštalácie sa server automaticky reštartuje. Ak sa tak nestane, reštartujeme ho manuálne
 
-13. Po dokončení inštalácie sa server automaticky reštartuje.
-    Ak sa tak nestane, reštartujeme ho manuálne
+  reboot
 
-      reboot
+Reštart servera ukončí všetky SSH relácie. Po chvíli sa môžeme znova prihlásiť na server cez SSH ako štandardný používateľ.
 
-14. Predchádzajúci príkaz ukončí SSH reláciu.
-    Po chvíli sa môžeme znova prihlásiť na server cez SSH
-    AKO POUŽÍVATEĽ (nie root, lebo ten je v SSH zablokovaný) !!!
-
-15. Po prihlásení sa objaví výzva na zadanie hesla pre "root" používateľa.
-    Ukončíme ju klávesovou skratkou
+Po prihlásení sa objaví textové grafické rozhranie s výzvou na zadanie hesla pre "root" používateľa. Ukončíme ju klávesovou skratkou
     
-      Ctrl+C
+      Ctrl+c
 
--Vykonáme príkaz
+Ak sme sa prihlásili ako štandardný používateľ, tento skript nevykoná nutné zmeny. Preto je potrebné ho ukončiť a spustiť príkazom "sudo".
 
   sudo /opt/ovf/ovfconfig.sh
 
--Zobrazí sa výzva na zadanie hesla pre "root" používateľa.
--Následne sa zobrazí výzva na potvrdenie tohto hesla.
+Zobrazí sa výzva na zadanie hesla pre "root" používateľa. Následne sa zobrazí výzva na potvrdenie tohto hesla.
 
--Type the hostname (default is eve-ng):           sirena
--Type the domain name (default is example.com):   kis.fri.uniza.sk
+Na otázky odpovieme nasledovne:
 
- Mind that hostname and domain name are critical for IOU/IOL license.
+  Type the hostname (default is eve-ng):           sirena
+  Type the domain name (default is example.com):   kis.fri.uniza.sk
+
+Treba vziať do úvahy, že doménové meno a doména sú kritické pre vygenerovanie platnej IOU/IOL licencie.
 
 -Select if management IP address should be static or configured by 
  DHCP (default is dhcp, use arrow keys and space to select,

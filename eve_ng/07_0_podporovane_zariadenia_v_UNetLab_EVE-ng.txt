@@ -1,7 +1,8 @@
-Podporované zariadenia v UNetLab
+Podporované zariadenia v nástroji UNetLab/EVE-ng
 
-Pre aktuálny zoznam podporovaných zariadení viď
-http://www.eve-ng.net/index.php/documentation/supported-images
+Aktuálny zoznam podporovaných zariadení v EVE-ng je dostupný na stránke
+
+    http://www.eve-ng.net/index.php/documentation/supported-images
 
 Dynamips (Cisco IOS emulácia)
     • c7200-adventerprisek9-mz.152-4.S6 (supported cards: PA-FE-TX, PA-4E, PA-8E) 
@@ -65,16 +66,9 @@ Qemu
 
 Virtualizácia koncových zariadení na UNetLab serveri
 UNetLab dokáže virtualizovať tieto koncové zariadenia:
-    • VPCS – Virtual Personal Computer Simulator – jednoduché koncové zariadenie, ktorému vieme nastaviť IP adresu a overiť konektivitu cez "ping".
-    • Linux – linuxové distribúcie vie UNetLab virtualizovať pomocou QEMU. Je možné použiť ľubovoľnú linuxovú distribúciu (avšak nie OpenStack-ový "qcow2" obraz)
-    • Windows – virtualizácia operačného systému Windows tiež prebieha cez QEMU (ale treba ešte preskúmať, ako ho rozbehať)
-V tomto dokumente popisujeme iba koncové zariadenie VPCS. Postup, ako do UNetLab servera pridať linuxovú distribúciu resp. Windows, je uvedené v dokumente "Pridávanie zariadení do UNetLab-u". 
-
-VPCS
-VPCS do UNetLab topológie pridáme ako “Add new object → Node → Template → VPCS”.
-Ku VPCS zariadeniu sa pripojíme rovnako ako k routrom / switchom:
-	telnet <ip_adresa_unetlab_servera> <port_zariadenia>
-    • IP adresu pre VPCS nastavíme tak, ako je uvedené v dokumente "Návody Kureková-Šišila -> GNS3”
+- VPCS – Virtual Personal Computer Simulator – jednoduché koncové zariadenie, ktorému vieme nastaviť IP adresu a overiť konektivitu cez "ping".
+- Linux – linuxové distribúcie vie UNetLab virtualizovať pomocou QEMU. Je možné použiť ľubovoľnú linuxovú distribúciu (avšak nie OpenStack-ový "qcow2" obraz)
+- Windows – virtualizácia operačného systému Windows tiež prebieha cez QEMU (ale treba ešte preskúmať, ako ho rozbehať)
 
 Zdroje:
 http://www.unetlab.com/documentation/supported-images/

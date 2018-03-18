@@ -10,7 +10,9 @@ Zazitky:
 
 Ulohy: 
 
--pokracovat v prekladoch navodov - 04 - instalacia
+-rozbit subor "unetlab_eve_Common_Issues.txt" do relevantnych suborov
+  -> nakoniec tento subor odstranit
+  
 -urobit EVE-ng adresarovu a suborovu strukturu prehladnejsie v subore "uzitocne_eve-ng_subory.txt"
 
 -dohodnut sa s veducim, ako pisat diplomku
@@ -76,6 +78,11 @@ Diplomka
 
 
 Co dalej?
+
+-opraviť bug:
+  -jeden používateľ nemôže byť prihlásený z dvoch rôznych počítačov - tak by sa dala vyriešiť práca v tíme, konfigurácia rovnakých zariadení na rovnakých portoch, aktualizácia topológie,
+  atď.
+  -> treba spustiť Wireshark odchytávanie, prihlásiť používateľa z jedného počítača. Spustiť odchytávanie na inom počítači a prihlásiť sa ako rovnaký používateľ. Potom na základe vymieňaných správ (a ich kódov!) so serverom zistiť, prečo server automaticky odhlásil používateľa z prvého počítača a odstrániť toto obmedzenie.
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
   -Instalacia

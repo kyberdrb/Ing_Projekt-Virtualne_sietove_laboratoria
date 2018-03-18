@@ -2,12 +2,15 @@
   
   /opt/unetlab/html/templates
 
-Na úpravu šablón sa používa skript "update_templates.sh" uložený v HOME adresári (aj tu v dokumentacii v súbore "uprava_sablon_skript").
-Šablóny sa po aktualizácií eve-ng prepíšu na predvolené - všetky vlastné úpravy sa stratia.
+Úprava šablón sa uskutočňuje pomocou skriptu.
+
+Šablóny sa po aktualizácií balíčka "eve-ng" prepíšu na predvolené. Všetky vlastné úpravy sa stratia.
+
 Zvažoval som dva spôsoby, ako obnoviť upravené šablóny:
-  -zálohovať upravené šablóny na zálohovací server a po aktualizácií ich skopírovať naspäť
-  -pomocou skriptu, ktorý vo vopred definovaných šablónach upraví vopred definované atribúty na nami definované hodnoty.
-Úprava šablón skriptom je bezpečnejšia než spätné kopírovanie upravených šablón, pretože pri aktualizácií EVE-ng sa môže stať aj to, že do šablón pribudnú nové atribúty, ktoré v predchádzajúcej verzií neboli, a ktoré v zálohovaných šablónach neexistujú, čo môže spôsobiť rôzne komplikácie pri interakcií s virtuálnymi zariadeniami vo web rozhraní.
+- Zálohovať upravené šablóny na zálohovací server a po aktualizácií ich skopírovať naspäť
+- Pomocou skriptu, ktorý vo vopred definovaných šablónach upraví konkrétne atribúty na prispôsobené hodnoty.
+
+Úprava šablón skriptom je bezpečnejšia než spätné kopírovanie upravených šablón, pretože pri aktualizácií EVE-ng môže nastať jav, kedy do šablón pribudnú nové atribúty, ktoré sa v predchádzajúcej verzií nevyskytovali, a ktoré v zálohovaných šablónach neexistujú, čo môže spôsobiť rôzne komplikácie pri práci s virtuálnymi zariadeniami v EVE-ng topológii.
 
 Zdroje:
 https://stackoverflow.com/questions/8822097/how-to-replace-whole-line-with-sed
