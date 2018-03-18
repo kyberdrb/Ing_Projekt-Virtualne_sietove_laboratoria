@@ -260,12 +260,13 @@ Treba vziať do úvahy, že doménové meno a doména sú kritické pre vygenero
  DHCP (default is dhcp, use arrow keys and space to select,
  then enter to confirm) -> ZVOLÍME STATICKÚ IP
 
--Static IP address will ask following questions:
-  -Type the IP address of the Management Network:
-    -zadáme IP adresu servera
-  -netmask
-  -default gateway
-  -primary and secondary DNS servers
+Pri voľbe, akým spôsobom sa má prideliť IP adresa rozhraniu, zvolíme statický spôsob, označením možnosti "static".
+
+Pri voľbe statickej IP adresy treba odpovedať na otázky:
+  -Type the IP address of the Management Network: zadáme IP adresu servera
+  -netmask: zadáme masku podsiete, v ktorej sa server nachádza
+  -default gateway: zadáme IP adresu predvolenej brány
+  -primary and secondary DNS servers: zadáme hlavný a záložný DNS server
 
 -Type the NTP server or leave blank if not used (default is blank):
 
