@@ -10,7 +10,7 @@ Zazitky:
 
 Ulohy: 
 
--pokracovat v prekladoch navodov - 06 -> modsecurity
+-pokracovat v prekladoch navodov - 04 - instalacia
 
 -dohodnut sa s veducim, ako pisat diplomku
   -ci ako navod alebo z nadhladu a odkazovat sa na navody na CD

@@ -337,28 +337,18 @@ Ak sme vykonali zmeny v ľubovoľnom súbore, uložíme ho a reštartujeme Apach
 *************
 mod_security
 
--firewall pre webové aplikácie
--ochrana napr. proti SQL Injection
+Modul "mod_security" slúži ako firewall pre webové aplikácie spustené pod Apache serverom. Môže sa použiť o.i. aj na ochranu proti útoku "SQL Injection". Tento modul som vo webovom serveri nepoužil, pretože by teoreticky mohol znemožniť vytváranie používateľov cez web rozhranie.
 
-Tento krok som nevykonal.
-Mohlo by to znemoznit vytvaranie používateľov cez web rozhranie.
 
 *************
 mod_evasive
 
--ochrana Apache web servera proti DoS a DDoS útokom
-
-Tento krok som nevykonal.
-Pokial by to zablokovalo studenta, museli by sme ho odstranit z blacklistu 
-a pripadne dat na whitelist, co by znamenalo dodatocne komplikacie.
+Modul "mod_evasive" slúži ako ochrana proti DoS a DDoS útokom pre webové aplikácie spustené pod Apache serverom. Tento modul som vo webovom serveri nepoužil, pretože sú s tým spojené dodatočné komplikácie v prípade, keby bola zablokované IP adresa školského alebo študentského počítača.
 
 
 ************* APACHE GUACAMOLE (REVERSE PROXY SERVER) [VOLITEĽNÉ] *************
-Reverse Proxy slúži na vzdialený prístup k zariadeniam v topológií 
-cez web prehliadač bez nutnosti inštalácie ďalších nástrojov na klientský
-počítač (okrem nástroja Wireshark)
 
-Netreba zabezpečovať, pretože na serveri je prístupný iba lokálne.
+Reverse Proxy slúži na vzdialený prístup k zariadeniam v EVE-ng topológií cez web prehliadač bez nutnosti inštalácie ďalších nástrojov na klientský počítač (okrem nástroja Wireshark). Netreba zabezpečovať, pretože Apache Guacamole server je prístupný iba lokálne.
 
 
 ************* ZABEZPEČENIE MYSQL *************
@@ -463,16 +453,16 @@ resp.
 Až po zabezpečení webového servera zmeníme predvolené heslo administrátorského účtu pre prístup do webového rozhrania. Pokiaľ by sme toto heslo zmenili pred zabezpečením webového
 servera, heslo by bolo nežašifrované a dalo by sa jednoducho odchytiť napr. nástrojom Wireshark.
 
--Zabezpečíme 'admin' účet:
-  -zadáme IP/web adresu web servera
-  -prihlásime sa ako admin
-  -pojdeme do Management -> User Management -> v riadku admin klikneme na "Edit"
-  -zadáme nove heslo a validny email
-  -klikneme na zelene tlačidlo "Edit"
-  -odhlasime sa a znovu sa prihlásime ako admin s novym heslom na overenie
+Zabezpečíme 'admin' účet:
+  - Zadáme IP/web adresu web servera.
+  - Prihlásime sa pod používateľským menom "admin" (predvolený používateľ).
+  - V hornom menu klikneme na "Management" -> "User management".
+  - V riadku admin klikneme na "Edit".
+  - Zadáme nové heslo a email adresu v správnom formáte.
+  - Klikneme na zelene tlačidlo "Edit", aby sa zmeny uložili.
+  - Overeníme, či sa zmeny prejavili. Odhlásime sa a znovu sa prihlásime ako "admin" používateľ s novým heslom.
 
-Hesla novych používateľov musia byť overene napr. pomocou stranky
-  https://howsecureismypassword.net/
+Je vhodné overovať mieru bezpečnosti používateľských hesiel napr. pomocou stránky "https://howsecureismypassword.net/"
 
 
 
