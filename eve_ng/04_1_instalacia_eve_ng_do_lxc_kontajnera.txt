@@ -119,6 +119,11 @@ sudo su -c "ip6tables-save > /etc/iptables/rules.v6"
 # v pripade restartu/vypnutia
 
 
+Myslel som si, že problémy teoreticky môžu vzniknúť vtedy, keď "iptables" má pre tabuľku FORWARD nastavenú predvolenú politiku DROP, pričom by mala byť nastavená na ACCEPT. Vtedy by si teoreticky zariadenia nedokázali preposielat správy cez rozhrania. Táto úvaha sa neskôr ukázala ako nepravdivá, keďže medzi zariadeniami existovala konektivita aj vtedy, keď bola predvolená politika pre FORWARD tabuľku nastavená na DROP. Konektivita bola overená nástrojom "ping".
+
+Možno problémy s konektivitou medzi zariadeniami v EVE-ng topológii boli spôsobené tým, že bola implementovaná podpora Docker kontajnerov na EVE-ng server podľa návodu "enable_docker_support_for_eve-ng-CIASTOCNY_USPECH.txt".
+
+
 
 # Upravime konfiguraciu LXC kontajnera
 
@@ -357,6 +362,8 @@ X.X.X.0   0.0.0.0         255.255.255.128 U     0      0        0 pnet0
 
 
 # Teraz by uz mala byt internetova konektivita dnu aj von pre LXC kontajner
+
+
 
 
 

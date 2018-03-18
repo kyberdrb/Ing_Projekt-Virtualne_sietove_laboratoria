@@ -17,14 +17,6 @@ Ulohy:
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
 
--problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
-   FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
-   nedokazali zariadenia preposielat spravy cez rozhrania
-    -> tato hypoteza sa ukazala ako NEPRAVDIVA!, kedze zariadenia sa medzi
-        sebou vedeli opingat, aj ked bola FORWARD politika nastavena na DROP
-    -> mozno to ale bolo tym, ze som nainstaloval Docker na EVE-ng server - neviem
-    -> VSETKO ZDOKUMENTOVAT do navodu s LXC kontajnerom!
-
 
 
 
