@@ -268,79 +268,46 @@ Pri voľbe statickej IP adresy treba odpovedať na otázky:
   -default gateway: zadáme IP adresu predvolenej brány
   -primary and secondary DNS servers: zadáme hlavný a záložný DNS server
 
--Type the NTP server or leave blank if not used (default is blank):
+Nastavíme IP adresu NTP servera. Ak chceme použiť automatický výber, pole necháme prázdne.
 
--Configure how the EVE VM/BareMetal Server can access Internet
+Configure how the EVE VM/BareMetal Server can access Internet
  (default is direct connection, use arrow keys and space to select, 
  then enter to confirm):
 
--None default options will require proxy hostname and port 
- (default is proxy.example.com:8080) and username/password with authenticated proxy.
+Nastavíme, ako má EVE-ng pristupovať k internetu. Predvolená možnosť je priame pripojenie - "direct connection". Ak sme ako spôsob prístupu na internet zvolili "proxy", pri predvolených nastaveniach sa bude používať adresa "proxy.example.com:8080". Inak bude vyžadované zadanie doménového mena a portu proxy servera. Pri autentifikačnom proxy serveri musíme zadať aj používateľské meno a heslo.
 
--Skript následne upraví potrebné súbory, vygeneruje nové SSH kľúče pre root
- používateľa (nie pre ostatných používateľov v systéme) a nakoniec reštartuje
- server.
- Tým, že sa vygenerujú nové SSH kľúče pre server, SSH prihlásenie zlyhá 
- so správou:
- "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!".
- To je dôsledok nanovo vygenerovaných SSH kľúčov, ktoré nie sú zhodné 
- s pôvodnými na lokálnom počítači.
- Riešením je si pôvodný serverový SSH kľúč vymazať z lokálneho počítača:
+Skript následne upraví potrebné súbory, vygeneruje nové SSH kľúče pre root používateľa (nie pre ostatných používateľov v systéme) a nakoniec reštartuje server. Tým, že sa vygenerujú nové SSH kľúče pre server, SSH prihlásenie zlyhá  so správou "WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!". To je dôsledok nanovo vygenerovaných SSH kľúčov, ktoré nie sú zhodné s pôvodnými na lokálnom počítači. Riešením je si pôvodný serverový SSH kľúč vymazať z lokálneho počítača:
 
   vim ~/.ssh/known_hosts
 
-  Zadáme '/' (hľadanie)
-  Napíšeme IP adresu vzdialeného servera.
-  Kurzor skočí na riadok s pôvodným kľúčom servera.
-  2x stlačíme klávesu 'd'. Tak vymažeme celý riadok.
-  Zadáme ":wq" (uložiť súbor a ukončiť editor).
+Zadáme '/' (hľadanie). Napíšeme IP adresu vzdialeného servera. Kurzor skočí na riadok s pôvodným kľúčom servera. 2x stlačíme klávesu 'd'. Tak vymažeme celý riadok. Zadáme ":wq" (uložiť súbor a ukončiť editor).
 
--Znova sa pokúsime prihlásiť ako ŠTANDARDNÝ POUŽÍVATEĽ cez SSH.
- Tentokrát sme vyzvaní na uloženie si nového serverového SSH kľúča.
- Uloženie potvrdíme zadaním "yes" a stlačením klávesy Enter.
- Po zadaní hesla sa znovu ocitneme v konzole.
+Znova sa pokúsime prihlásiť ako ŠTANDARDNÝ POUŽÍVATEĽ cez SSH. Tentokrát sme vyzvaní na uloženie si nového serverového SSH kľúča. Uloženie potvrdíme zadaním "yes" a stlačením klávesy Enter. Po zadaní hesla sa znovu ocitneme v konzole.
 
--Zálohujeme základný EVE-ng adresár pred vykonaním akýchkoľvek zmien
+Zálohujeme základný EVE-ng adresár pred vykonaním akýchkoľvek zmien
 
   sudo cp -R /opt/unetlab/ /opt/unetlab_original
 
--EVE-ng server je teraz nainštalovaný. Na to, aby bol pripravený na použtie 
- z webového rozhrania, musíme pridať výnimky do firewallu na IP adresu EVE-ng 
- servera pre porty:
+EVE-ng server je teraz nainštalovaný. Na to, aby bol pripravený na použtie z webového rozhrania, musíme pridať výnimky do firewallu na IP adresu EVE-ng servera pre porty:
 
   80/443 - HTTP/HTTPS
   22 - SSH
   32768-64536 - TCP aj UDP - zariadenia (telnet/vnc/rdp)
 
-
--Po úprave pravidiel v firewalle otvoríme internetový prehliadač a zadáme doň 
- adresu EVE-ng serveru (napr. 192.168.1.137 - IP adresu zistíme príkazom "ip a" 
- na rozhraní "pnet0")
+Po úprave pravidiel v firewalle otvoríme internetový prehliadač a zadáme doň adresu EVE-ng servera. IP adresu zistíme napr. príkazom "ip a" na rozhraní "pnet0".
 
 Predvolené prihlasovacie údaje do webového rozhrania sú:
 
 username:   admin
 password:   eve
 
--Vyskúšame sa prihlásiť aj s "Native console" aj s "Html5 console".
--Po prihlásení sa do webového rozhrania môžeme používať nástroj EVE-ng 
--Po úspešnom prihlásení sa okamžite odhlásime.
+Vyskúšame sa prihlásiť aj s "Native console" aj s "Html5 console". Obidva spôsoby by mali fungovať. Po prihlásení sa do webového rozhrania môžeme používať nástroj EVE-ng. Po úspešnom prihlásení sa odhlásime.
 
-Poznámka: Jeden používateľ môže byť súčasne prihlásený len z jedného počítača.
-Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
+Jeden používateľ môže byť súčasne prihlásený len z jedného počítača. Akonáhle sa prihlási z iného počítača, z predošlého ho server odhlási.
 
--Vypneme UKSM (Universal Kernel Samepage Merging) v EVE-ng.
- UKSM je v EVE-ng predvolene zapnuté.
- Úlohou UKSM je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU 
- zariadení rovnakého typu. To ale zvyšuje záťaž na procesor. 
- Podľa EVE-ng dokumentácie treba UKSM vypnúť, keď chceme spúšťať na 
- serveri viac ako 10 QEMU zariadení. Zrejme to zaťažuje procesor natoľko, 
- že to ovplyvňuje výkon bežiacich QEMU zariadení.
+Vypneme UKSM (Universal Kernel Samepage Merging) v EVE-ng. UKSM je v EVE-ng predvolene zapnuté. Úlohou UKSM je šetrenie operačnej pamäte pri spúšťaní viacerých QEMU zariadení rovnakého typu. To ale zvyšuje záťaž na procesor. Podľa EVE-ng dokumentácie treba UKSM vypnúť, keď chceme spúšťať na serveri viac ako 10 QEMU zariadení. Zrejme to zaťažuje procesor natoľko, že to ovplyvňuje výkon bežiacich QEMU zariadení.
 
- UKSM v EVE-ng vypneme tak, že buď vo webovom rozhraní nastavíme pod
- "System -> System status" a úplne dole klikneme na prepínač pri
- "UKSM status", aby sa nastavil do stavu "OFF". Skontrolujeme, či
- sa nastavenie uložilo stlačením F5. UKSM by malo zostať v stave "OFF".
+UKSM v EVE-ng vypneme tak, že buď vo webovom rozhraní nastavíme pod "System -> System status" a úplne dole klikneme na prepínač pri "UKSM status", aby sa nastavil do stavu "OFF". Skontrolujeme, či sa nastavenie uložilo stlačením F5. UKSM by malo zostať v stave "OFF".
 
 Nakoniec vypneme automatické aktualizácie. Upravíme súbor "20auto-upgrades":
 

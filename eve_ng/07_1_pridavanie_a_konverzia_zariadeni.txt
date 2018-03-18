@@ -1,20 +1,28 @@
 Pridávanie zariadení do EVE-ng servera
-V tomto dokumente opisujeme, ako pridávať zariadenia do nástroja EVE-ng. Pridávanie zariadení je totožné pre inštaláciu vo VirtualBox-e aj pre fyzickú inštaláciu na server s Ubuntu Server 14.04 x64.
-Poznámka: Pri pridávaní zariadenia cez QEMU je dôležité v adresári "/opt/unetlab/addons/qemu" vytvárať nový adresár pre každé zariadenie. Názov adresára smie obsahovať iba alfanumerické znaky a uvedené špeciálne znaky (. - ). Názov adresára nesmie obsahovať podtržník ( _ ), úvodzovky ( " ).
+V tomto dokumente opisujeme, ako pridávať zariadenia do nástroja EVE-ng. Pridávanie zariadení je totožné pre inštaláciu vo VirtualBox-e aj pre fyzickú inštaláciu na server s Ubuntu Server 14.04 x64 a 16.04 x64.
+
+Pri pridávaní zariadenia cez QEMU je dôležité v adresári "/opt/unetlab/addons/qemu" vytvárať nový adresár pre každé zariadenie. Názov adresára smie obsahovať iba alfanumerické znaky a uvedené špeciálne znaky (. - ). Názov adresára nesmie obsahovať podtržník ( _ ), úvodzovky ( " ).
+
 V tomto adresári vytvárame podadresáre pre jednotlivé zariadenia. V týchto podadresároch sa musí nachádzať jediný súbor - obraz disku daného zariadenia. Obraz disku musí spĺňať tieto požiadavky:
-Musí byť vo formáte "qcow2". Ak je v inom formáte , musíme ho skonvertovať do formátu "qcow2".
-Musí sa volať "hda.qcow2". (inak zariadenie nenaštartuje - neuvidíme nič na telnet / vnc)
-Ak podpriečinky nevytvoríme, zariadenie nebude nikde použiteľné.
+
+V prípad QEMU zariadení, musí byť vo formáte "qcow2". Ak je v inom formáte , musíme ho do tohto formátu skonvertovať.
+
+Musí sa volať "hda.qcow2", inak zariadenie nespustí t.j. neuvidíme nič na telnet / vnc konzole.
+
+Ak podpriečinky nevytvoríme, zariadenie nebude nikde použiteľné a EVE-ng ho nerozpozná. Je to iné správanie ako v GNS3, kde môžeme do jedného QEMU adresára priamo vkladať "qcow2" súbory. Tie GNS3 okamžite rozpozná a umožní nám ich použiť v topológii.
+
 Zariadenia sa do EVE-ng pridávajú jednoducho. Dajú sa pridávať aj za behu servera, bez nutnosti reštartu, aj za behu simulácie (aj keď odporúčame zastaviť simuláciu a potom pridať zariadenie).
 
-Návody na Windows nie sú uvedené, pretože nahrávanie súborov na server cez FTP resp. SFTP je možné vykonať cez FileZill-u a SSH pripojenie cez PuTTY.
+Návody na Windows nie sú uvedené, pretože nahrávanie súborov na server cez FTP resp. SFTP je možné vykonať nástrojom FileZilla a SSH pripojenie cez PuTTY.
 
 Súbory budeme prenášať ako "root" používateľ, preto sa budú nachádzať v adresári "/root/"
 
 Predvolené prihlasovacie údaje na server, sú: root / eve
 
 1) Stiahneme obraz disku daného zariadenia
-2) Zistíme, v akom formáte je obraz disku.
+
+2) Zistíme, v akom formáte je obraz disku a o aký typ zariadenia sa jedná. Ak je to QEMU zariadenie, použijeme tabuľku na stránke "http://www.eve-ng.net/index.php/documentation/images-table", aby sme zistili, ako sa má podadresár daného zariadenia nazývať.
+
 2.1) QEMU - Ak je obraz disku vo formáte "qcow2", vykonáme tieto príkazy:
     # Nahráme obraz disku na server
     sftp root@<ip_adresa_UnetLabu>
@@ -40,7 +48,7 @@ Predvolené prihlasovacie údaje na server, sú: root / eve
 
     # Presunieme obraz disku na správne miesto
     ssh root@<ip_adresa_UnetLabu>
-    mv hda.qcow2 /opt/unetlab/addons/iol/bin/<nazov_bin_suboru>.bin
+    mv <nazov_bin_suboru>.bin /opt/unetlab/addons/iol/bin/<nazov_bin_suboru>.bin
 
 2.3) DYNAMIPS - Ak je obraz disku vo formáte "image", vykonáme tieto príkazy:
 
@@ -155,8 +163,6 @@ suborov. Podľa toho, ktor
     /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
 
 5) Odskúšame pridané zariadenie vo webovom rozhraní. Zariadenie stačí pridať na pracovnú plochu, buď cez ikonku "plus" v nástrojovej lište, alebo pravým tlačidlom a zvoliť možnosť "Add node". Z rozbaľovacieho zoznamu vyberieme druh zariadenia, ktorý sme pridávali, ponecháme predvolené nastavenia a klikneme na "Add". Zariadenie spustíme tak, že naň klikneme pravým tlačidlom a zvolíme možnosť "Start".
-
-Pre problémy so spúšťamím zariadenia, viď "riesenie_problemov_so_zariadeniami.txt"
 
 6) Teraz sa pokúsime k zariadeniu pripojiť. V EVE-ng sa k zariadeniam dá pripojiť buď cez "telnet", alebo cez "vnc". To, ktorý spôsob zvoliť sa líši podľa zariadenia (spôsob, ako sa pripojiť ku zariadeniam je uvedený v tabuľke).
 Pokiaľ máme pre zariadenie použiť spôsob pripojenia "telnet", použijeme terminál (pre linuxové distribúcie) resp. PuTTY (alebo iný emuátor terminálu pre Windows)

@@ -10,11 +10,6 @@ Zazitky:
 
 Ulohy: 
 
--rozbit subor "unetlab_eve_Common_Issues.txt" do relevantnych suborov
-  -> nakoniec tento subor odstranit
-  
--urobit EVE-ng adresarovu a suborovu strukturu prehladnejsie v subore "uzitocne_eve-ng_subory.txt"
-
 -dohodnut sa s veducim, ako pisat diplomku
   -ci ako navod alebo z nadhladu a odkazovat sa na navody na CD
 

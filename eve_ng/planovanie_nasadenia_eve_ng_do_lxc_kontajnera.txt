@@ -1,3 +1,82 @@
+Komplikácie s UNetLab serverom v LXC kontajneri
+
+Nedá sa pripojiť na UNetLab server v LXC kontajneri po príkaze "reboot"
+Treba najprv opingať IP adresu servera zvnutra hostovskeho OS t.j. attachnut LXC kontajner a opingat napr. 8.8.8.8, a až potom sa pripojiť cez SSH. Ak to nezabralo na prvý krát, treba skúšať znova. Riešenie je funkčné za predpokladu, že sme neupravovali súbor "/etc/network/interfaces".
+Tento problem je vyrieseny. Jeho pricina je popisana v subore „komplikacie_s_lxc_kontajnerom“ v adresari „eve_ng_na_vzdialenom_serveri“.
+
+
+Zariadenia virtualizované pomocou QEMU / IOL nejdú spustiť
+Preskúmať logy
+LOGS -> unl_wrapper.txt (loguje spustenené boxy)
+
+Popýtať sa na fórach
+Ubuntuforum, debianforum
+
+Napísať maily na support
+Prečo QEMU a IOL boxy idú na fyzickom serveri, ale nechcú sa spustiť v LXC kontajneri? Veď LXC kontajner využíva to isté jadro, čo hosťovský systém. Je problém v oprávneniach, že LXC kontajner nemôže pristupovať k virtualizačným častiam jadra? Je to kvôli tomu, že na Odyseovi je hosťovský systém Debian namiesto Ubuntu? Alebo kvôli tomu, že si to vyžaduje vlastný UNetLab kernel? V čom sa UNetLab kernel líši od štandardného Ubuntu kernelu?
+
+Možno by QEMU a IOL boxy išli pod KVM hypervízorom tj.
+Debian -> LXC kontajner -> KVM Hypervisor -> UNetLab / EVE
+
+A čo, keby sa UNetLab nainštaloval priamo na Debian server?
+Debian -> UNetLab / EVE
+
+Alebo nainštalovať KVM a v ňom spúšťať UNetLab:
+Debian -> KVM Hypervisor -> UNetLab / EVE
+
+
+
+
+Zo súboru "unl_wrapper.txt" som získal príkaz na spustenie IOL routra.
+
+andrej@unetlab-server:~$ /opt/unetlab/addons/iol/bin/i86bi-linux-l3-adventerprisek9-15.4.2T.bin -d 0 -e 1 -s 1 -- -n 1024 -q -m 256
+***************************************************************
+IOS On Unix - Cisco Systems confidential, internal use only
+Under no circumstances is this software to be provided to any
+non Cisco staff or customers.  To do so is likely to result
+in disciplinary action. Please refer to the IOU Usage policy at
+wwwin-iou.cisco.com for more information.
+***************************************************************
+
+ IOURC: Could not open iourc file
+
+
+
+Takže je to tým, že Cisco IOL box nevidí licenciu, ktorá tam očividne je a na fyzickom serveri mi ten istý spôsob generovania IOL licencie fungoval (lebo na ňom sa IOL box spustil).
+Možno to bude tým, že sme zvolili doménové meno so špeciálnym znakom "unetlab_server". Preto sme ho zmenili na "unetlab"
+echo unetlab > /etc/hostname
+Reboot
+(ak sa nebude dať pripojiť cez SSH do piatich minút, treba postupovať podľa návodu "Nedá sa pripojiť na UNetLab server v LXC kontajneri po príkaze "reboot" ")
+A znovu vygenerujeme licenčný súbor podľa rovnakého návodu.
+
+
+Nepomohlo.
+
+
+Zatiaľ je záver taký, že UNetLab v LXC kontajneri funguje iba VPCS (koncové zariadenie) a Dynamips routre. Všetko ostatné odmieta spolupracovať.
+
+Ďalším riešením je použiť KVM. Skúsim nainštalovať EVE (už nie UNetLab) do virt-manager a uvidím, čo to dá.
+
+
+Ďalšie komplikácie
+ked sa vmware player otvori, zavrieme ho a restartujeme pc resp. vypneme lxc kontajner (shutdown now) a potom ho znova spustime z lxc konzoly (treba povedat Marekovi).
+
+Lenze po vypnuti lxc kontajnera "eve-test" sa don nedalo pripojit cez ssh. konektivita sa obnovila, ked sme attachli "eve-test" (konektivita s ssh stale nebola) a potom sme spravili "ping 8.8.8.8" a v tom momente sa objavil ssh prompt na prihlasovacie udaje. lxc kontajner som celu dobu spamoval prikazom "ssh andrej@<ip_adr_servera>" a bol som pripojenzy na wifi siet "eduroam".
+
+do odysea sa ssh pakety dostanu, odyseus ich dalej forwarduje na br0 (bridge pre lxc), ale do lxc kontajnera sa nedostanu.
+
+prikazom "tcpdump -e -i eth0 tcp port 22 and host <ip_adr_servera> and ether host <falosna MAC adresa>" sme zistili, ze pakety sa forwarduju na zlu cielovu MAC adresu, preto sa do "eve-test" kontajnera nedostanu.
+
+ARP tabulka "arp -a" v odyseovi mala zle namapovanu MAC adresu na IP adresu mojho kontajnera. MAC adresa ARP zaznamu v Odyseovej ARP tabulke bola odlisna od MAC adresy vnutri kontajnera. Ale akonahle sme urobili "ping 8.8.8.8" ARP tabulka sa upravila do spravnej podoby a dostal som ssh prompt.
+
+Zrejme sa tam zle arp zaznamy dostavaju z gatewayu, ale tam nemame pristup. Ale na vsetky ostatne IPcky kontajnerov sa ARPckom opyta, ale nie na IPcku mojho kontajnera.
+
+Mozne riesenie je nastavit MAC adresu kontajnera na fixnu, aby sme predisli zbytocnym zasahom do arp tabulky.
+
+TENTO PROBLEM JE UZ VYRIESENY!
+
+======================================================================================
+
 NEVIEM SPUSTIT ZIADNU VIRTUALNU MASINU VO VMWARE, LEBO MODUL "VMMON" NEBOL ZAVEDENY DO KERNELU! (nemam opravnenia)
 
 tak som urobil screenshoty prikazu "ls -al vm*" z mojho notebooku a ucitelskeho pocitaca, porovnal som vystupy. LXC kontajner nemal ziadne subory v /dev adresari prisluchajuce LXC kontajneru. Tak som po rade od Peta Hadaca pouzil prikaz "mknod", ktorym som /dev adresar naplnil. ale ked som spustil vmware player cez moj skript a potom som spustil masinu, zase mi zobrazil chybovu hlasku, ze nevie najst vmmon modul, ze nie je nacitany a spustenie virtualky zlyha. Ked ale spustim vmware player cez Applications menu, tak mi zobrazi dialogove okno, v ktorom odomna ziada cestu ku linux kernel headers (zdrojaky ku kernelu). Lenze kernel headers k debianu 9 este neexistuju resp. balicek este nie je dostupny.  Ked som ich chcel nainstalovat prikazom "apt-get install linux-headers-$(uname -r)", tak vypisal chybu, ze taky balicek neexistuje. Ani instalacia jedninych dostupnych headerov "linux-headers-4.9.0-2-amd64" nepomohla, lebo kernel, ktory momentalne (20.4.2017) bezi v systeme je vo verzii 4.9.0.-1 a VMware si s nim nerozumie! Tym vznikla nezhoda medzi verziou aktualneho kernelu a verziou zdrojovych suborov ku kernelu v apt.

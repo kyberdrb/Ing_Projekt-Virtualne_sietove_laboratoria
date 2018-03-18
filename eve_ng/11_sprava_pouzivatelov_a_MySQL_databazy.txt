@@ -19,7 +19,7 @@ OBNOVA HESLA KU ROOT ÚČTU V MYSQL DATABÁZE
 -V prípade, že sa nevieme prihlásiť k MySQL databáze ani lokálne alebo SSH
  príkazmi
 
-    mysql -u root --password='heslo_ku_databazi' eve_ng_db
+    mysql -u root --password='heslo_ku_databázi' eve_ng_db
     mysql -u root -p eve_ng_db
 
  môžeme ho zmeniť nasledovne:
@@ -90,28 +90,24 @@ Zdroje
 ===========================================================================
 PRIPOJENIE SA NA MYSQL SERVER CEZ SSH TUNEL
 
-Pripojenie na server je zabezpecene cez SSH tunel.
-SSH prístup je zabezpečený SSH kľúčom.
+Pripojenie na server je zabezpečené SSH tunelom. SSH prístup je zabezpečený SSH kľúčom.
 
 ===========================================================================
-1) Terminal
+VYTVORENIE SSH TUNELA
 
-Otvorime terminal.
-Vytvorime SSH tunel ku MySQL databazi na vzdialenom serveri
+Otvoríme terminal. Vytvoríme SSH tunel ku MySQL databázi na vzdialenom serveri.
 
   ssh -f -o ExitOnForwardFailure=yes -L 3306:localhost:3306 <REMOTE_SERVER_IP> sleep 30
 
-Otvori sa SSH pripojenie (tunel) ku vzdialenemu serveru s definovanym 
-port-forwardingom. MySQL port sa presmeruje do SSH tunela.
-SSH pripojenie sa nasledne presunie na pozadie (prepinac "-f").
-Ak sa na MySQL server nepripojime pocas doby uvedenej za prikazom "sleep",
-pripojenie (tunel) bude automaticky zatvorene.
-Tunel zostane otvoreny pocas celeho pouzivania aplikacie (MySQL).
-Po ukonceni aplikacie (MySQL) sa SSH tunel automaticky ukonci.
+Otvorí sa SSH pripojenie (tunel) ku vzdialenému serveru s definovaným mapovaním portov. MySQL port sa presmeruje do SSH tunela. SSH pripojenie sa následne presunie na pozadie (prepínač "-f").
 
+Ak sa na MySQL server nepripojíme počas doby uvedenej za prikazom "sleep", tunel bude automaticky zatvorený. Tunel zostane otvorený počas celého používania aplikácie MySQL resp. 
+MySQL Workbench. Po ukončení práce s aplikáciou sa SSH tunel automaticky ukončí.
 
-Otvorime dalsiu kartu v terminali alebo novy terminal.
-Pripojime sa ku MySQL databazi
+===========================================================================
+1) MySQL CLI
+Otvoríme dalsiu kartu v terminali alebo novy terminal.
+Pripojime sa ku MySQL databázi
 
   mysql -h 127.0.0.1 -P 3306 -u root -p eve_ng_db
 
@@ -122,7 +118,7 @@ Po zadani hesla mozeme vykonavat prikazy v MySQL konzole.
 2) MySQL Workbench
 
 -Klikneme na ikonku "+" vedla "MySQL Connections"
--Otvori sa dialogove okno "Setup New Connection". Zadame nasledovne parametre
+-Otvorí sa dialogove okno "Setup New Connection". Zadame nasledovne parametre
   -Connection Name:     <nazov_pripojenia>
   -Connection Method:   Standard TCP/IP over SSH  <= takto pristupime k MySQL databaze cez SSH port forwarding
   -"Parameters" karta
@@ -139,7 +135,7 @@ Po zadani hesla mozeme vykonavat prikazy v MySQL konzole.
 
 -Na uvodnej obrazovke sa objavi novovytvorene pripojenie. Klikneme
 nan pravym tlacidlom mysi -> Edit Connection
-  -Otvori sa dialogove okno "Manage Server Connections"
+  -Otvorí sa dialogove okno "Manage Server Connections"
   -V hornej casti klikneme na kartu "Remote Management"
     -Zvolime "SSH login based management"
       -Hostname:
@@ -151,7 +147,7 @@ nan pravym tlacidlom mysi -> Edit Connection
   -Nastavenia ulozime kliknutim na tlacidlo "Close"
 
 -Klikneme na novovytvorene MySQL pripojenie lavym tlacidlom mysi.
--Ak sa objavi dialogove okno "Conenct to MySQL Server", zadame heslo k databazi
+-Ak sa objavi dialogove okno "Conenct to MySQL Server", zadame heslo k databázi
 prislusneho MySQL pouzivatela.
 -Aby sme nacitali vysetky databazy, klikneme na tlacidlo "Reconnect to DBMS"
 (posledne tlacidlo na hornej liste - ikonka Databazoveho servera so sipkami).
@@ -162,7 +158,7 @@ dolnom rohu okna.
   -otvorime si eve_ng_db -> Tables -> users
   -klikneme na tabulku 'users' pravym tlacidlom mysi
     -> Select rows - Limit 1000
-  -Otvori sa nova karta s vypisanym zoznamom pouzivatelov.
+  -Otvorí sa nova karta s vypisanym zoznamom pouzivatelov.
 
 ===========================================================================
 ===========================================================================
@@ -201,7 +197,23 @@ Overíme, či sa záznam vložil do tabuľky "users"
   mysql --host=localhost --user=root --password=eve-ng eve_ng_db
   select * from users
 
-Mali by sme vidieť aktuálne pridaného používateľa. Teraz sa môžeme prihlásiť pod týmto účtom do EVE-ng web rozhrania. Ak to stále nejde, prihlásime sa pod iným, funkčným, účtom a upravíme POD identifikátor na unikátnu hodnotu novému používateľovi. Odhlásime sa
+Mali by sme vidieť aktuálne pridaného používateľa. Teraz sa môžeme prihlásiť pod týmto účtom do EVE-ng web rozhrania. Ak to stále nejde, prihlásime sa pod iným, funkčným, účtom a upravíme POD identifikátor na unikátnu hodnotu novému používateľovi. Odhlásime sa.
+
+Heslo pre každého používateľa ukladá do databázy ako výsledok funkcie SHA256 vypočítaná z reťazca zadaného ako heslo. Môžeme si vygenerovať aj vlastné heslo príkazom
+
+  sha256sum heslo_pre_používateľa
+
+Výsledok môžeme použiť v príkaze INSERT.
+
+Dôkaz, že sa naozaj používa funkcia SHA256 je zrejmý z výstupu príkazu
+
+  grep -rnw '/opt/unetlab/html/' -e 'sha256'
+
+Výstup príkazu ukazuje na nasledovné súbory:
+
+  /opt/unetlab/html/includes/api_authentication.php
+  /opt/unetlab/html/includes/api_uusers.php
+  /opt/unetlab/html/includes/functions.php
 
 ===========================================================================
 
