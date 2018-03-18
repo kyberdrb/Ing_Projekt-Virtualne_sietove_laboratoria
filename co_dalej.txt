@@ -11,6 +11,7 @@ Zazitky:
 Ulohy: 
 
 -pokracovat v prekladoch navodov - 04 - instalacia
+-urobit EVE-ng adresarovu a suborovu strukturu prehladnejsie v subore "uzitocne_eve-ng_subory.txt"
 
 -dohodnut sa s veducim, ako pisat diplomku
   -ci ako navod alebo z nadhladu a odkazovat sa na navody na CD

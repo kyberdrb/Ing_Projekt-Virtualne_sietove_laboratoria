@@ -7,7 +7,7 @@ Dynamips (Cisco IOS emulácia)
     • c7200-adventerprisek9-mz.152-4.S6 (supported cards: PA-FE-TX, PA-4E, PA-8E) 
     • c3725-adventerprisek9-mz.124-15.T14 (supported cards: NM-1FE-TX, NM-16ESW) 
     • c1710-bk9no3r2sy-mz.124-23 
-    • Iné obrazy z vyššie uvedených modelov by mali tiež fungovať
+    • Iné obrazy z vyššie uvedených modelov by byť tiež podporované
 
 IOL (IOS on Linux) / IOU (IOS on UNIX)
     • L2-ADVENTERPRISE-M-15.1-20131216.bin 
