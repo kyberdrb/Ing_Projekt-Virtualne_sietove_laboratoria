@@ -1,0 +1,9 @@
+Zdroje
+
+https://learningnetwork.cisco.com/docs/DOC-30160#jive_content_id_Supported_Cisco_OS_Features_in_VIRL
+https://learningnetwork.cisco.com/docs/DOC-30469
+https://learningnetwork.cisco.com/docs/DOC-30404
+https://www.cisco.com/c/en/us/td/docs/routers/access/interfaces/software/feature/guide/eesm_sw.html#pgfId-1921769
+"Cisco_problematicke_technologie.txt"
+"osnova_PS1_PS2_cna2-4_2017_2018.docx"
+https://certcollection.org/forum/topic/314237-cisco-iosv-l2-v152-qemu-kvm-and-vmware-images/

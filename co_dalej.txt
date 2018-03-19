@@ -39,6 +39,9 @@ Ulohy:
   -Co je "ITA domain"?
   -Co je "IP SLA"?
 
+-konzultovat s uramovou
+  -co je komplexna konfiguracia prepinaca?
+
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
   -zoznam features je uz stiahnuty
 -ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
@@ -57,7 +60,7 @@ Ulohy:
 
 
 Diplomka
-  -pisat spisovne do navodov
+  -zdokumentovat zistovanie features pre zariadenia
 
 
 

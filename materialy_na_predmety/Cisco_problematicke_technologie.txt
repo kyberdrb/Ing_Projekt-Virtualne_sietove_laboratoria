@@ -29,6 +29,13 @@ a
   https://learningnetwork.cisco.com/docs/DOC-30404
  vIOSL2 podporuje omnoho viac funkcii
 
+
+Not supported/working on Layer 3 IOL (Linux)
+
+Multicast with BSR
+NTP Authentication
+PPPoE (working on 12.4, and 15
+
 Zdroje:
   https://www.reddit.com/r/ccnp/comments/69txbc/for_ccnp_switch_will_unet_labeve_ng_allow_me_to/
   http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/
@@ -37,4 +44,5 @@ Zdroje:
   https://learningnetwork.cisco.com/docs/DOC-30469
   https://learningnetwork.cisco.com/docs/DOC-30404
   https://gns3.com/qa/does-iou-switch-support-not-l2-e
-  
+  http://danielkleviansky.com/unsupported-iol-features/
+  https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
