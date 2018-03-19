@@ -7,6 +7,8 @@ Zazitky:
 
 ===============================================================================
 Diplomka
+  -diplomku robit podla zadania DP! diplomka musi dat odpovede na ulohy v DP!
+  -aby som si ušetril písanie, môžem generalizovať veci, ktoré sú spoločné pre každú entitu,
   -zdokumentovat zistovanie features pre zariadenia
     -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
   -ako pisat diplomku

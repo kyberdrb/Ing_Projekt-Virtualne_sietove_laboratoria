@@ -6,46 +6,99 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 
 ## Zoznam úloh a ich riešení
 
+### Prieskum dostupných virtualizačných nástrojov + súčasný stav na katedre
+- Dôvody, prečo použiť virt. laby
+  - ieee explore, sci/scio hub - na stiahnutie clankov z ieee exp
+- Dynamips
+- WEB-IOU
+- Cisco VIRL
+- UNetLab
+- EVE-ng + rozdiely rôznych verzií (špeciálne pre EVE-ng) - PRIMÁRNE!
+- GNS3 - podporný nástroj
+
+### Analýza dostupných virtualizačných nástrojov
+- použité ǘývojové technológie (prog jazyk, backend, frontend)
+- podpora zariadení, s ktorými sa na danom predmete pracuje
+- podpora technológií jednotlivých zariadení
+- typ používateľského rozhrania
+- prideľovanie portových čísel zariadeniam
+- vzdialený prístup ku zariadeniam (telnet, vnc, rdp)
+- správa topológií
+  - vytvorenie/úprava/uloženie/odstránenie topológie
+  - koľko topológií môže mať jeden používateľ spustených
+- možnosť práce viac ľudí naraz na rovnakom projekte
+- možnosť prepojiť topológiu so živou sieťou
+
+### Porovnanie GNS3 a EVE-ng
+
+### Získavanie zariadení
+- zoznam získaných zariadení
+  - Dynamips
+  - Cisco IOL/IOU
+  - QEMU
+
+### Nasadenie EVE-ng servera
+  - kde všade bol nasadený
+    - vmware
+    - fyzický server
+  - hardvér
+
+#### Inštalácia
+  - Postup
+    - Inštalácia Ubuntu Server 16.03
+    - Konfigurácia Ubuntu Server
+    - Inštalácia EVE-ng do Ubuntu Server
+    - Konfigurácia EVE-ng
+      - Obnovenie súborov a adresárov
+        - Skripty
+        - Zariadenia
+        - Databázy
+      - Automatizácia zálohovania nástrojom "cron"
+      - Cisco IOL/IOU licencia
+      - Zabezpečenie servera
+  - úprava šablón
+
+#### Zabezpečenie
+  - Systém
+  - SSH
+  - Web server
+  - Databázový server
+  - SSH tunely (pre vzdialený prístup k zariadeniam v topológii)
+
+#### Spravovanie
+
+##### Adresárova štruktúra EVE-ng
+-adresárový strom
+
+##### Monitorovanie
+- netdata
+
+##### Zálohovanie
+
+### Meranie systémových požiadaviek zariadení
+
+#### Metodika
+
+#### Zoznam meraných zariadení
+
+#### Výsledky
+
 ### Výber predmetov, v ktorých je vhodné použiť virtuálne laboratórium
+
+- UROBIT DO TABULKY NIZSIE UVEDENE INFO
+
 - Počítačové siete 1
   - Zariadenia:
-    - smerovače: Cisco (možno Junos)
-
-  - Prednášky:
-    - doc. Ing. Pavel Segeč, PhD.
-    - Mgr. Jana Uramová, PhD.
-
-  - Cvičenia:
-    - doc. Ing. Milan Kubina, PhD.
-    - doc. Ing. Pavel Segeč, PhD.
-    - Mgr. Jana Uramová, PhD.
-    - Ing. Ondrej Škvarek, PhD.
+    - smerovače: Cisco, Juniper
 
 - Počítačové siete 2
   - Zariadenia:
-    - smerovače: Cisco (možno Junos)
-
-  - Prednášky:
-    - doc. Ing. Pavel Segeč, PhD.
-    - Mgr. Jana Uramová, PhD.
-
-  - Cvičenia:
-    - doc. Ing. Milan Kubina, PhD.
-    - doc. Ing. Pavel Segeč, PhD.
-    - Mgr. Jana Uramová, PhD.
-    - Ing. Ondrej Škvarek, PhD.
+    - smerovače: Cisco, Juniper
 
 - Projektovanie sietí 1 - PRIMÁRNE!
   - Zariadenia:
     - smerovače: Cisco, Juniper
     - koncové zariadenia: (Linux / Windows) (pre multicast technológie)
-
-  - Prednášky:
-    - doc. Ing. Pavel Segeč, PhD.
-    - Ing. Roman Kaloč
-
-  - Cvičenia:
-    - doc. Ing. Pavel Segeč, PhD.
 
 - Projektovanie sietí 2 - PRIMÁRNE!
   - Zariadenia:
@@ -56,12 +109,6 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
     - prepínače: Cisco
     - smerovače: Cisco
     - firewall: Cisco
-
-  - Prednášky:
-    - doc. Ing. Pavel Segeč, PhD.
-
-  - Cvičenia:
-    - doc. Ing. Pavel Segeč, PhD.
                 
 - CCNP Routing & Switching - PRIMÁRNE!
   - Zariadenia
@@ -97,84 +144,18 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
   - zoznam zariadení, ktoré ju podporujú
 - ...
 
-### Prieskum dostupných virtualizačných nástrojov
-- Dôvody, prečo použiť virt. laby
-  - ieee explore, sci/scio hub - na stiahnutie clankov z ieee exp
-- WEB-IOU
-- Cisco VIRL
-- UNetLab
-- EVE-ng + rozdiely rôznych verzií (špeciálne pre EVE-ng) - PRIMÁRNE!
-- GNS3 - podporný nástroj
-
-### Analýza dostupných virtualizačných nástrojov
-- použité ǘývojové technológie (prog jazyk, backend, frontend)
-- podpora zariadení, s ktorými sa na danom predmete pracuje
-- podpora technológií jednotlivých zariadení
-- typ používateľského rozhrania
-- prideľovanie portových čísel zariadeniam
-- vzdialený prístup ku zariadeniam (telnet, vnc, rdp)
-- správa topológií
-  - vytvorenie/úprava/uloženie/odstránenie topológie
-  - koľko topológií môže mať jeden používateľ spustených
-- možnosť práce viac ľudí naraz na rovnakom projekte
-- možnosť prepojiť topológiu so živou sieťou
-
-### Porovnanie GNS3 a EVE-ng
-
-### Získavanie zariadení
-- zoznam získaných zariadení
-  - Dynamips
-  - Cisco IOL/IOU
-  - QEMU
-
-### Nasadenie EVE-ng servera
-  - hardvér
-
-#### Inštalácia
-  - Postup
-    - Inštalácia Ubuntu Server 16.03
-    - Konfigurácia Ubuntu Server
-    - Inštalácia EVE-ng do Ubuntu Server
-    - Konfigurácia EVE-ng
-      - Obnovenie súborov a adresárov
-        - Skripty
-        - Zariadenia
-        - Databázy
-      - Automatizácia zálohovania nástrojom "cron"
-      - Cisco IOL/IOU licencia
-      - Zabezpečenie servera
-  - úprava šablón
-
-#### Zabezpečenie
-  - Systém
-  - SSH
-  - Web server
-  - SSH tunely pre vzdialený prístup
-
-#### Spravovanie
-
-##### Adresárova štruktúra EVE-ng
--adresárový strom
-
-##### Monitorovanie
-- netdata
-
-##### Zálohovanie
-
-### Meranie systémových požiadaviek zariadení
-#### Metodika
-#### Zoznam meraných zariadení
-#### Výsledky
-
 ### Testovanie virtuálneho laboratória
 - meranie systémových požiadaviek vybraných topológií
 - vyhodnotenie kompatibility, výkonnosti, stability, početnosti zariadení atď.
 - overenie funkčnosti pri vypracovávaní úloh z vybraných predmetov
+
 #### Počítačové siete 1/2 (CCNA)
 - náhrada/doplnok pre nástroj Packet Tracer
 - sumárne laboratórne cvičenie “Packet Tracer Packet Tracer Skills Integration Challenge 8.6.1”
+
 #### Projektovanie sietí 1
 - náhrada/doplnok Dynamips servera (s takym vykonom, t.j. cca 10/15skupin po 10 routroch)
+
 #### Projektovanie sietí 2
 - VPLS
 - Seamless MPLS
@@ -185,5 +166,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - Všetky dokumenty a výsledky práce sú prístupné na stránke https://github.com/kyberdrb/Ing-Projekt_Ing-Virtualne_sietove_laboratoria
 
 ### Čo ďalej
-  - 
+  - skonštatovanie, čo som urobil a ako to posunulo vyučovanie na katedre dopredu
+  - buducnost projektu + dalsie ulohy
+  
 (vytvorené s https://dillinger.io/)
