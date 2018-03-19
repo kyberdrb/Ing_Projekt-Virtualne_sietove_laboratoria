@@ -5,13 +5,46 @@ Tipy:
 Zazitky:
 -20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
 
+===============================================================================
+Diplomka
+  -zdokumentovat zistovanie features pre zariadenia
+    -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
 
 
-
+===============================================================================
 Ulohy: 
 
 -dohodnut sa s veducim, ako pisat diplomku
   -ci ako navod alebo z nadhladu a odkazovat sa na navody na CD
+
+-konzultovat laby s veducim
+  -Co je "ITA domain"?
+  -Co je "IP SLA"?
+
+-konzultovat s uramovou
+  -co je komplexna konfiguracia prepinaca?
+
+
+
+
+
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty
+-ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
+-pozriet sa na
+
+  "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
+ a
+  "/materialy_na_predmety/vyucovane_technologie.ods"
+ 
+ -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
+    Etherswitch modul features
+    https://www.cisco.com/c/en/us/td/docs/routers/access/interfaces/software/feature/guide/eesm_sw.html#pgfId-1921769
+
+
+
+
+
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
 
@@ -31,50 +64,11 @@ Ulohy:
       -1. stlpec - vyzadovane technologie
       -vnutro buniek - predmety + poznamky
 
--pozret sa v telefone na obrazok tabule od veduceho
-  -predmety
-  -zariadenia na ne
-
--konzultovat laby s veducim
-  -Co je "ITA domain"?
-  -Co je "IP SLA"?
-
--konzultovat s uramovou
-  -co je komplexna konfiguracia prepinaca?
-
--cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
-  -zoznam features je uz stiahnuty
--ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
--pozriet sa na
-
-  "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
- a
-  "/materialy_na_predmety/vyucovane_technologie.ods"
- 
- -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
-    Etherswitch modul features
-    https://www.cisco.com/c/en/us/td/docs/routers/access/interfaces/software/feature/guide/eesm_sw.html#pgfId-1921769
 
 
 
 
-
-Diplomka
-  -zdokumentovat zistovanie features pre zariadenia
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+===============================================================================
 Co dalej?
 
 -opraviť bug:
