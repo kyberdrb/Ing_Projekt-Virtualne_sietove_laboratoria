@@ -1,0 +1,201 @@
+ena
+
+! musi byt IPv6 SDM template
+!
+show sdm prefer 
+! a tam musi byt dual
+!show sdm prefer dual-ipv4-and-ipv6 default
+! zapnut cez a reload
+sdm prefer dual-ipv4-and-ipv6 default
+reload
+
+ena
+conf t
+ipv6 unicast-routing
+ip routing
+! IPv4 statické smerovanie
+ip route 0.0.0.0 0.0.0.0 null 0
+! IPv3 statické smerovanie
+ipv6 route ::/ null 0
+! RIPv2
+router rip
+	version 2
+	exit
+!RIPng
+ipv6 router rip RIP
+	exit
+int loop 0
+	ipv6 router rip RIP
+	exit
+! svi
+int fa 0/1
+	no switchport
+	exit
+! STP BPDU Guard
+int fa 0/2
+	no shut
+	spanning-tree bpduguard enable
+! stp bpdu filter
+int fa 0/2
+	spanning-tree bpdufilter enable
+	exit
+!PortFast
+spanning-tree portfast default
+!VLAN
+vlan 10
+	exit
+!VLAN Trunk 802.1Q
+int fa 0/3
+	switchport trunk encapsulation dot1q
+!ISL
+	switchport trunk encapsulation isl
+	exit
+!IVL smerovanie - Router on a Stick - tu nejde na switchoch
+!VTP v1
+vtp version 1
+!VTP v2
+vtp version 2
+!VTP v3
+vtp domain LAB
+vtp version 3
+!DTP
+int fa 0/4
+	switchport mode dynamic auto
+	exit
+!STP toto nejde nastavit
+!PVST+
+spanning-tree mode pvst
+!RPVST+
+spanning-tree mode rapid-pvst
+!MST
+spanning-tree mode mst
+!Extended VLAN
+! private vlan
+vtp mode transparent
+vlan 30
+	private-vlan primary
+	exit
+!L2 EtherChannel PAGP
+int fa 0/4
+	channel-group 1 mode auto
+!L2 EtherChannel LACP
+	channel-group 1 mode active
+!L3 EtherChannel PAGP  !L3 EtherChannel LACP ide ak ide L2, resp. staci ak sa da z L2 spravit L3 por
+int fa0/5
+	no switchport
+	exit
+!HSRP IPv4   a HSRP IPv6 
+	int vlan 10
+		standby 1 ip 1.1.1.1
+		exit
+!HSRPv2 IPv4  a HSRPv2 IPv6 
+vlan 20
+	exit
+	int vlan 20
+		standby version 2	
+		standby 2 ipv6 fe80::20
+		exit
+! VRRP IPv4 
+	int vlan 20
+		no standby
+		vrrp 1 ip 30.30.30.30
+		exit
+!VRRP IPv6 
+fhrp version vrrp v3
+! GLBP IPv4  a GLBP IPv6 
+	int vlan 20
+		glbp 1 ip 40.40.40.40
+		glbp 2 ipv6 fe80::40
+		exit
+! ACL IPv4 
+ access-list 100 permit ip any any
+! ACL IPv6 
+ipv6 access-list TEST
+	exit
+! DHCP IPv4 
+ip dhcp pool MENO
+	exit
+!DHCP IPv6 
+ipv6 dhcp pool MENO
+	exit
+!(Dynamické) NAT - na switcho sa nerobi
+!lldp
+	lldp run
+! cdp
+cdp run
+!Syslog
+logging 2.2.2.2
+!NTP
+ntp server 2.2.2.2
+!SNMP
+!span
+monitor session 1 source interface fa 0/1
+
+!EIGRP IPv4 
+router eigrp 1
+	exit
+! EIGRP IPv6
+ipv6 router eigrp 1
+	exit
+! OSPFv2 Single-Area and MUTLI
+router ospf 1
+	net 10.0.0.0 0.0.0.255 area 0
+	net 10.0.0.0 0.0.0.255 area 20
+	exit
+!OSPFv3 Single-Area aj multi OSPFv3 Multi-Area
+ipv6 router ospf 1
+	exit
+! ospfv3 new style
+router ospfv3 1
+	exit
+
+!eBGP IPv4
+router bgp 65001
+	exit
+! mBGP
+router bgp 65001
+	address-family ipv4 unicast
+	exit
+	exit
+!IS-IS
+router isis
+	exit
+! IGMP, IGMP v2, IGMP v3 neviem
+!IGMP Snooping
+!PIM Dense Mode
+ip multicast-routing
+!PIM Sparse Mode
+int loop 0
+	ip pim sparse-mode
+!PIM DEnse Mode
+int loop 0
+	ip pim dense-mode
+!PIM Sparse-Dense Mode
+int loop 0
+	ip pim sparse-dense-mode
+!PIM Any-Source Multicast neviem
+!PIM Source-Specific Multicast neviem
+!Manual RP
+ip pim rp-address 10.255.255.3
+!Auto-RP
+ip pim send-rp-announce loop 0 scope 20
+!BSR
+ip pim rp-candidate Loopback0
+!Anycast RP neviem
+!iBGP IPv4 ak ide bgp ide aj e aj iBGP
+EIGRP ITA
+IP SLA
+
+!STP BPDU Filter
+!CEF nativne
+!NTP Authentication
+! uff
+! DHCP Snooping uz nestiham
+
+	
+		
+		
+		
+
+
+
