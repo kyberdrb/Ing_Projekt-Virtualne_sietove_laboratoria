@@ -23,6 +23,7 @@ Ulohy:
 
 -konzultovat s uramovou
   -co je komplexna konfiguracia prepinaca?
+  -ake technologie bude mat topologia v 7. tyzdni? -> podla toho vybrat zariadenia + kusky konfiguracie na otestovanie technologie
 
 
 
