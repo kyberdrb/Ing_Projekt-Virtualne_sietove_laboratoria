@@ -98,6 +98,8 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - ...
 
 ### Prieskum dostupných virtualizačných nástrojov
+- Dôvody, prečo použiť virt. laby
+  - ieee explore, sci/scio hub - na stiahnutie clankov z ieee exp
 - WEB-IOU
 - Cisco VIRL
 - UNetLab
@@ -105,6 +107,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - GNS3 - podporný nástroj
 
 ### Analýza dostupných virtualizačných nástrojov
+- použité ǘývojové technológie (prog jazyk, backend, frontend)
 - podpora zariadení, s ktorými sa na danom predmete pracuje
 - podpora technológií jednotlivých zariadení
 - typ používateľského rozhrania
@@ -182,5 +185,5 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - Všetky dokumenty a výsledky práce sú prístupné na stránke https://github.com/kyberdrb/Ing-Projekt_Ing-Virtualne_sietove_laboratoria
 
 ### Čo ďalej
-
+  - 
 (vytvorené s https://dillinger.io/)

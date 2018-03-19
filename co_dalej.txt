@@ -9,17 +9,13 @@ Zazitky:
 Diplomka
   -zdokumentovat zistovanie features pre zariadenia
     -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
-
+  -ako pisat diplomku
+    -ako, co, preco som robil + ako to riesi ulohy v zadani DP
 
 ===============================================================================
 Ulohy: 
 
--dohodnut sa s veducim, ako pisat diplomku
-  -ci ako navod alebo z nadhladu a odkazovat sa na navody na CD
-
--konzultovat laby s veducim
-  -Co je "ITA domain"?
-  -Co je "IP SLA"?
+IP SLA => merania vlastnosti prenosovej cesty
 
 -konzultovat s uramovou
   -co je komplexna konfiguracia prepinaca?
