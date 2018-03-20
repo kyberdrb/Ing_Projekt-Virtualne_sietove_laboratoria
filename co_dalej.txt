@@ -7,6 +7,8 @@ Zazitky:
 
 ===============================================================================
 Diplomka
+  -urobit obsah diplomky do latexovej sablony podla obsahu "plan_riesenia_diplomovej_prace.md"
+    -potom spomenuty subor zmazat
   -diplomku robit podla zadania DP! diplomka musi dat odpovede na ulohy v DP!
   -aby som si ušetril písanie, môžem generalizovať veci, ktoré sú spoločné pre každú entitu,
   -zdokumentovat zistovanie features pre zariadenia
