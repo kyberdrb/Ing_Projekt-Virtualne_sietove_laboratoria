@@ -39,8 +39,6 @@ IP SLA => merania vlastnosti prenosovej cesty
   "/materialy_na_predmety/vyucovane_technologie.ods"
  
  -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
-    Etherswitch modul features
-    https://www.cisco.com/c/en/us/td/docs/routers/access/interfaces/software/feature/guide/eesm_sw.html#pgfId-1921769
 
 
 
@@ -48,22 +46,6 @@ IP SLA => merania vlastnosti prenosovej cesty
 
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
-
-
-
-
--vytvorit sumarnu tabulku vyucovanych technologii a zariadeni pre
- CCNA a CCNP (vid materialy_na_predmety/Cisco_problematicke_technologie.ods)
-
- -PRE CHALANOV
-  -Urobit sumarny tabulkovy dokument s podporovanymi technologiami jednotlivych
-   zariadeni a vyucovanymi technologiami na predmety
-
-    -1 harok
-      -nazov harku: Podporované technológie pre zariadenia
-      -1. riadok - skumane zariadenia
-      -1. stlpec - vyzadovane technologie
-      -vnutro buniek - predmety + poznamky
 
 
 
