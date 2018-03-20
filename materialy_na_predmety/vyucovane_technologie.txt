@@ -1,64 +1,243 @@
-IPv4 statické smerovanie
-IPv6 statické smerovanie
-RIPv2
-RIPng
-SVI
-STP BPDU Guard
-PortFast
-VLAN
-VLAN Trunk 802.1Q
-IVL smerovanie - Router on a Stick
-VTP v1
-VTP v2
-VTP v3
-DTP
-STP
-PVST+
-RPVST+
-Extended VLAN
-L2 EtherChannel PAGP
-L2 EtherChannel LACP
-L3 EtherChannel PAGP
-L3 EtherChannel LACP
-HSRP IPv4 
-HSRP IPv6 
-HSRPv2 IPv4 
-HSRPv2 IPv6 
-VRRP IPv4 
-VRRP IPv6 
-GLBP IPv4 
-GLBP IPv6 
-ACL IPv4 
-ACL IPv6 
-DHCP IPv4 
-DHCP IPv6 
-(Dynamické) NAT
-LLDP
-CDP
-Syslog
-NTP
-SNMP
-SPAN
+! IPv4 statické smerovanie
+ip route 0.0.0.0 0.0.0.0 null 0
 
-EIGRP IPv4 
-EIGRP IPv6 
-OSPFv2 Single-Area
-OSPFv2 Multi-Area
-OSPFv3 Single-Area
-OSPFv3 Multi-Area
-PPP
-MLPPP
-HDLC
-PPPoE
-GRE
-eBGP IPv4
+! IPv6 statické smerovanie
+ipv6 route ::/ null 0
 
-IS-IS
-IGMP
-IGMP v2
-IGMP v3
-IGMP Snooping
-PIM Dense Mode
+! RIPv2
+router rip
+	version 2
+	exit
+
+! RIPng
+ipv6 router rip RIP
+	exit
+int loop 0
+	ipv6 router rip RIP
+
+! SVI
+int fa 0/1
+	no switchport
+	exit
+
+! STP BPDU Guard
+int fa 0/2
+	no shut
+	spanning-tree bpduguard enable
+
+! PortFast
+spanning-tree portfast default
+
+! VLAN
+vlan 10
+	exit
+
+! VLAN Trunk 802.1Q
+int fa 0/3
+	switchport trunk encapsulation dot1q
+
+! IVL smerovanie - Router on a Stick
+int fa 0/0
+	no shut
+	int fa 0/0.10
+		encapsulation dot1q 10
+
+! VTP v1
+vtp version 1
+
+! VTP v2
+vtp version 2
+
+! VTP v3
+vtp domain LAB
+vtp version 3
+
+! DTP
+int fa 0/4
+	switchport mode dynamic auto
+	exit
+
+! STP
+int fa 0/4
+	spanning-tree vlan 1 priority 100
+	exit
+
+! PVST+
+int fa 0/4
+	spanning-tree mode pvst
+	exit
+
+! RPVST+
+int fa 0/4
+	spanning-tree mode rapid-pvst
+	exit
+
+! Extended VLAN
+vlan 4000
+	exit
+
+! L2 EtherChannel PAGP
+int fa 0/4
+	channel-group 1 mode auto
+  exit
+
+! L2 EtherChannel LACP
+int fa 0/4
+	channel-group 1 mode auto
+  exit
+
+! L3 EtherChannel PAGP + L3 EtherChannel LACP sú tiež podporované, ak je podporovaná aj zmena typu rozhrania z L2 na L3 pomocou SVI
+
+! HSRP IPv4 + IPv6 
+int vlan 10
+	standby 1 ip 1.1.1.1
+	exit
+
+! HSRPv2 IPv4 + IPv6 
+vlan 20
+	exit
+	int vlan 20
+		standby version 2	
+		standby 2 ipv6 fe80::20
+		exit
+
+! VRRP IPv4 
+int vlan 20
+	no standby
+	vrrp 1 ip 30.30.30.30
+	exit
+
+! VRRP IPv6 
+
+
+! GLBP IPv4 + IPv6 
+int fa 0/0.40
+	encapsulation dot1q 40
+	glbp 1 ip 40.40.40.40
+	glbp 2 ipv6 fe80::40
+	exit
+
+! ACL IPv4 
+access-list 100 permit ip any any
+
+! ACL IPv6 
+ipv6 access-list TEST
+	exit
+
+! DHCP IPv4 
+ip dhcp pool MENO
+	exit
+
+! DHCP IPv6 
+ipv6 dhcp pool MENO
+	exit
+  
+! (Dynamické) NAT
+ip nat inside source list 1 pool POOL overload
+
+! LLDP
+lldp run
+
+! CDP
+cdp run
+
+! Syslog
+logging 2.2.2.2
+
+! NTP
+ntp server 2.2.2.2
+
+! SNMP
+snmp-server community public RO
+
+!SPAN
+monitor session 1 source interface fa 0/1
+
+! EIGRP IPv4 
+router eigrp 1
+	exit
+
+! EIGRP IPv6 
+ipv6 router eigrp 1
+	exit
+
+! OSPFv2 Single-Area + Multi-Area
+router ospf 1
+	net 10.0.0.0 0.0.0.255 area 0
+	net 10.0.0.0 0.0.0.255 area 20
+	exit
+
+! OSPFv3 Single-Area + Multi-Area
+ipv6 router ospf 1
+	exit
+
+! PPP
+int Serial2/0
+	no shut
+	encapsulation ppp
+	exit
+
+! MLPPP
+interface multilink 5
+
+! HDLC
+int Serial2/0
+	no shut
+	encapsulation hdlc
+	exit
+
+! Frame Relay
+int Serial2/0
+	no shut
+	encapsulation frame-relay
+	exit
+
+! PPPoE Server
+interface virtual-template 1 
+	exit
+
+! PPPoE Client
+interface dialer 1 
+	exit
+
+! GRE
+int tunnel 0
+	tunnel mode gre ip
+	exit
+
+! eBGP IPv4
+router bgp 65001
+	exit
+
+! IS-IS
+router isis
+	exit
+
+! IGMP v1
+interface Ethernet3/1
+ ip igmp version 1
+ exit
+
+! IGMP v2
+interface Ethernet3/1
+ ip igmp version 2
+ exit
+
+! IGMP v3
+interface Ethernet3/1
+ ip igmp version 3
+ exit
+
+! IGMP Snooping
+ip igmp snooping
+
+! PIM Dense Mode
+ip multicast-routing
+...
+
+
+
+
 PIM Sparse Mode
 PIM Sparse-Dense Mode
 PIM Any-Source Multicast
@@ -67,7 +246,10 @@ Manual RP
 Auto-RP
 BSR
 Anycast RP
-iBGP IPv4 
+
+! iBGP IPv4 
+
+
 MPLS
 LDP
 RSVP
@@ -87,16 +269,26 @@ EIGRP ITA
 IP SLA
 
 STP BPDU Filter
-MSTP
+
+! MST
+spanning-tree mode mst
+
 CEF
 MLS
-FHRP IPv4 
-FHRP IPv6 
+
+! FHRP IPv4 + IPv6 
+fhrp version vrrp v3
+
 NTP Authentication
 Cisco ISL trunks
 DHCP Snooping
 PVLAN
 
+
+
+
+
+=====================================================================
 
 
 
@@ -154,6 +346,11 @@ Zdroje
   "osnova_PS1_PS2_cna2-4_2017_2018.docx"
   "./cisco_routers_feature_set/"
   https://certcollection.org/forum/topic/314237-cisco-iosv-l2-v152-qemu-kvm-and-vmware-images/
+  https://www.cisco.com/c/en/us/support/docs/ip/simple-network-management-protocol-snmp/7282-12.html
+  https://www.cisco.com/en/US/docs/routers/access/800/850/software/configuration/guide/pppoenat.html#wp1235168
+  https://www.cisco.com/c/en/us/td/docs/wireless/asr_901/Configuration/Guide/b_asr901-scg/b_asr901-scg_chapter_011100.pdf
+  https://www.cisco.com/en/US/docs/switches/lan/catalyst3850/software/release/3.2_0_se/multibook/configuration_guide/b_consolidated_config_guide_3850_chapter_0100111.html#ID1940
+  https://www.cisco.com/c/en/us/td/docs/ios/12_0s/feature/guide/12s_igmp.html#wp1024379
 
   https://www.reddit.com/r/ccnp/comments/69txbc/for_ccnp_switch_will_unet_labeve_ng_allow_me_to/
   http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/

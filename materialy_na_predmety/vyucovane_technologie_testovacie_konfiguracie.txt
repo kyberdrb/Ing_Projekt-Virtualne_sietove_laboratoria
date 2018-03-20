@@ -1,3 +1,224 @@
+!!!!!!!!!!!!!!!
+!
+! Technologie
+!    pre
+!   ROUTER
+!
+!!!!!!!!!!!!!!!
+
+ena
+conf t
+
+!Aktivacia IPv6 podpory
+ipv6 unicast-routing
+
+! IPv4 statické smerovanie
+ip route 0.0.0.0 0.0.0.0 null 0
+
+! IPv6 statické smerovanie
+ipv6 route ::/ null 0
+
+! RIPv2
+router rip
+	version 2
+	exit
+
+! RIPng
+ipv6 router rip RIP
+	exit
+int loop 0
+	ipv6 router rip RIP
+
+! VLAN Trunk 802.1Q + IVL smerovanie - Router on a Stick
+int fa 0/0
+	no shut
+	int fa 0/0.10
+		encapsulation dot1q 10
+
+! HSRP IPv4 + HSRP IPv6 
+	int fa 0/0.10
+		standby 1 ip 1.1.1.1
+		exit
+
+! HSRPv2 IPv4 + HSRPv2 IPv6 
+	int fa 0/0.20
+		encapsulation dot1q 20
+		standby version 2	
+		standby 2 ipv6 fe80::20
+		exit
+
+! VRRP IPv4 
+	int fa 0/0.30
+		encapsulation dot1q 30
+		vrrp 1 ip 30.30.30.30
+		exit
+
+! VRRP IPv6 
+fhrp version vrrp v3
+
+! GLBP IPv4  a GLBP IPv6 
+int fa 0/0.40
+	encapsulation dot1q 40
+	glbp 1 ip 40.40.40.40
+	glbp 2 ipv6 fe80::40
+	exit
+
+! ACL IPv4 
+ access-list 100 permit ip any any
+
+! ACL IPv6 
+ipv6 access-list TEST
+	exit
+
+! DHCP IPv4 
+ip dhcp pool MENO
+	exit
+
+! DHCP IPv6 
+ipv6 dhcp pool MENO
+	exit
+
+! (Dynamické) NAT
+ip nat inside source list 1 pool POOL overload
+
+! LLDP
+lldp run
+
+! CDP
+cdp run
+
+! Syslog
+logging 2.2.2.2
+
+! NTP
+ntp server 2.2.2.2
+
+!SNMP
+snmp-server community public RO
+
+! EIGRP IPv4 
+router eigrp 1
+	exit
+
+! EIGRP IPv6
+ipv6 router eigrp 1
+	exit
+
+! OSPFv2 Single-Area + Multi-Area
+router ospf 1
+	net 10.0.0.0 0.0.0.255 area 0
+	net 10.0.0.0 0.0.0.255 area 20
+	exit
+
+! OSPFv3 Single-Area + Multi-Area
+ipv6 router ospf 1
+	exit
+
+! OSPFv3 - novší spôsob konfigurácie
+router ospfv3 1
+	exit
+
+! PPP + HDLC + FR
+int Serial2/0
+	no shut
+	encapsulation ppp
+	encapsulation hdlc
+	encapsulation frame-relay
+	exit
+
+! PPPoE Server
+interface virtual-template 1 
+	exit
+
+! PPPoE Client
+interface dialer 1 
+	exit
+
+! GRE
+int tunnel 0
+	tunnel mode gre ip
+	exit
+
+! eBGP IPv4
+router bgp 65001
+	exit
+
+! mBGP
+router bgp 65001
+	address-family ipv4 unicast
+	exit
+
+! IS-IS
+router isis
+	exit
+
+! IGMP neviem
+! IGMP v2 neviem
+! IGMP v3 neviem
+! IGMP Snooping
+! PIM Dense Mode
+ip multicast-routing
+
+! PIM Sparse Mode
+int loop 0
+	ip pim sparse-mode
+
+! PIM Dense Mode
+int loop 0
+	ip pim dense-mode
+
+! PIM Sparse-Dense Mode
+int loop 0
+	ip pim sparse-dense-mode
+
+! PIM Any-Source Multicast neviem
+
+! PIM Source-Specific Multicast neviem
+
+! Manual RP
+ip pim rp-address 10.255.255.3
+
+! Auto-RP
+ip pim send-rp-announce loop 0 scope 20
+
+! BSR
+ip pim rp-candidate Loopback0
+
+! Anycast RP neviem
+
+! iBGP IPv4 ak ide bgp ide aj e aj iBGP
+
+! MPLS
+mpls ip 
+
+! LDP
+mpls ldp router-id loopback0 force
+
+! RSVP - neviem
+
+! Router Reflector - ak ide BGP pojde aj toto
+
+! MP-BGP vid hore address-family
+
+! BGP mVPN 
+! Hub & Spoke VPN
+! Draft Rosen
+! BGP L3 VPN
+! VPLS
+
+! ^^ tieto veci sa nedaju dat z hlavy jednym prikazom, ale len v CISCO feature navigator
+
+
+
+!!!!!!!!!!!!!!!
+!
+! Technologie
+!    pre
+!   SWITCH
+!
+!!!!!!!!!!!!!!!
+
+
 ena
 
 ! musi byt IPv6 SDM template
@@ -57,8 +278,10 @@ vlan 10
 ! VLAN Trunk 802.1Q
 int fa 0/3
 	switchport trunk encapsulation dot1q
+	exit
 
 ! ISL
+int fa 0/3
 	switchport trunk encapsulation isl
 	exit
 
@@ -110,9 +333,10 @@ int fa0/5
 	exit
 
 ! HSRP IPv4 + IPv6 
-	int vlan 10
-		standby 1 ip 1.1.1.1
-		exit
+int vlan 10
+	standby 1 ip 1.1.1.1
+	exit
+
 ! HSRPv2 IPv4 + IPv6 
 vlan 20
 	exit
@@ -122,10 +346,10 @@ vlan 20
 		exit
 
 ! VRRP IPv4 
-	int vlan 20
-		no standby
-		vrrp 1 ip 30.30.30.30
-		exit
+int vlan 20
+	no standby
+	vrrp 1 ip 30.30.30.30
+	exit
 
 ! VRRP IPv6 
 fhrp version vrrp v3
@@ -257,11 +481,3 @@ ntp authentication-key 1 md5 P@55word
 ntp trusted-key 1
 
 ! DHCP Snooping uz nestiham
-
-	
-		
-		
-		
-
-
-
