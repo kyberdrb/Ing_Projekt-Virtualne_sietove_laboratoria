@@ -19,26 +19,17 @@ Diplomka
 ===============================================================================
 Ulohy: 
 
-IP SLA => merania vlastnosti prenosovej cesty
-
 -konzultovat s uramovou
   -co je komplexna konfiguracia prepinaca?
   -ake technologie bude mat topologia v 7. tyzdni? -> podla toho vybrat zariadenia + kusky konfiguracie na otestovanie technologie
 
 
 
+-cez Cisco Feature Navigator zistit podporu pokrocilejsich technologii na vybranych zariadeniach v subore "materialy_na_predmety/vyucovane_technologie.osd"
+  -vid TODO v subore "materialy_na_predmety/vyucovane_technologie.txt"
 
-
--cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
-  -zoznam features je uz stiahnuty
--ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
--pozriet sa na
-
-  "/materialy_na_predmety/Cisco_problematicke_technologie.txt"
- a
-  "/materialy_na_predmety/vyucovane_technologie.ods"
- 
- -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
+-pozriet sa na subor "materialy_na_predmety/vyucovane_technologie.ods"
+  -je velka sanca, ze vIOS L2 switch alebo c3725 s EtherSwitch modulom pokryju technologie, ktore nie su podporovane ani v IOL routri, ani v IOL switchi
 
 
 
@@ -53,6 +44,9 @@ IP SLA => merania vlastnosti prenosovej cesty
 
 ===============================================================================
 Co dalej?
+
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty v adresari "materialy_na_predmety/cisco_routers_feature_set"
 
 -opraviť bug:
   -jeden používateľ nemôže byť prihlásený z dvoch rôznych počítačov - tak by sa dala vyriešiť práca v tíme, konfigurácia rovnakých zariadení na rovnakých portoch, aktualizácia topológie,

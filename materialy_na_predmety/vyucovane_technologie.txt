@@ -86,7 +86,7 @@ int fa 0/4
 	channel-group 1 mode auto
   exit
 
-! L3 EtherChannel PAGP + L3 EtherChannel LACP sú tiež podporované, ak je podporovaná aj zmena typu rozhrania z L2 na L3 pomocou SVI
+! L3 EtherChannel PAGP a L3 EtherChannel LACP sú tiež podporované, ak je podporovaná aj zmena typu rozhrania z L2 na L3 pomocou SVI
 
 ! HSRP IPv4 + IPv6 
 int vlan 10
@@ -233,56 +233,98 @@ ip igmp snooping
 
 ! PIM Dense Mode
 ip multicast-routing
-...
+int loop 0
+	ip pim dense-mode
 
+! PIM Sparse Mode
+int loop 0
+	ip pim sparse-mode
 
+! PIM Sparse-Dense Mode
+int loop 0
+	ip pim sparse-dense-mode
 
+! PIM Any-Source Multicast a PIM Source-Specific Multicast sú tiež podporované, ak je na zariadení podporovaný aj PIM Sparse Mode.
 
-PIM Sparse Mode
-PIM Sparse-Dense Mode
-PIM Any-Source Multicast
-PIM Source-Specific Multicast
-Manual RP
-Auto-RP
-BSR
-Anycast RP
+! Manual RP
+ip pim rp-address 10.255.255.3
 
-! iBGP IPv4 
+! Auto-RP
+ip pim send-rp-announce loop 0 scope 20
 
+! BSR
+ip pim rp-candidate loop 0
 
-MPLS
-LDP
-RSVP
-Router Reflector
-MP-BGP
-BGP mVPN
-Hub & Spoke VPN
-Draft Rosen
-BGP L3 VPN
-VPLS
+! Anycast RP je tiež podporovaný, ak je podporovaný aj ľubovoľný ďalší spôsob konfigurácie RP napr. manuálne, pomocou BSR alebo Auto-RP.
 
-EVPN
-Seamless MPLS
-BGP mVPN NG
+! iBGP IPv4 je tiež podporovaný, ak je podporovaný aj eBGP resp. BGP vo všeobecnosti.
 
-EIGRP ITA
-IP SLA
+! MPLS
+mpls ip
 
-STP BPDU Filter
+! LDP
+mpls ldp router-id loopback0 force
+
+! RSVP
+int Ethernet1
+  ip rsvp bandwidth 10 10
+  exit
+
+! Router Reflector je tiež podporovaný, ak je podporovaný aj protokol BGP.
+
+! MP-BGP
+router bgp 65001
+	address-family ipv4 unicast
+	exit
+
+! BGP mVPN, Hub & Spoke VPN, Draft Rosen, BGP L3 VPN, (aj VPLS technológia uvedená vyššie)
+! EVPN, Seamless MPLS, BGP mVPN NG
+! K vyššie uvedeným technológiám sa nedá vytvoriť krátky konfiguračný príklad; treba použiť Cisco Feature Navigator alebo ekvivalentný nástroj pre zariadenia iných výrobcov, popr. vyskúšať vytvoriť topológiu s daným typom zariadení.
+
+! IP SLA + Responder
+! IP SLA je proprietárna technologia od spoločnosti Cisco na meranie parametrov prenosovej cesty
+ip sla
+	exit
+ip sla responder
+	exit
+
+! STP BPDU Filter
+int fa 0/2
+	spanning-tree bpdufilter enable
+	exit
 
 ! MST
 spanning-tree mode mst
 
-CEF
-MLS
+! CEF
+ip cef
+
+! MLS
+mls rp ip
+
 
 ! FHRP IPv4 + IPv6 
 fhrp version vrrp v3
 
-NTP Authentication
-Cisco ISL trunks
-DHCP Snooping
-PVLAN
+! NTP Authentication
+ntp authenticate 
+ntp authentication-key 1 md5 P@55word
+ntp trusted-key 1
+
+! Cisco ISL trunks
+int fa 0/3
+	switchport trunk encapsulation isl
+	exit
+
+! DHCP Snooping
+feature dhcp
+ip dhcp snooping
+
+! PVLAN
+vtp mode transparent
+vlan 30
+	private-vlan primary
+	exit
 
 
 
@@ -338,6 +380,16 @@ PPPoE (working on 12.4, and 15
 
 Zdroje
 
+  https://www.reddit.com/r/ccnp/comments/69txbc/for_ccnp_switch_will_unet_labeve_ng_allow_me_to/
+  http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/
+  www.keyboardbanger.com/cisco-iou-unsupported-features/
+  https://learningnetwork.cisco.com/docs/DOC-30160#jive_content_id_Supported_Cisco_OS_Features_in_VIRL
+  https://learningnetwork.cisco.com/docs/DOC-30469
+  https://learningnetwork.cisco.com/docs/DOC-30404
+  https://gns3.com/qa/does-iou-switch-support-not-l2-e
+  http://danielkleviansky.com/unsupported-iol-features/
+  https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
+
   https://learningnetwork.cisco.com/docs/DOC-30160#jive_content_id_Supported_Cisco_OS_Features_in_VIRL
   https://learningnetwork.cisco.com/docs/DOC-30469
   https://learningnetwork.cisco.com/docs/DOC-30404
@@ -351,13 +403,8 @@ Zdroje
   https://www.cisco.com/c/en/us/td/docs/wireless/asr_901/Configuration/Guide/b_asr901-scg/b_asr901-scg_chapter_011100.pdf
   https://www.cisco.com/en/US/docs/switches/lan/catalyst3850/software/release/3.2_0_se/multibook/configuration_guide/b_consolidated_config_guide_3850_chapter_0100111.html#ID1940
   https://www.cisco.com/c/en/us/td/docs/ios/12_0s/feature/guide/12s_igmp.html#wp1024379
-
-  https://www.reddit.com/r/ccnp/comments/69txbc/for_ccnp_switch_will_unet_labeve_ng_allow_me_to/
-  http://docs.gns3.com/1-kBrTplBltp9P3P-AigoMzlDO-ISyL1h3bYpOl5Q8mQ/
-  www.keyboardbanger.com/cisco-iou-unsupported-features/
-  https://learningnetwork.cisco.com/docs/DOC-30160#jive_content_id_Supported_Cisco_OS_Features_in_VIRL
-  https://learningnetwork.cisco.com/docs/DOC-30469
-  https://learningnetwork.cisco.com/docs/DOC-30404
-  https://gns3.com/qa/does-iou-switch-support-not-l2-e
-  http://danielkleviansky.com/unsupported-iol-features/
-  https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
+  https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/configuration/guide/cli/CLIConfigurationGuide/IGMPSnooping.html#22763
+  https://www.cisco.com/c/en/us/td/docs/ios/12_2/qos/configuration/guide/fqos_c/qcfrsvp.html
+  https://www.cisco.com/c/en/us/support/docs/switches/catalyst-6000-series-switches/12022-39.html#configs
+  https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/4_1/nx-os/security/configuration/guide/sec_nx-os-cfg/sec_dhcpsnoop.html#wp1128072
+  https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/4_1/nx-os/security/configuration/guide/sec_nx-os-cfg/sec_dhcpsnoop.html#wp1161890
