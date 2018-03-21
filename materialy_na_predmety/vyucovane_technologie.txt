@@ -1,46 +1,111 @@
-! IPv4 statické smerovanie
+! IPv4 staticke smerovanie
+ena
+conf t
 ip route 0.0.0.0 0.0.0.0 null 0
+end
+show ip route
 
-! IPv6 statické smerovanie
-ipv6 route ::/ null 0
+! IPv6 staticke smerovanie
+ena
+conf t
+ipv6 unicast-routing
+ipv6 route ::/0 null 0
+end
+show ipv6 route
 
-! RIPv2
+! Vsetky podporovane smerovacie protokoly pre IPv4
+ena
+conf t
+router ?
+end
+
+! Vsetky podporovane smerovacie protokoly pre IPv6
+ena
+conf t
+ipv6 router ?
+end
+
+! RIPv2 -> Pre vsetky podporovane smerovacie protokoly staci zadat prikaz uvedený v casti "! Vsetky podporovane smerovacie protokoly"
+ena
+conf t
 router rip
 	version 2
 	exit
+end
+show ip protocols
+
 
 ! RIPng
+ena
+conf t
 ipv6 router rip RIP
 	exit
 int loop 0
 	ipv6 router rip RIP
+end
+show ipv6 protocols
 
 ! SVI
-int fa 0/1
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
 	no switchport
 	exit
+end
+show ip interface <nazov_prepinacieho_rozhrania>
+
+! Vsetky podporovane STP technologie
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	no shut
+	spanning-tree ?
+end
 
 ! STP BPDU Guard
-int fa 0/2
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
 	no shut
 	spanning-tree bpduguard enable
+end
 
 ! PortFast
-spanning-tree portfast default
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	spanning-tree portfast
+end
 
 ! VLAN
+ena
+conf t
 vlan 10
-	exit
+end
 
 ! VLAN Trunk 802.1Q
-int fa 0/3
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
 	switchport trunk encapsulation dot1q
+end
 
 ! IVL smerovanie - Router on a Stick
-int fa 0/0
+ena
+conf t
+int <nazov_smerovacieho_rozhrania>
 	no shut
-	int fa 0/0.10
+	int <nazov_smerovacieho_rozhrania>.10
 		encapsulation dot1q 10
+end
+
+! Vsetky podporovane VTP verzie resp. maximalna podporovana verzia VTP
+ena
+conf t
+vtp ?
+end
+show vtp status
+! v casti "VTP Version"
 
 ! VTP v1
 vtp version 1
@@ -86,7 +151,7 @@ int fa 0/4
 	channel-group 1 mode auto
   exit
 
-! L3 EtherChannel PAGP a L3 EtherChannel LACP sú tiež podporované, ak je podporovaná aj zmena typu rozhrania z L2 na L3 pomocou SVI
+! L3 EtherChannel PAGP a L3 EtherChannel LACP sú tiež podporovane, ak je podporovaná aj zmena typu rozhrania z L2 na L3 pomocou SVI
 
 ! HSRP IPv4 + IPv6 
 int vlan 10
@@ -132,7 +197,7 @@ ip dhcp pool MENO
 ipv6 dhcp pool MENO
 	exit
   
-! (Dynamické) NAT
+! (Dynamicke) NAT
 ip nat inside source list 1 pool POOL overload
 
 ! LLDP
@@ -154,12 +219,20 @@ snmp-server community public RO
 monitor session 1 source interface fa 0/1
 
 ! EIGRP IPv4 
+ena
+conf t
 router eigrp 1
 	exit
+end
+show ip protocols
 
 ! EIGRP IPv6 
+ena
+conf t
 ipv6 router eigrp 1
 	exit
+end
+show ipv6 protocols
 
 ! OSPFv2 Single-Area + Multi-Area
 router ospf 1
@@ -244,7 +317,7 @@ int loop 0
 int loop 0
 	ip pim sparse-dense-mode
 
-! PIM Any-Source Multicast a PIM Source-Specific Multicast sú tiež podporované, ak je na zariadení podporovaný aj PIM Sparse Mode.
+! PIM Any-Source Multicast a PIM Source-Specific Multicast sú tiež podporovane, ak je na zariadeni podporovaný aj PIM Sparse Mode.
 
 ! Manual RP
 ip pim rp-address 10.255.255.3
@@ -255,9 +328,9 @@ ip pim send-rp-announce loop 0 scope 20
 ! BSR
 ip pim rp-candidate loop 0
 
-! Anycast RP je tiež podporovaný, ak je podporovaný aj ľubovoľný ďalší spôsob konfigurácie RP napr. manuálne, pomocou BSR alebo Auto-RP.
+! Anycast RP je tiež podporovaný, ak je podporovaný aj ľubovoľný ďalsi spôsob konfigurácie RP napr. manuálne, pomocou BSR alebo Auto-RP.
 
-! iBGP IPv4 je tiež podporovaný, ak je podporovaný aj eBGP resp. BGP vo všeobecnosti.
+! iBGP IPv4 je tiež podporovaný, ak je podporovaný aj eBGP resp. BGP vo vseobecnosti.
 
 ! MPLS
 mpls ip
@@ -277,12 +350,12 @@ router bgp 65001
 	address-family ipv4 unicast
 	exit
 
-! BGP mVPN, Hub & Spoke VPN, Draft Rosen, BGP L3 VPN, (aj VPLS technológia uvedená vyššie)
+! BGP mVPN, Hub & Spoke VPN, Draft Rosen, BGP L3 VPN, (aj VPLS technológia uvedená vyssie)
 ! EVPN, Seamless MPLS, BGP mVPN NG
-! K vyššie uvedeným technológiám sa nedá vytvoriť krátky konfiguračný príklad; treba použiť Cisco Feature Navigator alebo ekvivalentný nástroj pre zariadenia iných výrobcov, popr. vyskúšať vytvoriť topológiu s daným typom zariadení.
+! K vyssie uvedeným technológiám sa nedá vytvorit krátky konfiguracný priklad; treba použit Cisco Feature Navigator alebo ekvivalentný nástroj pre zariadenia iných výrobcov, popr. vyskúsat vytvorit topológiu s daným typom zariadeni.
 
 ! IP SLA + Responder
-! IP SLA je proprietárna technologia od spoločnosti Cisco na meranie parametrov prenosovej cesty
+! IP SLA je proprietárna technologia od spolocnosti Cisco na meranie parametrov prenosovej cesty
 ip sla
 	exit
 ip sla responder
@@ -408,3 +481,5 @@ Zdroje
   https://www.cisco.com/c/en/us/support/docs/switches/catalyst-6000-series-switches/12022-39.html#configs
   https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/4_1/nx-os/security/configuration/guide/sec_nx-os-cfg/sec_dhcpsnoop.html#wp1128072
   https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/4_1/nx-os/security/configuration/guide/sec_nx-os-cfg/sec_dhcpsnoop.html#wp1161890
+	https://www.cisco.com/c/en/us/support/docs/ip/ip-version-6-ipv6/113361-ipv6-static-routes.html#conf
+	https://www.cisco.com/c/en/us/td/docs/ios/12_2/iproute/command/reference/fiprrp_r/1rfrip.html

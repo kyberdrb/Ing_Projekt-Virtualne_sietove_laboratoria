@@ -45,6 +45,15 @@ Ulohy:
 ===============================================================================
 Co dalej?
 
+-opraviť bug:
+  -wireshark odchytavanie konkretneho rozhrania z EVE-ng topologie
+  -chybu som spozoroval az vtedy, ked som zmenil sposob odhytavania paketov v topologii z "root" uctu na pouzivatelsky ucet "wireshark_capture"
+  -mozno by stacilo kazdych 24 hodin spustit skript, ktory by ukoncoval wireshark procesy
+  -OTESTOVANE - staci vykonavat prikaz
+    sudo killall tcpdump
+  a ukoncia sa nielen tcpdump, ale aj SSH relacie, ktore ich zapuzdrovali!
+  Ale najlepsie by bolo, keby sa SSH relacie s tcpdump odchytavanim ukoncili po dokonceni odchytavania.
+
 -cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
   -zoznam features je uz stiahnuty v adresari "materialy_na_predmety/cisco_routers_feature_set"
 
