@@ -59,6 +59,7 @@ show ipv6 protocols
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	no switchport
 	ip address 10.1.10.1 255.255.255.0
 end
@@ -85,6 +86,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	spanning-tree portfast
 end
 
@@ -98,6 +100,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	switchport trunk encapsulation dot1q
 end
@@ -107,7 +110,9 @@ ena
 conf t
 int <nazov_smerovacieho_rozhrania>
 	no shut
+	no switchport
 	int <nazov_smerovacieho_rozhrania>.10
+		no shut
 		encapsulation dot1q 10
 end
 
@@ -136,6 +141,7 @@ vtp version 3
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	switchport mode ?
 end
@@ -145,14 +151,28 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	switchport mode dynamic auto
 end
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT !!!
+!
+! inak nastavaju chyby
+! pri vykonavani prikazov
+! a vypisoch
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 ! STP
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	spanning-tree vlan 1 priority 100
 end
@@ -161,6 +181,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	spanning-tree mode pvst
 end
@@ -169,6 +190,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	spanning-tree mode rapid-pvst
 end
@@ -183,6 +205,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	channel-group 1 mode ?
 end
@@ -191,6 +214,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	channel-group 1 mode auto
 end
@@ -199,6 +223,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	channel-group 1 mode active
 end
@@ -235,10 +260,14 @@ end
 ena
 conf t
 ipv6 unicast-routing
-int <nazov_smerovacieho_rozhrania>.40
-	encapsulation dot1q 40
-	glbp 1 ip 40.40.40.40
-	glbp 2 ipv6 fe80::40
+int <nazov_smerovacieho_rozhrania>
+	no shut
+	no switchport
+	int <nazov_smerovacieho_rozhrania>.40
+		no shut
+		encapsulation dot1q 40
+		glbp 1 ip 40.40.40.40
+		glbp 2 ipv6 fe80::40
 end
 
 ! ACL IPv4 
@@ -307,6 +336,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 end
 ena
@@ -320,6 +350,18 @@ conf t
 router eigrp 1
 end
 show ip protocols
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT !!!
+!
+! inak nastavaju chyby
+! pri vykonavani prikazov
+! a vypisoch
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
 ! EIGRP IPv6 
 ena
@@ -416,28 +458,30 @@ end
 ! Vsetky podporovany IGMP verzie: IGMP v1/v2/v3
 ena
 conf t
-interface fa0/0
- ip igmp version ?
+interface <nazov_smerovacieho_rozhrania>
+	no switchport
+	ip igmp version ?
 end
 
 ! IGMP v1
 ena
 conf t
 interface <nazov_smerovacieho_rozhrania>
- ip igmp version 1
+	no switchport
+	ip igmp version 1
 end
 
 ! IGMP v2
 ena
 conf t
-interface Ethernet3/1
+interface <nazov_smerovacieho_rozhrania>
  ip igmp version 2
 end
 
 ! IGMP v3
 ena
 conf t
-interface Ethernet3/1
+interface <nazov_smerovacieho_rozhrania>
  ip igmp version 3
 end
 
@@ -488,6 +532,18 @@ ip multicast-routing
 ip pim rp-address 10.255.255.3
 end
 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT !!!
+!
+! inak nastavaju chyby
+! pri vykonavani prikazov
+! a vypisoch
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 ! Auto-RP
 ena
 conf t
@@ -534,6 +590,8 @@ end
 ena
 conf t
 int <nazov_smerovacieho_rozhrania>
+	no shut
+	no switchport
   ip rsvp bandwidth 10 10
 end
 
@@ -563,6 +621,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	spanning-tree bpdufilter enable
 end
@@ -571,6 +630,7 @@ end
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	spanning-tree mode mst
 end
@@ -594,6 +654,8 @@ ena
 conf t
 ipv6 unicast-routing
 int <nazov_smerovacieho_rozhrania>
+	no shut
+	no switchport
 	standby 3 priority 110
 	standby 3 preempt
 	standby 3 ip 3.3.3.3
@@ -607,10 +669,23 @@ ntp authentication-key 1 md5 P@55word
 ntp trusted-key 1
 end
 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT !!!
+!
+! inak nastavaju chyby
+! pri vykonavani prikazov
+! a vypisoch
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 ! Cisco ISL trunks
 ena
 conf t
 int <nazov_prepinacieho_rozhrania>
+	no shut
 	switchport
 	switchport trunk encapsulation isl
 end
