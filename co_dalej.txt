@@ -19,6 +19,10 @@ Diplomka
 ===============================================================================
 Ulohy: 
 
+-otestovat technologie na vybranych zariadeniach podla pripraveneho konfiguracneho skriptu v
+    "materialy_na_predmety/0_2_vyucovane_technologie_testovaci_skript.txt"
+  a upravit ho na mieru podla testovaneho zariadenia
+
 -konzultovat s uramovou
   -co je komplexna konfiguracia prepinaca?
   -ake technologie bude mat topologia v 7. tyzdni? -> podla toho vybrat zariadenia + kusky konfiguracie na otestovanie technologie
@@ -26,7 +30,7 @@ Ulohy:
 
 -konzultovat s veducim
   -FHRP testovacia konfiguracia
-  
+
 
 
 -cez Cisco Feature Navigator zistit podporu pokrocilejsich technologii na vybranych zariadeniach v subore "materialy_na_predmety/vyucovane_technologie.osd"
