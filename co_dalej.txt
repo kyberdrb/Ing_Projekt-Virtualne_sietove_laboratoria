@@ -24,6 +24,10 @@ Ulohy:
   -ake technologie bude mat topologia v 7. tyzdni? -> podla toho vybrat zariadenia + kusky konfiguracie na otestovanie technologie
 
 
+-konzultovat s veducim
+  -FHRP testovacia konfiguracia
+  
+
 
 -cez Cisco Feature Navigator zistit podporu pokrocilejsich technologii na vybranych zariadeniach v subore "materialy_na_predmety/vyucovane_technologie.osd"
   -vid TODO v subore "materialy_na_predmety/vyucovane_technologie.txt"

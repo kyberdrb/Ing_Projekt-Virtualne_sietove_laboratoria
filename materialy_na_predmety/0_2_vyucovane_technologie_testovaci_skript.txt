@@ -1,0 +1,631 @@
+! Nahradit nizsie uvedene klucove slova 
+! skutocnymi nazvami rozhrani na danom zariadeni:
+!
+! <nazov_prepinacieho_rozhrania>
+! <nazov_smerovacieho_rozhrania>
+! <nazov_serioveho_smerovacieho_rozhrania>
+
+! IPv4 staticke smerovanie
+ena
+conf t
+ip route 0.0.0.0 0.0.0.0 null 0
+end
+show ip route
+
+! IPv6 staticke smerovanie
+ena
+conf t
+ipv6 unicast-routing
+ipv6 route ::/0 null 0
+end
+show ipv6 route
+
+! Vsetky podporovane smerovacie protokoly pre IPv4
+ena
+conf t
+router ?
+end
+
+! Vsetky podporovane smerovacie protokoly pre IPv6
+ena
+conf t
+ipv6 unicast-routing
+ipv6 router ?
+end
+
+! RIPv2 -> Pre vsetky podporovane smerovacie protokoly staci zadat prikaz uvedeny v casti "! Vsetky podporovane smerovacie protokoly"
+ena
+conf t
+router rip
+	version 2
+end
+show ip protocols
+
+
+! RIPng
+ena
+conf t
+ipv6 unicast-routing
+ipv6 router rip RIP
+end
+ena
+conf t
+int loop 0
+	ipv6 router rip RIP
+end
+show ipv6 protocols
+
+! SVI
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	no switchport
+	ip address 10.1.10.1 255.255.255.0
+end
+show ip interface <nazov_prepinacieho_rozhrania>
+
+! Vsetky podporovane STP technologie - STP, BPDU Guard, PortFast, BPDU Filter, MST
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	no shut
+	switchport
+	spanning-tree ?
+end
+
+! STP BPDU Guard
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	no shut
+	spanning-tree bpduguard enable
+end
+
+! PortFast
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	spanning-tree portfast
+end
+
+! VLAN
+ena
+conf t
+vlan 10
+end
+
+! VLAN Trunk 802.1Q
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	switchport trunk encapsulation dot1q
+end
+
+! IVL smerovanie - Router on a Stick
+ena
+conf t
+int <nazov_smerovacieho_rozhrania>
+	no shut
+	int <nazov_smerovacieho_rozhrania>.10
+		encapsulation dot1q 10
+end
+
+! Vsetky podporovane VTP verzie resp. maximalna podporovana verzia VTP
+ena
+conf t
+vtp ?
+end
+show vtp status
+! v casti "VTP Version"
+
+! VTP v1
+ena
+conf t
+vtp version 1
+end
+
+! VTP v2
+vtp version 2
+
+! VTP v3
+vtp domain LAB
+vtp version 3
+
+! Vsetky podporovane "switchport mode" technologie
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	switchport mode ?
+end
+
+
+! DTP
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	switchport mode dynamic auto
+end
+
+! STP
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	spanning-tree vlan 1 priority 100
+end
+
+! PVST+
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	spanning-tree mode pvst
+end
+
+! RPVST+
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	spanning-tree mode rapid-pvst
+end
+
+! Extended VLAN - ak nejdu standardne VLAN, nepojdu ani Extended VLAN
+ena
+conf t
+vlan 4000
+end
+
+! Vsetky podporovane PortChannel technologie
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	channel-group 1 mode ?
+end
+
+! L2 EtherChannel PAGP
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	channel-group 1 mode auto
+end
+
+! L2 EtherChannel LACP
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	channel-group 1 mode active
+end
+
+! L3 EtherChannel PAGP a L3 EtherChannel LACP sú tiez podporovane, ak je podporovana aj zmena typu rozhrania z L2 na L3 pomocou SVI
+
+! HSRP IPv4 + IPv6 
+ena
+conf t
+int vlan 10
+	standby 1 ip 1.1.1.1
+end
+
+! HSRPv2 IPv4 + IPv6 
+ena
+conf t
+ipv6 unicast-routing
+int vlan 20
+	standby version 2	
+	standby 2 ipv6 fe80::20
+end
+
+! VRRP IPv4 
+ena
+conf t
+int vlan 20
+	no standby
+	vrrp 1 ip 30.30.30.30
+end
+
+! VRRP IPv6 
+
+! GLBP IPv4 + IPv6 
+ena
+conf t
+ipv6 unicast-routing
+int <nazov_smerovacieho_rozhrania>.40
+	encapsulation dot1q 40
+	glbp 1 ip 40.40.40.40
+	glbp 2 ipv6 fe80::40
+end
+
+! ACL IPv4 
+ena
+conf t
+access-list 100 permit ip any any
+end
+
+! ACL IPv6 
+ena
+conf t
+ipv6 unicast-routing
+ipv6 access-list TEST
+end
+
+! DHCP IPv4 
+ena
+conf t
+ip dhcp pool MENO
+end
+
+! DHCP IPv6 
+ena
+conf t
+ipv6 unicast-routing
+ipv6 dhcp pool MENO
+end
+  
+! (Dynamicke) NAT
+ena
+conf t
+ip nat inside source list 1 pool POOL overload
+end
+
+! LLDP
+ena
+conf t
+lldp run
+end
+
+! CDP
+ena
+conf t
+cdp run
+end
+
+! Syslog
+ena
+conf t
+logging 4.4.4.4
+end
+
+! NTP
+ena
+conf t
+ntp server 6.6.6.6
+end
+
+! SNMP
+ena
+conf t
+snmp-server community public RO
+end
+
+!SPAN
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+end
+ena
+conf t
+monitor session 1 source interface <nazov_prepinacieho_rozhrania>
+end
+
+! EIGRP IPv4 
+ena
+conf t
+router eigrp 1
+end
+show ip protocols
+
+! EIGRP IPv6 
+ena
+conf t
+ipv6 unicast-routing
+ipv6 router eigrp 1
+end
+show ipv6 protocols
+
+! OSPFv2 Single-Area + Multi-Area
+ena
+conf t
+router ospf 1
+	net 10.0.10.0 0.0.0.255 area 0
+	net 10.0.20.0 0.0.0.255 area 20
+end
+
+! OSPFv3 Single-Area + Multi-Area
+ena
+conf t
+ipv6 unicast-routing
+ipv6 router ospf 1
+end
+
+! Vsetky podporovane Point-to-point technologie
+ena
+conf t
+int <nazov_serioveho_smerovacieho_rozhrania>
+	no shut
+	encapsulation ?
+end
+
+! PPP
+ena
+conf t
+int <nazov_serioveho_smerovacieho_rozhrania>
+	no shut
+	encapsulation ppp
+end
+
+! MLPPP
+ena
+conf t
+interface multilink 5
+end
+
+! HDLC
+ena
+conf t
+int <nazov_serioveho_smerovacieho_rozhrania>
+	no shut
+	encapsulation hdlc
+end
+
+! Frame Relay
+ena
+conf t
+int <nazov_serioveho_smerovacieho_rozhrania>
+	no shut
+	encapsulation frame-relay
+end
+
+! PPPoE
+! PPPoE Server
+ena
+conf t
+interface virtual-template 1 
+end
+! PPPoE Client
+ena
+conf t
+interface dialer 1 
+end
+
+! GRE
+ena
+conf t
+int tunnel 0
+	tunnel mode gre ip
+end
+
+! eBGP IPv4
+ena
+conf t
+router bgp 65001
+end
+
+! IS-IS
+ena
+conf t
+router isis
+end
+
+! Vsetky podporovany IGMP verzie: IGMP v1/v2/v3
+ena
+conf t
+interface fa0/0
+ ip igmp version ?
+end
+
+! IGMP v1
+ena
+conf t
+interface <nazov_smerovacieho_rozhrania>
+ ip igmp version 1
+end
+
+! IGMP v2
+ena
+conf t
+interface Ethernet3/1
+ ip igmp version 2
+end
+
+! IGMP v3
+ena
+conf t
+interface Ethernet3/1
+ ip igmp version 3
+end
+
+! IGMP Snooping
+ena
+conf t
+ip igmp snooping
+end
+
+! Vsetky podporovany PIM mody: PIM Dense, PIM Sparse, PIM Sparse-Dense
+ena
+conf t
+ip multicast-routing
+int loop 0
+	ip pim ?
+end
+
+! PIM Dense Mode
+ena
+conf t
+ip multicast-routing
+int loop 0
+	ip pim dense-mode
+end
+
+! PIM Sparse Mode
+ena
+conf t
+ip multicast-routing
+int loop 0
+	ip pim sparse-mode
+end
+
+! PIM Sparse-Dense Mode
+ena
+conf t
+ip multicast-routing
+int loop 0
+	ip pim sparse-dense-mode
+end
+
+! PIM Any-Source Multicast a PIM Source-Specific Multicast sú tiez podporovane, ak je na zariadeni podporovany aj PIM Sparse Mode.
+
+! Manual RP
+ena
+conf t
+ip multicast-routing
+ip pim rp-address 10.255.255.3
+end
+
+! Auto-RP
+ena
+conf t
+ip multicast-routing
+int loop0
+	ip address 10.10.11.11 255.255.0.0
+	ip pim dense-mode
+end
+ena
+conf t
+ip pim send-rp-announce loop0 scope 20
+end
+
+! BSR
+ena
+conf t
+ip multicast-routing
+int loop0
+	ip address 10.10.90.0 255.255.0.0
+	ip pim dense-mode
+end
+ena
+conf t
+ip pim rp-candidate loop 0
+end
+
+! Anycast RP je tiez podporovany, ak je podporovany aj lubovolny ďalsi sposob konfiguracie RP napr. manualne, pomocou BSR alebo Auto-RP.
+
+! iBGP IPv4 je tiez podporovany, ak je podporovany aj eBGP resp. BGP vo vseobecnosti.
+
+! MPLS
+ena
+conf t
+mpls ip
+end
+
+! LDP
+ena
+conf t
+mpls ldp router-id loopback0 force
+end
+
+! RSVP
+ena
+conf t
+int <nazov_smerovacieho_rozhrania>
+  ip rsvp bandwidth 10 10
+end
+
+! Router Reflector je tiez podporovany, ak je podporovany aj protokol BGP.
+
+! MP-BGP
+ena
+conf t
+router bgp 65001
+	address-family ipv4 unicast
+end
+
+! BGP mVPN, Hub & Spoke VPN, Draft Rosen, BGP L3 VPN, (aj VPLS technológia uvedena vyssie)
+! EVPN, Seamless MPLS, BGP mVPN NG
+! K vyssie uvedenym technológiam sa neda vytvorit kratky konfiguracny priklad; treba pouzit Cisco Feature Navigator alebo ekvivalentny nastroj pre zariadenia inych vyrobcov, popr. vyskúsat vytvorit topológiu s danym typom zariadeni.
+
+! IP SLA + IP SLA Responder
+! IP SLA je proprietarna technologia od spolocnosti Cisco, 
+! ktora sluzi na meranie parametrov prenosovej cesty
+ena
+conf t
+ip sla monitor logging traps
+ip sla monitor responder
+end
+
+! STP BPDU Filter
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	spanning-tree bpdufilter enable
+end
+
+! MST
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	spanning-tree mode mst
+end
+
+! CEF
+ena
+conf t
+ip cef
+end
+
+! MLS
+ena
+conf t
+mls rp ip
+end
+
+
+! FHRP IPv4 + IPv6 
+!fhrp version vrrp v3
+ena
+conf t
+ipv6 unicast-routing
+int <nazov_smerovacieho_rozhrania>
+	standby 3 priority 110
+	standby 3 preempt
+	standby 3 ip 3.3.3.3
+end
+
+! NTP Authentication
+ena
+conf t
+ntp authenticate 
+ntp authentication-key 1 md5 P@55word
+ntp trusted-key 1
+end
+
+! Cisco ISL trunks
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	switchport
+	switchport trunk encapsulation isl
+end
+
+! DHCP Snooping
+ena
+conf t
+feature dhcp
+ip dhcp snooping
+end
+
+! PVLAN
+ena
+conf t
+vtp mode transparent
+vlan 30
+	private-vlan primary
+end
