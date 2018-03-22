@@ -61,6 +61,9 @@ Zdroje
   https://certcollection.org/forum/topic/314237-cisco-iosv-l2-v152-qemu-kvm-and-vmware-images/
   https://www.cisco.
   
+  Extended VLAN
+  https://supportforums.cisco.com/t5/lan-switching-and-routing/vtp-version-3-problems/td-p/1902534
+
   VRRP v3
   https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipapp_fhrp/configuration/15-mt/fhp-15-mt-book/fhrp-vrrpv3.html
 
