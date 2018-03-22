@@ -175,6 +175,16 @@ int <nazov_prepinacieho_rozhrania>
 	spanning-tree mode rapid-pvst
 end
 !
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 ! Extended VLAN - ak nejdu standardne VLAN, 
 ! nepojdu ani Extended VLAN
 ena
@@ -350,7 +360,17 @@ router ospf 1
 	net 10.0.10.0 0.0.0.255 area 0
 	net 10.0.20.0 0.0.0.255 area 20
 end
-!
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 ! OSPFv3 Single-Area + Multi-Area
 ena
 conf t
@@ -524,7 +544,17 @@ ena
 conf t
 ip pim rp-candidate loop 0
 end
-!
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 ! Vsetky podporovany PIM mody
 ! PIM Dense, PIM Sparse, PIM Sparse-Dense
 ena
@@ -644,7 +674,17 @@ ena
 conf t
 mls rp ip
 end
-!
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
 ! FHRP IPv4 + IPv6 
 ena
 conf t
