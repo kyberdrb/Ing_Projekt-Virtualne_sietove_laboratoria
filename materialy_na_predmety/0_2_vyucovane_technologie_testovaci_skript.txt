@@ -6,12 +6,6 @@
 ! <nazov_serioveho_smerovacieho_rozhrania>
 !
 ! Uvodna konfiguracia
-
-
-
-
-
-
 ena
 conf t
 line con 0
@@ -116,11 +110,17 @@ vtp version 1
 end
 !
 ! VTP v2
+ena
+conf t
 vtp version 2
+end
 !
 ! VTP v3
+ena
+conf t
 vtp domain LAB
 vtp version 3
+end
 !
 ! Vsetky podporovane VTP verzie resp. maximalna 
 ! podporovana verzia VTP
@@ -154,7 +154,7 @@ conf t
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
-	spanning-tree vlan 1 priority 100
+	spanning-tree vlan 1 priority 4096
 end
 !
 ! PVST+
@@ -174,7 +174,6 @@ int <nazov_prepinacieho_rozhrania>
 	switchport
 	spanning-tree mode rapid-pvst
 end
-!
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -227,7 +226,7 @@ end
 ena
 conf t
 int vlan 10
-	standby 1 ip 1.1.1.1
+	standby 1 ip
 end
 !
 ! HSRPv2 IPv4 + IPv6 
@@ -248,7 +247,10 @@ int vlan 20
 end
 !
 ! VRRP IPv6 
+ena
+conf t
 fhrp version vrrp v3
+end
 !
 ! GLBP IPv4 + IPv6 
 ena
@@ -257,6 +259,7 @@ ipv6 unicast-routing
 int <nazov_smerovacieho_rozhrania>
 	no shut
 	no switchport
+  ipv6 address 2011:ABC:11:11::3/64
 	int <nazov_smerovacieho_rozhrania>.40
 		no shut
 		encapsulation dot1q 40
@@ -356,11 +359,14 @@ show ipv6 protocols
 ! OSPFv2 Single-Area + Multi-Area
 ena
 conf t
-router ospf 1
+int <nazov_smerovacieho_rozhrania>
+  no shut
+  no switchport
+  ip address 10.0.20.200 255.255.255.0
+router ospf 1  
 	net 10.0.10.0 0.0.0.255 area 0
 	net 10.0.20.0 0.0.0.255 area 20
 end
-
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

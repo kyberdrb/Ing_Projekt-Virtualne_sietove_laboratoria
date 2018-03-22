@@ -56,11 +56,21 @@ Zdroje
   https://learningnetwork.cisco.com/docs/DOC-30469
   https://learningnetwork.cisco.com/docs/DOC-30404
   https://www.cisco.com/c/en/us/td/docs/routers/access/interfaces/software/feature/guide/eesm_sw.html#pgfId-1921769
-  "Cisco_problematicke_technologie.txt"
   "osnova_PS1_PS2_cna2-4_2017_2018.docx"
   "./cisco_routers_feature_set/"
   https://certcollection.org/forum/topic/314237-cisco-iosv-l2-v152-qemu-kvm-and-vmware-images/
-  https://www.cisco.com/c/en/us/support/docs/ip/simple-network-management-protocol-snmp/7282-12.html
+  https://www.cisco.
+  
+  VRRP v3
+  https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipapp_fhrp/configuration/15-mt/fhp-15-mt-book/fhrp-vrrpv3.html
+
+  HSRP
+  https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3750x_3560x/software/release/12-2_55_se/configuration/guide/3750xscg/swhsrp.html
+
+  OSPF
+  https://supportforums.cisco.com/t5/network-infrastructure-documents/unable-to-allocate-ospf-router-id/ta-p/3128225
+
+  com/c/en/us/support/docs/ip/simple-network-management-protocol-snmp/7282-12.html
   https://www.cisco.com/en/US/docs/routers/access/800/850/software/configuration/guide/pppoenat.html#wp1235168
   https://www.cisco.com/c/en/us/td/docs/wireless/asr_901/Configuration/Guide/b_asr901-scg/b_asr901-scg_chapter_011100.pdf
   https://www.cisco.com/en/US/docs/switches/lan/catalyst3850/software/release/3.2_0_se/multibook/configuration_guide/b_consolidated_config_guide_3850_chapter_0100111.html#ID1940
