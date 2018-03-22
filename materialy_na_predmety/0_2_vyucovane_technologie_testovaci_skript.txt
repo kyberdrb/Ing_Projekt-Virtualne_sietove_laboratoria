@@ -1,6 +1,9 @@
 ﻿! Nahradit nizsie uvedene klucove slova 
 ! skutocnymi nazvami rozhrani na danom zariadeni:
 !
+! FastEthernet0/0
+! FastEthernet1/0
+! FastEthernet2/0
 ! <nazov_prepinacieho_rozhrania>
 ! <nazov_smerovacieho_rozhrania>
 ! <nazov_serioveho_smerovacieho_rozhrania>
@@ -28,9 +31,7 @@ ipv6 route ::/0 null 0
 end
 show ipv6 route
 !
-! RIPv2 -> Pre vsetky podporovane smerovacie protokoly
-! staci zadat prikaz uvedeny v casti 
-! "! Vsetky podporovane smerovacie protokoly"
+! RIPv2
 ena
 conf t
 router rip
@@ -54,17 +55,17 @@ show ipv6 protocols
 ! SVI
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	no switchport
 	ip address 10.1.10.1 255.255.255.0
 end
-show ip interface <nazov_prepinacieho_rozhrania>
+show ip interface FastEthernet0/0
 !
 ! STP BPDU Guard
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	spanning-tree bpduguard enable
 end
@@ -72,7 +73,7 @@ end
 ! PortFast
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	spanning-tree portfast
 end
@@ -86,7 +87,7 @@ end
 ! VLAN Trunk 802.1Q
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	switchport trunk encapsulation dot1q
@@ -95,10 +96,10 @@ end
 ! IVL smerovanie - Router on a Stick
 ena
 conf t
-int <nazov_smerovacieho_rozhrania>
+int FastEthernet1/0
 	no shut
 	no switchport
-	int <nazov_smerovacieho_rozhrania>.10
+	int FastEthernet1/0.10
 		no shut
 		encapsulation dot1q 10
 end
@@ -122,11 +123,9 @@ vtp domain LAB
 vtp version 3
 end
 !
-! Vsetky podporovane VTP verzie resp. maximalna 
-! podporovana verzia VTP
+! Vsetky podporovane VTP funkcie a verzie 
+! resp. maximalna podporovana verzia VTP
 ena
-conf t
-vtp ?
 end
 show vtp status
 ! v casti "VTP Version"
@@ -134,7 +133,7 @@ show vtp status
 ! DTP
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	switchport mode dynamic auto
@@ -143,7 +142,7 @@ end
 ! Vsetky podporovane "switchport mode" technologie
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	switchport mode ?
@@ -151,7 +150,7 @@ end
 ! STP
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	spanning-tree vlan 1 priority 4096
@@ -160,7 +159,7 @@ end
 ! PVST+
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	spanning-tree mode pvst
@@ -169,11 +168,12 @@ end
 ! RPVST+
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	spanning-tree mode rapid-pvst
 end
+
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -188,13 +188,16 @@ end
 ! nepojdu ani Extended VLAN
 ena
 conf t
+vtp version 2
+vlan 4000
+vtp version 3
 vlan 4000
 end
 !
 ! L2 EtherChannel PAGP
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	channel-group 1 mode auto
@@ -203,7 +206,7 @@ end
 ! L2 EtherChannel LACP
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	channel-group 1 mode active
@@ -216,7 +219,7 @@ end
 ! Vsetky podporovane PortChannel technologie
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	channel-group 1 mode ?
@@ -256,11 +259,11 @@ end
 ena
 conf t
 ipv6 unicast-routing
-int <nazov_smerovacieho_rozhrania>
+int FastEthernet1/0
 	no shut
 	no switchport
   ipv6 address 2011:ABC:11:11::3/64
-	int <nazov_smerovacieho_rozhrania>.40
+	int FastEthernet1/0.40
 		no shut
 		encapsulation dot1q 40
 		glbp 1 ip 40.40.40.40
@@ -332,13 +335,13 @@ end
 !SPAN
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 end
 ena
 conf t
-monitor session 1 source interface <nazov_prepinacieho_rozhrania>
+monitor session 1 source interface FastEthernet0/0
 end
 !
 ! EIGRP IPv4 
@@ -355,18 +358,7 @@ ipv6 unicast-routing
 ipv6 router eigrp 1
 end
 show ipv6 protocols
-!
-! OSPFv2 Single-Area + Multi-Area
-ena
-conf t
-int <nazov_smerovacieho_rozhrania>
-  no shut
-  no switchport
-  ip address 10.0.20.200 255.255.255.0
-router ospf 1  
-	net 10.0.10.0 0.0.0.255 area 0
-	net 10.0.20.0 0.0.0.255 area 20
-end
+
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -377,17 +369,35 @@ end
 
 
 
+! OSPFv2 Single-Area + Multi-Area
+ena
+conf t
+int FastEthernet1/0
+  no shut
+  no switchport
+  ip address 10.0.20.200 255.255.255.0
+router ospf 1  
+	net 10.0.10.0 0.0.0.255 area 0
+	net 10.0.20.0 0.0.0.255 area 20
+end
+!
 ! OSPFv3 Single-Area + Multi-Area
+! Stary sposob konfiguracie OSPFv3
 ena
 conf t
 ipv6 unicast-routing
 ipv6 router ospf 1
 end
+! Novy sposob konfiguracie OSPFv3
+ena
+conf t
+router ospfv3 1
+end
 !
 ! PPP
 ena
 conf t
-int <nazov_serioveho_smerovacieho_rozhrania>
+int FastEthernet2/0
 	no shut
 	encapsulation ppp
 end
@@ -401,7 +411,7 @@ end
 ! HDLC
 ena
 conf t
-int <nazov_serioveho_smerovacieho_rozhrania>
+int FastEthernet2/0
 	no shut
 	encapsulation hdlc
 end
@@ -409,7 +419,7 @@ end
 ! Frame Relay
 ena
 conf t
-int <nazov_serioveho_smerovacieho_rozhrania>
+int FastEthernet2/0
 	no shut
 	encapsulation frame-relay
 end
@@ -417,7 +427,7 @@ end
 ! Vsetky podporovane Point-to-point technologie
 ena
 conf t
-int <nazov_serioveho_smerovacieho_rozhrania>
+int FastEthernet2/0
 	no shut
 	encapsulation ?
 end
@@ -453,19 +463,10 @@ conf t
 router isis
 end
 !
-! Vsetky podporovany IGMP verzie:
-! IGMP v1/v2/v3
-ena
-conf t
-interface <nazov_smerovacieho_rozhrania>
-	no switchport
-	ip igmp version ?
-end
-!
 ! IGMP v1
 ena
 conf t
-interface <nazov_smerovacieho_rozhrania>
+interface FastEthernet1/0
 	no switchport
 	ip igmp version 1
 end
@@ -473,15 +474,24 @@ end
 ! IGMP v2
 ena
 conf t
-interface <nazov_smerovacieho_rozhrania>
+interface FastEthernet1/0
  ip igmp version 2
 end
 !
 ! IGMP v3
 ena
 conf t
-interface <nazov_smerovacieho_rozhrania>
+interface FastEthernet1/0
  ip igmp version 3
+end
+!
+! Vsetky podporovany IGMP verzie:
+! IGMP v1/v2/v3
+ena
+conf t
+interface FastEthernet1/0
+	no switchport
+	ip igmp version ?
 end
 !
 ! IGMP Snooping
@@ -524,7 +534,16 @@ conf t
 ip multicast-routing
 ip pim rp-address 10.255.255.3
 end
-!
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ! Auto-RP
 ena
 conf t
@@ -550,17 +569,6 @@ ena
 conf t
 ip pim rp-candidate loop 0
 end
-
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! POTIALTO SKOPIROVAT
-! inak sa vyskytnu chyby vo vypisovani
-! a vykonavani prikazov
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
 ! Vsetky podporovany PIM mody
 ! PIM Dense, PIM Sparse, PIM Sparse-Dense
 ena
@@ -592,7 +600,7 @@ end
 ! RSVP
 ena
 conf t
-int <nazov_smerovacieho_rozhrania>
+int FastEthernet1/0
 	no shut
 	no switchport
   ip rsvp bandwidth 10 10
@@ -606,6 +614,13 @@ ena
 conf t
 router bgp 65001
 	address-family ipv4 unicast
+end
+!
+!VPLS
+ena
+conf t
+l2 vfi VPLSSKUPINA autodiscovery
+l2 vfi VPLSSKUPINA ?
 end
 !
 ! BGP mVPN, Hub & Spoke VPN, Draft Rosen, 
@@ -639,21 +654,31 @@ ena
 conf t
 ip sla monitor logging traps
 ip sla monitor responder
+ip sla ?
 end
 !
 ! STP BPDU Filter
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	spanning-tree bpdufilter enable
 end
-!
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ! MST
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	spanning-tree mode mst
@@ -663,7 +688,7 @@ end
 ! STP, BPDU Guard, PortFast, BPDU Filter, MST
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	spanning-tree ?
@@ -680,22 +705,12 @@ ena
 conf t
 mls rp ip
 end
-
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! POTIALTO SKOPIROVAT
-! inak sa vyskytnu chyby vo vypisovani
-! a vykonavani prikazov
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
 ! FHRP IPv4 + IPv6 
 ena
 conf t
 ipv6 unicast-routing
-int <nazov_smerovacieho_rozhrania>
+fhrp version vrrp v3
+int FastEthernet1/0
 	no shut
 	no switchport
 	standby 3 priority 110
@@ -714,7 +729,7 @@ end
 ! Cisco ISL trunks
 ena
 conf t
-int <nazov_prepinacieho_rozhrania>
+int FastEthernet0/0
 	no shut
 	switchport
 	switchport trunk encapsulation isl
