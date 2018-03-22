@@ -67,6 +67,9 @@ Zdroje
   HSRP
   https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3750x_3560x/software/release/12-2_55_se/configuration/guide/3750xscg/swhsrp.html
 
+  GLBP
+  https://supportforums.cisco.com/t5/network-infrastructure-documents/ipv6-glbp-configuration-example/ta-p/3127155
+
   OSPF
   https://supportforums.cisco.com/t5/network-infrastructure-documents/unable-to-allocate-ospf-router-id/ta-p/3128225
 
