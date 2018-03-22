@@ -1,4 +1,4 @@
-! Nahradit nizsie uvedene klucove slova 
+﻿! Nahradit nizsie uvedene klucove slova 
 ! skutocnymi nazvami rozhrani na danom zariadeni:
 !
 ! <nazov_prepinacieho_rozhrania>
@@ -6,6 +6,10 @@
 ! <nazov_serioveho_smerovacieho_rozhrania>
 !
 ! Uvodna konfiguracia
+
+
+
+
 ena
 conf t
 line con 0

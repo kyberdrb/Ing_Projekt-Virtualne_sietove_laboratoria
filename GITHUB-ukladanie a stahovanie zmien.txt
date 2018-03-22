@@ -1,11 +1,19 @@
-1 Poslat vlastne zmeny
-	-v github appke treba najprv dane zmeny "Commit to master"
+1 Nahrávanie vlastných zmien na vlastný fork
+
+
+-Github Desktop
+	-treba najprv dane zmeny "Commit to master"
 	-dalej je potrebne zmeny v appke pushnut pomocou "Push origin" 
 	-v tomto momente su zmeny len u TEBA vo forknutom repozitare, treba ich dalej posunut do originalneho repa
 	-na stranke prejdem do SVOJHO forknuteho repa, a spravim "New pull request" a vytvorim ho
 	-tymto som sharol svoje zmeny
 
-2 Stiahnut cudzie zmeny
+
+2 Sťahovanie zmien z "master" repozitára resp. iných fork repozitárov
+
+-Github Desktop
+
+-Github stránka
 	-na github stranke prejdem na svoje forknute repo ktore chcem updatnut
 	-kliknem na "New pull request"
 	-nastavim si compare tak aby base fork bolo moje repo a head fork cudzie
