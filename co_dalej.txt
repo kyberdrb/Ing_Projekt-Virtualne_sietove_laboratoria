@@ -19,9 +19,7 @@ Diplomka
 ===============================================================================
 Ulohy: 
 
--otestovat technologie na vybranych zariadeniach podla pripraveneho konfiguracneho skriptu v
-    "materialy_na_predmety/0_2_vyucovane_technologie_testovaci_skript.txt"
-  a upravit ho na mieru podla testovaneho zariadenia
+-pokracovat s Cisco IOL switchom
 
 -konzultovat s uramovou
   -co je komplexna konfiguracia prepinaca?
