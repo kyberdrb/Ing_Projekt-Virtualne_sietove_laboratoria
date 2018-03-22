@@ -1,11 +1,24 @@
-1 Poslat vlastne zmeny
-	-v github appke treba najprv dane zmeny "Commit to master"
+NAHRÁVANIE ZMIEN Z VLASTNÉHO FORK REPOZITÁRA DO UPSTREAM REPOZITÁRA
+
+-Github Desktop
+	-V prípade, že sme vykonali zmeny v našom fork repozitári, zmenené súbory sa zobrazia v ľavom stĺpci aplikácie pod záložkou "Changes".
+	-Vytvorenie commitu: Do textového poľa "Summary" zadáme správu pre commit, maximálne však 50 znakov - commit správy by mali byť stručné. Môžeme zadať aj aj ďalšie informácie o commite do poľa "Description". "Description" môže mať ľubovoľný počet znakov.
+
+-Github stránka
+	-treba najprv dane zmeny "Commit to master"
 	-dalej je potrebne zmeny v appke pushnut pomocou "Push origin" 
 	-v tomto momente su zmeny len u TEBA vo forknutom repozitare, treba ich dalej posunut do originalneho repa
 	-na stranke prejdem do SVOJHO forknuteho repa, a spravim "New pull request" a vytvorim ho
 	-tymto som sharol svoje zmeny
 
-2 Stiahnut cudzie zmeny
+
+
+SŤAHOVANIE AKTUÁLNEHO STAVU UPSTREAM REPOZITÁRA NA FORK REPOZITÁR
+
+-Github Desktop
+	-klikneme na "Branch" -> "Merge into current branch..."
+	
+-Github stránka
 	-na github stranke prejdem na svoje forknute repo ktore chcem updatnut
 	-kliknem na "New pull request"
 	-nastavim si compare tak aby base fork bolo moje repo a head fork cudzie
