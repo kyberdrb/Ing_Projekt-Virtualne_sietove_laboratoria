@@ -1,20 +1,22 @@
-sudo -i
-apt-get update
-apt-get upgrade
-reboot
-sudo -i
-DEBIAN_FRONTEND=noninteractive apt-get -y install eve-ng
-reboot
+Pri aktualizácii EVE-ng servera postupujeme podľa nižšie uvedených príkazov.
+
+  sudo -i
+  apt-get update
+  apt-get upgrade
+  reboot
+  sudo -i
+  DEBIAN_FRONTEND=noninteractive apt-get -y install eve-ng
+  reboot
 
 Spustíme skript na úpravu šablón pre zariadenia podľa návodu "uprava_sablon.txt".
 
   ./update_templates.sh
 
-Skontrolujeme, či beží apache:
+Skontrolujeme, či webový server Apache je spustený
 
   sudo netstat -plantu
 
-Ak vidíme, že na porte apache 80 beží, otvoríme internetový prehľadávač, vymažeme mu "Cache" a pripojíme sa na EVE-ng server.
+Ak vidíme, že webový server Apache je spustený na porte 80, otvoríme internetový prehľadávač, vymažeme jeho vyrovnávaciu pamäť a pripojíme sa na EVE-ng server.
 
 Zdroje:
 http://www.eve-ng.net/index.php/faq

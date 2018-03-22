@@ -1,8 +1,0 @@
--Nový projekt vytvoríme kliknutím na ikonku "Add new lab"
--Vyplníme potrebné údaje (aspoň položky "Name" a "Version")
--Potvrdíme tlačidlom “Save”.
--Klikneme na vytvorený súbor
--Klikneme na tlačidlo "Open"
--Projekt sa otvorí a môžeme doň pridávať zariadenia.
-
-Poznámka: Každý používateľ môže mať naraz otvorený najviac 1 projekt. Keď chceme pracovať na inom projekte, musíme aktuálny projekt zatvoriť tlačidlom "Close lab". Pokiaľ sa projekt nedá zatvoriť, pravdepodobne to bude spôsobené bežicimi zariadeniami. Tie musíme pred zatvorením projektu vypnúť. Najrýchlejší spôsob, ako vypnúť všetky zariadenia naraz je, že na ľavom paneli klikneme na "More actions" -> "Stop all nodes". Všetky zariadenia sa v projekte vypnú a po kliknutí na "Close lab" sa projekt zatvorí. Potom môžeme otvoriť iný projekt.

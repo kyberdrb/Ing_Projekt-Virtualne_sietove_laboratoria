@@ -3,110 +3,33 @@ Tipy:
 -V GNS3 nepripajame koncove zariadenia priamo k oblaciku, ale oblacik prepojime s Ethernet prepinacom. Vsetky dalsie zariadenia pripajame k tomuto prepinacu.
 
 Zazitky:
--20.12. o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
--Navvyse z prikazu "sudo journalctl | grep ".*pam_unix.*" | less" vyplyva, ze na server utocia z Ciny
+-20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
+
+===============================================================================
+Diplomka
+  -urobit obsah diplomky do latexovej sablony podla obsahu "plan_riesenia_diplomovej_prace.md"
+    -potom spomenuty subor zmazat
+  -diplomku robit podla zadania DP! diplomka musi dat odpovede na ulohy v DP!
+  -aby som si ušetril písanie, môžem generalizovať veci, ktoré sú spoločné pre každú entitu,
+  -zdokumentovat zistovanie features pre zariadenia
+    -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
+  -ako pisat diplomku
+    -ako, co, preco som robil + ako to riesi ulohy v zadani DP
+
+===============================================================================
+Ulohy: 
+
+-otestovat technologie na vybranych zariadeniach podla pripraveneho konfiguracneho skriptu v
+    "materialy_na_predmety/0_2_vyucovane_technologie_testovaci_skript.txt"
+  a upravit ho na mieru podla testovaneho zariadenia
+
+-konzultovat s uramovou
+  -co je komplexna konfiguracia prepinaca?
+  -ake technologie bude mat topologia v 7. tyzdni? -> podla toho vybrat zariadenia + kusky konfiguracie na otestovanie technologie
 
 
 
 
-Ulohy:
-
--upravit skript na upravu sablon podla benchmarkov pre benchmarkovane
- zariadenia
-  -upravit pocet CPU a RAM
-
--odkazat sa v sumarnom zozname zariadeni na subor 
-  "profiling_and_benchmarking_device_list.txt"
- pre zainteresovane zariadenia
-
--obenchmarkovat vybrane zariadenia aj vo vmware virtualke, ako overenie
- a potvrdenie nameranych udajov
-  -3725, 7200, iol l2, iol l3, vios, viosl2, csr, vmx 17 (1 uzol)
-
-
-
--pozret sa v telefone na obrazok tabule od veduceho
-  -predmety
-  -zariadenia na ne
-
--cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
-  -zoznam features je uz stiahnuty
--ziskat zoznam funkcionalit pre jednotlive zariadenia v Cisco VIRL
--pozriet sa na
- "/materialy_na_predmety/CCNP_Switching_problematicke_technologie.txt"
- 
- -je velka sanca, ze vIOS L2 switch pokryje technologie, ktore nie su 
- podporovane ani v IOL routri, ani v IOL switchi
-
-
-
-
--po preinstalacii vyskusat odchytavanie prevadzky medzi zariadeniami
- v topologii
-
-  -najprv vytvorit topologiu s dvomi zariadeniami a otestovat ich konektivitu
-   a odchytit ich premavku (z root uctu) - IDE :D
-
-  -potom zmenit toto v /bin/eve-ng-integration
-
-      if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-   na toto (pridame "sudo" pred tcpdump => aj uzivatel wireshark_capture bude v 
-   sudo skupine, ale bude moct vykonavat VYLUCNE PRIKAZ TCPDUMP AKO SUDO!!!)
-
-    if url.scheme == 'capture':
-        cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
-              -l wireshark_capture {host} sudo tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
-
-
-  -mozno pridat pouzivatela "andrej" do pcap skupiny a vyskusat integraciu
-   bez "sudo" prikazu pri "tcpdump"
-  -potom vytvorit pouzivatela "wireshark_capture", 
-   priradit pouzivatela "pcap" do skupiny wireshark a 
-   restartovat server
-  -nasledne do topologie pridat a prepojit par zariadeni a odskustat, 
-   ci maju konektivitu (ping)
-  -problemy teoreticky mozu vzniknut vtedy, ked iptables ma pre tabulku
-   FORWARD predvolenu politiku DROP - mala by byť ACCEPT - vtedy by teoreticky
-   nedokazali zariadenia preposielat spravy cez rozhrania
-
-
-
-
-
--lepsie HTTPS zabezpecenie po uspesnej preinstalacii
-    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
-
-
-
-
-
-
--do skriptu na upravu sablon zmenit zariadeniam pocet CPU
-  -obenchmarkovanym QEMU zariadeniam
--skor ci neskor budem musiet aj tak automatizovat generovanie
-benchmarkingovych a profilingovych grafov (zrejme pythonom)
-
--urobit benchmarking aj vo VMware EVE-ng virtualke pre jedno zariadenie:
-  -ukazat, ze vytazenie operacnej pamate je nezavisle od platformy
-    (fyzicky vs virtualny stroj (vs lxc?))
-
--benchmarking and profiling vybraych EVE-ng zariadeni
-  -urobit testovacie csv a vlozit jeho obsah ho do novej sablony
-    "profiling_sirena_sablona_nova-dstat_custom.ods"
-  -obenchmarkovat ich vytvorenym skriptom
-  -vlozit csv do calc dokumentu
-    -podla potreby upravit vstupne data:
-      -odstranit riadky, v ktorych su pod mnozstvom spotrebovanej operacnej pamate uvodne nuly
-  -vyexportovat grafy "Celkoveho vytazenia CPU" a "Vyuzitia operacnej pamate" do png obrazkov
-  IBA pre Cisco, Juniper, Linux a Windows
-  -ulozit cely dokument do adresara zariadenia (Save As...)
-
--obenchmarkovat vmx 15
-  -jedno zariadenie (vmx)
-  -kompozit (vcp+vfp) - osobitne aj dohromady
 
 -vypytat si od mareka windows a windows server a pridat ho do eve-ng
 
@@ -114,9 +37,34 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
 
 
 
--otestovat priliepanie prikazov do HTML5 telnet a vnc konzoly
+===============================================================================
+Co dalej?
+
+-opraviť bug:
+  -wireshark odchytavanie konkretneho rozhrania z EVE-ng topologie
+  -chybu som spozoroval az vtedy, ked som zmenil sposob odhytavania paketov v topologii z "root" uctu na pouzivatelsky ucet "wireshark_capture"
+  -mozno by stacilo kazdych 24 hodin spustit skript, ktory by ukoncoval wireshark procesy
+  -OTESTOVANE - staci vykonavat prikaz
+    sudo killall tcpdump
+  a ukoncia sa nielen tcpdump, ale aj SSH relacie, ktore ich zapuzdrovali!
+  Ale najlepsie by bolo, keby sa SSH relacie s tcpdump odchytavanim ukoncili po dokonceni odchytavania.
+
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty v adresari "materialy_na_predmety/cisco_routers_feature_set"
+
+-opraviť bug:
+  -jeden používateľ nemôže byť prihlásený z dvoch rôznych počítačov - tak by sa dala vyriešiť práca v tíme, konfigurácia rovnakých zariadení na rovnakých portoch, aktualizácia topológie,
+  atď.
+  -> treba spustiť Wireshark odchytávanie, prihlásiť používateľa z jedného počítača. Spustiť odchytávanie na inom počítači a prihlásiť sa ako rovnaký používateľ. Potom na základe vymieňaných správ (a ich kódov!) so serverom zistiť, prečo server automaticky odhlásil používateľa z prvého počítača a odstrániť toto obmedzenie.
 
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
+  -Instalacia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_01_install_lxc_lxd_container_support.txt
+  -Spristupnenie adresara z hostovskeho systemu pre LXC kontajner - uzitocne pre adresare so zariadeniami - nemusia sa kopirovat do kazdeho kontajnera, ale bude existovat jeden adresar, ktory bude pristupny vylucne na citanie (nie na zapis!) kazdemu EVE-ng LXC kontajneru
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_02_mount_host_directory_to_container.txt
+  -Aktivacia spustania KVM virtualky v LXC kontajneri - uzitocne pre QEMU zariadenia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt
+    
 -rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
   -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
     ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
@@ -124,47 +72,39 @@ benchmarkingovych a profilingovych grafov (zrejme pythonom)
     -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
 
 
--skopirovat vsetky skripty v HOME zo sireny do git repa /eve-ng/skripty
-  + dat ich do adresara ./eve-ng/skripty, ale ponechat nazov, ako na gite,
-  nie ako su na vzdialenom serveri (aby bolo jasne kam patria)
+-vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
+ "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
+ casti "ZABEZPECENIE SYSTEMU"
+  -> zabezpecenie adresarov na xx0 (chmod)
+      "~/.ssh"
+    a
+      "/etc/ssl/"
+    kazdeho pouzivatela, aby nedoslo k uniku privatnych klucov
+  -nastavit umask v subore /etc/login.defs zo 022 na 027
+   -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
+      pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
+        => domovske adresare budu citatelne pre vlastnikov domovskych 
+            adresarov, ale nie pre niekoho ineho
+  https://serverfault.com/questions/333745/isolating-a-user
+  https://superuser.com/questions/303910/ubuntu-default-access-mode-permissions-for-users-home-dir-home-user
 
+-lepsie zabezpecenie pre Apache
+  -lepsie HTTPS
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+  -modsecurity, modevasive
 
+-opravit bug:
+  -pri vymazani suboru/adresara ako pouzivatel s rolou "user" sa nezobrazi chybove oznamenie o nedostatocnych opravneniach
+    Možné riešenie -> viď súbor "eve_ng-Nezobrazuje_sa_chybove_hlasenie_o_nedostatocnych_opravneniach_pre_BUG_UNRESOLVED.txt"
 
+-Opravit deformovany posuvnik na priblizovanie/oddalovanie topologie pri zmensovani topologie pod istu hranicu (cca 950px)
+  -Navrhy na riesenie su v subore "eve_ng-Display_too_small_BUG.txt"
 
+-Este lepsi sposob izolacie odchytavacieho uctu "wireshark_capture"
+  https://unix.stackexchange.com/questions/208960/how-to-restrict-a-user-to-one-folder-and-not-allow-them-to-move-out-his-folder/209065#209065
 
--zohnat laby do eve-ng/unetlab pre CCNA, CCNP, CCIE
--ziskat materialy na ccna security (640-554)
-  -postahovat z torrentov a dalsich zdrojov na notase
-  -vypytat si ich od veduceho
-
-
-
-
-
-
-
-
-Diplomka
-  -?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Co dalej?
 -LACP Nexus 9000v - IOSv Bug fix
   https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
--Zabezpecit EVE-ng web server lepsie
-  -modsecurity, modevasive
   
 -Preskumat labaky
   https://adamfromthefuture.blogspot.sk/2017/12/ccna-rs-prep-hero-level-rip.html
@@ -194,7 +134,7 @@ do Linuxu (GNS3)
 -urobit windows koncove zariadenie pre EVE-ng; najlepsie s virtio ovladacmi 
   -Windows 10 x86/x64
   -Windows Server 2016
-  -zrejme bude treba vytvorit novu sablonu pre windowsy, lebo na mojom notebooku
+  -zrejme bude treba vytvorit novu sablonu pre windowsy akebo upravit "unl_wreapper", lebo na mojom notebooku
   som spustil Win10 x86 s plnou virtio podporou. Vsimol som si odlisne QEMU parametre,
   akymi EVE-ng spusta Windows zariadenia, v porovnani s mojou Windows virtualkou.
   Okrem upravy sablony bude treba upravit aj "qemu_wrapper" (ale qemu wrapper je binarka) ->
@@ -221,6 +161,8 @@ do Linuxu (GNS3)
 -GNS3 support for Linux Containers (LXC & LXD) in addition to VMs...
 -Vyskusat OKS s kontajnermi Docker/LXC/LXD - mozno by to vyriesilo problemy s ntp synchronizaciou
 -rozdelenie EVE-ng do Community, Professional a Learning Centre edicie
+  POROVNANIE
+    http://www.eve-ng.net/index.php/features/compare
   -Professional a Learning Centre opravuju mnozstvo nedostatkov:
     -Podpora Docker kontajnerov
     -moznost prace viacerych ludi na jednom projekte
@@ -243,6 +185,7 @@ do Linuxu (GNS3)
     => Riesenia, pokial nevadi, ze budeme platit:
         -kupime si Pro/Learning ediciu iba raz, a na nich budeme stavat
         alebo si budeme Pro/Learning ediciu kupovat kazdy rok
+        ALEBO HACKNEME EVE-NG PRO EDÍCIU, ABY FUNGOVALA AJ BEZ LICENCIE :D
   http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
   http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
   https://twitter.com/EVE_NG_TEAM/status/951560394765733888
@@ -311,9 +254,11 @@ do Linuxu (GNS3)
     -/home/gns3/gns3-server/
     -/home/gns3/gns3-server/gns3server
 
-  -otestovat docker: stiahnut ubuntu docker (6MB RAM nema ani alpine)
-    http://phusion.github.io/baseimage-docker/
+  -otestovat docker v EVE-ng
     https://github.com/phusion/baseimage-docker
+    https://hub.docker.com/_/busybox/
+    https://hub.docker.com/r/socketplane/openvswitch/
+    https://hub.docker.com/_/debian/
     
   -zabezpecit gns3 vzdialeny server
     -ssh
@@ -323,7 +268,7 @@ do Linuxu (GNS3)
       https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
     
   -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm
-  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng
+  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng skriptu na upravu sablon
     -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
     v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
     -vyhodnotit

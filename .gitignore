@@ -1,0 +1,28 @@
+
+# Created by https://www.gitignore.io/api/libreoffice,microsoftoffice
+
+### LibreOffice ###
+# LibreOffice locks
+.~lock.*#
+
+### MicrosoftOffice ###
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+
+
+# End of https://www.gitignore.io/api/libreoffice,microsoftoffice
+

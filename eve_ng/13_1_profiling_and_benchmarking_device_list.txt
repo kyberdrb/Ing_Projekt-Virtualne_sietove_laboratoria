@@ -1,5 +1,6 @@
 asa-9.1.5.16_20141016
     -NEVHODNA NA POUZIVANIE!! VYTAZUJE PRIDELENE CPU NA 100%!
+
 asav-991-serial-console-with-asdm-79150_20171130
 csr1000vng-universalk9.16.07.01-fuji-serial-console_20171120
 csr1000v-universalk9.03.17.03.S.156-1.S3-std_20161121
@@ -201,7 +202,8 @@ xrv9k-fullk9-x-6.2.25_20170928
 xrv9k-fullk9-x.vrr-6.2.25_20170928
     -ODPORUCANE MNOZSTVO RAM = 13GB RAM
         -nechal som ho bezat cez noc
-         (z 5GB to narastlo na 12GB)
+         (z 5GB to narastlo na 12GB - v skole som ho pustil znova
+          a trvalo cca 2 hodiny, kym narastol na 12GB)
     -1 cpu - priserne pomaly beh a spustanie
         Data plane core assignment: 0
         Control plane core assignment: 0

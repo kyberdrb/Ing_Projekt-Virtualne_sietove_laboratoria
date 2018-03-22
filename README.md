@@ -2,10 +2,8 @@
 Inžiniersky projekt - Virtuálne sieťové laboratórium
 
 # TODO - Projekt
-- Vyskúšať GNS3 VM v LXC kontajnera (podľa návodu v GNS3 dokumentáciách; 
-gns3 inštalovať z oficiálneho repozitára) - testovať to isté, čo v EVE-ng
 - Vytvoriť topológie na zvolené predmety
-- (Nízka priorita) odstrániť z Odysea VMware Player a všetky jeho virtuálky
+- (Nízka priorita) odstrániť z Odysea VMware Player a všetky jeho virtuálky po otestovaní EVE-ng v LXC kontajneri
 
 
 # TODO - Diplomová práca

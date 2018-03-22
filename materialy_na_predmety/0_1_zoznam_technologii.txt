@@ -1,0 +1,98 @@
+IPv4 statické smerovanie
+IPv6 statické smerovanie
+RIPv2
+RIPng
+SVI
+STP BPDU Guard
+PortFast
+VLAN
+VLAN Trunk 802.1Q
+IVL smerovanie - Router on a Stick
+VTP v1
+VTP v2
+VTP v3
+DTP
+STP
+PVST+
+RPVST+
+Extended VLAN
+L2 EtherChannel PAGP
+L2 EtherChannel LACP
+L3 EtherChannel PAGP
+L3 EtherChannel LACP
+HSRP IPv4 
+HSRP IPv6 
+HSRPv2 IPv4 
+HSRPv2 IPv6 
+VRRP IPv4 
+VRRP IPv6 
+GLBP IPv4 
+GLBP IPv6 
+ACL IPv4 
+ACL IPv6 
+DHCP IPv4 
+DHCP IPv6 
+(Dynamické) NAT
+LLDP
+CDP
+Syslog
+NTP
+SNMP
+SPAN
+
+EIGRP IPv4 
+EIGRP IPv6 
+OSPFv2 Single-Area
+OSPFv2 Multi-Area
+OSPFv3 Single-Area
+OSPFv3 Multi-Area
+PPP
+MLPPP
+HDLC
+PPPoE
+GRE
+eBGP IPv4
+
+IS-IS
+IGMP
+IGMP v2
+IGMP v3
+IGMP Snooping
+PIM Dense Mode
+PIM Sparse Mode
+PIM Sparse-Dense Mode
+PIM Any-Source Multicast
+PIM Source-Specific Multicast
+Manual RP
+Auto-RP
+BSR
+Anycast RP
+iBGP IPv4 
+MPLS
+LDP
+RSVP
+Router Reflector
+MP-BGP
+BGP mVPN
+Hub & Spoke VPN
+Draft Rosen
+BGP L3 VPN
+VPLS
+
+EVPN
+Seamless MPLS
+BGP mVPN NG
+
+EIGRP ITA
+IP SLA
+
+STP BPDU Filter
+MSTP
+CEF
+MLS
+FHRP IPv4 
+FHRP IPv6 
+NTP Authentication
+Cisco ISL trunks
+DHCP Snooping
+PVLAN

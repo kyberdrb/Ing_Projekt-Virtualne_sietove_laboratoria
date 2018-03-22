@@ -1,0 +1,9762 @@
+
+
+
+
+
+<table>
+	<tr><td> &nbsp;</td></tr>
+	<tr><td> &nbsp;</td></tr>
+</table>
+
+	
+	<table border="0">
+		<tr>
+			<td colspan="4"><center><b>Image Info</b></center></td>
+		</tr>
+	</table>		
+	<table>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<table border="1">
+		<tr><td><b>Image Name</b></td><td colspan="3"  align="left">c7200-adventerprisek9-mz.151-1.XB.bin</td></tr>	
+		<tr><td><b>Software</b></td><td colspan="3" align="left">IOS</td></tr>		
+		<tr><td><b>Release Number</b></td><td colspan="3" align="left">15.1(1)XB</td></tr>
+		<tr><td><b>Platform Name</b></td><td colspan="3" align="left">7200</td></tr>
+		<tr><td><b>Feature Set/Supervisor(NX-OS specific)</b></td><td colspan="3" align="left">ADVANCED ENTERPRISE SERVICES</td></tr>
+	</table>	
+
+		<table>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	
+		<table border="0">
+			<tr>
+				<td colspan="4"><center><b>Feature Info for the Image c7200-adventerprisek9-mz.151-1.XB.bin</b></center></td>
+			</tr>
+		</table>	
+			
+		<table>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+
+	<table border="1">
+		<tr>
+			<td><b>Feature Name</b></td>
+			<td><b>License</b></td>
+			<td><b>Technology</b></td>
+			<td><b>Package Name</b></td>
+		</tr>
+
+		<tr>
+			<td>802.1p CoS - PPP & PPPoE Control Frames</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Authorization and Authentication Cache</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Broadcast Accounting</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Broadcast Accounting - Mandatory Response Support</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA CLI Stop Record Enhancement</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Call Trace Messages</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA DNIS Map for Authorization</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Double Authentication Secured by Absolute Timeout</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Per-User Scalability</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Server Group</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Server Group Deadtimer</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Server Group Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Server Groups Based on DNIS</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA Support for MSCHAPv2 Password Aging</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AAA-PPP-VPDN Non-Blocking</td>
+			<td></td>
+			<td>Dial and Access,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL - Ability to Filter on the TTL Value</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL - Reflexive Access Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL - Support for Non-Contiguous Port Ranges on an ACE</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL - TCP Flags Filtering</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL Authentication of Incoming RSH and RCP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL Default Direction</td>
+			<td></td>
+			<td>Dial and Access,IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL IP Options Selective Drop</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL Manageability</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL Sequence Numbering</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL Support for Filtering IP Options</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL syslog Correlation</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ACL-based RBSCP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>APIP - Async PoS to IP Conversion</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ARP Optimization</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ARP-Auto Logoff</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM Cell Loss Priority (CLP) Setting</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM Conditional Debug Support</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM Multilink PPP Support on Multiple VCs</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM OAM Traffic Reduction</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM PVC Range and Routed Bridge Encapsulation Subinterface Grouping</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM Routed Bridge Encapsulation (RBE)</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM SVC Troubleshooting Enhancements</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM Subinterface MIB/Traps</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ATM-DXI</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AToM Graceful Restart</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Ability to Disable Xauth for Static IPsec Peers</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Accounting of VPDN Disconnect Cause</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Accounting server connectivity failure and recovery detection</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Active Probe Source Address</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Adaptive Frame Relay Traffic Shaping for Interface Congestion</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Additional Vendor-Proprietary RADIUS Attributes</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Address Resolution Protocol (ARP)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Advanced Encryption Standard (AES)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Advanced Voice Busyout (AVBO)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Airline Product Set (ALPS)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Airline Product Set Enhancements (MATIP)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Always On Dynamic ISDN (AO/DI)</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Always On Dynamic ISDN (AO/DI) Enhancements</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Answer Supervision Reporting</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM):  Ethernet over MPLS: Port Mode (EoMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM): ATM AAL5 over MPLS (AAL5oMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM): Ethernet over MPLS (EoMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM): Frame Relay over MPLS (FRoMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM): HDLC over MPLS (HDLCoMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM): PPP over MPLS (PPPoMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Any Transport over MPLS (AToM): Single Cell Relay - VC Mode (CRoMPLS)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Application Firewall - Instant Message Traffic Enforcement</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Application Inspection And Control for HTTP - Phase 2</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Application Inspection and Control for SMTP</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Asynchronous Line Monitoring</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Asynchronous Serial Traffic Over UDP (aka UDPTN)</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Attribute Filtering Per-Domain and VRF Aware Framed-Routes</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Attribute Screening For Access Requests</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Auditing Raw Buffers on a Channel Associated Signaling Interface</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Authentication Proxy Accounting for HTTP</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Auto Secure Manageability</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AutoInstall Using DHCP for LAN Interfaces</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AutoInstall over Frame Relay-ATM Interworking Connections</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AutoQoS - VoIP</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AutoQoS for the Enterprise - Suggested Policy</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AutoRP Enhancement</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>AutoSecure Customization and Audit Trail Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Automatic Protection Switching (APS)</td>
+			<td></td>
+			<td>Optical,Synchronous Optical NETwork (SONET)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Automatic modem configuration</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BFD - Static Route Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BFD - VRF Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BFD - WAN interface support (ATM, FR, POS, and Serial)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BFD Echo Mode</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BFD version 1 support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP 4</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP 4 Multipath Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP 4 Prefix Filter and In-bound Route Maps</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP 4 Soft Config</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Conditional Route Injection</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Configuration Using Peer Templates</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Convergence Optimization</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Cost Community</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Cost Community Support for EIGRP MPLS VPN PE-CE</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Dynamic Update Peer-Groups</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Event Based VPN Import</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Hide Local-Autonomous System</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Hybrid CLI Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Increased Support of Numbered as-path Access Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Link Bandwidth</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Multicast Inter-AS (IAS) VPN</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Multipath Load Sharing for Both eBGP and iBGP in an MPLS-VPN</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Named Community Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Neighbor Policy</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Per Neighbor SOO Configuration</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Prefix-Based Outbound Route Filtering</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP RT changes without PE-CE neighbor impact</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Reduction in Transient Memory Usage</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Restart Neighbor Session After max-prefix Limit Reached</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Route-Map Continue</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Route-Map Continue Support for Outbound Policy</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Route-Map Policy List Support</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Selective Address Tracking</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Soft Reset</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for BFD</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for Dual AS Configuration for Network AS Migrations</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for Fast Peering Session Deactivation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for IP Prefix Import from Global Table into a VRF Table</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for Named Extended Community Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for Next-Hop Address Tracking</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for Sequenced Entries in Extended Community Lists</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for TCP Path MTU Discovery per Session</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BGP Support for TTL Security Check</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BIP - BSC to IP Conversion for Automated Teller Machines</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>BSTUN (Block Serial Tunneling)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bandwidth Allocation Control Protocol (BACP)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bandwidth-Based Call Admission Control (CAC) for IP Multicast</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Basic Service Relationships (H.225 Annex-G)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bidirectional Forwarding Detection (BFD) Standard Implementation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bidirectional PIM</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bisync (BSC)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bisync support for synchronous serial port adapters</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bridge Control Protocol (BCP) Support</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bridged 1483 Encapsulated Traffic over ATM SVCs</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Bridging between IEEE 802.1Q vLANs</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CDP (Cisco Discovery Protocol) Version 2</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CEF Support for IP Routing between IEEE 802.1Q vLANs</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CEF Support for L4 Port-Based Load Balancing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CEF/dCEF - Cisco Express Forwarding</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CEFv6 Switching for 6to4 Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CEFv6/dCEFv6 - Cisco Express Forwarding</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CFM-2</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CGMP - Cisco Group Management Protocol</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CIP Core Dump</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CISCO-IP-URPF-MIB Support</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CLI String Search</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CLI Views</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CLI for Displaying Certificates in Cisco IOS (Manageability Enhancement)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CLNS Support for GRE Tunneling of IPv4 and IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Agents SSL Security</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Configuration Agent</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Enhanced Results Message</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Event Agent</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Flow Through Provisioning</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Frame Relay Zero Touch</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS -  Image Agent</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CNS - Security Enhancement</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>COPS for RSVP</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CPP Policy Manager</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>CUG Selection Facility Suppress Option</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cache Control Enhancements for Certification Revocation Lists</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Admission Control for H.323 VoIP Gateways</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Admission Control for IKE</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Detail Records (CDR) Feature Correlation ID for Supplementary Features</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Failure Recovery (Rotary) on the Cisco Multiservice IP-to-IP Gateway</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Home</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Release Source Reporting in Gateway-Generated Accounting Records</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call Status Tracking Optimization</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Call statistics on voice-enabled gateways</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Calling Station ID Attribute 31</td>
+			<td></td>
+			<td>Subscriber Edge</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate -  Authority (CA) Key Rollover</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate -  Auto Enrollment</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate -  Enrollment Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate -  Security Attribute-Based Access Control</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate -  Storage Location Specification</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate - Complete Chain Validation</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certificate IP Address Extension Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Certification Authority Interoperability (CA)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Challenge Handshake Authentication Protocol (CHAP)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco Discovery Protocol (CDP) over ATM</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco Express Forwarding - SNMP CEF-MIB Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco IOS 4096-Bit Public Key Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco IOS Certificate Server</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco IOS Firewall - SIP Enhancements: ALG and AIC</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco IOS Login Enhancements</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco IOS Resilient Configuration</td>
+			<td></td>
+			<td>Availability,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco IOS SHA-2 Support for PKI</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Cisco Multipath Channel+</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class Based Ethernet CoS Matching & Marking (802.1p & ISL CoS)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class Based Weighted Fair Queuing (CBWFQ)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class-Based Frame-Relay DE-Bit Matching and Marking</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class-Based Marking</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class-Based Packet Marking Enhancements</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class-Based Policing</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Class-Based Shaping</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Clear IP Traffic CLI</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Command Scheduler (Kron)</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Commands for SNMP Diagnostics</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Commented IP Access List Entries</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Committed Access Rate (CAR)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Compression Control Protocol</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Config Change Tracking Identifier</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Config Logger Enhancements for EAL4+ Certification</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Config Logger Persistency</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configurable Domain Name Prefix and Suffix Stripping</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configurable MAC Address for PPPoE</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configurable RAS Retries and Timers</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configurable SIP Listening Port</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configurable per ATM-VC Hold Queue size</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configuration Change Notification and Logging</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configuration Replace and Configuration Rollback</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Configuration Rollback Confirmed Change</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Connection-Mode Network Service (CMNS)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Context-Based Access Control (CBAC)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Contextual Configuration Diff Utility</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Control Plane DSCP Support for RSVP</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Control Plane Logging</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Control Plane Policing (CoPP)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Control Plane Policing - Time based</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Control Plane Policing Manageability</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Crypto Access Check</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Crypto Conditional Debug Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Custom Queueing (CQ)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Customer Profile Idle Timer Enhancements for Interesting Traffic</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DECNet IV</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DECNet V</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DECnet Accounting</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DECnet over ISL</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DF Bit Override Functionality with IPSec Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - Class Support for Client Identification</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - Configurable DHCP Client</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - DHCPv6 Individual Address Assignment</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - DHCPv6 Server Stateless Auto Configuration</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - Server Multiple subnet</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - Static Mapping</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP - Statically Configured Routes Using a DHCP Gateway</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Accounting</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Authorized ARP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Client</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Client - Dynamic Subnet Allocation API</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Client Option 121</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Client on WAN Interfaces</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Enhancements for Edge-Session Management</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Lease Limit per ATM/RBE unnumbered interface</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP ODAP Server Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP On Demand Address Pool (ODAP) Manager for non-MPLS VPN pools</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Option 82 Support for Routed Bridge Encapsulation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Proxy Client</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Relay Accounting</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Relay Agent Support for Unnumbered Interfaces</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Relay Option 82 - Per Interface Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Release and Renew CLI in Exec Mode</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Secured IP Address Assignment</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Server</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Server - On Demand Address Pool Manager</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Server - Option to Ignore all BOOTP Requests</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCP Server Options - Import and Autoconfiguration</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DHCPv6 Client Information Refresh Option</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLR Enhancements: PGM RFC-3208 Compliance</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw (RFC 1795)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw CO features</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw V2</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Asynchronous TCP Enhancements</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Backup Peer Extensions for Encapsulation Types</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Border Peer Caching</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Enhanced Load Balancing</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Ethernet Redundancy</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Peer Group Clusters</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ RSVP Bandwidth Reservation</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ SNA Type of Service</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DLSw+ Support For Transporting LLC1 UI Traffic</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DMVPN - Hub Support by QoS Class (DMVPN Ph3)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DMVPN - Tunnel Health Monitoring and Recovery (Interface Line Control)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DMVPN Manageability Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DNS - Split DNS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DNS - VRF aware DNS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DNS based X.25 routing</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DRP Server Agent</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DTMF Events Through SIP Signaling</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>DTMF Relay for SIP Calls Using Named Telephone Events (NTE)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Default Passive Interface</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Default Route on a PPP Virtual Access Interface</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dial Backup</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dial on Demand Authentication Enhancements</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dial-on-demand</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer CEF</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer Idle Timer Inbound Traffic Configuration</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer Map VRF Aware</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer Persistent</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer Profiles</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer Watch</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dialer Watch Connect Delay</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Diameter Credit Control Application</td>
+			<td></td>
+			<td>Subscriber Edge</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Diffie-Hellman Group 5</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Diffserv Compliant WRED</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Direct http enroll with CA servers</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Display SAP by Name</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Distinguished Name Based Crypto Maps</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Distributed Management Event MIB Persistence</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Distributed Management Expression MIB persistence</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Double Authentication</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Down Stream Physical Unit (DSPU) over DLSw+</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Downstream PU concentration (DSPU)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic Bandwidth Change for ATM PVCs</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic Control of Gatekeeper Sequential LRQ Processing through Gatekeeper Transaction Message Protocol (GKTMP) / GK API</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic DNS Support for Cisco IOS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic Multiple Encapsulation for Dial-in over ISDN</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic Multipoint VPN (DMVPN) Phase 1</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic Per VRF AAA</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Dynamic Subscriber Bandwidth Selection</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM),OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EIGRP Dynamic Metric Calculations</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EIGRP MIB</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EIGRP MPLS VPN PE-CE Site of Origin (SoO)</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EIGRP Prefix Limit Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EIGRP Stub Routing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EIGRP Support for Route Map Filtering</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EOT Support for carrier delay</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Easy IP (Phase 1)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Easy Secure Device Deployment (Easy SDD) - Phase 4</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Easy VPN Phase 8.0</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Easy VPN Server</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EasyVPN Phase 7</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EasyVPN Server Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EasyVPN phase 7.1</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Email Inspection Engine</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Event Manager (EEM) 1.0</td>
+			<td></td>
+			<td>Availability,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Event Manager (EEM) 2.1</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Event Manager (EEM) 2.2</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Event Manager (EEM) 2.4</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Event Manager (EEM) 3.0</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Event Manager (EEM) 3.1</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Menu Manager</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Packet Capture (EPC)</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Resource Manager (ERM) - MIB</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Embedded Resource Manager (ERM) - Packet Memory Reclamation</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Encrypted Pre-shared Key</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Encrypted Vendor Specific Attributes</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>End of Record functionality for DCN networks</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced ARQ and RRQ Security for Gatekeeper Registrations</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Call and IVR Control for Rotary Call Set Ups</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Codec support for SIP using Dynamic Payloads</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced G.168 Echo Cancellation</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced IGRP (EIGRP)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced ITU-T G.168 Echo Cancellation</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Local Management Interface (ELMI)</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Object Tracking support for Mobile IP, PDSN or GGSN</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Packet Marking</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Password Security</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Test Command</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced Tracking Support / Enhanced Object Tracking / EOT</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Enhanced cRTP for links with high delay, packet loss and reordering</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Ethernet Connectivity Fault Management (E-CFM)</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Event Tracer</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Exclusive Configuration Change Access and Access Session Locking</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Exporting and Importing RSA Keys</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Express RTP and TCP Header Compression on Dialer interfaces</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Extended  Simple Mail Transfer Protocol (ESMTP) for IOS Firewall</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Extended ACL support for IGMP to support SSM in IPv4</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Extended NAS-Port-Type and NAS-Port Support</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>EzSDD Phase III</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FAT32 Support</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP -  VRF Aware VRRP</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - EOT integration with EEM</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - GLBP Support for IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - HSRP - Hot Standby Router Protocol V2</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - HSRP BFD Peering</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - HSRP Group Shutdown</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - HSRP Multiple Group Optimization</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - Object Tracking List</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FHRP - VRRP - Object Tracking</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FIB Data Consistency Checking</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FPG: Endpoint Agnostic Port Allocation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FPM - Flexible Packet Matching</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FPM CCE Integration including XML CCE infrastructure</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FPM Full Packet Filtering</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FR support for IPv6 protocol demux over L2TPv3</td>
+			<td></td>
+			<td>IP,WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FRF.20 support</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>FTP Support for Downloading Software Images</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Facility Debug Enhancements</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Fast-Switched Policy Routing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Fast-Switched SRTLB</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall - Stateful failover</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall ACL Bypass</td>
+			<td></td>
+			<td>IP,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Authentication Proxy</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Authentication Proxy for FTP and Telnet Sessions</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Feature Set</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Intrusion Detection (IDS) Signature Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Intrusion Detection System</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall N2H2 Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Stateful Inspection of ICMP</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Support for SIP</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Support of SSL Encrypted HTTP Authentication Proxy Sign-on</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Support of Skinny Client Control Protocol (SCCP)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Firewall Websense URL Filtering</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible NetFlow</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible NetFlow - Ingress VRF Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible NetFlow - Output Features on Data Export</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible Netflow - IPv4 Multicast Statistics Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible Netflow - Layer 2 Fields</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible Netflow - MPLS Egress NetFlow</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible Netflow - NBAR Application Recognition</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible Netflow - NetflowV5  export protocol</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flexible Netflow - Top N Talkers Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flow-Based QoS for GGSN</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Flow-Based WRED</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Forced Calling Line Identifier</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay -  PVC Bundles with IP QoS Support</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay -  PVC Bundles with MPLS QoS Support</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay - FRF.1.2 Annex A</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay - Multilink (MLFR-FRF.16)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay 64-bit Counters</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Access Support (FRAS) Border Access Node (BAN)</td>
+			<td></td>
+			<td>IBM Networking,IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Access Support (FRAS) Boundary Network Node (BNN)</td>
+			<td></td>
+			<td>IBM Networking,IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Access Support (FRAS) DLCI Backup</td>
+			<td></td>
+			<td>IBM Networking,IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Access Support (FRAS) Dial Backup over DLSW+</td>
+			<td></td>
+			<td>IBM Networking,IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Access Support (FRAS) Host</td>
+			<td></td>
+			<td>IBM Networking,IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay ELMI Address Registration</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Encapsulation</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay End-to-End Keepalive</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay FRF.9 Payload Compression</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Fragmentation (FRF.12)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Fragmentation with Hardware Compression</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay PVC Interface Priority Queueing</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay QoS features with Hierarchical Queueing Framework (HQF)</td>
+			<td></td>
+			<td>Quality of Service (QoS),WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Queuing and Fragmentation at the Interface</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Router ForeSight</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay SVC Support (DTE)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Show and Debug Command Enhancement</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Switched Virtual Circuits (SVC) over ISDN</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Switching</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Switching Diagnostics and Troubleshooting</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Switching Enhancements: Shaping and Policing</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Traffic Shaping (FRTS)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Frame Relay Voice Adaptive Traffic Shaping</td>
+			<td></td>
+			<td>Gateway Protocols,Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Framed-Route in RADIUS Accounting</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GETVPN Phase 1.2</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GETVPN Support for VRF-Lite</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GETVPN VRF-Aware GDOI on GM</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GKTMP - Unique Calling Party Information with Alternate Endpoints</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GKTMP Interface Resiliency Enhancement</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GKTMP Security Token Enhancement</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GLBP MD5 Authentication</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GRE Tunnel IP Source and Destination VRF Membership</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>GTD for GKTMP using SS7 Interconnect for Voice Gatekeeper version 2.0</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Ecosystem Interoperability</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Endpoint Control Enhancements</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Enhancements For Managed Voice Services</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Enhancements to Enable v4-v2 Interworking</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Management Statistics</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Prefix Selection for Hair-Pinned Calls</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper Support for Cisco VoIP Internal Error Codes</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper to Gatekeeper Redundancy and Load-sharing</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gatekeeper-to-Gatekeeper Authentication</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gateway Codec Order Preservation and Shutdown Control</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gateway Enhancements to Enable v4-v2 Interworking</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gateway Load Balancing Protocol (GLBP)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gateway Support for Advanced Busy Out for Gatekeeper Registration</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gateway-to-Gatekeeper Billing Redundancy</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Generic Routing Encapsulation (GRE)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Generic Routing Encapsulation (GRE) Tunnel Keepalive</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Generic Traffic Shaping (GTS)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Gigabit EtherChannel</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Granular Protocol Inspection</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Group Encrypted Transport VPN (GETVPN)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Call Redirection Enhancements</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Gatekeeper Functionality for IP to IP Gateway</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 RAS Support in IOS Firewall</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Scalability and Interoperability Enhancements for Gatekeepers</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Scalability and Interoperability Enhancements for Gateways</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Support for Virtual Interfaces</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Tokenless Call Authorization</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 Video Calls Support for H.239 Signalling</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 VoIP Call Preservation Enhancements for WAN Link Failures</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323 to SIP Supplementary Feature Interworking for Session Border Controller (SBC)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H.323V4 Gateway Zone Prefix Registration Enhancements</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H323 Video Calls Support for H.235 Security</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>H450.2 & H450.3 Support In IOS</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP - Hot Standby Router Protocol</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP - Hot Standby Router Protocol and IPSec</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP MD5 Authentication</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP for IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP over ISL</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP support for ICMP Redirects</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HSRP support for MPLS VPNs</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP 1.1 Web Client</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP 1.1 Web Server</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP Inspection Engine</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP Security</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP Server - Enabling of Applications</td>
+			<td></td>
+			<td>IP,OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP TACAC+ Accounting support</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTP(S) USB Flash</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>HTTPS - HTTP with SSL 3.0</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Half bridge/half router for CPP and PPP</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>High Performance Gatekeeper</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Hookflash and DTMF Relay Transfer</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Hosted NAT Support for SBC Phase II - SNAT Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ICMP Unreachable Rate Limiting User Feedback</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IDS Support of Security Device Event Exchange (SDEE)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IEEE 802.1Q Tunneling</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IEEE 802.1Q VLAN Support</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IEEE 802.3ah, Ethernet OAM</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IGMP State Limit</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IGMP Static Group Range Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IGMP Version 2</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IGMP Version 3 - Explicit Tracking of Hosts, Groups, and Channels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IKE - Initiate Aggressive Mode</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IKE Extended Authentication (Xauth)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IKE Mode Configuration</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IKE Responder-Only Mode</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IKE Security Protocol</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IKE Shared Secret Using AAA Server</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IM Blocking Support in IOS Firewall for ICQ & Windows Messenger</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IOS Certificate Server (CS) Split Database</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IOS-FW - H323 v3/v4 Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IOS-FW - Support for Skinny Local Traffic & CME</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP DSCP marking for Frame-Relay PVC</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Enhanced IGRP Route Authentication</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Event Dampening</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Local Pools Holdback Timer</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Multicast Load Splitting - Equal Cost Multipath (ECMP) using S, G and Next-hop</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Multicast Load Splitting across Equal-Cost Paths</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Multicast Multilayer Switching (MMLS)</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Named Access Control List</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Precedence Accounting</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Precedence for GRE Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Routing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP SLAs RTP Based VoIP Operation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Summary Address for RIPv2</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP Traffic Export (RITE)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP over CLNS tunnel</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP over IPv6 Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP to ATM CoS, per-VC WFQ and CBWFQ</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IP-to-ATM CoS</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPHC Profiles</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPS - Increase Session Setup Rate</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPS 5.x Signature Format Support and Usability Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPS Support for Microsoft Engines</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSEC Preferred Peer</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec Anti-Replay Window: Expanding and Disabling</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec Dead Peer Detection (DPD) Periodic Message Option</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec MIB Support for Cisco IPSec VPN Management</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec Network Security</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec Through Network Address Translation Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec Triple DES Encryption (3DES)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec VPN Accounting</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec VPN High Availability Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec VTI - Virtual Tunnel Interface</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec and Quality of Service</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPSec v6 Phase 2 Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX Access Control List Violation Logging</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX Access List Plain English Filters</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX Control Protocol</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX Encapsulation for 802.10 VLAN</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX Named Access Lists</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX Routing over ISL Virtual LANs</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPX SAP-after-RIP</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPXWAN 2.0</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPsec NAT Transparency</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPsec Usability Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 (Internet Protocol Version 6)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 - CNS Agents</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 - Config Logger</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 - HTTP(S)</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 - TCL</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 ACL Extensions for Mobile IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: AAA Support for Cisco VSA IPv6 Attributes</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: AAA Support for RFC 3162 IPv6 RADIUS Attributes</td>
+			<td></td>
+			<td>IP,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: DHCPv6 Prefix Delegation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: DHCPv6 Prefix Delegation via AAA</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: DHCPv6 Relay Agent</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: PPPoA</td>
+			<td></td>
+			<td>IP,Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: PPPoE</td>
+			<td></td>
+			<td>IP,Subscriber Edge</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: Prefix Pools</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: RBE</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Access Services: Stateless DHCPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 BSR - Configure RP mapping</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 BSR Bi-Dir support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 BSR Scoped Zone support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Bidirectional PIM</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Data Link: VLANs using Cisco Inter-Switch Link (ISL)</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Data Link: VLANs using IEEE 802.1Q Encapsulation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Default Router Preference</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 IOS Firewall</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 IOS Firewall FTP Application Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 MIBs</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 MTU Path Discovery</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Address Family Support for Multiprotocol BGP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Bootstrap Router (BSR)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Explicit Tracking of Receivers</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: MLD Access Group</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Multicast Listener Discovery (MLD) Protocol, Versions 1 and 2</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: PIM Accept Register</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: PIM Embedded RP Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: PIM Source-Specific Multicast (PIM-SSM)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: PIM Sparse Mode (PIM-SM)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: RPF Flooding of Bootstrap Router (BSR) Packets</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Routable Address Hello Option</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Scope Boundaries</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Multicast: Static Multicast Routing (mroute) for IPv6</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Neighbor Discovery</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Policy-Based Routing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: (Quality of Service)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: MQC Packet Classification</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: MQC Packet Marking/Remarking</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: MQC Traffic Policing</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: MQC Traffic Shaping</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: MQC Weighted Random Early Detection (WRED)-Based Drop</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 QoS: Queueing</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing - EIGRP Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: IS-IS Multitopology Support for IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: IS-IS Support for IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: Multiprotocol BGP Extensions for IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: Multiprotocol BGP Link-local Address Peering</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: OSPF for IPv6 (OSPFv3)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: OSPF for IPv6 (OSPFv3) Authentication Support with IPsec</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: RIP for IPv6 (RIPng)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: Route Redistribution</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Routing: Static Routing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Security: IPv6 IPSec to Authenticate OSPFv3</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Security: Secure Shell SSH support over IPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Services: AAAA DNS Lookups over an IPv4 Transport</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Services: Cisco Discovery Protocol (CDP) - IPv6 Address Family Support for Neighbor Information</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Services: DNS Lookups over an IPv6 Transport</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Services: Extended Access Control Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Services: Generic Prefix</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Services: Standard Access Control Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Source Specific Multicast (SSM) Mapping</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Stateless Auto-configuration</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Static Cache Entry for Neighbor Discovery</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Switching: CEF/dCEF Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Switching: CEFv6 Switched Automatic IPv4-compatible Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Switching: CEFv6 Switched Configured IPv6 over IPv4 Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Switching: CEFv6 Switched ISATAP Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Tunneling: Automatic 6to4 Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Tunneling: Automatic IPv4-compatible Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Tunneling: IPv6 over IPv4 GRE Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Tunneling: ISATAP Tunnel Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 Tunneling: Manually Configured IPv6 over IPv4 Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 VPN over MPLS (6VPE)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6 over DMVPN</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6: Anycast Address</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6: ICMPv6</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6: ICMPv6 Redirect</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6: Multicast Address Group Range Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IPv6: Neighbor Discovery Duplicate Address Detection</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IRR Triggers for GKTMP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS - MPLS LDP Autoconfiguration</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS - MPLS LDP Synchronization</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Caching of Redistributed Routes</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS HMAC-MD5 Authentication</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Incremental Shortest Path First (i-SPF) Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Limit on Number of Redistributed Routes</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS MIB</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Mechanism to Exclude Connected IP Prefix from LSP Advertisements</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Multiarea Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Support for IP Route Tags</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Support for Priority-Driven IP Prefix RIB Installation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>IS-IS Support for an IS-IS Instance per VRF for IP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISDN</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISDN Cause Code Override</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISDN Network Side for ETSI Net5 PRI</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISDN SETUP: HASH character within Called party info element</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISDN-NFAS with D Channel Backup</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISIS</td>
+			<td></td>
+			<td>IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISL VLAN</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ISO CLNS</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Identify Alternate Endpoint Call Attempts in RADIUS Call Accounting Records</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Ignore revocation check and expired certs based on CERT ACL</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Image Verification</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Import of RSA keypair in PEM format</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>In-Service Updates to Gatekeeper Zone Prefix Configuration</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Inactive Call Detection</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Inspection of Router-Generated Traffic</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Integrated ISIS Global Default Metric</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Integrated ISIS Point to Point Adjacency over Broadcast Media</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Integrated ISIS Protocol Shutdown Support Maintaining Configuration Parameters</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Integrated routing and bridging (IRB)</td>
+			<td></td>
+			<td>Layer-Three Switching and Forwarding</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Inter-Domain Gatekeeper Security Enhancement</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Inter-Domain Gateway Security Enhancement</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Interactive Voice Response (IVR) Version 2.0</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Interface Alias Long Name Support</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Interface Index Display</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Interface Index Persistence</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Interface Range Specification</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Internal Cause Code Consistency between SIP and H.323</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Interworking Signaling Enhancements for H.323 and SIP VoIP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Intrusion Prevention System</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Intrusion Prevention System (IPS) Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Invalid Special Parameter Index (SPI) Recovery</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Inverse Multiplexing over ATM (IMA)</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Kerberos V Client Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Key Management Interface (KMI)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Key Rollover for Certificate Renewal</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP - IPSEC Support for NAT and PAT Windows Clients</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP - Large Scale Dial-Out per user attibute via AAA</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Calling Station ID Suppression</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Congestion Avoidance</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Dial-Out</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Dial-Out Load Balancing & Redundancy</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Extended Failover</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Forwarding of PPPoE tag information</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Layer 2 Tunneling Protocol</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Redirect</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Security</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Tunnel Connection Speed Labeling</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TP Tunnel Preservation of IP TOS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2TPv3 - Layer-2 Tunneling Protocol Version 3</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2VPN Interworking - Ethernet to VLAN Interworking</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS),WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>L2VPN Pseudowire Redundancy</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS),WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>LSDO: L2TP Large-Scale Dial-Out</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Large Scale Dialout (LSDO)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Lawful Intercept (LI)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Layer 2 Forwarding-Fast Switching</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Layer 2 Local Switching - Same-Port Switching for Ethernet VLAN</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Layer 2 Local Switching - Same-Port Switching for Frame Relay</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Layer 2 Local Switching: Ethernet to VLAN</td>
+			<td></td>
+			<td>LAN Switching,WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Link Fragmentation and Interleaving (LFI) for Frame Relay and ATM Virtual Circuits</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Loadsharing IP packets over more than six parallel paths</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Local Area Transport (LAT)</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Local Proxy ARP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Location Confirmation (LCF) Enhancements for Alternate Endpoints</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Lock and Key</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Logging to Local Nonvolatile Storage (ATA Disk)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Login Password Retry Lockout</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Low Latency Queueing (LLQ)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Low Latency Queueing (LLQ) for Frame Relay</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Low Latency Queueing (LLQ) with Priority Percentage Support</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Low Latency Queuing (LLQ) for IPSEC Encryption Engines</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MD5 File Validation</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MFIB : Display Enhancements</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MGCP - Media Gateway Control Protocol</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MGCP 1.0 Including NCS 1.0 and TGCP 1.0 Profiles</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MGCP Call Centric Debug</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MGCP Endpoint Range Support</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MGCP Fax Rate Control</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MGCP Line Control Signaling Package</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MLPPP - Multilink PPP</td>
+			<td></td>
+			<td>Point-to-Point Protocol (PPP)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MLPPP Minimum Links Mandatory</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS (Multiprotocol Label Switching)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS - Multilink PPP support</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Class of Service (CoS) Enhancements</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS CoS Multi-VC Mode</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Diff-Serv-Aware Traffic Engineering (DS-TE)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS EM - LSP Ping/Trace for LDP & RSVP IPv4 FECs</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS EM - MPLS Multipath (ECMP) LSP Tree Trace</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS EM - MPLS TE MIB Trap Notifications</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - Autoconfiguration</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - Inbound Label Binding Filtering</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - Label Distribution Protocol (LDP)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - Lossless MD5 Session Authentication</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - MD5 Global Configuration</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - MIB Notifications</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - Session Protection</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP - VRF Aware Static Labels</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS LDP Autoconfig TE Tunnels (ISIS only)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS OAM VCCV support</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS TE - Fast Reroute over ATM</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS TE - Fast Tunnel Interface Down Detection</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS TE - Node Protection Desired Bit</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traceroute</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - AutoTunnel Primary and Backup</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Automatic bandwidth adjustment for TE tunnels</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Class-based Tunnel Selection</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Configurable Path Calculation Metric for Tunnels</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Fast Reroute (FRR) Link and Node Protection</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Interarea Tunnels</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - LSP Attributes</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Path Protection</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - RSVP Graceful Restart</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - RSVP Hello State Timer</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE) - Scalability Enhancements</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering (TE):  Verbatim Path Support</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering - AutoTunnel Mesh Groups</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering - Policy Routing onto MPLS TE Tunnels</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering Forwarding Adjacency</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering--Inter-AS TE</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS Traffic Engineering: Shared Risk Link Groups (SRLG)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN - Loadbalancing support for Inter-AS and CSC VPNs</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN - MIB Notifications</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN - Multi-Path support for Inter-AS VPNs</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN - Route Target Rewrite</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN - Show Running VRF</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN - VRF CLI for IPv4 & IPv6 VPNs</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN Half Duplex VRF (HDVRF)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN VRF Selection using PBR (Policy Based Routing)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS VPN support for EIGRP between Provider Edge (PE) and Customer Edge (CE)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MPLS-Aware NetFlow</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MQC Policy Map Support on Configured VC Range ATM</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MS Callback</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MS-CHAP Version 1</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MS-CHAP Version 2</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MSDP MD5 password authentication</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MSDP compliance with IETF RFC 3618</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MTree crypto data structure optimizations</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>MVPN Scalability Improvements</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Malicious Caller Identification (MCID) Invocation Support for Enterprise Networks</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Management Plane Protection</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Manual certificate enrollment (TFTP and cut-and-paste)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Measurement-Based Call Admission Control for SIP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Memory Leak Detector</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Memory Traceback Recording</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Message Banners for AAA Authentication</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Microsoft Point-to-Point Compression (MPPC)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Challenge/Response Extestions</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Dynamic DNS and Multiple DHCP Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Dynamic Security Association and Key Distribution</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Fastswitching Support on FA</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Foreign Agent "Local Routing" of mobile</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - GRE encapsulation for Cisco Mobile Networks</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Generic NAI Support and Home Address Allocation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - HA Accounting</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - HA Policy Routing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - HA Redundancy for Dynamic Mobile Networks</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - HMAC-MD5 support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - IPSec for HA-FA Tunnel</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile IPv6 HA phase 2</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile IPv6 Home Agent</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks Asymmetric Link and Dynamic Network</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks Dynamic Collocated Care-of-Address</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks Priority HA Assignment</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks Static Collocated Care of Address</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks Tunnel Templates for Multicast</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Networks v6 - Basic NEMO</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Mobile Router Multi-Path Support</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - NAT Detect</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Policy and Application based routing for MR Multi-path</td>
+			<td></td>
+			<td>Wireless / Mobility</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Private Addressing Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Proxy Mobile IP and Proxy CHAP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Single IDB Tunnel Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Support NAI Based MNs that are serviced by many HAs</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP - Support for FA Reverse Tunnelling</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Mobile IP Support for RFC 3519 NAT</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Modem Chat Script and System Script Support in LSDO</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Modem Relay Support on VoIP Platforms</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Modular QoS CLI (MQC)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Modular QoS CLI (MQC) - Based Frame Relay Traffic Shaping</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Modular QoS CLI (MQC) Three-Level Hierarchical Policer</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Modular QoS CLI (MQC) Unconditional Packet Discard</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Monitoring Control Characters on Async Lines</td>
+			<td></td>
+			<td>Additional & Legacy Protocols</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multi-Chassis Hunting for Voice over Frame Relay</td>
+			<td></td>
+			<td>Gateway Protocols,Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multi-VRF Selection Using Policy Based Routing (PBR)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multi-VRF Support (VRF lite)</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast Address Group Range Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast BGP (MBGP)</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast Fast Switching Performance Improvement</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast NAT</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast Routing Monitor (MRM)</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast Source Discovery Protocol (MSDP)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast Subsecond Convergence</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast User Authentication & Profile support</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast VPN Extranet Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast VPN Extranet VRF Select</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast VPN Inter-AS Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast VPN MIB</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multicast-VPN: Multicast Support for MPLS VPN</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multichassis MultiLink PPP (MMP)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multiclass Multilink PPP</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multihop VPDN</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multilink Frame Relay (FRF.16.1) - Variable Bandwidth Class</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multimedia Conference Manager with Voice Gateway image with RSVP to ATM SVC</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multiple RSA Keypair Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Multiprotocol BGP (MP-BGP) Support for CLNS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAC - Agentless Host Support</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAC - Network Admission Control</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT -  Default Inside Server Enhancement</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT -  Protocol Translation (NAT-PT)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT -  Stateful Fail-over of Network Address Translation (SNAT) Phase 1</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Ability to use Routes Maps with Static Translations</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Enhanced H.225/H.245 Forwarding Engine</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Network Address Translation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Optimized SIP Media Path with SDP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Optimized SIP Media Path without SDP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Performance & Scalability enhancement - Timer Wheel</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Performance Enhancement - CEF Switching Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Rate Limiting NAT Translation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Scalability for Stateful NAT</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Stateful Fail-Over - Asymmetric Outside-to-Inside Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Stateful Fail-over for Embedded Addressing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Static IP Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Static Mapping Support with HSRP for High-Availability</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Support for H.323 Fragmented Control Messages</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Support for H.323v3 and v4 in v2 Compatibility mode</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Support for NetMeeting Directory (Internet Locator Service - ILS)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Support for SIP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Support of H.323v2 Call Signaling (FastConnect)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Support of H.323v2 RAS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - Translation of external IP Addresses only</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT - VRF Aware NAT</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT as SIP-Session Border Controller Hosted NAT Traversal</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT as SIP-Session Border Controller Media Flow</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT as SIP-Session Border Controller Support for Address-Only Fields</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT-PT: Support for DNS ALG</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT-PT: Support for FTP ALG</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT-PT: Support for Fragmentation</td>
+			<td></td>
+			<td>IP,IP Version 6 (IPv6)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT-PT: Support for Overload (PAT)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NAT-Support of IP Phone to Cisco Call Manager</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR - Citrix ICA Published Applications</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR - Multiple Matches Per Port</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR - Network-based Application Recognition</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR Extended Inspection for HTTP Traffic</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR PDLM Versioning</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR Real-time Transport Protocol Payload Classification</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR User-Defined Custom Application Classification</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR- BitTorrent PDLM</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NBAR-NAT Integration & RTSP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NETCONF over SSHv2</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NSF Awareness (Nonstop Forwarding Awareness)</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NSF Awareness - BGP</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NSF Awareness - EIGRP</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NSF Awareness - IS-IS</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NSF Awareness - OSPF</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NSF Awareness - OSPF (RFC 3623 OSPF Graceful Restart Helper Mode)</td>
+			<td></td>
+			<td>Availability</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Named Method Lists for AAA Authorization and Accounting</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>National ISDN Switch Types for BRI and PRI Interfaces</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Native Client Interface Architecture (NCIA) Server</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Native Service Point over DLSW+</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow Aggregation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow Dynamic Top Talkers CLI</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow Layer 2 and Security Monitoring Exports</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow Reliable Export (SCTP)</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow ToS-Based Router Aggregation</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow Top Talker CLI</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>NetFlow v9 Export Format</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Netflow Egress Accounting</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Netflow MIB and Top Talkers</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Netflow Multiple Export Destinations</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Network Time Protocol (NTP)</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Next Hop Resolution Protocol (NHRP)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Next Hop Resolution Protocol (NHRP) - CEF rewrite for DMVPN Phase 3 Networks</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>No Service Password-Recovery</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Nonblocking Gatekeeper AAA Interface</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Novell IPX</td>
+			<td></td>
+			<td>Additional & Legacy Protocols,Additional Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OCSP (Online Certificate Status Protocol)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OCSP - Server Certification from Alternate Hierarchy</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OER - API</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OER - Application Aware Routing with Static Application Mapping</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OER - Inbound Optimization thru BGP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OER - Voice Traffic Optimization</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OER Support for Cost-Based Optimization and Traceroute Reporting</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OER Support for Policy-Rules Configuration and Port-Based Prefix Learning</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF ABR type 3 LSA Filtering</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Area Transit Capability</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Enhanced Traffic Statistics for OSPFv2 and OSPFv3</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Flooding Reduction</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Forwarding Address Suppression in Translated Type-5 LSAs</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Graceful Shutdown</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Inbound Filtering using Route Maps with a Distribute List</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Incremental Shortest Path First (i-SPF) Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Limit on Number of Redistributed Routes</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Link State Database Overload Protection</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Link-local Signaling (LLS) Per Interface Basis</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF MIB Support of RFC 1850 and Latest Extensions</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Mechanism to  Exclude Connected IP Prefixes from LSA Advertisements</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Not-So-Stubby Areas (NSSA)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF On Demand Circuit (RFC 1793)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Packet Pacing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Sham-Link Support for MPLS VPN</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Shortest Paths First Throttling</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Stub Router Advertisement</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Support for Fast Hellos</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Support for Link State Advertisement (LSA) Throttling</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Support for Multi-VRF on CE Routers</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Support for Unlimited Software VRFs per Provider Edge (PE) Router</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF TTL Security Check</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPF Update Packet-Pacing Configurable Timers</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPFv3 Fast Convergence - LSA and SPF throttling</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPFv3 Graceful Restart</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>OSPFv3 dynamic interface cost support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Offload Server Accounting Enhancement</td>
+			<td></td>
+			<td>Subscriber Edge</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>On Demand Routing (ODR)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Optimized Edge Routing (OER)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Optimized PPP Negotiation</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Option to Disable Hardware Crypto Engine Failover to Software Crypto Engine</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Option to disable volume-based IPsec lifetime rekey</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Optional OCSP Nonce</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Overlap Signaling Processing on H.323 Terminating Gateways</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PAD Subaddress Formatting Option</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PAD Subaddressing</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PBR Support for Multiple Tracking Options</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PGM Host</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PIM Dense Mode State Refresh</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PIM MIB Extension for IP Multicast</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PIM Multicast Scalability</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PIM Triggered Joins</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PIM Version 1</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PIM Version 2</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PKI - CLI to Control Certificate Revocation List (CRL) Cache</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PKI AAA Authorization Using the Entire Subject Name</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PKI Integration with AAA Server</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP CLI enhancement for L2CP phase III</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP MLP MRRU negotiation configuration</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP Over Fast Ethernet 802.1Q</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP over ATM</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP over ATM (IETF-Compliant)</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP over ATM SVCs</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP over Frame Relay</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPP-Max-Payload and IWF PPPoE Tag Support</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoA/PPPoE autosense for ATM PVCs</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE - Session Limiting on Inner QinQ VLAN</td>
+			<td></td>
+			<td>LAN Switching,WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Circuit-ID Tag Processing</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Client</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Connection Throttling</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Radius Port Identification</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Relay</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Server Restructuring and PPPoE Profiles</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Service Selection</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Session Limit per NAS port</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Session Recovery After Reload</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE Session limit</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE on Ethernet</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE over Gigabit Ethernet interface</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoE over VLANs Scaling and PPPoE over VLANs forwarding over PVC</td>
+			<td></td>
+			<td>Long Reach Ethernet (LRE) and Digital Subscriber Line (xDSL)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPPoEoA over ATM AAL5Mux</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PPTP with MPPE</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Packet Classification Based on Layer3 Packet-Length</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Packet Classification using Frame-Relay DLCI Number</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Parse Bookmarks</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Parser Cache</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Password Authentication Protocol (PAP)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Peer Pool Backup Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Per Tunnel QoS</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Per VRF AAA</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Per-User Configuration</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Per-User QoS via AAA Policy Name</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Per-VRF Assignment of BGP Router-ID</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Percentage-Based Policing and Shaping</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Performance Enhancements for IOS ACL</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Performance Routing (PfR) - Link Groups</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Performance Routing (PfR) with NBAR/CCE Application Recognition</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Performance Routing (PfR)- Application Interface</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Periodic MIB Data Collection and Transfer Mechanism</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Persistent Self-Signed Certificates</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PfR - Protocol Independent Route Optimization (PIRO)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>PfR EIGRP mGRE DMVPN Hub-and-Spoke support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Policer Enhancement - Multiple Actions</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Policy Based Routing: Recursive Next Hop</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Policy-Based Routing (PBR)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Port to Application Mapping (PAM)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Pragmatic General Multicast (PGM)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Pre-fragmentation For Ipsec VPNs</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Priority Queueing (PQ)</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Privilege Command Enhancement</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Protected Private Key Storage</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Protocol Translation (PT)</td>
+			<td></td>
+			<td>Additional & Legacy Protocols</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QOS: DirectConnect PDLM</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QSIG Protocol Support</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS - Hierarchical Queueing Framework (HQF)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS Bandwidth Estimation</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS Device Manager (QDM)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS Packet Marking</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS Policy Propagation via Border Gateway Protocol (QPPB)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS Priority Percentage CLI Support</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS for Virtual Private Networks</td>
+			<td></td>
+			<td>Multiprotocol Label Switching (MPLS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS: Classification, Policing, and Marking on LAC</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>QoS: Skype classification</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Qualified Logical Link Control (QLLC)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Query Mode Definition Per Trustpoint</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Query Multiple Servers during Certificate Revocation Check</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Attribute 44 (Accounting Session ID) in Access Requests</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Attribute 52 and 53 Gigaword Support</td>
+			<td></td>
+			<td>Security and VPN,Subscriber Edge</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Attribute 77 for DSL</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Attribute 82: Tunnel Assignment Id</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Attribute Value Screening</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Centralized Filter Management</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS EAP Support</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Logical Line ID</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS NAS-IP-Address Configurability</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Route Download</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Server Reorder on Fail</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS Tunnel Preference for Load Balancing and Fail-over</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS attribute 5 (NAS-Port) format specified on a per-server group level</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RADIUS for Multiple User Datagram Protocol Ports</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RBSCP (Rate Based Satellite Control Protocol)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RFC 2576: SNMP v1/ v2c pdu conversions for proxy forwarder</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RFC-2867 Tunnel Accounting</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RGMP - Router-Port Group Management Protocol</td>
+			<td></td>
+			<td>IP,IP Multicast</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RIF Passthru in DLSw+</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RIP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RIPv2: RFC 1724 MIB Extension</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RMON events and alarms</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RRI Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP - Resource Reservation Protocol</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Agent</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Fast Local Repair (RSVP FLR)</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Interface-based Receiver Proxy</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Local Policy Support</td>
+			<td></td>
+			<td>IP Routed Protocols,Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Message Authentication</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Refresh Reduction and Reliable Messaging</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Scalability Enhancements</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Support for Frame Relay</td>
+			<td></td>
+			<td>IP Routed Protocols,Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP Support for RTP Header Compression</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP support for LLQ</td>
+			<td></td>
+			<td>IP Routed Protocols,Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RSVP-VRF Lite Admission Control</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RTP Header Compression</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>RTP Header Compression over Satellite Links</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Random Early Detection (RED)</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Rate Queues for SVCs per sub-interface</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Re-Enroll Using Existing Certificate</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Real-time Call Type Reporting through Gatekeeper Transaction Message Protocol (GKTMP)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Real-time Resolution for IPsec Tunnel Peer</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Redial Enhancements</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Reliable Delivery and Filtering for Syslog</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Reliable Static Routing Back-up using Object Tracking</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Remote Source-Route Bridging (RSRB)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Reverse Route Injection (RRI)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Reverse SSH Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Role-Based Access Control CLI commands (RBAC)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Rotating Through Dial Strings</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Routed Bridge Encapsulation with ATM Virtual Circuit Bundles</td>
+			<td></td>
+			<td>Asynchronous Transfer Mode (ATM)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SCTP Show/Clear CLI Enhancements</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SDLC SNRM Timer and Window Size Enhancements</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SDLC-to-LAN conversion (SDLLC)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SDP (Secure Device Provisioning) Start Page</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SEAL Encryption</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Accept-Language Header Support</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Call Transfer Enhancements Using Refer Method</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Call Transfer Using Refer Method</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Carrier Identification Code</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Configurable Hostname in Locally Generated SIP Headers</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Configurable PSTN Cause Code Mapping</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Core SIP Technology Enhancements</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - DNS SRV RFC2782 Compliance</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Debug Output Filtering Support</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Enhanced 180 Provisional Response Handling</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Enhanced Billing Support for Gateways</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Extensions for Caller Identity and Privacy</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Gateway HTTP Authentication Digest</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Gateway Support Enhancements for Bind Command</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Gateway Support for the Bind Command</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Gateway Support of RSVP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Gateway Support of TEL URL</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Hold Timer Support</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - INFO Method for DTMF Tone Generation</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - INVITE Request with Malformed Via Header</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - ISDN Suspend/Resume Support</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Intra-gateway Hairpinning</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Multiple 18x Responses</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Portable Stack support for Outbound Refer</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - RFC3261 Enhancements</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Redirect Processing Enhancement</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP Extended Feature Functionality for Session Border Controller (SBC)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP GW Session Timer Support</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP GW Support for Busy Out</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP GW support for SDP Session Info and Permit Hostname CLI</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP GW support of TLS</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP Support for Asymmetric SDP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP Support for PAI</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - SIP Support for SRTP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Session Initiation Protocol for VoIP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Session Timer Support</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Stack Support of TLS</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Support for Media Forking</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - T.38 Fax Relay</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP - Transfer Using the Refer Method and Call Forwarding</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP and H.323 Fax Enhancements</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP to SIP Supplementary Services for Session Border Controller (SBC)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP: SIP Portable Stack Support for Outbound Register</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP: SIP Support of Resource Priority Header and Reason Header</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP:Cli for passing Calling Name when Privacy Exists</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIP:SIP Support for Options</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SIPv-vGateway Reason Header & Buffered Calling Name Completion</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB (Server Load Balancing)</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Alternate IP Addresses</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Automatic Server Failure Detection</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Automatic Unfail</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Bind ID Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Client-Assigned Load Balancing</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Delayed Removal of TCP Connection Context</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Dynamic Feedback Protocol (DFP)</td>
+			<td></td>
+			<td>Content Networking,Load Balancing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Maximum Connections</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Port-Bound Servers</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Server NAT</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Slow Start</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Stateless Backup</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Sticky Connections</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: SynGuard</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: TCP Session Reassignment</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Weighted Least Connections</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SLB: Weighted Round Robin</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP (Simple Network Management Protocol)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Inform Request</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Manager</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Support for IOS vLAN Subinterfaces</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Support for Named Access Lists</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Support for vLAN (ISL, DOT1Q) Subinterfaces</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Support over VPN</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP Support over VPNs - Context Based Access Control</td>
+			<td></td>
+			<td>IP,Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMP over IPv6</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMPv2C</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMPv3 (SNMP Version 3)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SNMPv3 - 3DES and AES Encryption Support</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRB - Source Route Bridging Enhancements</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRB - Source-Route bridging</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRB over Frame Relay</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRST: Survivable Remote Site Telephony Version 1.0</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRST: Survivable Remote Site Telephony Version 2.0</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRST: Survivable Remote Site Telephony Version 2.02</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SRST: Survivable Remote Site Telephony Version 2.1</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSHv2 Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSHv2 Enhancements for RSA Keys</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSL VPN - WebVPN Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN - Access Control Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN - AnyConnect Client Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN - Application ACL support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN - Back End HTTP Proxy</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN - Full-Tunnel CEF Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN - URL Rewrite Splitter</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN Debug Infrastructure</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN Front-Door VRF Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN GUI Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN Netegrity Single Sign-on (SSO) Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN Port-Forward Enhancements</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN URL obfuscation</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>SSLVPN User-Level Bookmarking</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>STUN (Serial Tunnel)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Copy (SCP)</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Device Provisioning (SDP) Connect Template</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Neighbor Discovery (SEND) for Cisco IOS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Shell SSH Terminal-line access</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Shell SSH Version 1 Integrated Client</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Shell SSH Version 1 Server Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Shell SSH Version 2 Client Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Secure Shell SSH Version 2 Server Support</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Selective Packet Discard (SPD)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Selective Virtual-Access Interface Creation</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Sequential LRQ Enhancement</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Service Advertisement Framework (SAF)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Session Limit Per VRF</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Shell-Based Authentication of VPDN Users</td>
+			<td></td>
+			<td>Dial and Access,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Show Command Redirect</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Show and Clear commands for IOS Sockets</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Signed TCL Scripts</td>
+			<td></td>
+			<td>OS Infrastructure,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Silent Operation Mode</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Single Rate 3-Color Marker for Traffic Policing</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Snapshot routing</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Source Interface Selection for Outgoing Traffic with Certificate Authority (CA)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Source Specific Multicast (SSM) - IGMPv3,IGMP v3lite, and URD</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Source Specific Multicast (SSM) Mapping</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Source Specific Multicast (SSM)-deleted</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Spanning Tree Protocol (STP)</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Spanning Tree Protocol (STP) Extension</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Stack Group Bidding Protocol (SGBP)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Standard IP Access List Logging</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Stateful Failover for IPSec</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Subnetwork Bandwidth Manager (SBM)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Subordinate/RA Mode IOS Certificate Server (CS) Rollover</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Subscriber Service Switch</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Suppress BGP Advertisement for Inactive Routes</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Supressing EXEC accounting record</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Switched Multimegabit Data Service (SMDS)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Synchronous Data Link Control (SDLC)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Syslog over IPV6</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>System Accounting Record Generation for Server Addition/Deletion made VRF Aware</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>T.37 Store and Forward Fax</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>T.38 Fax Relay for VoIP H.323</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TACACS+</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TACACS+ Per VRF</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCL IVR 2.0 Call Initiation and Callback</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCL IVR Disconnect Cause-Code Manipulation</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCP - Explicit Congestion Notification</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCP - TCP Congestion Avoidance</td>
+			<td></td>
+			<td>IP,IP Routed Protocols</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCP Intercept</td>
+			<td></td>
+			<td>IP,IP Routed Protocols</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCP MSS Adjust</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCP Show Extension</td>
+			<td></td>
+			<td>Additional & Legacy Protocols</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TCP Window Scaling</td>
+			<td></td>
+			<td>IP,IP Routed Protocols</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TN3270</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TN3270 LU Nailing</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TN3270 Server</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TN3270 Server (CIP only)</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>TN3270 Server Connectivity Enhancements</td>
+			<td></td>
+			<td>IBM Technologies</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tacacs SENDAUTH function</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tacacs Single Connection</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tag and Template</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Threat Information Distribution Protocol (TIDP)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Throttling of AAA (RADIUS) Records.</td>
+			<td></td>
+			<td>Authentication Protocols,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Time-Based Access Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Time-Based Access Lists Using Time Ranges(ACL)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Timer and Retry Enhancements for L2TP and L2F</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Transparent Bridging</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Transparent CCS and Frame Forwarding Enhancements</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Transparent Common Channel Signaling (T-CCS)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Triggered RIP</td>
+			<td></td>
+			<td>IP,IP Routing</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Trusted Root Certification Authority</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Trustpoint CLI</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tunnel Authentication via Radius on LNS</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tunnel Endpoint Discovery</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tunnel Route Selection</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tunnel Type of Service (TOS)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Tunneling of Asynchronous Security Protocols</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Turbo Access Control Lists</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Turbo Flooding of UDP Datagrams</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Turbo-Classification for QoS</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Two-Rate Policer</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>UDI - Unique Device Identifier</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>UDP forwarding support of IP Redundancy Virtual Router Group (VRG)</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Unchannelized support for PA-MC-2T3+ port adapter</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Uni-Directional Link Routing (UDLR)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Unicast Reverse Path Forwarding (uRPF)</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>User Maximum Links</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>V.120 Support</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VLAN Range</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VLAN id rewrite</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VLANs over IP Unnumbered Sub-Interfaces</td>
+			<td></td>
+			<td>LAN Switching</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VPDN Default Group Template</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VPDN Group Session Limiting</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VPDN Multihop by DNIS</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VPN Acceleration Module 2 Plus (SA-VAM2+)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VPN Routing Forwarding (VRF) Framed Route (Pool) Assignment via PPP</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VPN Tunnel Management</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRF Aware Cisco IOS Firewall</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRF Aware System Message Logging (Syslog)</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRF aware H.323 and SIP</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRF aware IOS IPS</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRF aware IPsec</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRF-Aware VPDN Tunnels</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VRRP MD5 Authentication</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Fragmentation Reassembly</td>
+			<td></td>
+			<td>IP,Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Interface Template Service</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Private Dial-up Network (VPDN)</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Profile CEF Switched</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Profiles</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Router Redundancy Protocol (VRRP)</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Virtual Templates for Protocol Translation</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VoIP Alternate Path Fallback SNMP Trap</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VoIP Gatekeeper Trunk and Carrier Based Routing Enhancements</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VoIP Internal Error Codes</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VoIP Outgoing Trunk Group Identification and Carrier ID for Gatekeepers</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>VoIP Outgoing Trunk Group Identification and Carrier ID for Gateways</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Voice Call Tuning</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Voice DSP Control Message Logger</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Voice Over IP (VoIP)</td>
+			<td></td>
+			<td>Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Voice over ATM with AAL2 Trunking</td>
+			<td></td>
+			<td>Gateway Protocols,Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Voice over Frame Relay (FRF.11)</td>
+			<td></td>
+			<td>Gateway Protocols,Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Voice over Frame Relay Configuration Updates</td>
+			<td></td>
+			<td>Gateway Protocols,Voice</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WCCP Layer 2 Redirection / Forwarding</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WCCP Mask Assignment</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WCCP Redirection on Inbound Interfaces</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WCCP Version 1</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WCCP Version 2</td>
+			<td></td>
+			<td>Content Networking</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WCCP: VRF Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WRED Enhancement - Explicit Congestion Notification (ECN)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Warm Reload</td>
+			<td></td>
+			<td>OS Infrastructure</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Web Services Management Agent (WSMA)</td>
+			<td></td>
+			<td>Network Management</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WebVPN</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WebVPN Auto Applet Download</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WebVPN Hardware Acceleration Infrastructure</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WebVPN NTLM Authentication</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>WebVPN RADIUS Accounting</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Weighted Fair Queueing (WFQ)</td>
+			<td></td>
+			<td>Quality of Service (QoS)</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Weighted RED (WRED)</td>
+			<td></td>
+			<td></td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Wildcard Pre-Shared Key</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Annex G Session Status Change Reporting</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Call Confirm Packet Address Control</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Call Record</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Calling Address Insertion and Removal Based on Input Interface</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Closed User Group</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Data Display Trace</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Dual Serial Line Management</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Failover</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Load Balancing</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Over TCP Profiles</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Record Boundary Preservation for Data Communications Networks</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Remote Failure Detection</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Station Type For ISDN D-Channel Interface</td>
+			<td></td>
+			<td>Dial and Access</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Suppression of Security Signaling Facilities</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Switch Local Acknowledgement</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Switching between PVCs and SVCs</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 Terminal Line Security for PAD Connections</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 over Frame Relay (Annex G)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.25 over TCP (XOT)</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>X.28 Emulation</td>
+			<td></td>
+			<td>WAN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>ZBFW (Zone-Based Policy Firewall)</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>Zone Based Firewall (ZBFW) Usability and Manageability Features</td>
+			<td></td>
+			<td>Security and VPN</td>
+			<td></td>			
+		</tr>
+
+		<tr>
+			<td>x Digital Subscriber Line (xDSL) Bridge Support</td>
+			<td></td>
+			<td>IP</td>
+			<td></td>			
+		</tr>
+
+</table>
+<style id="antiClickjack">body{display:none !important;}</style>
+
+<script type="text/javascript">
+   if (self === top) {
+       var antiClickjack = document.getElementById("antiClickjack");
+       antiClickjack.parentNode.removeChild(antiClickjack);
+   } else {
+       top.location = self.location;
+   }
+</script>

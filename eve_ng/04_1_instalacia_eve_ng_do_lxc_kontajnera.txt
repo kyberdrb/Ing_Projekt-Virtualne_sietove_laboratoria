@@ -2,8 +2,8 @@ EVE-ng v EVE-ng
 
 EVE-ng LXC kontajner na EVE-ng fyzickom serveri
     - testovanie nasadenia EVE-ng ako LXC kontajner
-    - Motivacia: izolacia jednotlivych pouzivatelov
-    - EVE-ng kernel je vyzadovany, kvoli minimalizacii premennych
+    - Motivacia: izolacia jednotlivych pouzivatelov. škálovateľnosť
+    - EVE-ng kernel je vyzadovany, kvoli minimalizacii premennych a neštandardného správania
 
 apt-get update
 apt-get install aptitude
@@ -27,7 +27,8 @@ adduser andrej
 aptitude install ssh wget sudo debian-keyring debian-archive-keyring software-properties-common build-essential
 usermod -aG sudo andrej
 
-connect to container via ssh to user andrej. the sudo should work.
+Pripojíme sa do LXC kontajnera cez SSH ako štandardný používateľ. Príkaz "sudo" pre štandardného používateľa by mal fungovať bez dodatočnej konfigurácie.
+
 sudo aptitude update
 wget -O eveng.gpg.key http://www.eve-ng.net/repo/eczema@ecze.com.gpg.key
 sudo apt-key add eveng.gpg.key
@@ -117,6 +118,11 @@ sudo su -c "ip6tables-save > /etc/iptables/rules.v6"
 
 # Teraz sa iptables-persistent postara o obnovenie iptables pravidiel
 # v pripade restartu/vypnutia
+
+
+Myslel som si, že problémy teoreticky môžu vzniknúť vtedy, keď "iptables" má pre tabuľku FORWARD nastavenú predvolenú politiku DROP, pričom by mala byť nastavená na ACCEPT. Vtedy by si teoreticky zariadenia nedokázali preposielat správy cez rozhrania. Táto úvaha sa neskôr ukázala ako nepravdivá, keďže medzi zariadeniami existovala konektivita aj vtedy, keď bola predvolená politika pre FORWARD tabuľku nastavená na DROP. Konektivita bola overená nástrojom "ping".
+
+Možno problémy s konektivitou medzi zariadeniami v EVE-ng topológii boli spôsobené tým, že bola implementovaná podpora Docker kontajnerov na EVE-ng server podľa návodu "enable_docker_support_for_eve-ng-CIASTOCNY_USPECH.txt".
 
 
 
@@ -357,6 +363,8 @@ X.X.X.0   0.0.0.0         255.255.255.128 U     0      0        0 pnet0
 
 
 # Teraz by uz mala byt internetova konektivita dnu aj von pre LXC kontajner
+
+
 
 
 
