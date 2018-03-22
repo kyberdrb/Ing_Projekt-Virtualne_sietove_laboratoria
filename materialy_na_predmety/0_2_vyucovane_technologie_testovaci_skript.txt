@@ -142,7 +142,6 @@ int <nazov_prepinacieho_rozhrania>
 	switchport
 	switchport mode ?
 end
-
 ! STP
 ena
 conf t
@@ -208,7 +207,7 @@ int <nazov_prepinacieho_rozhrania>
 	channel-group 1 mode ?
 end
 !
-! HSRP IPv4 + IPv6 
+! HSRP IPv4
 ena
 conf t
 int vlan 10
