@@ -1,6 +1,10 @@
-1 Nahrávanie vlastných zmien na vlastný fork
+NAHRÁVANIE ZMIEN Z VLASTNÉHO FORK REPOZITÁRA DO UPSTREAM REPOZITÁRA
 
 -Github Desktop
+	-V prípade, že sme vykonali zmeny v našom fork repozitári, zmenené súbory sa zobrazia v ľavom stĺpci aplikácie pod záložkou "Changes".
+	-Vytvorenie commitu: Do textového poľa "Summary" zadáme správu pre commit, maximálne však 50 znakov - commit správy by mali byť stručné. Môžeme zadať aj aj ďalšie informácie o commite do poľa "Description". "Description" môže mať ľubovoľný počet znakov.
+
+-Github stránka
 	-treba najprv dane zmeny "Commit to master"
 	-dalej je potrebne zmeny v appke pushnut pomocou "Push origin" 
 	-v tomto momente su zmeny len u TEBA vo forknutom repozitare, treba ich dalej posunut do originalneho repa
@@ -8,7 +12,8 @@
 	-tymto som sharol svoje zmeny
 
 
-2 Sťahovanie zmien z "master" repozitára resp. iných fork repozitárov
+
+SŤAHOVANIE AKTUÁLNEHO STAVU UPSTREAM REPOZITÁRA NA FORK REPOZITÁR
 
 -Github Desktop
 	-klikneme na "Branch" -> "Merge into current branch..."
