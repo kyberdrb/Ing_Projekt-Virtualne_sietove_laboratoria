@@ -22,7 +22,7 @@ Diplomka
 ===============================================================================
 Ulohy: 
 
--pokracovat s Cisco IOL switchom
+-pokracovat s Cisco CSR-ng routrom
 
 -konzultovat s uramovou
   -co je komplexna konfiguracia prepinaca?
