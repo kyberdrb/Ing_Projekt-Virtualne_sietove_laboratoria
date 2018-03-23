@@ -73,11 +73,13 @@ ena
 conf t
 no spanning-tree portfast bpduguard
 no spanning-tree portfast bpduguard default
+end
 !
 ! PortFast
 ena
 conf t
 spanning-tree portfast
+spanning-tree portfast default
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
@@ -102,10 +104,10 @@ end
 ! IVL smerovanie - Router on a Stick
 ena
 conf t
-int <nazov_smerovacieho_rozhrania>
+int <nazov_prepinacieho_rozhrania>
 	no shut
 	no switchport
-	int <nazov_smerovacieho_rozhrania>.10
+	int <nazov_prepinacieho_rozhrania>.10
 		no shut
 		encapsulation dot1q 10
 end
@@ -158,6 +160,8 @@ ena
 conf t
 spanning-tree vlan 20
 end
+ena
+conf t
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
@@ -236,8 +240,10 @@ end
 ! HSRP IPv4
 ena
 conf t
+standby ?
 int vlan 10
 	standby 1 ip
+	standby ?
 end
 !
 ! HSRPv2 IPv4 + IPv6 
@@ -253,7 +259,7 @@ end
 ena
 conf t
 int vlan 20
-	no standby
+	no shutdown
 	vrrp 1 ip 30.30.30.30
 end
 !
@@ -645,12 +651,12 @@ l2 vfi VPLSSKUPINA ?
 end
 !
 ! BGP mVPN, Hub & Spoke VPN, Draft Rosen, 
-! BGP L3 VPN, (aj VPLS technológia uvedena vyssie)
+! BGP L3 VPN, (aj VPLS technologia uvedena vyssie)
 ! EVPN, Seamless MPLS, BGP mVPN NG
-! K vyssie uvedenym technológiam sa neda vytvorit kratky
+! K vyssie uvedenym technologiam sa neda vytvorit kratky
 ! konfiguracny priklad; treba pouzit Cisco Feature Navigator
 ! alebo ekvivalentny nastroj pre zariadenia inych vyrobcov,
-! popr. vyskusat vytvorit topológiu s danym typom zariadeni.
+! popr. vyskusat vytvorit topologiu s danym typom zariadeni.
 !
 ! EIGRP ITA je tiez podporovane, ak je podporovane zakladny
 ! EIGRP protokol
