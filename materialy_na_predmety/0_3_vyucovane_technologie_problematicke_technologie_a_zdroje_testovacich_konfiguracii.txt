@@ -52,6 +52,9 @@ Zdroje
   http://danielkleviansky.com/unsupported-iol-features/
   https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
 
+  Cisco CSR 1000v
+  https://www.cisco.com/c/en/us/support/routers/cloud-services-router-1000v-series/products-installation-and-configuration-guides-list.html
+
   https://learningnetwork.cisco.com/docs/DOC-30160#jive_content_id_Supported_Cisco_OS_Features_in_VIRL
   https://learningnetwork.cisco.com/docs/DOC-30469
   https://learningnetwork.cisco.com/docs/DOC-30404
@@ -80,7 +83,11 @@ Zdroje
   https://www.cisco.com/en/US/docs/routers/access/800/850/software/configuration/guide/pppoenat.html#wp1235168
   https://www.cisco.com/c/en/us/td/docs/wireless/asr_901/Configuration/Guide/b_asr901-scg/b_asr901-scg_chapter_011100.pdf
   https://www.cisco.com/en/US/docs/switches/lan/catalyst3850/software/release/3.2_0_se/multibook/configuration_guide/b_consolidated_config_guide_3850_chapter_0100111.html#ID1940
+
+  IGMP
   https://www.cisco.com/c/en/us/td/docs/ios/12_0s/feature/guide/12s_igmp.html#wp1024379
+  
+  IGMP Snooping
   https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus5000/sw/configuration/guide/cli/CLIConfigurationGuide/IGMPSnooping.html#22763
   
 	RSVP
@@ -93,6 +100,9 @@ Zdroje
 
 	FHRP
 	https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipapp_fhrp/configuration/xe-16/fhp-xe-16-book/fhp-hsrp-mgo.html#GUID-A9F11E0F-99E4-4E3C-9413-EBF85BA6FCC4
+
+  CEF (pre Cisco CSR)
+  https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipswitch_cef/configuration/xe-3s/isw-cef-xe-3s-book/isw-cef-basic-config.html#GUID-91F187CB-A81A-4DA0-ABE7-8C92FFE2C38C
 
   https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/4_1/nx-os/security/configuration/guide/sec_nx-os-cfg/sec_dhcpsnoop.html#wp1128072
   https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/4_1/nx-os/security/configuration/guide/sec_nx-os-cfg/sec_dhcpsnoop.html#wp1161890

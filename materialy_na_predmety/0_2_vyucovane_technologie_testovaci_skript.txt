@@ -40,7 +40,7 @@ show ip protocols
 ena
 conf t
 ipv6 unicast-routing
-ipv6 router rip RIP
+ipv6 router rip RIPNG
 end
 ena
 conf t
@@ -62,15 +62,22 @@ show ip interface <nazov_prepinacieho_rozhrania>
 ! STP BPDU Guard
 ena
 conf t
+spanning-tree portfast bpduguard
+spanning-tree portfast bpduguard default
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
 	spanning-tree bpduguard enable
 end
+ena
+conf t
+no spanning-tree portfast bpduguard
+no spanning-tree portfast bpduguard default
 !
 ! PortFast
 ena
 conf t
+spanning-tree portfast
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
@@ -149,6 +156,8 @@ end
 ! STP
 ena
 conf t
+spanning-tree vlan 20
+end
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
@@ -357,6 +366,7 @@ ipv6 unicast-routing
 ipv6 router eigrp 1
 end
 show ipv6 protocols
+q
 
 
 
@@ -390,6 +400,7 @@ end
 ! Novy sposob konfiguracie OSPFv3
 ena
 conf t
+ipv6 unicast-routing
 router ospfv3 1
 end
 !
@@ -615,10 +626,21 @@ router bgp 65001
 	address-family ipv4 unicast
 end
 !
-!VPLS
+! VPLS
 ena
 conf t
-l2 vfi VPLSSKUPINA autodiscovery
+l2 vfi VPLS autodiscovery
+end
+!
+! VPLS - ciselny oznacenie skupiny
+ena
+conf t
+l2 vfi 1 ?
+end
+!
+! VPLS - slovne oznacenie skupiny
+ena
+conf t
 l2 vfi VPLSSKUPINA ?
 end
 !
@@ -655,15 +677,7 @@ ip sla monitor logging traps
 ip sla monitor responder
 ip sla ?
 end
-!
-! STP BPDU Filter
-ena
-conf t
-int <nazov_prepinacieho_rozhrania>
-	no shut
-	switchport
-	spanning-tree bpdufilter enable
-end
+
 
 
 
@@ -674,6 +688,16 @@ end
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+
+! STP BPDU Filter
+ena
+conf t
+int <nazov_prepinacieho_rozhrania>
+	no shut
+	switchport
+	spanning-tree bpdufilter enable
+end
+!
 ! MST
 ena
 conf t
@@ -687,6 +711,7 @@ end
 ! STP, BPDU Guard, PortFast, BPDU Filter, MST
 ena
 conf t
+spanning-tree ?
 int <nazov_prepinacieho_rozhrania>
 	no shut
 	switchport
@@ -698,6 +723,7 @@ ena
 conf t
 ip cef
 end
+show ip cef
 !
 ! MLS
 ena
