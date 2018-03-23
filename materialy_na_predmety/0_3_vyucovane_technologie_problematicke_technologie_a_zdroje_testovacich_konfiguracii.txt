@@ -93,6 +93,15 @@ Zdroje
 	RSVP
 	https://www.cisco.com/c/en/us/td/docs/ios/12_2/qos/configuration/guide/fqos_c/qcfrsvp.html
 	
+  L3 VPN
+  /FRI/Ing/2.semester/Projektovanie_Sieti_1/prednasky/pr08_L3VPN-1.pdf
+
+  Vsetky BGP technologie
+  /home/andrej/github/FRI/Ing/2.semester/Projektovanie_Sieti_1/cvika/cv10_11_MPLS/dokumentacia_MPLS/dokumentacia_mpls_isis_vachalik_sisila.pdf
+
+  VPLS
+  /home/andrej/github/FRI/Ing/2.semester/Projektovanie_Sieti_1/prednasky/pr10_vpls-1.pdf
+
 	IP SLA
 	https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipsla/configuration/15-mt/sla-15-mt-book/sla_icmp_echo.html
   

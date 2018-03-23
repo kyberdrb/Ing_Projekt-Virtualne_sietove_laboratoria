@@ -237,37 +237,114 @@ int <nazov_prepinacieho_rozhrania>
 	channel-group 1 mode ?
 end
 !
-! HSRP IPv4
+!
+!
+! HSRP IPv4 - Standardna konfiguracia
 ena
 conf t
-standby ?
 int vlan 10
+	standby version 1
+	no standby 1 ip
 	standby 1 ip
-	standby ?
 end
 !
-! HSRPv2 IPv4 + IPv6 
+! HSRP IPv4 - Alternativna konfiguracia
+! Funguje napr. na Cisco CSR
+ena
+conf t
+int <nazov_smerovacieho_rozhrania>
+	no shutdown
+	no switchport
+	standby version 1
+	no standby 1 ip
+	standby 1 ip
+end
+!
+!
+!
+! HSRPv2 IPv4 + IPv6 - Standardna konfiguracia
 ena
 conf t
 ipv6 unicast-routing
 int vlan 20
-	standby version 2	
-	standby 2 ipv6 fe80::20
+	standby version 2
+	no standby 1 ip
+	standby 1 ip
+	no standby 2 ipv6	
+	standby 2 ipv6 fe80::22
 end
 !
-! VRRP IPv4 
+! HSRPv2 IPv4 + IPv6 - Alternativna konfiguracia
+! Funguje napr. na Cisco CSR
 ena
 conf t
-int vlan 20
+ipv6 unicast-routing
+int <nazov_smerovacieho_rozhrania>
 	no shutdown
-	vrrp 1 ip 30.30.30.30
+	no switchport
+	standby version 2
+	no standby 1 ip
+	standby 1 ip
+	no standby 2 ipv6
+	standby 2 ipv6 autoconfig
 end
 !
-! VRRP IPv6 
+!
+!
+! VRRPv2 IPv4 - Standardna konfiguracia
+ena
+conf t
+fhrp version vrrp v2
+int vlan 30
+	no shutdown
+	no vrrp 1 ip
+	vrrp 1 ip 10.1.10.222
+end
+!
+! VRRPv2 IPv4 - Alternativna konfiguracia
+! Funguje napr. na Cisco CSR
+ena
+conf t
+fhrp version vrrp v2
+int <nazov_smerovacieho_rozhrania>
+	no shutdown
+	no switchport
+	no vrrp 1 address-family ipv4
+	no vrrp 1 address-family ipv6
+	vrrp 1 address-family ipv4
+		address 10.1.10.222
+end
+!
+!
+!
+! VRRPv3 IPv4 + IPv6 - Standardna konfiguracia
 ena
 conf t
 fhrp version vrrp v3
+int vlan 40
+	no vrrp 1 ip 10.1.10.133
+	vrrp 1 ip 10.1.10.133
+	no vrrp 2 ipv6 fe80::33
+	vrrp 2 ipv6 fe80::33
 end
+!
+! VRRPv3 IPv4 + IPv6 - Alternativna konfiguracia
+! Funguje napr. na Cisco CSR
+ena
+conf t
+fhrp version vrrp v3
+int <nazov_smerovacieho_rozhrania>
+	no shutdown
+	no switchport
+	no vrrp 1 address-family ipv4
+	vrrp 1 address-family ipv4
+		address 10.1.10.123
+	no vrrp 1 address-family ipv6
+	vrrp 1 address-family ipv6
+		address fe80::333 primary
+end
+!
+!
 !
 ! GLBP IPv4 + IPv6 
 ena
@@ -283,6 +360,8 @@ int <nazov_smerovacieho_rozhrania>
 		glbp 1 ip 40.40.40.40
 		glbp 2 ipv6 fe80::40
 end
+!
+!
 !
 ! ACL IPv4 
 ena
@@ -610,8 +689,10 @@ end
 ! LDP
 ena
 conf t
+mpls label protocol ldp
 mpls ldp router-id loopback0 force
 end
+show mpls ldp discovery
 !
 ! RSVP
 ena
@@ -622,15 +703,49 @@ int <nazov_smerovacieho_rozhrania>
   ip rsvp bandwidth 10 10
 end
 !
-! Router Reflector je tiez podporovany, 
-! ak je podporovany aj protokol BGP.
 !
-! MP-BGP
+!
+!
+!
+! Router Reflector + MP-BGP + BGP mVPN + 
+! Hub & Spoke VPN +  Draft Rosen + BGP L3 VPN
+ena
+conf t
+ip vrf customer_1
+	rd 100:1001
+	route-target export 100:100
+	route-target import 100:100
+end
+ena
+conf t
+interface loop 1
+	ip vrf forwarding customer_1
+end
 ena
 conf t
 router bgp 65001
+	neighbor 10.255.255.3 remote-as 65001
+	neighbor 10.255.255.3 update-source Loopback1
+	neighbor 10.255.255.4 remote-as 65001
 	address-family ipv4 unicast
+		network 10.0.10.0 mask 255.255.255.0
+		exit-address-family
+	address-family vpnv4
+		neighbor 10.255.255.3 activate
+		neighbor 10.255.255.3 send-community extended
+		neighbor 10.255.255.3 route-reflector-client
+		exit-address-family
+	address-family ipv4 vrf customer_1
+		redistribute connected
+		neighbor 192.168.15.5 remote-as 65001
+		neighbor 192.168.15.5 activate
+		neighbor 192.168.15.5 as-override
+		exit-address-family
 end
+!
+!
+!
+!
 !
 ! VPLS
 ena
@@ -638,7 +753,7 @@ conf t
 l2 vfi VPLS autodiscovery
 end
 !
-! VPLS - ciselny oznacenie skupiny
+! VPLS - ciselne oznacenie skupiny
 ena
 conf t
 l2 vfi 1 ?
@@ -650,8 +765,6 @@ conf t
 l2 vfi VPLSSKUPINA ?
 end
 !
-! BGP mVPN, Hub & Spoke VPN, Draft Rosen, 
-! BGP L3 VPN, (aj VPLS technologia uvedena vyssie)
 ! EVPN, Seamless MPLS, BGP mVPN NG
 ! K vyssie uvedenym technologiam sa neda vytvorit kratky
 ! konfiguracny priklad; treba pouzit Cisco Feature Navigator
