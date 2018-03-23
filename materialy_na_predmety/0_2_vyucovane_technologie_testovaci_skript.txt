@@ -64,6 +64,7 @@ ena
 conf t
 int <nazov_prepinacieho_rozhrania>
 	no shut
+	switchport
 	spanning-tree bpduguard enable
 end
 !
@@ -72,6 +73,7 @@ ena
 conf t
 int <nazov_prepinacieho_rozhrania>
 	no shut
+	switchport
 	spanning-tree portfast
 end
 !
@@ -454,7 +456,7 @@ conf t
 router bgp 65001
 end
 !
-! IS-IS
+! IS-IS IPv4
 ena
 conf t
 router isis
