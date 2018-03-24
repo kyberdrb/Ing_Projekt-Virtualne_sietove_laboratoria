@@ -1,0 +1,41 @@
+Vytvoril som si účet na 
+
+  https://www.sharelatex.com
+
+Potom som zabalil adresár s prácou do ZIP formátu.
+
+  7z a -r -tzip \
+  /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/praca.zip \
+  /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/*
+
+ZIP súbor som nahral do ShareLatex editora.
+Teraz môžeme prácu upravovať.
+
+Keď chceme prácu uložiť vo formáte PDF, klikneme na ikonku "Download PDF" vedľa tlačidla "Recompile".
+
+Keď chceme prácu uložiť vo formáte ZIP, klikneme na tlačidlo "Menu" v ľavom hornom rohu. Otvorí sa menu. Klikneme na tlačidlo "Source" v časti "Download". 
+
+Po extrakcii súborov môžeme aktualizovať zmenené súbory v Git adresári:
+
+  cd ~/Downloads
+  rm -rf praca/
+  dtrx praca.zip
+  diff -qr ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/ | awk '{print $2}'
+
+Manuálne skopírujeme zmenené súbory jeden po druhom do Git adresára.
+
+  cp ~/Downloads/praca/prvy/zmeneny/subor /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/prvy/zmeneny/subor
+
+
+Zdroje:
+LaTeX sablony
+  http://frcatel.fri.uniza.sk/~beerb/latex/latex.htm
+
+Práca:
+  http://frcatel.fri.uniza.sk/~beerb/latex/BP-DP.rar
+
+Prezentácia:
+  http://frcatel.fri.uniza.sk/~beerb/latex/prezentacia.tex
+
+Bash
+  https://stackoverflow.com/questions/6217628/diff-to-output-only-the-file-names/6217722#6217722
