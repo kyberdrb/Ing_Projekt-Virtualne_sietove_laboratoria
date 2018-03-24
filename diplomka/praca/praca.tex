@@ -16,6 +16,10 @@
 \usepackage{url,mathptmx} 
 \usepackage[pdftex,unicode,bookmarks=false]{hyperref}
 
+% Celkovy pocet stran zaverecnej prace
+% Uzitocny v abstrakte
+\usepackage{lastpage}
+
 \renewcommand{\baselinestretch}{1.5}  % pre zvascenie riadkovania
 
 \addtolength{\oddsidemargin}{-.5cm}
@@ -37,31 +41,58 @@
 \begin{document}
 \selectlanguage{slovak}
 
+% Uvodne strany sa necisluju
+% Cisluje sa az od obsahu
 \pagestyle{empty}
-\pagenumbering{arabic}
 
-% Titulna strana, Abstrakt SK, Abstrakt EN, Prehlasenie
-\input{kapitoly/title}
+\input{kapitoly/titulna_strana}
 
-%\pagestyle{myheadings} % tento riadok mi pridaval cislo 1 do praveho horneho rohu na strane "Prehlasenie"
+\newpage
+\input{kapitoly/uvodna_strana}
 
-% Predpokladam, ze subor "title" vygeneruje 4 strany, preto tymto cislom zacinam cislovanie od strany "Prehlasenie"
-\setcounter{page}{4}
+\newpage
+\input{kapitoly/zadanie}
+
+\newpage
+\input{kapitoly/podakovanie}
+
+\newpage
+\input{kapitoly/abstrakt_sk}
+
+\newpage
+\selectlanguage{english}
+\input{kapitoly/abstrakt_en}
+
+\selectlanguage{slovak}
+
+\newpage
+\input{kapitoly/prehlasenie}
+
+% Nizsie uvedeny riadok mi pridaval cislo 1
+% do praveho horneho rohu na strane "Prehlasenie"
+%\pagestyle{myheadings}
 
 {\setlength{\parskip}{1pt plus 1pt}
 
 \markboth{}{}
 
+\newpage                % newpage je nutny pre spravne cislovanie
+\pagenumbering{arabic}
+\pagestyle{plain}       % Aktivuj cislovanie
+\setcounter{page}{7}    % Nastav spravne cislo strany
+\addcontentsline{toc}{chapter}{Obsah}
 \tableofcontents
-
-\newpage
 
 %\vspace{0pt plus 2cm}
 
+\newpage
+\addcontentsline{toc}{chapter}{Zoznam ilustrácii}
 \listoffigures
 
 %\vspace{0pt plus 2cm}
 
+\newpage
+\addcontentsline{toc}{chapter}{Zoznam tabuliek}
 \listoftables
 }
 
@@ -74,6 +105,7 @@
 %%%%%%%%%%%%%%%%%% kapitoly
 
 \input{kapitoly/uvod}
+\input{kapitoly/ciele_prace}
 \input{kapitoly/virtualne_nastroje}
 \input{kapitoly/kriteria_testovania}
 \input{kapitoly/vysledky_testovania}
@@ -81,11 +113,9 @@
 \input{kapitoly/zaver}
 \input{kapitoly/prilohy}
 
-
 %%%%%%%%%%%%%%%%%% literatura
 
-
-\input{kapitoly/lit}	%  Literatura
+\input{kapitoly/literatura}	%  Literatura
 
 \end{document}
 

@@ -29,7 +29,7 @@ Manuálne skopírujeme zmenené súbory jeden po druhom do Git adresára.
   cp ~/Downloads/praca/prvy/zmeneny/subor /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/prvy/zmeneny/subor
 
 
-Po skopírovaní všetkých súborov nahráme zmenené súbory do repozitára.
+Po skopírovaní všetkých súborov overíme, či sme aktualizovali všetky zmenené súbory, a nahráme zmenené súbory do repozitára.
 
   git_push_repo.sh ~/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/ "commit_msg" "description"
 

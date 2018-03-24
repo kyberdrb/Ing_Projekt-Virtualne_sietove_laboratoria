@@ -3,3 +3,13 @@ https://tex.stackexchange.com/questions/87525/how-can-i-set-the-page-number-to-a
 
 Odstránenie čisla strany pre konkrétnu kapitolu (Poďakovanie)
 https://tex.stackexchange.com/questions/103567/how-to-remove-page-numbers-from-first-page-of-chapters#comment225966_103567
+
+Pridanie nečíslovaného nadpisu do obsahu
+https://tex.stackexchange.com/questions/35433/creating-unnumbered-chapters-sections-plus-adding-them-to-the-toc-and-or-header
+
+Počet strán (posledná strana) dokumentu (Abstrakt)
+http://timmurphy.org/2010/03/10/getting-the-current-and-last-page-numbers-in-latex/
+
+Číslovanie strán + aby bolo číslovanie konzistentné
+http://www.emerson.emory.edu/services/latex/latex_129.html
+https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-numbering/74440#74440
