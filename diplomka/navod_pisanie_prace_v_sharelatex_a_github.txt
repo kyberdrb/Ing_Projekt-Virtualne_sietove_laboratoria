@@ -22,9 +22,23 @@ Po extrakcii súborov môžeme aktualizovať zmenené súbory v Git adresári:
   dtrx praca.zip
   diff -qr ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/ | awk '{print $2}'
 
+
 Manuálne skopírujeme zmenené súbory jeden po druhom do Git adresára.
 
   cp ~/Downloads/praca/prvy/zmeneny/subor /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/prvy/zmeneny/subor
+
+
+Po skopírovaní všetkých súborov nahráme zmenené súbory do repozitára.
+
+  git_push_repo.sh ~/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/ "commit_msg" "description"
+
+
+
+OVERENIE
+
+Git adresár s prácou môžeme pre overenie znovu zabaliť do ZIP formátu a otvoriť v editore ShareLatex.
+
+Príkaz na zabalenie adresára s prácou je uvedený na začiatku tohto súboru.
 
 
 Zdroje:

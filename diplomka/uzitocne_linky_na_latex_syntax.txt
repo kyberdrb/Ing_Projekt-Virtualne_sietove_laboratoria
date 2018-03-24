@@ -1,0 +1,5 @@
+Explicitná zmena čísla strany
+https://tex.stackexchange.com/questions/87525/how-can-i-set-the-page-number-to-any-needed-value
+
+Odstránenie čisla strany pre konkrétnu kapitolu (Poďakovanie)
+https://tex.stackexchange.com/questions/103567/how-to-remove-page-numbers-from-first-page-of-chapters#comment225966_103567
