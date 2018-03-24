@@ -7,18 +7,28 @@ Zazitky:
 
 ===============================================================================
 Diplomka
-  -vid poznamky v telefone ohladom diplomky z piatkovej konzultacky
   -urobit obsah diplomky do latexovej sablony podla obsahu "plan_riesenia_diplomovej_prace.md"
     -potom spomenuty subor zmazat
-  -diplomku robit podla zadania DP! diplomka musi dat odpovede na ulohy v DP!
-  -aby som si ušetril písanie, môžem generalizovať veci, ktoré sú spoločné pre každú entitu,
+    -nakoniec skontrolovat, ci struktura diplomky je konzistentna so zadanim diplomky a jej ulohami. Diplomku robit podla zadania DP! Diplomka musi dat odpovede na ulohy v zadani!
+
+  -Najprv sa povenovat tymto veciam
+    -kde bezi EVE-ng (IPcky, hardver/platforma)
+    -ako sa ovlada EVE-ng (co najstrucnejsie s vela obrazkami)
+    -ktore predmety som skumal,
+      -ake technologie sa na nich vyucuju,
+      -a ake zariadenia su vhodne na tieto predmety
+
+  -aby som si ušetril písanie, môžem generalizovať veci, ktoré sú spoločné pre každú entitu
+
   -zdokumentovat zistovanie features pre zariadenia
     -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
+
   -ako pisat diplomku
     -ako, co, preco som robil + ako to riesi ulohy v zadani DP
-  -hadacovo viro treba prerobit alebo nechat umriet, vid
+
+  -hadacovo viro treba prerobit alebo nechat umriet v prospech GNS3, vid
     https://itr-links.stackoverflow.email/u/click?_t=3603a3d8f3104ca5bd7015a5845f7fb7&_m=72f714b6c6804f51bec86ff60136c94a&_e=khSYWjE_zs7-adX5jKm1-OookGpf6AVPZjR7AyzPWTwEnKGs8rNUmT2lD4L8iN2P8uYha2PRADixjIPrcWIaFJGCXQ7AyX0cYfKArrRAGqP2_o0jr270rA-U5V2ujhXUE8R_BANn7Tcl1y4lL9DHAzUSuR2CO-dDoACYjM6VrZZaBvoAXw03t7dJ3x1KCyVB6KzJaxOvOYWjvQtYyXp4j0BdEnWNWe-kDZYKhZodQGrOA7r8tmh0ZN_GC5oUwoaU6X9t1nblG0FMZV7rmdwd6ElKE7GxRzN4y-pYMa_771fWXhDGpujulNNOFWMLBx1H3WRWWdwyiwqU447IcwKyJwFw-C-BO7yk_S7-GcfFN16y_Cl1XKAJw4DnPUhOVonIFFxBkpyMCkh8d3pt0kSoNw%3D%3D
-   vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna, ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie.
+   vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna, ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie, co svedci v prospech EVE-ng. Python je zase na prvom mieste v rebricku programovacich jazykov, ktore sa vyvojari chcu naucit ako dalsi. Zaroven je tiez jeden z najoblubenych jazykov, co svedci v prospech GNS3.
 
 ===============================================================================
 Ulohy: 
@@ -39,6 +49,10 @@ Ulohy:
 
 ===============================================================================
 Co dalej?
+
+-otestovať v EVE-ng IS-IS topológiu - jednej skupine sa neprejavila zmena časovačov
+  -otestovať na všetkých zariadeniach vhodných na PrS1 - viď "materialy_na_predmety/vyucovane_technologie.ods"
+  -ak bude možné, otestovať spomenutú situáciu aj v GNS3
 
 -opraviť bug:
   -wireshark odchytavanie konkretneho rozhrania z EVE-ng topologie
