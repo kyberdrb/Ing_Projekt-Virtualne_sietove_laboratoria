@@ -26,9 +26,9 @@ Po extrakcii súborov môžeme aktualizovať zmenené súbory v Git adresári:
   cp -r ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/
 
 
-Najrýchlejší spôsob je presunúť predchádzajúci adresár s prácou na iné miesto mimo repozitár a na rovnaké miesto skopírovať práve stiahnutý rozbalený adresár s prácou.
+# Najrýchlejší spôsob je presunúť predchádzajúci adresár s prácou na iné miesto mimo repozitár a na rovnaké miesto skopírovať práve stiahnutý rozbalený adresár s prácou.
 
-Následne nahráme zmeny do online repozitára.
+# Následne nahráme zmeny do online repozitára.
   
   git_push_repo.sh ~/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/ "commit_msg" "description"
 

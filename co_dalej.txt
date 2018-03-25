@@ -10,18 +10,12 @@ Diplomka
 
   -Poďakovanie - Marek Moravčík a Jakub Hrabovský sú už PhD?
 
-  -urobit obsah diplomky do latexovej sablony podla obsahu "plan_riesenia_diplomovej_prace.md"
-    -potom spomenuty subor zmazat
-    -nakoniec skontrolovat, ci struktura diplomky je konzistentna so zadanim diplomky a jej ulohami. Diplomku robit podla zadania DP! Diplomka musi dat odpovede na ulohy v zadani!
-
   -Najprv sa povenovat tymto veciam
     -kde bezi EVE-ng (IPcky, hardver/platforma)
     -ako sa ovlada EVE-ng (co najstrucnejsie s vela obrazkami)
     -ktore predmety som skumal,
       -ake technologie sa na nich vyucuju,
       -a ake zariadenia su vhodne na tieto predmety
-
-  -aby som si ušetril písanie, môžem generalizovať veci, ktoré sú spoločné pre každú entitu
 
   -zdokumentovat zistovanie features pre zariadenia
     -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)

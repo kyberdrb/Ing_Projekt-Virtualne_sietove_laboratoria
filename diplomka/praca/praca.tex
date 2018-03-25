@@ -16,9 +16,10 @@
 \usepackage{url,mathptmx} 
 \usepackage[pdftex,unicode,bookmarks=false]{hyperref}
 
-% Celkovy pocet stran zaverecnej prace
-% Uzitocny v abstrakte
-\usepackage{lastpage}
+% Moje pridane balicky
+\usepackage{lastpage}   % Celkovy pocet stran zaverecnej prace. Uzitocny v abstrakte
+\usepackage{tabu}       % Tabulka (aj) na uvodnej strane
+
 
 \renewcommand{\baselinestretch}{1.5}  % pre zvascenie riadkovania
 
@@ -33,8 +34,8 @@
 
 \graphicspath{{./obrazky/}}
 
-\newcommand{\nazovpraceSK}{Analýza nástrojov na virtualizáciu sieťových prvkov a ich použitie vo vyučovacom procese}
-\newcommand{\nazovpraceEN}{Analysis of the tools for network devices virtualization and their use in learning process}
+\newcommand{\nazovpraceSK}{Sieťové virtualizačné nástroje a ich využitie vo vyučovacom procese KIS}
+\newcommand{\nazovpraceEN}{Network virtualization tools and their use in the KIS learning process}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -90,6 +91,9 @@
 \newpage
 \addcontentsline{toc}{chapter}{Zoznam tabuliek}
 \listoftables
+
+\newpage
+\input{kapitoly/zoznam_skratiek}
 }
 
 \markboth{}{}

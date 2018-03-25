@@ -16,3 +16,12 @@ https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-n
 
 LaTeX - Špeciálne znaky
 https://en.wikibooks.org/wiki/LaTeX/Special_Characters
+
+Tabuľky s pevnou veľkosťou
+https://www.sharelatex.com/learn/Tables#Tables_with_fixed_length
+
+Tabuľky na titulnej a úvodnej strane
+https://tex.stackexchange.com/questions/171193/tabu-and-space-between-columns
+
+Zarovnanie zvyšného textu na spodok strany
+https://tex.stackexchange.com/questions/245247/putting-text-at-the-bottom-of-the-page
