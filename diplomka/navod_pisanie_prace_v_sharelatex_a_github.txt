@@ -18,20 +18,17 @@ Keď chceme prácu uložiť vo formáte ZIP, klikneme na tlačidlo "Menu" v ľav
 Po extrakcii súborov môžeme aktualizovať zmenené súbory v Git adresári:
 
   cd ~/Downloads
-  rm -rf praca/
+  rm -rf ~/Downloads/praca/
+  rm -rf ~/Downloads/praca_git_backup/
   dtrx praca.zip
   rm praca.zip
-  diff -qr ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/
+  mv /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/ ~/Downloads/praca_git_backup
+  cp -r ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/
 
 
-Manuálne skopírujeme zmenené súbory jeden po druhom do Git adresára.
+Najrýchlejší spôsob je presunúť predchádzajúci adresár s prácou na iné miesto mimo repozitár a na rovnaké miesto skopírovať práve stiahnutý rozbalený adresár s prácou.
 
-  cp ~/Downloads/praca/prvy/zmeneny/subor /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/prvy/zmeneny/subor
-
-
-Po skopírovaní všetkých súborov overíme, či sme aktualizovali všetky zmenené súbory, a nahráme zmenené súbory do repozitára.
-
-  diff -qr ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomka/praca/
+Následne nahráme zmeny do online repozitára.
   
   git_push_repo.sh ~/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/ "commit_msg" "description"
 
