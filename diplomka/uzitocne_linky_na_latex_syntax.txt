@@ -25,3 +25,6 @@ https://tex.stackexchange.com/questions/171193/tabu-and-space-between-columns
 
 Zarovnanie zvyšného textu na spodok strany
 https://tex.stackexchange.com/questions/245247/putting-text-at-the-bottom-of-the-page
+
+Súvislé číslovanie obrázkov a tabuliek bez úvodného čísla kapitoly t.j. začína sa číslovať od 1
+https://tex.stackexchange.com/questions/28019/continuous-numbering-of-figures-and-tables/28020#28020

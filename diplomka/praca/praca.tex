@@ -16,9 +16,23 @@
 \usepackage{url,mathptmx} 
 \usepackage[pdftex,unicode,bookmarks=false]{hyperref}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Moje pridane balicky
-\usepackage{lastpage}   % Celkovy pocet stran zaverecnej prace. Uzitocny v abstrakte
-\usepackage{tabu}       % Tabulka (aj) na uvodnej strane
+
+% Celkovy pocet stran zaverecnej prace.
+% Uzitocny v abstrakte
+\usepackage{lastpage}
+
+% Tabulka (aj) na uvodnej strane
+\usepackage{tabu}
+
+% Cislovanie obrazkov a tabuliek plynule, 
+% bez uvodneho cisla kapitoly
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \renewcommand{\baselinestretch}{1.5}  % pre zvascenie riadkovania

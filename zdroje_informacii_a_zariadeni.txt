@@ -1,3 +1,7 @@
+ESTE NEPRESKUMANE STRANKY
+  http://www.networklab.in/downloads/
+
+
 Zdroje informacii:
   GNS3
     https://www.youtube.com/channel/UCP7WmQ_U4GB3K51Od9QvM0w  <= David Bombal
