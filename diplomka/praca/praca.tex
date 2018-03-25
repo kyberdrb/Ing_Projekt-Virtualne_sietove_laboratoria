@@ -91,9 +91,15 @@
 
 \markboth{}{}
 
-\newpage                % newpage je nutny pre spravne cislovanie
-\pagestyle{plain}       % Zobraz cislovanie
-\setcounter{page}{8}    % Nastav spravne cislo strany
+% newpage je nutny pre spravne cislovanie
+\newpage
+
+% Nastav spravne cislo strany
+\setcounter{page}{8}
+
+% Zobraz cislovanie v tejto casti
+\pagestyle{plain}
+
 \addcontentsline{toc}{chapter}{Obsah}
 \tableofcontents
 
@@ -120,6 +126,10 @@
 %%%%%%%%%%%%%%%%%% obsah - koniec
 
 %%%%%%%%%%%%%%%%%% kapitoly
+
+% Zobraz cislovanie na vsetkych stranach,
+% nie len na prvej strane kapitoly
+\pagestyle{plain}
 
 \input{kapitoly/uvod}
 \input{kapitoly/ciele_prace}

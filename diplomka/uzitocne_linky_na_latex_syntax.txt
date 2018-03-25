@@ -28,3 +28,9 @@ https://tex.stackexchange.com/questions/245247/putting-text-at-the-bottom-of-the
 
 Súvislé číslovanie obrázkov a tabuliek bez úvodného čísla kapitoly t.j. začína sa číslovať od 1
 https://tex.stackexchange.com/questions/28019/continuous-numbering-of-figures-and-tables/28020#28020
+
+LaTeX nepodporuje obrázky vo formáte "gif". Môžeme ich napr. skonvertovať do podporovaného formátu "jpg" nástrojom
+https://ezgif.com/gif-to-jpg
+
+Bibliografia by mala obsahovať priezvisko autora VEĽKÝMI PÍSMENAMI. Môžeme napr. použiť stránku
+https://convertcase.net/

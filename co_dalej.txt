@@ -16,6 +16,7 @@ Diplomka
   -Poďakovanie - Marek Moravčík a Jakub Hrabovský sú už PhD?
 
   -Najprv sa povenovat tymto veciam
+    -analyza dostupnych nastrojov
     -kde bezi EVE-ng (IPcky, hardver/platforma)
     -ako sa ovlada EVE-ng (co najstrucnejsie s vela obrazkami)
     -ktore predmety som skumal,

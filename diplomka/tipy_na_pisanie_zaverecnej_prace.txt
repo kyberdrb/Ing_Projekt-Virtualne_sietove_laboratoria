@@ -1,3 +1,14 @@
 Citácie, aj online, zdrojov
   https://ippr.sk/c/204-citacie-parafrazy-bibliograficke-odkazy-iso-690
   http://rasmussen.libanswers.com/faq/32328
+
+Názov online citácie nájdeme medzi značkami "<title>" a "</title>".
+
+Čas poslednej zmeny webovej stránky zistíme otvorením konzoly (F12 -> Console) a zadaním príkazu
+
+  alert(document.lastModified)
+
+https://www.computerhope.com/tips/tip30.htm
+
+
+

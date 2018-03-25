@@ -33,7 +33,7 @@ Pri porovnávaní jednotlivých virtuálnych sieťových laboratórii som sa roz
 
 \subsection{Dynamips/Dynagen}
 
-Dynamips je emulátor Cisco smerovačov \cite{dynamips}. Nástroj je v prevažnej mierie napísaný v jazyku C \cite{dynamips_github}. Podporuje iba výlučne vybrané Cisco smerovače \cite{dynamips}. V súčasnosti sa používa na katedre pri výučbe predmetov Projektovanie sietí 1 a CCNP Routing. Ovláda sa cez príkazový riadok. Portové čísla na vzdialený prístup sa zariadeniam prideľujú manuálne. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}. Na vytváranie topológii sa používa jednoduchý značkovací jazyk. Nástroj Dynagen, ktorý slúži ako nadstavba nad platformou Dynamips, slúži na jednoduchšiu prácu s topológiami \cite{dynamips}. Topológie môže spravovať výlučne administrátor, pretože ani Dynamips, ani Dynagen nevedia rozlišovať rôzne typy používateľov. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Na jednej topológii môžu pracovať aj viacerí študenti, tým že sa rozdelia portové čísla zariadení v topológii medzi študentov. Nástroj Dynamips umožňuje prepojiť topológiu so živou sieťou \cite{dynamips, dynamips_nil}. Na obrázku \ref{obr:dynamips_dynagen} je znázornený nástroj Dynagen.
+Dynamips je emulátor Cisco smerovačov na Linux/Windows \cite{dynamips}. Nástroj je v prevažnej mierie napísaný v jazyku C \cite{dynamips_github}. Podporuje iba výlučne vybrané Cisco smerovače \cite{dynamips}. V súčasnosti sa používa na katedre pri výučbe predmetov Projektovanie sietí 1 a CCNP Routing. Ovláda sa cez príkazový riadok. Portové čísla na vzdialený prístup sa zariadeniam prideľujú manuálne. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}. Na vytváranie topológii sa používa jednoduchý značkovací jazyk. Nástroj Dynagen, ktorý slúži ako nadstavba nad platformou Dynamips, slúži na jednoduchšiu prácu s topológiami \cite{dynamips}. Topológie môže spravovať výlučne administrátor, pretože ani Dynamips, ani Dynagen nevedia rozlišovať rôzne typy používateľov. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Na jednej topológii môžu pracovať aj viacerí študenti, tým že sa rozdelia portové čísla zariadení v topológii medzi študentov. Nástroj Dynamips umožňuje prepojiť topológiu so živou sieťou \cite{dynamips, dynamips_nil}. V súčasnosti sa o nástroj starajú vývojári nástroja GNS3 \cite{dynamips_github}. Na obrázku \ref{obr:dynamips_dynagen} je znázornený nástroj Dynagen.
 
 \begin{figure}
     \centering
@@ -44,7 +44,14 @@ Dynamips je emulátor Cisco smerovačov \cite{dynamips}. Nástroj je v prevažne
 
 \subsection{WEB-IOU}
 
+WEB-IOU je simulačný nástroj pre platformu Linux, ktorý podporuje výlučne Cisco IOU platformu. Jeho hlavnou výhodou je podpora Cisco prepínačov, ktorá pri Dynamips/Dynagen chýba. Jeho autorom je Andrea Dainese \cite{webiou_unetlab}. Nástroj je v prevažnej mierie napísaný v jazykoch PHP a JavaScript \cite{webiou_github}. Podporuje iba výlučne vybrané Cisco smerovače na platforme IOU - IOS on Unix \cite{webiou_firewall_cx}. Je vhodný na trénovanie pri certifikáciách CCNP a do istej miery aj CCIE. Spravuje sa cez príkazový riadok. Používateľovi je dostupné web rozhranie. Portové čísla na vzdialený prístup sa zariadeniam prideľujú automaticky. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}. Na vytváranie topológii sa používa jednoduchý značkovací jazyk \emph{NETMAP}. Topológie môže ktokoľvek, kto má prístup k web rozhraniu, pretože ani tento nástroj nevie rozlišovať rôzne typy používateľov. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Napriek tomu môžu na jednej topológii môžu pracovať aj viacerí študenti rovnakým spôsobom, ako pri nástroji Dynamips/Dynalab. Nástroj WEB-IOU tiež umožňuje prepojiť topológiu so živou sieťou \cite{webiou_real_network}. V súčasnosti sa už nástroj nevyvíja. Na obrázku \ref{obr:webiou} je znázornené webové rozhranie nástroja WEB-IOU.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{webiou}
+    \caption{Nástroj Dynagen spustený v prostredí Windows} \cite{obr_webiou}
+    \label{obr:webiou}
+\end{figure}
 
 \subsection{Cisco VIRL}
 
@@ -61,6 +68,10 @@ popis + rozdiely rôznych verzií (špeciálne pre EVE-ng) - PRIMÁRNE! + rozdie
 \subsection{GNS3}
 
 - podporný nástroj
+
+\subsection{UNetLabv2}
+
+- Vyvíja sa. Zatiaľ ešte verejne nedostupný.
 
 \section{Vyhodnotenie}
 
