@@ -13,3 +13,6 @@ http://timmurphy.org/2010/03/10/getting-the-current-and-last-page-numbers-in-lat
 Číslovanie strán + aby bolo číslovanie konzistentné
 http://www.emerson.emory.edu/services/latex/latex_129.html
 https://tex.stackexchange.com/questions/74439/table-of-contents-incorrect-page-numbering/74440#74440
+
+LaTeX - Špeciálne znaky
+https://en.wikibooks.org/wiki/LaTeX/Special_Characters
