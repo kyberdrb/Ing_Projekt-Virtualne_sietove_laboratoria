@@ -45,6 +45,7 @@
 % Uvodne strany sa necisluju
 % Cisluje sa az od obsahu
 \pagestyle{empty}
+\pagenumbering{arabic}      % Aktivujume cislovanie
 
 \input{uvodne_strany/titulna_strana}
 
@@ -52,7 +53,10 @@
 \input{uvodne_strany/uvodna_strana}
 
 \newpage
-\input{uvodne_strany/zadanie}
+\input{uvodne_strany/zadanie_1}
+
+\newpage
+\input{uvodne_strany/zadanie_2}
 
 \newpage
 \input{uvodne_strany/podakovanie}
@@ -74,9 +78,8 @@
 \markboth{}{}
 
 \newpage                % newpage je nutny pre spravne cislovanie
-\pagenumbering{arabic}
-\pagestyle{plain}       % Aktivuj cislovanie
-\setcounter{page}{7}    % Nastav spravne cislo strany
+\pagestyle{plain}       % Zobraz cislovanie
+\setcounter{page}{8}    % Nastav spravne cislo strany
 \addcontentsline{toc}{chapter}{Obsah}
 \tableofcontents
 
