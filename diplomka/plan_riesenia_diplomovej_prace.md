@@ -17,7 +17,7 @@ Katedra informačných sietí v súčasnosti vo viacerých predmetoch poskytuje 
 - GNS3 - podporný nástroj
 
 ### Analýza dostupných virtualizačných nástrojov
-- použité ǘývojové technológie (prog jazyk, backend, frontend)
+- použité ývojové technológie (prog jazyk, backend, frontend)
 - podpora zariadení, s ktorými sa na danom predmete pracuje
 - podpora technológií jednotlivých zariadení
 - typ používateľského rozhrania
