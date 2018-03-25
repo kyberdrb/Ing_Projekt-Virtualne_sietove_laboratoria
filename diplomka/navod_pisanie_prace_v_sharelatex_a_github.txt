@@ -30,13 +30,9 @@ Po extrakcii súborov môžeme aktualizovať zmenené súbory v Git adresári:
 
 # Následne nahráme zmeny do online repozitára.
   
-  diff \
-  -qr ~/Downloads/praca/ \
-  ~/Downloads/praca_git_backup/
+  diff -qr ~/Downloads/praca/ ~/Downloads/praca_git_backup/
   
-  git_push_repo.sh \
-  ~/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/ \ "commit_msg" \
-  "description"
+  git_push_repo.sh ~/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/ "commit_msg" "description"
 
 
 
