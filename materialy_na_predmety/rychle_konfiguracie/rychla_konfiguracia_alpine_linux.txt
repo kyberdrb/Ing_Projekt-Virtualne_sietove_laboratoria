@@ -1,0 +1,74 @@
+Prihlásime sa ako používateľ "root" bez hesla.
+
+
+**************
+NASTAVENIE IPv4/IPv6 adries
+
+Zistíme zoznam rozhraní
+
+  ip a
+
+Vo výpise by sa mali nachádzať 2 rozhrania - "lo" a "eth0". Rozhranie "lo" je loopback rozhranie. "eth0" je primárne sieťové rozhranie.
+
+Vytvoríme konfiguračný súbor "/etc/network/interfaces"
+
+  vi /etc/network/interfaces
+
+Stlačíme klávesu "I", čím prejdeme z normálneho do upravovacieho módu. Vložíme doň nižšie uvedený obsah, podľa toho, ktoré rozhranie chceme nastavovať. Obvykle nastavujeme primárne sieťové rozhranie "eth0".
+
+-Pre aktiváciu loopback rozhrania:
+
+auto lo
+iface lo inet loopback
+
+
+-Pre nastavenie IPv4 adresy:
+
+auto eth0
+iface eth0 inet static
+        address 192.168.1.150
+        netmask 255.255.255.0
+        gateway 192.168.1.1
+
+
+-Pre nastavenie IPv6 adresy:
+
+auto eth0
+iface eth0 inet6 static
+        address 2001:470:ffff:ff::2
+        netmask 64
+        gateway 2001:470:ffff:ff::1
+        pre-up echo 0 > /proc/sys/net/ipv6/conf/eth0/accept_ra
+
+
+
+Po nastavení adries uložíme súbor. Stlačíme klávesy v danom poradí:
+  "Esc"
+  :wq
+  "Enter"
+
+Aby sa zmeny prejavili, reštartujeme sieťovú službu. Parametre "networking restart" musíme napísať ručne, pretože v Alpine Linux pre ne nefunguje dopĺňanie klávesou "Tab" (ale príkaz "service" doplní).
+
+  service networking restart
+
+Vo výpise by sme mali vidieť:
+
+  * Starting networking ... *  lo ... [ ok ]
+  * eth0 ... [ ok ]
+
+čo znamená, že rozhrania boli úspešne aktivované.
+
+Overíme, či sa zmeny prejavili:
+
+  ip a
+
+Mali by sme vidieť IP adresy priradené rozhraniam.
+
+Ak áno, overíme konektivitu so susetným zariadením. Konektivitu som testoval s priamo pripojeným Cisco IOL smerovačom.
+
+  ping 192.168.1.1
+  ping 192.168.1.15
+
+
+Zdroje:
+http://wiki.alpinelinux.org/wiki/Configure_Networking#Example:_Dual-Stack_Configuration

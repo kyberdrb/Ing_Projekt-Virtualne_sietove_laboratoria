@@ -55,6 +55,10 @@ Ulohy:
 ===============================================================================
 Co dalej?
 
+-pridat feature:
+  -do zoznamu uzlov v projekte v časti "Nodes" sa v tabuľke objaví aj číslo portu
+  -neskôr v zozname uzlov v projekte v časti "Nodes" umožniť zmenu čísla portu pre zariadenia (v rámci daného rozsahu)
+
 -otestovať v EVE-ng IS-IS topológiu - jednej skupine sa neprejavila zmena časovačov
   -otestovať na všetkých zariadeniach vhodných na PrS1 - viď "materialy_na_predmety/vyucovane_technologie.ods"
   -ak bude možné, otestovať spomenutú situáciu aj v GNS3
