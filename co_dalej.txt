@@ -8,12 +8,13 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-  -Možné zdroje:
-    IEEE Explore - články sťahovať cet "scihub"
+  -V časti "VIRO" od hadača doplniť veci za "???".
 
-  -prebrať s vedúcim, či mám splnené všetky formálne náležitosti k diplomke
+  -pred ciele prace dat kapitolu "Súčasný stav" na katedre a vo svete, ako virtualizacia ovplyvnuje svet (cina, australia) cca 3-4 strana
+    -problémy železo, výkon, kompatibilita, interoperabilita
+    -na katedre sa používa iba Dynamips a GNS3 lokálne
 
-  -Poďakovanie - Marek Moravčík a Jakub Hrabovský sú už PhD?
+  -Pri vyprácovaní analýzy virtuálnych nástrojov môžem použiť ako zdroj napr IEEE Xplore - články sťahovať cez "https://sci-hub.tw/" - network virtualization
 
   -Najprv sa povenovat tymto veciam
     -analyza dostupnych nastrojov
@@ -35,25 +36,12 @@ Diplomka
   cast "Technology" -> "Most Loved, Dreaded and Wanted Languages"
     -> vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna (cast "Programming, Scripting, and Markup Languages"), ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie, co svedci v prospech EVE-ng. Python je zase na prvom mieste v rebricku programovacich jazykov, ktore sa vyvojari chcu naucit ako dalsi. Zaroven je tiez jeden z najoblubenych jazykov, co svedci v prospech GNS3.
 
-===============================================================================
-Ulohy: 
-
--konzultovat s uramovou
-  -co je komplexna konfiguracia prepinaca?
-  -ake technologie bude mat topologia v 7. tyzdni? -> podla toho vybrat zariadenia + kusky konfiguracie na otestovanie technologie
-
-
-
-
-
--vypytat si od mareka windows a windows server a pridat ho do eve-ng
-
-
-
 
 
 ===============================================================================
 Co dalej?
+
+-vypytat si od mareka windows a windows server z openstacku a pridat ho do eve-ng
 
 -pridat feature:
   -do zoznamu uzlov v projekte v časti "Nodes" sa v tabuľke objaví aj číslo portu
