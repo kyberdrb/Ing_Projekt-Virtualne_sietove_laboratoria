@@ -1,0 +1,23 @@
+Features/Edition,Community,Professional,Learning Center,Description
+Price,Free,99 EUR w/o VAT,99 EUR + Added Roles,
+User's roles,admin only,admin only,"admin, user, editor","Restrictions of the EVE usage, WEB UI, per user based"
+Lock user per folder,No,No,Yes,"User cannot see other EVE folders, only his own"
+Lock user edit rights,No,No,Yes,"User cannot edit labs, images etc"
+Shared Lab Folder,No,No,Yes,Shared lab folder visible for all users
+User's account validity ( 1/4 Hour accuracy ),No,No,Yes,"Ability to set calendar validity for account, Date and time ( From -> To )"
+Lab Timer,No,Yes,Yes,Timer for Lab training
+Running labs folder,No,Yes,Yes,User can run more than one lab. Running labs will appear in special running labs folder. Per user based
+Node limit per lab,63,1024,1024,Limit of nodes to run per lab
+TCP ports,fixed 128 per POD,Dynamic 1-65000,Dynamic 1-65000,Automatic TCP port choose for telnet session
+Local Wireshark capture,Yes,No,No,Local wrapper using ssh and root password to the EVE
+Local Telnet client,Yes,Yes,Yes,Local wrapper using locally installed telnet client
+Local VNC client,Yes,Yes,Yes,Local wrapper using locally installed vnc client
+Wireshark integrated,No,Yes,Yes,Docker integrated wireshark
+Docker container support,No,Yes,Yes,Docker container support
+Running nodes interface connections (hot connections),No,Yes,Yes,Hot/live nodes interface connection
+NAT Cloud,No,Yes,Yes,"Integrated NAT cloud, connect node to the internet. NAT to the EVE management interface DHCP 169.254.254.0/24"
+HTML console without Wireshark capture,Yes,No,No,HTML console
+HTML console with Wireshark capture,No,Yes,Yes,HTML wireshark capture
+HTML Desktop Console,No,Yes,Yes,Integrated Docker PC management
+Multi startup configuration choose per lab,No,Yes,Yes,"Option to create and boot lab from different startup configurations, multi startup config"
+Export/Import configs or config packs to local PC,No,Yes,Yes,Option import and export single config or config packs to the lab

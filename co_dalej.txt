@@ -8,18 +8,11 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-  -V časti "VIRO" od hadača doplniť veci za "???".
-
-  -pred ciele prace dat kapitolu "Súčasný stav" na katedre a vo svete, ako virtualizacia ovplyvnuje svet (cina, australia) cca 3-4 strana
-    -problémy železo, výkon, kompatibilita, interoperabilita
-    -na katedre sa používa iba Dynamips a GNS3 lokálne
-
   -Pri vyprácovaní analýzy virtuálnych nástrojov môžem použiť ako zdroj napr IEEE Xplore - články sťahovať cez "https://sci-hub.tw/" - network virtualization
 
   -Najprv sa povenovat tymto veciam
-    -analyza dostupnych nastrojov
+    -súčasný stav
     -kde bezi EVE-ng (IPcky, hardver/platforma)
-    -ako sa ovlada EVE-ng (co najstrucnejsie s vela obrazkami)
     -ktore predmety som skumal,
       -ake technologie sa na nich vyucuju,
       -a ake zariadenia su vhodne na tieto predmety
@@ -32,7 +25,6 @@ Diplomka
 
   -hadacovo viro treba prerobit alebo nechat umriet v prospech GNS3, vid
     https://itr-links.stackoverflow.email/u/click?_t=3603a3d8f3104ca5bd7015a5845f7fb7&_m=72f714b6c6804f51bec86ff60136c94a&_e=khSYWjE_zs7-adX5jKm1-OookGpf6AVPZjR7AyzPWTwEnKGs8rNUmT2lD4L8iN2P8uYha2PRADixjIPrcWIaFJGCXQ7AyX0cYfKArrRAGqP2_o0jr270rA-U5V2ujhXUE8R_BANn7Tcl1y4lL9DHAzUSuR2CO-dDoACYjM6VrZZaBvoAXw03t7dJ3x1KCyVB6KzJaxOvOYWjvQtYyXp4j0BdEnWNWe-kDZYKhZodQGrOA7r8tmh0ZN_GC5oUwoaU6X9t1nblG0FMZV7rmdwd6ElKE7GxRzN4y-pYMa_771fWXhDGpujulNNOFWMLBx1H3WRWWdwyiwqU447IcwKyJwFw-C-BO7yk_S7-GcfFN16y_Cl1XKAJw4DnPUhOVonIFFxBkpyMCkh8d3pt0kSoNw%3D%3D
-
   cast "Technology" -> "Most Loved, Dreaded and Wanted Languages"
     -> vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna (cast "Programming, Scripting, and Markup Languages"), ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie, co svedci v prospech EVE-ng. Python je zase na prvom mieste v rebricku programovacich jazykov, ktore sa vyvojari chcu naucit ako dalsi. Zaroven je tiez jeden z najoblubenych jazykov, co svedci v prospech GNS3.
 

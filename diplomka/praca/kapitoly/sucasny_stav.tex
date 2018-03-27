@@ -1,0 +1,41 @@
+\chapter{Súčasný stav}
+
+Momentálny stav v oblasti virtuálnych sieťových laboratórii na KIS zhodnotiť podľa nasledovných kritérii:
+
+\begin{itemize}
+    \item Prieskum existujúcich riešení pre virtuálne sieťové laboratórium a ich následné porovnanie na základe zvolených kritérii.
+    \item Voľba konkrétneho virtuálneho sieťového laboratória, vyplývajúca z provnania existujúcich riešení.
+    \item Inštalácia a úprava virtuálneho laboratória do infraštruktúry Katedry informačných sietí.
+    \item Analýza a testovanie kompatibility virtuálneho laboratória so zariadeniami.
+    \item Výber predmetov, pre ktoré bude virtuálne laboratórium použité.
+    \item Analýza technológii, ktoré sa na vybraných predmetoch vyučujú.
+    \item Výber vhodných zariadení pre tieto predmety na základe podporovaných technológii daného zariadenia.
+    \item Overenie funkčnosti virtuálneho sieťového laboratória vo vyučovacom procese Katedry informačných sietí na konkrétnych predmetoch.
+\end{itemize}
+
+opísať súčasný stav virtuálnych sieťových laboratórii na katedre a vo svete, ako virtualizacia ovplyvnuje svet (cina, australia) cca 3-4 strany
+    -problémy železo, výkon, kompatibilita, interoperabilita
+    -na katedre sa používa iba Dynamips a GNS3 lokálne
+
+Je pomerne dobre známym faktom, že výučba nielen sieťových technológii je najúčinnejšia vtedy, keď má študent možnosť pracovať s vecami z reálneho sveta. Preto katedra disponuje fyzickými zariadeniami, ktoré poskytujú študentom, nabrať kvalitné skúsenosti. Avšak s fyzickými zariadeniami sa spájajú nepríjemnosti, ktorým nevieme zabrániť:
+
+\begin{itemize}
+    \item lack of funds to establish and maintain networking hardware and software in sufficient quantity so that each student can have equal access to the learning environment inside and outside scheduled classes;
+    \item lack of physical space, both airconditioned space for servers, and for the hardware 
+used directly by the students; and 
+    \item lack of a secure network environment that can reliably protect the other services provided on the same machines or network.
+\end{itemize}
+
+Tieto problémy sa snažia riešiť rôzne virtualizačné platformy a nástroje, ktoré sú na nich postavené.
+
+Vo svete ...
+
+Na katedre sa používajú viaceré riešenia virtualizovaného sieťového laboratória. Patria medzi ne Cisco Packet Tracer, Dynamips/Dynagen a GNS3.
+
+Cisco Packet Tracer sa momentálne používa na katedre pri vyučovaní kurzov CCNA Routing \& Switching. 
+
+Dynamips/Dynagen sa používa pri výučbe predmetov Projektovanie sietí 1 a CCNA Routing. Hoci sa na katedre vyvinulo webové rohranie pre tento nástroj, študentom nie je dostupný.
+
+GNS3 sa na katedre používa lokálne, keďže ešte nie je dostatočne podrobne preskúmané nasadenie GNS3 ako vzdialený server. Slúži pre učiteľov na testovanie topológii a vyučovaných technológii nielen na predmetoch a kurzoch so zameraním na Cisco technológie, ale aj na testovanie technológii a kompatibility zariadení iných výrobcov, napr. Juniper, s Cisco zariadeniami.
+
+Katedre ešte stále chýba centralizované riešenie virtuálneho sieťového laboratória, hoci sa tento stav viac krát v minulosti pokúšali študenti zmeniť. Najbližšie sú nástroje ViRo v2 od Ing. Petra Hadača, GNS3 a UNetLab resp. EVE-ng.

@@ -34,3 +34,10 @@ https://ezgif.com/gif-to-jpg
 
 Bibliografia by mala obsahovať priezvisko autora VEĽKÝMI PÍSMENAMI. Môžeme napr. použiť stránku
 https://convertcase.net/
+
+Tabuľka na viac strán
+https://tex.stackexchange.com/questions/26462/make-a-table-span-multiple-pages/26483#26483
+
+label a caption v prostredí longtable na vrchu tabuľky (príklad)
+-treba za label dat line break znak "\\"
+https://tex.stackexchange.com/questions/274324/problem-with-caption-when-using-longtable/274339#274339
