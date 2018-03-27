@@ -29,9 +29,8 @@ Co dalej?
 
 -OPRAVIT BUG - eve-ng sa uplne pokazilo
   -nastartuje uzol hned po pridani a neda sa s nim pracovat
-  -RIESENIE: asi viem v com je problem - problem vznikol s tym, ked som zatvoril labak a otvoril iny labak a s prekvapenim som zistil, ze porty medzi zariadeniami v labaku sa prekryvali! => este sa nesmie pracovat na inej topologii, pokial sa nezastavili zariadenia v povodnej.
-
-  na to bude treba podla prikazu
+  -RIESENIE: asi viem v com je problem - problem vznikol s tym, ked som zatvoril labak a otvoril iny labak a s prekvapenim som zistil, ze porty medzi zariadeniami v labaku sa prekryvali! preto sa tvarili, ze su uz spustene, pritom bolo spustene uplne ine zariadenie => eve-ng sa nepozera na command, ale iba na port => este sa nesmie pracovat na inej topologii, pokial sa nezastavili zariadenia v povodnej.
+  -na to bude treba podla prikazu
     grep -rnw '/opt/unetlab/html/' -e '32768' | less
   upravit subory
     /opt/unetlab/html/includes/cli.php
