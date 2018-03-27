@@ -1,4 +1,5 @@
 \chapter{Nástroje pre sieťovú virtualizáciu}
+\label{chap:nastroje_pre_siet_virt}
 
 V tejto kapitole uvádzam prehľad momentálne dostupných nástrojov virtuálnych sieťových laboratórii. Používaniu jednotlivých riešení sa budem venovať v kapitole \ref{chap:analyza_vyucovania} - \nameref{chap:analyza_vyucovania}.
   
@@ -33,7 +34,7 @@ Na obrázku \ref{obr:packet_tracer} je znázornený nástroj Dynagen.
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{packet_tracer}
-    \caption{Nástroj Dynagen spustený v prostredí Windows}
+    \caption{Nástroj Cisco Packet Tracer spustený v prostredí Windows}
     \cite{obr_packet_tracer}
     \label{obr:packet_tracer}
 \end{figure}
@@ -55,7 +56,7 @@ V súčasnosti sa o nástroj starajú vývojári nástroja GNS3 \cite{dynamips_g
 
 \subsection{WEB-IOU}
 
-WEB-IOU je simulačný nástroj pre platformu Linux, ktorý podporuje výlučne Cisco IOU platformu. Jeho hlavnou výhodou je podpora Cisco prepínačov, ktorá pri Dynamips/Dynagen chýba. Jeho autorom je Andrea Dainese \cite{webiou_github, webiou_unetlab_unetlabv2}.Nástroj je v prevažnej mierie napísaný v jazykoch PHP a JavaScript \cite{webiou_github}. Podporuje iba výlučne vybrané Cisco smerovače na platforme IOU - IOS on Unix \cite{webiou_firewall_cx}. Je vhodný na trénovanie pri certifikáciách CCNP a do istej miery aj CCIE. 
+WEB-IOU, je simulačný nástroj pre platformu Linux, ktorý podporuje výlučne Cisco IOU platformu. Jeho hlavnou výhodou je podpora Cisco prepínačov, ktorá pri Dynamips/Dynagen chýba. Jeho autorom je Andrea Dainese \cite{webiou_github, webiou_unetlab_unetlabv2}.Nástroj je v prevažnej mierie napísaný v jazykoch PHP a JavaScript \cite{webiou_github}. Podporuje iba výlučne vybrané Cisco smerovače na platforme IOU - IOS on Unix \cite{webiou_firewall_cx}. Je vhodný na trénovanie pri certifikáciách CCNP a do istej miery aj CCIE. 
 
 Spravuje sa cez príkazový riadok. Používateľovi je dostupné web rozhranie. Portové čísla na vzdialený prístup sa zariadeniam prideľujú automaticky. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}. Na vytváranie topológii sa používa jednoduchý značkovací jazyk \emph{NETMAP}. Topológie môže ktokoľvek, kto má prístup k web rozhraniu, pretože ani tento nástroj nevie rozlišovať rôzne typy používateľov. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Napriek tomu môžu na jednej topológii môžu pracovať aj viacerí študenti rovnakým spôsobom, ako pri nástroji Dynamips/Dynalab. Nástroj WEB-IOU tiež umožňuje prepojiť topológiu so živou sieťou \cite{webiou_real_network}. 
 
@@ -64,7 +65,7 @@ V súčasnosti sa už nástroj nevyvíja. Na obrázku \ref{obr:webiou} je znázo
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{webiou}
-    \caption{Nástroj Dynagen spustený v prostredí Windows} \cite{obr_webiou}
+    \caption{Webové rozhranie nástroja WEB-IOU} \cite{obr_webiou}
     \label{obr:webiou}
 \end{figure}
 
@@ -107,7 +108,7 @@ Vývoj tohto nástroja bol zastavený. UNetLab ďalej vyvíjala iná skupina vý
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{unetlab_web}
-    \caption{UNetLab web rozhranie}
+    \caption{Webové rozhranie nástroja UNetLab}
     \cite{obr_unetlab_web}
     \label{obr:unetlab_web}
 \end{figure}
@@ -123,7 +124,7 @@ Vzhľad webového rozhrania EVE-ng je znázornený na obrázku \ref{obr:eve_ng_w
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth]{eve_ng_web}
-    \caption{EVE-ng web rozhranie}
+    \caption{Webové rozhranie nástroja EVE-ng}
     \label{obr:eve_ng_web}
 \end{figure}
 

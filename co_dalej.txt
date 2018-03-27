@@ -8,10 +8,7 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-  -Pri vyprácovaní analýzy virtuálnych nástrojov môžem použiť ako zdroj napr IEEE Xplore - články sťahovať cez "https://sci-hub.tw/" - network virtualization
-
   -Najprv sa povenovat tymto veciam
-    -súčasný stav
     -kde bezi EVE-ng (IPcky, hardver/platforma)
     -ktore predmety som skumal,
       -ake technologie sa na nich vyucuju,

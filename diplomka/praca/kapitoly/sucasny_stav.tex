@@ -17,20 +17,32 @@ opísať súčasný stav virtuálnych sieťových laboratórii na katedre a vo s
     -problémy železo, výkon, kompatibilita, interoperabilita
     -na katedre sa používa iba Dynamips a GNS3 lokálne
 
-Je pomerne dobre známym faktom, že výučba nielen sieťových technológii je najúčinnejšia vtedy, keď má študent možnosť pracovať s vecami z reálneho sveta. Preto katedra disponuje fyzickými zariadeniami, ktoré poskytujú študentom, nabrať kvalitné skúsenosti. Avšak s fyzickými zariadeniami sa spájajú nepríjemnosti, ktorým nevieme zabrániť:
+Je pomerne dobre známym faktom, že výučba nielen sieťových technológii je najúčinnejšia vtedy, keď má študent možnosť pracovať s vecami z reálneho sveta. Preto katedra disponuje fyzickými zariadeniami, ktoré pomáhajú študentom, nabrať kvalitné skúsenosti. Avšak s fyzickými zariadeniami sa spájajú záväzky, ktoré nie je možné len tak ľahko prehliadnuť. Sú to napríklad:
 
-\begin{itemize}
-    \item lack of funds to establish and maintain networking hardware and software in sufficient quantity so that each student can have equal access to the learning environment inside and outside scheduled classes;
-    \item lack of physical space, both airconditioned space for servers, and for the hardware 
-used directly by the students; and 
-    \item lack of a secure network environment that can reliably protect the other services provided on the same machines or network.
-\end{itemize}
+\begin{enumerate}
+    \item Nedostatok prostriedkov na prevádzkovanie zariadení.
+    \item Obmedzený prístup k zariadeniam. Ten je možný iba osobne v miestnosti špecializovanej na účel sieťového laboratória.
+    \item Nedostatok priestoru pre fyzické zariadenia.
+    \item Slabá miera izolácie pred prevádzkou generovanou v živej sieti.
+    \item Postupná zastaralosť harvéru alebo softvéru.
+    \item Poruchovosť. Nesprávne fungujúce rozširujúce moduly alebo celé zariadenia treba opraviť resp. vymeniť za nové. Následne treba myslieť na to, kam chybný hardvér umiestniť resp. ako ho odstrániť.
+    \item Vysoká časová náročnosť pri prepájaní fyzických zariadení, predovšetkým pri väčších topológiách t.j. viac ako 5 medziľahlých zariadení (smerovače, prepínače), okrem koncových staníc. S tým súvisí aj nasledujúci bod,
+    \item So zvyšujúcim sa počtom zariadení v topológii rastie pravdepodobnosť, že zariadenia budú medzi sebou prepojené chybnými rozhraniami resp. sa pri prepájaní použije nesprávny typ kábla.
+    \item Pomalšie spúšťanie, pretože sieťové zariadenia sú špecializované na preposielanie rámcov a paketov, nie na rozbaľovanie archívov. Navyše majú celkovo slabšie parametre, než by mal výkonný server.
+    \item Náročné testovanie interoperability zariadení. Ak by sme sa rozhodli vytvoriť topológiu so zariadeniami iných výrobcov, museli by sme si ich zaobstarať, čo stojí prostriedky, a nájsť pre ne voľné miesto, ktoré sa hľadá čoraz ťažšie.
+\end{enumerate}
 
-Tieto problémy sa snažia riešiť rôzne virtualizačné platformy a nástroje, ktoré sú na nich postavené.
+Vyššie uvedené problémy sa snažia riešiť rôzne virtualizačné platformy a nástroje, ktoré sú na nich postavené.
 
-Vo svete ...
+Vo svete pozorujeme trend rastúceho záujmu o virtuálne sieťové laboratóriá. Zo všetkých vymenujme dva príklady, kde sa zaviedla táto forma výuky.
 
-Na katedre sa používajú viaceré riešenia virtualizovaného sieťového laboratória. Patria medzi ne Cisco Packet Tracer, Dynamips/Dynagen a GNS3.
+Na univerzite v \emph{Central University Taiwan} vytvorili v spolupráci s ďalšou univerzitou v Thajsku nástroj zvaný \emph{HVLab}, Hybrid Virtualization Laboratory. Ten v sebe integruje viacero prvkov. Používateľ pristupuje k topológii prostredníctvom webového rozhrania. Na serveri sa tieto topológie mapujú do GNS3 projektov. HVLab obsahuje aj tzv. logging, ktorý v reálnom čase zaznamenáva konfiguračné príkazy študenta a umožňuje učiteľovi vyhodnotiť výkonnosť študenta. Navyše nástroj obsahuje aj okno na výmenu správ v reálnom čase. Je rozdelené na skupinovú konverzáciu, ktorá má slúžiť na rýchlu výmenu konfigurácii medzi členmi tímu a súkromnú konverzáciu s učiteľom \cite{hvlab}.
+
+Na Štátnej univerzite v Orenburgu v Rusku sa skúmalo nasadenie ich vlastného návrhu virtuálneho sieťového laboratória na cloud platforme OpenNebula. Tak môžu poskytovať topológie resp. infraštruktúru ako službu. Ich vlastný návrh riešenia spočíval v použití SDN návrhu v súčinnosti s nástrojmi Open vSwitch a OpenFlow. Topológie boli prístupné vo web rozhraní. Na ich úpravu sa použil komponen \emph{Draw2d touch}. Ten umožňoval jednoduchú interaktivitu s prvkami topológie, ako napr. ich prepájanie čí presúvanie. Komponent na základe prepojení vygeneroval JSON súbor, ktorý topológiu definoval. Server pomocou tohto súboru vedel pracovať s topológiou a riadiť použité zdroje \cite{opennebula_lab}.
+
+Tieto, a mnohé iné univerzity a školiace strediská si uvedomujú výhody virtualizácie pri vyučovaní a používani sieťových technológii.
+
+Na katedre sa tiež snaží držať krok s trendom. Aktívne sa na nej používajú viaceré riešenia virtualizovaného sieťového laboratória. Patria medzi ne Cisco Packet Tracer, Dynamips/Dynagen a GNS3.
 
 Cisco Packet Tracer sa momentálne používa na katedre pri vyučovaní kurzov CCNA Routing \& Switching. 
 
@@ -38,4 +50,12 @@ Dynamips/Dynagen sa používa pri výučbe predmetov Projektovanie sietí 1 a CC
 
 GNS3 sa na katedre používa lokálne, keďže ešte nie je dostatočne podrobne preskúmané nasadenie GNS3 ako vzdialený server. Slúži pre učiteľov na testovanie topológii a vyučovaných technológii nielen na predmetoch a kurzoch so zameraním na Cisco technológie, ale aj na testovanie technológii a kompatibility zariadení iných výrobcov, napr. Juniper, s Cisco zariadeniami.
 
-Katedre ešte stále chýba centralizované riešenie virtuálneho sieťového laboratória, hoci sa tento stav viac krát v minulosti pokúšali študenti zmeniť. Najbližšie sú nástroje ViRo v2 od Ing. Petra Hadača, GNS3 a UNetLab resp. EVE-ng.
+Katedra takisto disponuje aj nástrojom Cisco VIRL, to sa však vo vyučovaní vôbec nepoužíva.
+
+Katedre ešte stále chýba centralizované riešenie virtuálneho sieťového laboratória, ktorý by podporoval všetky zariadenia, hoci sa tento stav viac krát v minulosti pokúšali študenti zmeniť. Najbližšie sú nástroje ViRo v2 od Ing. Petra Hadača, ktoré sa žiaľ pri vyučovaní takmer nepoužíva.
+
+Ďalšími vhodnými kandidátmi zo sveta open-source sú GNS3 a UNetLab resp. EVE-ng. Hlavne GNS3 má už dlhoročnú tradíciu, narozdiel od už nevyvíjaného projektu UNetLab a jeho nasledovníka, EVE-ng. EVE-ng vyvíjala iná skupina vývojárov než UNetLab a dnes je už v štádiu, kedy dokáže robiť kvalitnú konkurenciu nástroju GNS3.
+
+UNetLabv2, ktorý má byť tiež nasledovníkom projektu UNetLab, avšak z dielne pôvodného autora, žiaľ ešte nie je verejne prístupný, hoci sa na jeho vývoji pracuje. Nástroj je prístupný iba vybraným jednotlivcom.
+
+Nástroje podrobnejšie opisujem v nasledujúcej kapitole \nameref{chap:nastroje_pre_siet_virt}
