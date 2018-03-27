@@ -38,6 +38,9 @@ https://convertcase.net/
 Tabuľka na viac strán
 https://tex.stackexchange.com/questions/26462/make-a-table-span-multiple-pages/26483#26483
 
+Tabuľka na viac strán s automatickým prispôsobovaním svojej šírky na šírku strany
+https://tex.stackexchange.com/questions/110266/set-longtable-to-fit-the-page-width/110270#110270
+
 label a caption v prostredí longtable na vrchu tabuľky (príklad)
 -treba za label dat line break znak "\\"
 https://tex.stackexchange.com/questions/274324/problem-with-caption-when-using-longtable/274339#274339

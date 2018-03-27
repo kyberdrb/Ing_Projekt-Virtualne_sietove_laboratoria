@@ -11,3 +11,7 @@ Názov online citácie nájdeme medzi značkami "<title>" a "</title>".
 https://www.computerhope.com/tips/tip30.htm
 
 Pri vyprácovaní práce môžem použiť ako zdroj napr IEEE Xplore "http://ieeexplore.ieee.org/Xplore/home.jsp", ale články články sťahovať cez "https://sci-hub.tw/". Stačí so sci-hubu skopírovať link na web adresu článku z IEEE Xplore. Po odblokovaní článku cez sci-hub si ho okamžite uložíme, pretože sci-hub môže zablokovať prístup po 24 hodinách.
+
+
+Ako písať diplomku
+  -ako, co, preco som robil + ako to riesi ulohy v zadani DP

@@ -17,9 +17,6 @@ Diplomka
   -zdokumentovat zistovanie features pre zariadenia
     -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
 
-  -ako pisat diplomku
-    -ako, co, preco som robil + ako to riesi ulohy v zadani DP
-
   -hadacovo viro treba prerobit alebo nechat umriet v prospech GNS3, vid
     https://itr-links.stackoverflow.email/u/click?_t=3603a3d8f3104ca5bd7015a5845f7fb7&_m=72f714b6c6804f51bec86ff60136c94a&_e=khSYWjE_zs7-adX5jKm1-OookGpf6AVPZjR7AyzPWTwEnKGs8rNUmT2lD4L8iN2P8uYha2PRADixjIPrcWIaFJGCXQ7AyX0cYfKArrRAGqP2_o0jr270rA-U5V2ujhXUE8R_BANn7Tcl1y4lL9DHAzUSuR2CO-dDoACYjM6VrZZaBvoAXw03t7dJ3x1KCyVB6KzJaxOvOYWjvQtYyXp4j0BdEnWNWe-kDZYKhZodQGrOA7r8tmh0ZN_GC5oUwoaU6X9t1nblG0FMZV7rmdwd6ElKE7GxRzN4y-pYMa_771fWXhDGpujulNNOFWMLBx1H3WRWWdwyiwqU447IcwKyJwFw-C-BO7yk_S7-GcfFN16y_Cl1XKAJw4DnPUhOVonIFFxBkpyMCkh8d3pt0kSoNw%3D%3D
   cast "Technology" -> "Most Loved, Dreaded and Wanted Languages"
@@ -29,6 +26,17 @@ Diplomka
 
 ===============================================================================
 Co dalej?
+
+-OPRAVIT BUG - eve-ng sa uplne pokazilo
+  -nastartuje uzol hned po pridani a neda sa s nim pracovat
+  -RIESENIE: asi viem v com je problem - problem vznikol s tym, ked som zatvoril labak a otvoril iny labak a s prekvapenim som zistil, ze porty medzi zariadeniami v labaku sa prekryvali! => este sa nesmie pracovat na inej topologii, pokial sa nezastavili zariadenia v povodnej.
+
+  na to bude treba podla prikazu
+    grep -rnw '/opt/unetlab/html/' -e '32768' | less
+  upravit subory
+    /opt/unetlab/html/includes/cli.php
+    /opt/unetlab/html/includes/__node.php
+  Zaroven sa da manualne definovat port pre zariadenie a odstranit obmedzenie bezat maximalne 128 zariadeni v jednej topologii, staci upravit rovnicu. Mozno, ze sa podari aj integrovat manualnu zmenu portovych cisel zvnutra otvoreneho projektu v tabulke "Nodes" a dynamicke pridelovanie portovych cisel podla toho, ktore su volne, a to nebude uz take trivialne.
 
 -vypytat si od mareka windows a windows server z openstacku a pridat ho do eve-ng
 
