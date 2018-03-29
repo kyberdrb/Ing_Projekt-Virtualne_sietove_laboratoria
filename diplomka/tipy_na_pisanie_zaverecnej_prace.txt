@@ -15,3 +15,12 @@ Pri vyprácovaní práce môžem použiť ako zdroj napr IEEE Xplore "http://iee
 
 Ako písať diplomku
   -ako, co, preco som robil + ako to riesi ulohy v zadani DP
+
+
+Klávesové skratky na TO_UPPERCASE a to_lowercase v ShareLatex a VS Code:
+  ShareLatex
+    TO_UPPERCASE  -   Ctrl+U
+    to_lowercase  -   Ctrl+Shift+U
+  VS Code
+    viď
+    https://stackoverflow.com/questions/35184509/visual-studio-code-make-selected-block-of-text-uppercase/41688564#41688564

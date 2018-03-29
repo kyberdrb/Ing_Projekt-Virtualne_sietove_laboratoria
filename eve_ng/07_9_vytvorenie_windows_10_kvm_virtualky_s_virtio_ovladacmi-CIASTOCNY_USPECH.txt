@@ -2,16 +2,14 @@ Vytvorenie Windows 10 virtualky s VirtIO ovladacmi
 
 Introduction
 
-This is a set of best practices to follow when installing a Windows Server 2012 guest
-  on a Proxmox VE server 4.x. Right now it's a work in progress but hopefully soon it 
-  will be a comprehensive and reliable document. Please feel free to add to it, even 
-  if just to pose a potential best practice.
+This is a set of best practices to follow when installing a Windows Server 2012 guest on a Proxmox VE server 4.x. Right now it's a work in progress but hopefully soon it will be a comprehensive and reliable document. Please feel free to add to it, even if just to pose a potential best practice.
 
 Install
 Prepare
 
     Stiahneme si qemu kvm qemu-kvm virt-manager
       (aptitude/yum/dnf/...)
+
     Stiahneme si windows iso, ktory budeme instalovat
       (napr. cez Windows ISO Downloader)
 
@@ -19,26 +17,21 @@ Prepare
       https://fedoraproject.org/wiki/Windows_Virtio_Drivers
       konkretne
       https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso
-    ​After clicking "Create VM" enter a Name: for your vm, select your Resource Pool 
-      (if you have one) and click Next
+    
+    ​After clicking "Create VM" enter a Name: for your vm, select your Resource Pool (if you have one) and click Next
     Select Microsoft Windows 8/2012 in the OS tab and click Next.
     Select an ISO Image: for Windows Server 2012 in the CD/DVD tab and click Next.
-    Select Bus/Device: VIRTIO, Storage: "your preferred storage" and Cache: writeback 
-      in the Hard Disk tab (the No cache default is safer, but slower) and click Next.
-    Select number of Sockets and cores (the default of 1 is mostly sufficient) in the 
-      CPU tab and click Next.
-    Select Automatically allocate memory and set the Maximum memory to a number you may 
-      require in the memory tab and click Next.
+    Select Bus/Device: VIRTIO, Storage: "your preferred storage" and Cache: writeback in the Hard Disk tab (the No cache default is safer, but slower) and click Next.
+    Select number of Sockets and cores (the default of 1 is mostly sufficient) in the CPU tab and click Next.
+    Select Automatically allocate memory and set the Maximum memory to a number you may require in the memory tab and click Next.
     In the Network tab select Model: VirtIO (paravirtualized) and click Next.
     Click Finish.
 
     Go to the Hardware tab of your newly created VM
     -boot options -> check "ide cdrom 1"
     Select an ISO Image: for Windows Server 2012 in the CD/DVD tab and click Next.
-    -In the "IDE Disk 1" select Disk Bus: VirtIO, Storage: "your preferred storage" 
-      and Cache node: none (the 'writeback' is less safe, but faster) and click Next.
-    -In "IDE CDROM 1" click Connect -> ISO Image Location -> Browse -> select 
-      Windows installation ISO -> Choose Volume.
+    -In the "IDE Disk 1" select Disk Bus: VirtIO, Storage: "your preferred storage" and Cache node: none (the 'writeback' is less safe, but faster) and click Next.
+    -In "IDE CDROM 1" click Connect -> ISO Image Location -> Browse -> select Windows installation ISO -> Choose Volume.
     -click Add Hardware -> Storage -> choose "Select or create custom image" 
       -> click Manage -> choose ISO image named "virtio-win-x.x.iso" 
       -> set Device type: CDROM device -> click Finish.
@@ -47,22 +40,13 @@ Prepare
 
 Launch Windows install
 
-    Start your newly created virtual machine using the "Start" link in the upper right.
-    wait until the vm icon has turned white before you login using the "Console" link 
-      in the upper right.
-    Start the server install with "Install Now" and select the Operating System Flavor 
-      you like and click next and select "Custom: Install Windows only"
-    If you do not see "Drive 0 / Unallocated Space" click Load driver, browse to CD 
-      named CDROM and select folder WIN8\AMD64 (for win10 choose folder "w10")
-      and confirm. Select all three offered 
-      drivers (by pressing the CTRL button) "Red Hat VirtIO SCSI controller, 
-      Redhat VirtIO NIC and Red Hat Balloon driver" and click next
-      (see https://youtu.be/kSG6_A4MqFo?t=128 
-      -> but after choosing vioscsi/w10/x86 no drives have been detected.
-      only the viostor/w10/x86 worked)
-    install Windows to "Drive 0 / Unallocated Space"
-    Wait until Windows is installed and select a Password for the local Administrator 
-    account and login to Windows.
+    Start your newly created virtual machine using the "Start" link in the upper right. Wait until the vm icon has turned white before you login using the "Console" link in the upper right.
+    Start the server install with "Install Now" and select the Operating System Flavor you like and click next and select 
+      "Custom: Install Windows only".
+    If you do not see "Drive 0 / Unallocated Space" click Load driver, browse to CD named CDROM and select folder WIN8\AMD64 (for win10 choose folder "w10") and confirm. Select all three offered drivers (by pressing the CTRL button) "Red Hat VirtIO SCSI controller, Redhat VirtIO NIC and Red Hat Balloon driver" and click next (see https://youtu.be/kSG6_A4MqFo?t=128 
+      -> but after choosing vioscsi/w10/x86 no drives have been detected. Fungovalo iba 'viostor/w10/x86')
+    Install Windows to "Drive 0 / Unallocated Space".
+    Wait until Windows is installed and select a Password for the local Administrator account and login to Windows.
 
 Install addtional VirtIO drivers
 
@@ -70,26 +54,21 @@ If you don´t got all virtio drivers selected on install, you can install them a
 
     Start Explorer, Go to CDROM, copy folder WIN8\AMD64 to C:\Program Files\ and rename 
       AMD64 to C:\Program Files\VirtIO
-    open Device Manager and right click on Other Devices -> Ethernet Controller and select 
-      update driver software
-    select "Browse my computer" select folder "C:\Program Files\VirtIO" and click "Install" 
-      for Red Hat VirtIO Ethernet Adapter.
-    again in Device Manager right click on Other Devices -> PCI Device and select update 
-      driver software
-    again "Browse my computer" select folder "C:\Program Files\VirtIO" and click "Install" 
-      for VirtIO Balloon Driver.
+    open Device Manager and right click on Other Devices -> Ethernet Controller and select update driver software
+    select "Browse my computer" select folder "C:\Program Files\VirtIO" and click "Install" for Red Hat VirtIO Ethernet Adapter.
+    again in Device Manager right click on Other Devices -> PCI Device and select update driver software
+    again "Browse my computer" select folder "C:\Program Files\VirtIO" and click "Install" for VirtIO Balloon Driver.
 
 For more information and configuration about ballooning, see Dynamic Memory Management
+
 Further Information
 RAW vs QCOW2
 
-The RAW file format provides slightly better performance WHILE qcow2 offers advanced 
-features such as copy on write and Live_Snapshots independent of the backing storage.
+The RAW file format provides slightly better performance WHILE qcow2 offers advanced features such as copy on write and Live_Snapshots independent of the backing storage.
 
 Shutdown Guest From Web UI
 
-In order to be able to cleanly shutdown a windows server 2012 guest from console or 
-  with backup schedule, some changes have to be done in the registry.
+In order to be able to cleanly shutdown a windows server 2012 guest from console or with backup schedule, some changes have to be done in the registry.
 
   launch "regedit.exe" and set value of 
     HKLM\Software\Microsoft\Windows NT\CurrentVersion\winlogon and change 

@@ -114,6 +114,7 @@ Vývoj tohto nástroja bol zastavený. UNetLab ďalej vyvíjala iná skupina vý
 \end{figure}
 
 \subsection{EVE-ng}
+\label{chap:virt_lab_eve_ng}
 
 EVE-ng je simulačný nástroj sietí, ktorý vznikol ako klon a nasledovník nástroja UNetLab. Celkovou funkcionalitou, až na niektoré zmeny, napr. použitie MySQL namiesto SQLite, pridaná podpora pre ďalšie zariadenia), a vzhľadom webového rozhrania sa preto veľmi podobá na svojho predchodcu. Nástroj je postavený na platforme Linux a vyvíjaný prevažne v jazykoch JavaScript a PHP. Web rozhranie je realizované ako webová aplikácia s použitím framework nástroja \emph{Angular JS} a \emph{Twitter Bootstrap} \cite{eve_ng_technologies}.
 
@@ -127,6 +128,10 @@ Vzhľad webového rozhrania EVE-ng je znázornený na obrázku \ref{obr:eve_ng_w
     \caption{Webové rozhranie nástroja EVE-ng}
     \label{obr:eve_ng_web}
 \end{figure}
+
+% Nastav poradove cislo tabuliek na 0
+% aby sa zacali cislovat od 1
+\setcounter{table}{0}
 
 \begin{longtable}{| m{3cm} | m{2cm} | m{2cm} | m{2cm} | m{4cm} |}
 \caption{Porovnanie EVE-ng verzii}
@@ -156,6 +161,10 @@ HTML Desktop Console                                  & No                & Yes 
 Multi startup configuration choose per lab            & No                & Yes             & Yes                  & Option to create and boot lab from different startup configurations, multi startup config                     \\ \hline
 Export/Import configs or config packs to local PC     & No                & Yes             & Yes                  & Option import and export single config or config packs to the lab                                             \\ \hline  
 \end{longtable}
+
+Z tabuľky vyplýva, že verzie \emph{Community} je ako jediná bezplatná. Najväčšími výhodami ostatných verzii je rozdelenie používateľov do používateľských rolí (iba v \emph{Learning Centre}), zatvorenie topológie s už spustenými zariadeniami, prehľad zatvorených topológii so spustenými zariadeniami a zvýšený limit na počet spustených zariadení pre topológiu.
+
+Doplnením a rozšírením funkcionality EVE-ng Community verzie je venovaná kapitola \ref{chap:eve_ng_uprava_zdroj_kodov} - \nameref{chap:eve_ng_uprava_zdroj_kodov}
 
 \subsection{GNS3}
 

@@ -8,8 +8,9 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+  -mám dať do kapitoly EVE-ng -> Úprava zdrojových kódov aj veci, ktoré som nevyriešil?
+
   -Najprv sa povenovat tymto veciam
-    -kde bezi EVE-ng (IPcky, hardver/platforma)
     -ktore predmety som skumal,
       -ake technologie sa na nich vyucuju,
       -a ake zariadenia su vhodne na tieto predmety
@@ -26,6 +27,17 @@ Diplomka
 
 ===============================================================================
 Co dalej?
+
+-urobiť na EVE-ng serveri
+
+  cd ~
+  git clone https://github.com/dainok/unetlab.git
+  cd unetlab
+  diff -qr ~/unetlab/ /opt/unetlab/
+hlavne bude zaujímavý adresár s webovou stránkou
+  diff -qr ~/unetlab/html /opt/unetlab/html/
+  
+Niečo sa mi na EVE-ng nezdá. EVE-ng má príliš veľa problémov. UNetLab by mohol dať odpovede na otázky, ktoré EVE-ng má.
 
 -OPRAVIT BUG - eve-ng sa uplne pokazilo
   -nastartuje uzol hned po pridani a neda sa s nim pracovat
@@ -138,15 +150,30 @@ do Linuxu (GNS3)
 -netdata
   -treba doriesit zabezpecenie 
     [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
+
 -urobit windows koncove zariadenie pre EVE-ng; najlepsie s virtio ovladacmi 
-  -Windows 10 x86/x64
-  -Windows Server 2016
-  -zrejme bude treba vytvorit novu sablonu pre windowsy akebo upravit "unl_wreapper", lebo na mojom notebooku
-  som spustil Win10 x86 s plnou virtio podporou. Vsimol som si odlisne QEMU parametre,
-  akymi EVE-ng spusta Windows zariadenia, v porovnani s mojou Windows virtualkou.
-  Okrem upravy sablony bude treba upravit aj "qemu_wrapper" (ale qemu wrapper je binarka) ->
-  skontrolovat logy "/opt/unetlab/data/Logs/" predovsetkym "unl_wrapper" a "wrapper"
+    -Windows 10 x86/x64
+    -Windows Server 2016
   -mozno vytvorit s ntLite?
+  -OPRAVIT BUG: 
+    zrejme bude treba vytvorit novu sablonu pre windowsy akebo upravit "unl_wrapper", lebo na mojom notebooku
+    som spustil Win10 x86 s plnou virtio podporou. Vsimol som si odlisne QEMU parametre,
+    akymi EVE-ng spusta Windows zariadenia, v porovnani s mojou Windows virtualkou.
+    Okrem upravy sablony bude treba upravit aj "qemu_wrapper" (ale qemu wrapper je binarka) ->
+    skontrolovat logy "/opt/unetlab/data/Logs/" predovsetkym "unl_wrapper" a "wrapper"
+  -MOZNE RIESENIE:
+    Windows virtualka sa v EVE-ng aj na mojom notebooku spustila prikazom
+    
+      sudo qemu-system-x86_64 -m 4G -cpu host -enable-kvm -drive file=/opt/unetlab/addons/qemu/win-10-pro-x86-1709_20170930_z_mojho_nb/virtioa.qcow2,if=ide,serial=111074 -vnc :26881
+
+      (zdroj: https://virtualchimp.wordpress.com/2016/03/09/creating-and-installing-windows-10-image-using-qemu/)
+
+    Windows virtualka sa spustila na porte 32781 (5900+26881). Teraz uz staci upravovat prikaz dovtedy, kym sa Windows virtualka nespusti aj z web rozhrania. 
+
+    Mozno pomoze porovnat si QEMU prikaz, ktory spusta windows virtualku z mojho notebooku so serverovym.
+    
+    Pokroky zaznamenat do navodu "eve-ng/07_9_vytvorenie_windows_10_kvm_virtualky_s_virtio_ovladacmi-CIASTOCNY_USPECH.txt"
+
 -ntopng - kategorizacia sietovej premavky podla typu/protokolu (http, dns, dhcp, aplikacie, ...)
 -Blockchain - matematika+siete+kryptomeny
 -Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng

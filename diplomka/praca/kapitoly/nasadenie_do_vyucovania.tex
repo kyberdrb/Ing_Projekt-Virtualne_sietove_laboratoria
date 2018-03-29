@@ -1,4 +1,5 @@
 \chapter{Nasadenie do vyučovania}
+\label{chap:nasadenie_do_vyucovania}
 
 Rozpísať, ako sa ktorý nástroj správal pri vypracovávaní úloh z daného predmetu.
 
@@ -6,7 +7,19 @@ Urobiť napríklad scenár: syslog a snmp server z inych hostov a routrov
 
 Maximálny počet spustených topológii daného typu odhadneme sčítaním ich systémových požiadaviek. Mali by z toho vyplynúť odhad minimálnych systémových požiadaviek servera pri topológiách na vybrané predmety.
 
+\section{Integračný balíček EVE-ng}
+\label{chap:nasadenie_klient}
+
+Web rozhranie - 2 módy - Natívny a HTML5.
+Integračný balíček je nutný pre Natívny režim. HTML5 mód zabezpečuje integráciu pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení.
+
+HTML5 mód web rozhrania EVE-ng bol však reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom.
+
+- predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii).
+
 \section{Počítačové siete 1 a 2}
+
+Na predmet Počitačové siete 2 bol použitý fyzický EVE-ng server.
 
 - náhrada/doplnok pre nástroj Packet Tracer
 
@@ -19,6 +32,8 @@ Vypracované topológie:
 náhrada/doplnok Dynamips servera (s takym vykonom, t.j. cca 10/15skupin po 10 routroch)
 
 \section{Projektovanie sietí 2}
+
+VMware inštalácia
 
 V EVE-ng boli úspešne dokončené semestrálne práce s využitím technológii VPLS a Seamless MPLS.
 

@@ -1,3 +1,7 @@
+Adresar so zariadeniami
+
+  /opt/unetlab/addons/
+
 *************
 Overenie stavu UKMS z prepinaca v System -> System status
   cat /opt/unetlab/uksm
@@ -57,7 +61,7 @@ Zdroje:
 https://stackoverflow.com/questions/1135245/how-to-get-a-list-of-mysql-user-accounts
 
 *************
-Migracny skript UNetLab
+Migracny skript UNetLab - ale ja aj tak pouzivam vlastny sposob
   /opt/unetlab/scripts/migrate.sh
 
 *************
@@ -68,7 +72,7 @@ Skript, ktory okrem ineho spusta IOL zariadenia a opravuje opravnenia
 Ovladace pre Windows hostov
   /opt/unetlab/scripts/virtio-win-drivers.img
 
-Uzitocne pre spravny vykon Windows hostov.
+Uzitocne pre spravny vykon Windows zariadeni v topologii.
 
 *************
 Skript, ktory sa spusta pri kazdom starte systemu

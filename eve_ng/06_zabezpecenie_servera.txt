@@ -49,7 +49,7 @@ Explicitne definujeme verziu protokolu
   Protocol 2
   ...
 
-Explicitne definujeme, ktorí používatelia budú mať povolený a zakázaný prístup k SSH serveru. Toto je veľmi striktné zabezpečenie. Pri viacerých používateľoch sa môže stať, že stratíme prehľad o povolených používateľoch. Preto je tento krok voliteľný.
+Explicitne definujeme, ktorí používatelia budú mať povolený a zakázaný prístup k SSH serveru. Toto je veľmi striktné zabezpečenie. Pri viacerých používateľoch sa môže stať, že stratíme prehľad o povolených používateľoch. Preto je tento krok VOLITEĽNÝ.
 
   ...
   AllowUsers andrej
