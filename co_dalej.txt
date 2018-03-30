@@ -8,8 +8,6 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-  -v kapitole "Nasadenie do vyučovania" spomenúť význam a oprávnenia používateľských rolí v EVE-ng.
-
   -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
 
   -Najprv sa povenovat tymto veciam
