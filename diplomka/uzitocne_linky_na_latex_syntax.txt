@@ -44,3 +44,18 @@ https://tex.stackexchange.com/questions/110266/set-longtable-to-fit-the-page-wid
 label a caption v prostredí longtable na vrchu tabuľky (príklad)
 -treba za label dat line break znak "\\"
 https://tex.stackexchange.com/questions/274324/problem-with-caption-when-using-longtable/274339#274339
+
+Vycentrovanie tabuľky v prostredí longtabu
+https://tex.stackexchange.com/questions/26212/a-vertical-alignment-problem-in-tabu-environment-with-xm/26214#26214
+
+Zmena zarovnania jednej bunky v tabuľke
+https://tex.stackexchange.com/questions/47675/change-align-of-a-single-cell-in-tabular
+
+Zmena čísla, ktorým sa začína číslovanie tabuliek
+https://tex.stackexchange.com/questions/78747/how-can-i-set-the-table-counter/78756#78756
+
+Nový riadok v jednej bunke tabuľky
+https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-inside-a-table-cell/176780#176780
+
+Zväčšenie odsadenia a zmena zarovnania textu jednej bunky v tabuľke
+https://tex.stackexchange.com/questions/281571/how-to-left-align-text-in-a-table-with-makecell/281580#281580

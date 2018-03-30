@@ -8,7 +8,9 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-  -mám dať do kapitoly EVE-ng -> Úprava zdrojových kódov aj veci, ktoré som nevyriešil?
+  -v kapitole "Nasadenie do vyučovania" spomenúť význam a oprávnenia používateľských rolí v EVE-ng.
+
+  -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
 
   -Najprv sa povenovat tymto veciam
     -ktore predmety som skumal,
