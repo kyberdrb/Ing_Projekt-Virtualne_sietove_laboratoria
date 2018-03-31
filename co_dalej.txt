@@ -8,6 +8,12 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+  -titulná strana - aké je identifikačné číslo št. odboru?
+
+  -treba v kapitole "Analýza vyučovania" dávať ku predmetom ich čísla?
+
+  -treba v kapitole "Analýza vyučovania" dať zoznam vyučovaných technológii pre CCNA Security?
+
   -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
 
   -Najprv sa povenovat tymto veciam

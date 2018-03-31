@@ -12,11 +12,10 @@ Spolocne parametre
    GNS3
 **********
 Výhody
--Podpora grafických Docker kontajnerov
+-Podpora Docker kontajnerov s grafickým rozhraním
 -Lepšia škálovateľnosť oproti EVE-ng
   -možnosť vytvoriť GNS3 cluster
--Pri práci viacerých používateľov na jednom projekte sa topológia sa pri
- zmene okamžite aktualizuje všetkým používateľom
+-Pri práci viacerých používateľov na jednom projekte sa topológia sa pri  zmene okamžite aktualizuje všetkým používateľom
 
 Nevýhody
 -Nutnost instalacie samostatnej klientskej aplikacie
@@ -24,6 +23,7 @@ Nevýhody
 -Zložitejšie vytváranie šablón pre zariadenia
   -nutnosť manuálne pridať každé zariadenie
   -pri GNS3 clustri treba každé zariadenie pridať samostatne na každý server v clustri
+-Verzia klientstskej aplikácie a servera musia byť zhodné t.j. aktualizovať sa musia aj klienstká, aj serverová časť naraz, inak nebude možné nástroj používať
 
 **********
   EVE-ng
@@ -43,10 +43,10 @@ Výhody
 -Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
 
 Nevýhody
--Pomale HTML5 webove rozhranie
+-Pomalé HTML5 webové rozhranie
 -Podporované iba konzolové Docker kontajnery
--Podporu Docker kontajnerov treba aktivovať dodatočne
--Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením.
--Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov
+-Podporu Docker kontajnerov treba aktivovať dodatočne. V Community verzii je navyše experimentálna (ošetrené v Pro a Learning Centre verzii).
+-Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením (ošetrené v Pro a Learning Centre verzii).
+-Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov (ošetrené v Learning Centre verzii).
 -Web server (Apache) nie je chránený modulmi “modsecurity” (ochrana napr. Proti SQL Injection) a “modevasive” (ochrana proti DoS a DDoS útokom)
 -EVE-ng sa nedá škálovať naprieč viacerými servermi t.j. nevieme urobiť EVE-ng cluster tak, ako to vieme urobiť v GNS3
