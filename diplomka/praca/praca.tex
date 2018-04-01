@@ -26,13 +26,39 @@
 % Tabulka (aj) na uvodnej strane
 \usepackage{tabu}
 
-% Velka tabulka na viac stran pre porovnavanie EVE-ng verzii
-\usepackage{longtable}
+
 
 % Pouzite na tabulku "Porovnanie EVE-ng serverov",
 % aby sa zvacsilo odsadenie od okrajov pri
 % viacriadkovom popise
 \usepackage{makecell}
+
+% Velka tabulka na viac stran pre porovnavanie EVE-ng verzii
+\usepackage{longtable}
+
+% Spajanie buniek vertikalne
+\usepackage{multirow}
+
+% Vytvaranie tabuliek v jazyku "slovak" a "czech"
+\usepackage{booktabs}
+
+\begingroup
+    \makeatletter
+    \catcode`\-=\active
+    \AtBeginDocument{
+    \def\@@@cmidrule[#1-#2]#3#4{\global\@cmidla#1\relax
+        \global\advance\@cmidla\m@ne
+        \ifnum\@cmidla>0\global\let\@gtempa\@cmidrulea\else
+        \global\let\@gtempa\@cmidruleb\fi
+        \global\@cmidlb#2\relax
+        \global\advance\@cmidlb-\@cmidla
+        \global\@thisrulewidth=#3
+        \@setrulekerning{#4}
+        \ifnum\@lastruleclass=\z@\vskip \aboverulesep\fi
+        \ifnum0=`{\fi}\@gtempa
+        \noalign{\ifnum0=`}\fi\futurenonspacelet\@tempa\@xcmidrule}
+    }
+\endgroup
 
 % Cislovanie obrazkov a tabuliek plynule, 
 % bez uvodneho cisla kapitoly

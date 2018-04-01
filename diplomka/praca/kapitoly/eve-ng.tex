@@ -360,16 +360,17 @@ EVE-ng server je vytvorený tak, aby sa po jeho konfigurácii bolo potrebné oň
 
 
 \subsection{Adresárova štruktúra}
+\label{chap:adresarova_struktura}
 
 Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobnejší zoznam súborov a adresárov sa nachádza v dokumentácii na priloženom CD.
 
 \begin{longtabu} to \textwidth {| X[3.0,l,m] | X[4.0,l,m] |}
-\caption{Parametre EVE-ng serverov}
+\caption{Adresárová štrukúra EVE-ng servera}
 \label{tab:adresare} \\
 \hline
     \multicolumn{1}{|c|}{\textbf{Adresár}} & \multicolumn{1}{|c|}{\textbf{Popis}} \\
 \hline
-    \texttt{/opt/unetlab/addons/} & \makecell[lc]{Adresár obsahujúci všetky zariadenia, \\ ktoré je možné pridať do topológie} \\
+    \texttt{/opt/unetlab/addons/} & \makecell[lc]{Adresár obsahujúci všetky zariadenia, \\ ktoré je možné pridať do topológie. \\ Obsahuje podadresáre \texttt{dynamips}, \texttt{iol} a \texttt{qemu}, \\ podľa toho, pre aký typ hypervízora je zariadenie \\ určené - Dynamips, IOL alebo QEMU/KVM} \\
 \hline
     \texttt{/opt/unetlab/addons/iol/bin/} & \makecell[lc]{Adresár s Cisco IOL zariadeniami spolu s \\ vygenerovanou IOL licenciou} \\
 \hline

@@ -49,7 +49,10 @@ Vycentrovanie tabuľky v prostredí longtabu
 https://tex.stackexchange.com/questions/26212/a-vertical-alignment-problem-in-tabu-environment-with-xm/26214#26214
 
 Zmena zarovnania jednej bunky v tabuľke
-https://tex.stackexchange.com/questions/47675/change-align-of-a-single-cell-in-tabular
+https://tex.stackexchange.com/questions/47675/change-align-of-a-single-cell-in-tabular/47677#47677
+  alebo
+http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/makecell/makecell.pdf
+  (kapitola 1.1 hneď prvý príkaz)
 
 Zmena čísla, ktorým sa začína číslovanie tabuliek
 https://tex.stackexchange.com/questions/78747/how-can-i-set-the-table-counter/78756#78756
@@ -59,3 +62,5 @@ https://tex.stackexchange.com/questions/2441/how-to-add-a-forced-line-break-insi
 
 Zväčšenie odsadenia a zmena zarovnania textu jednej bunky v tabuľke
 https://tex.stackexchange.com/questions/281571/how-to-left-align-text-in-a-table-with-makecell/281580#281580
+ alebo
+https://tex.stackexchange.com/questions/408287/vertical-alignment-of-equation-in-a-table-cell/408290#408290

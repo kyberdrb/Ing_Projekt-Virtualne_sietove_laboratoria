@@ -1,30 +1,67 @@
 \chapter{Virtuálne zariadenia}
 \label{chap:virt_zariadenia}
 
+Dôležitú súčasť virtuálneho laboratória tvoria aj jeho zariadenia. Po analýze vyučovania sme mohli začať s ich získavaním a testovaním.
+
+
+
+
 \section{Získavanie}
 
 Zariadenia boli získavané z rôznych zdrojov. Predovšetkým boli použité zariadenia, ktoré sa už na katedre používali.
 
-Spomenúť typy zariadení:
-  - Dynamips
-  - Cisco IOL/IOU
-  - QEMU
-  
+Ako už bolo naznačené v časti \ref{chap:adresarova_struktura}, EVE-ng podporuje rôzne typy zariadení. Patria medzi ne zariadenia typu Dynamips, Cisco IOL/IOU a QEMU.
+
 Zoznam všetkých funkčných zariadení v nástroji EVE-ng je k dispozícii na CD médiu.
+
+
+
+
+\subsubsection{Metodika}
+
+Pri získavaní zariadení sme vychádzali zo zariadení, ktoré sa na katedre používajú a zo zoznamu zariadení, ktoré nástroj EVE-ng podporoval. Vybrané zariadenia následne prechádzali testovacími krokmi, ktoré sú bližšie popísané v ďalších častiach tejto kapitoly.
+
+Všetky zozbierané zariadenia sú uložené v adresári \\ \texttt{/opt/unetlab/addons/rozne\_zariadenia}.
+
+
+
 
 \section{Testovanie}
 \label{chap:testovanie_zariadeni}
 
+Testovanie zariadení bolo vykonané, aby sa zaistila kvalita a plynulosť vyučovacieho procesu, ako aj predvídateľnosť a replikovateľnosť behu jednotlivých zariadení a topológii.
+
+
+
+
 \subsection{Testovanie spustiteľnosti}
 
-Kompatibilita zariadení.
-Kritériá
+Ako prvé bola testovaná spustiteľnosť zariadení. Na základe nej sa zistilo, či je zariadenie schopné zapnúť a konfigurovať ho pomocou vzdialeného prístupu.
+
+
 
 \subsubsection{Metodika}
 
+Najpr bolo potrebné pridať zariadenie na server. Môžeme na to použiť návody buď z oficiálnej EVE-ng stránky \cite{eve_ng_howtos}. Návody pre niektoré zariadenia sú k dispozícii aj na CD v adresári \emph{eve-ng}.
+
+Vybrané zariadenia sme následne pridávali do predpripravenej topológie v EVE-ng. Následne sme vybrali jedno zariadenie, ktoré sme následne spustili. Ak sa zariadenie nespustilo, skúšali sme zistiť príčinu a vykonávali rôzne úpravy, akými by sme zariadenie v topológii spustili napr. modifikovať súbor, z ktorého sa zariadenie spúšťalo, opraviť oprávnenia, premenovať súbor do správneho formátu, upraviť systémové parametre na zariadenia a pod.
+
+Ak sa zariadenie spustilo, skúsili sme sa pripojiť na jeho konzolu. Keď sa na ňu nedalo pripojiť, zariadenie sme zastavili a zmenili protokol na vzdialený prístup; obvykle stačilo vyskúšať protokoly \emph{telnet} a \emph{vnc}. V prípade, že zariadenie je v poriadku, mali by sme aspoň jedným z týchto protokolov dostať textový resp. grafický výstup konzoly na zariadení.
+
+Ak sme sa nakoniec pripojili ku konzole zariadenia, sledovali sme jeho spúšťanie. Čakali sme na dokončenie spúšťania. V prípade, že sa zariadenie úspešne spustilo, prihlásili sme da doň predvolenými prihlasovacími údajmi, ak to bolo potrebné, a vyskúšali sme, či konzola reaguje na vstup z klávesnice. Ak konzola reagovala, zariadenie zostalo uložené na serveri. Ak sme ku zariadeniu nevedeli zistiť prihlasovacie údaje, umiestnili sme ho do osobitného adresára.
+
+Ak sa ani po týchto úkonoch zariadenie nespustilo, odstránili sme ho zo servera. Týmto spôsobom sme získali množinu spustiteľných zariadení v EVE-ng topológii.
+
 \subsubsection{Vyhodnotenie}
 
-Sumárny prehľad.ods
+Výsledky testovania spustiteľnosti zariadení sú zhrnuté v súbore \emph{sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods}. Súbor obsahuje viacero stĺpcov
+
+{\huge TODO - POPÍSAŤ STĹPCE}
+
+Zariadenie	Platforma	Názov súboru	Spôsob virtualizácie	Predvolené prihlasovacie údaje	Spôsob pripojenia	Úspešné spustenie	Poznámky
+
+
+V stĺpci \emph{Poznámky} obsahuje aj špecifický popis správania sa daného zariadenia, popr. problémy pri používaní zariadenia a ich možné riešenie.
 
 \subsection{Testovanie systémových požiadaviek}
 \label{chap:testovanie_zariadeni_benchmark}
@@ -49,6 +86,8 @@ benchmarking.zip
 
 \subsection{Testovanie technológii}
 \label{chap:testovanie_technologii}
+
+V tejto časti využijeme poznatky z kapitoly \ref{chap:analyza_vyucovania} a použijeme ich na testovanie podporovaných technológii vybraných zariadení.
 
 Kritériá.
 

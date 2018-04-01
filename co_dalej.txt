@@ -8,7 +8,7 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-  -titulná strana - aké je identifikačné číslo št. odboru?
+  -titulná strana - aké je číslo št. odboru?
 
   -treba v kapitole "Analýza vyučovania" dávať ku predmetom ich čísla?
 
@@ -17,9 +17,7 @@ Diplomka
   -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
 
   -Najprv sa povenovat tymto veciam
-    -ktore predmety som skumal,
-      -ake technologie sa na nich vyucuju,
-      -a ake zariadenia su vhodne na tieto predmety
+    -ake zariadenia su vhodne na skumane predmety a preco (technologie)?
 
   -zdokumentovat zistovanie features pre zariadenia
     -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
@@ -33,6 +31,8 @@ Diplomka
 
 ===============================================================================
 Co dalej?
+
+-Otestovať v GNS3 prepojiť už spustené uzly medzi sebou (hot connect) a otestovať konektivitu, či to bude fungovať.
 
 -urobiť na EVE-ng serveri
 

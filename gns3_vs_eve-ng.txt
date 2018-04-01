@@ -1,52 +1,42 @@
 Spolocne parametre
--Multiplatformový - klientská aplikacia existuje pre Windows/Linux/Mac
--Možnosť nasadena ako vzdialené servery
+-Možnosť nasadenia ako vzdialené servery
 -Podpora viacerých používateľov (multi-user)
--Podpora viacerých používateľov pri práci na spoločnom projekte
--Eventualne mozny import pouzivatelskych uctov na vzdialeny GNS3 server z LDAP
-  -pre GNS3 do Linuxu
-  -pre EVE-ng do Linuxu a MySQL databázy
--Podpora Docker kontajnerov
+-Eventuálne možný import používateľských účtov na server z LDAP: pre GNS3 do operačného systému, pre EVE-ng do Linuxu alebo MySQL databázy
 
 **********
    GNS3
 **********
 Výhody
+-Multiplatformová klientská aplikacia (Windows/Linux/Mac)
 -Podpora Docker kontajnerov s grafickým rozhraním
+-Podpora viacerých používateľov pri práci na spoločnom projekte
 -Lepšia škálovateľnosť oproti EVE-ng
   -možnosť vytvoriť GNS3 cluster
--Pri práci viacerých používateľov na jednom projekte sa topológia sa pri  zmene okamžite aktualizuje všetkým používateľom
+-Pri práci viacerých používateľov na jednom projekte sa topológia sa pri zmene okamžite aktualizuje všetkým používateľom a všetci môžu pracovať so zariadeniami z GUI
+-Širšie možnosti nastavenia
 
 Nevýhody
--Nutnost instalacie samostatnej klientskej aplikacie
--Zložitejšia konfigurácia na autentifikáciu používateľov
+-Nutnosť inštalácie samostatnej klientskej aplikacie
+-Zložitejšia konfigurácia autentifikácie a izolácie používateľov
 -Zložitejšie vytváranie šablón pre zariadenia
-  -nutnosť manuálne pridať každé zariadenie
-  -pri GNS3 clustri treba každé zariadenie pridať samostatne na každý server v clustri
--Verzia klientstskej aplikácie a servera musia byť zhodné t.j. aktualizovať sa musia aj klienstká, aj serverová časť naraz, inak nebude možné nástroj používať
+-Nutnosť manuálne pridať každé zariadenie do GNS3 klienta
+-Pri nasadení GNS3 na viacero serverov (cluster) treba každé zariadenie pridať samostatne na každý server 
+-Verzia klientskej aplikácie a servera musia byť zhodné t.j. musia sa naraz aktualizovať aj klienstká, aj serverová časť, inak nie je možné nástroj používať
 
 **********
   EVE-ng
 **********
 Výhody
--Web rozhranie namiesto samostatnej klientskej aplikácie v GNS3
-  (nie je potrebne instalovat klientsku aplikaciu)
--Podpora Telnet/VNC vzdialeneho pripojenia ku zariadeniam cez HTML5
-  reverse proxy (Apache Guacamole) -> netreba instalovat na klientsky
-  pocitac nic, okrem weboveho prehliadaca a WireShark
--Podpora viacerých používateľov (prihlasenie cez web login stranku)
--Podpora viacerych pouzivatelov pri praci na spolocnom projekte
-  (topologia sa aktualizuje az po kliknuti sa ikonku "Refresh topology"
-  nie okamzite po jej zmene v porovnani s GNS3)
--Jednoduchšie nasadenie na server v porovnaní s GNS3 (nainštalujeme EVE-ng server, 
-  zabezpečíme ho, pridáme doň zariadenia a môžeme vytvárať projekty)
--Vyššia bezpečnosť: používateľ sa pred použitím web rozhrania musí autentifikovať heslom.
+-Multiplatformový klient - webová aplikácia
+-Podpora Telnet/VNC vzdialeného pripojenia ku zariadeniam cez HTML5 reverse proxy server (Apache Guacamole) - na klientský počítač netreba inštalovať  nič, okrem webového prehliadača a nástroja Wireshark
+-Podpora viacerých používateľov - autentifikácia používateľa menom a heslom
+-Podpora viacerých používateľov pri práci na spoločnom projekte - topológia sa aktualizuje až po kliknutí na "Refresh topology", nie okamžite po jej zmene
 
 Nevýhody
 -Pomalé HTML5 webové rozhranie
--Podporované iba konzolové Docker kontajnery
--Podporu Docker kontajnerov treba aktivovať dodatočne. V Community verzii je navyše experimentálna (ošetrené v Pro a Learning Centre verzii).
--Nutnosť vypnutia zariadenia, keď je potrebné pridať/ostrániť prepojenie s iným zariadením (ošetrené v Pro a Learning Centre verzii).
--Všetci používatelia sú typu “Administrator”- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov (ošetrené v Learning Centre verzii).
--Web server (Apache) nie je chránený modulmi “modsecurity” (ochrana napr. Proti SQL Injection) a “modevasive” (ochrana proti DoS a DDoS útokom)
--EVE-ng sa nedá škálovať naprieč viacerými servermi t.j. nevieme urobiť EVE-ng cluster tak, ako to vieme urobiť v GNS3
+-Podporované sú iba konzolové Docker kontajnery. oficiálna podpora Docker kontajnerov vrátane grafických je prítomná iba vo verziách Pro a Learning Centre; vo verzii Community je experimentálna a treba ju aktivovať dodatočne
+Pri práci viacerých ľudí na spoločnom projekte môže z webovej aplikácie pristupovať k zariadeniam iba jeden človek, ostatní musia k zariadeniam pristupovať pomocou IP adresy a portu.
+-Nutnosť vypnutia zariadenia, keď je potrebné pridať/odstrániť prepojenie s iným zariadením (ošetrené v Pro a Learning Centre verzii).
+-Všetci používatelia sú typu "Administrator"- ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty/adresáre/používateľov (ošetrené v Learning Centre verzii).
+-Web server (Apache) nie je chránený modulmi "modsecurity" (ochrana napr. Proti SQL Injection) a "modevasive" (ochrana proti DoS a DDoS útokom)
+-EVE-ng sa nedá škálovať naprieč viacerými servermi t.j. nevieme urobiť EVE-ng cluster tak, ako to je to možné v GNS3

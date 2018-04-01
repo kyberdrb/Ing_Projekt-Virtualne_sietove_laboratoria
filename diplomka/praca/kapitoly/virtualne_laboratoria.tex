@@ -210,28 +210,39 @@ Z vyššie uvedených nástrojov má zmysel zaoberať sa nástrojmi EVE-ng a GNS
 
 V priebehu projektu sme sa preto zamerali na nástroje GNS3 a EVE-ng. Počas neho sa však ukázalo, že GNS3 nie je vhodná pre vzdialené použitie, preto sme sa týmto nástrojom ďalej nezaoberali. V čase skúmania bol nástroj GNS3 vo verzii 1.5.3. Keď sme skúšali použiť GNS3 ako vzdialený server, klientská aplikácia sa na GNS3 vzdialený server nevedela pripojiť, hoci sme postupovali podľa návodov na GNS3 stránke a pri testovaní nestála v pripojení na server žiadna prekážka napr. firewall.
 
-{\huge TODO - pridať širšie porovnanie EVE-ng a GNS3 - viď súbor gns3 vs eve-ng.txt}
+Napriek tomu je GNS3 silným nástrojom, schopný konkurovať EVE-ng. V tabuľke \ref{tab:gns3_eve_ng_porovnanie} porovnávame jednotlivé výhody oboch nástrojov.
 
-\begin{longtabu} to \textwidth {| X[5.0,cm] | X[5.0,cm] | X[5.0,cm] |}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\begin{longtabu} to \textwidth { X[0.5,lm]  X[1.0,lm]  X[1.0,lm] }
 \caption{Porovnanie GNS3 a EVE-ng}
 \label{tab:gns3_eve_ng_porovnanie} \\
 \hline
-    & \textbf{GNS3} & \textbf{EVE-ng} \\
-\hline
-    \textbf{Výhody}
-    &
-        \begin{itemize}
-            \item bla
-            \item ble
-        \end{itemize}    
-    &
-        \begin{itemize}
-            \item hurr
-            \item durr
-        \end{itemize}  \\
-\hline
-    \textbf{Nevýhody} & & \\
-\hline
+                                   & \multicolumn{1}{c}{\textbf{GNS3}}    & \multicolumn{1}{c}{\textbf{EVE-ng}}    \\ \hline
+\endfirsthead
+%
+\endhead
+%
+\multirow{8}{*}{\textbf{Výhody}}   & \multicolumn{2}{c}{Možnosť nasadenia ako vzdialené servery}                                                                                                                                                                                                                                                                                                                                                                                                                       \\ \cmidrule{2-3} 
+                                   & \multicolumn{2}{c}{Podpora viacerých používateľov (multi-user)}                                                                                                                                                                                                                                                                                                                                                                                                                  \\ \cmidrule{2-3} 
+                                   & \multicolumn{2}{c}{\makecell{Eventuálne možný import používateľských účtov na server z LDAP: \\ -pre GNS3 do operačného systému \\
+                                   -pre EVE-ng do Linuxu alebo MySQL databázy}}                                                                                                                                                                                                                                                                                                                    \\ \cmidrule{2-3}
+                                   & Multiplatformová klientská aplikacia (Windows/Linux/Mac)                                                                                                                                                                                       & Multiplatformový klient - webová aplikácia                                                                                                                                                                                      \\ \cmidrule{2-3} 
+                                   & Natívna podpora Docker kontajnerov                                                                                                                                                                                                             & Podpora Telnet/VNC vzdialeného pripojenia ku zariadeniam cez HTML5 reverse proxy server (Apache Guacamole) - na klientský počítač netreba inštalovať  nič, okrem webového prehliadača a nástroja Wireshark                      \\ \cmidrule{2-3} 
+                                   & Podpora viacerých používateľov pri práci na spoločnom projekte - pri práci viacerých používateľov na jednom projekte sa topológia sa pri zmene okamžite aktualizuje všetkým používateľom a všetci môžu pracovať so zariadeniami z GNS3 klienta
+                                   
+                                   & Podpora viacerých používateľov pri práci na spoločnom projekte - topológia sa aktualizuje až po kliknutí na \emph{Refresh topology}, nie okamžite po jej zmene                                                                       \\ \cmidrule{2-3} 
+                                   & Lepšia škálovateľnosť oproti EVE-ng - možnosť vytvoriť GNS3 cluster                                                                                                                                                                             & Podpora viacerých používateľov - autentifikácia používateľa menom a heslom                                                                                                                                                      \\ \cmidrule{2-3} 
+                                   & Širšie možnosti nastavenia                                                                                                                                                                                                                     &                                                                                                                                                                                                                                 \\ \hline
+\multirow{7}{*}{\textbf{Nevýhody}} & \makecell[lc]{Nutnosť inštalácie samostatnej \\ klientskej aplikacie}                                                                                                                                                                                            & Pomalé HTML5 webové rozhranie                                                                                                                                                                                                   \\ \cmidrule{2-3} 
+                                   & Zložitejšia konfigurácia autentifikácie a izolácie používateľov                                                                                                                                                                                & V Community verzii sú používatelia sú typu \emph{administrátor} a nie sú nijako od seba izolovaní - ktokoľvek zaregistrovaný môže pridávať/upravovať/mazať projekty a adresáre používateľov (ošetrené v Learning Centre verzii)                             \\ \cmidrule{2-3} 
+                                   & Zložitejšie vytváranie šablón pre zariadenia                                                                                                                                                                                                   & Pri práci viacerých ľudí na spoločnom projekte môže z webovej aplikácie pristupovať k zariadeniam iba jeden človek, ostatní musia k zariadeniam pristupovať pomocou IP adresy a portu                                           \\ \cmidrule{2-3} 
+                                   & Nutnosť manuálne pridať každé zariadenie do GNS3 klienta                                                                                                                                                                                       & Nutnosť vypnutia zariadenia, keď je potrebné pridať/odstrániť prepojenie s iným zariadením (ošetrené v Pro a Learning Centre verzii)                                                                                            \\ \cmidrule{2-3} 
+                                   & Pri nasadení GNS3 na viacero serverov (cluster) treba každé zariadenie pridať samostatne na každý server                                                                                                                                       & Podporované sú iba konzolové Docker kontajnery. oficiálna podpora Docker kontajnerov vrátane grafických je prítomná iba vo verziách Pro a Learning Centre; vo verzii Community je experimentálna a treba ju aktivovať dodatočne                                         \\ \cmidrule{2-3} 
+                                   & Verzia klientskej aplikácie a servera musia byť zhodné t.j. musia,sa,naraz aktualizovať aj klienstká, aj serverová časť, inak nie je,možné,nástroj používať                                                                                    & Web server Apache nie je chránený modulmi \emph{modsecurity} (ochrana napr. Proti SQL Injection) a \emph{modevasive} (ochrana proti DoS a DDoS útokom)                                                                                    \\ \cmidrule{2-3} 
+                                   &                                                                                                                                                                                                                                                & \makecell[lc]{EVE-ng sa nedá škálovať naprieč \\ viacerými servermi t.j. nevieme \\ urobiť EVE-ng cluster tak, \\ ako to je to možné v GNS3}                                                                                                           \\ \hline
 \end{longtabu}
 
 GNS3 od vydania stabilnej verzie 2.0.0 opravila problém s nasadením ako vzdialený server. Avšak vtedy som už začal s hlbším skúmaním EVE-ng. Skúmanie dvoch nástrojov naraz do hĺbky by bolo časovo veľmi náročné. GNS3 slúžila počas skúmania ako podporný nástroj pre pochopenie rôznych technických súčastí virtualizácie sieťových zariadení.
