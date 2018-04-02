@@ -54,35 +54,315 @@ Ak sa ani po týchto úkonoch zariadenie nespustilo, odstránili sme ho zo serve
 
 \subsubsection{Vyhodnotenie}
 
-Výsledky testovania spustiteľnosti zariadení sú zhrnuté v súbore \emph{sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods}. Súbor obsahuje viacero stĺpcov
+Výsledky testovania spustiteľnosti zariadení sú zhrnuté v súbore \\ \emph{sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods}. Súbor obsahuje viacero stĺpcov, ktorých význam je bližšie vysvetlený v tabuľke \ref{tab:sumarny_prehlad_stlpce}. Z výstupov tohto testovania bol vytvorený aj skript na úpravu šablón, ktorý je bližšie opísaný v závere tejto časti.
 
-{\huge TODO - POPÍSAŤ STĹPCE}
+\begin{longtabu} to \textwidth {| X[2.5,l,m] | X[5.0,l,m] |}
+\caption{Stĺpce v sumárnom prehľade zariadení}
+\label{tab:sumarny_prehlad_stlpce} \\
+\hline
+    \multicolumn{1}{|c|}{\textbf{Stĺpec}} & \multicolumn{1}{|c|}{\textbf{Popis}} \\
+\hline
+    \textbf{Zariadenie} & \makecell[lc]{Názov alebo modelové označenie zariadenia.} \\
+\hline
+    \textbf{Platforma} & \makecell[lc]{Názov a verzia operačného systému zariadenia.} \\
+\hline
+    \textbf{Názov súboru} & \makecell[lc]{Pomenovanie zariadenia na serveri.} \\
+\hline
+    \textbf{Spôsob virtualizácie} & Hypervízor, pod ktorým zariadenie môže byť spustené. \\
+\hline
+    \textbf{\makecell[lc]{Predvolené prihlasovacie \\ údaje}} & Predvolené prihlasovacie meno a heslo, ak to zariadenie vyžaduje. \\
+\hline
+    \textbf{Spôsob pripojenia} & \makecell[lc]{Protokol, ktorý sa používa na vzdialenú konfiguráciu \\ zariadenia.} \\
+\hline
+    \textbf{Úspešné spustenie} & Informácia, či sa zariadenie v topológii spustilo. \\
+\hline
+    \textbf{Poznámky} & \makecell[lc]{Bližší popis správania sa daného zariadenia, popr. \\ problémy pri používaní zariadenia a ich možné riešenie. \\ Ďalej sa v ňom môžu nachádzať niektoré podporované \\ technológie a internetové odkazy ako zdroj pre informácie \\ uvádzané pre dané zariadenie.} \\
+\hline
+\end{longtabu}
 
-Zariadenie	Platforma	Názov súboru	Spôsob virtualizácie	Predvolené prihlasovacie údaje	Spôsob pripojenia	Úspešné spustenie	Poznámky
+Ďalšie stĺpce slúžia pre prieskum spustiteľnosti zariadení v rôznych nástrojoch nasadených na rôznych platformách.
+
+Pokiaľ sme zistili, že protokol vzdialeného prístupu sa odlišuje od predvoleného protokolu v šablóne na EVE-ng serveri, túto šablónu sme museli upraviť ručne. Avšak s postupným nárastom testovaných zariadení rástol aj počet úprav v šablónach pre jednotlivé zariadenia. Preto sme sa rozhodli vytvoriť skript, ktorý by celý proces automatizoval. Tento skript na úpravu šablón upravuje jednotlivé atribúty konkrétnym zariadeniam. Výsledky testovania sa prejavili v skripte na úpravu šablón, v ktorom  boli nastavené atribúty pre protokol na vzdialený prístup k zariadeniam a počte a type rozširujúcich kariet pre zariadenia.
 
 
-V stĺpci \emph{Poznámky} obsahuje aj špecifický popis správania sa daného zariadenia, popr. problémy pri používaní zariadenia a ich možné riešenie.
+
 
 \subsection{Testovanie systémových požiadaviek}
 \label{chap:testovanie_zariadeni_benchmark}
 
-Kritériá
+Čo som meral?
+Prečo som to meral?
+Čím som meral?
+Čo je výstupom?
+Ako som výstup vyhodnotil?
+
+Testovanie systémových požiadaviek zariadení bolo realizované na fyzickom EVE-ng serveri. Tento druh testovania bol dôležitý preto, aby sme mohli danému zariadeniu nastaviť dostatočné technické parametre, čím zaistíme jeho plynulý chod a predídeme rôznym komplikáciám počas používania vo vyučovaní. Tieto parametre sú uložené v šablóne pre dané zariadenie.
+
+Úprava šablón je realizovaná skriptom, po ktorého vykonaní sa príslušným zariadeniam zmenia konkrétne technické parametre v šablóne. Po úprave šablón sa zmeny prejavia okamžite a po pridaní zariadenia do topológie, kedy sa jeho parametre automaticky nastavia na správne hodnoty. Pre vybrané zariadenia boli merané tieto veličiny:
+
+\begin{itemize}
+\item Vyťaženie procesora
+\item Využitie operačnej pamäte
+\item Vyťaženie pevného disku
+\end{itemize}
+
+Vyťaženie procesora bolo merané z dôvodu jeho intenzívnej činnosti hlavne počas spúšťania zariadení, ale môže byť vyťažovaný aj po dokončení spúšťania. Na základe toho budeme vedieť určiť, koľko zariadení budeme môcť v topológii spustiť naraz, a koľko už spustených zariadení zvládne server spravovať celkovo. Pri meraní vyťaženia procesora bolo merané celkové vyťaženie aj vyťaženie jednotlivých jadier procesora.
+
+Operačná pamäť je najviac využitá po dokončení spúšťania zariadenia. Kapacita operačnej pamäte ovplyvňuje celkový počet spustených zariadení na serveri. Meranie jej vyťaženia je pomerne jednoduché pre celý systém, ale pre tieto účely sme potrebovali s vysokou presnosťou vedieť, do akej koľko operačnej pamäte využíva iba konkrétne zariadenie.
+
+Na meranie využitia operačnej pamäte boli použité dva nástroje: \texttt{ps} a \texttt{ps\_mem}. Prvý z nich už bol na EVE-ng serveri prítomný, druhý bolo potrebné nainštalovať dodatočne. Na meranie boli použité dva nástroje, aby sa navzájom výsledky oboch nástrojov medzi sebou validovali.
+
+Disk najviac vyťažený predovšetkým pri spúšťaní zariadenia, ale môže byť vyťažený aj po dokončení spúšťania. Vyťaženie disku bolo do merania zahrnuté, aby sme vedeli odhadnúť, do akej miery je spúšťanie a beh zariadení ovplyvnený rýchlosťou pevného disku a o koľko by sa teoreticky zvýšil výkon servera pri ich výmene za SSD disky.
+
+Z merania boli vynechané meranie frekvencie procesora a vyťaženie sieťového rozhrania. Frekvencia procesora bola vynechaná, lebo procesor podľa príkazu \texttt{watch lscpu | grep "MHz"} striedal iba dve frekvencie: 2000.000 MHz (minimálna frekvencia) a 2333.000 MHz (maximálna frekvencia).
+
+Vyťaženie sieťovej karty je zanedbateľné pri meraní výkonnosti jednotlivých zariadení, keďže sa sieť využíva iba na interakciu používateľa s klientskou aplikáciou, čo vytvára zanedbateľnú záťaž.
+
+Na monitorovanie vybraných veličín sú určené rôzne nástroje a stratégie. Mohli sme napr. vytvoriť skript, ktorý by pomocou viacerých špecializovaných nástrojov meral vyťaženie jednotlivých prvkov systému, alebo použiť nástroj, ktorý je schopný monitorovať široké spektrum systémových zdrojov. Zvažovali sme tieto nástroje:
+
+\begin{itemize}
+    \item \textbf{iotop} ~~~~~ - ~~monitorovanie procesov podľa využitia disku
+    \item \textbf{nmap} ~~~~ - ~~monitorovanie sieťovej prevádzky
+    \item \textbf{nethogs} ~ - ~~monitorovanie procesov podľa využitia sieťového rozhrania
+    \item \textbf{dstat} ~~~~~~ - ~~monitorovanie rôznych systémových prostriedkov
+    \item \textbf{sysstat} ~~~~- ~~monitorovanie rôznych systémových prostriedkov
+    \item \textbf{netdata} ~~~- ~~monitorovanie rôznych systémových prostriedkov cez web rozhranie
+\end{itemize}
+
+Z uvedených nástrojov sme sa rozhodli použiť nástroj \emph{dstat}. Hlavným dôvodom, prečo sme si sme sa rozhodli ďalej používať a upravovať tento nástroj a uprednostniť ho pred ostatnými nástrojmi, bola možnosť ovládania cez príkazový riadok a ukladanie ziskaných údajov do CSV súboru. Dáta sa do CSV súboru zapisovali každú sekundu. Následne sme si vytvorili tabuľkový dokument, ktorý vyhodnocoval namerané dáta z CSV súboru. Vyhodnocovaním nameraných údajov sa budeme bližšie zaoberať v časti \ref{chap:testovanie_zariadeni_benchmark_vyhodnotenie}.
+
+Nástroj \emph{dstat} však bolo potrebné upraviť tak, aby zisťoval využitie operačnej pamäte iba pre zariadenia v EVE-ng topológii, nie celého systému.
+
+Pre tento účel sme vytvorili kópiu nástroja \emph{dstat} s názvom \emph{dstat\_custom}. V tejto kópii sme následne upravovali jeho zdrojový kód pre naše potreby. Nástroj je vytvorený v programovacom jazyku Python.
+
+Nástroj \emph{dstat\_custom} bol upravený tak, že sa meria využitie operačnej pamäte pre zariadenie v EVE-ng topológii nástrojmi \emph{ps} a \emph{ps\_mem}. Obidva príkazy merajú tú istú množinu procesov patriacich spusteným zariadeniam v EVE-ng topológii, aby sme mohli merania jednotlivých nástrojov medzi sebou porovnať. Hodnoty namerané obomi nástrojmi by mali byť približne rovnaké na to, aby sme mohli výsledky považovať za validné.
+
+Vo výslednom CSV súbore vytvorenom nástrojom \emph{dstat\_custom} sa stĺpce \emph{used} a \emph{buffered} v časti \emph{memory usage} nahradia stĺpcami \emph{MemUsed-ps} a \emph{MemUsed-ps\_mem}.
+
+Aby nástroj \emph{dstat\_custom} fungoval správne, musia byť nainštalované balíčky \emph{dstat}, \emph{ps\_mem} a \emph{sultan}. Význam prvých dvoch balíčkov už bol v tejto časti vysvetlený. Balíček \emph{sultan} slúžil na vykonávanie terminálových príkazov zvnútra Python programu.
+
+Už upravený nástroj \emph{dstat\_custom} je možné nájsť na zálohovacom serveri v adresári \emph{eve\_ng\_specific/usr\_bin/dstat\_custom}.
+
+
+
+
 
 \subsubsection{Metodika}
 
-Testované skriptom - upravený nástroj \emph{dstat}.
+Čo bolo potrebné vykonať pred meraním?
+Ako prebiehalo meranie?
+Čo je výstupom merania?
 
 
-Pre vybrané zariadenia boli merané tieto veličiny:
-\begin{itemize}
-\item vyťaženie CPU
-\item nároky na operačnú pamäť
-\item vyťaženie pevného disku
-\end{itemize}
+Testované skriptom - upravený nástroj \emph{dstat}
+
+PRIPRAVA PRED MERANIM VYKONNOSTI ZARIADNIA
+
+Uvedeny postup zaznamenava najhorsi mozny scenar merania vykonnosti
+zariadenia. Navyse, vsetky zariadenia su na inom pevnom disku, takze pri
+spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
+cas navyse.
+
+Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
+operacnej pamate.
+
+Prikaz "sudo -v" je sa musi vykonat kvoli nastroju "ps\_mem". Tak sa vyziada
+heslo pre sudo pouzivatela v predstihu a nebude sa vyzadovat az po spusteni
+dstat\_custom, co by mohlo skreslit vysledky.
+
+V EVE-ng som vypol UKMS (Universal Kernel Samepage Merging). UKSM je 
+mechanizmus, ktorý umožňuje šetriť využitie operačnej pamäte, keď máme 
+spustených viacero QEMU zariadení rovnakého typu. Ale ak je UKMS aktívne
+a spustíme viac ako 10 QEMU zariadení, ich výkon by mohol byť dôsledkom
+tohto mechanizmu znížený.
+
+POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
+
+*************
+Pri meraní bolo UKSM vypnuté!
+*************
+
+1. FAZA
+
+-Do projektu pridame jedno zariadenie daneho druhu
+-Nastavime mu velmi vela pamate (+30GB operacnej pamate alebo maximalne 
+ mnozstvo pamate, ktore je zariadenie schopne zvladnut), 
+ a 1 CPU (ak to zariadenie dovoli)
+-Vyprazdnime operacnu pamat od docasnych dat
+-Pomocou skriptu spustime sledovanie systemovych prostriedkov, ktory bude ukladat 
+  udaje do suboru (nazov suboru: <nazov\_zariadenia>-pocet\_cpu.csv)
+  +
+  Zaroven zacneme merat cas.
+-Hned na to spustime zariadenie
+-Pripojime sa na konzolu zariadenia. Pockame, kym neuvidime interaktivny prikazovy
+  riadok (CLI) alebo vyzvu na prihlasenie (login prompt)
+-Po uspesnom spusteni zariadenia sa nan prihlasime (ak je to vyzadovane)
+-Akonahle uvidime interaktivny prikazovy riadok (CLI):
+  -zastavime cas a hodnotu si docasne ulozime
+  -pockame este priblizne 1-3 minuty, aby sa zariadenie stabilizovalo
+-Ukoncime sledovanie systemovych prostriedkov
+-Zastavime zariadenie
+
+
+2. FAZA
+
+-Stiahneme si subor zo sledovania systemovych prostriedkov zo servera
+-Ak je potrebne pridame zariadenie do sumarnej tabulky zariadeni spolu s:
+  -predvolenymi prihlasovacimi udajmi
+  -systemovymi poziadavkami (CPU, RAM)
+-Vygenerovany subor so zaznamenanymi udajmi o behu zariadenia vlozime do
+  sablony pre meranie vykonnosti a zadame zmerany cas spustania zariadenia.
+  Vsetky grafy a tabulky sa prisposobia vstupnym udajom a je ich mozne okamzite
+  ulozit ako obrazok.
+
+  !!!!!! OKREM GRAFU VYUZITIA OPERACNEJ PAMATE !!!!!! v ktorom treba manualne 
+  upravit os X na hodnotu blizku maximu!
+
+-Na zaklade analyzy merania vykonnosti zariadenia sa rozhodneme, ci a ako zmenime 
+  jeho parametre:
+  -pocet CPU bude nastaveny na 1, ak to zariadenie dovoli a spusti sa
+  -mnozstvo operacnej pamate (RAM) nastavim na priemernu nameranu hodnotu 
+    po spusteni + rezerva
+
+-Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname 
+  vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
+-Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do
+  skriptu na aktualizaciu sablon (vid subor "uprava\_sablon").
+
+
+
+-Po ukončení merania môžeme znova zapnúť "swap" partíciu
+
+  sudo swapon -a
+
+
+
+
+
 
 \subsubsection{Vyhodnotenie}
+\label{chap:testovanie_zariadeni_benchmark_vyhodnotenie}
 
-benchmarking.zip
+\emph{/eve-ng/profiling\_and\_benchmarking\_results}
+
+skript na úpravu šablón
+
+*************
+IMPORT A ANALYZA VYSTUPNEHO CSV SUBORU
+
+LibreOffice Calc dokument je vytvoreny na mieru pre suborovy vystup prikazu:
+
+  dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output vystup.csv
+
+Priklad pouzitia:
+-Skopirujeme subor vysup.csv do suboru s nazvom napr. vystup-edited.csv
+-Otvorime CSV subor vystup-edited.csv -> V dialogovom okne "Text Import" zvolime:
+  -Character set: Unicode (UTF-16)
+  -Default - English (USA)
+  -Separator Options -> Separated by -> zaskrtneme iba "Comma" a 
+    odskrtneme "Merge delimiters"
+-Oznacime jeho obsah
+  -mysou alebo cez adresny riadok (Name Box) zadame rozsah napr. A1:BL3600
+-Otvorime sablonu
+-Klikneme na harok "SuroveUdaje"
+-Vymazeme udaje z celeho harku
+  -Ctrl + HOME
+  -Ctrl + A
+  -klávesa "Delete"
+  -Ctrl + HOME
+-V textovom editore otvorime CSV subor s nameranymi udajmi
+  -Vsetky ich oznacime (Ctrl+A) a skopirujeme (Ctrl+C)
+-Oznacime bunku A1 v harku "SuroveUdaje" a vlozime skopirovane udaje
+-Klineme na harok "VstupVystup"
+-Upravime udaje pre bunky so zelenym podfarbenim.
+  -Vlozime casy spustania v subore "...boot\_time.txt" pre dane zariadenie.
+  -Na zaklade udajov v zelenych bunkach sa aktualizuju udaje v zltych bunkach.
+-Vlozime casy spustania zo suboru "boot\_time.txt" prislusneho zariadenia.
+ Cas spustania zariadenia sa aktualizuje.
+-Ak je potrebne, upravime hodnotu "Mnozstvo volnej RAM na serveri (MB)"
+-Hodnoty ulozime do adresara prislusneho zariadenia s rovnakym nazvom ako
+ CSV subor klavesovou skratkou "Ctrl+Shift+S"
+
+
+Ako som vytvaral stlpce:
+  -napisal som rovnicu do prvej bunky v stlpci
+  -Zvolime bunky az po 3600
+    -najrychlejsie je zadat do "Name box" pola v lavom hornom rohu (je tam vzdy
+    aktualna adresa bunky) rozsah XY1:XY3600 (rozsah podla potreby upravit) a
+    stlacit Enter
+    -alebo Shift+PageDown alebo posuvnikom prejdeme ku 3600. bunke
+    a klikneme na nu pri stlacenej klavese Shift
+  -do oznacenych buniek vlozime rovnaku funkciu stlacenim Ctrl+D
+    -v tomto pripade do kazdej bunky v slpci
+  -niekedy bolo potrebne zafixovat urcite suradnice bunky, aby sa nemenila s 
+    meniacimi sa bunkami. Na to treba oznacit suradnice bunky vo vzorci, ktoru 
+    chceme zafixovat, a stlacime klavesu F4 (zobrazia sa znaky '\$')
+
+Ako som vytvaral grafy:
+  -pre profiling som vytvaral X/Y Scatter plot grafy, lebo prave tym som mohol 
+  explicitne priradit os X
+    -ako "Line Type" som zvolil "Stepped" pre vsetky profiling grafy, 
+      lebo pri "Smooth" ciare to v grafoch vytazenia CPU a disku presahovalo 
+      nad 100%, hoci v stlpci boli udaje iba v intervale <0; 100>
+    -dstat\_custom aj netdata potvrdili, ze disk sda je v niektorych okamihoch
+      vyuzity na viac ako 100%, preto som hodnoty, ktore presahovali 100
+      zmenil na 100
+  -pre benchmarking som vytvaral Bar Chart grafy, aby som mohol priamo porovnat
+    priemerne hodnoty meranych velicin pocas spustania a po spusteni
+  -Data Series -> Data in rows!
+  -grafom s percentualnou metrikou som nastavil maximalnu hodnotu osi Y na 100
+    -2x kliknut na graf alebo pravy klik -> Edit
+    -pravy klik na lubovolnu hodnotu na osi Y -> Format Axis... -> Scale
+    -odskrtneme Automatic pri hodnote Maximum a nastavime ho na 100 -> OK
+  -v grafoch z benchmarku som nastavil pismo osi X na bielu - cisla by boli na 
+  tomto mieste zbytocne matuce
+    -postupujeme rovnako, ako v pripade vyssie, iba klikneme na lubovolnu hodnotu
+    na osi X a namiesto karty Scale zvolime kartu Font Effects
+  -Lenze v LibreOffice bol bug, ktory znefunkcnoval aktualizaciu grafov podla
+   vstuplnych udajov, takze som grafy odstranil.
+
+Grafy su interaktivne a reaguju na zmenu vstupnych udajov z prikazu dstat, uvedeneho
+na zaciatku tejto casti. Vstupne udaje musia mat najviac 3600 riadkov. Cislo 3600
+vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a dlzkou merania.
+
+Aj profiling, aj benchmarking grafy, vratane benchmarking tabulky, su interaktivne
+vzhladom na cas spustania.
+Cas spustania je mozne menit v bunke DA1 (nachadza sa nad benchmarking tabulkou).
+Tento cas je merany po pridani noveho zariadenia do topologie a nie uz existujuceho,
+co by mohlo skreslit (vylepsit) merane veliciny. Vzdy meriam vykonnost jedineho 
+zariadenia, ktore je v danom case ako jedine spustene (aktivne).
+Tato hodnota urcuje dlzku spustania zariadenia v sekundach. Zariadenie povazujem za
+spustene v momente, ked sa zobrazi interaktivny prikazovy riadok (CLI). V pripade,
+ze pre zobrazenie CLI je potrebne prihlasenie, je aj to zapocitane do casu spustania.
+V profiling grafoch je proces spustania oddeleny od procesu po spusteni oranzovou
+ciarou pretinajucu os X. Os X reprezentuje celkovy pocet sekund, pocas ktorych bolo
+zariadenie v topologii spustene. Tato ciara pretina os X v bode, ktory je definovany
+ v bunke DA1, v ktorej je ulozeny cas spustania zariadenia.
+Po spusteni zariadenia ho necham zapnute este 3 minuty. Tento cas by teoreticky mal 
+stacit na to, aby sa zariadenie ustalilo na jednej vykonnostnej hladine.
+
+
+*************
+GRAFY
+
+-V adresari prislusneho zariadenia sa mozu nachadzat grafy exportovane
+ do obrazkov.
+ Aj napriek tomu, ze grafy isli vygenerovat na prvy krat, LibreOffice
+ pri zmene vstupnych dat (v harku SuroveUdaje) neaktualizoval grafy tak,
+ aby odzrkadlovali vstupne data. Pri prvotnom vytvoreni grafov sa grafy
+ aktualizovali, avsak pri zatvoreni a znovuotvoreni sablony sa aktualizacia
+ grafov znefunkcnila. Preto som sa rozhodol grafy odstranit zo sablony.
+ Ponechal som vsak benchmarking tabulku a finalne vyhodnotenie nameranych
+ dat v textovej podobe.
+
+-Grafy su pomenovane podla poradia, v ktorom som ich exportoval.
+-Nizsie je vysvetleny vyznam a metrika nameranych dat.
+
+
+
+
+
+
 
 \subsection{Testovanie technológii}
 \label{chap:testovanie_technologii}

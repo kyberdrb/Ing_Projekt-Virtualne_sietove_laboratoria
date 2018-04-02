@@ -75,7 +75,7 @@ MERANIE VYŤAŽENIA OPERAČNEJ PAMÄTE
 bude trochu zlozitejsie, pretoze potrebujem ziskat presne udaje.
 Zda sa, ze presne udaje ziskam zo stlpca RSS z vystupu prikazu "ps aux".
 
-Z manualoveh stranky ps:
+Z manualovej stranky ps:
 ...
 (riadok 383)
 The SIZE and RSS fields don't count some parts of a process including the page 

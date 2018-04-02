@@ -8,26 +8,25 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+  -Najprv sa povenovat tymto veciam
+    -ake zariadenia su vhodne na skumane predmety a preco (technologie)?
+    -zdokumentovat zistovanie features pre zariadenia
+      -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
+
+  -Záver
+    -hadacovo viro treba prerobit alebo nechat umriet v prospech GNS3, vid
+    https://itr-links.stackoverflow.email/u/click?_t=3603a3d8f3104ca5bd7015a5845f7fb7&_m=72f714b6c6804f51bec86ff60136c94a&_e=khSYWjE_zs7-adX5jKm1-OookGpf6AVPZjR7AyzPWTwEnKGs8rNUmT2lD4L8iN2P8uYha2PRADixjIPrcWIaFJGCXQ7AyX0cYfKArrRAGqP2_o0jr270rA-U5V2ujhXUE8R_BANn7Tcl1y4lL9DHAzUSuR2CO-dDoACYjM6VrZZaBvoAXw03t7dJ3x1KCyVB6KzJaxOvOYWjvQtYyXp4j0BdEnWNWe-kDZYKhZodQGrOA7r8tmh0ZN_GC5oUwoaU6X9t1nblG0FMZV7rmdwd6ElKE7GxRzN4y-pYMa_771fWXhDGpujulNNOFWMLBx1H3WRWWdwyiwqU447IcwKyJwFw-C-BO7yk_S7-GcfFN16y_Cl1XKAJw4DnPUhOVonIFFxBkpyMCkh8d3pt0kSoNw%3D%3D
+  cast "Technology" -> "Most Loved, Dreaded and Wanted Languages"
+    -> vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna (cast "Programming, Scripting, and Markup Languages"), ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie, co svedci v prospech EVE-ng. Python je zase na prvom mieste v rebricku programovacich jazykov, ktore sa vyvojari chcu naucit ako dalsi. Zaroven je tiez jeden z najoblubenych jazykov, co svedci v prospech GNS3.
+
+  -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
+    https://tex.stackexchange.com/questions/252484/crop-image-in-latex-like-word/252485#252485
+
   -titulná strana - aké je číslo št. odboru?
 
   -treba v kapitole "Analýza vyučovania" dávať ku predmetom ich čísla?
 
   -treba v kapitole "Analýza vyučovania" dať zoznam vyučovaných technológii pre CCNA Security?
-
-  -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
-
-  -Najprv sa povenovat tymto veciam
-    -ake zariadenia su vhodne na skumane predmety a preco (technologie)?
-
-  -zdokumentovat zistovanie features pre zariadenia
-    -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
-
-  -hadacovo viro treba prerobit alebo nechat umriet v prospech GNS3, vid
-    https://itr-links.stackoverflow.email/u/click?_t=3603a3d8f3104ca5bd7015a5845f7fb7&_m=72f714b6c6804f51bec86ff60136c94a&_e=khSYWjE_zs7-adX5jKm1-OookGpf6AVPZjR7AyzPWTwEnKGs8rNUmT2lD4L8iN2P8uYha2PRADixjIPrcWIaFJGCXQ7AyX0cYfKArrRAGqP2_o0jr270rA-U5V2ujhXUE8R_BANn7Tcl1y4lL9DHAzUSuR2CO-dDoACYjM6VrZZaBvoAXw03t7dJ3x1KCyVB6KzJaxOvOYWjvQtYyXp4j0BdEnWNWe-kDZYKhZodQGrOA7r8tmh0ZN_GC5oUwoaU6X9t1nblG0FMZV7rmdwd6ElKE7GxRzN4y-pYMa_771fWXhDGpujulNNOFWMLBx1H3WRWWdwyiwqU447IcwKyJwFw-C-BO7yk_S7-GcfFN16y_Cl1XKAJw4DnPUhOVonIFFxBkpyMCkh8d3pt0kSoNw%3D%3D
-  cast "Technology" -> "Most Loved, Dreaded and Wanted Languages"
-    -> vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna (cast "Programming, Scripting, and Markup Languages"), ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie, co svedci v prospech EVE-ng. Python je zase na prvom mieste v rebricku programovacich jazykov, ktore sa vyvojari chcu naucit ako dalsi. Zaroven je tiez jeden z najoblubenych jazykov, co svedci v prospech GNS3.
-
-
 
 ===============================================================================
 Co dalej?
