@@ -93,8 +93,6 @@ Pokiaľ sme zistili, že protokol vzdialeného prístupu sa odlišuje od predvol
 Čo som meral?
 Prečo som to meral?
 Čím som meral?
-Čo je výstupom?
-Ako som výstup vyhodnotil?
 
 Testovanie systémových požiadaviek zariadení bolo realizované na fyzickom EVE-ng serveri. Tento druh testovania bol dôležitý preto, aby sme mohli danému zariadeniu nastaviť dostatočné technické parametre, čím zaistíme jeho plynulý chod a predídeme rôznym komplikáciám počas používania vo vyučovaní. Tieto parametre sú uložené v šablóne pre dané zariadenie.
 
@@ -153,89 +151,35 @@ Už upravený nástroj \emph{dstat\_custom} je možné nájsť na zálohovacom s
 Ako prebiehalo meranie?
 Čo je výstupom merania?
 
+Meranie systémových zdrojov zariadenia bolo vykonané nástrojom \emph{dstat\_custom}. Pred začiatkom každého merania bolo potrebné vykonať kroky, ktoré zvyšujú konzistenciu a presnosť výsledkov a reprezentujú najhoršie možné podmienky pre beh zariadenia. Všetky zariadenia sú uložené na rovnakom pevnom disku ako operačný systém.
 
-Testované skriptom - upravený nástroj \emph{dstat}
+Pred začatím merania výkonnosti každého zariadenia bolo vypnuté používanie \emph{swap} partície a vyprazdnené vyrovnávacie časti operačnej pamäte (\emph{cache} a \emph{buffer}).
 
-PRIPRAVA PRED MERANIM VYKONNOSTI ZARIADNIA
+Na EVE-ng serveri bola počas celého merania vypnutá funkcia UKMS (Universal Kernel Samepage Merging). UKSM je mechanizmus, ktorý umožňuje šetriť využitie operačnej pamäte, keď je spustených viacero zariadení rovnakého typu. Ak je Ale UKMS aktívne a spustíme viac ako 10 QEMU zariadení, ich výkon by mohol byť v dôsledku tohto mechanizmu znížený \cite{eve_ng_faq}.
 
-Uvedeny postup zaznamenava najhorsi mozny scenar merania vykonnosti
-zariadenia. Navyse, vsetky zariadenia su na inom pevnom disku, takze pri
-spusteni v EVE-ng skopiruje cast dat na systemovy pevny disk, co zaberie
-cas navyse.
+\noindent
+Meranie systémových požiadaviek zariadenia prebiehalo nasledovne:
 
-Pred zacatim merania vykonnosti som vypol swap a vyprazdnil cache a buffer
-operacnej pamate.
+\begin{enumerate}
+    \item Do EVE-ng topológie sme pridali jedno zariadenie.
+    \item \label{nastavenie_sys_param} Nastavíme mu maximálne množstvo operačnej pamäte, s ktorým je zariadenie schopné, úspešne sa spustiť. Ak je to možné, nastavíme počet procesorov na 1 CPU.
+    \item Vykonáme úvodné kroky pred meraním.
+    \item Nástrojom \emph{dstat\_custom} spustíme sledovanie systémových prostriedkov, ktorý bude ukladať namerané údaje do súboru.
+    \item Spustíme zariadenie.
+    \item Z nástroja zistíme čas spustenia zariadenia a zapíšeme si ho do osobitného súboru napr. \emph{boot\_time.txt}.
+    \item Pripojíme sa na konzolu zariadenia. Počkáme, kým neuvidíme interaktívny príkazový riadok (CLI) alebo výzvu na prihlásenie.
+    \item Ak je to nutné, po úspešnom spustení zariadenia sa naň prihlásime.
+    \item Akonáhle uvidíme interaktívny príkazový riadok (CLI), do súboru \emph{boot\_time.txt} si uložíme čas, v ktorom zariadenie dokončilo svoje spúšťanie. 
+    \item Zariadenie necháme 1-3 minúty stabilizovať.
+    \item Ukončíme sledovanie systémových prostriedkov.
+    \item Zastavíme zariadenie.
+\end{enumerate}
 
-Prikaz "sudo -v" je sa musi vykonat kvoli nastroju "ps\_mem". Tak sa vyziada
-heslo pre sudo pouzivatela v predstihu a nebude sa vyzadovat az po spusteni
-dstat\_custom, co by mohlo skreslit vysledky.
+Pokiaľ sa vyskytli komplikácie so spúšťaním alebo behom zariadenia, vrátili sme sa na krok \ref{nastavenie_sys_param} a stanovili sme pre zariadenie iné systémové parametre. Systémové parametre zariadenia sme menili dovtedy, kým sa zariadenie nespustilo a odozva z klávesnice z jeho konzoly bola prijateľná. Podrobnejší popis rôznych konfigurácii systémových parametrov zariadenia je k dispozícii na CD v súbore \emph{eve\_ng/13\_1\_profiling\_and\_benchmarking\_device\_list.txt}.
 
-V EVE-ng som vypol UKMS (Universal Kernel Samepage Merging). UKSM je 
-mechanizmus, ktorý umožňuje šetriť využitie operačnej pamäte, keď máme 
-spustených viacero QEMU zariadení rovnakého typu. Ale ak je UKMS aktívne
-a spustíme viac ako 10 QEMU zariadení, ich výkon by mohol byť dôsledkom
-tohto mechanizmu znížený.
+Po skončení merania vznikli dva nové súbory: súbor s nameranými údajmi a súbor s trvaním spúšťania zariadenia. Tieto súbory tvorili vstup pre tabuľkový súbor na vyhodnocovanie nameraných údajov pre zariadenie, ktorému sa venujeme v nasledujúcej časti.
 
-POSTUP PRI MERANI SYSTEMOVYCH POZIADAVIEK VIRTUALNEHO ZARIADNIA
-
-*************
-Pri meraní bolo UKSM vypnuté!
-*************
-
-1. FAZA
-
--Do projektu pridame jedno zariadenie daneho druhu
--Nastavime mu velmi vela pamate (+30GB operacnej pamate alebo maximalne 
- mnozstvo pamate, ktore je zariadenie schopne zvladnut), 
- a 1 CPU (ak to zariadenie dovoli)
--Vyprazdnime operacnu pamat od docasnych dat
--Pomocou skriptu spustime sledovanie systemovych prostriedkov, ktory bude ukladat 
-  udaje do suboru (nazov suboru: <nazov\_zariadenia>-pocet\_cpu.csv)
-  +
-  Zaroven zacneme merat cas.
--Hned na to spustime zariadenie
--Pripojime sa na konzolu zariadenia. Pockame, kym neuvidime interaktivny prikazovy
-  riadok (CLI) alebo vyzvu na prihlasenie (login prompt)
--Po uspesnom spusteni zariadenia sa nan prihlasime (ak je to vyzadovane)
--Akonahle uvidime interaktivny prikazovy riadok (CLI):
-  -zastavime cas a hodnotu si docasne ulozime
-  -pockame este priblizne 1-3 minuty, aby sa zariadenie stabilizovalo
--Ukoncime sledovanie systemovych prostriedkov
--Zastavime zariadenie
-
-
-2. FAZA
-
--Stiahneme si subor zo sledovania systemovych prostriedkov zo servera
--Ak je potrebne pridame zariadenie do sumarnej tabulky zariadeni spolu s:
-  -predvolenymi prihlasovacimi udajmi
-  -systemovymi poziadavkami (CPU, RAM)
--Vygenerovany subor so zaznamenanymi udajmi o behu zariadenia vlozime do
-  sablony pre meranie vykonnosti a zadame zmerany cas spustania zariadenia.
-  Vsetky grafy a tabulky sa prisposobia vstupnym udajom a je ich mozne okamzite
-  ulozit ako obrazok.
-
-  !!!!!! OKREM GRAFU VYUZITIA OPERACNEJ PAMATE !!!!!! v ktorom treba manualne 
-  upravit os X na hodnotu blizku maximu!
-
--Na zaklade analyzy merania vykonnosti zariadenia sa rozhodneme, ci a ako zmenime 
-  jeho parametre:
-  -pocet CPU bude nastaveny na 1, ak to zariadenie dovoli a spusti sa
-  -mnozstvo operacnej pamate (RAM) nastavim na priemernu nameranu hodnotu 
-    po spusteni + rezerva
-
--Znovu spustime meranie a rovnake zariadenie so zmenenymi nastaveniami a vykoname 
-  vyssie uvedene kroky. Opakujeme, kym vysledky nie su optimalne.
--Potom, ako budu takto otestovane vsetky zariadenia, vysledky zaznamenat do
-  skriptu na aktualizaciu sablon (vid subor "uprava\_sablon").
-
-
-
--Po ukončení merania môžeme znova zapnúť "swap" partíciu
-
-  sudo swapon -a
-
-
+Po ukončení merania všetkých zariadení môžeme znova zapnúť "swap" partíciu.
 
 
 
@@ -243,123 +187,39 @@ Pri meraní bolo UKSM vypnuté!
 \subsubsection{Vyhodnotenie}
 \label{chap:testovanie_zariadeni_benchmark_vyhodnotenie}
 
-\emph{/eve-ng/profiling\_and\_benchmarking\_results}
-
-skript na úpravu šablón
-
-*************
-IMPORT A ANALYZA VYSTUPNEHO CSV SUBORU
-
-LibreOffice Calc dokument je vytvoreny na mieru pre suborovy vystup prikazu:
-
-  dstat -T -c -C total,0,1,2,3,4,5,6,7 -m -d -D sda --disk-util --disk-tps --output vystup.csv
-
-Priklad pouzitia:
--Skopirujeme subor vysup.csv do suboru s nazvom napr. vystup-edited.csv
--Otvorime CSV subor vystup-edited.csv -> V dialogovom okne "Text Import" zvolime:
-  -Character set: Unicode (UTF-16)
-  -Default - English (USA)
-  -Separator Options -> Separated by -> zaskrtneme iba "Comma" a 
-    odskrtneme "Merge delimiters"
--Oznacime jeho obsah
-  -mysou alebo cez adresny riadok (Name Box) zadame rozsah napr. A1:BL3600
--Otvorime sablonu
--Klikneme na harok "SuroveUdaje"
--Vymazeme udaje z celeho harku
-  -Ctrl + HOME
-  -Ctrl + A
-  -klávesa "Delete"
-  -Ctrl + HOME
--V textovom editore otvorime CSV subor s nameranymi udajmi
-  -Vsetky ich oznacime (Ctrl+A) a skopirujeme (Ctrl+C)
--Oznacime bunku A1 v harku "SuroveUdaje" a vlozime skopirovane udaje
--Klineme na harok "VstupVystup"
--Upravime udaje pre bunky so zelenym podfarbenim.
-  -Vlozime casy spustania v subore "...boot\_time.txt" pre dane zariadenie.
-  -Na zaklade udajov v zelenych bunkach sa aktualizuju udaje v zltych bunkach.
--Vlozime casy spustania zo suboru "boot\_time.txt" prislusneho zariadenia.
- Cas spustania zariadenia sa aktualizuje.
--Ak je potrebne, upravime hodnotu "Mnozstvo volnej RAM na serveri (MB)"
--Hodnoty ulozime do adresara prislusneho zariadenia s rovnakym nazvom ako
- CSV subor klavesovou skratkou "Ctrl+Shift+S"
+Čo je výstupom?
+Ako som výstup vyhodnotil?
 
 
-Ako som vytvaral stlpce:
-  -napisal som rovnicu do prvej bunky v stlpci
-  -Zvolime bunky az po 3600
-    -najrychlejsie je zadat do "Name box" pola v lavom hornom rohu (je tam vzdy
-    aktualna adresa bunky) rozsah XY1:XY3600 (rozsah podla potreby upravit) a
-    stlacit Enter
-    -alebo Shift+PageDown alebo posuvnikom prejdeme ku 3600. bunke
-    a klikneme na nu pri stlacenej klavese Shift
-  -do oznacenych buniek vlozime rovnaku funkciu stlacenim Ctrl+D
-    -v tomto pripade do kazdej bunky v slpci
-  -niekedy bolo potrebne zafixovat urcite suradnice bunky, aby sa nemenila s 
-    meniacimi sa bunkami. Na to treba oznacit suradnice bunky vo vzorci, ktoru 
-    chceme zafixovat, a stlacime klavesu F4 (zobrazia sa znaky '\$')
+Po vytvorení súboru s nameranými údajmi a súboru s trvaním spúšťania zariadenia môžeme vložiť ich údaje do tabuľkového dokumentu. Na základe vstupných údajov sa automaticky prepočítajú výstupné hodnoty vo všetkých tabuľkách tohto dokumentu. Nižšie je opísaný priebeh vyhodnotenia nameraných údajov:
 
-Ako som vytvaral grafy:
-  -pre profiling som vytvaral X/Y Scatter plot grafy, lebo prave tym som mohol 
-  explicitne priradit os X
-    -ako "Line Type" som zvolil "Stepped" pre vsetky profiling grafy, 
-      lebo pri "Smooth" ciare to v grafoch vytazenia CPU a disku presahovalo 
-      nad 100%, hoci v stlpci boli udaje iba v intervale <0; 100>
-    -dstat\_custom aj netdata potvrdili, ze disk sda je v niektorych okamihoch
-      vyuzity na viac ako 100%, preto som hodnoty, ktore presahovali 100
-      zmenil na 100
-  -pre benchmarking som vytvaral Bar Chart grafy, aby som mohol priamo porovnat
-    priemerne hodnoty meranych velicin pocas spustania a po spusteni
-  -Data Series -> Data in rows!
-  -grafom s percentualnou metrikou som nastavil maximalnu hodnotu osi Y na 100
-    -2x kliknut na graf alebo pravy klik -> Edit
-    -pravy klik na lubovolnu hodnotu na osi Y -> Format Axis... -> Scale
-    -odskrtneme Automatic pri hodnote Maximum a nastavime ho na 100 -> OK
-  -v grafoch z benchmarku som nastavil pismo osi X na bielu - cisla by boli na 
-  tomto mieste zbytocne matuce
-    -postupujeme rovnako, ako v pripade vyssie, iba klikneme na lubovolnu hodnotu
-    na osi X a namiesto karty Scale zvolime kartu Font Effects
-  -Lenze v LibreOffice bol bug, ktory znefunkcnoval aktualizaciu grafov podla
-   vstuplnych udajov, takze som grafy odstranil.
+\begin{enumerate}
+    \item Do hárku \emph{SuroveUdaje} vložíme dáta namerané nástrojom \emph{dstat\_custom}.
+    \item Do hárku \emph{VstupVystup} vložíme tieto údaje
+    \begin{itemize}
+        \item Do poľa \emph{Start} zadáme čas, kedy sme zariadenie spustili.
+        \item Do poľa \emph{Stop} zadáme čas, kedy zariadenie dokončilo svoje spúšťanie a zobrazilo interaktívny príkazový riadok (CLI).
+        \item Do poľa \emph{Množstvo voľnej RAM na serveri (MB)} zadáme množstvo voľnej operačnej pamäte na EVE-ng serveri v stave pokoja.
+    \end{itemize}
+\end{enumerate}
 
-Grafy su interaktivne a reaguju na zmenu vstupnych udajov z prikazu dstat, uvedeneho
-na zaciatku tejto casti. Vstupne udaje musia mat najviac 3600 riadkov. Cislo 3600
-vyslo ako kompromis medzi vypoctovou narocnostou v LibreOffice Calc a dlzkou merania.
+Po zadaní spomenutých vstupných údajov tabuľkový dokument poskytne v hárku \emph{VstupVystup} odpovede na tieto otázky:
 
-Aj profiling, aj benchmarking grafy, vratane benchmarking tabulky, su interaktivne
-vzhladom na cas spustania.
-Cas spustania je mozne menit v bunke DA1 (nachadza sa nad benchmarking tabulkou).
-Tento cas je merany po pridani noveho zariadenia do topologie a nie uz existujuceho,
-co by mohlo skreslit (vylepsit) merane veliciny. Vzdy meriam vykonnost jedineho 
-zariadenia, ktore je v danom case ako jedine spustene (aktivne).
-Tato hodnota urcuje dlzku spustania zariadenia v sekundach. Zariadenie povazujem za
-spustene v momente, ked sa zobrazi interaktivny prikazovy riadok (CLI). V pripade,
-ze pre zobrazenie CLI je potrebne prihlasenie, je aj to zapocitane do casu spustania.
-V profiling grafoch je proces spustania oddeleny od procesu po spusteni oranzovou
-ciarou pretinajucu os X. Os X reprezentuje celkovy pocet sekund, pocas ktorych bolo
-zariadenie v topologii spustene. Tato ciara pretina os X v bode, ktory je definovany
- v bunke DA1, v ktorej je ulozeny cas spustania zariadenia.
-Po spusteni zariadenia ho necham zapnute este 3 minuty. Tento cas by teoreticky mal 
-stacit na to, aby sa zariadenie ustalilo na jednej vykonnostnej hladine.
+\begin{itemize}
+    \item Čas spúšťania - čas potrebný na dokončenie spúšťania zariadenia
+    \item Odhadované množstvo operačnej pamäte pre jedno zariadenie / topológiu (MB)
+    \item Odhadovaný počet zariadení, ktoré je možné naraz spustiť na základe celkového vyťaženia CPU
+    \item Odhadovaný počet sputených zariadení na základe celkového vyťaženia CPU
+    \item Odhadovaný počet sputených zariadení na základe voľnej RAM
+\end{itemize}
 
+Od všetkých vstupných údajov boli pred ďalším spracovaním odčítané namerané hodnoty z pokojového stavu EVE-ng servera.
 
-*************
-GRAFY
+Výsledky merania systémových požiadaviek zariadení reprezentujú najhorší možný scenár behu zariadenia.
 
--V adresari prislusneho zariadenia sa mozu nachadzat grafy exportovane
- do obrazkov.
- Aj napriek tomu, ze grafy isli vygenerovat na prvy krat, LibreOffice
- pri zmene vstupnych dat (v harku SuroveUdaje) neaktualizoval grafy tak,
- aby odzrkadlovali vstupne data. Pri prvotnom vytvoreni grafov sa grafy
- aktualizovali, avsak pri zatvoreni a znovuotvoreni sablony sa aktualizacia
- grafov znefunkcnila. Preto som sa rozhodol grafy odstranit zo sablony.
- Ponechal som vsak benchmarking tabulku a finalne vyhodnotenie nameranych
- dat v textovej podobe.
+Výsledky testovania vybraných zariadení sú prítomné na CD v adresári \emph{eve-ng/profiling\_and\_benchmarking\_results}.
 
--Grafy su pomenovane podla poradia, v ktorom som ich exportoval.
--Nizsie je vysvetleny vyznam a metrika nameranych dat.
-
-
-
+Podľa tabuľkového dokumentu bolo pre každé zariadenie nastavené množstvo operačnej pamäte a počet CPU v skripte na úpravu šablón. Zariadenie vďaka tomu môžeme pridávať do topológie bez toho, aby sme museli premýšľať, či má nastavené dostatočné systémové parametre.
 
 
 

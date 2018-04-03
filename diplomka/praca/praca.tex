@@ -16,6 +16,11 @@
 \usepackage{url,mathptmx} 
 \usepackage[pdftex,unicode,bookmarks=false]{hyperref}
 
+% Janechova sablona pouziva XeTEX - ale ked sa pouzije v tejto
+% sablone, znaky s diakritikou sa nezobrazia spravne
+%\usepackage[xetex,unicode,bookmarks=false]{hyperref}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Moje pridane balicky
 
@@ -42,25 +47,14 @@
 % Vytvaranie tabuliek v jazyku "slovak" a "czech"
 \usepackage{booktabs}
 
-\begingroup
-    \makeatletter
-    \catcode`\-=\active
-    \AtBeginDocument{
-    \def\@@@cmidrule[#1-#2]#3#4{\global\@cmidla#1\relax
-        \global\advance\@cmidla\m@ne
-        \ifnum\@cmidla>0\global\let\@gtempa\@cmidrulea\else
-        \global\let\@gtempa\@cmidruleb\fi
-        \global\@cmidlb#2\relax
-        \global\advance\@cmidlb-\@cmidla
-        \global\@thisrulewidth=#3
-        \@setrulekerning{#4}
-        \ifnum\@lastruleclass=\z@\vskip \aboverulesep\fi
-        \ifnum0=`{\fi}\@gtempa
-        \noalign{\ifnum0=`}\fi\futurenonspacelet\@tempa\@xcmidrule}
-    }
-\endgroup
-
-\usepackage{listliketab}
+% Oprava prikazov "cline" a "cmidrule" v tabulkach 
+% v jazyku "slovak" a "czech" v usepackage babel
+\usepackage{regexpatch}
+\makeatletter
+% Change the `-` delimiter to an active character
+\xpatchparametertext\@@@cmidrule{-}{\cA-}{}{}
+\xpatchparametertext\@cline{-}{\cA-}{}{}
+\makeatother
 
 % Cislovanie obrazkov a tabuliek plynule, 
 % bez uvodneho cisla kapitoly
