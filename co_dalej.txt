@@ -8,7 +8,19 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+  -nasadenie do vyucovania:
+    -PS2 7. tyzden - PPP technologie
+      -technologie
+        -PPP, MLPPP, PAP, CHAP
+      -nakres topologie je na maili
+        -medzi R1-R3 a R2-R4 (zvislé linky) pojdu 2 seriove linky, kvoli MLPPP
+      -zariadenia pomenovat podla vzoru: #skupiny
+      -ucitelsky router bude musiet mat 32 seriakov
+        -zistit, kolko je maximalny pocet seriovych liniek na IOL routri
+
+
   -zmerdzovat navod 13_1 do sumarneho prehladu zariadeni
+
 
   -skontrolovať vzhľad všetkých tabuliek v DP
 
@@ -326,3 +338,4 @@ do Linuxu (GNS3)
     -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
     v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
     -vyhodnotit
+
