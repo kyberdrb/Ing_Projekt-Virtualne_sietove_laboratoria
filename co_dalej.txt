@@ -8,6 +8,8 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+  -zmerdzovat navod 13_1 do sumarneho prehladu zariadeni
+
   -skontrolovať vzhľad všetkých tabuliek v DP
 
   -urobit prezentaciu DP na stvrtok
