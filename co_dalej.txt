@@ -14,7 +14,7 @@ Diplomka
         -PPP, MLPPP, PAP, CHAP
       -nakres topologie je na maili
         -medzi R1-R3 a R2-R4 (zvislé linky) pojdu 2 seriove linky, kvoli MLPPP
-      -zariadenia pomenovat podla vzoru: #skupiny
+      -zariadenia pomenovat podla vzoru: #skupiny+R+#routra
       -ucitelsky router bude musiet mat 32 seriakov
         -zistit, kolko je maximalny pocet seriovych liniek na IOL routri
 
@@ -24,16 +24,8 @@ Diplomka
 
   -skontrolovať vzhľad všetkých tabuliek v DP
 
-  -urobit prezentaciu DP na stvrtok
-    -podobnu ako na panel story, len podla sablony z moodla
-      -co som robil?
-      -preco som robil?
-      -ako som robil?
-      -co je vystupom?
-      -co dalej?
 
-
-  -Dokoncit "Testovanie technologii"
+  -Dokoncit kapitolu "Testovanie technologii"
 
   -Najprv sa povenovat tymto veciam
     -ake zariadenia su vhodne na skumane predmety a preco (technologie)?
@@ -57,6 +49,8 @@ Diplomka
 
 ===============================================================================
 Co dalej?
+
+-dokončiť testovanie technológii pre Juniper vMX (1 uzol aj VCP+VFP konfiguráciu), Juniper vSRX a Nokia VSR (13 aj 14, aj 1 uzol aj IOM+CPM konfiguráciu)
 
 -Otestovať v GNS3 prepojiť už spustené uzly medzi sebou (hot connect) a otestovať konektivitu, či to bude fungovať.
 
@@ -298,6 +292,8 @@ do Linuxu (GNS3)
 -Unified Networking Lab v2 (UNetLabv2)
   http://www.routereflector.com/unetlab/
   https://www.indiegogo.com/projects/eve-ng-unified-networking-lab-2-0#/
+
+
 
   GNS3
 -Rozdiel medzi klasickou GNS3 a GNS3-SW
