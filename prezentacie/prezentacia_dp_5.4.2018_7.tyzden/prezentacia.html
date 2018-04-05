@@ -54,16 +54,40 @@
 
 
     <section class="slide">
+      <h2>Špecifikácia projektu</h2>
+
+      <ul>
+        <li>Nahradenie fyzického a všetkých virtuálnych laboratórii jediným riešením, ktoré by podporovalo všetky virtuálne zariadenia prítomné na katedre, a v ktorom sa môžu vypracovávať konfiguračné úlohy na vybrané vyučovacie predmety.</li>
+        <li>Podpora pre typy používateľov</li>
+        <ul>
+          <li>Učiteľ</li>
+          <ul>
+            <li>Vytváranie topológii sietí</li>
+            <li>Zadávanie úloh študentom</li>
+          </ul>
+          <li>Študent</li>
+          <ul>
+            <li>Konfigurácia zadaných úloh na vytvorenej topológii</li>
+          </ul>
+        </ul>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+
       <h2>Súčasný stav</h2>
+      
 
-      <h3>Packet Tracer</h3>
+      <h3>Virtuálne sieťové laboratóriá používané na katedre:</h3>
 
-      <p>
-        Počítačové siete 1/2
-      </p>
+      <h4>Packet Tracer</h4>
 
+      <ul>
+        <li>Počítačové siete 1/2</li>
+      </ul>
 
-      <h3>Dynamips/Dynalab</h3>
+      <h4>Dynamips/Dynalab</h4>
 
       <ul>
         <li>Počítačové siete 2</li>
@@ -72,7 +96,7 @@
       </ul>
 
 
-      <h3>OpenStack</h3>
+      <h4>OpenStack</h4>
 
       <ul>
         <li>Nebol skúmaný.</li>
@@ -90,15 +114,13 @@
 
 
       <h3>Potrebné zjednotiť rôzne technológie do jedného nástroja</h3>
-      <p>
-        <strong>ViRo v2 ?</strong>
-      </p>
 
     </section>
 
 
     <section class="slide">
       <h2>Ciele diplomovej práce</h2>
+
       <ul>
         <li>Nástroje pre sieťovú virtualizáciu</li>
         <li>EVE-ng</li>
@@ -111,8 +133,6 @@
 
     <section class="slide">
       <h2>Nástroje pre sieťovú virtualizáciu</h2>
-
-      <!-- <p>Prieskum a popis dostupných riešení pre virtuálne sieťové laboratórium (Cisco VIRL, EVE&#8209;ng, GNS3 ako vzdialený server, popr. preskúmať ďalšie nástroje).</p> -->
 
 
       <h3>Dôvod</h3>
@@ -141,8 +161,6 @@
     <section class="slide">
       <h2>EVE-ng</h2>
 
-      <!-- <p>Návrh možností riešenia virtuálneho laboratória a virtuálnych topológií pre vyučovanie.</p> -->
-
 
       <h3>Dôvody</h3>
 
@@ -156,7 +174,30 @@
       <ul>
         <li>Inštalácia</li>
         <li>Úprava nástroja</li>
+        <ul>
+          <li><em>Wireshark, Debugger Console</em></li>
+          <li>Sprístupnenie používateľských rolí.</li>
+          <ul>
+            <li>Dostupná iba v platenej verzii.</li>
+            <li>Implementovaná dodatočne.</li>
+          </ul>
+          <li>Úprava používateľských atribútov.</li>
+          <li>Vypnutie správy o nízkom rozlíšení obrazovky.</li>
+          <li>Zatvorenie topológie so spustenými zariadeniami.</li>
+        </ul>
         <li>Administrácia</li>
+        <ul>
+          <li>Zálohovanie.</li>
+          <ul>
+            <li><em>rsync, cron</em></li>
+            <li>Kritické súbory a adresáre.</li>
+          </ul>
+          <li>Monitorovanie.</li>
+          <ul>
+            <li><em>dstat, EVE-ng System status, htop</em></li>
+          </ul>
+          <li>Správa používateľov.</li>
+        </ul>
       </ul>
 
       
@@ -171,13 +212,11 @@
     <section class="slide">
       <h2>Analýza vyučovania</h2>
 
-      <!-- <p>Analýza predmetov zabezpečovaných KIS a ich požiadaviek na sieťové zariadenia a možnosť či vhodnosť využívania virtuálneho laboratória vo vyučovaní. Stanovenie kritérií.</p> -->
-
 
       <h3>Dôvod</h3>
 
       <p>
-        Prieskum vyučovaných technológii na katedre.
+        Prieskum vyučovaných tém na katedre.
       </p>
 
 
@@ -188,33 +227,20 @@
         <li>Vyučovacie materiály predmetov na katedre</li>
       </ul>
 
-      <p>
-        Analyzované predmety:
-      </p>
-
-      <ul>
-        <li>Počítačové siete 1</li>
-        <li>Počítačové siete 2</li>
-        <li>Projektovanie sietí 1</li>
-        <li>Projektovanie sietí 2</li>
-        <li><strong>CCNA Security?</strong></li>
-        <li>Pokročilé prepínanie v informačno-komunikačných sieťach</li>
-        <li>Pokročilé smerovanie v informačno-komunikačných sieťach</li>
-      </ul>
-
       
       <h3>Výsledky</h3>
 
       <p>
-        Textový dokument - zoznam vyučovaných sieťových technológii.
+        Textový dokument - zoznam vyučovaných sieťových tém
+        <ul>
+          <li>napr. VLAN, DHCP, OSPF a pod.</li>
+        </ul>
       </p>
     </section>
 
 
     <section class="slide">
       <h2>Virtuálne zariadenia</h2>
-
-      <!-- <p>Analýza aktuálneho stavu v oblasti riešení virtuálnych sieťových prvkov popredných výrobcov, vytvorenie matice kompatibility pre potreby vyučovania ako aj vhodnosti pre beh vo virtualizovanom prostredí  (Cisco vIOS/IOL/CSR/ASAv, Juniper vMX/vSRX, Mikrotik a pod.).</p> -->
 
 
       <h3>Dôvody</h3>
@@ -230,11 +256,18 @@
       
       <ul>
         <li>Získavanie</li>
-        <li>Testovanie</li>
-        <ul>
-          <li>spustiteľnosti</li>
-          <li>systémových požiadaviek</li>
-          <li>technológii (Cisco)</li>
+        <li>Testovanie spustiteľnosti</li>
+          <ul>
+            <li>Dá sa zariadenie spustiť?</li>
+          </ul>
+        <li>Testovanie systémových požiadaviek</li>
+          <ul>
+            <li>Koľko systémových zdrojov zariadenie potrebuje?</li>
+          </ul>
+        <li>Testovanie podporovaných technológii</li>
+          <ul>
+            <li>Aké smerovacie/prepínacie/aplikačné technológie zariadenie podporuje?</li>
+          </ul>
         </ul>
       </ul>
 
@@ -249,13 +282,12 @@
     </section>
 
 
+    <!---<section class="slide">
+      Obrázky tabuľkových dokumentov (zrejme ľavé horné rohy)
+    </section>-->
+
     <section class="slide">
       <h2>Nasadenie do vyučovania</h2>
-
-      <!-- <p>Návrh možností riešenia virtuálneho laboratória a virtuálnych topológií pre vyučovanie.</p>
-      <p>Pilotné nasadenie a otestovanie vybraných riešení podľa stanovených kritérií. Vyhodnotenie kompatibility, výkonnosti,  stability, početnosti zariadení atď.</p>
-      <p>Overenie funkčnosti pri vypracovávaní úloh z vybraných predmetov.</p>
-      </p>Vyhodnotenie a dokumentácia získaných výsledkov.</p> -->
 
 
       <h3>Dôvod</h3>
@@ -315,7 +347,10 @@
           <li>co_dalej.txt</li>
         </ul>
     </section>
+
+
     <!-- End slides. -->
+
 
     <!-- Begin extension snippets. Add or remove as needed. -->
 

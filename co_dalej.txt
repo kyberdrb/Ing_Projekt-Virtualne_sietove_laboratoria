@@ -9,14 +9,27 @@ Zazitky:
 Diplomka
 
   -nasadenie do vyucovania:
-    -PS2 7. tyzden - PPP technologie
-      -technologie
-        -PPP, MLPPP, PAP, CHAP
       -nakres topologie je na maili
         -medzi R1-R3 a R2-R4 (zvislé linky) pojdu 2 seriove linky, kvoli MLPPP
-      -zariadenia pomenovat podla vzoru: #skupiny+R+#routra
       -ucitelsky router bude musiet mat 32 seriakov
         -zistit, kolko je maximalny pocet seriovych liniek na IOL routri
+
+
+  -nasadenie do vyucovania:
+    -odhadnut systemove poziadavky pre topologie z vybranych predmetov a na zaklade toho odhadnut minimalne systemove poziadavky servera
+    -popisat
+      -vytvorenie topologie
+      -pridavanie zariadenia
+      -pridelovanie portovych cisel zariadeniam
+        -rozsah
+        -pridelovanie portovych cisel je sekvencne
+      -spustanie zariadeni
+        -po jednom
+        -vybrana skupina
+          -Ctrl+klik -> pravy klik -> Start Selected
+          -oznacenie mysou -> pravy klik -> Start selected
+        -vsetky zariadenia v topologii
+          -More actions -> Start all nodes
 
 
   -zmerdzovat navod 13_1 do sumarneho prehladu zariadeni
@@ -51,6 +64,8 @@ Diplomka
 Co dalej?
 
 -dokončiť testovanie technológii pre Juniper vMX (1 uzol aj VCP+VFP konfiguráciu), Juniper vSRX a Nokia VSR (13 aj 14, aj 1 uzol aj IOM+CPM konfiguráciu)
+  -Na Cisco switchoch otestovat aj technologiu RITE - port mirroring na smerovaci
+    https://networklessons.com/cisco/ccie-routing-switching/router-ip-traffic-export-rite/
 
 -Otestovať v GNS3 prepojiť už spustené uzly medzi sebou (hot connect) a otestovať konektivitu, či to bude fungovať.
 
