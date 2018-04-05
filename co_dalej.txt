@@ -11,8 +11,11 @@ Diplomka
   -nasadenie do vyucovania:
     -NASADENIE NA 7. TÝŽĎEŇ 6.4.2018 - PS2
       -vytvoriť konfigurácie pre každý router v základnej topológii a otestovať funkcionalitu úloh
+        -> otestujú študenti ;)
       -znova spustiť už nakonfigurovanú topológiu a obenchmarkovať ju
+        -> HOTOVO - STIAHNUT CSV ZO SERVERA, DAT DO REPA A VYHODNOTIT CEZ LIBRE CALC
       -rozšíriť topológiu - 8x replikovať základnú topológiu + 1 testovacia = 9 topológii
+        -> ešte pridať testovaciu topológiu
 
     -odhadnut systemove poziadavky pre topologie z vybranych predmetov a na zaklade toho odhadnut minimalne systemove poziadavky servera
     -popisat
