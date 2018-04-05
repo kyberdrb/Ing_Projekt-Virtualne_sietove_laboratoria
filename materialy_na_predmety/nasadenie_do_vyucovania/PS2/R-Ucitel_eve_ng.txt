@@ -1,0 +1,259 @@
+ena
+conf t
+!
+! Last configuration change at 11:02:45 UTC Fri Mar 31 2017
+!
+!!########################
+!Prikaz "upgrade" nie je podporovany
+!upgrade fpd auto
+!########################
+!
+!
+version 15.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R-Ucitel
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username 1R1 password 0 1chap1
+username 1Router2 password 0 1pap2
+username 2R1 password 0 2chap1
+username 2Router2 password 0 2pap2
+username 3R1 password 0 3chap1
+username 3Router2 password 0 3pap2
+username 4R1 password 0 4chap1
+username 4Router2 password 0 4pap2
+username 5R1 password 0 5chap1
+username 5Router2 password 0 5pap2
+username 6R1 password 0 6chap1
+username 6Router2 password 0 6pap2
+username 7R1 password 0 7chap1
+username 7Router2 password 0 7pap2
+username 8R1 password 0 8chap1
+username 8Router2 password 0 8pap2
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+ ip ospf 1 area 0
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+ duplex half
+!
+interface Serial2/0
+ ip address 192.168.11.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial2/1
+ ip address 192.168.12.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial2/2
+ ip address 192.168.21.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial2/3
+ ip address 192.168.22.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial3/0
+ ip address 192.168.31.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial3/1
+ ip address 192.168.32.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial3/2
+ ip address 192.168.41.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial3/3
+ ip address 192.168.42.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial4/0
+ ip address 192.168.51.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial4/1
+ ip address 192.168.52.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial4/2
+ ip address 192.168.61.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial4/3
+ ip address 192.168.62.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial5/0
+ ip address 192.168.71.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial5/1
+ ip address 192.168.72.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+interface Serial5/2
+ ip address 192.168.81.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication chap
+ serial restart-delay 0
+!
+interface Serial5/3
+ ip address 192.168.82.254 255.255.255.0
+ encapsulation ppp
+ ip ospf 1 area 0
+ ppp authentication pap
+ serial restart-delay 0
+!
+router ospf 1
+ router-id 1.1.1.1
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!########################
+!Nepodporuje "mgcp" prikazy
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!########################
+!
+!
+gatekeeper
+ shutdown
+!
+!
+line con 0
+ privilege level 15
+ password admin
+ logging synchronous
+ login
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ login
+ transport input none
+!
+!########################
+! IOL ma iba 5 vty rozhrani, preto
+! prikaz "line vty 5 15" zlyha
+!
+!line vty 5 15
+! login
+! transport input none
+!########################
+!
+!
+end
+
+

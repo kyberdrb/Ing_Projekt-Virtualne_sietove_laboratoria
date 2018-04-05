@@ -64,3 +64,16 @@ Zväčšenie odsadenia a zmena zarovnania textu jednej bunky v tabuľke
 https://tex.stackexchange.com/questions/281571/how-to-left-align-text-in-a-table-with-makecell/281580#281580
  alebo
 https://tex.stackexchange.com/questions/408287/vertical-alignment-of-equation-in-a-table-cell/408290#408290
+
+FIX - Príkazy "cline" a "cmidrule" nefungujú v LaTeX - súbor sa neskompiluje
+viď časť "A less invasive hack"
+-> https://tex.stackexchange.com/questions/111999/slovak-and-czech-babel-gives-problems-with-cmidrule-and-cline/112002#112002
+
+Vynechanie tabuľky z číslovania a z obsahu tabuliek
+https://tex.stackexchange.com/questions/32553/longtable-caption-without-incrementing-table/32556#32556
+
+Úprava vertikálnej pozície textu v "multirow" bunke - bunke prechádzajúcej viacerými riadkami
+https://tex.stackexchange.com/questions/66596/vertical-alignment-in-multirow-using-cells-with-1-lines/66599#66599
+
+Odstránenie orámovania ľavej hornej bunky v tabuľke
+https://tex.stackexchange.com/questions/64825/remove-border-of-top-left-table-cell/64827#64827

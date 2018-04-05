@@ -9,16 +9,16 @@ Zazitky:
 Diplomka
 
   -nasadenie do vyucovania:
-      -nakres topologie je na maili
-        -medzi R1-R3 a R2-R4 (zvislé linky) pojdu 2 seriove linky, kvoli MLPPP
-      -ucitelsky router bude musiet mat 32 seriakov
-        -zistit, kolko je maximalny pocet seriovych liniek na IOL routri
+    -NASADENIE NA 7. TÝŽĎEŇ 6.4.2018 - PS2
+      -vytvoriť konfigurácie pre každý router v základnej topológii a otestovať funkcionalitu úloh
+      -znova spustiť už nakonfigurovanú topológiu a obenchmarkovať ju
+      -rozšíriť topológiu - 8x replikovať základnú topológiu + 1 testovacia = 9 topológii
 
-
-  -nasadenie do vyucovania:
     -odhadnut systemove poziadavky pre topologie z vybranych predmetov a na zaklade toho odhadnut minimalne systemove poziadavky servera
     -popisat
       -vytvorenie topologie
+        -z GUI
+        -editovaním UNL súboru s topológiou
       -pridavanie zariadenia
       -pridelovanie portovych cisel zariadeniam
         -rozsah
