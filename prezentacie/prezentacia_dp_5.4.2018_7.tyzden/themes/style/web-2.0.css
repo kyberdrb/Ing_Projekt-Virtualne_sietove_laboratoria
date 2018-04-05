@@ -263,6 +263,10 @@ p, blockquote, iframe, img, pre, video {
   margin-bottom: 1em;
 }
 
+p {
+  padding: 0 15px;
+}
+
 pre {
   white-space: pre;
   white-space: pre-wrap;
