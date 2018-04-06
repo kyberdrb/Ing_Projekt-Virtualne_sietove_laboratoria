@@ -7,7 +7,10 @@ Urobiť napríklad scenár: syslog a snmp server z inych hostov a routrov
 
 Maximálny počet spustených topológii daného typu odhadneme sčítaním ich systémových požiadaviek. Mali by z toho vyplynúť odhad minimálnych systémových požiadaviek servera pri topológiách na vybrané predmety.
 
-\section{Integračný balíček EVE-ng}
+
+
+
+\section{Vytváranie topológii v EVE-ng}
 \label{chap:nasadenie_klient}
 
 Web rozhranie - 2 módy - Natívny a HTML5.
@@ -17,19 +20,66 @@ HTML5 mód web rozhrania EVE-ng bol však reagoval výrazne pomalšie pri práci
 
 - predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii).
 
+
+
+
+\section{Používanie EVE-ng}
+
+-popisat
+      -vytvorenie topologie
+        -z GUI (pridavanie zariadenia)
+        -editovaním UNL súboru s topológiou
+            -popisat hlavne parametre, ktore sa lisia pri duplikovani textovej reprezentacie danej topologie
+        -vyslovit odporucanie na vytvaranie topologii
+            -> GUI -> Nodes (nazvy zariadeni) -> UNL (skraslenie topologie upravenim suradnic pre zariadenia) - VID A4 PAPIER "DUPLIKÁCIA TOPOÓGIE V EVE-NG -> ZÁVER"
+      -pridelovanie portovych cisel zariadeniam
+        -rozsah
+        -pridelovanie portovych cisel je sekvencne
+      -spustanie zariadeni
+        -po jednom
+        -vybrana skupina
+          -Ctrl+klik -> pravy klik -> Start Selected
+          -oznacenie mysou -> pravy klik -> Start selected
+        -vsetky zariadenia v topologii
+          -More actions -> Start all nodes
+      -odhadnut systemove poziadavky pre topologie z vybranych predmetov a na zaklade toho odhadnut minimalne systemove poziadavky servera
+      -> začať topológiami z predmetov, na ktorých bol nástroj nasadený.
+
+
+
+
 \section{Počítačové siete 1 a 2}
+
+- náhrada za nástroj Packet Tracer a doplnok pre nástroj Dynamips/Dynagen
 
 Na predmet Počitačové siete 2 bol použitý fyzický EVE-ng server.
 
-- náhrada/doplnok pre nástroj Packet Tracer
+-NASADENIE NA 7. TÝŽĎEŇ 6.4.2018 - PS2
+      -IOL smerovače fungovali, až na nastavenie clock rate na sériových rozhraniach, bez chyby. V jednej skupine sa vyskytol problém s jednosmernou PAP autentifikáciou študentského smerovača voči učiteľskému (R\_Ucitel(s4/1)-5R2(s2/1)). Riešenie spočívalo v odstránení používateľa, vypnutí ppp konfigurácie a vypnutí rozhraní na oboch rozhraniach aj na učiteľskom aj na študentskom smerovači. Následne sa konektivita obnovila.
 
 Vypracované topológie:
-- sumárne laboratórne cvičenie \emph{Packet Tracer Packet Tracer Skills Integration Challenge 8.6.1}
 - Topológia s point-to-point technológiami.
+
+-vyhodnotit dstat csv - (8 topologii = 32 Cisco IOL smerovačov (4*8 + 1 učiteľský) + 16 QEMU zariadení (Alpine Linux x86))
+        -> VYHODNOTIT CEZ LIBRE CALC
+        
+    
+    
+{\huge TODO - TOTO DAŤ DO KAPITOLY ÚPRAVA NÁSTROJA EVE-NG}
+-zistený limit - maximálny počet zariadení obmedzený na 63; 64. zariadenie sa chvíľu tvári, že sa spúšťa, ale po niekoľkých sekundách sa automaticky vypne.
+
+{\huge TODO - AJ TOTO DAŤ DO KAPITOLY ÚPRAVA NÁSTROJA EVE-NG}
+-EVE-ng v momentalnom stave vie zatvorit topologiu, ale nevie po zatvoreni jednej topologie (co teraz funguje), pracovat so zariadeniami v inej topologii. Z toho vyplýva, že v EVE-ng môžeme mať spustenú iba jednu topológiu, ktorá je navyše obmedzená na 63 zariadení, 64. sa síce začne spúšťať, ale hneď na to sa vypne.
+    ->DOCASNE RIESENIE spociva v rozsireni portoveho rozsahu pre jednu topológiu. To vyrieši problém s obmedzením počtu zariadení v jednej topológii, ale nerieši to problém s nezávislým spúšťaním topológii ako jeden používateľ.
+
+
 
 \section{Projektovanie sietí 1}
 
 náhrada/doplnok Dynamips servera (s takym vykonom, t.j. cca 10/15skupin po 10 routroch)
+
+
+
 
 \section{Projektovanie sietí 2}
 
