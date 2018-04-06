@@ -26,7 +26,7 @@ end
 ena
 conf t
 int s0/0
- ppp pap sent username 1R1 pass cisco
+ ppp pap sent <username> pass <heslo>
 !
 !
 ! PAP - server
