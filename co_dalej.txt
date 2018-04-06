@@ -19,6 +19,10 @@ Diplomka
 
   -treba v kapitole "Analýza vyučovania" dať zoznam vyučovaných technológii pre CCNA Security?
 
+
+
+
+
 ===============================================================================
 Co dalej?
 
