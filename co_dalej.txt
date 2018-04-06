@@ -11,10 +11,12 @@ Diplomka
   -nasadenie do vyucovania:
     -NASADENIE NA 7. TÝŽĎEŇ 6.4.2018 - PS2
       -IOL smerovače fungovali, až na nastavenie clock rate na sériových rozhraniach, bez chyby. V jednej skupine sa vyskytol problém s jednosmernou PAP autentifikáciou študentského smerovača voči učiteľskému (R_Ucitel(s4/1)-5R2(s2/1)). Riešenie spočívalo v odstránení používateľa, vypnutí ppp konfigurácie a vypnutí rozhraní na oboch rozhraniach aj na učiteľskom aj na študentskom smerovači. Následne sa konektivita obnovila.
+
       -vyhodnotit dstat csv - (8 topologii = 32 Cisco IOL smerovačov (4*8 + 1 učiteľský) + 16 QEMU zariadení (Alpine Linux x86))
         -> HOTOVO - DAT DO REPA A VYHODNOTIT CEZ LIBRE CALC
 
     -odhadnut systemove poziadavky pre topologie z vybranych predmetov a na zaklade toho odhadnut minimalne systemove poziadavky servera
+      -> začať topológiami z predmetov, na ktorých bol nástroj nasadený.
     -popisat
       -vytvorenie topologie
         -z GUI
