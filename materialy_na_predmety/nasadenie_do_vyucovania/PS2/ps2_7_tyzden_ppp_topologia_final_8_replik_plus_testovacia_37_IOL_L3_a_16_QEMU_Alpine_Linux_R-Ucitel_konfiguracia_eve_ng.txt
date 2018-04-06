@@ -1,3 +1,4 @@
+end
 ena
 conf t
 !
@@ -255,5 +256,4 @@ line vty 0 4
 !
 !
 end
-
-
+copy run start
