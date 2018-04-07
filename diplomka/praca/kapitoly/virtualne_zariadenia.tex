@@ -90,18 +90,14 @@ Pokiaľ sme zistili, že protokol vzdialeného prístupu sa odlišuje od predvol
 \subsection{Testovanie systémových požiadaviek}
 \label{chap:testovanie_zariadeni_benchmark}
 
-Čo som meral?
-Prečo som to meral?
-Čím som meral?
-
 Testovanie systémových požiadaviek zariadení bolo realizované na fyzickom EVE-ng serveri. Tento druh testovania bol dôležitý preto, aby sme mohli danému zariadeniu nastaviť dostatočné technické parametre, čím zaistíme jeho plynulý chod a predídeme rôznym komplikáciám počas používania vo vyučovaní. Tieto parametre sú uložené v šablóne pre dané zariadenie.
 
 Úprava šablón je realizovaná skriptom, po ktorého vykonaní sa príslušným zariadeniam zmenia konkrétne technické parametre v šablóne. Po úprave šablón sa zmeny prejavia okamžite a po pridaní zariadenia do topológie, kedy sa jeho parametre automaticky nastavia na správne hodnoty. Pre vybrané zariadenia boli merané tieto veličiny:
 
-\begin{itemize}
-\item Vyťaženie procesora
-\item Využitie operačnej pamäte
-\item Vyťaženie pevného disku
+\begin{itemize}[noitemsep]
+    \item Vyťaženie procesora
+    \item Využitie operačnej pamäte
+    \item Vyťaženie pevného disku
 \end{itemize}
 
 Vyťaženie procesora bolo merané z dôvodu jeho intenzívnej činnosti hlavne počas spúšťania zariadení, ale môže byť vyťažovaný aj po dokončení spúšťania. Na základe toho budeme vedieť určiť, koľko zariadení budeme môcť v topológii spustiť naraz, a koľko už spustených zariadení zvládne server spravovať celkovo. Pri meraní vyťaženia procesora bolo merané celkové vyťaženie aj vyťaženie jednotlivých jadier procesora.
@@ -118,7 +114,7 @@ Vyťaženie sieťovej karty je zanedbateľné pri meraní výkonnosti jednotliv�
 
 Na monitorovanie vybraných veličín sú určené rôzne nástroje a stratégie. Mohli sme napr. vytvoriť skript, ktorý by pomocou viacerých špecializovaných nástrojov meral vyťaženie jednotlivých prvkov systému, alebo použiť nástroj, ktorý je schopný monitorovať široké spektrum systémových zdrojov. Zvažovali sme tieto nástroje:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item \textbf{iotop} ~~~~~ - ~~monitorovanie procesov podľa využitia disku
     \item \textbf{nmap} ~~~~ - ~~monitorovanie sieťovej prevádzky
     \item \textbf{nethogs} ~ - ~~monitorovanie procesov podľa využitia sieťového rozhrania
@@ -147,9 +143,7 @@ Už upravený nástroj \emph{dstat\_custom} je možné nájsť na zálohovacom s
 
 \subsubsection{Metodika}
 
-Čo bolo potrebné vykonať pred meraním?
-Ako prebiehalo meranie?
-Čo je výstupom merania?
+Najprv bol vytvorený zoznam vybraných zariadení, ktorých systémové požiadavky sme sa rozhodli testovať. Ten sa nachádza na priloženom CD v súbore \\ \emph{eve\_ng/13\_1\_profiling\_and\_benchmarking\_device\_list.txt}. Zoznam zariadení bol vytvorený na základe kapitoly \ref{chap:analyza_vyucovania} - \nameref{chap:analyza_vyucovania}, keďže malo zmysel testovať iba zariadenia, ktoré by mohla katedra použiť vo vyučovaní.
 
 Meranie systémových zdrojov zariadenia bolo vykonané nástrojom \emph{dstat\_custom}. Pred začiatkom každého merania bolo potrebné vykonať kroky, ktoré zvyšujú konzistenciu a presnosť výsledkov a reprezentujú najhoršie možné podmienky pre beh zariadenia. Všetky zariadenia sú uložené na rovnakom pevnom disku ako operačný systém.
 
@@ -160,7 +154,7 @@ Na EVE-ng serveri bola počas celého merania vypnutá funkcia UKMS (Universal K
 \noindent
 Meranie systémových požiadaviek zariadenia prebiehalo nasledovne:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
     \item Do EVE-ng topológie sme pridali jedno zariadenie.
     \item \label{nastavenie_sys_param} Nastavíme mu maximálne množstvo operačnej pamäte, s ktorým je zariadenie schopné, úspešne sa spustiť. Ak je to možné, nastavíme počet procesorov na 1 CPU.
     \item Vykonáme úvodné kroky pred meraním.
@@ -187,16 +181,12 @@ Po ukončení merania všetkých zariadení môžeme znova zapnúť "swap" part�
 \subsubsection{Vyhodnotenie}
 \label{chap:testovanie_zariadeni_benchmark_vyhodnotenie}
 
-Čo je výstupom?
-Ako som výstup vyhodnotil?
-
-
 Po vytvorení súboru s nameranými údajmi a súboru s trvaním spúšťania zariadenia môžeme vložiť ich údaje do tabuľkového dokumentu. Na základe vstupných údajov sa automaticky prepočítajú výstupné hodnoty vo všetkých tabuľkách tohto dokumentu. Nižšie je opísaný priebeh vyhodnotenia nameraných údajov:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
     \item Do hárku \emph{SuroveUdaje} vložíme dáta namerané nástrojom \emph{dstat\_custom}.
     \item Do hárku \emph{VstupVystup} vložíme tieto údaje
-    \begin{itemize}
+    \begin{itemize}[noitemsep]
         \item Do poľa \emph{Start} zadáme čas, kedy sme zariadenie spustili.
         \item Do poľa \emph{Stop} zadáme čas, kedy zariadenie dokončilo svoje spúšťanie a zobrazilo interaktívny príkazový riadok (CLI).
         \item Do poľa \emph{Množstvo voľnej RAM na serveri (MB)} zadáme množstvo voľnej operačnej pamäte na EVE-ng serveri v stave pokoja.
@@ -205,7 +195,7 @@ Po vytvorení súboru s nameranými údajmi a súboru s trvaním spúšťania za
 
 Po zadaní spomenutých vstupných údajov tabuľkový dokument poskytne v hárku \emph{VstupVystup} odpovede na tieto otázky:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Čas spúšťania - čas potrebný na dokončenie spúšťania zariadenia
     \item Odhadované množstvo operačnej pamäte pre jedno zariadenie / topológiu (MB)
     \item Odhadovaný počet zariadení, ktoré je možné naraz spustiť na základe celkového vyťaženia CPU
@@ -227,23 +217,65 @@ Podľa tabuľkového dokumentu bolo pre každé zariadenie nastavené množstvo 
 \subsection{Testovanie technológii}
 \label{chap:testovanie_technologii}
 
-V tejto časti využijeme poznatky z kapitoly \ref{chap:analyza_vyucovania} a použijeme ich na testovanie podporovaných technológii vybraných zariadení.
+V tejto časti využijeme poznatky z kapitoly \ref{chap:analyza_vyucovania} a použijeme ich na testovanie, či vybrané zariadenia podporujú témy vyučované na katedre. Boli testované podporované technológie iba na Cisco zariadeniach, keďže tie sa používajú vo vyučovaní najviac.
 
-Kritériá.
+Cieľom testovania technológii je zistiť, do akej je možné použiť virtuálne zariadenia pri vyučovaní takých tém, na ktoré boli doposiaľ použité fyzické zariadenia alebo virtualizačné riešenia s užším rozsahom podporovaných technológii. Jednalo sa najmä o podporu prepínacích technológii na predmetoch \emph{Pokročilé prepínanie v informačno-komunikačných sieťach} (CCNP) a \emph{Počítačové siete 1} (CCNA). Prioritne boli testované témy vyučované na CCNP kurze, keďže prepínacie technológie v CCNP kurze zahŕňajú aj tie zo CCNA.
 
-Zatiaľ boli testované podporované technológie iba na Cisco zariadeniach.
 
--Najprv sa povenovat tymto veciam
-      -ake zariadenia su vhodne na skumane predmety a preco (technologie)?
-      -zdokumentovat zistovanie features pre zariadenia
-        -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
 
 \subsubsection{Metodika}
 
-Testované skriptom
+-zdokumentovat zistovanie features pre zariadenia
+        -ako som postupoval, zdroje, co som porovnaval, ako som vyberal zariadenia, na ktore oblasti katedry som sa zameriaval (pozret sa v telefone na obrazok tabule od veduceho: predmety a ich problematicke casti + zariadenia na ne)
+
+Na testovanie podporovaných technológii vybraných zariadení bol vytvorený skript. Skript sa skladal z konfiguračných príkazov, ktoré mali za úlohu testovať ich podporu na zariadení. Časti tohto skriptu boli postupne zadávané do konfigurácie zariadenia. Skript je prítomný na CD v súbore \\
+\emph{materialy\_na\_predmety/0\_2\_vyucovane\_technologie\_testovaci\_skript\_cisco.txt}.
+
+
 
 \subsubsection{Vyhodnotenie}
 
-Ktoré zariadenia podporujú technológie vyučované na vybraných predmetoch.
+Po vykonaní konfiguračných príkazov zo skriptu bolo potrebné vyhodnotiť, či a do akej miery je testovaná technológia podporovaná. Technológia bola označená ako podporovaná vtedy, ak príkaz nevypísal žiadne chybové hlásenie. V opačnom prípade sa testovali alternatívne konfigurácie. Ak ani žiadna z alternatívnych konfigurácii nebola podporovaná, technológia bola vyhodnotená ako nepodporovaná. Výsledky testovania technológii sú dostupné na CD v súbore \\
+\emph{materialy\_na\_predmety/0\_0\_vyucovane\_technologie.ods}. Podporované vyučované témy testovaných zariadení sú farebne odlíšené, popr. doplnené krátkym komentárom.
 
-Vyučované technológie.ods
+Nižšie je uvedený zoznam vybraných predmetov a k nim prislúchajúce odporúčané zariadenia.
+
+\begin{itemize}[noitemsep]
+    \item Počítačové siete 1
+    \begin{itemize}[noitemsep]
+        \item Cisco IOL prepínač
+        \item Cisco vIOS prepínač
+    \end{itemize}
+    \item Počítačové siete 2
+    \begin{itemize}[noitemsep]
+        \item Cisco IOL smerovač
+    \end{itemize}
+    \item Projektovanie sietí 1
+    \begin{itemize}[noitemsep]
+        \item Cisco IOL smerovač
+        \item Cisco 3725
+        \item Cisco 7200
+        \item Cisco vIOS smerovač
+        \item Cisco CSR
+        \item Cisco prepínač (IOL switch)
+        \item Cisco vIOS prepínač (QEMU)
+    \end{itemize}
+    \item Projektovanie sietí 2
+    \begin{itemize}[noitemsep]
+        \item Cisco IOL smerovač
+        \item Cisco CSR a CSR-ng
+        \item Nokia VSR
+    \end{itemize}
+    \item Pokročilé prepínanie v informačno-komunikačných sieťach
+    \begin{itemize}[noitemsep]
+        \item Rovnaké zariadenia, ako pri predmete Počítačové siete 1.
+    \end{itemize}
+    \item Pokročilé smerovanie v informačno-komunikačných sieťach
+    \begin{itemize}[noitemsep]
+        \item Rovnaké zariadenia, ako pri predmete Projektovanie sietí 1.
+    \end{itemize}
+\end{itemize}
+
+Cisco IOL smerovač ako jediný v EVE-ng obsahuje sériové rozhrania, preto ako jediný v EVE-ng podporuje Point-to-point technológie. Pre výučbu HSRP a VRRP protokolov sú odporúčané Cisco IOL a Cisco vIOS prepínač. Aplikačné protokoly, ako napr. NTP, DHCP alebo Syslog, sú, až na malé výnimky, podporované na všetkých Cisco prepínačoch a smerovačoch. GLBP IPv4 je podporované na všetkých testovaných zariadeniach, ale GLBP IPv6 podporujú iba smerovače Cisco 7200, Cisco IOL smerovač, Cisco vIOS smerovač a Cisco CSR-ng. Cisco podporuje VPLS iba na smerovačoch Cisco CSR a CSR-ng. IP SLA plne podporuje iba smerovač Cisco 3725.
+
+Zoznam odporúčaných zariadení slúži iba na odhad, ktoré zariadenia majú najväčšiu pravdepodobnosť využitia na danom predmete. V prípade, že má predmet v zozname viacero zariadení, treba sa na základe ďalších kritérii rozhodnúť, ktoré z nich budú použité v topológii. Môžeme napr. brať do úvahy iné vyučované témy v topológii, systémové požiadavky zariadenia, iné technické obmedzenia zariadenia a pod. Tento zoznam bol použitý v poslednej fáze projektu - \nameref{chap:nasadenie_do_vyucovania}, ktorej sa venujem v kapitole \ref{chap:nasadenie_do_vyucovania}.

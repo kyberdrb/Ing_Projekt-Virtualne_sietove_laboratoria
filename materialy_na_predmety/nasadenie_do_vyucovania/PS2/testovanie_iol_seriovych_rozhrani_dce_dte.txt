@@ -1,0 +1,31 @@
+end
+ena
+show controllers s0/0 | include cable
+show controllers s0/1 | include cable
+show controllers s0/2 | include cable
+show controllers s0/3 | include cable
+show controllers s1/0 | include cable
+show controllers s1/1 | include cable
+show controllers s1/2 | include cable
+show controllers s1/3 | include cable
+show controllers s2/0 | include cable
+show controllers s2/1 | include cable
+show controllers s2/2 | include cable
+show controllers s2/3 | include cable
+show controllers s3/0 | include cable
+show controllers s3/1 | include cable
+show controllers s3/2 | include cable
+show controllers s3/3 | include cable
+show controllers s4/0 | include cable
+show controllers s4/1 | include cable
+show controllers s4/2 | include cable
+show controllers s4/3 | include cable
+show controllers s5/0 | include cable
+show controllers s5/1 | include cable
+show controllers s5/2 | include cable
+show controllers s5/3 | include cable
+end
+
+
+!Zdroj:
+!https://supportforums.cisco.com/t5/ip-telephony/grep-in-ios-output/m-p/2186042/highlight/true#M226173

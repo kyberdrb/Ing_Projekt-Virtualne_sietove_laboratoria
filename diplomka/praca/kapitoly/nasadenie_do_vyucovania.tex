@@ -1,29 +1,19 @@
 \chapter{Nasadenie do vyučovania}
 \label{chap:nasadenie_do_vyucovania}
 
-Rozpísať, ako sa ktorý nástroj správal pri vypracovávaní úloh z daného predmetu.
-
-Urobiť napríklad scenár: syslog a snmp server z inych hostov a routrov
-
-Maximálny počet spustených topológii daného typu odhadneme sčítaním ich systémových požiadaviek. Mali by z toho vyplynúť odhad minimálnych systémových požiadaviek servera pri topológiách na vybrané predmety.
-
-
-
-
-\section{Vytváranie topológii v EVE-ng}
-\label{chap:nasadenie_klient}
-
-Web rozhranie - 2 módy - Natívny a HTML5.
-Integračný balíček je nutný pre Natívny režim. HTML5 mód zabezpečuje integráciu pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení.
-
-HTML5 mód web rozhrania EVE-ng bol však reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom.
-
-- predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii).
+Aby bola preverená celková kvalita virtuálneho laboratória, bol nástroj EVE-ng nasadený na vypracovávanie rôznych topológii z vybraných predmetov. 
 
 
 
 
 \section{Používanie EVE-ng}
+\label{chap:pouzivanie_eve_ng}
+
+EVE-ng poskytuje na správu topológii a používateľov webové rozhranie. Webové rozhranie je dostupné v 2 módoch: natívnom a HTML5. HTML5 mód zabezpečuje integráciu pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení. HTML5 mód web rozhrania EVE-ng bol však menej stabilný a reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom. Preto bolo webové rozhranie ďalej používané iba v natívnom móde.
+
+V HTML5 móde sa na obrazovke s otvorenou topológiou po kliknutí na zariadenie otvorí jeho vzdialená konzola. V natívnom móde potrebujeme mať pre otvorenie konzoly na zariadení nainštalovaný tzv. integračný balíček. Predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii).
+
+
 
 -popisat
       -vytvorenie topologie
@@ -50,17 +40,32 @@ HTML5 mód web rozhrania EVE-ng bol však reagoval výrazne pomalšie pri práci
 
 \section{Počítačové siete 1 a 2}
 
-- náhrada za nástroj Packet Tracer a doplnok pre nástroj Dynamips/Dynagen
+V rámci predmetu Počítačové siete 2 bol nástroj EVE-ng nasadený do vyučovania na vypracovávanie topológii s \emph{point-to-point} technológiami. Topológie boli spustené na fyzickom EVE-ng serveri. V prípade zlyhania EVE-ng boli pripravené aj záložné topológie v overenom nástroji Dynamips/Dynagen.
 
-Na predmet Počitačové siete 2 bol použitý fyzický EVE-ng server.
+Najprv bola vytvorená základná topológia. Tá pozostávala zo štyroch Cisco IOL smerovačov a dvoch koncových zariadení s operačným systémom Alpine Linux. Cisco IOL smerovač bol vybraný, pretože ako jediný podporoval sériové rozhrania a \emph{point-to-point} technológie. Koncové zariadenie Alpine Linux bolo vybrané pre svoju nenáročnosť na systémové zdroje.
 
--NASADENIE NA 7. TÝŽĎEŇ 6.4.2018 - PS2
-      -IOL smerovače fungovali, až na nastavenie clock rate na sériových rozhraniach, bez chyby. V jednej skupine sa vyskytol problém s jednosmernou PAP autentifikáciou študentského smerovača voči učiteľskému (R\_Ucitel(s4/1)-5R2(s2/1)). Riešenie spočívalo v odstránení používateľa, vypnutí ppp konfigurácie a vypnutí rozhraní na oboch rozhraniach aj na učiteľskom aj na študentskom smerovači. Následne sa konektivita obnovila.
+{\huge TODO- obrázok základnej P2P topo}
 
-  Pridať aj troubleshooting a vypisy z routrov (ale iba velmi kratke), aby bolo jasne, v com bol problem a ako sme ho riesili (vid otvorene konzoly routrov na ploche 1)
+Celkovo bolo vytvorených 8 zhodných topológii, ktoré medzi sebou zdieľali jeden učiteľský smerovač. V topológii sa celkovo nachádzalo 33 Cisco IOL smerovačov a 16 koncových staníc.
 
-Vypracované topológie:
-- Topológia s point-to-point technológiami.
+{\huge TODO- obrázok celkovej P2P topo}
+
+IOL smerovače fungovali, až na príkaz \texttt{clock rate} na sériových rozhraniach, bez chyby.
+
+
+Ukázať, že to závisí od párnosti čísla skupiny - párne DTE, nepárne DCE, nie od poradia skupín so sériovými rozhraniami t.j. párne číslo skupiny sériových rozhraní bude vždy DTE, nepárne vždy DCE. Nanešťastie nastavenie DTE/DCE módu pre sériové rozhrania nie je v EVE-ng pri Cisco IOL smerovačoch automatické. {\huge Je automatické v Dynamips/Dynagene?}
+
+{\huge TODO- obrázky s DCE/DTE seriákmi na IOL routri - 2E8S, 1E8S, 0E8S}
+
+V jednej skupine sa vyskytol problém s jednosmernou PAP autentifikáciou študentského smerovača voči učiteľskému (R\_Ucitel(s4/1)-5R2(s2/1)). Príkaz \texttt{debug ppp authentication} hlásil chybu pri autentifikácii. Riešenie spočívalo v odstránení používateľa, vypnutí \emph{ppp} konfigurácie a vypnutí rozhraní. Tieto kroky boli vykonané aj na učiteľskom, aj na študentskom smerovači. Následne sa konektivita obnovila a spojenie pomocou PAP autentifikácie sa úspešne nadviazalo.
+
+Je možné, že problémy vznikli aj kvôli tomu, že medzi študentským a učiteľským smerovačom boli na oboch stranách sériové rozhrania párnej skupiny t.j. obidva konce linky boli typu DTE. Niektoré skupiny študentov boli tiež pripojené k učiteľskému smerovaču sériovým rozhraním z párnej skupiny, ale takéto problémy nezaznamenali. Podobne tomu bolo aj pri prepojení Cisco IOL smerovačov rozhraniami DCE.
+
+Z toho vyplýva, že Cisco IOL smerovače v EVE-ng majú pri prepojení dvoch smerovačov sériovou linkou s rovnakým módom nedefinované správanie. Tomu sa dá predísť vhodným návrhom topológie. Ten spočíva v tom, že sériové rozhrania medzi smerovačmi kombinujeme tak, aby bolo prepojené vždy sériové rozhranie párnej skupiny na jednom smerovači so sériovým rozhraním nepárnej skupiny na inom smerovači t.j. \emph{Serial2/x} (DCE) na prvom smerovači sa musí pripojiť napr. k \emph{Serial3/x} na druhom.
+
+Pridať aj troubleshooting a vypisy z routrov (ale iba velmi kratke), aby bolo jasne, v com bol problem a ako sme ho riesili (vid otvorene konzoly routrov na ploche 1)
+  
+  
 
 -vyhodnotit dstat csv - (8 topologii = 32 Cisco IOL smerovačov (4*8 + 1 učiteľský) + 16 QEMU zariadení (Alpine Linux x86))
         -> VYHODNOTIT CEZ LIBRE CALC
@@ -81,6 +86,8 @@ Vypracované topológie:
 náhrada/doplnok Dynamips servera (s takym vykonom, t.j. cca 10/15skupin po 10 routroch)
 
 
+Maximálny počet spustených topológii daného typu odhadneme sčítaním ich systémových požiadaviek. Mali by z toho vyplynúť odhad minimálnych systémových požiadaviek servera pri topológiách na vybrané predmety.
+
 
 
 \section{Projektovanie sietí 2}
@@ -89,6 +96,22 @@ VMware inštalácia
 
 V EVE-ng boli úspešne dokončené semestrálne práce s využitím technológii VPLS a Seamless MPLS.
 
+{\huge TODO- replikovať jakubovu topológiu v EVE-ng - konfiguráky => FB, topológia => gmail konverzácia}
+
+
+
+
 \section{CCNP Routing}
 
+
+
+
+
 \section{CCNP Switching}
+
+
+
+
+\section{Vyhodnotenie}
+
+Ukázalo sa, že ...

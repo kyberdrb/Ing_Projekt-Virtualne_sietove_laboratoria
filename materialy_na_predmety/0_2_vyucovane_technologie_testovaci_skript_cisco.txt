@@ -375,7 +375,19 @@ conf t
 ipv6 unicast-routing
 ipv6 access-list TEST
 end
-!
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
 ! DHCP IPv4 
 ena
 conf t
@@ -452,17 +464,7 @@ ipv6 router eigrp 1
 end
 show ipv6 protocols
 q
-
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! POTIALTO SKOPIROVAT
-! inak sa vyskytnu chyby vo vypisovani
-! a vykonavani prikazov
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
+!
 ! OSPFv2 Single-Area + Multi-Area
 ena
 conf t
@@ -557,7 +559,19 @@ ena
 conf t
 router isis
 end
-!
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
 ! IGMP v1
 ena
 conf t
@@ -629,16 +643,6 @@ conf t
 ip multicast-routing
 ip pim rp-address 10.255.255.3
 end
-
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! POTIALTO SKOPIROVAT
-! inak sa vyskytnu chyby vo vypisovani
-! a vykonavani prikazov
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 ! Auto-RP
 ena
 conf t
@@ -703,10 +707,6 @@ int <nazov_smerovacieho_rozhrania>
   ip rsvp bandwidth 10 10
 end
 !
-!
-!
-!
-!
 ! Router Reflector + MP-BGP + BGP mVPN + 
 ! Hub & Spoke VPN +  Draft Rosen + BGP L3 VPN
 ena
@@ -742,11 +742,19 @@ router bgp 65001
 		neighbor 192.168.15.5 as-override
 		exit-address-family
 end
-!
-!
-!
-!
-!
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! POTIALTO SKOPIROVAT
+! inak sa vyskytnu chyby vo vypisovani
+! a vykonavani prikazov
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
 ! VPLS
 ena
 conf t
@@ -796,18 +804,7 @@ ip sla monitor logging traps
 ip sla monitor responder
 ip sla ?
 end
-
-
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! POTIALTO SKOPIROVAT
-! inak sa vyskytnu chyby vo vypisovani
-! a vykonavani prikazov
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
+!
 ! STP BPDU Filter
 ena
 conf t

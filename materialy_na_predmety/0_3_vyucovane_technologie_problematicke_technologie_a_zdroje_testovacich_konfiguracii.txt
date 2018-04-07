@@ -1,3 +1,8 @@
+Duplicitné technológie (riadky) boli zisťované nástrojom
+  https://www.somacon.com/p568.php
+a následne odstránené.
+
+
 Not supported/working on Layer 2 IOL (Linux)
 
 -Problematicke funkcie su oznacene '*'

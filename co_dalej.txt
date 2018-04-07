@@ -8,6 +8,16 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+  -pre vsetky zoznamy
+    \begin{enumerate}
+  a
+    \begin{itemize}
+  zmensit riadkovanie medzi prvkami nahradenim hlaviciek za
+    \begin{enumerate}[noitemsep]
+  a
+    \begin{itemize}[noitemsep]
+  
+
   -skontrolovať vzhľad všetkých tabuliek v DP
 
   -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
