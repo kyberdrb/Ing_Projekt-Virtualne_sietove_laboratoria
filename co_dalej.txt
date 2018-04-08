@@ -8,6 +8,8 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+    -verifikacia nasadenia na PS2 - Skvarek o 16:00
+
   -pre vsetky zoznamy
     \begin{enumerate}
   a
@@ -30,6 +32,11 @@ Diplomka
   -treba v kapitole "Analýza vyučovania" dať zoznam vyučovaných technológii pre CCNA Security?
 
 
+
+Dodatočne po odovzdaní:
+
+    -nasadiť na jedno cvičenie Projektovania sietí 1
+        -1 používateľ môže mať otvorenú iba 1 topológiu, ktorá je obmedzená na 63 zariadení. Ak treba mať spustených 100 smerovačov, 10 smerovačov v 10 topológiách, potom je potrebné vytvoriť 2 používateľské účty - polovicu topológii spustiť v jednom a polovicu v druhom používateľskom účte.
 
 
 

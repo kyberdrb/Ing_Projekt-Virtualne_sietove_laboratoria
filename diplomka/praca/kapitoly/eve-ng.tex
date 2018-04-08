@@ -325,9 +325,13 @@ Potom sme sa odhlásili, vymazali vyrovnávaciu pamäť webového prehliadača a
 
 Keď sme sa ešte predtým rozhodli riešiť problém so zatváraním topológie so spustenými zariadeniami, skúšali sme v súbore \texttt{functions.js} vo funkcii \texttt{closeLab} zakomentovať celý \texttt{for} cyklus v riadku 
 \begin{verbatim}
-    $.each(values, function (node_id, node)...
+    $.each(values, function (node_id, node) {
+        if (node['status'] > 1) {
+            running_nodes = true;
+        }
+    });
 \end{verbatim}
-topológia sa síce dala zatvoriť aj pri spustených zariadeniach, ale nedalo sa s nimi pracovať - zastaviť už spustené resp. spustiť ďalšie zariadenia.
+keďže aj v ňom sa nastavovala premenná \texttt{running\_nodes} Po zakomentovaní cyklu sa topológia síce dala zatvoriť aj pri spustených zariadeniach, ale so zariadeniami v nej sa nedalo pracovať napr. nebolo možné zastaviť už spustené zariadenia alebo spustiť ďalšie.
 
 Po opravení tohto nedostatku sa ale vyskytol ďalší problém, ktorý sa odhalil až po vyriešení momentálneho, a síce, že po zatvorení jednej topológie (obrázok \ref{obr:eve_ng_zle_portove_cisla_1}) a otvorení inej (obrázok \ref{obr:eve_ng_zle_portove_cisla_2}) sa zariadenia tvárili, že sú spustené, hoci predtým spustené neboli. Obidva obrázky ukazujú rovnaký počet spustených zariadení v dvoch rôznych topológiách, pričom zariadenia boli spustené iba v topológii na obrázku \ref{obr:eve_ng_zle_portove_cisla_1}. Zariadenia v iných topológiách mali znefunkčnený vzdialený prístup a nešlo s nimi pracovať. Správne fungovali iba tie v pôvodnej topológii. Pokiaľ mali topológie rovnaký počet zariadení a do druhej sme pridali nové zariadenie, toto zariadenie fungovalo bez komplikácii.
 
@@ -348,6 +352,8 @@ Spomenutý problém s rovnakými portovými číslami pre zariadenia v rôznych 
     \caption{Druhá topológia a celkový počet spustených zariadení}
     \label{obr:eve_ng_zle_portove_cisla_2}
 \end{figure}
+
+Komplikácie, na ktoré sme narazili počas nasadenia na predmety, sú popísané v kapitole \ref{chap:nasadenie_do_vyucovania} - \nameref{chap:nasadenie_do_vyucovania}.
 
 
 
