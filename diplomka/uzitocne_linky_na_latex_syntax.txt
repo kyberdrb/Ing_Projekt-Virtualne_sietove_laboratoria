@@ -77,3 +77,6 @@ https://tex.stackexchange.com/questions/66596/vertical-alignment-in-multirow-usi
 
 Odstránenie orámovania ľavej hornej bunky v tabuľke
 https://tex.stackexchange.com/questions/64825/remove-border-of-top-left-table-cell/64827#64827
+
+Zmenšenie riadkovania v (číslovaných aj nečíslovaných) zoznamoch
+https://stackoverflow.com/questions/3275622/latex-remove-spaces-between-items-in-list/3281778#3281778

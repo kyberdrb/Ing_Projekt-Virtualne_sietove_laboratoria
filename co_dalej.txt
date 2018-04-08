@@ -8,7 +8,8 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -verifikacia nasadenia na PS2 - Skvarek o 16:00
+    -verifikacia nasadenia na PS2 - Skvarek v pondelok o 16:00
+        -znova obenchmarkovať - pre istotu
 
   -pre vsetky zoznamy
     \begin{enumerate}
@@ -33,12 +34,15 @@ Diplomka
 
 
 
+
+
+
 Dodatočne po odovzdaní:
 
     -nasadiť na jedno cvičenie Projektovania sietí 1
         -1 používateľ môže mať otvorenú iba 1 topológiu, ktorá je obmedzená na 63 zariadení. Ak treba mať spustených 100 smerovačov, 10 smerovačov v 10 topológiách, potom je potrebné vytvoriť 2 používateľské účty - polovicu topológii spustiť v jednom a polovicu v druhom používateľskom účte.
 
-
+    -replikovať jakubovu topológiu v EVE-ng - konfiguráky => FB, topológia => gmail konverzácia, popr. si vypýtať obrázok topológie
 
 ===============================================================================
 Co dalej?
@@ -46,6 +50,8 @@ Co dalej?
 -dokončiť testovanie technológii pre Juniper vMX (1 uzol aj VCP+VFP konfiguráciu), Juniper vSRX a Nokia VSR (13 aj 14, aj 1 uzol aj IOM+CPM konfiguráciu)
   -Na Cisco switchoch otestovat aj technologiu RITE - port mirroring na smerovaci
     https://networklessons.com/cisco/ccie-routing-switching/router-ip-traffic-export-rite/
+  -Na všetkých Cisco zariadeniach otestovať podporu IPsec
+    https://www.cisco.com/c/en/us/support/docs/routers/1700-series-modular-access-routers/71462-rtr-l2l-ipsec-split.html
 
 -Otestovať v GNS3 prepojiť už spustené uzly medzi sebou (hot connect) a otestovať konektivitu, či to bude fungovať.
 
