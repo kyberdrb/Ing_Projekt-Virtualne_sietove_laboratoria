@@ -32,6 +32,8 @@ Diplomka
 
   -treba v kapitole "Analýza vyučovania" dať zoznam vyučovaných technológii pre CCNA Security?
 
+  -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
+
 
 
 
