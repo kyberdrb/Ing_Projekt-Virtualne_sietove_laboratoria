@@ -8,41 +8,26 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -verifikacia nasadenia na PS2 - Skvarek v pondelok o 16:00
-        -znova obenchmarkovať - pre istotu
+    -Opravená PPP topológia bola overená na ďalšom cvičení
+        -spýtať sa, ako dopadla
 
-  -pre vsetky zoznamy
-    \begin{enumerate}
-  a
-    \begin{itemize}
-  zmensit riadkovanie medzi prvkami nahradenim hlaviciek za
-    \begin{enumerate}[noitemsep]
-  a
-    \begin{itemize}[noitemsep]
-  
+    -všetky zoznamy v práci by mali mať formátovanie
+        \begin{enumerate}[noitemsep]
+    a
+        \begin{itemize}[noitemsep]
+    
 
-  -skontrolovať vzhľad všetkých tabuliek v DP
+    -skontrolovať vzhľad všetkých tabuliek v DP
 
-  -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
-    https://tex.stackexchange.com/questions/252484/crop-image-in-latex-like-word/252485#252485
+    -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
+        https://tex.stackexchange.com/questions/252484/crop-image-in-latex-like-word/252485#252485
 
-  -titulná strana - aké je číslo št. odboru?
-
-  -treba v kapitole "Analýza vyučovania" dávať ku predmetom ich čísla?
-
-  -treba v kapitole "Analýza vyučovania" dať zoznam vyučovaných technológii pre CCNA Security?
-
-  -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
-
-
+    -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
 
 
 
 
 Dodatočne po odovzdaní:
-
-    -nasadiť na jedno cvičenie Projektovania sietí 1
-        -1 používateľ môže mať otvorenú iba 1 topológiu, ktorá je obmedzená na 63 zariadení. Ak treba mať spustených 100 smerovačov, 10 smerovačov v 10 topológiách, potom je potrebné vytvoriť 2 používateľské účty - polovicu topológii spustiť v jednom a polovicu v druhom používateľskom účte.
 
     -replikovať jakubovu topológiu v EVE-ng - konfiguráky => FB, topológia => gmail konverzácia, popr. si vypýtať obrázok topológie
 

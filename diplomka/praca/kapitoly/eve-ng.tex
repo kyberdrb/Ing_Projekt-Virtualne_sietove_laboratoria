@@ -1,4 +1,5 @@
 \chapter{EVE-ng}
+\label{chap:eve_ng}
 
 EVE-ng je virtuálne sieťové laboratórium skladajúcej sa zo serverovej časti postavenej na platforme Linux, konkrétne ako tzv. LAMP server, a klientskej časti, ktorú tvorí webová aplikácia, ako je už spomenuté v kapitole \ref{chap:nastroje_pre_siet_virt} v časti \ref{chap:virt_lab_eve_ng}. V tejto kapitole bude opísaný proces nasadzovania EVE-ng servera do sieťovej infraštruktúry katedry: jeho inštalácie, následnej úpravy a základnej administrácie EVE-ng servera. Všetky kroky sú podrobne opísané v návodoch na priloženom CD v adresári \emph{eve-ng}.
 
@@ -11,7 +12,7 @@ Po inštalácii servera je potrebné do určitej miery upraviť aj konfiguráciu
 
 EVE-ng bol inštalovaný a testovaný na dvoch platformách:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item VMware Workstation Player
     \item Fyzický server
 \end{itemize}
@@ -40,7 +41,7 @@ Uvedené tvrdenia platia pre EVE-ng vo vydaní \emph{Community Edition} vo verzi
 \noindent
 Postup inštalácie EVE-ng servera môžeme zhrnúť do týchto krokov:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
     \item Vytvorenie vzdialenej pracovnej plochy
     \item Inštalácia Ubuntu Server 16.03
     \item Konfigurácia Ubuntu Server
@@ -51,9 +52,9 @@ Postup inštalácie EVE-ng servera môžeme zhrnúť do týchto krokov:
 \noindent   
 Konfigurácia EVE-ng servera zahŕňala:
 
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
     \item Obnovenie súborov a adresárov
-    \begin{itemize}
+    \begin{itemize}[noitemsep]
         \item Skripty
         \item Zariadenia
         \item Databázy
@@ -61,7 +62,7 @@ Konfigurácia EVE-ng servera zahŕňala:
     \item Automatizácia zálohovania
     \item Pridanie Cisco IOL/IOU licencie
     \item Zabezpečenie servera
-    \begin{itemize}
+    \begin{itemize}[noitemsep]
         \item Systém
         \item SSH
         \item Webový server
@@ -419,7 +420,7 @@ Vstavaný monitorovací systém EVE-ng sa nachádza vo webovom rozhraní v čast
 
 Zoznam používateľov webového rozhrania v EVE-ng je znázornený na obrázku \ref{obr:eve_ng_pouzivatelia_web_email_potom} (str. \pageref{obr:eve_ng_pouzivatelia_web_email_potom}). Obrazovka sa nazýva \emph{User management} a je prístupná z horného menu kliknutím na \emph{Management} -> \emph{User management}. Pre každého používateľa sú definované nasledujúce stĺpce:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item \textbf{Username} - Používateľské meno. Používa sa na prihlásenie sa do webového rozhrania. Musí byť unikátne pre každého používateľa.
     \item \textbf{Email} - Emailová adresa.
     \item \textbf{Name} - Celé meno používateľa. Atribút má iba informatívny charakter.
@@ -430,7 +431,7 @@ Zoznam používateľov webového rozhrania v EVE-ng je znázornený na obrázku 
 
 Dialógové okno na vytvorenie a úpravu používateľa sa zobrazí po kliknutí na tlačidlá \emph{Add user} a \emph{Edit}. Pozostáva z týchto častí:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item User Name
     \item Password
     \item Password Confirmation
@@ -447,7 +448,7 @@ Ak sme vykonali kroky v časti \ref{chap:eve_ng_pouzivatelske_role} - \nameref{c
 \noindent
 Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{user}:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Prehliadať súbory a adresáre
     \item Prehliadať topológiu
 \end{itemize}
@@ -455,7 +456,7 @@ Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{user}:
 \noindent
 Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{editor}:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Všetko, čo môže vykonávať používateľ s rolou \emph{user}
     \item Spravovať súbory a adresáre - vytváranie, presúvanie, premenovanie, odstránenie
     \item Upravovať prvky v topológii - pridávanie, presúvanie, premenovanie, odstránenie
@@ -467,7 +468,7 @@ Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{editor}:
 \noindent
 Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{admin}:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Všetko, čo môže vykonávať používateľ s rolou "editor"
     \item Zastaviť všetky zariadenia v "System -> Stop All Nodes"
     \item Zobraziť informácie o konkrétnom používateľovi cez API

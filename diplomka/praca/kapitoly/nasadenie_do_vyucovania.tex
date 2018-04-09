@@ -14,27 +14,34 @@ EVE-ng poskytuje na správu topológii a používateľov webové rozhranie. Webo
 V HTML5 móde sa na obrazovke s otvorenou topológiou po kliknutí na zariadenie otvorí jeho vzdialená konzola. V natívnom móde potrebujeme mať pre otvorenie konzoly na zariadení nainštalovaný tzv. integračný balíček. Predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii).
 
 
-{\huge TODO - prekonzultovať, či stíham dopísať túto kapitolu}
+{\huge TODO - dokončiť - Popísať jednotlivé kroky a uviesť k nim screenshoty}
 
--popisat
-      -vytvorenie topologie
-        -z GUI (pridavanie zariadenia)
-        -editovaním UNL súboru s topológiou
-            -popisat hlavne parametre, ktore sa lisia pri duplikovani textovej reprezentacie danej topologie
-        -vyslovit odporucanie na vytvaranie topologii
-            -> GUI -> Nodes (nazvy zariadeni) -> UNL (skraslenie topologie upravenim suradnic pre zariadenia) - VID A4 PAPIER "DUPLIKÁCIA TOPOÓGIE V EVE-NG -> ZÁVER"
-      -pridelovanie portovych cisel zariadeniam
-        -rozsah
-        -pridelovanie portovych cisel je sekvencne
-      -spustanie zariadeni
-        -po jednom
-        -vybrana skupina
-          -Ctrl+klik -> pravy klik -> Start Selected
-          -oznacenie mysou -> pravy klik -> Start selected
-        -vsetky zariadenia v topologii
-          -More actions -> Start all nodes
-      -odhadnut systemove poziadavky pre topologie z vybranych predmetov a na zaklade toho odhadnut minimalne systemove poziadavky servera
-      -> začať topológiami z predmetov, na ktorých bol nástroj nasadený.
+-Prihlásenie používateľa
+
+-Vytvorenie topológie
+    -Odporúčaný postup na vytváranie topológii:
+        -> GUI -> Nodes (nazvy zariadeni) -> UNL (skraslenie topologie upravenim suradnic pre zariadenia) - VID A4 PAPIER "DUPLIKOVANIE TOPOÓGIE V EVE-NG -> ZÁVER"
+    -Topológiu môže vytvoriť iba používateľ s rolou \emph{editor} alebo \emph{admin}.
+    -Vytvorenie topológie z webového rozhrania GUI (pridavanie zariadenia)
+    
+-Úprava topológie
+    -Nodes
+    -editovaním UNL súboru s topológiou
+        -popisat hlavne parametre, ktore sa lisia pri duplikovani textovej reprezentacie danej topologie
+        
+-Prideľovanie portových čísel zariadeniam
+    automatické - vysvetliť, súbor node.php alebo tak nejako sa volá -> vzorec)
+    ->rozsahy
+    ->pridelovanie portovych cisel je sekvencne
+    
+-Vzdialený prístup k zariadeniam
+-Spúšťanie zariadení
+    -po jednom
+    -vybraná skupina
+      -Ctrl+klik -> pravy klik -> Start Selected
+      -oznacenie mysou -> pravy klik -> Start selected
+    -Všetky zariadenia v topologii
+      -More actions -> Start all nodes
 
 
 
@@ -102,6 +109,17 @@ Spomenutý súbor ukazuje veľké rozdiely v meraniach využitia operačnej pam�
 
 
 
+\section{Projektovanie sietí 1}
+
+{\huge TODO -dorobiť budúci týždeň - konzultovať}
+
+-nasadiť na jedno cvičenie Projektovania sietí 1
+-1 používateľ môže mať otvorenú iba 1 topológiu, ktorá je obmedzená na 63 súčasne spustených zariadení. Ak treba mať spustených 100 smerovačov, 10 smerovačov v 10 topológiách, potom je potrebné vytvoriť 2 používateľské účty - polovicu topológii spustiť v jednom a polovicu v druhom používateľskom účte.
+
+
+
+
+
 \section{Projektovanie sietí 2}
 
 V rámci predmetu Počítačové siete 2 bol nástroj EVE-ng nasadený do vyučovania na vypracovávanie topológii s \emph{point-to-point} technológiami. Topológie boli spustené na virtuálnom VMware EVE-ng serveri.
@@ -110,7 +128,7 @@ V EVE-ng boli úspešne dokončené semestrálne práce s témou \emph{VPLS} a \
 
 Topológie semestrálnych prác sa skladali z týchto zariadení:
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Cisco IOL smerovač - VPLS, Seamless MPLS
     \item Cisco CSR - VPLS
     \item Juniper Olive - Seamless MPLS
@@ -132,4 +150,6 @@ Na predmetoch, kde nástroj EVE-ng nasadený bol, sa ukázalo, že ho je možné
 
 Pri nasadení na predmet Projektovanie sietí 2, kde bola použitá virtuálna inštalácia EVE-ng, bol naopak nástroj nestabilný, zariadenia často zamŕzali a pri zadávaní príkazov do konzoly bola prítomná vyššia odozva z klávesnice. Mohlo to byť spôsobené mnohými faktormi, či už samotnou virtuálnou platformou VMware, alebo nesprávne nastavenými systémovými parametrami pre jednotlivé zariadenia v topológii.
 
-{\huge TODO - POMOHLO TO UČITEĽOM VYTVORIŤ TOPOLÓGIU Z WEB GUI NAMIESTO CLI, aj keď EVE-ng má svoje nedostatky}
+Napriek mnohým nedostatkom nástroja EVE-ng, je výhodou vytvárať topológie z grafického rozhrania, namiesto z príkazového riadku. Nevýhodami sú nemožnosť stabilne spúšťať viac ako 63 zariadení v jednej topológii. Jednotliví používatelia a študenti si svoje topológie nemôžu spravovať nezávisle na sebe, keďže toto je možné iba v Learning Centre verzii nástroja.
+
+Čo sa týka odhadov systémových požiadaviek topológii, tie môžeme odhadnúť súčtom systémových požiadaviek jednotlivých zariadení, ktoré sa v topológii budú nachádzať. Systémové požiadavky vybraných zariadení sú k dispozícii na CD v adresári \emph{eve\_ng/profiling\_and\_benchmarking\_results/}.

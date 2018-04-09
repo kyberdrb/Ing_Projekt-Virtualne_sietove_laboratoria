@@ -1,25 +1,9 @@
 \chapter{Záver}
 
-Tu treba zhodnotiť dosiahnuté výsledy. Povedať, ktoré úlohy napísané v zadaní DP som splnil, a do akej miery. Ako to zmenilo vyučovanie na katedre?
-
-Načrtnúť dalšie možné cesty riešenia a vysloviť úvahu o budúcnosti projektu a jeho ďalšom smerovaní. Ktorými technológiami sa má zmysel zaoberať v budúcnosti a prečo?. Viď súbor \emph{co\_dalej.txt}, časť \emph{Co dalej}.
-
-\begin{verbatim}
-    -hadacovo viro treba prerobit alebo nechat umriet v prospech GNS3, vid
-    https://itr-links.stackoverflow.email/u/click?_t=3603a3d8f3104ca5bd7015a5845f7fb7&_m=72f714b6c6804f51bec86ff60136c94a&_e=khSYWjE_zs7-adX5jKm1-OookGpf6AVPZjR7AyzPWTwEnKGs8rNUmT2lD4L8iN2P8uYha2PRADixjIPrcWIaFJGCXQ7AyX0cYfKArrRAGqP2_o0jr270rA-U5V2ujhXUE8R_BANn7Tcl1y4lL9DHAzUSuR2CO-dDoACYjM6VrZZaBvoAXw03t7dJ3x1KCyVB6KzJaxOvOYWjvQtYyXp4j0BdEnWNWe-kDZYKhZodQGrOA7r8tmh0ZN_GC5oUwoaU6X9t1nblG0FMZV7rmdwd6ElKE7GxRzN4y-pYMa_771fWXhDGpujulNNOFWMLBx1H3WRWWdwyiwqU447IcwKyJwFw-C-BO7yk_S7-GcfFN16y_Cl1XKAJw4DnPUhOVonIFFxBkpyMCkh8d3pt0kSoNw%3D%3D
-  cast "Technology" -> "Most Loved, Dreaded and Wanted Languages"
-    -> vysledky prieskumu StackOverflow ukazuju, ze sice Java je stale popularna (cast "Programming, Scripting, and Markup Languages"), ale Drupal je zastaraly. JavaScript a jeho frameworky su omnoho popularnejsie, co svedci v prospech EVE-ng. Python je zase na prvom mieste v rebricku programovacich jazykov, ktore sa vyvojari chcu naucit ako dalsi. Zaroven je tiez jeden z najoblubenych jazykov, co svedci v prospech GNS3.
-\end{verbatim}
-
-
-
-
-
-
 Cieľom práce bolo nasadenie virtuálneho sieťového laboratória do vyučovacieho procesu katedry. Najprv bolo potrebné preskúmať existujúce riešenia pre virtuálne sieťové laboratóriá a porovnať ich na základe zvolených kritérii. Z porovnania vyplynulo, že existujú viaceré virtuálne laboratória, ktorými sa má zmysel ďalej zaoberať. Nakoniec však bol zvolený nástroj EVE-ng. Následne bol tento nástroj nainštalovaný na virtuálnu platformu VMware a fyzický server.
 
-Po nasadení nástroja do infraštruktúry katedry boli analyzované vyučované témy vybraných predmetov na Katedre informačných sietí. Táto analýza pomohla pri získavaní virtuálnych zariadení do nástroja EVE-ng. Získané zariadenia boli v nástroji EVE-ng testované na ich spustiteľnosť, systémové požiadavky a podporu vyučovaných technológii. Pre analyzované predmety boli vybrané zariadenia, ktoré boli počas nasadenia do vyučovania použité pri vytváraní topológii. Zariadenia boli pre predmety vyberané tak, aby pokryli čo najväčšiu časť vyučovaných tém. Študenti na cvičeniach potom pod vedením vyučujúceho používali tento nástroj, aby sa overila jeho použiteľnosť v reálnom vyučovacom procese.
+Po nasadení nástroja do infraštruktúry katedry boli analyzované vyučované témy vybraných predmetov na Katedre informačných sietí. Táto analýza pomohla pri získavaní virtuálnych zariadení do nástroja EVE-ng. Získané zariadenia boli v nástroji EVE-ng testované na ich spustiteľnosť, systémové požiadavky a podporu vyučovaných technológii. Pre analyzované predmety boli vybrané zariadenia, ktoré boli počas nasadenia do vyučovania použité pri vytváraní topológii. Zariadenia boli pre predmety vyberané tak, aby pokryli čo najväčšiu časť vyučovaných tém. Študenti na cvičeniach pod vedením vyučujúceho používali tento nástroj, aby sa overila jeho použiteľnosť v reálnom vyučovacom procese.
 
 Celý proces bol dôsledne a prehľadne dokumentovaný. Dokumentácia opisuje celý proces práce od inštalácie nástroja EVE-ng, jeho následnej úpravy, získavania a testovania virtuálnych zariadení po nasadenie do vyučovania. Dokumentácia je prítomná na priloženom CD.
 
-Projekt by mohol pokračovať 
+Na výsledkoch tejto práce sa dá v budúcnosti pokračovať v mnohých smeroch. Práca môže slúžiť ako východiskový bod pri skúmaní ďalších virtuálnych sieťových laboratórii s použitím metodík popísaných v rôznych častiach tejto práce. To by mohlo viesť k vytvoreniu ideálneho riešenia pre sieťového laboratória, ktorý by v sebe kombinoval výhody nástrojov ViRo v2, GNS3 a EVE-ng. Obsahoval by rezervácie topológii z nástroja ViRo v2, grafické príp. webové používateľské rozhranie, jednoduchú škálovateľnosť naprieč viacerými servermi, dodatočnú podporu Docker popr. LXC/LXD kontajnerov a izoláciu používateľov spolu ich súbormi a adresármi. Vo svojej práci som sa snažil splniť aspoň niektoré zo spomenutého stručného zoznamu požiadaviek. V každom prípade nasadenie konkrétneho nástroja do vyučovacieho procesu katedry posunulo vyučovanie na vyššiu úroveň, čo dokazuje, že virtuálne sieťové laboratórium tvorí dôležitú súčasť pri vyučovaní sieťových technológii.
