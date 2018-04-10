@@ -8,6 +8,10 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+-dokumentacia, prezentacia, otazky pri prezentacii na vsetkych - 2 otazky na kazdeho
+-prezentacia by mala byt spravena tak, aby vsetkym bolo jasne, ako to principialne funguje
+-odovzdat prezentaciu + dokumentaciu = E
+
     -Opravená PPP topológia bola overená na ďalšom cvičení
         -spýtať sa, ako dopadla
 
@@ -29,7 +33,10 @@ Diplomka
 
 Dodatočne po odovzdaní:
 
-    -replikovať jakubovu topológiu v EVE-ng - konfiguráky => FB, topológia => gmail konverzácia, popr. si vypýtať obrázok topológie
+    -replikovať jakubovu topológiu v EVE-ng
+        -konfiguráky => FB
+        -topológia:
+            CE1 - PE1 - CORE - PE2 - CE2
 
 ===============================================================================
 Co dalej?

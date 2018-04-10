@@ -9,39 +9,126 @@ Aby bola preverená celková kvalita virtuálneho laboratória, bol nástroj EVE
 \section{Používanie EVE-ng}
 \label{chap:pouzivanie_eve_ng}
 
-EVE-ng poskytuje na správu topológii a používateľov webové rozhranie. Webové rozhranie je dostupné v 2 módoch: natívnom a HTML5. HTML5 mód zabezpečuje integráciu pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení. HTML5 mód web rozhrania EVE-ng bol však menej stabilný a reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom. Preto bolo webové rozhranie ďalej používané iba v natívnom móde.
+{\huge TODO - možno z tejto podkapitoly spraviť samostatnú kapitolu a dať ju pred nasadenie do vyučovania.}
 
-V HTML5 móde sa na obrazovke s otvorenou topológiou po kliknutí na zariadenie otvorí jeho vzdialená konzola. V natívnom móde potrebujeme mať pre otvorenie konzoly na zariadení nainštalovaný tzv. integračný balíček. Predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii).
+Pre zvolené predmety boli vytvorené topológie podľa toho, aká téma bola na danom cvičení vyučovaná. Topológie boli vytvorené pomocou webového rozhrania EVE-ng, ktorým je možné spravovať topológie a používateľov. Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme venovať vytváraniu topológii, ktoré nasadeniu predchádzali. Nižšie sú uvedené kroky na vytvorenie topológie v EVE-ng.
 
+\begin{enumerate}[noitemsep]
 
-{\huge TODO - dokončiť - Popísať jednotlivé kroky a uviesť k nim screenshoty}
+    \item Najprv sa prihlásime do nástroja EVE-ng cez webové rozhranie v natívnom móde. Webové rozhranie je dostupné v 2 módoch: natívnom a HTML5. Rozdiely medzi jednotlivými módmi sú popísané v bode \ref{item:vzdialeny_pristup}. Pre úspešné prihlásenie musíme mať vytvorený používateľský účet, čo môže urobiť iba používateľ s rolou \emph{admin}.
 
--Prihlásenie používateľa
+{\huge TODO - obr. login screen s rozbaleným zoznamom módov}
 
--Vytvorenie topológie
-    -Odporúčaný postup na vytváranie topológii:
-        -> GUI -> Nodes (nazvy zariadeni) -> UNL (skraslenie topologie upravenim suradnic pre zariadenia) - VID A4 PAPIER "DUPLIKOVANIE TOPOÓGIE V EVE-NG -> ZÁVER"
-    -Topológiu môže vytvoriť iba používateľ s rolou \emph{editor} alebo \emph{admin}.
-    -Vytvorenie topológie z webového rozhrania GUI (pridavanie zariadenia)
+    \item Po prihlásení sa zobrazí hlavná obrazovka. V ľavej časti je správca súborov, v ktorom si vyberieme adresár, kde sa súbor s topológiou bude nachádzať.
+
+{\huge TODO - obr. main screen}
+
+    \item Po výbere adresára klikneme na ikonku hárku s popisom \emph{Add new lab}, čím začneme vytváranie novej topológie. Topológiu môže vytvoriť iba používateľ s rolou \emph{editor} alebo \emph{admin}.
+
+{\huge TODO - obr. main screen - lab toolbar}
+
+    \item Zobrazí sa dialógové okno, do ktorého zadáme atribúty topológie.
     
--Úprava topológie
-    -Nodes
-    -editovaním UNL súboru s topológiou
-        -popisat hlavne parametre, ktore sa lisia pri duplikovani textovej reprezentacie danej topologie
+{\huge TODO - popísať atribúty + ktoré sú povinné + obr. lab dialog}
+
+    \item Po kliknutí na tlačidlo \emph{Save} sa súbor s topológiou vytvorí a následne sa zobrazí pracovná plocha na vytvorenie topológie. Zatiaľ je topológia prázdna.
+    
+{\huge TODO - obr. lab screen new}
+
+    \item Do topológie môžeme pridávať tieto prvky:
+    
+    \begin{itemize}[noitemsep]
+        \item Node - zariadenie
+        \item Network - sieť
+        \item Picture - obrázok
+        \item Custom Shape - geometrický tvar - obdĺžnik/elipsa
+        \item Text - textové polia
+    \end{itemize}
+    
+    Spomenutý zoznam prvkov sa zobrazí v kontextovom menu po pravom kliknutí na prázdme miesto v topológii alebo po kliknutí na ikonku \emph{+}. {\huge TODO - obr. add a new object context menu}
+    
+    \item Po pridaní prvkov do topológie je s nimi možné ďalej pracovať. Každý z uvedených prvkov vieme upravovať rôznymi spôsobmi.
+    
+    \begin{itemize}[noitemsep]
+        \item Najjednoduchším spôsobom úpravy platným pre všetky prvky je presunutie prvku myšou.
+        \item Zariadenia je možné upravovať v zozname zariadení po kliknutí na položku \emph{Nodes} v menu na ľavej strane obrazovky. {\huge TODO - obr. Nodes dialog}.
+        \item Ďalší spôsob, ako upraviť parametre zariadenia je pravým kliknutím na zariadenie a kliknutím na \emph{Edit}. {\huge TODO - obr. Edit dialog}.
+        \item Siete sa dajú upravovať v zozname sietí po kliknutí na položku \emph{Networks} v menu na ľavej strane obrazovky. {\huge TODO - obr. Networks dialog}
+        \item Obrázky, geometrické tvary a textové polia vieme upravovať v zozname objektov po kliknutí na položku \emph{Configured objects} v menu na ľavej strane obrazovky. {\huge TODO - obr. Configured objects dialog}
+    \end{itemize}
+    
+Ďalší spôsob na úpravu prvkov v topológii je pomocou upravením samotného súboru s topológiou na serveri s príponou \emph{unl}. Tento súbor je napísaný vo formáte XML. Prvky sú definované značkami, ktoré definujú ich typ (zariadenie, textové pole a pod.). Nižšie je uvedený zoznam niektorých značiek a ich atribútov použitých v \emph{unl} súbore.
+
+{\huge TODO - popísať značky}
+
+    \begin{description}[noitemsep]
+        \item \texttt{<node>}
         
--Prideľovanie portových čísel zariadeniam
+        \begin{description}[noitemsep]
+            \item \texttt{<interface>}
+        \end{description}
+        
+        \item \texttt{<networks>}
+        
+        \begin{description}[noitemsep]
+            \item \texttt{<network>}
+        \end{description}
+    \end{description}
+
+Zmeny v \emph{unl} súbore sa prejavia až po znovunačítaní stránky (klávesou F5) alebo topológie (\emph{Refresh topology} v menu na ľavej strane obrazovky).
+
+{\huge TODO - ukázať syntax UNL súboru zo servera na termináli}
+    
+    Experimentovaním sme zistili, že vytváranie topológii a duplikácia jej prvkov v \emph{unl} súbore je pomerne náročné, zdĺhavé a náchylné na chyby. {\huge TODO - popisat hlavne parametre, ktore sa lisia pri duplikovani textovej reprezentacie danej topologie a komplikacie, ktoré s tým boli spojené} Výhodnejšie sa ukázalo najprv použiť webové rozhranie, potom tabuľku zariadení \emph{Nodes} a nakoniec upravovať \emph{unl} súbor:
+    
+    \begin{enumerate}[noitemsep]
+        \item Najpr vo webovom rozhraní vytvoríme topológiu, pridáme do nej zariadenia a poprepájame ich.
+        \item Potom v tabuľke zariadeníNodes (nazvy zariadeni)
+        \item Ak je potrebné, nakoniec v \emph{unl} súbore presnejšie upravíme súradnice prvkov v topológii definovaných atribútmi \texttt{left} a \texttt{top}. Výsledkom týchto úprav je celkové zlepšenie estetickej úpravy. Môžeme tak urobiť aj vo webovom rozhraní v dialógovom okne pre úpravu zariadenia v atribútoch \emph{Left} a \emph{Top}, avšak v \emph{unl} súbore vieme súradnice prvkov upraviť hromadne.
+    \end{enumerate}
+    
+    \item Spúšťanie zariadení
+
+{\huge TODO - po jednom}
+{\huge TODO - vybraná skupina
+      -Ctrl+klik -> pravy klik -> Start Selected
+      -oznacenie mysou -> pravy klik -> Start selected}
+{\huge TODO - Všetky zariadenia v topologii
+      -More actions -> Start all nodes}
+      
+    \item \label{item:vzdialeny_pristup} Vzdialený prístup k zariadeniam 
+    
+        HTML5 mód zabezpečuje vzdialený prístup k zariadeniam pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení. HTML5 mód web rozhrania EVE-ng bol však menej stabilný a reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom. Preto bolo webové rozhranie ďalej používané iba v natívnom móde.
+        
+        V HTML5 móde sa na obrazovke s otvorenou topológiou po kliknutí na zariadenie otvorí jeho vzdialená konzola. Avšak v natívnom móde potrebujeme mať pre otvorenie konzoly na zariadení nainštalované dodatočné nástroje na lokálnom počítači
+        
+{\huge TODO - popísať manuálny vzdialený prístup - telnet klient napr. putty a vnc klient napr. realvnc viewer}
+        
+{\huge TODO - popísať vzdialený prístup cez web interface - tzv. integračný balíček}
+        
+{\huge TODO - Popísať integračný balíček + rozdiely medzi predvoleným a upraveným integračným balíčkom}
+        
+{\huge TODO - Predvolená vs KIS verzia integračného balíčka -> SSH tunely (pre vzdialený prístup k zariadeniam v topológii)}
+
+\end{enumerate}
+
+
+
+
+
+\subsection{Prideľovanie portových čísel zariadeniam}
     automatické - vysvetliť, súbor node.php alebo tak nejako sa volá -> vzorec)
     ->rozsahy
     ->pridelovanie portovych cisel je sekvencne
-    
--Vzdialený prístup k zariadeniam
--Spúšťanie zariadení
-    -po jednom
-    -vybraná skupina
-      -Ctrl+klik -> pravy klik -> Start Selected
-      -oznacenie mysou -> pravy klik -> Start selected
-    -Všetky zariadenia v topologii
-      -More actions -> Start all nodes
+
+
+
+
+\subsection{Pripojenie topológie k internetu / prepojenie topológii navzájom}
+
+{\huge TODO - popísať pridávanie bridge network + podmienky konektivity (buď DHCP adresa alebo staticky nastavená a vo firewalle povolená) + obr. screenshot z topológie}
+
+
 
 
 
@@ -68,7 +155,7 @@ Celkovo bolo vytvorených 8 zhodných topológii, ktoré medzi sebou zdieľali j
     \label{obr:eve_ng_ppp_celkova_topo_v2}
 \end{figure}
 
-IOL smerovače fungovali, až na príkaz \texttt{clock rate} na sériových rozhraniach, bez chyby. Ukázalo sa, že nastavenie DCE/DTE závisí od párnosti čísla skupiny. Párne číslo skupiny sériových rozhraní bude vždy DTE, nepárne vždy DCE, ako je zrejmé z obrázku \ref{obr:eve_ng_dce_dte_2E8S}. Rozdelenie sériových rozhraní na DCE/DTE nezávislé od počtu ethernetových alebo sériových skupín, čo potvrdzuje obrázok \ref{obr:eve_ng_dce_dte_1E8S}. Nanešťastie nastavenie DTE/DCE módu pre sériové rozhrania nie je v EVE-ng pri Cisco IOL smerovačoch automatické. {\huge TODO - Je automatické v Dynamips/Dynagene?}
+IOL smerovače fungovali, až na príkaz \texttt{clock rate} na sériových rozhraniach, bez chyby. Ukázalo sa, že nastavenie DCE/DTE závisí od párnosti čísla skupiny. Párne číslo skupiny sériových rozhraní bude vždy DTE, nepárne vždy DCE, ako je zrejmé z obrázku \ref{obr:eve_ng_dce_dte_2E8S}. Rozdelenie sériových rozhraní na DCE/DTE nezávislé od počtu ethernetových alebo sériových skupín, čo potvrdzuje obrázok \ref{obr:eve_ng_dce_dte_1E8S}. Nastavenie DTE/DCE módu pre sériové rozhrania je v EVE-ng pri Cisco IOL smerovačoch pevne dané a nedá sa zmeniť, na čo treba myslieť pri návrhu topológie. V nástroji Dynamips/Dynagen sa dá DCE/DTE mód na jednotlivých sériových rozhraniach ľubovoľne meniť.
 
 \begin{figure}
     \centering
@@ -124,7 +211,7 @@ Spomenutý súbor ukazuje veľké rozdiely v meraniach využitia operačnej pam�
 
 V rámci predmetu Počítačové siete 2 bol nástroj EVE-ng nasadený do vyučovania na vypracovávanie topológii s \emph{point-to-point} technológiami. Topológie boli spustené na virtuálnom VMware EVE-ng serveri.
 
-V EVE-ng boli úspešne dokončené semestrálne práce s témou \emph{VPLS} a \emph{Seamless MPLS}. Téma \emph{EVPN} bola vypracovávaná v nástroji \emph{ViRo v2} 
+V EVE-ng boli úspešne dokončené semestrálne práce s témou \emph{VPLS} a \emph{Seamless MPLS}. Téma \emph{EVPN} bola vypracovávaná v nástroji \emph{ViRo v2}.
 
 Topológie semestrálnych prác sa skladali z týchto zariadení:
 
@@ -152,4 +239,4 @@ Pri nasadení na predmet Projektovanie sietí 2, kde bola použitá virtuálna i
 
 Napriek mnohým nedostatkom nástroja EVE-ng, je výhodou vytvárať topológie z grafického rozhrania, namiesto z príkazového riadku. Nevýhodami sú nemožnosť stabilne spúšťať viac ako 63 zariadení v jednej topológii. Jednotliví používatelia a študenti si svoje topológie nemôžu spravovať nezávisle na sebe, keďže toto je možné iba v Learning Centre verzii nástroja.
 
-Čo sa týka odhadov systémových požiadaviek topológii, tie môžeme odhadnúť súčtom systémových požiadaviek jednotlivých zariadení, ktoré sa v topológii budú nachádzať. Systémové požiadavky vybraných zariadení sú k dispozícii na CD v adresári \emph{eve\_ng/profiling\_and\_benchmarking\_results/}.
+Čo sa týka odhadov systémových požiadaviek topológii, tie môžeme odhadnúť súčtom systémových požiadaviek jednotlivých zariadení, ktoré sa v topológii budú nachádzať. Systémové požiadavky vybraných zariadení sú k dispozícii na CD v adresári \\ \emph{eve\_ng/profiling\_and\_benchmarking\_results/}.
