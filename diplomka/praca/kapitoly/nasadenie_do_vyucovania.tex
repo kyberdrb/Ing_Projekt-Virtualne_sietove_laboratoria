@@ -79,7 +79,7 @@ Zmeny v \emph{unl} súbore sa prejavia až po znovunačítaní stránky (kláves
 
 {\huge TODO - ukázať syntax UNL súboru zo servera na termináli}
     
-    Experimentovaním sme zistili, že vytváranie topológii a duplikácia jej prvkov v \emph{unl} súbore je pomerne náročné, zdĺhavé a náchylné na chyby. {\huge TODO - popisat hlavne parametre, ktore sa lisia pri duplikovani textovej reprezentacie danej topologie a komplikacie, ktoré s tým boli spojené} Výhodnejšie sa ukázalo najprv použiť webové rozhranie, potom tabuľku zariadení \emph{Nodes} a nakoniec upravovať \emph{unl} súbor:
+    Experimentovaním sme zistili, že vytváranie topológii a duplikácia jej prvkov v \emph{unl} súbore je pomerne náročné, zdĺhavé a náchylné na chyby. Pri duplikácii zariadení bolo náročné udržať prehľad o.i. aj o identifikátoroch zariadení a rozhraní a ich vzájomnom prepojení v rámci. Výhodnejšie sa ukázalo najprv použiť webové rozhranie, potom tabuľku zariadení \emph{Nodes} a nakoniec upravovať \emph{unl} súbor:
     
     \begin{enumerate}[noitemsep]
         \item Najpr vo webovom rozhraní vytvoríme topológiu, pridáme do nej zariadenia a poprepájame ich.
@@ -87,7 +87,7 @@ Zmeny v \emph{unl} súbore sa prejavia až po znovunačítaní stránky (kláves
         \item Ak je potrebné, nakoniec v \emph{unl} súbore presnejšie upravíme súradnice prvkov v topológii definovaných atribútmi \texttt{left} a \texttt{top}. Výsledkom týchto úprav je celkové zlepšenie estetickej úpravy. Môžeme tak urobiť aj vo webovom rozhraní v dialógovom okne pre úpravu zariadenia v atribútoch \emph{Left} a \emph{Top}, avšak v \emph{unl} súbore vieme súradnice prvkov upraviť hromadne.
     \end{enumerate}
     
-    \item Spúšťanie zariadení
+    \item Potom, ako sme pridali zariadenia do topológie a poprepájali ich, môžeme zariadenia spustiť. Jednotlivé zariadenia môžeme spustiť:
 
 {\huge TODO - po jednom}
 {\huge TODO - vybraná skupina
