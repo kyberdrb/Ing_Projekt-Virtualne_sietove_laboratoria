@@ -8,12 +8,13 @@ Zazitky:
 ===============================================================================
 Diplomka
 
--dokumentacia, prezentacia, otazky pri prezentacii na vsetkych - 2 otazky na kazdeho
+-odovzdat prezentaciu + dokumentaciu = automaticky E
+-dokumentacia, prezentacia, otazky pri prezentacii na vsetkych - 2 otazky na kazdeho - ucast na prezentacii moze zlepsit znamku
 -prezentacia by mala byt spravena tak, aby vsetkym bolo jasne, ako to principialne funguje
--odovzdat prezentaciu + dokumentaciu = E
+
 
     -Opravená PPP topológia bola overená na ďalšom cvičení
-        -spýtať sa, ako dopadla
+        -spýtať sa Skvareka, ako dopadla
         
 
 
