@@ -8,15 +8,9 @@ Zazitky:
 ===============================================================================
 Diplomka
 
--odovzdat prezentaciu + dokumentaciu = automaticky E
--dokumentacia, prezentacia, otazky pri prezentacii na vsetkych - 2 otazky na kazdeho - ucast na prezentacii moze zlepsit znamku
--prezentacia by mala byt spravena tak, aby vsetkym bolo jasne, ako to principialne funguje
-
-
-    -Opravená PPP topológia bola overená na ďalšom cvičení
-        -spýtať sa Skvareka, ako dopadla
-        
-
+    -ešte raz urobiť dôkaz nezávislosti topológii po otvorení rovnakého súboru rôznymi používateľov
+        -dať tam iba screeny topológii prvého a druhého používateľa s viditeľnou adresou prvého zariadenia v topológii
+            -topológiu vytvoriť jednoduchšiu - 4 zariadenia (2+2 routre)
 
     -všetky zoznamy v práci by mali mať formátovanie
         \begin{enumerate}[noitemsep]
@@ -25,10 +19,14 @@ Diplomka
     
     -skontrolovať vzhľad všetkých tabuliek v DP
 
+    -skontrolovať, či sa na každý obrázok odkazujem v texte (hlavne v kapitole "Používanie EVE-ng")
+
     -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
         https://tex.stackexchange.com/questions/252484/crop-image-in-latex-like-word/252485#252485
 
     -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
+
+    -Vo pondelok poslat veducemu pred-finalnu verziu diplomky
 
 
 
@@ -42,6 +40,9 @@ Dodatočne po odovzdaní:
 
 ===============================================================================
 Co dalej?
+
+-opraviť bug:
+    -nefunguje pridávanie obrázkov do topológie cez "Add a new object -> Picture -> zadáme názov do 'Name' a v 'Browse' vyberieme súbor s obrázkom".
 
 -dokončiť testovanie technológii pre Juniper vMX (1 uzol aj VCP+VFP konfiguráciu), Juniper vSRX a Nokia VSR (13 aj 14, aj 1 uzol aj IOM+CPM konfiguráciu)
   -Na Cisco switchoch otestovat aj technologiu RITE - port mirroring na smerovaci
