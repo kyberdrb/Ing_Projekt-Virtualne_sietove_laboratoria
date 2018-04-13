@@ -12,6 +12,8 @@ Diplomka
         -dať tam iba screeny topológii prvého a druhého používateľa s viditeľnou adresou prvého zariadenia v topológii
             -topológiu vytvoriť jednoduchšiu - 4 zariadenia (2+2 routre)
 
+    -rebenchmarkovať PAP topológiu
+
     -všetky zoznamy v práci by mali mať formátovanie
         \begin{enumerate}[noitemsep]
     a
@@ -26,7 +28,7 @@ Diplomka
 
     -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
 
-    -Vo pondelok poslat veducemu pred-finalnu verziu diplomky
+    -V pondelok poslat veducemu pred-finalnu verziu diplomky
 
 
 

@@ -80,3 +80,19 @@ https://tex.stackexchange.com/questions/64825/remove-border-of-top-left-table-ce
 
 Zmenšenie riadkovania v (číslovaných aj nečíslovaných) zoznamoch
 https://stackoverflow.com/questions/3275622/latex-remove-spaces-between-items-in-list/3281778#3281778
+
+Zmena čísla, ktorým začína číslovaný zoznam
+https://tex.stackexchange.com/questions/142/how-can-i-make-an-enumerate-list-start-at-something-other-than-1/149#149
+
+Odkaz (referencia) na položku v číslovanom (enumerate) alebo popisnom (description) zozname
+https://tex.stackexchange.com/questions/58713/ref-should-use-enumerate-label-name/58714#58714
+
+Zalamovanie riadkov s URL (aj v bibliografii)
+https://tex.stackexchange.com/questions/3033/forcing-linebreaks-in-url/3037#3037
+https://tex.stackexchange.com/questions/3033/forcing-linebreaks-in-url/3034#3034
+
+Zobrazenie obrázkov na rovnakej strane
+https://tex.stackexchange.com/questions/134162/getting-two-pictures-to-appear-on-the-same-page/134172#134172
+
+Orezávanie obrázkov
+https://tex.stackexchange.com/questions/57418/crop-an-inserted-image/57420#57420
