@@ -1,0 +1,1339 @@
+Adresar so zariadeniami
+
+  /opt/unetlab/addons/
+
+*************
+Overenie stavu UKMS z prepinaca v System -> System status
+  cat /opt/unetlab/uksm
+
+obsah suboru '/opt/unetlab/uksm' sa zrkadli zo systemoveho suboru '/sys/kernel/mm/uksm/run'
+
+  cat /sys/kernel/mm/uksm/run
+
+*************
+Web
+
+Zoznam zariadeni v rozbalovacom menu
+  /opt/unetlab/html/includes/init.php
+
+Zoznam sablon pre zariadenia
+  /opt/unetlab/html/templates/
+
+*************
+Integračný balíček pre Windows (iba obaľovače)
+  /opt/unetlab/html/files/windows.zip
+
+*************
+Logy
+
+web:     System -> System logs
+adresar: /opt/unetlab/data/Logs
+
+  access.txt
+    -logovanie pristupu na web http(s), mysql, php
+
+  api.txt
+    -logy z api
+
+  errors.txt
+    -vseobecne chyby
+
+  php_errors.txt
+    -chyby ohladom PHP; napr. 
+
+  ssl-access.log
+    -hlasenia ohladom pristupu na apache cez https
+
+  ssl-error.log
+    -chyby ohladom SSL certifikatov
+
+*************
+Dokumentacia ku UNetLab / EVE-ng API
+  /opt/unetlab/scripts/doc_api.sh
+
+*************
+Instalacny skript Guacamole servera
+  /opt/unetlab/scripts/guac_install_v1.5.sh
+zaujimava su hlavne riadky "MYSQL_ROOT_PASSWD", "GUAC_DB_PASSWD" a "GUAC_ADMIN_PASSWORD". Hesla su slabe a teraz uz rozumiem, preco je vzdialeny pristup do MySQL databazy v EVE-ng predvolene vypnuty. Pretoze take heslo prelomi aj kalkulacka za 2 minuty. Prave preto musi vzdialeny pristup do MySQL databazy zablokovany a port 3306 na firewalle zatvoreny.
+Staci si do mysql konzoly v EVE-ng zadat prikaz
+
+  SELECT user,authentication_string FROM mysql.user;
+
+Bez komentara.
+
+Zdroje:
+https://stackoverflow.com/questions/1135245/how-to-get-a-list-of-mysql-user-accounts
+
+*************
+Migracny skript UNetLab - ale ja aj tak pouzivam vlastny sposob
+  /opt/unetlab/scripts/migrate.sh
+
+*************
+Skript, ktory okrem ineho spusta IOL zariadenia a opravuje opravnenia
+  /opt/unetlab/scripts/unl_wrapper.php
+
+*************
+Ovladace pre Windows hostov
+  /opt/unetlab/scripts/virtio-win-drivers.img
+
+Uzitocne pre spravny vykon Windows zariadeni v topologii.
+
+*************
+Skript, ktory sa spusta pri kazdom starte systemu
+  /opt/ovf/ovfstartup.sh
+
+*************
+Skript, ktory sa spusta pri prvom prihlaseni do systemu
+  /opt/ovf/ovfconfig.sh
+
+Aj pomocou tohto skriptu mozeme okrem ineho zmenit aj hostname systemu.
+
+*************
+Dalsi zaujimavy subor. Zrejme sa stara o post-install
+
+/var/lib/dpkg/info/eve-ng.postinst configure
+
+*************
+Tento subor (link) urcuje, ktoru z verzii QEMU bude EVE-ng pouzivat
+  /opt/qemu
+
+Staci link nasmerovat na prislusny 'qemu' adresar konkretnej verzie v adresari '/opt'. Musime ale dat pozor na niektore dalsie subory. Defaultny QEMU a zelany QEMU adresar treba dokladne porovnat na odlisne subory. Moze sa stat, ze v zelanom QEMU adresari budu nejake subory chybat v porovnani s defaultnym QEMU adresarom.
+
+*************
+Verzia Angular
+  /opt/unetlab/html/themes/adminLTE/plugins/angularJS/angular.js
+
+https://stackoverflow.com/questions/16017699/how-can-i-check-which-version-of-angular-im-using
+
+*************
+Verzia Bootstrap
+  /opt/unetlab/html/themes/adminLTE/bootstrap/css/bootstrap.css
+
+https://stackoverflow.com/questions/15335537/how-to-identify-bootstrap-version
+
+
+
+************* ************* *************
+KOMPLETNÁ ADRESÁROVÁ ŠTRUKTÚRA
+************* ************* *************
+
+/opt/
+├── ovf
+├── qemu -> qemu-2.4.0
+├── qemu-1.3.1
+│   ├── bin
+│   ├── etc
+│   │   └── qemu
+│   ├── libexec
+│   └── share
+│       ├── doc
+│       │   └── qemu
+│       ├── man
+│       │   ├── man1
+│       │   └── man8
+│       └── qemu
+│           └── keymaps
+├── qemu-2.0.2
+│   ├── bin
+│   ├── etc
+│   │   └── qemu
+│   ├── include
+│   │   └── cacard
+│   ├── lib
+│   │   └── pkgconfig
+│   ├── libexec
+│   ├── share
+│   │   ├── doc
+│   │   │   └── qemu
+│   │   ├── man
+│   │   │   ├── man1
+│   │   │   └── man8
+│   │   └── qemu
+│   │       └── keymaps
+│   └── var
+│       └── run
+├── qemu-2.2.0
+│   ├── bin
+│   ├── etc
+│   │   └── qemu
+│   ├── include
+│   │   └── cacard
+│   ├── lib
+│   │   └── pkgconfig
+│   ├── libexec
+│   ├── share
+│   │   ├── doc
+│   │   │   └── qemu
+│   │   ├── man
+│   │   │   ├── man1
+│   │   │   └── man8
+│   │   └── qemu
+│   │       └── keymaps
+│   └── var
+│       └── run
+├── qemu-2.4.0
+│   ├── bin
+│   ├── include
+│   │   └── cacard
+│   ├── lib
+│   │   └── pkgconfig
+│   ├── libexec
+│   ├── share
+│   │   ├── doc
+│   │   │   └── qemu
+│   │   ├── man
+│   │   │   ├── man1
+│   │   │   └── man8
+│   │   └── qemu
+│   │       └── keymaps
+│   └── var
+│       └── run
+├── qemu-2.5.0
+│   ├── bin
+│   ├── libexec
+│   ├── share
+│   │   ├── doc
+│   │   │   └── qemu
+│   │   ├── man
+│   │   │   ├── man1
+│   │   │   └── man8
+│   │   └── qemu
+│   │       └── keymaps
+│   └── var
+│       └── run
+├── qemu-2.6.2
+│   ├── bin
+│   ├── libexec
+│   ├── share
+│   │   ├── doc
+│   │   │   └── qemu
+│   │   ├── man
+│   │   │   ├── man1
+│   │   │   └── man8
+│   │   └── qemu
+│   │       └── keymaps
+│   └── var
+│       └── run
+├── qemu-2.9.0
+│   ├── bin
+│   ├── libexec
+│   ├── share
+│   │   ├── doc
+│   │   │   └── qemu
+│   │   ├── man
+│   │   │   ├── man1
+│   │   │   ├── man7
+│   │   │   └── man8
+│   │   └── qemu
+│   │       └── keymaps
+│   └── var
+│       └── run
+├── unetlab
+│   ├── addons
+│   │   ├── dynamips
+│   │   │   └── zariadenia_v_zalohe
+│   │   ├── iol
+│   │   │   ├── bin
+│   │   │   │   ├── generatory_iol_licencie
+│   │   │   │   ├── nastroje_v_zalohe
+│   │   │   │   └── zariadenia_v_zalohe
+│   │   │   │       ├── 2009
+│   │   │   │       ├── 2011
+│   │   │   │       ├── 2012
+│   │   │   │       ├── 2013
+│   │   │   │       ├── 2014
+│   │   │   │       ├── 2015
+│   │   │   │       ├── 2016
+│   │   │   │       └── 2017
+│   │   │   └── lib
+│   │   ├── qemu
+│   │   │   ├── a10-vThunder_410_P3_20160616
+│   │   │   ├── alteon-AlteonOS-30-5-0-0_20160511
+│   │   │   ├── asav-991-serial-console-with-asdm-79150_20171130
+│   │   │   ├── bigip-12.0.0-2_20150821
+│   │   │   ├── bigip-12.1.2-configured_20161130
+│   │   │   ├── cips-7.0.8_20120518
+│   │   │   ├── cpsg-R77-20_20140603
+│   │   │   ├── csr1000vng-universalk9.16.07.01-fuji-serial-console_20171120
+│   │   │   ├── csr1000v-universalk9.03.17.03.S.156-1.S3-std_20161121
+│   │   │   ├── cumulus-linux-3.5.2-vx-amd64-vmware_20180123
+│   │   │   ├── extremexos-15.3.2.11_20130618
+│   │   │   ├── extremexos_materialy
+│   │   │   ├── firepower6-FMC-6.2.0-362_datum
+│   │   │   ├── firepower6-FTD-6.2.0-362_datum
+│   │   │   ├── firepower6-NGIPS-6.1.0-330_datum
+│   │   │   ├── firepower6-NGIPS-6.2.0-362_datum
+│   │   │   ├── firepower-DEFC-5.4.0-763_datum
+│   │   │   ├── firepower-NGIPS-5.4.0-763_datum
+│   │   │   ├── fortinet-analyzer-FAZ-VM64-v5.2.6-build0753_20160317
+│   │   │   ├── fortinet-fortigate-FGT-VM64-KVM-v5.6.1-build1484_20170727
+│   │   │   ├── fortinet-fortimail-FML-VM64-KVM-v5.3-build593_20160413
+│   │   │   ├── hpvsr-VSR1000_HPE-CMW710-R0327L01-X64_20170631
+│   │   │   ├── linux-alpine-virt-3.7.0-x86
+│   │   │   ├── linux-debian-9.3.0-x64-xfce
+│   │   │   ├── linux-dockerserver-dockerui
+│   │   │   ├── linux-dockerserver-shipyard
+│   │   │   ├── linux_materialy
+│   │   │   ├── linux-netem
+│   │   │   ├── linux-openstack-newton
+│   │   │   ├── linux-openwrt-latest
+│   │   │   ├── linux-zabbix-3.0
+│   │   │   ├── lost+found
+│   │   │   ├── mikrotik-chr-6.41.1_20180202
+│   │   │   ├── nsvpx-10.5.55.8_20150126
+│   │   │   ├── nxosv9k-nxosv-final.7.0.3.I7.1_20170831
+│   │   │   ├── olive-12.1-R1-9_20120324
+│   │   │   ├── ostinato-drone-8.0
+│   │   │   ├── paloalto_materialy_6.1.0
+│   │   │   ├── paloalto-PA-VM-ESX-7.0.1_20150620
+│   │   │   ├── pfsense-CE-2.4.2-RELEASE-amd64_20171120
+│   │   │   ├── prime-PI-VA-3.2.0.0.258_merged_20170620
+│   │   │   ├── timos-B-13.0.R4_ver1_20150729
+│   │   │   ├── timos-C-14.0.R6_ver1_VYZADUJE_2_CPU_PRE_VSR-I_20162111
+│   │   │   ├── timoscpm-B-13.0.R4_ver1_PRE_64_BIT_2_CPU_20150729 -> /opt/unetlab/addons/qemu/timos-B-13.0.R4_ver1_20150729/
+│   │   │   ├── timoscpm-C-14.0.R6_ver1_PRE_64_BIT_2_CPU_20162111 -> /opt/unetlab/addons/qemu/timos-C-14.0.R6_ver1_VYZADUJE_2_CPU_PRE_VSR-I_20162111
+│   │   │   ├── timosiom-B-13.0.R4_ver1_20150729 -> /opt/unetlab/addons/qemu/timos-B-13.0.R4_ver1_20150729/
+│   │   │   ├── timosiom-C-14.0.R6_ver1_PRE_64_BIT_2_CPU_20162111 -> /opt/unetlab/addons/qemu/timos-C-14.0.R6_ver1_VYZADUJE_2_CPU_PRE_VSR-I_20162111
+│   │   │   ├── titanium-d1-kickstart.7.3.0.D1.1_20161101
+│   │   │   ├── veos-lab-4.20.1F-combined_20171116
+│   │   │   ├── vios-adventerprisek9-m.vmdk.SPA.156-2.T_20160322
+│   │   │   ├── viosl2-adventerprisek9-m.15.2_20170321
+│   │   │   ├── vmx-14.1R1.10_20140607
+│   │   │   ├── vmx-15.1F6.9_20160616
+│   │   │   ├── vmx-17.3R1.10_20170731
+│   │   │   ├── vmxvcp-15.1F6.9_20160616
+│   │   │   ├── vmxvcp-17.3R1.10_20170731
+│   │   │   ├── vmxvfp-15.1F6.9_20160616
+│   │   │   ├── vmxvfp-17.3R1.10_20170731
+│   │   │   ├── vsrx-12.1X47-D15.4-firefly-perimeter_20141112
+│   │   │   ├── vsrx-12.1X47-D20.7-firefly-perimeter_20150303
+│   │   │   │   └── junos-vsrx-12.1X47-D20.7-domestic.ova.1
+│   │   │   ├── vsrxng-15.1X49-D20.2_20150913
+│   │   │   ├── vsrxng-15.1X49-D80.4_20170323
+│   │   │   ├── vwaas-5.5.3-b59_20150415
+│   │   │   ├── vwlc-8.1.111_20150725
+│   │   │   ├── vyos-1.1.8-amd64_20171111
+│   │   │   ├── win-10-pro-x86-1709_20170930
+│   │   │   ├── win-10-pro-x86-1709_20170930_z_mojho_nb
+│   │   │   ├── win-7_x86
+│   │   │   ├── xrv9k-fullk9-x-6.2.25_20170928
+│   │   │   ├── xrv9k-fullk9-x.vrr-6.2.25_20170928
+│   │   │   ├── xrv-iosxrv-k9-demo-6.0.1_20160506
+│   │   │   ├── zariadenia_ku_ktorym_neviem_prihlasovacie_udaje
+│   │   │   │   ├── huaweiusg6kv-usg
+│   │   │   │   ├── linux-dsm-5.2
+│   │   │   │   ├── linux-hillstone-sg6000
+│   │   │   │   ├── linux-ikuai-8
+│   │   │   │   ├── linux-nagios-5.4
+│   │   │   │   ├── linux-opene-7.0
+│   │   │   │   ├── linux-panabit-v17
+│   │   │   │   └── linux-seafile-6.0.9
+│   │   │   │       └── seafile-6.0.9
+│   │   │   ├── zariadenia_v_zalohe
+│   │   │   │   ├── alteon-Vision-with-APM-3.60.00.VMware_1139_prod
+│   │   │   │   ├── asa-8.4.2_20110615
+│   │   │   │   ├── asa-9.1.5.16_20141016
+│   │   │   │   ├── asav-991-asdm-791-serial
+│   │   │   │   ├── asav-asav941-203
+│   │   │   │   ├── asav-asav951-201
+│   │   │   │   ├── asav-asav952-204-telnet
+│   │   │   │   ├── asav-asav962
+│   │   │   │   ├── asav-asav971
+│   │   │   │   ├── asav-asav971-telnet
+│   │   │   │   ├── asav-asav971-telnet-guestfish_mod
+│   │   │   │   ├── asdm-791-for-cisco-asav
+│   │   │   │   ├── bigip-11.5.1_20140312
+│   │   │   │   ├── bigip-BIGIP-11.5.3.2.10.196.ALL-scsi
+│   │   │   │   │   └── hdx_vmdk
+│   │   │   │   ├── bigip-BIGIP-12.1.2.0.0.249
+│   │   │   │   ├── cpsg-Check_Point_Install_and_Upgrade_R77.Gaia
+│   │   │   │   ├── cpsg-R77-10
+│   │   │   │   ├── csr1000v-9.03.13.01.S
+│   │   │   │   ├── csr1000vng-universalk9.16.05.02-everest-serial-console
+│   │   │   │   ├── csr1000vng-universalk9.16.06.02-everest-serial-console
+│   │   │   │   ├── csr1000v-universalk9_03.16.00.S_15.5.3S
+│   │   │   │   ├── csr1000v-universalk9.03.17.00.S.156-1.S-std_20151125
+│   │   │   │   ├── cumulus-linux-3.5.0-vx-amd64-vmware
+│   │   │   │   ├── fortinet-fortigate-FGT-VM64-KVM-v5.2.3-build0670_20150318
+│   │   │   │   ├── fortinet-fortigate-FGT-VM64-KVM-v5.2.5-build0701_20151203
+│   │   │   │   ├── fortinet-fortigate-FGT-VM64-KVM-v5.4.3-build1111_20161220
+│   │   │   │   ├── fortinet-fortimanager-FMG-VM64-v5.4.2-build1151_20161213
+│   │   │   │   ├── fortinet-FOS_VM64_KVM-v5.6.1-build1484-FORTINET.out.kvm
+│   │   │   │   ├── hillstone-sg6000
+│   │   │   │   ├── hpvsr-7.10.R0204P01_20150202
+│   │   │   │   ├── hpvsr-VSR1000_HPE-CMW710-E0518-X64
+│   │   │   │   ├── hpvsr-VSR1000_HPE-CMW710-R0204P01-X64_20150202
+│   │   │   │   ├── linux-centos-7-x64
+│   │   │   │   ├── linux-debian-8.6.0
+│   │   │   │   ├── linux-xubuntu-16-04-1-x64
+│   │   │   │   ├── lost+found
+│   │   │   │   ├── mikrotik-6.38.1
+│   │   │   │   ├── mikrotik-chr-6.40.5_20171107
+│   │   │   │   ├── nxosv9k-nxosv-final.7.0.3.I5.1
+│   │   │   │   ├── nxosv9k-nxosv-final.7.0.3.I6.1_20170516
+│   │   │   │   ├── paloalto-6.1.0
+│   │   │   │   ├── prime-PI-VA-3.2.0.0.258
+│   │   │   │   ├── prime-PI-VA-3.2.0.0.258-configured
+│   │   │   │   ├── timos-12.0.R6
+│   │   │   │   ├── timos-B-13.0.R1
+│   │   │   │   ├── timos-B-13.0.R4_ver2_20150729
+│   │   │   │   ├── timos-C-13.0.R1_20150227
+│   │   │   │   ├── timos-C-14.0.R6_ver2_VYZADUJE_2_CPU_PRE_VSR-I_20162111
+│   │   │   │   ├── titanium-d1-kickstart.5.1.2_20101218
+│   │   │   │   ├── titanium-d1-kickstart.7.0.1.ZD.0.216_20140613
+│   │   │   │   ├── titanium-d1-kickstart.7.2.0.D1.1_20150519
+│   │   │   │   ├── veos-4.14.5F
+│   │   │   │   ├── vios-adventerprisek9-m-15.4-1.24-T0.29_20140321
+│   │   │   │   ├── vios-adventerprise-m.vmdk.SPA.154-2.T
+│   │   │   │   ├── vios-adventerprise-m.vmdk.SPA.154-3.M3
+│   │   │   │   ├── viosl2-ADVENTERPRISEK9-M_15.0_TTC_20140605
+│   │   │   │   ├── viosl2-ADVENTERPRISEK9-M_15.0-TTC_20140605-FLO_DSGS7
+│   │   │   │   ├── viosl2-ADVENTERPRISEK9-M_15.2-4.0.55E_20150628
+│   │   │   │   ├── vmx-junos-12-1R1.9
+│   │   │   │   ├── vsrx-12.1X44-D10.4-domestic
+│   │   │   │   ├── vyos-117
+│   │   │   │   ├── vyos-1.1.8-amd64-vnc
+│   │   │   │   ├── win-7PE-PC+
+│   │   │   │   ├── winserver-windows-server-2016-x64
+│   │   │   │   ├── win-Win7-lite-hda
+│   │   │   │   ├── xrv9k-fullk9-x-6.0.1_20160509
+│   │   │   │   ├── xrv-IOSXRv5.3.2
+│   │   │   │   └── xrv-k9-5.3.1
+│   │   │   └── ZZZ_UNL_documents
+│   │   └── rozne_zariadenia
+│   │       ├── CCNA Security 640-554 Official Cert Guide Videos
+│   │       ├── Cisco ASA 5500 series. ASA OS. ASDM. AnyConnect. AD Agent. SecurityPlus Keymaker
+│   │       │   ├── 1000V
+│   │       │   ├── 5500
+│   │       │   ├── 5500-x
+│   │       │   ├── 5505
+│   │       │   ├── AD Agent
+│   │       │   │   ├── 2011 Jun
+│   │       │   │   └── 2012 May
+│   │       │   ├── AnyConnect
+│   │       │   │   ├── 2014 Oct
+│   │       │   │   └── Plugins
+│   │       │   │       ├── 1.0.0
+│   │       │   │       └── 1.1.1
+│   │       │   ├── ASAv
+│   │       │   ├── ASDM
+│   │       │   └── CDA
+│   │       │       └── Doc
+│   │       ├── Cisco.IOS.Big Collection
+│   │       │   ├── AS5300
+│   │       │   ├── AS5350
+│   │       │   ├── AS5400
+│   │       │   ├── AS5800
+│   │       │   ├── ATA
+│   │       │   ├── c1005
+│   │       │   ├── c1600
+│   │       │   ├── c1700
+│   │       │   ├── c181X
+│   │       │   ├── c1841
+│   │       │   ├── c1900
+│   │       │   ├── c2500
+│   │       │   ├── c2600
+│   │       │   ├── c2691
+│   │       │   ├── c2800
+│   │       │   ├── c2801
+│   │       │   ├── c2820
+│   │       │   ├── c2900
+│   │       │   ├── c2950
+│   │       │   ├── c2960
+│   │       │   ├── c3550
+│   │       │   ├── c3560
+│   │       │   ├── c3620
+│   │       │   ├── c3631
+│   │       │   ├── c3640
+│   │       │   ├── c3660
+│   │       │   ├── c3725
+│   │       │   ├── c3745
+│   │       │   ├── c3750
+│   │       │   ├── c3810
+│   │       │   ├── c3825
+│   │       │   ├── c3845
+│   │       │   ├── c4500
+│   │       │   ├── c5300
+│   │       │   ├── c5350
+│   │       │   ├── c5400
+│   │       │   ├── c5800
+│   │       │   ├── c600
+│   │       │   ├── c675
+│   │       │   ├── c678
+│   │       │   ├── c7100
+│   │       │   ├── c7200
+│   │       │   ├── c7301
+│   │       │   ├── c7500
+│   │       │   ├── c7600-SUP720(MSFC3)
+│   │       │   ├── c800
+│   │       │   ├── c805
+│   │       │   ├── c820
+│   │       │   ├── c827-4V
+│   │       │   ├── c827H
+│   │       │   ├── c82X
+│   │       │   ├── c831
+│   │       │   ├── c837
+│   │       │   ├── c83X
+│   │       │   ├── c851
+│   │       │   ├── c870
+│   │       │   ├── CAT1200
+│   │       │   ├── CAT2900XL
+│   │       │   ├── CAT2940
+│   │       │   ├── CAT2950
+│   │       │   ├── CAT2950LRE
+│   │       │   ├── CAT2960
+│   │       │   ├── CAT2970
+│   │       │   ├── CAT3500XL
+│   │       │   ├── CAT3550
+│   │       │   ├── CAT3560
+│   │       │   ├── CAT3750
+│   │       │   ├── CAT4000
+│   │       │   ├── CAT4232
+│   │       │   ├── CAT5000
+│   │       │   ├── CAT5000-RSM
+│   │       │   ├── CAT6000
+│   │       │   ├── CME
+│   │       │   ├── CNA
+│   │       │   ├── IDS
+│   │       │   ├── IPS
+│   │       │   ├── Other
+│   │       │   │   ├── gsr
+│   │       │   │   ├── igs
+│   │       │   │   ├── mica-modem
+│   │       │   │   ├── nsrouter
+│   │       │   │   ├── rsp
+│   │       │   │   └── soho
+│   │       │   ├── PIX
+│   │       │   ├── ROMMON
+│   │       │   │   └── 3700
+│   │       │   ├── s72033
+│   │       │   ├── SB10X
+│   │       │   ├── SOHO91
+│   │       │   ├── UNIFIED COMMUNICATIONS
+│   │       │   ├── VOICE
+│   │       │   │   └── IP-PHONE
+│   │       │   │       ├── 7905
+│   │       │   │       └── SIP-7960
+│   │       │   └── VPN3000
+│   │       ├── cisco_iou_ccie_rack_v3
+│   │       │   └── Cisco IOU CCIE Rack v3
+│   │       │       ├── Cisco_IOU_Rack_v3_Video
+│   │       │       └── IOU
+│   │       ├── gns3.for.vmware.and.virtualbox
+│   │       │   ├── GNS3ESX
+│   │       │   └── Missing VM Files
+│   │       ├── gns3.v1.2.labkit
+│   │       │   ├── cbt.nuggets.definitive.guide.working.with.gns3
+│   │       │   ├── Crucial VM Files
+│   │       │   │   ├── Flash
+│   │       │   │   ├── Java
+│   │       │   │   ├── Kiwi_Syslog_Server_9.2.1.setup
+│   │       │   │   ├── tera term pro 3.13
+│   │       │   │   └── Wireshark
+│   │       │   ├── IOS Files
+│   │       │   │   ├── ASA Decompiled and rebuilt
+│   │       │   │   ├── IDS
+│   │       │   │   └── IPS
+│   │       │   └── TFTP files
+│   │       ├── lost+found
+│   │       ├── rozne_dynamips_zariadenia
+│   │       ├── rozne_iou_zariadenia
+│   │       │   ├── Cisco-IOU-L2-L3-Collection-v2
+│   │       │   ├── Cisco-IOU-L2-L3-Collection-v3
+│   │       │   │   ├── bin
+│   │       │   │   └── scripts
+│   │       │   ├── Cisco-IOU-L2-L3-Collection-v4
+│   │       │   │   ├── bin
+│   │       │   │   └── scripts
+│   │       │   ├── IOU
+│   │       │   └── NewIOU_18Dec
+│   │       ├── rozne_qemu_zariadenia
+│   │       │   ├── acs-5.8.1.4-nefunguje
+│   │       │   ├── asav991_and_asdm-791
+│   │       │   ├── Cisco VIRL Images for GNS3 and Qemu
+│   │       │   ├── HP
+│   │       │   │   └── hpvsr-7.1.049P1
+│   │       │   ├── linux-Ubuntu14.04.2
+│   │       │   ├── MEGA_DEVICES_PACK
+│   │       │   ├── Mikrotik 5.20 with License
+│   │       │   ├── Nokia-VSR-VM-14.0.R6
+│   │       │   │   └── vm
+│   │       │   │       └── 7xxx-i386
+│   │       │   ├── QEMU
+│   │       │   ├── Unetlab_compressed_images
+│   │       │   ├── Unetlab_extracted_images
+│   │       │   │   ├── Alcatel
+│   │       │   │   │   └── timos-12.0.R6
+│   │       │   │   ├── Arista
+│   │       │   │   │   └── veos-4.14.0F
+│   │       │   │   ├── CheckPoint
+│   │       │   │   │   ├── cpsg-R77-10
+│   │       │   │   │   └── cpsg-R77-20
+│   │       │   │   ├── Cisco
+│   │       │   │   │   ├── ASA-842
+│   │       │   │   │   │   └── asa-8.42
+│   │       │   │   │   ├── ASA-915
+│   │       │   │   │   │   └── asa-9.15
+│   │       │   │   │   ├── ASAv
+│   │       │   │   │   │   └── asav-941-200
+│   │       │   │   │   ├── Cisco vWAAS
+│   │       │   │   │   │   └── vwaas-200-5.5.3
+│   │       │   │   │   ├── CSR
+│   │       │   │   │   │   └── csr1000v-9.03.13.01.S
+│   │       │   │   │   ├── Nexus 5.1
+│   │       │   │   │   │   └── titanium-7.5
+│   │       │   │   │   ├── Nexus 7000
+│   │       │   │   │   │   └── titanium-7
+│   │       │   │   │   ├── vIOS
+│   │       │   │   │   │   └── vios-adventerprisek9-m-15.4-1.3.0-181
+│   │       │   │   │   ├── vIOS L2
+│   │       │   │   │   │   └── viosl2-l2
+│   │       │   │   │   ├── vIPS-7.0.8
+│   │       │   │   │   │   └── cips-7.0.8
+│   │       │   │   │   ├── vNAM
+│   │       │   │   │   │   └── vnam-6.2.1
+│   │       │   │   │   ├── vWLC
+│   │       │   │   │   │   └── vwlc-8.1.111
+│   │       │   │   │   └── XRV
+│   │       │   │   │       └── xrv-k9-5.3.1
+│   │       │   │   ├── Citrix
+│   │       │   │   │   └── nsvpx-10.5.54.9008
+│   │       │   │   ├── Document
+│   │       │   │   ├── ExtremeXOS
+│   │       │   │   │   └── extremexos-15.3.2
+│   │       │   │   ├── F5
+│   │       │   │   │   └── bigip-11.6.0
+│   │       │   │   ├── Fortigate
+│   │       │   │   │   └── forti-os
+│   │       │   │   ├── HP
+│   │       │   │   │   └── hpvsr-7.10
+│   │       │   │   ├── Juniper
+│   │       │   │   │   ├── Junos FireFly
+│   │       │   │   │   │   └── vsrx-12.1X44-D10.4-domestic
+│   │       │   │   │   ├── Junos Olive
+│   │       │   │   │   │   └── olive-12.1X46-D20.5-domestic
+│   │       │   │   │   └── Junos vMX
+│   │       │   │   │       └── vmx-14.1R1.10-domestic
+│   │       │   │   ├── Linux
+│   │       │   │   │   └── linux-generic
+│   │       │   │   ├── Mikrotik
+│   │       │   │   │   └── mikrotik-4-17
+│   │       │   │   ├── Palo Alto
+│   │       │   │   │   └── paloalto-6.1.0
+│   │       │   │   ├── VyOS
+│   │       │   │   │   └── vyos-117
+│   │       │   │   └── Windows-7
+│   │       │   │       └── win-7PE-PC+
+│   │       │   │           └── win-7PE-PC+
+│   │       │   ├── vios-NEFUNGUJE-k9-m-156-2T
+│   │       │   ├── vnam-6.2.1
+│   │       │   ├── Windows 7 Ultimate Sp1 x86 En-Us ESD Nov2015 Pre-Activation=-{TEAM OS}=-
+│   │       │   └── Windows ISO Downloader 5.2.9.0
+│   │       ├── SystemMikrotikV6.5LicenseLevel6WebProxyLBPCCOnPC
+│   │       ├── VMware_vorkstejsny
+│   │       │   ├── VMware.Workstation.Pro.v12.5.0.X64.Incl.Keygen-AMPED (WIN-LiNUX) + MAC 8.5.0 + LiTE 12.1.1
+│   │       │   │   ├── VMware.Fusion.Professional.v8.5.0.MACOSX.Incl.Keygen-AMPED
+│   │       │   │   │   └── AMPED
+│   │       │   │   ├── VMware.Workstation.Pro.v12.5.0.LINUX.X64.Incl.Keygen-AMPED
+│   │       │   │   │   └── AMPED
+│   │       │   │   └── VMware.Workstation.Pro.v12.5.0.X64.Incl.Keygen-AMPED
+│   │       │   │       └── AMPED
+│   │       │   ├── VMware.Workstation.Pro.v12.5.5.X64.Incl.Keygen-AMPED (WIN-LiNUX)
+│   │       │   │   ├── VMware.Workstation.Pro.v12.5.5.LINUX.X64.Incl.Keygen-AMPED
+│   │       │   │   │   └── AMPED
+│   │       │   │   └── VMware.Workstation.Pro.v12.5.5.X64.Incl.Keygen-AMPED
+│   │       │   │       └── AMPED
+│   │       │   ├── VMware Workstation v12.0.0 Linux x64 Incl Keymaker-EMBRACE
+│   │       │   └── VMware Workstation v12.0.0 Linux x64 Incl.Keymaker-EMBRACE [deepstatus]
+│   │       └── WEB_IOU_v22_VM
+│   │           └── mount
+│   ├── data
+│   │   ├── Exports
+│   │   └── Logs
+│   ├── html
+│   │   ├── configs
+│   │   ├── favicon
+│   │   ├── files
+│   │   │   └── windows
+│   │   │       └── UNetLab
+│   │   ├── images
+│   │   │   └── icons
+│   │   ├── includes
+│   │   │   ├── Slim
+│   │   │   │   ├── Exception
+│   │   │   │   ├── Helper
+│   │   │   │   ├── Http
+│   │   │   │   └── Middleware
+│   │   │   └── Slim-Extras
+│   │   ├── rdp
+│   │   ├── templates
+│   │   └── themes
+│   │       ├── adminLTE
+│   │       │   ├── bootstrap
+│   │       │   │   ├── css
+│   │       │   │   ├── fonts
+│   │       │   │   └── js
+│   │       │   ├── build
+│   │       │   │   ├── bootstrap-less
+│   │       │   │   │   └── mixins
+│   │       │   │   └── less
+│   │       │   │       └── skins
+│   │       │   ├── dist
+│   │       │   │   ├── angular.js_old
+│   │       │   │   │   └── controllers
+│   │       │   │   ├── css
+│   │       │   │   │   └── skins
+│   │       │   │   ├── img
+│   │       │   │   │   └── credit
+│   │       │   │   └── js
+│   │       │   │       └── pages
+│   │       │   ├── documentation
+│   │       │   │   └── build
+│   │       │   │       └── include
+│   │       │   ├── pages_old
+│   │       │   │   ├── main_layout
+│   │       │   │   │   └── constant
+│   │       │   │   └── modals
+│   │       │   ├── plugins
+│   │       │   │   ├── angularJS
+│   │       │   │   │   └── plugins
+│   │       │   │   │       ├── angular-file-upload
+│   │       │   │   │       ├── block-ui
+│   │       │   │   │       ├── ui-select
+│   │       │   │   │       └── ui-utils
+│   │       │   │   ├── b64encode
+│   │       │   │   ├── block-ui
+│   │       │   │   ├── bootstrap-select
+│   │       │   │   │   ├── css
+│   │       │   │   │   └── js
+│   │       │   │   │       └── i18n
+│   │       │   │   ├── bootstrap-slider
+│   │       │   │   ├── bootstrap-wysihtml5
+│   │       │   │   ├── chartjs
+│   │       │   │   ├── ckeditor
+│   │       │   │   │   ├── adapters
+│   │       │   │   │   ├── lang
+│   │       │   │   │   ├── plugins
+│   │       │   │   │   │   ├── a11yhelp
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   │       └── lang
+│   │       │   │   │   │   ├── about
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   │       └── hidpi
+│   │       │   │   │   │   ├── clipboard
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   ├── dialog
+│   │       │   │   │   │   ├── image
+│   │       │   │   │   │   │   ├── dialogs
+│   │       │   │   │   │   │   └── images
+│   │       │   │   │   │   ├── link
+│   │       │   │   │   │   │   ├── dialogs
+│   │       │   │   │   │   │   └── images
+│   │       │   │   │   │   │       └── hidpi
+│   │       │   │   │   │   ├── magicline
+│   │       │   │   │   │   │   └── images
+│   │       │   │   │   │   │       └── hidpi
+│   │       │   │   │   │   ├── pastefromword
+│   │       │   │   │   │   │   └── filter
+│   │       │   │   │   │   ├── scayt
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   ├── specialchar
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   │       └── lang
+│   │       │   │   │   │   ├── table
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   ├── tabletools
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   └── wsc
+│   │       │   │   │   │       └── dialogs
+│   │       │   │   │   ├── samples
+│   │       │   │   │   │   ├── css
+│   │       │   │   │   │   ├── img
+│   │       │   │   │   │   ├── js
+│   │       │   │   │   │   ├── old
+│   │       │   │   │   │   │   ├── assets
+│   │       │   │   │   │   │   │   ├── inlineall
+│   │       │   │   │   │   │   │   ├── outputxhtml
+│   │       │   │   │   │   │   │   └── uilanguages
+│   │       │   │   │   │   │   ├── dialog
+│   │       │   │   │   │   │   │   └── assets
+│   │       │   │   │   │   │   ├── enterkey
+│   │       │   │   │   │   │   ├── htmlwriter
+│   │       │   │   │   │   │   │   └── assets
+│   │       │   │   │   │   │   │       └── outputforflash
+│   │       │   │   │   │   │   ├── magicline
+│   │       │   │   │   │   │   ├── toolbar
+│   │       │   │   │   │   │   └── wysiwygarea
+│   │       │   │   │   │   └── toolbarconfigurator
+│   │       │   │   │   │       ├── css
+│   │       │   │   │   │       ├── font
+│   │       │   │   │   │       ├── js
+│   │       │   │   │   │       └── lib
+│   │       │   │   │   │           └── codemirror
+│   │       │   │   │   └── skins
+│   │       │   │   │       └── moono
+│   │       │   │   │           └── images
+│   │       │   │   │               └── hidpi
+│   │       │   │   ├── colorpicker
+│   │       │   │   │   └── img
+│   │       │   │   ├── datatables
+│   │       │   │   │   ├── extensions
+│   │       │   │   │   │   ├── AutoFill
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   ├── images
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── ColReorder
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   ├── images
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── ColVis
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── FixedColumns
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── FixedHeader
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── KeyTable
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── Responsive
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   │   ├── child-rows
+│   │       │   │   │   │   │   │   ├── display-control
+│   │       │   │   │   │   │   │   ├── initialisation
+│   │       │   │   │   │   │   │   └── styling
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── Scroller
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   │   └── data
+│   │       │   │   │   │   │   ├── images
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   └── TableTools
+│   │       │   │   │   │       ├── css
+│   │       │   │   │   │       ├── examples
+│   │       │   │   │   │       ├── images
+│   │       │   │   │   │       │   └── psd
+│   │       │   │   │   │       ├── js
+│   │       │   │   │   │       └── swf
+│   │       │   │   │   └── images
+│   │       │   │   ├── datepicker
+│   │       │   │   │   └── locales
+│   │       │   │   ├── daterangepicker
+│   │       │   │   ├── fastclick
+│   │       │   │   ├── flot
+│   │       │   │   ├── fullcalendar
+│   │       │   │   ├── iCheck
+│   │       │   │   │   ├── flat
+│   │       │   │   │   ├── futurico
+│   │       │   │   │   ├── line
+│   │       │   │   │   ├── minimal
+│   │       │   │   │   ├── polaris
+│   │       │   │   │   └── square
+│   │       │   │   ├── input-mask
+│   │       │   │   │   └── phone-codes
+│   │       │   │   ├── ionslider
+│   │       │   │   │   └── img
+│   │       │   │   ├── jQuery
+│   │       │   │   ├── jQueryUI
+│   │       │   │   ├── jsPlumb
+│   │       │   │   ├── jvectormap
+│   │       │   │   ├── knob
+│   │       │   │   ├── morris
+│   │       │   │   ├── ng-knob
+│   │       │   │   ├── pace
+│   │       │   │   ├── select2
+│   │       │   │   │   └── i18n
+│   │       │   │   ├── slimScroll
+│   │       │   │   ├── sparkline
+│   │       │   │   ├── timepicker
+│   │       │   │   ├── toastr
+│   │       │   │   └── ToggleSwitch
+│   │       │   │       └── css
+│   │       │   └── unl_data
+│   │       │       ├── css
+│   │       │       │   ├── css
+│   │       │       │   └── fonts
+│   │       │       ├── img
+│   │       │       │   └── icons
+│   │       │       ├── js
+│   │       │       │   └── angularjs
+│   │       │       │       └── controllers
+│   │       │       │           └── lab
+│   │       │       └── pages
+│   │       │           ├── constant
+│   │       │           ├── lab
+│   │       │           │   └── constant
+│   │       │           └── modals
+│   │       └── default
+│   │           ├── bootstrap
+│   │           │   ├── css
+│   │           │   │   └── images
+│   │           │   ├── fonts
+│   │           │   ├── js
+│   │           │   └── tmp
+│   │           │       └── circles-master
+│   │           │           └── spec
+│   │           ├── css
+│   │           ├── ejs
+│   │           ├── fonts
+│   │           ├── images
+│   │           └── js
+│   │               ├── ebs
+│   │               └── src
+│   │                   └── snippets
+│   ├── labs
+│   │   ├── ccnp-route-v7
+│   │   ├── ccnp-switch-v7
+│   │   ├── ccnp-tshoot-v7
+│   │   ├── prs1
+│   │   ├── prs2
+│   │   ├── segec
+│   │   │   └── kniha
+│   │   └── testovanie
+│   │       ├── CCNA
+│   │       ├── features_testing
+│   │       ├── performance_testing
+│   │       └── topology_testing
+│   ├── schema
+│   ├── scripts
+│   │   └── theme_switcher
+│   ├── tmp
+│   │   ├── 0
+│   │   │   ├── 1786aeee-fe7d-4cbf-ae2b-9488a3a2d8ad
+│   │   │   │   ├── 2
+│   │   │   │   ├── 22
+│   │   │   │   ├── 24
+│   │   │   │   ├── 26
+│   │   │   │   ├── 4
+│   │   │   │   ├── 5
+│   │   │   │   ├── 6
+│   │   │   │   ├── 7
+│   │   │   │   └── 9
+│   │   │   ├── 218f3ad5-00b5-4f87-b907-0b3a13a7d229
+│   │   │   │   ├── 1
+│   │   │   │   ├── 10
+│   │   │   │   ├── 11
+│   │   │   │   ├── 12
+│   │   │   │   ├── 13
+│   │   │   │   ├── 14
+│   │   │   │   ├── 15
+│   │   │   │   ├── 16
+│   │   │   │   ├── 17
+│   │   │   │   ├── 18
+│   │   │   │   ├── 19
+│   │   │   │   ├── 2
+│   │   │   │   ├── 20
+│   │   │   │   ├── 21
+│   │   │   │   ├── 22
+│   │   │   │   ├── 23
+│   │   │   │   ├── 24
+│   │   │   │   ├── 25
+│   │   │   │   ├── 26
+│   │   │   │   ├── 27
+│   │   │   │   ├── 28
+│   │   │   │   ├── 29
+│   │   │   │   ├── 3
+│   │   │   │   ├── 30
+│   │   │   │   ├── 31
+│   │   │   │   ├── 32
+│   │   │   │   ├── 33
+│   │   │   │   ├── 34
+│   │   │   │   ├── 35
+│   │   │   │   ├── 36
+│   │   │   │   ├── 37
+│   │   │   │   ├── 38
+│   │   │   │   ├── 39
+│   │   │   │   ├── 4
+│   │   │   │   ├── 40
+│   │   │   │   ├── 41
+│   │   │   │   ├── 42
+│   │   │   │   ├── 43
+│   │   │   │   ├── 44
+│   │   │   │   ├── 45
+│   │   │   │   ├── 46
+│   │   │   │   ├── 47
+│   │   │   │   ├── 48
+│   │   │   │   ├── 49
+│   │   │   │   ├── 5
+│   │   │   │   ├── 50
+│   │   │   │   ├── 51
+│   │   │   │   ├── 52
+│   │   │   │   ├── 53
+│   │   │   │   ├── 54
+│   │   │   │   ├── 55
+│   │   │   │   ├── 56
+│   │   │   │   ├── 57
+│   │   │   │   ├── 58
+│   │   │   │   ├── 59
+│   │   │   │   ├── 6
+│   │   │   │   ├── 60
+│   │   │   │   ├── 61
+│   │   │   │   ├── 62
+│   │   │   │   ├── 63
+│   │   │   │   ├── 64
+│   │   │   │   ├── 65
+│   │   │   │   ├── 66
+│   │   │   │   ├── 67
+│   │   │   │   ├── 68
+│   │   │   │   ├── 69
+│   │   │   │   ├── 7
+│   │   │   │   ├── 70
+│   │   │   │   ├── 71
+│   │   │   │   ├── 73
+│   │   │   │   ├── 74
+│   │   │   │   ├── 75
+│   │   │   │   ├── 76
+│   │   │   │   ├── 77
+│   │   │   │   ├── 78
+│   │   │   │   ├── 79
+│   │   │   │   ├── 8
+│   │   │   │   ├── 80
+│   │   │   │   ├── 81
+│   │   │   │   ├── 82
+│   │   │   │   ├── 83
+│   │   │   │   ├── 84
+│   │   │   │   └── 9
+│   │   │   ├── 27d1c636-083b-418b-aa75-fbfdbddca23f
+│   │   │   ├── 700449ee-19d2-4e36-b33f-392d0d7273dc
+│   │   │   │   ├── 1
+│   │   │   │   ├── 2
+│   │   │   │   ├── 3
+│   │   │   │   ├── 4
+│   │   │   │   ├── 5
+│   │   │   │   ├── 6
+│   │   │   │   ├── 7
+│   │   │   │   └── 8
+│   │   │   ├── b5609be9-14dc-4564-be74-000fb7aa0095
+│   │   │   └── fa259321-63f3-47a2-bae3-1934ced7fc4f
+│   │   │       ├── 1
+│   │   │       ├── 10
+│   │   │       ├── 11
+│   │   │       ├── 2
+│   │   │       ├── 3
+│   │   │       ├── 4
+│   │   │       ├── 5
+│   │   │       ├── 6
+│   │   │       ├── 7
+│   │   │       ├── 8
+│   │   │       └── 9
+│   │   ├── 1
+│   │   │   └── 218f3ad5-00b5-4f87-b907-0b3a13a7d229
+│   │   │       ├── 2
+│   │   │       ├── 3
+│   │   │       ├── 4
+│   │   │       ├── 5
+│   │   │       ├── 6
+│   │   │       └── 7
+│   │   ├── 2
+│   │   │   ├── 4ea35083-6b5d-4121-955f-3fbea67e0eed
+│   │   │   │   ├── 1
+│   │   │   │   ├── 2
+│   │   │   │   ├── 3
+│   │   │   │   ├── 4
+│   │   │   │   ├── 5
+│   │   │   │   ├── 6
+│   │   │   │   ├── 7
+│   │   │   │   └── 8
+│   │   │   └── fa259321-63f3-47a2-bae3-1934ced7fc4f
+│   │   │       ├── 1
+│   │   │       ├── 2
+│   │   │       ├── 3
+│   │   │       ├── 4
+│   │   │       ├── 5
+│   │   │       ├── 6
+│   │   │       ├── 7
+│   │   │       └── 8
+│   │   ├── 3
+│   │   │   └── 4ea35083-6b5d-4121-955f-3fbea67e0eed
+│   │   ├── 5
+│   │   │   └── 218f3ad5-00b5-4f87-b907-0b3a13a7d229
+│   │   │       ├── 2
+│   │   │       ├── 3
+│   │   │       ├── 4
+│   │   │       ├── 5
+│   │   │       ├── 6
+│   │   │       └── 7
+│   │   └── 6
+│   │       ├── 59574e92-d474-4807-8610-14f9684ccdbb
+│   │       │   ├── 1
+│   │       │   ├── 2
+│   │       │   ├── 3
+│   │       │   ├── 4
+│   │       │   ├── 5
+│   │       │   ├── 6
+│   │       │   ├── 7
+│   │       │   └── 8
+│   │       └── b5609be9-14dc-4564-be74-000fb7aa0095
+│   │           ├── 1
+│   │           ├── 29
+│   │           └── 30
+│   └── wrappers
+├── unetlab_original
+│   ├── addons
+│   │   ├── dynamips
+│   │   ├── iol
+│   │   │   ├── bin
+│   │   │   └── lib
+│   │   └── qemu
+│   ├── data
+│   │   ├── Exports
+│   │   └── Logs
+│   ├── html
+│   │   ├── configs
+│   │   ├── favicon
+│   │   ├── files
+│   │   ├── images
+│   │   │   └── icons
+│   │   ├── includes
+│   │   │   ├── Slim
+│   │   │   │   ├── Exception
+│   │   │   │   ├── Helper
+│   │   │   │   ├── Http
+│   │   │   │   └── Middleware
+│   │   │   └── Slim-Extras
+│   │   ├── rdp
+│   │   ├── templates
+│   │   └── themes
+│   │       ├── adminLTE
+│   │       │   ├── bootstrap
+│   │       │   │   ├── css
+│   │       │   │   ├── fonts
+│   │       │   │   └── js
+│   │       │   ├── build
+│   │       │   │   ├── bootstrap-less
+│   │       │   │   │   └── mixins
+│   │       │   │   └── less
+│   │       │   │       └── skins
+│   │       │   ├── dist
+│   │       │   │   ├── angular.js_old
+│   │       │   │   │   └── controllers
+│   │       │   │   ├── css
+│   │       │   │   │   └── skins
+│   │       │   │   ├── img
+│   │       │   │   │   └── credit
+│   │       │   │   └── js
+│   │       │   │       └── pages
+│   │       │   ├── documentation
+│   │       │   │   └── build
+│   │       │   │       └── include
+│   │       │   ├── pages_old
+│   │       │   │   ├── main_layout
+│   │       │   │   │   └── constant
+│   │       │   │   └── modals
+│   │       │   ├── plugins
+│   │       │   │   ├── angularJS
+│   │       │   │   │   └── plugins
+│   │       │   │   │       ├── angular-file-upload
+│   │       │   │   │       ├── block-ui
+│   │       │   │   │       ├── ui-select
+│   │       │   │   │       └── ui-utils
+│   │       │   │   ├── b64encode
+│   │       │   │   ├── block-ui
+│   │       │   │   ├── bootstrap-select
+│   │       │   │   │   ├── css
+│   │       │   │   │   └── js
+│   │       │   │   │       └── i18n
+│   │       │   │   ├── bootstrap-slider
+│   │       │   │   ├── bootstrap-wysihtml5
+│   │       │   │   ├── chartjs
+│   │       │   │   ├── ckeditor
+│   │       │   │   │   ├── adapters
+│   │       │   │   │   ├── lang
+│   │       │   │   │   ├── plugins
+│   │       │   │   │   │   ├── a11yhelp
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   │       └── lang
+│   │       │   │   │   │   ├── about
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   │       └── hidpi
+│   │       │   │   │   │   ├── clipboard
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   ├── dialog
+│   │       │   │   │   │   ├── image
+│   │       │   │   │   │   │   ├── dialogs
+│   │       │   │   │   │   │   └── images
+│   │       │   │   │   │   ├── link
+│   │       │   │   │   │   │   ├── dialogs
+│   │       │   │   │   │   │   └── images
+│   │       │   │   │   │   │       └── hidpi
+│   │       │   │   │   │   ├── magicline
+│   │       │   │   │   │   │   └── images
+│   │       │   │   │   │   │       └── hidpi
+│   │       │   │   │   │   ├── pastefromword
+│   │       │   │   │   │   │   └── filter
+│   │       │   │   │   │   ├── scayt
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   ├── specialchar
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   │       └── lang
+│   │       │   │   │   │   ├── table
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   ├── tabletools
+│   │       │   │   │   │   │   └── dialogs
+│   │       │   │   │   │   └── wsc
+│   │       │   │   │   │       └── dialogs
+│   │       │   │   │   ├── samples
+│   │       │   │   │   │   ├── css
+│   │       │   │   │   │   ├── img
+│   │       │   │   │   │   ├── js
+│   │       │   │   │   │   ├── old
+│   │       │   │   │   │   │   ├── assets
+│   │       │   │   │   │   │   │   ├── inlineall
+│   │       │   │   │   │   │   │   ├── outputxhtml
+│   │       │   │   │   │   │   │   └── uilanguages
+│   │       │   │   │   │   │   ├── dialog
+│   │       │   │   │   │   │   │   └── assets
+│   │       │   │   │   │   │   ├── enterkey
+│   │       │   │   │   │   │   ├── htmlwriter
+│   │       │   │   │   │   │   │   └── assets
+│   │       │   │   │   │   │   │       └── outputforflash
+│   │       │   │   │   │   │   ├── magicline
+│   │       │   │   │   │   │   ├── toolbar
+│   │       │   │   │   │   │   └── wysiwygarea
+│   │       │   │   │   │   └── toolbarconfigurator
+│   │       │   │   │   │       ├── css
+│   │       │   │   │   │       ├── font
+│   │       │   │   │   │       ├── js
+│   │       │   │   │   │       └── lib
+│   │       │   │   │   │           └── codemirror
+│   │       │   │   │   └── skins
+│   │       │   │   │       └── moono
+│   │       │   │   │           └── images
+│   │       │   │   │               └── hidpi
+│   │       │   │   ├── colorpicker
+│   │       │   │   │   └── img
+│   │       │   │   ├── datatables
+│   │       │   │   │   ├── extensions
+│   │       │   │   │   │   ├── AutoFill
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   ├── images
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── ColReorder
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   ├── images
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── ColVis
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── FixedColumns
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── FixedHeader
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── KeyTable
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── Responsive
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   │   ├── child-rows
+│   │       │   │   │   │   │   │   ├── display-control
+│   │       │   │   │   │   │   │   ├── initialisation
+│   │       │   │   │   │   │   │   └── styling
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   ├── Scroller
+│   │       │   │   │   │   │   ├── css
+│   │       │   │   │   │   │   ├── examples
+│   │       │   │   │   │   │   │   └── data
+│   │       │   │   │   │   │   ├── images
+│   │       │   │   │   │   │   └── js
+│   │       │   │   │   │   └── TableTools
+│   │       │   │   │   │       ├── css
+│   │       │   │   │   │       ├── examples
+│   │       │   │   │   │       ├── images
+│   │       │   │   │   │       │   └── psd
+│   │       │   │   │   │       ├── js
+│   │       │   │   │   │       └── swf
+│   │       │   │   │   └── images
+│   │       │   │   ├── datepicker
+│   │       │   │   │   └── locales
+│   │       │   │   ├── daterangepicker
+│   │       │   │   ├── fastclick
+│   │       │   │   ├── flot
+│   │       │   │   ├── fullcalendar
+│   │       │   │   ├── iCheck
+│   │       │   │   │   ├── flat
+│   │       │   │   │   ├── futurico
+│   │       │   │   │   ├── line
+│   │       │   │   │   ├── minimal
+│   │       │   │   │   ├── polaris
+│   │       │   │   │   └── square
+│   │       │   │   ├── input-mask
+│   │       │   │   │   └── phone-codes
+│   │       │   │   ├── ionslider
+│   │       │   │   │   └── img
+│   │       │   │   ├── jQuery
+│   │       │   │   ├── jQueryUI
+│   │       │   │   ├── jsPlumb
+│   │       │   │   ├── jvectormap
+│   │       │   │   ├── knob
+│   │       │   │   ├── morris
+│   │       │   │   ├── ng-knob
+│   │       │   │   ├── pace
+│   │       │   │   ├── select2
+│   │       │   │   │   └── i18n
+│   │       │   │   ├── slimScroll
+│   │       │   │   ├── sparkline
+│   │       │   │   ├── timepicker
+│   │       │   │   ├── toastr
+│   │       │   │   └── ToggleSwitch
+│   │       │   │       └── css
+│   │       │   └── unl_data
+│   │       │       ├── css
+│   │       │       │   ├── css
+│   │       │       │   └── fonts
+│   │       │       ├── img
+│   │       │       │   └── icons
+│   │       │       ├── js
+│   │       │       │   └── angularjs
+│   │       │       │       └── controllers
+│   │       │       │           └── lab
+│   │       │       └── pages
+│   │       │           ├── constant
+│   │       │           ├── lab
+│   │       │           │   └── constant
+│   │       │           └── modals
+│   │       └── default
+│   │           ├── bootstrap
+│   │           │   ├── css
+│   │           │   │   └── images
+│   │           │   ├── fonts
+│   │           │   ├── js
+│   │           │   └── tmp
+│   │           │       └── circles-master
+│   │           │           └── spec
+│   │           ├── css
+│   │           ├── ejs
+│   │           ├── fonts
+│   │           ├── images
+│   │           └── js
+│   │               ├── ebs
+│   │               └── src
+│   │                   └── snippets
+│   ├── labs
+│   ├── schema
+│   ├── scripts
+│   │   └── theme_switcher
+│   ├── tmp
+│   └── wrappers
+└── vpcsu
+    └── bin
+
+1217 directories

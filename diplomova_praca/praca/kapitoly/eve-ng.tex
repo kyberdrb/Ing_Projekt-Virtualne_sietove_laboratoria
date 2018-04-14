@@ -1,18 +1,16 @@
 \chapter{EVE-ng}
 \label{chap:eve_ng}
 
-EVE-ng je virtuálne sieťové laboratórium skladajúcej sa zo serverovej časti postavenej na platforme Linux a klientskej časti, ktorú tvorí webová aplikácia, ako je už spomenuté v kapitole \ref{chap:virt_lab_eve_ng}.
+EVE-ng je virtuálne sieťové laboratórium skladajúcej sa zo serverovej časti postavenej na platforme Linux a klientskej časti, ktorú tvorí webová aplikácia, ako je už spomenuté v kapitole \ref{chap:nastroje_pre_siet_virt} v časti \ref{chap:virt_lab_eve_ng}. V tejto kapitole bude opísaný proces nasadzovania EVE-ng servera do sieťovej infraštruktúry katedry: jeho inštalácie, následnej úpravy a základnej administrácie EVE-ng servera. Všetky kroky sú podrobne opísané v návodoch na priloženom CD v adresári \emph{eve-ng}.
 
-Serverová časť je realizovaná ako tzv. LAMP server, podobne ako nástroj ViRo2. LAMP je skratka pre \emph{Linux Apache MySQL PHP}. Webový server Apache poskytuje webovú stránku. MySQL je relačná databáza ukladajúca informácie o používateľoch webového rozhrania EVE-ng. Správe používateľských účtov sa venuje kapitola \ref{chap:sprava_pouzivatelov}. PHP je použitý na spracovanie REST API volaní z webového rozhrania. Webové rozhranie je vytvorené pomocou nástrojov \emph{Twitter Bootstrap v3.3.6} a \emph{AngularJS v1.5.6}.
+{\huge TODO - serverová časť je realizovaná ako tzv. LAMP server - vysvetliť, čo je kde a ako použité}
 
-V tejto kapitole bude opísaný proces nasadzovania EVE-ng servera do sieťovej infraštruktúry katedry: jeho inštalácie, následnej úpravy a základnej administrácie EVE-ng servera. Všetky kroky sú podrobne opísané v adresári s návodmi pre EVE-ng v kapitole \ref{chap:cd} v bode \ref{item:prilohy_cd_eve_ng_adresar}.
-
+Po inštalácii servera je potrebné do určitej miery upraviť aj konfiguráciu klientských počítačov, ktoré budú EVE-ng server používať. Úpravám na klientskej strane sa venujem v bode \ref{item:vzdialeny_pristup} v časti \ref{chap:vytvorenie_topo_eve-ng} - \nameref{chap:vytvorenie_topo_eve-ng}.
 
 
 
 
 \section{Inštalácia}
-\label{chap:eve_ng_instalacia}
 
 EVE-ng bol inštalovaný a testovaný na dvoch platformách:
 
@@ -21,7 +19,7 @@ EVE-ng bol inštalovaný a testovaný na dvoch platformách:
     \item Fyzický server
 \end{itemize}
 
-Parametre VMware virtuálneho stroja a fyzického servera sú uvedené v tabuľke \ref{tab:server_parameters}. V oboch prípadoch bol EVE-ng server nasadený do DMZ zóny, preto v riadku \emph{IP adresa} uvádzam len posledný oktet ich IPv4 adries, keďže adresný rozsah DMZ zóny je na katedre známy.
+Parametre VMware virtuálneho stroja a fyzického servera sú uvedené v tabuľke \ref{tab:server_parameters}. V oboch prípadoch bol EVE-ng server nasadený do DMZ zóny, preto v riadku \emph{IP adresa} uvádzam len posledný oktet ich IPv4 adries, keďže IP adresa DMZ siete je na katedre známa.
 
 \begin{longtabu} to \textwidth {| X[5.0,cm] | X[5.0,cm] | X[5.0,cm] |}
 \caption{Parametre EVE-ng serverov}
@@ -31,7 +29,7 @@ Parametre VMware virtuálneho stroja a fyzického servera sú uvedené v tabuľk
 \hline
     \textbf{CPU} & 16 & 8 \\
 \hline
-    \textbf{Operačná pamäť (GB)} & 64 & 48 \\
+    \textbf{Operačná pamäť (GB)} & 16 & 48 \\
 \hline
     \textbf{EVE-ng verzia} & 2.0.3-80 & 2.0.3-86 \\
 \hline
@@ -46,10 +44,10 @@ Uvedené tvrdenia platia pre EVE-ng vo vydaní \emph{Community Edition} vo verzi
 Postup inštalácie EVE-ng servera môžeme zhrnúť do týchto krokov:
 
 \begin{enumerate}[noitemsep]
-    \item Vytvorenie vzdialenej pracovnej plochy a VMware Workstation (kap. \ref{chap:cd}, body \ref{item:vnc1}-\ref{item:vmware_extra_instalacia})
-    \item Inštalácia Ubuntu Server 16.03.4 LTS (kap. \ref{chap:cd}, body \ref{item:instalacia_ubuntu_a_eve_ng}, \ref{item:aktualizacia_eve_ng})
-    \item Konfigurácia Ubuntu Server (kap. \ref{chap:cd}, bod \ref{item:instalacia_ubuntu_a_eve_ng})
-    \item Inštalácia EVE-ng do Ubuntu Server (kap. \ref{chap:cd}, bod \ref{item:instalacia_A_konfiguracia_eve_ng})
+    \item Vytvorenie vzdialenej pracovnej plochy
+    \item Inštalácia Ubuntu Server 16.03
+    \item Konfigurácia Ubuntu Server
+    \item Inštalácia EVE-ng do Ubuntu Server
     \item Konfigurácia EVE-ng servera
 \end{enumerate}
 
@@ -57,25 +55,25 @@ Postup inštalácie EVE-ng servera môžeme zhrnúť do týchto krokov:
 Konfigurácia EVE-ng servera zahŕňala:
 
 \begin{enumerate}[noitemsep]
-    \item Obnovenie súborov a adresárov (kap. \ref{chap:cd}, bod \ref{item:obnova_zalohovanie})
+    \item Obnovenie súborov a adresárov
     \begin{itemize}[noitemsep]
-        \item Skripty (kap. \ref{chap:cd}, bod \ref{item:skripty})
-        \item Zariadenia (kap. \ref{chap:cd}, body \ref{item:pridavanie_konverzia_zariadeni}-\ref{item:pridavanie_win})
-        \item Databázy (kap. \ref{chap:cd}, bod \ref{item:obnova_zalohovanie})
+        \item Skripty
+        \item Zariadenia
+        \item Databázy
     \end{itemize}
-    \item Automatizácia zálohovania (kap. \ref{chap:cd}, bod \ref{item:obnova_zalohovanie})
-    \item Pridanie Cisco IOL/IOU licencie (kap. \ref{chap:cd}, bod \ref{item:iou_licencia})
-    \item Zabezpečenie servera (kap. \ref{chap:cd}, bod \ref{item:zabezpecenie})
+    \item Automatizácia zálohovania
+    \item Pridanie Cisco IOL/IOU licencie
+    \item Zabezpečenie servera
     \begin{itemize}[noitemsep]
         \item Systém
         \item SSH
         \item Webový server
     \end{itemize}
-    \item Úprava šablón (kap. \ref{chap:cd}, bod \ref{item:uprava_sablon})
-    \item Úprava zdrojových kódov (kap. \ref{chap:cd}, body \ref{item:spristupnenie_pouzivatelskych_roli}-\ref{item:zatvorenie_topologie_so_spustenymi_zariadeniami})
+    \item Úprava šablón
+    \item Úprava zdrojových kódov
 \end{enumerate}
 
-Inštalačný proces pre obe platformy, virtuálnu aj fyzickú, bol takmer zhodný, líšil sa iba v úvodných krokoch. Pri inštalácii pre VMware bolo totiž potrebné na server, na ktorom bol VMware nainštalovaný, pridať VNC prístup na hosťovský operačný systém a doplniť grafické prostredie, aby bolo možné ovládať grafické rozhranie VMware Player a spustiť virtuálny stroj. Pre VMware Player to bolo jediným riešením, ako vytvoriť virtuálny EVE-ng server.
+Inštalačný proces pre obe platformy, virtuálnu aj fyzickú, bol takmer zhodný, líšil sa iba v úvodných krokoch. Pri inštalácii pre VMware bolo totiž potrebné na server, na ktorom bol VMware nainštalovaný pridať VNC prístup a doplniť grafické prostredie, aby bolo možné ovládať grafické rozhranie VMware Player a spustiť virtuálny stroj. Pre VMware Player to bolo jediným riešením, ako vytvoriť virtuálny EVE-ng server.
 
 Rozdielov medzi oboma inštaláciami je niekoľko. Prvým z nich je už spomenutá verzia. VMware inštalácia má nižšiu verziu, pretože bola nainštalovaná skôr. VMware inštalácia slúžila na prvotné odladenie a pilotné nasadenie do vyučovania. Nebola v nej vykonaná takmer žiadna dodatočná konfigurácia, okrem importu zariadení pre topológie.
 
@@ -85,15 +83,15 @@ Nasadzovaniu jednotlivých EVE-ng serverov sa venujem v kapitole \ref{chap:nasad
 
 Pridanie Cisco IOL/IOU licencie je dôležitým krokom, bez ktorého by sme neboli schopní spúšťať Cisco IOL/IOU zariadenia. Význam týchto zariadení bude vysvetlený v kapitole \ref{chap:testovanie_technologii} - \nameref{chap:testovanie_technologii}.
 
-Zabezpečenie servera spočívalo hlavne v zabezpečení operačného systému, SSH prístupu a webového servera. Zabezpečenie operačného systému obsahovalo vytvorenie štandardného používateľského konta so \emph{sudo} oprávneniami. Ten sa bude používať namiesto \emph{root} používateľa, čím bude zaistená vyššia bezpečnosť pri používaní systému. Štandardný používateľský účet sa využíva aj na odchytávanie prevádzky z topológie namiesto \emph{root} používateľa, ako bude ozrejmené v kapitole \ref{chap:pouzivanie_eve_ng} v bode \ref{item:vzdialeny_pristup}.
+Zabezpečenie servera spočívalo hlavne v zabezpečení operačného systému, SSH prístupu a webového servera.
 
-Zabezpečenie SSH prístupu zahŕňalo zablokovanie \emph{root} používateľa, explicitné definovanie povolených používateľov a skupín, vygenerovanie SSH kľúčov a vypnutie autentifikácie heslom. Autentifikácia SSH kľúčmi má aj tú výhodu, že oproti autentifikácii heslom nie je nutné zadávať heslo, čím odpadá aj nutnosť pamätať si ho. Každý počítač, ktorý by chcel pristupovať k EVE-ng serveru, by si musel svoj verejný SSH kľúč nahrať na server k danému používateľskému účtu. Avšak kvôli jednoduchosti bola ponechaná autentifikácia heslom pre oba servery.
+Zabezpečenie operačného systému obsahovalo vytvorenie štandardného používateľského konta so \emph{sudo} oprávneniami. Ten sa bude používať namiesto \emph{root} používateľa, čím bude zaistená vyššia bezpečnosť pri používaní systému.
 
-Zabezpečenie webového servera Apache sa skladalo z vygenerovania SSL certifikátu, aktivácie protokolu HTTPS a presmerovania požiadaviek z HTTP na protokol HTTPS. Webový server však nie je zabezpečený na ani jednom serveri, pretože bolo potrebné odchytávať nezašifrované správy vymieňané prostredníctvom REST API medzi klientom a serverom. Analýza týchto vymienaných správ pomohla upraviť funkcie v nástroji EVE-ng, ktoré je bližšie opísané v časti \ref{chap:eve_ng_uprava_zdroj_kodov} - \nameref{chap:eve_ng_uprava_zdroj_kodov}.
+Zabezpečenie SSH prístupu zahŕňalo v zablokovanie \emph{root} používateľa, explicitné definovanie povolených používateľov a skupín, vygenerovanie SSH kľúčov a vypnutie autentifikácie heslom. Autentifikácia SSH kľúčmi má aj tú výhodu, že oproti autentifikácii heslom nie je nutné zadávať heslo, čím odpadá aj nutnosť pamätať si ho. Každý počítač, ktorý by chcel EVE-ng server používať, by si musel svoj verejný SSH kľúč nahrať na server k danému používateľskému účtu. Rozhodli sme sa ale, že pre obidva servery bude ponechaná autentifikácia heslom.
 
-Na serveri bola po pridaní virtuálnych zariadení vykonaná aj úprava šablón spustením skriptu, aby používateľ pri vytváraní topológie nemusel premýšľať nad technickými parametrami zariadenia, ktoré do topológie pridáva, ale na vyučovanú problematiku. Tak sa vytváranie topológii aj samotné vyučovanie stane plynulejším. Každé zariadenie, ktoré je možné do topológie pridať, si totiž načíta svoje technické parametre zo súboru zvaného šablóna. Tie sú uložené v adresári \texttt{/opt/unetlab/html/templates/}. V šablóne môže byť pre zariadenie definovaný napr. počet pridelených jadier CPU, maximálne množstvo alokovateľnej operačnej pamäte, spúšťacie parametre zariadenia a pod. Úpravy šablón boli vykonané na základe testovania vybraných zariadení, ktoré je opísané v kapitole \ref{chap:testovanie_zariadeni_benchmark} - \nameref{chap:testovanie_zariadeni_benchmark}. Skript na úpravu šablón je súčasťou príloh (kap. \ref{chap:cd}, bod \ref{item:uprava_sablon_skript}).
+Zabezpečenie webového servera Apache sa skladalo z vygenerovania SSL certifikátu a aktivácie protokolu HTTPS a presmerovania požiadaviek z HTTP na protokol HTTPS. Webový server však nie je zabezpečený na ani jednom serveri, pretože bolo potrebné odchytávať komunikáciu a nezašifrované vymieňané správy medzi klientom a EVE-ng serverom, pre potreby rozširovania funkcii v EVE-ng, ktorým sa venujem v časti \ref{chap:eve_ng_uprava_zdroj_kodov} - \nameref{chap:eve_ng_uprava_zdroj_kodov}.
 
-
+Na serveri bola bola vykonaná aj úprava šablón, aby používateľ pri vytváraní topológie nemusel premýšľať nad technickými parametrami zariadenia, ktoré do topológie pridáva, ale na vyučovanú problematiku. Tak sa vytváranie topológii aj samotné vyučovanie stane plynulejším. Každé zariadenie, ktoré je možné do topológie pridať, si totiž načíta svoje technické parametre zo súboru zvaného šablóna. V šablóne môže byť pre zariadenie definovaný napr. počet pridelených jadier CPU, maximálne množstvo alokovateľnej operačnej pamäte, spúšťacie parametre zariadenia a pod. Úpravy šablón boli vykonané na základe testovania vybraných zariadení, ktoré opisujem v kapitole \ref{chap:testovanie_zariadeni_benchmark} - \nameref{chap:testovanie_zariadeni_benchmark}.
 
 
 
@@ -101,10 +99,7 @@ Na serveri bola po pridaní virtuálnych zariadení vykonaná aj úprava šabló
 \section{Úprava nástroja EVE-ng}
 \label{chap:eve_ng_uprava_zdroj_kodov}
 
-Po inštalácii EVE-ng servera je odporúčané upraviť aj niektoré časti jeho zdrojového kódu, aby sa odstránili niektoré jeho nedostatky a pridali funkcie. aby sa nástroj dal použiť aj vo vyučovaní.
-
-Takisto je vhodné po inštalácii upraviť aj konfiguráciu klientských počítačov, ktoré budú webové rozhranie EVE-ng používať. V dôsledku týchto úprav bude práca s topológiou pre používateľa pohodlnejšia . Úpravám na klientskej strane sa venujem v bode \ref{item:vzdialeny_pristup} v časti \ref{chap:vytvorenie_topo_eve-ng} - \nameref{chap:vytvorenie_topo_eve-ng}.
-
+EVE-ng muselo byť upravené aj v zdrojových kódoch, aby sa nástroj dal použiť aj vo vyučovaní. Nižšie sú uvedené úspešne vykonané zmeny.
 
 
 
@@ -114,8 +109,6 @@ Takisto je vhodné po inštalácii upraviť aj konfiguráciu klientských počí
 Na to, aby sme mohli odhadnúť, ktoré časti nástroja EVE-ng treba upraviť, sme použili nástroje \emph{Wireshark} a \emph{grep}.
 
 Nástroj Wireshark slúžil na odchytávanie vymieňaných správ prostredníctvom REST API. Keďže webový server nebol zašifrovaný a používal HTTP protokol, mohli sme skúmať tieto správy v nezašifrovanom texte. Následne sme hľadali číselný kód správy v súboroch vo webovom adresári EVE-ng. To nám umožnilo spresniť odhad na tie časti zdrojového kódu, ktorých zmena by s veľkou pravdepodobnosťou mohla vyriešiť daný problém.
-
-
 
 
 
@@ -135,22 +128,31 @@ To vo web rozhraní sprístupnilo v dialógovom okne na vytvorenie a úpravu pou
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth,trim={10cm 1cm 10cm 4cm},clip]{eve_ng_pouzivatelia_dialog}
+    \includegraphics[width=0.75\textwidth]{eve_ng_pouzivatelia_dialog}
     \caption{Dialógové okno na vytvorenie a úpravu používateľa}
     \label{obr:eve_ng_pouzivatelia_dialog}
-    
-    \centering
-    \includegraphics[width=0.9\textwidth,trim={8.5cm 6cm 16cm 4.5cm},clip]{eve_ng_pouzivatelia_mysql}
-    \caption{Zoznam používateľov v MySQL databázi}
-    \label{obr:eve_ng_pouzivatelia_mysql}
 \end{figure}
 
 Po vytvorení používateľa s inou rolou než \emph{admin}, napr. \emph{user}, sa vo web rozhraní v zozname používateľov stále zobrazujú ako \emph{admin}, hoci v MySQL databázi sú uložení pod správnou rolou v stĺpci \texttt{role} (obrázok \ref{obr:eve_ng_pouzivatelia_mysql}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{eve_ng_pouzivatelia_mysql}
+    \caption{Zoznam používateľov v MySQL databázi}
+    \label{obr:eve_ng_pouzivatelia_mysql}
+\end{figure}
 
 Zachytená komunikácia obsahovala aj záznam so správou \\
 \texttt{Successfully listed users (60040)} (obrázok \ref{obr:eve_ng_60040}),
 ktorej kód sa nachádzal aj v súbore \\
 \texttt{/opt/unetlab/html/includes/api\_uusers.php}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{eve_ng_60040}
+    \caption{Správa 60040 - úspešné odoslanie zoznamu používateľov zo servera}
+    \label{obr:eve_ng_60040}
+\end{figure}
 
 Riešenie spočívalo v úprave funkcii \texttt{apiGetUUser} a \texttt{apiGetUUsers} v spomenutom súbore. Prvá spomenutá funkcia sa stará o získanie informácii o jednom používateľovi, ďalšia o získanie atribútov všetkých používateľov z MySQL databázy. V oboch funkciách sa však vyskytovala rovnaká chyba, a síce, že používateľská rola sa v príkaze \emph{SELECT} napevno prepisovala na rolu \emph{admin}.
 
@@ -158,42 +160,36 @@ Stačilo v týchto príkazoch prepísať názov používateľskej role z pevnej 
 
 Po vykonanej úprave sa aj vo webovom zozname používateľov zobrazovala ich správna rola (obrázok \ref{obr:eve_ng_pouzivatelia_web}).
 
-Významom používateľských rolí v EVE-ng sa budeme zaoberať v kapitole \ref{chap:nasadenie_do_vyucovania} - \nameref{chap:nasadenie_do_vyucovania}.
-
-Táto úprava je bližšie popísaná spolu s odchytenou prevádzkou v kapitole \ref{chap:cd} v bode \ref{item:spristupnenie_pouzivatelskych_roli}
-
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth,trim={0cm 2cm 0cm 3.5cm},clip]{eve_ng_60040}
-    \caption{Správa 60040 - úspešné odoslanie zoznamu používateľov zo servera}
-    \label{obr:eve_ng_60040}
-    
-    \centering
-    \includegraphics[width=1.0\textwidth,trim={0cm 5cm 0cm 4cm},clip]{eve_ng_pouzivatelia_web}
+    \includegraphics[width=0.75\textwidth]{eve_ng_pouzivatelia_web}
     \caption{Zoznam používateľov vo webovom rozhraní EVE-ng}
     \label{obr:eve_ng_pouzivatelia_web}
 \end{figure}
 
-
+Významom používateľských rolí v EVE-ng sa budeme zaoberať v kapitole \ref{chap:nasadenie_do_vyucovania} - \nameref{chap:nasadenie_do_vyucovania}.
 
 
 
 
 \subsection{Úprava používateľských atribútov}
 
-Atribúty jednotlivých používateľov je možné meniť na obrazovke \emph{User mangement} a môže ich meniť iba používateľ s administrátorskými oprávneniami t.j. s rolou \emph{admin}. Niektoré atribúty, ako sú napr. celé meno používateľa alebo email, sa síce dajú nastaviť, ale následne sa nedajú odstrániť t.j. nastaviť na prázdnu hodnotu. Zmeny sa neprejavia ani vo web rozhraní v zozname používateľov (obrázok \ref{obr:eve_ng_pouzivatelia_web_email_predtym}), ani v MySQL databáze.
+Atribúty jednotlivých používateľov je možné meniť na obrazovke \emph{User mangement} a môže ich meniť iba používateľ s administrátorskými oprávneniami. Niektoré atribúty, ako sú napr. celé meno používateľa alebo email, sa síce dajú nastaviť, ale následne sa nedajú odstrániť t.j. nastaviť na prázdnu hodnotu. Zmeny sa neprejavia ani vo web rozhraní v zozname používateľov (obrázok \ref{obr:eve_ng_pouzivatelia_web_email_predtym}), ani v MySQL databáze.
 
 \begin{figure}
-    
+    \centering
+    \includegraphics[width=0.75\textwidth]{eve_ng_pouzivatelia_web_email_predtym}
+    \caption{Stav pred odstránením e-mail atribútu používateľa \emph{ucitel}}
+    \label{obr:eve_ng_pouzivatelia_web_email_predtym}
 \end{figure}
 
 Skúsili sme teda odchytiť komunikáciu pri upravovaní spomenutých používateľských atribútov. Zistili sme, po úprave používateľa sa posiela správa \texttt{User saved (60042)} (obrázok \ref{obr:eve_ng_60042}).
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 5cm 0cm 4cm},clip]{eve_ng_pouzivatelia_web_email_predtym}
-    \caption{Stav pred odstránením e-mail atribútu používateľa \emph{ucitel}}
-    \label{obr:eve_ng_pouzivatelia_web_email_predtym}
+    \includegraphics[width=0.75\textwidth]{eve_ng_60042}
+    \caption{Správa 60042 - úspešné uloženie atribútov pre používateľa}
+    \label{obr:eve_ng_60042}
 \end{figure}
 
 Nástroj \emph{grep} ukázal, že kód správy sa vyskytoval o.i. aj v súbore \\
@@ -205,21 +201,12 @@ Riešenie spočívalo v upravení kritérii pre atrubúty tak, aby bol aj prázd
 
 Po úprave sa už dalo používateľom nielen nastaviť ich celé meno či email, ale aj spomenuté atribúty odstrániť (obrázok \ref{obr:eve_ng_pouzivatelia_web_email_potom}).
 
-Táto úprava je bližšie popísaná v kapitole \ref{chap:cd} v bodoch \ref{item:mail_meno_nejde_odstranit}-\ref{item:spristupnenie_pouzivatelskych_roli_pcap_posledny}
-
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 5cm 0cm 2cm},clip]{eve_ng_60042}
-    \caption{Správa 60042 - úspešné uloženie atribútov pre používateľa}
-    \label{obr:eve_ng_60042}
-    
-    \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 5cm 0cm 4cm},clip]{eve_ng_pouzivatelia_web_email_potom}
+    \includegraphics[width=0.75\textwidth]{eve_ng_pouzivatelia_web_email_potom}
     \caption{Zoznam používateľov po odstránení e-mail atribútu pre používateľa \emph{ucitel}}
     \label{obr:eve_ng_pouzivatelia_web_email_potom}
 \end{figure}
-
-
 
 
 
@@ -231,14 +218,15 @@ Po zmenšení šírky okna približne pod 992 pixelov sa zobrazila správa \\
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 11cm 0cm 4cm},clip]{eve_ng_display_too_small}
+    \includegraphics[width=0.75\textwidth]{eve_ng_display_too_small}
     \caption{Chybová správa - \texttt{Display too small.}}
     \label{obr:eve_ng_display_too_small}
 \end{figure}
 
-Preto sme začali príkazom \emph{grep} hľadať súbory, obsahujúce časti tejto správy. Výstup príkazu obsahoval súbor  \texttt{/opt/unetlab/html/themes/default/index.html}, ktorý ako jediný obsahoval tento text v nižšie uvedenej časti kódu.
+Preto som začal príkazom \emph{grep} hľadať súbory, obsahujúce časti tejto správy. Výstup príkazu obsahoval súbor \\ \texttt{/opt/unetlab/html/themes/default/index.html} \\
+ktorý ako jediný obsahoval tento text v nižšie uvedenej časti kódu.
 
-\begin{Verbatim}[samepage=true]
+\begin{verbatim}
 ...
 <body>
         <div class="hidden-md hidden-lg container" id="small">
@@ -249,13 +237,13 @@ Preto sme začali príkazom \emph{grep} hľadať súbory, obsahujúce časti tej
         </div>
 </body>
 ...
-\end{Verbatim}
+\end{verbatim}
 
 Skúsili sme zakomentovať všetky riadky v sekcii \texttt{body}, ale následkom tejto zmeny sa stalo otváranie topológii nestabilné a vyskytovali sa rôzne grafické chyby vo vykresľovaní topológie a jej prvkov.
 
 Po experimentovaní so zakomentovaním a upravovaním rôznych riadkov sme našli spôsob, ako túto správu vypnúť. Riešenie spočívalo v zakomentovaní celej sekcie \texttt{div} obsahujúcu atribút \texttt{id="small"} a odstránení tried \texttt{hidden-xs} a \texttt{hidden-sm} z definície sekcie \texttt{div} s atribútom \texttt{id="body"}.
 
-\begin{Verbatim}[samepage=true]
+\begin{verbatim}
 ...
 <body>
         <!--<div class="hidden-md hidden-lg container" id="small">
@@ -265,143 +253,117 @@ Po experimentovaní so zakomentovaním a upravovaním rôznych riadkov sme našl
         <div class="container-fluid" id="body">
 </body>
 ...
-\end{Verbatim}
+\end{verbatim}
 
 Prvá úprava vypne hlásenie o nízkom rozlíšení obrazovky. Po uložení súboru po prvej úprave a znovunačítaní stránky uvidíme prazdnu bielu obrazovku, ak je okno prehliadača príliš malé t.j. menšie ako približne 992 pixelov.
 
-Druhá úprava odstráni obmedzenie pri vykresľovaní obsahu topológie. Po uložení súboru po prvej úprave a znovunačítaní stránky uvidíme pôvodnú topológiu bez výrazných grafických chýb aj vtedy, ak je šírka okna prehliadača príliš malá.
+Druhá úprava odstráni obmedzenie pri vykresľovaní obsahu topológie. Po uložení súboru po prvej úprave a znovunačítaní stránky uvidíme pôvodnú topológiu bez výrazných grafických chýb aj vtedy, ak je okno prehliadača príliš malé t.j. menšie ako približne 992 pixelov.
 
-Po vykonaných úpravách sa problém so zobrazovaním chybovej správy vyriešil, avšak sa vyskytol jeden kozmetický nedostatok. Po zmenšení okna sa zdeformoval posuvník na približovanie a odďaľovanie topológie po zmenšení okna pod kritickú hranicu šírky okna (obrázok \ref{obr:eve_ng_display_too_small_fixed_but_zoomslider_deformed}).
+Po vykonaných úpravách sa problém so zobrazovaním chybovej správy vyriešil, avšak sa vyskytol jeden kozmetický nedostatok. Po zmenšení okna sa zdeformoval posuvník na približovanie a odďaľovanie topológie po zmenšení okna pod kritickú hranicu približne 992 pixelov (obrázok \ref{obr:eve_ng_display_too_small_fixed_but_zoomslider_deformed}).
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 8cm 4cm},clip]{eve_ng_display_too_small_fixed_but_zoomslider_deformed}
+    \includegraphics[width=0.75\textwidth]{eve_ng_display_too_small_fixed_but_zoomslider_deformed}
     \caption{Vyriešenie problému s chybovým hlásením \texttt{Display too small.} a deformácia posuvníku na približovanie a odďaľovanie topológie}
     \label{obr:eve_ng_display_too_small_fixed_but_zoomslider_deformed}
 \end{figure}
 
-Tento problém sa nám nepodarilo ošetriť. Z \emph{Inšpektora prvkov} vo webovom prehliadači sme zistili, že tento jav môžu spôsobovať pevne zadané hodnoty v súboroch
-\begin{Verbatim}[samepage=true]
+Tento problém sa nám nepodarilo ošetriť. Z "Inšpektora prvkov" vo webovom prehliadači sme zistili, že tento jav môžu spôsobovať napevno zadané hodnoty v súboroch
+\begin{verbatim}
 /opt/unetlab/html/themes/default/bootstrap/css/bootstrap.min.css
 /opt/unetlab/html/themes/adminLTE/build/bootstrap-less/variables.less
-\end{Verbatim}
+\end{verbatim}
 
 Samotný prvok sa volá \texttt{plus-minus-slider} a posuvná plocha sa volá \texttt{zoomslide}, Preto sa riešenie môže skrývať v úprave súborov z výstupu príkazov
-\begin{Verbatim}[samepage=true]
+\begin{verbatim}
 grep -rnw '/opt/unetlab/html/' -e 'plus-minus-slider'
 grep -rnw '/opt/unetlab/html/' -e 'zoomslide'
-\end{Verbatim}
+\end{verbatim}
 
-Bol to práve prvok \texttt{zoomslide}, ktorý sa neúmerne zväčšil. Jeho funkčnosť, približovať a oddaľovať prvky v topológii, však zostala zachovaná aj napriek tomuto vedľajšiemu účinku.
-
-Táto úprava je bližšie popísaná v kapitole \ref{chap:cd} v bode \ref{item:display_too_small}
-
-
+Bol to práve prvok \texttt{zoomslide}, ktorý sa neúmerne zväčšil. Jeho funkčnosť - približovať a oddaľovať prvky v topológii však zostala zachovaná aj napriek tomuto vedľajšiemu účinku.
 
 
 
 
 \subsection{Zatvorenie topológie so spustenými zariadeniami}
 
-Topológiu sa nepodarí zatvoriť, pokiaľ obsahuje spustené zariadenia. Pri zatvorení topológie so spustenými zariadeniami sa vypíše chybové hlásenie \texttt{There are running nodes, you need to power off them before closing the lab.} (obrázok \ref{obr:eve_ng_running_nodes}).
+Topológiu sa nepodarí zatvoriť, pokiaľ obsahuje spustené zariadenia. Pri zatvorení topológie so spustenými zariadeniami sa vypíše chybové hlásenie \\
+\texttt{There are running nodes, you need to power off them before closing the lab.} (obrázok \ref{obr:eve_ng_running_nodes}). \\
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_running_nodes}
+    \includegraphics[width=0.75\textwidth]{eve_ng_running_nodes}
     \caption{Chybové hlásenie - topológia so spustenými zariadeniami sa nedá zatvoriť}
     \label{obr:eve_ng_running_nodes}
 \end{figure}
 
-Preto sme nástrojom \emph{grep} hľadali, v ktorých súboroch sa vyskytujú časti tejto chybovej správy. Výstup príkazu ukazoval na súbory
-
-\begin{Verbatim}[samepage=true]
+Preto sme nástrojom \emph{grep} hľadali, v ktorých súboroch sa vyskytujú časti tejto chybovej správy. Výstup príkazu ukazoval na nižšie uvedené súbory. \\
+\begin{verbatim}
 /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
 /opt/unetlab/html/themes/default/js/messages_en.js
-\end{Verbatim}
+\end{verbatim}
 
 Keďže v súbore \texttt{messages\_en.js} sa vyskytujú iba definície chybových hlásení, rozhodoli sme sa upravovať súbor \texttt{labCtrl.js}. V súbore
-
-\begin{Verbatim}[samepage=true]
+\begin{verbatim}
 /opt/unetlab/html/themes/adminLTE/unl_data/js/angularjs/controllers/lab/labCtrl.js
-\end{Verbatim}
-
+\end{verbatim}
 sa síce táto správa vyskytuje, ale zakomentovanie ľubovoľnej relevantnej časti kódu v metóde \texttt{closeLab} nemá vplyv na funkčnosť t.j. chybové hlásenie sa pri zatvorení topológie napriek tomu zobrazí.
 
-Preto sme sa nakoniec pozreli do súboru \texttt{messages\_en.js}. V ňom bola chybová správa definovaná v poli \texttt{MESSAGES} ako \texttt{MESSAGES[131]}. Znova sme začali hľadať výskytov tohto reťazca v súboroch nástrojom \emph{grep}. Výstup príkazu ukazoval na súbory
-
-\begin{Verbatim}[samepage=true]
+Preto sme sa nakoniec pozreli do súboru \texttt{messages\_en.js}. V ňom bola chybová správa definovaná v poli \texttt{MESSAGES} ako \texttt{MESSAGES[131]}. Znova sa začalo hľadanie výskytov tohto reťazca v súboroch nástrojom \emph{grep}. Výstup príkazu ukazoval na súbory
+\begin{verbatim}
 /opt/unetlab/html/themes/default/js/functions.js
 /opt/unetlab/html/themes/default/js/messages_en.js
-\end{Verbatim}
+\end{verbatim}
 
-Keďže súborom \texttt{messages\_en.js} sme sa už zaoberali, pokračoval som súborom \texttt{functions.js}. V ňom sa vyskytovala aj funkcia \texttt{closeLab}. Tá obsahovala nielen chybové hlásenie, ale aj kontrolu, či v topológii sú už spustené zariadenia. Vypli sme teda túto kontrolu zakomentovaním riadku s podmienkou \texttt{if} a celej vetvy \texttt{else}.
-
-\begin{Verbatim}[samepage=true]
+Keďže súborom \texttt{messages\_en.js} sme sa už zaoberali, pokračoval som súborom \texttt{functions.js}. V ňom sa vyskytovala aj funkcia \texttt{closeLab}. Tá obsahovala nielen chybové hlásenie, ale aj kontrolu, či v topológii sú už spustené zariadenia. Vypli sme teda túto kontrolu zakomentovaním riadku s podmienkou "if" a celej vetvy "else", ako je uvedené nižšie.
+\begin{verbatim}
         //if (running_nodes == false) {
             ...
         //} else {
         //    deferred.reject(MESSAGES[131]);
         //}
-\end{Verbatim}
+\end{verbatim}
 
 Potom sme sa odhlásili, vymazali vyrovnávaciu pamäť webového prehliadača a prihlásili sa do EVE-ng ako používateľ s rolou \texttt{admin}. Potom sme si otvorili súbor s topológiou a pridali do nej niekoľko zariadení. Spustili som zariadenie a pokúsil sa zatvoriť topológiu. Teraz sa chybové hlásenie nezobrazilo a topológia sa úspešne zatvorila. Po znovuotvorení rovnakej topológie zostali zariadenia spustené. Bolo možné aj spustiť ďalšie zariadenia.
 
-Keď sme sa ešte predtým rozhodli riešiť problém so zatváraním topológie so spustenými zariadeniami, skúšali sme v súbore \texttt{functions.js} vo funkcii \texttt{closeLab} zakomentovať celý \texttt{for} cyklus v riadku
-
-\begin{Verbatim}[samepage=true]
+Keď sme sa ešte predtým rozhodli riešiť problém so zatváraním topológie so spustenými zariadeniami, skúšali sme v súbore \texttt{functions.js} vo funkcii \texttt{closeLab} zakomentovať celý \texttt{for} cyklus v riadku 
+\begin{verbatim}
     $.each(values, function (node_id, node) {
         if (node['status'] > 1) {
             running_nodes = true;
         }
     });
-\end{Verbatim}
+\end{verbatim}
 keďže aj v ňom sa nastavovala premenná \texttt{running\_nodes} Po zakomentovaní cyklu sa topológia síce dala zatvoriť aj pri spustených zariadeniach, ale so zariadeniami v nej sa nedalo pracovať napr. nebolo možné zastaviť už spustené zariadenia alebo spustiť ďalšie.
 
-Po opravení tohto nedostatku sa ale vyskytol ďalší problém, ktorý sa odhalil až po vyriešení tohto, a síce, že po zatvorení jednej topológie 
-%(obrázok \ref{obr:eve_ng_zle_portove_cisla_1}) 
-a otvorení inej 
-%(obrázok \ref{obr:eve_ng_zle_portove_cisla_2}) 
-zariadenia vyzerali, že sú spustené, hoci predtým spustené neboli.
-Otvorili sme jednu topológiu a spustili v nej zariadenia. Po zatvorení tejto topológie a otvorení inej ale zariadenia vyzerali ako spustené, aj keď predtým neboli spustené.
-%Obidva 
-%obrázky ukazujú 
-%scenáre ukazovali rovnaký počet spustených zariadení v dvoch rôznych topológiách, pričom zariadenia boli spustené iba v prvej topológii
-%na obrázku \ref{obr:eve_ng_zle_portove_cisla_1}. 
-Zariadenia v všetkých ďalších topológiách mali znefunkčnený vzdialený prístup. Buď sa na ne nedalo pripojiť vôbec, alebo sa konfigurovali zariadenia v pôvodnej topológii, čo dokazuje, že správne fungovali iba zariadenia v pôvodnej topológii. Pokiaľ mali topológie rovnaký počet zariadení a do druhej sme pridali nové zariadenie, toto zariadenie fungovalo bez komplikácii.
+Po opravení tohto nedostatku sa ale vyskytol ďalší problém, ktorý sa odhalil až po vyriešení momentálneho, a síce, že po zatvorení jednej topológie (obrázok \ref{obr:eve_ng_zle_portove_cisla_1}) a otvorení inej (obrázok \ref{obr:eve_ng_zle_portove_cisla_2}) sa zariadenia tvárili, že sú spustené, hoci predtým spustené neboli. Obidva obrázky ukazujú rovnaký počet spustených zariadení v dvoch rôznych topológiách, pričom zariadenia boli spustené iba v topológii na obrázku \ref{obr:eve_ng_zle_portove_cisla_1}. Zariadenia v iných topológiách mali znefunkčnený vzdialený prístup a nešlo s nimi pracovať. Správne fungovali iba tie v pôvodnej topológii. Pokiaľ mali topológie rovnaký počet zariadení a do druhej sme pridali nové zariadenie, toto zariadenie fungovalo bez komplikácii.
 
 Tento jav nastal kvôli tomu, že portové čísla pre jednotlivé zariadenia v topológii sa začínajú číslovať od začiatku rozsahu, ktorý je pridelený danému používateľovi, bez ohľadu na to, ktorá topológia je momentálne otvorená.
 
-Spomenutý problém s rovnakými portovými číslami pre zariadenia v rôznych topológiách sa nám nepodarilo vyriešiť, pretože sa jedná o hlbší problém, ktorého riešenie by znamenalo zmenu mechanizmu na prideľovanie portových čísel v EVE-ng. Spôsobu, akým EVE-ng generuje a prideľuje portové čísla zariadeniam je venovaná kapitola \ref{chap:priradovanie_portovych_cisel}.
+Spomenutý problém s rovnakými portovými číslami pre zariadenia v rôznych topológiách sa nám nepodarilo vyriešiť, pretože sa jedná o hlbší problém, ktorého riešenie by znamenalo zmenu mechanizmu na prideľovanie portových čísel v EVE-ng.
 
-\begin{comment}
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_zle_portove_cisla_1}
+    \includegraphics[width=0.75\textwidth]{eve_ng_zle_portove_cisla_1}
     \caption{Prvá topológia a celkový počet spustených zariadení}
     \label{obr:eve_ng_zle_portove_cisla_1}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_zle_portove_cisla_2}
+    \includegraphics[width=0.75\textwidth]{eve_ng_zle_portove_cisla_2}
     \caption{Druhá topológia a celkový počet spustených zariadení}
     \label{obr:eve_ng_zle_portove_cisla_2}
 \end{figure}
-\end{comment}
 
 Komplikácie, na ktoré sme narazili počas nasadenia na predmety, sú popísané v kapitole \ref{chap:nasadenie_do_vyucovania} - \nameref{chap:nasadenie_do_vyucovania}.
-
-Táto úprava je bližšie popísaná v kapitole \ref{chap:cd} v bode \ref{item:zatvorenie_topologie_so_spustenymi_zariadeniami}
-
-
 
 
 
 
 \section{Administrácia}
 
-EVE-ng server je vytvorený tak, aby po jeho konfigurácii bolo potrebné na ňom vykonávať minimálnu údržbu. V nasledujúcich častiach bude opísaný spôsob administrácie EVE-ng servera.
-
+EVE-ng server je vytvorený tak, aby sa po jeho konfigurácii bolo potrebné oň starať čo najmenej. V nasledujúcich častiach budú opísané veci súvisiace s jeho administráciou.
 
 
 
@@ -409,7 +371,7 @@ EVE-ng server je vytvorený tak, aby po jeho konfigurácii bolo potrebné na ňo
 \subsection{Adresárova štruktúra}
 \label{chap:adresarova_struktura}
 
-Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobnejší zoznam súborov a adresárov sa nachádza v kapitole \ref{chap:cd} v bode \ref{item:adresarova_struktura} Šablónam pre zariadenia sme sa venovali v tejto kapitole v časti \ref{chap:eve_ng_instalacia}.
+Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobnejší zoznam súborov a adresárov sa nachádza v dokumentácii na priloženom CD.
 
 \begin{longtabu} to \textwidth {| X[3.0,l,m] | X[4.0,l,m] |}
 \caption{Adresárová štrukúra EVE-ng servera}
@@ -419,7 +381,9 @@ Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobne
 \hline
     \texttt{/opt/unetlab/addons/} & \makecell[lc]{Adresár obsahujúci všetky zariadenia, \\ ktoré je možné pridať do topológie. \\ Obsahuje podadresáre \texttt{dynamips}, \texttt{iol} a \texttt{qemu}, \\ podľa toho, pre aký typ hypervízora je zariadenie \\ určené - Dynamips, IOL alebo QEMU/KVM} \\
 \hline
-    \texttt{/opt/unetlab/html/} & \makecell[lc]{Adresár s webovou stránkou EVE-ng} \\
+    \texttt{/opt/unetlab/addons/iol/bin/} & \makecell[lc]{Adresár s Cisco IOL zariadeniami spolu s \\ vygenerovanou IOL licenciou} \\
+\hline
+    \texttt{/opt/unetlab/addons/iol/lib/} & \makecell[lc]{Adresár s Cisco IOL ovládačom potrebným \\ na spustenie Cisco IOL zariadenia} \\
 \hline
     \texttt{/opt/unetlab/html/templates/} & Šablóny pre každý typ zariadenia v topológii \\
 \hline
@@ -430,25 +394,23 @@ Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobne
 
 
 
-
 \subsection{Zálohovanie}
 \label{chap:zalohovanie}
 
-Kritické súbory a adresáre sú automatizovane zálohované nástrojmi \emph{cron} a \emph{rsync}. Pre tento účel bol vytvorený skript (viď kap. \ref{chap:cd} bod \ref{item:backup_script}), ktorý používa nástroj \emph{rsync}. Ten synchronizuje adresáre a súbory len vtedy, pokiaľ zistí, že sa majú nahradiť novšími verziami. Nástroj \emph{cron} je nastavený tak, že vykonáva tento skript každý deň počas noci, kedy sa na serveri vyskytuje minimálna aktivita. Všetky \emph{cron} úlohy daného používateľa je možné zobraziť príkazom \texttt{crontab -l} resp. \texttt{sudo crontab -l}.
-
+Kritické súbory a adresáre sú automatizovane zálohované nástrojmi \emph{cron} a \emph{rsync}. Pre tento účel bol vytvorený skript, ktorý používa nástroj \emph{rsync}. Ten synchronizuje adresáre a súbory len vtedy, pokiaľ zistí, že sa majú nahradiť novšími verziami. Nástroj \emph{cron} je nastavený tak, že vykonáva tento skript každý deň počas noci, kedy sa na serveri vyskytuje minimálna aktivita.
 
 
 
 
 \subsection{Monitorovanie}
 
-Monitorovanie systému je dôležitým prostriedkom v prípade, že zaznamenáme nižšiu výkonnosť servera, alebo keď chceme vidieť jeho vyťaženie v reálnom čase. Na monitorovanie systémových zdrojov EVE-ng servera môžeme, okrem tradičného nástroja \emph{htop}, použiť aj vstavaný nástroj na monitorovanie systémových zdrojov vo webovom rozhraní EVE-ng. Monitorovaniu EVE-ng servera rôznymi nástrojmi sa venujeme v kapitole \ref{chap:cd} v bode \ref{item:monitorovanie}
+Monitorovanie systému je dôležitým prostriedkom v prípade, že zaznamenáme nižšiu výkonnosť servera. Na monitorovanie systémových zdrojov EVE-ng servera môžeme, okrem tradičného nástroja \emph{htop} použiť aj vstavaný nástroj na monitorovanie systémových zdrojov vo webovom rozhraní EVE-ng.
 
 Vstavaný monitorovací systém EVE-ng sa nachádza vo webovom rozhraní v časti \emph{System} -> \emph{System status}. Rovnaký panel je prístupný aj z rozhrania topológie v menu na ľavej strane obrazovky po kliknutí na položku \emph{Status}. Zobrazuje prehľad o aktuálnom percentuálnom vyťažení procesora, operačnej pamäte a diskového priestoru spolu s celkovým počtom spustených zariadení každého druhu. Nástroj je znázornený na obrázku \ref{obr:eve_ng_system_status}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_system_status}
+    \includegraphics[width=0.75\textwidth]{eve_ng_system_status}
     \caption{Monitorovanie systému vo webovom rozhraní EVE-ng}
     \label{obr:eve_ng_system_status}
 \end{figure}
@@ -456,11 +418,11 @@ Vstavaný monitorovací systém EVE-ng sa nachádza vo webovom rozhraní v čast
 
 
 
-
 \subsection{Správa používateľov EVE-ng}
-\label{chap:sprava_pouzivatelov}
 
-Používatelia webového rozhrania EVE-ng sú uložení v MySQL databáze na serveri. Zoznam používateľov webového rozhrania v EVE-ng je znázornený na obrázku \ref{obr:eve_ng_pouzivatelia_web_email_potom} (str. \pageref{obr:eve_ng_pouzivatelia_web_email_potom}) a je prístupný pod položkou \emph{Management} -> \emph{User management} z horného menu. Každý používateľ má definované nasledujúce stĺpce:
+{\huge TODO - Kde sú uložení používatelia - v MySQL databáze}
+
+Zoznam používateľov webového rozhrania v EVE-ng je znázornený na obrázku \ref{obr:eve_ng_pouzivatelia_web_email_potom} (str. \pageref{obr:eve_ng_pouzivatelia_web_email_potom}). Obrazovka sa nazýva \emph{User management} a je prístupná z horného menu kliknutím na \emph{Management} -> \emph{User management}. Pre každého používateľa sú definované nasledujúce stĺpce:
 
 \begin{itemize}[noitemsep]
     \item \textbf{Username} - Používateľské meno. Používa sa na prihlásenie sa do webového rozhrania. Musí byť unikátne pre každého používateľa.
@@ -523,7 +485,7 @@ Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{admin}:
 
 Niektoré z týchto činností nie sú implementované vo webovom rozhraní EVE-ng. Činnosti, ktoré môžu vykonávať jednotlivé používateľské role sú definované v súbore "/opt/unetlab/html/api.php". Vyznačujú ich riadky
 
-\begin{Verbatim}[samepage=true]
+\begin{verbatim}
   ...
   if (!in_array($user['role'], Array('admin'))) {
   ...
@@ -533,7 +495,7 @@ resp.
   ...
   if (!in_array($user['role'], Array('admin', 'editor'))) {
   ...
-\end{Verbatim}
+\end{verbatim}
 
 Vyššie uvedené podmienky kontrolujú, či je používateľ s danou rolou oprávnený vykonať požadovanú operáciu. Napr. vytvoriť používateľa, premenovať adresár, presunúť súbory do adresára a pod.
 
@@ -541,11 +503,9 @@ V prípade, že používateľ nemá dostatočné oprávnenia sa zobrazí chybov�
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth,trim={36cm 17cm 0cm 4cm},clip]{not_enough_access_privileges}
+    \includegraphics[width=0.75\textwidth]{not_enough_access_privileges}
     \caption{Chybové hlásenie o nedostatočných oprávneniach používateľa}
     \label{obr:not_enough_access_privileges}
 \end{figure}
 
-Niekedy sa však táto správa pri vykonaní neoprávnenej činnosti nezobrazí, čo ale nemá žiadny vplyv na funkcionalitu a daná operácia sa nevykoná. Tento nedostatok je bližšie popísaný spolu s odchytením prevádzky v kapitole \ref{chap:cd} v bodoch \ref{item:nezobrazene_chybove_hlasenie} a \ref{item:nezobrazene_chybove_hlasenie_pcap}
-
-Správa používateľov a MySQL databázy je podrobne vysvetlená v kapitole \ref{chap:cd} v bode \ref{item:sprava_pouzivatelov_a_databazy}
+Niekedy sa však táto správa pri vykonaní neoprávnenej činnosti nezobrazí, čo ale nemá žiadny vplyv na funkcionalitu a daná operácia sa nevykoná.

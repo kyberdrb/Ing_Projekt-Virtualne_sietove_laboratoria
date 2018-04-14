@@ -1,3 +1,16 @@
+************* ************* *************
+Monitorovanie EVE-ng servera - System status
+
+System status je nástroj na monitorovanie systémových prostriedkov vo webovom rozhraní EVE-ng.
+
+Zobrazíme ho po príhlásení kliknutím na položku "System" -> "System status".
+
+System status zobrazuje celkové percentuálne vyťaženie procesora, operačnej pamäte, kapacity diskov a počty spustených zariadení každého typu.
+
+Tiež je možné zapnúť a vypnúť mechanizmy "UKSM" a "CPULimit".
+
+
+************* ************* *************
 Monitorovanie servera - netdata
 
 *************
