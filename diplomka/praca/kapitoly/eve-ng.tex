@@ -83,7 +83,7 @@ Následná inštalácia EVE-ng na fyzický server vychádzala zo skúseností z�
 
 Nasadzovaniu jednotlivých EVE-ng serverov sa venujem v kapitole \ref{chap:nasadenie_do_vyucovania} - \nameref{chap:nasadenie_do_vyucovania}. Obnovovanie súborov a adresárov môžeme preskočiť, ak predtým ešte nebola vytvorená záloha príslušným zálohovacím skriptom. Zálohovaniu sa venujem v časti \ref{chap:zalohovanie} - \nameref{chap:zalohovanie}.
 
-Pridanie Cisco IOL/IOU licencie je dôležitým krokom, bez ktorého by sme neboli schopní spúšťať Cisco IOL/IOU zariadenia. Význam týchto zariadení bude vysvetlený v kapitole \ref{chap:testovanie_technologii} - \nameref{chap:testovanie_technologii}.
+Pridanie Cisco IOL/IOU licencie je dôležitým krokom, bez ktorého by sme neboli schopní spúšťať Cisco IOL/IOU zariadenia. Význam týchto zariadení bude vysvetlený v kapitole \ref{chap:testovanie_technologii} - \nameref{chap:testovanie_technologii} v časti \nameref{chap:testovanie_technologii_vyhodnotenie}.
 
 Zabezpečenie servera spočívalo hlavne v zabezpečení operačného systému, SSH prístupu a webového servera. Zabezpečenie operačného systému obsahovalo vytvorenie štandardného používateľského konta so \emph{sudo} oprávneniami. Ten sa bude používať namiesto \emph{root} používateľa, čím bude zaistená vyššia bezpečnosť pri používaní systému. Štandardný používateľský účet sa využíva aj na odchytávanie prevádzky z topológie namiesto \emph{root} používateľa, ako bude ozrejmené v kapitole \ref{chap:pouzivanie_eve_ng} v bode \ref{item:vzdialeny_pristup}.
 
@@ -307,7 +307,7 @@ Topológiu sa nepodarí zatvoriť, pokiaľ obsahuje spustené zariadenia. Pri za
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_running_nodes}
+    \includegraphics[width=0.9\textwidth,trim={6cm 12cm 6cm 5cm},clip]{eve_ng_running_nodes}
     \caption{Chybové hlásenie - topológia so spustenými zariadeniami sa nedá zatvoriť}
     \label{obr:eve_ng_running_nodes}
 \end{figure}
@@ -411,6 +411,7 @@ EVE-ng server je vytvorený tak, aby po jeho konfigurácii bolo potrebné na ňo
 
 Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobnejší zoznam súborov a adresárov sa nachádza v kapitole \ref{chap:cd} v bode \ref{item:adresarova_struktura} Šablónam pre zariadenia sme sa venovali v tejto kapitole v časti \ref{chap:eve_ng_instalacia}.
 
+\afterpage{
 \begin{longtabu} to \textwidth {| X[3.0,l,m] | X[4.0,l,m] |}
 \caption{Adresárová štrukúra EVE-ng servera}
 \label{tab:adresare} \\
@@ -426,7 +427,7 @@ Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobne
     \texttt{/opt/unetlab/data/Logs} & Súbory o zázname činností na serveri \\
 \hline
 \end{longtabu}
-
+}
 
 
 
@@ -466,7 +467,7 @@ Používatelia webového rozhrania EVE-ng sú uložení v MySQL databáze na ser
     \item \textbf{Username} - Používateľské meno. Používa sa na prihlásenie sa do webového rozhrania. Musí byť unikátne pre každého používateľa.
     \item \textbf{Email} - Emailová adresa.
     \item \textbf{Name} - Celé meno používateľa. Atribút má iba informatívny charakter.
-    \item \textbf{Role} - Používateľská rola. Definuje oprávnenia prihláseného používateľa.
+    \item \textbf{Role} - Používateľská rola. Definuje oprávnenia pre používateľa.
     \item \textbf{POD} - Identifikačné číslo používateľa. Určuje rozsah portov, ktoré sa používajú na vzdialený prístup ku zariadeniam v topológii. Musí byť unikátne pre každého používateľa.
     \item \textbf{Actions} - Úprava atribútov používateľa (Edit) a odstránenie používateľa (Delete). Po kliknutí na tlačidlo \emph{Edit} v riadku vybraného používateľa sa otvorí dialógové okno na vytvorenie a úpravu používateľa zobrazené na obrázku \ref{obr:eve_ng_pouzivatelia_dialog} (str. \pageref{obr:eve_ng_pouzivatelia_dialog}).
 \end{itemize}
@@ -483,9 +484,9 @@ Dialógové okno na vytvorenie a úpravu používateľa sa zobrazí po kliknutí
     \item POD
 \end{itemize}
 
-Všetky polia majú rovnaký význam ako v popise stĺpcov na obrazovke so zoznamom používateľov. Novým prvkom sú polia \emph{Password} a \emph{Password Confirmation}. Tie nie je nutné vypĺňať, ak ich nechceme meniť. Ak chceme používateľovi heslo zmeniť, je potrebné zadať nové heslo do obidvoch polí. Na zmenu hesla na nové nie je nutné zadávať pôvodné heslo. Pole \emph{User Name} sa pri úprave používateľa nedá zmeniť, dá sa iba jednorázovo nastaviť pri vytváraní používateľa. Pole \emph{POD} je vyplnené automaticky najnižším voľným identifikátorom.
+Všetky polia majú rovnaký význam ako v popise stĺpcov na obrazovke so zoznamom používateľov. Novým prvkom sú polia \emph{Password} a \emph{Password Confirmation}. Tie nie je nutné vypĺňať, ak ich nechceme meniť. Iba používatelia s rolou \emph{admin} môžu meniť heslá iným používateľom. Ak chceme používateľovi heslo zmeniť, je potrebné zadať nové heslo do obidvoch polí. Na zmenu hesla na nové nie je nutné zadávať pôvodné heslo. Pole \emph{User Name} sa pri úprave používateľa nedá zmeniť, dá sa iba jednorázovo nastaviť pri vytváraní používateľa. Pole \emph{POD} je vyplnené automaticky najnižším voľným identifikátorom.
 
-Ak sme vykonali kroky v časti \ref{chap:eve_ng_pouzivatelske_role} - \nameref{chap:eve_ng_pouzivatelske_role}, budú po kliknutí na rozbaľovací zoznam pre atribút \emph{Role} dostupné, okrem role \emph{admin}, aj role \emph{editor} a \emph{user}. Tieto role sa medzi sebou líšia oprávneniami na výkon určitých činností. Zoznam činností pre každú používateľskú rolu je popísaný v nižšie uvedených zoznamoch.
+Ak sme vykonali kroky v časti \ref{chap:eve_ng_pouzivatelske_role} - \nameref{chap:eve_ng_pouzivatelske_role}, budú po kliknutí na rozbaľovací zoznam pre atribút \emph{Role} dostupné, okrem role \emph{admin}, aj role \emph{editor} a \emph{user} (obr. \ref{obr:eve_ng_pouzivatelia_dialog}). Tieto role sa medzi sebou líšia oprávneniami na výkon určitých činností. Zoznam činností pre každú používateľskú rolu je popísaný v nižšie uvedených zoznamoch. \\
 
 \noindent
 Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{user}:
@@ -504,7 +505,7 @@ Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{editor}:
     \item Upravovať prvky v topológii - pridávanie, presúvanie, premenovanie, odstránenie
     \item Upravovať vybrané atribúty používateľov - meno, email
     \item Exportovať/importovať súbory s topológiami
-    \item Zamknúť topológiu, aby bola pre používateľov typu \emph{user} iba na čítanie
+    \item Zamknúť topológiu, aby prvky nebolo možné meniť a presúvať
 \end{itemize}
 
 \noindent
@@ -514,14 +515,15 @@ Zoznam úloh, ktoré môže vykonávať používateľ s rolou \emph{admin}:
     \item Všetko, čo môže vykonávať používateľ s rolou "editor"
     \item Zastaviť všetky zariadenia v "System -> Stop All Nodes"
     \item Zobraziť informácie o konkrétnom používateľovi cez API
-    \item Spravovať všetkých používateľov - pridať, upraviť, odstrániť
-    \item Zapnúť/vypnúť UKSM v "System -> System status"
-    \item Zapnúť/vypnúť KSM v "System -> System status", ak je KSM dostupné
+    \item Spravovať všetkých používateľov - pridanie, upravenie, odstránenie
+    \item Zapnúť/vypnúť UKSM v "System -> System status", ak je dostupné
+    \item Zapnúť/vypnúť KSM v "System -> System status", ak je dostupné
     \item Zapnúť/vypnúť CPULimit v "System -> System status"
     \item Aktualizovať EVE-ng z web rozhrania cez koncový bod "/api/update" v UNetLab/EVE-ng API
 \end{itemize}
 
-Niektoré z týchto činností nie sú implementované vo webovom rozhraní EVE-ng. Činnosti, ktoré môžu vykonávať jednotlivé používateľské role sú definované v súbore "/opt/unetlab/html/api.php". Vyznačujú ich riadky
+Niektoré z týchto činností nie sú implementované vo webovom rozhraní EVE-ng. Činnosti, ktoré môžu vykonávať jednotlivé používateľské role sú definované v súbore \\
+\texttt{/opt/unetlab/html/api.php}. Vyznačujú ich riadky
 
 \begin{Verbatim}[samepage=true]
   ...
@@ -535,7 +537,7 @@ resp.
   ...
 \end{Verbatim}
 
-Vyššie uvedené podmienky kontrolujú, či je používateľ s danou rolou oprávnený vykonať požadovanú operáciu. Napr. vytvoriť používateľa, premenovať adresár, presunúť súbory do adresára a pod.
+Vyššie uvedené podmienky kontrolujú, či je používateľ s danou rolou oprávnený vykonať požadovanú operáciu, napr. vytvoriť používateľa, premenovať adresár, presunúť súbory do adresára a pod.
 
 V prípade, že používateľ nemá dostatočné oprávnenia sa zobrazí chybové hlásenie \texttt{Not enough access privileges for this operation (90032)}, ktoré znázornené na obrázku \ref{obr:not_enough_access_privileges}.
 

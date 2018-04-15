@@ -8,27 +8,37 @@ Zazitky:
 ===============================================================================
 Diplomka
 
+    -V pondelok poslat veducemu pred-finalnu verziu diplomky + skonzultovať s nim a s marekom nasadenie na PrS1 na utorok
+
+    -povedať Uramovej, že ako switch môže slúžiť aj "bridge" sieť v topológii - tá je zapnutá hneď po vložení a pripojené zariadenia sa vedia okamžite opingať - vhodné, keď chceme vytvoriť broadcastovú doménu pomocou prvku, ktorý nepotrebujeme ďalej konfigurovať tzv. hlúpy switch
+
+
+
+
+
+    -všetky zoznamy v práci sú formátované ako
+        \begin{enumerate}[noitemsep]
+    a
+        \begin{itemize}[noitemsep]
+
+    -všetky ukážky zdrojového kódu v práci sú formátované ako
+        \begin{Verbatim}[samepage=true]
+
+    -skontrolovať, či sa na každý obrázok odkazujem v texte (hlavne v kapitole "Používanie EVE-ng")
+
+    -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
+
+
+
+
+
     -ešte raz urobiť dôkaz nezávislosti topológii po otvorení rovnakého súboru rôznymi používateľov
         -dať tam iba screeny topológii prvého a druhého používateľa s viditeľnou adresou prvého zariadenia v topológii
             -topológiu vytvoriť jednoduchšiu - 4 zariadenia (2+2 routre)
 
     -rebenchmarkovať PAP topológiu
 
-    -všetky zoznamy v práci by mali mať formátovanie
-        \begin{enumerate}[noitemsep]
-    a
-        \begin{itemize}[noitemsep]
-    
-    -skontrolovať vzhľad všetkých tabuliek v DP
 
-    -skontrolovať, či sa na každý obrázok odkazujem v texte (hlavne v kapitole "Používanie EVE-ng")
-
-    -orezať obrázky v diplomke tak, aby nebolo vidieť IP adresy a nedôležité veci
-        https://tex.stackexchange.com/questions/252484/crop-image-in-latex-like-word/252485#252485
-
-    -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
-
-    -V pondelok poslat veducemu pred-finalnu verziu diplomky
 
 
 

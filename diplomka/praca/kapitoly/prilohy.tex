@@ -8,20 +8,6 @@
 \section{CD}
 \label{chap:cd}
 
-{\huge Namiesto vymenovavania ciest k suborom na CD to urobit tak, ze do kapitoly "Prilohy" dať cislovany zoznam tak, aby odzrkadloval hierarchicku adresarovu strukturu na CD. Potom sa iba odkazovať na casti v cislovanom zozname. Cislovany zoznam zacinat od cisla kapitoly}
-
-CD médium obsahuje:
-
-\begin{itemize}[noitemsep]
-    \item Text bakalárskej práce,
-    \item Návody na používanie pre virtualizačný nástroj
-    \item Tabuľkový dokument so sumárnym vyhodnotením všetkých otestovaných zariadení pre virtualizačný nástroj spolu so všetkými meraniami,
-    \item Tabuľkový dokument s prehľadom všetkých vyučovaných technológii na vybraných predmetoch a ich kompatibilitou s vybranými virtuálnymi zariadeniami,
-    \item Integračný balíček EVE-ng pre platformy Windows a Linux.
-\end{itemize}
-
-
-
 
 \begin{enumerate}[noitemsep,label*=\thesection.\arabic*.]
     \item diplomova\_praca
@@ -46,7 +32,7 @@ CD médium obsahuje:
         
         \begin{enumerate}[noitemsep,label*=\arabic*.]
             \item 0\_pokojovy\_stav
-            \item adresáre s meraniami systémových požiadaviek pre každé zariadenie
+            \item \label{item:all_benchmarks} adresáre s meraniami systémových požiadaviek pre každé zariadenie
         \end{enumerate}
         
         \item \label{item:skripty} skripty
@@ -71,19 +57,19 @@ CD médium obsahuje:
         \item \label{item:pridavanie_konverzia_zariadeni} 07\_1\_pridavanie\_a\_konverzia\_zariadeni.txt
         \item 07\_2\_vypocet\_idle\_pc\_hodnot\_pre\_dynamips\_zariadenia.txt
         \item 07\_3\_pridanie\_cisco\_c2691\_do\_eve\_ng-CIASTOCNY\_USPECH.txt
-        \item 07\_4\_pridavanie\_zariadeni\_do\_eve\_ng\_juniper\_vmx\_17.3.txt
+        \item \label{item:pridavanie_juniper_vmx} 07\_4\_pridavanie\_zariadeni\_do\_eve\_ng\_juniper\_vmx\_17.3.txt
         \item 07\_5\_pridavanie\_zariadeni\_do\_eve\_ng\_cisco\_prime\_infra.txt
         \item 07\_6\_pridavanie\_zariadeni\_do\_eve\_ng\_vyos.txt
         \item 07\_7\_pridavanie\_zariadeni\_do\_eve\_ng\_pfsense.txt
-        \item 07\_8\_pridavanie\_zariadeni\_do\_eve\_ng\_cisco\_asav.txt
+        \item \label{item:pridavanie_cisco_asav} 07\_8\_pridavanie\_zariadeni\_do\_eve\_ng\_cisco\_asav.txt
         \item \label{item:pridavanie_win} 07\_9\_vytvorenie\_windows\_10\_kvm\_virtualky\_s\_virtio\_ovladacmi-CIASTOCNY\_USPECH.txt
         \item \label{item:iou_licencia} 08\_vytvorenie\_cisco\_iou\_iol\_licencie.txt
         \item 09\_0\_vytvorenie\_labu\_v\_eve\_ng.txt
         \item \label{item:uprava_sablon} 10\_0\_uprava\_sablon.txt
         \item \label{item:sprava_pouzivatelov_a_databazy} 11\_sprava\_pouzivatelov\_a\_MySQL\_databazy.txt
         \item \label{item:obnova_zalohovanie} 12\_0\_migracia\_zalohovanie\_obnovenie\_eve\_ng.txt
-        \item 13\_0\_profiling\_and\_benchmarking.txt
-        \item 13\_1\_profiling\_and\_benchmarking\_device\_list.txt
+        \item \label{item:benchmarking_popis} 13\_0\_profiling\_and\_benchmarking.txt
+        \item \label{item:benchmarking_list} 13\_1\_profiling\_and\_benchmarking\_device\_list.txt
         \item \label{item:aktualizacia_eve_ng} 14\_aktualizovanie\_eve\_ng.txt
         \item 15\_aktivacia\_podpory\_pre\_docker\_kontajnery-CIASTOCNY\_USPECH.txt
         \item 16\_0\_eve-ng\_integracia\_s\_web\_prehliadacmi.txt
@@ -115,13 +101,13 @@ CD médium obsahuje:
             \item Pocitacove\_siete\_2
             
             \begin{enumerate}[noitemsep,label*=\arabic*.]
-                \item {\huge TODO - do obsahu pridať iba dôležité súbory, ale na CD pôjde celý adresár}
+                \item \label{item:nasadenie_ps2_benchmark} ps2\_7\_tyzden\_ppp\_topologia\_final\_8\_replik\_33\_IOL\_L3\_a\_16\_QEMU\_Alpine\_Linux.ods
             \end{enumerate}
         \end{enumerate}
         
-        \item 0\_0\_vyucovane\_technologie.ods
-        \item 0\_1\_zoznam\_technologii.txt
-        \item 0\_2\_vyucovane\_technologie\_testovaci\_skript\_cisco.txt
+        \item \label{item:zoznam_technologii_s_podporou_zariadeni} 0\_0\_vyucovane\_technologie.ods
+        \item \label{item:zoznam_technologii_txt} 0\_1\_zoznam\_technologii.txt
+        \item \label{item:cisco_feature_testing_skript} 0\_2\_vyucovane\_technologie\_testovaci\_skript\_cisco.txt
         \item 0\_3\_vyucovane\_technologie\_problematicke\_technologie\_a\_zdroje\_testovacich\_konfiguracii.txt
         \item osnova\_PS1\_PS2\_cna2-4\_2017\_2018.docx
     \end{enumerate}
@@ -135,6 +121,7 @@ CD médium obsahuje:
     \item pouzitie\_druheho\_disku\_pre\_rozne\_zariadenia.txt
     \item \label{item:sumarny_prehlad_zariadeni} sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods
     \item zdroje\_informacii\_a\_zariadeni.txt
+    \item {\huge TODO - pridať integračný balíček pre Linux (eve-ng-kis-edition) a Windows}
 \end{enumerate}
 
 

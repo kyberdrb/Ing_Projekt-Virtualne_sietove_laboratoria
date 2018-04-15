@@ -96,6 +96,7 @@ https://tex.stackexchange.com/questions/134162/getting-two-pictures-to-appear-on
 
 Orezávanie obrázkov
 https://tex.stackexchange.com/questions/57418/crop-an-inserted-image/57420#57420
+https://tex.stackexchange.com/questions/252484/crop-image-in-latex-like-word/252485#252485
 
 Použitie čísel na všetkých úrovniach číslovaného zoznamu
 https://tex.stackexchange.com/questions/54673/use-numbers-in-every-level-of-enumeration/54676#54676
@@ -108,3 +109,12 @@ https://tex.stackexchange.com/questions/122021/how-to-create-different-margins-f
 
 verbatim prostredie, ktoré zostáva na jednej strane - Užitočné napr. vtedy, keď chceme ukázať nejakú časť zdrojového kódu v celku na jednej strane
 https://tex.stackexchange.com/questions/16923/how-to-box-verbatim-to-prevent-page-break/16926#16926
+
+Viacriadkový komentár
+https://tex.stackexchange.com/questions/44282/multiline-comment/44284#44284
+
+Inline komentár
+https://tex.stackexchange.com/questions/276697/commenting-out-a-few-words-within-a-paragraph/276756#276756
+
+Nerozdeľovanie tabuľky na viac strán v longtable prostredí - tabuľka sa zobrazí celá na ďalšej strane
+https://tex.stackexchange.com/questions/115073/specifying-a-longtable-not-to-split/115074#115074
