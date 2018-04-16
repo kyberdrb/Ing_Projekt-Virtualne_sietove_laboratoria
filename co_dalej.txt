@@ -8,11 +8,12 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -V pondelok poslat veducemu pred-finalnu verziu diplomky + skonzultovať s nim a s marekom nasadenie na PrS1 na utorok
+    -poslať marekovi vypracované návrhy topológii pre každý typ zariadenia spolu s rozsahmi portových čísel pre každú z nich.
 
     -povedať Uramovej, že ako switch môže slúžiť aj "bridge" sieť v topológii - tá je zapnutá hneď po vložení a pripojené zariadenia sa vedia okamžite opingať - vhodné, keď chceme vytvoriť broadcastovú doménu pomocou prvku, ktorý nepotrebujeme ďalej konfigurovať tzv. hlúpy switch
 
-
+    -Vytvorit adresar CD
+        -bude obsahovat vsetky subory z kapitoly Prilohy -> CD (pridať aj upravený integračný balíček a PDF s prácou)
 
 
 
@@ -25,8 +26,6 @@ Diplomka
         \begin{Verbatim}[samepage=true]
 
     -skontrolovať, či sa na každý obrázok odkazujem v texte (hlavne v kapitole "Používanie EVE-ng")
-
-    -prekontrolovať celú prácu na hľadať súbory, ktoré mám dať na CD - hľadať slovo "CD" ;)
 
 
 

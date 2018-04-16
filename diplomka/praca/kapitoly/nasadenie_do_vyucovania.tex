@@ -1,7 +1,7 @@
 \chapter{Nasadenie do vyučovania}
 \label{chap:nasadenie_do_vyucovania}
 
-Aby bola preverená celková kvalita a využiteľnosť virtuálneho laboratória, bol nástroj EVE-ng nasadený na vypracovávanie rôznych topológii z vybraných predmetov, ktoré sú opísané v nasledujúcich častiach tejto kapitoly. Zároveň budú popísané aj problémy proces nasadzovania sprevádzali. Predmety sú uvedené v poradí podľa toho, v akom čase bol nástroj EVE-ng na nich používaný.
+Aby bola preverená celková kvalita a využiteľnosť virtuálneho laboratória, bol nástroj EVE-ng nasadený na vypracovávanie rôznych topológii z vybraných predmetov, ktoré sú opísané v nasledujúcich častiach tejto kapitoly. Zároveň budú popísané aj problémy proces nasadzovania sprevádzali. Predmety sú uvedené v poradí podľa toho, v akom čase bol nástroj EVE-ng na nich používaný. Návod na vytvorenie vlastnej topológie je uvedený v kapitole \ref{chap:pouzivanie_eve_ng}.
 
 
 
@@ -98,6 +98,25 @@ Spomenutý súbor ukazuje veľké rozdiely v meraniach využitia operačnej pam�
 
 -nasadiť na jedno cvičenie Projektovania sietí 1
 -1 používateľ môže mať otvorenú iba 1 topológiu, ktorá je obmedzená na 63 súčasne spustených zariadení. Ak treba mať spustených 100 smerovačov, 10 smerovačov v 10 topológiách, potom je potrebné vytvoriť 2 používateľské účty - polovicu topológii spustiť v jednom a polovicu v druhom používateľskom účte.
+
+
+Použité zariadenia:
+-Cisco IOL prepínač - 2x10
+-Cisco IOL smerovač - 2x10
+-Cisco 3725 - 2x10
+-Cisco 7206 VXR - 2x10
+-Cisco vIOS smerovač 1x10
+-Cisco vIOS prepínač 2x10
+
+Medzi R2, R3 a R4 bude bridge sieť namiesto prepínača, aby sme šetrili systémové prostriedky
+
+Cisco IOL zariadenia mali 3 Ethernet skupiny, aby sa názvy rozhraní zhodovali s pôvodným návrhom MPLS topológie.
+
+S Cisco IOL smerovačmi spraviť topológiu presne podľa pôvodného návrhu.
+
+Pri ostatných topológiách povedať, že ak im nepôjde nakonfigurovať nech nahradia podľa výpisu príkazu --show ip int brief--
+
+Ešte študentom povedať portové čísla.
 
 
 

@@ -19,7 +19,7 @@
             \item kapitoly
             \item obrazky
             \item uvodne\_strany
-            \item {\huge TODO - PDF súbor s prácou} praca.pdf
+            \item praca.pdf
         \end{enumerate}
         
         \item zadanie\_diplomovej\_prace.pdf
@@ -72,7 +72,7 @@
         \item \label{item:benchmarking_list} 13\_1\_profiling\_and\_benchmarking\_device\_list.txt
         \item \label{item:aktualizacia_eve_ng} 14\_aktualizovanie\_eve\_ng.txt
         \item 15\_aktivacia\_podpory\_pre\_docker\_kontajnery-CIASTOCNY\_USPECH.txt
-        \item 16\_0\_eve-ng\_integracia\_s\_web\_prehliadacmi.txt
+        \item \label{item:integracia_s_prehliadacmi} 16\_0\_eve-ng\_integracia\_s\_web\_prehliadacmi.txt
         \item 16\_1\_eve-ng\_odchytavanie\_prevadzky\_v\_topologii.txt
         \item \label{item:spristupnenie_pouzivatelskych_roli} 17\_00\_spristupnenie\_pouzivatelskych\_roli\_v\_EVE-ng\_web\_rozhrani.txt
         \item 17\_02\_eve\_ng-prihlasenie\_sa\_na\_server.pcapng
@@ -121,7 +121,7 @@
     \item pouzitie\_druheho\_disku\_pre\_rozne\_zariadenia.txt
     \item \label{item:sumarny_prehlad_zariadeni} sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods
     \item zdroje\_informacii\_a\_zariadeni.txt
-    \item {\huge TODO - pridať integračný balíček pre Linux (eve-ng-kis-edition) a Windows}
+    \item \label{item:upraveny_integracny_balicek_win} eve-ng-integration\_kis
 \end{enumerate}
 
 
@@ -133,18 +133,18 @@
 \section{Používanie EVE-ng}
 \label{chap:pouzivanie_eve_ng}
 
-Pre zvolené predmety boli topológie vytvorené podľa toho, aká téma bola na danom cvičení vyučovaná. Topológie boli vytvorené pomocou webového rozhrania EVE-ng, ktorým je možné spravovať topológie a používateľov.
+V tejto kapitole opisujem kroky na vytvorenie topológie následnú prácu so zariadeniami v nej v nástroji EVE-ng.
 
 
 
 
 \subsection{Vytvorenie topológie}
 \label{chap:vytvorenie_topo_eve-ng}
-Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme venovať vytváraniu topológii, ktoré nasadeniu predchádzali. Nižšie sú uvedené kroky na vytvorenie topológie v EVE-ng.
+Topológie sa vytvárajú prostredníctvom webového rozhrania EVE-ng. Nižšie sú uvedené kroky na vytvorenie topológie v EVE-ng.
 
 \begin{enumerate}[noitemsep]
 
-    \item \label{item:prihlasenie} Najprv sa prihlásime do nástroja EVE-ng cez webové rozhranie v natívnom móde. Webové rozhranie je dostupné v 2 módoch: natívnom a HTML5 (obr. \ref{obr:eve_ng_login_screen}). Rozdiely medzi jednotlivými módmi sú popísané v bode \ref{item:vzdialeny_pristup}. Pre úspešné prihlásenie musíme mať vytvorený používateľský účet, čo môže urobiť iba používateľ s rolou \emph{admin}.
+    \item \label{item:prihlasenie} Najprv sa prihlásime do nástroja EVE-ng cez webové rozhranie v natívnom móde - \emph{Native console} (obr. \ref{obr:eve_ng_login_screen}). Webové rozhranie je dostupné v 2 módoch: natívnom a HTML5. Rozdiely medzi jednotlivými módmi sú popísané v bode \ref{item:vzdialeny_pristup}. Pre úspešné prihlásenie musíme mať vytvorený používateľský účet, čo môže urobiť iba používateľ s rolou \emph{admin}.
 
 \begin{figure}
     \centering
@@ -153,11 +153,11 @@ Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme 
     \label{obr:eve_ng_login_screen}
 \end{figure}
 
-    \item Po prihlásení sa zobrazí hlavná obrazovka (obr. \ref{obr:eve_ng_main_screen}). V ľavej časti je správca súborov, v ktorom si vyberieme adresár, kde bude uložený súbor s topológiou.
+    \item Po prihlásení sa zobrazí hlavná obrazovka (obr. \ref{obr:eve_ng_main_screen}). V ľavej časti sa nachádza správca súborov, v ktorom si vyberieme adresár, kde bude uložený súbor s topológiou.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{eve_ng_main_screen}
+    \includegraphics[width=1\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_main_screen}
     \caption{Hlavná obrazovka EVE-ng}
     \label{obr:eve_ng_main_screen}
 \end{figure}
@@ -166,7 +166,7 @@ Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme 
 
 \begin{figure}
     \centering
-        \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_lab_menu}
+        \includegraphics[width=0.75\textwidth,trim={1.2cm 14.6cm 32cm 8.5cm},clip]{eve_ng_lab_menu}
     \caption{Menu pre úpravu súborov}
     \label{obr:eve_ng_lab_menu}
 \end{figure}
@@ -175,51 +175,67 @@ Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_lab_dialog}
+    \includegraphics[width=1\textwidth,trim={1.7cm 4.8cm 1.7cm 7.5cm},clip]{eve_ng_lab_dialog}
     \caption{Dialógové okno na vytvorenie nového súboru s topológiou}
     \label{obr:eve_ng_lab_dialog}
 \end{figure}
 
-    \item Po kliknutí na tlačidlo \emph{Save} sa súbor s topológiou vytvorí a následne sa zobrazí pracovná plocha na vytvorenie topológie (obr. \ref{obr:eve_ng_nova_topologia}). Novovytvorená topológia  je prázdna.
+    \item Po kliknutí na tlačidlo \emph{Save} sa súbor s topológiou vytvorí a následne sa zobrazí pracovná plocha na vytvorenie topológie (obr. \ref{obr:eve_ng_nova_topologia}). Novovytvorená topológia je prázdna.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_nova_topologia}
-    \caption{Ukážka novovytvorenej topológie}
+    \includegraphics[width=0.75\textwidth,trim={0cm 4cm 20cm 4cm},clip]{eve_ng_nova_topologia}
+    \caption{Ukážka novovytvorenej (prázdnej) topológie s ovládacím panelom}
     \label{obr:eve_ng_nova_topologia}
 \end{figure}
 
     \item Do topológie môžeme po jej vytvorení pridávať tieto prvky:
     
-    \begin{itemize}[noitemsep]
-        \item Node - zariadenie
-        \item Network - sieť
-        \item Picture - obr.
-        \item Custom Shape - geometrický tvar - obdĺžnik/elipsa
-        \item Text - textové polia
-    \end{itemize}
+    \begin{description}[noitemsep]
+        \item [Node] zariadenie
+        \item [Network] sieť
+        \item [Picture] obrázok
+        \item [Custom Shape] geometrický tvar - obdĺžnik/elipsa
+        \item [Text] textové polia
+    \end{description}
     
-    Spomenutý zoznam prvkov (obr. \ref{obr:eve_ng_add_new_object_context_menu}) sa zobrazí v kontextovom menu po pravom kliknutí na prázdne miesto v topológii alebo po kliknutí na ikonku \emph{+} v menu na ľavej strane obrazovky. Po pridaní zariadenia výberom položky \emph{Node} sa pre zariadenie vygeneruje a priradí portové číslo, pomocou ktorého bude možné, pripojiť sa na jeho konzolu. Generovanie portových čísel pre zariadenia v EVE-ng je bližšie vysvetlené v časti \ref{chap:priradovanie_portovych_cisel} - \nameref{chap:priradovanie_portovych_cisel}.
-
+    Spomenutý zoznam prvkov (obr. \ref{obr:eve_ng_add_new_object_context_menu}) sa zobrazí v kontextovom menu po pravom kliknutí na prázdne miesto v topológii alebo po kliknutí na ikonku \textbf{+} v menu na ľavej strane obrazovky.
+    
 \begin{figure}
     \centering
-    \includegraphics[width=0.3\textwidth]{eve_ng_add_new_object_context_menu}
+    \includegraphics[width=0.2\textwidth,trim={0cm 0cm 0cm 0.1cm},clip]{eve_ng_add_new_object_context_menu}
     \caption{Kontextové menu pre pridanie zariadenia}
     \label{obr:eve_ng_add_new_object_context_menu}
+\end{figure}
+    
+    Keď chceme pridať do topológie napríklad zariadenie, v kontextovom menu klikneme na možnosť \emph{Node}. Následne sa zobrazí dialógové okno pre vyhľadanie zariadenia (obr. \ref{obr:eve_ng_add_a_new_node_selection_dialog}). Vyhľadávanie si môžeme uľahčiť tak, že do vyhľadávacieho riadku napíšeme úvodné znaky pridávaného modelu zariadenia. Po jeho výbere sa zobrazí dialógové okno na úpravu jeho parametrov (obr. \ref{obr:eve_ng_add_a_new_node_3725_edit_dialog}). Jediné polia, ktorými by sa používateľ potreboval zaoberať, sú \emph{Name/prefix} (názov zariadenia) a \emph{Number of nodes to add} (počet zariadení, ktoré sa do topológie pridajú naraz). Všetky ostatné polia sú už nastavené a nie je potrebné ich meniť.
+    
+    Po kliknutí na tlačidlo \emph{Save} sa do topológie pridá toľko zariadení, koľko bolo zadaných do poľa \emph{Number of nodes to add}. Pre každé zariadenie sa vygeneruje a priradí portové číslo, pomocou ktorého bude možné, pripojiť sa na jeho konzolu. Generovanie portových čísel pre zariadenia v EVE-ng je bližšie vysvetlené v časti \ref{chap:priradovanie_portovych_cisel} - \nameref{chap:priradovanie_portovych_cisel}.
+    
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\textwidth,trim={12cm 0cm 12cm 5cm},clip]{eve_ng_add_a_new_node_selection_dialog}
+    \caption{Dialógové okno pre vyhľadanie zariadenia}
+    \label{obr:eve_ng_add_a_new_node_selection_dialog}
+    
+    \vspace{1cm}
+    
+    \centering
+    \includegraphics[width=0.5\textwidth,trim={0cm 0.1cm 0.1cm 0.1cm},clip]{eve_ng_add_a_new_node_3725_edit_dialog}
+    \caption{Dialógové pre úpravu parametrov pridávaného zariadenia}
+    \label{obr:eve_ng_add_a_new_node_3725_edit_dialog}
 \end{figure}
     
     \item Po pridaní prvkov do topológie vytvoríme spojenia medzi jednotlivými zariadeniami. Zariadenia je možné prepájať iba rozhraniami rovnakého typu (Ethernet-Ethernet, Serial-Serial). Prepájať je možné iba \emph{vypnuté} zariadenia. Prepojenie medzi zariadeniami vytvoríme kliknutím na ikonu \emph{vidlice} s popisom \emph{Connect to another node} (obr. \ref{obr:eve_ng_prepajanie_vidlica}) a potiahnutím myši smerom ku druhému zariadeniu (obr. \ref{obr:eve_ng_prepajanie_ku_druhemu_zariadeniu}). Následne sa objaví dialógové okno s výberom rozhraní pre obidve zariadenia, ktoré majú byť prepojené (obr. \ref{obr:eve_ng_prepajanie_add_connection_dialog}). Po výbere rozhraní z oboch rozbaľovacích zoznamov klikneme na tlačidlo \emph{Save}. Dialógové okno sa zatvorí a vytvorí sa prepojenie medzi zariadeniami pre zvolené rozhrania (obr. \ref{obr:eve_ng_prepajanie_prepojenie_vytvorenie}). Po nastavení správnych IP adries na prepojených rozhraniach bude vytvorená konektivita medzi zariadeniami.
     
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth]{eve_ng_prepajanie_vidlica}
+        \includegraphics[width=0.5\textwidth,trim={8cm 15cm 30cm 7cm},clip]{eve_ng_prepajanie_vidlica}
         \caption{Ikona na prepájanie zariadení}
         \label{obr:eve_ng_prepajanie_vidlica}
-    \end{figure}
-    
-    \begin{figure}
+        
         \centering
-        \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_prepajanie_ku_druhemu_zariadeniu}
+        \includegraphics[width=0.5\textwidth,trim={8cm 15cm 30cm 7cm},clip]{eve_ng_prepajanie_ku_druhemu_zariadeniu}
         \caption{Priebeh prepájania zariadení}
         \label{obr:eve_ng_prepajanie_ku_druhemu_zariadeniu}
     \end{figure}
@@ -233,7 +249,7 @@ Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme 
     
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_prepajanie_prepojenie_vytvorenie}
+        \includegraphics[width=0.5\textwidth,trim={8cm 15cm 30cm 7cm},clip]{eve_ng_prepajanie_prepojenie_vytvorenie}
         \caption{Úspešné vytvorenie prepojenia}
         \label{obr:eve_ng_prepajanie_prepojenie_vytvorenie}
     \end{figure}
@@ -250,28 +266,28 @@ Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_configured_nodes_dialog}
+    \includegraphics[width=1\textwidth,trim={2cm 13cm 2cm 5cm},clip]{eve_ng_configured_nodes_dialog}
     \caption{Dialógové okno so zoznamom zariadení v topológii}
     \label{obr:eve_ng_configured_nodes_dialog}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_edit_node_dialog}
+    \includegraphics[width=0.6\textwidth,trim={0.1cm 0cm 0cm 0cm},clip]{eve_ng_edit_node_3725_edit_dialog}
     \caption{Dialógové okno na úpravu zariadenia}
     \label{obr:eve_ng_edit_node_dialog}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_configured_networks_dialog}
-    \caption{Dialógové oknoso zoznamom sietí v topológii}
+    \includegraphics[width=1\textwidth,trim={2cm 13cm 2cm 5cm},clip]{eve_ng_configured_networks_dialog}
+    \caption{Dialógové okno so zoznamom sietí v topológii}
     \label{obr:eve_ng_configured_networks_dialog}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_configured_objects_dialog}
+    \includegraphics[width=1\textwidth,trim={2cm 13cm 2cm 5cm},clip]{eve_ng_configured_objects_dialog}
     \caption{Dialógové okno so zoznamom grafických a textových objektov}
     \label{obr:eve_ng_configured_objects_dialog}
 \end{figure}
@@ -279,31 +295,31 @@ Predtým, než popíšeme výsledky pri nasadení na predmety, sa najprv budeme 
 
 
     
-Ďalší spôsob na úpravu prvkov v topológii je pomocou upravením samotného súboru s topológiou na serveri s príponou \emph{unl} (obr. \ref{obr:eve_ng_unl_file_syntax}). Tento súbor je napísaný vo formáte XML. Prvky sú definované značkami, ktoré definujú ich typ (zariadenie, textové pole a pod.). Nižšie je uvedený zoznam niektorých značiek použitých v \emph{unl} súbore.
+Ďalší spôsob na úpravu prvkov v topológii je upravovanie samotného súboru s topológiou na serveri s príponou \emph{unl} (obr. \ref{obr:eve_ng_unl_file_syntax}). Tieto súbory sú napísané vo formáte XML a sú uložené v adresári \texttt{/opt/unetlab/labs/}. Súbory môže upravovať iba administrátor EVE-ng servera alebo používatelia so \emph{sudo} oprávneniami. Prvky sú definované značkami, ktoré definujú ich typ (zariadenie, sieť, textové pole a pod.). Nižšie je uvedený zoznam niektorých značiek použitých v \emph{unl} súbore.
 
     \begin{description}[noitemsep]
-        \item \textbf{\texttt{<node>}} - zariadenie v topológii
+        \item [\texttt{<node>}] - zariadenie v topológii
         \begin{description}[noitemsep]
-            \item \textbf{\texttt{id}} - identifikačné číslo zariadenia; slúži na vygenerovanie portového čísla; musí byť unikátne
-            \item \textbf{\texttt{name}} - názov zariadenia; zobrazuje sa pod jeho ikonkou; malo by byť unikátne, kvôli prehľadnosti topológie
-            \item \textbf{\texttt{left}} - vzdialenosť od ľavého okraja plochy v topológii
-            \item \textbf{\texttt{top}} - vzdialenosť od horného okraja plochy v topológii
-            \item \textbf{\texttt{uuid}} - UUID identifikátor zariadenia; musí byť unikátny; iba pre QEMU zariadenia
-            \item \textbf{\texttt{firstmac}} - MAC adresa prvého rohzrania pre zariadenia; iba pre QEMU zariadenia
-            \item \textbf{\texttt{<interface>}} - pripojené rozhrania pre zariadenie
+            \item [\texttt{id}] - identifikačné číslo zariadenia; slúži na vygenerovanie portového čísla; musí byť unikátne
+            \item [\texttt{name}] - názov zariadenia; zobrazuje sa pod jeho ikonkou; malo by byť unikátne, kvôli prehľadnosti topológie
+            \item [\texttt{left}] - vzdialenosť od ľavého okraja plochy v topológii
+            \item [\texttt{top}] - vzdialenosť od horného okraja plochy v topológii
+            \item [\texttt{uuid}] - UUID identifikátor zariadenia; musí byť unikátny; iba pre QEMU zariadenia
+            \item [\texttt{firstmac}] - MAC adresa prvého rohzrania pre zariadenia; iba pre QEMU zariadenia
+            \item [\texttt{<interface>}] - pripojené rozhrania pre zariadenie
             \begin{description}[noitemsep]
-                \item \textbf{\texttt{id}} - identifikačné číslo pripojeného rozhrania; musí byť unikátne
-                \item \textbf{\texttt{remote\_id}} - identifikačné číslo vzdialeného zariadenia - odkaz na atribúť \texttt{id} v značke \texttt{<node>} iného zariadenia; iba pre IOL zariadenia
-                \item \textbf{\texttt{network\_id}} - identifikačné číslo siete; iba pre Ethernet rozhrania 
+                \item [\texttt{id}] - identifikačné číslo pripojeného rozhrania; musí byť unikátne
+                \item [\texttt{remote\_id}] - identifikačné číslo vzdialeného zariadenia - odkaz na atribúť \texttt{id} v značke \texttt{<node>} iného zariadenia; iba pre zariadenia typu IOL
+                \item [\texttt{network\_id}] - identifikačné číslo siete; iba pre Ethernet rozhrania 
             \end{description}
         \end{description}
         
-        \item \textbf{\texttt{<networks>}} - zoznam vytvorených sietí v topológii
+        \item [\texttt{<networks>}] - zoznam vytvorených sietí v topológii
         \begin{description}[noitemsep]
-            \item \textbf{\texttt{<network>}} - sieť v topológii; vytvára sa ako \emph{bridge} rozhranie pre prepojenie dvoch Ethernet rozhraní medzi zariadeniami
+            \item [\texttt{<network>}] - sieť v topológii; vytvára sa ako \emph{bridge} rozhranie pre prepojenie dvoch Ethernet rozhraní medzi zariadeniami alebo pri pridaní siete z kontextového menu pri zvolení položky \emph{Network}
             \begin{description}[noitemsep]
-                \item \textbf{\texttt{id}} - identifikačné číslo siete; musí byť unikátne
-                \item \textbf{\texttt{visibility}} - viditeľnosť siete; v prípade, že prepájame dve Ethernet rohrania, je atribút nastavený na hodnotu 0 - sieť (bridge rozhranie) je v topológii skrytá. Ak pridávame do topológie sieť explicitne cez \emph{Add a new object} -> \emph{Network}, atribút sa nastaví na hodnotu 1 - sieť bude viditeľná v topológii.
+                \item [\texttt{id}] - identifikačné číslo siete; musí byť unikátne
+                \item [\texttt{visibility}] - viditeľnosť siete; v prípade, že prepájame dve Ethernet rohrania, je atribút nastavený na hodnotu 0 - sieť (bridge rozhranie) je v topológii skrytá; ak pridávame do topológie sieť explicitne cez \emph{Add a new object} -> \emph{Network}, atribút sa nastaví na hodnotu 1 a sieť bude viditeľná v topológii
             \end{description}
         \end{description}
     \end{description}
@@ -317,15 +333,15 @@ Zmeny v \emph{unl} súbore sa prejavia až po znovunačítaní stránky (kláves
     \label{obr:eve_ng_unl_file_syntax}
 \end{figure}
     
-Experimentovaním sme zistili, že vytváranie topológii a duplikácia jej prvkov v \emph{unl} súbore je pomerne náročná, zdĺhavá a náchylná na chyby. Pri duplikácii zariadení bolo náročné udržať prehľad o.i. aj o identifikátoroch zariadení a rozhraní a ich vzájomnom prepojení. Výhodnejšie sa ukázalo najprv použiť webové rozhranie, potom tabuľku zariadení \emph{Nodes} a nakoniec upravovať \emph{unl} súbor:
+Experimentovaním sme zistili, že vytváranie topológii a duplikácia jej prvkov v \emph{unl} súbore je pomerne náročná, zdĺhavá a náchylná na chyby. Pri duplikácii zariadení bolo náročné udržať prehľad o.i. aj o identifikátoroch zariadení a rozhraní a ich vzájomnom prepojení. Výhodnejšie sa ukázalo najprv použiť webové rozhranie, potom tabuľku zariadení \emph{Nodes} a nakoniec upraviť \emph{unl} súbor:
     
     \begin{enumerate}[noitemsep]
         \item Najpr vo webovom rozhraní vytvoríme topológiu, pridáme do nej zariadenia a poprepájame ich.
-        \item Potom v tabuľke zariadeníNodes (nazvy zariadeni)
-        \item Ak je potrebné, nakoniec v \emph{unl} súbore presnejšie upravíme súradnice prvkov v topológii definovaných atribútmi \texttt{left} a \texttt{top}. Výsledkom týchto úprav je celkové zlepšenie estetickej úpravy. Môžeme tak urobiť aj vo webovom rozhraní v dialógovom okne pre úpravu zariadenia v atribútoch \emph{Left} a \emph{Top}, avšak v \emph{unl} súbore vieme súradnice prvkov upraviť hromadne.
+        \item Potom v tabuľke zariadení \emph{Nodes} upravíme názvy zariadení v stĺpci \emph{Name} (obr. \ref{obr:eve_ng_configured_nodes_dialog}).
+        \item Ak je potrebné, nakoniec v \emph{unl} súbore presnejšie upravíme súradnice prvkov v topológii definovaných atribútmi \texttt{left} a \texttt{top}. Výsledkom týchto úprav je celkové zlepšenie vzhľadu topológie. Môžeme tak urobiť aj vo webovom rozhraní v dialógovom okne pre úpravu zariadenia v atribútoch \emph{Left} a \emph{Top}, avšak v \emph{unl} súbore vieme súradnice prvkov upraviť hromadne.
     \end{enumerate}
     
-    \item Potom, ako sme pridali zariadenia do topológie a navzájom ich prepojili, môžeme zariadenia spustiť buď jednotlivo, skupinovo alebo všetky naraz. Zariadenia môže spúšťať iba používateľ s rolou \emph{admin} alebo \emph{editor}.
+    \item Potom, ako sme pridali zariadenia do topológie a navzájom ich prepojili, ich môžeme spustiť. Zariadenia sa dajú spustiť buď jednotlivo, skupinovo alebo všetky naraz. Zariadenia môže spúšťať iba používateľ s rolou \emph{admin} alebo \emph{editor}.
 
     \begin{itemize}[noitemsep]
         \item Jedno zariadenie spustíme tak, že naň klikneme pravým tlačidlom a zvolíme \emph{Start} (obr. \ref{obr:eve_ng_spustanie_po_jednom_context_menu}).
@@ -333,48 +349,68 @@ Experimentovaním sme zistili, že vytváranie topológii a duplikácia jej prvk
         \item Všetky zariadenia spustíme kliknutím na položku \emph{More actions} a zvolíme možnosť \emph{Start all nodes} (obr. \ref{obr:eve_ng_spustanie_vsetkych_context_menu}).
     \end{itemize}
 
+\begin{comment}
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_spustanie_po_jednom_context_menu}
+    \includegraphics[width=0.3\textwidth,trim={11cm 5cm 28cm 9cm},clip]{eve_ng_spustanie_po_jednom_context_menu}
     \caption{Spustenie jedného zariadenia}
     \label{obr:eve_ng_spustanie_po_jednom_context_menu}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_spustanie_skupiny_context_menu}
+    \includegraphics[width=0.4\textwidth,trim={11cm 3cm 19cm 9cm},clip]{eve_ng_spustanie_skupiny_context_menu}
     \caption{Spustenie skupiny zariadení}
     \label{obr:eve_ng_spustanie_skupiny_context_menu}
+\end{figure}
+\end{comment}
+
+\begin{figure}
+%\centering
+\begin{minipage}{.4\textwidth}
+    \vspace{1.1cm}
+    \centering
+    \includegraphics[width=0.8\textwidth,trim={11cm 5cm 27cm 9cm},clip]{eve_ng_spustanie_po_jednom_context_menu}
+    \caption{Spustenie jedného zariadenia}
+\label{obr:eve_ng_spustanie_po_jednom_context_menu}
+\end{minipage}%
+\begin{minipage}{.6\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth,trim={11cm 3cm 19cm 9cm},clip]{eve_ng_spustanie_skupiny_context_menu}
+    \caption{Spustenie skupiny zariadení}
+    \label{obr:eve_ng_spustanie_skupiny_context_menu}
+\end{minipage}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_spustanie_vsetkych_sidemenu}
+    \includegraphics[width=0.6\textwidth,trim={0cm 3cm 29cm 9cm},clip]{eve_ng_spustanie_vsetkych_sidemenu}
     \caption{Spustenie všetkých zariadení}
     \label{obr:eve_ng_spustanie_vsetkych_context_menu}
 \end{figure}
       
-    \item \label{item:vzdialeny_pristup} Po spustení zariadení je možné pripojiť sa na ich vzdialenú konzolu. Spôsob, akým sa na pripájame na konzoly zariadení sa líši podľa toho, v akom móde sme sa do EVE-ng prihlásili. V bode \ref{item:prihlasenie} sme spomenuli, že do webového rozhrania EVE-ng je možné sa prihlásiť v dvoch módoch: HTML5 a natívnom móde. Výber módu priamo ovplyvňuje aj spôsob, akým pristupujeme ku konzolám zariadení.
+    \item \label{item:vzdialeny_pristup} Po spustení zariadení sa sprístupní ich vzdialená konzola. Spôsob, akým sa na pripájame na konzoly zariadení sa líši podľa toho, v akom móde sme sa do EVE-ng prihlásili. V bode \ref{item:prihlasenie} sme spomenuli, že do webového rozhrania EVE-ng sa dá prihlásiť v dvoch režimoch: v HTML5 alebo natívnom móde. Výber módu priamo ovplyvňuje aj spôsob, akým pristupujeme ku konzolám zariadení.
     
-    HTML5 mód zabezpečuje vzdialený prístup k zariadeniam pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení. VV tomto móde sa na obrazovke s otvorenou topológiou po kliknutí na zariadenie otvorí jeho vzdialená konzola, pričom nie je možné pripojiť sa ku konzolám zariadenia pomocou telnet alebo vnc klienta. HTML5 mód web rozhrania EVE-ng bol však menej stabilný a reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom. Preto bolo webové rozhranie ďalej používané iba v natívnom móde.
+    HTML5 mód zabezpečuje vzdialený prístup k zariadeniam pomocou reverzného proxy servera \emph{Apache Guacamole}, ktorý sa pripája na konzoly zariadení. V tomto móde sa na obrazovke s otvorenou topológiou po kliknutí na zariadenie otvorí jeho vzdialená konzola, pričom nie je možné pripojiť sa ku konzolám zariadenia pomocou telnet alebo vnc klienta. HTML5 mód web rozhrania EVE-ng bol však menej stabilný a reagoval výrazne pomalšie pri práci s topológiou v provonaní s natívnym módom. Preto bolo webové rozhranie ďalej používané iba v natívnom režime.
         
-    V natívnom móde potrebujeme mať pre vzdialený prístup ku zariadeniam nainštalované dodatočné nástroje na lokálnom počítači. 
+    Natívny režim vyžaduje, aby sme mali pre vzdialený prístup ku zariadeniam na lokálnom počítači nainštalované dodatočné nástroje. 
         
-    Na prístup k zariadeniam z lokálneho počítača potrebujeme mať nainštalovaného telnet a VNC klienta. Pre platformu Windows môžeme zvoliť kombináciu napr. \emph{PuTTY} a \emph{RealVNC Viewer}, pre platformu Linux zase terminál (odporúča sa BASH) a \emph{TigerVNC}. Následne sa navigujeme myšou na zariadenie, na ktoré sa chceme pripojiť, ale namiesto toho, aby sme naň klikli, zapamätáme si údaje zobrazené v ľavom alebo pravom dolnom rohu obrazovky (obr. \ref{obr:eve_ng_protokol_ip_port}) t.j. protokol, IP adresa servera a portové číslo. Tieto údaje následne zadáme do zodpovedajúceho klienta podľa protokolu. Po zadaní správnych údajov by sme sa mali pripojiť na vzdialenú konzolu zariadenia.
+    Na prístup k zariadeniam z lokálneho počítača potrebujeme mať nainštalovaného telnet a VNC klienta. Pre platformu Windows môžeme zvoliť kombináciu napr. \emph{PuTTY} a \emph{RealVNC Viewer}, pre platformu Linux zase terminál, napr. \emph{BASH} a \emph{TigerVNC}. Následne sa navigujeme myšou na zariadenie, na ktoré sa chceme pripojiť, ale namiesto toho, aby sme naň klikli, zapamätáme si údaje zobrazené v ľavom alebo pravom dolnom rohu obrazovky (obr. \ref{obr:eve_ng_protokol_ip_port}) t.j. protokol, IP adresa servera a portové číslo. Tieto údaje následne zadáme do zodpovedajúceho klienta podľa protokolu. Po zadaní správnych údajov by sme sa mali pripojiť na vzdialenú konzolu zariadenia.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_protokol_ip_port}
-    \caption{Adresa na vzdialený prístup k zariadeniu}
+    \includegraphics[width=0.6\textwidth,trim={0cm 0cm 0.8cm 4cm},clip]{eve_ng_protokol_ip_port}
+    \caption{Adresa na vzdialený prístup k zariadeniu (vľavo dole)}
     \label{obr:eve_ng_protokol_ip_port}
 \end{figure}
 
-    Aby sme mohli pristupovať ku konzole zariadenia z webového rozhrania pri kliknutí naň, potrebujeme mať na lokálnom počítači nainštalovaný tzv. EVE-ng integračný balíček. Ten existuje pre platformy Windows a Linux. Ďalej sme upravovali iba integračný balíček pre platformu Linux, z ktorého nakoniec vznikla ďalšia, bezpečnejšia verzia. Jednalo sa úpravy, ktoré zabezpečovali vzdialený prístup k zariadeniam s protokolmi \emph{telnet} a \emph{vnc} pomocou SSH tunelov a odchytávanie prevádzky z rozhrania zariadenia ako štandardný používateľ namiesto používateľa \emph{root}. Predvolený integračný baliček takéto funkciu neobsahuje. Vykonané úpravy nemajú výrazný vplyv na funkcionalitu pre koncového používateľa. Inštalácia a úprava integračného balíčka EVE-ng pre platformy Windows a Linux je popísaná v súbore na CD s názvom \\
-    \emph{eve\_ng/16\_0\_eve-ng\_integracia\_s\_web\_prehliadacmi.txt}.
+    Aby sme mohli pristupovať ku konzole zariadenia z webového rozhrania pri kliknutí naň, potrebujeme mať na lokálnom počítači nainštalovaný tzv. EVE-ng integračný balíček. Ten existuje pre platformy Windows a Linux. Ďalej sme upravovali iba integračný balíček pre platformu Linux, z ktorého nakoniec vznikla ďalšia, bezpečnejšia verzia. Jednalo sa úpravy, ktoré zabezpečovali vzdialený prístup k zariadeniam s protokolmi \emph{telnet} a \emph{vnc} pomocou SSH tunelov a odchytávanie prevádzky z rozhrania zariadenia ako štandardný používateľ namiesto používateľa \emph{root}. Predvolený integračný baliček takéto funkciu neobsahuje. Vykonané úpravy nemajú výrazný vplyv na funkcionalitu pre koncového používateľa.
+    
+    Predvolené verzie integračných balíčkov je možné stiahnuť zo zdroja \cite{eve_ng_integration_pack_win} pre platformu Windows a zo zdroja \cite{eve_ng_integration_pack_linux} pre platformu Linux. Inštalácia a popis jednotlivých úprav integračného balíčka EVE-ng pre platformy Windows a Linux je popísaná v kapitole \ref{chap:cd} v bode \ref{item:integracia_s_prehliadacmi} Upravená verzia integračného balíčka pre platformu Linux je dostupná v kapitole \ref{chap:cd} v bode \ref{item:upraveny_integracny_balicek_win}
 
 \end{enumerate}
 
-Vyššie uvedené kroky popisujú vytvorenie základnej topológie s rôznymi prvkami. V ďalších častiach bude popísané, ako EVE-ng generuje a priďeľuje portové čísla zariadeniam, pomocou ktorých sa pripájame na ich vzdialené konzoly a to, ako prepojiť viacero topológii medzi sebou, a ako pripojiť topológiu k internetu.
+Vyššie uvedené kroky popisujú vytvorenie základnej topológie s rôznymi prvkami. V ďalších častiach bude popísané, ako EVE-ng generuje a priďeľuje portové čísla zariadeniam, pomocou ktorých sa pripájame na ich vzdialené konzoly a to, ako prepojiť viacero topológii medzi sebou resp. ako pripojiť topológiu k internetu.
 
 
 
@@ -388,10 +424,15 @@ Rozsah portových čísel pre daného používateľa sa generujú vzťahom \emph
 
 Ak do topológie pridáme viacero zariadení naraz, budú mať portové čísla idúce za sebou.
 
-V prípade, že si rôzni používatelia otvoria rovnaký súbor s topológiou, bude mať každý z používateľov prístup ku vlastným zariadeniam. Pokiaľ bude počet zariadení v topológii <= 63, portové čísla zariadení sa nebudú prekrývať a každý z používateľov bude môcť pracovať s topológiou nezávisle na sebe. Ak ľubovoľný z používateľov do topológie pridá zariadenie, uvidia ho všetci.
+V prípade, že si rôzni používatelia otvoria rovnaký súbor s topológiou, bude mať každý z používateľov prístup ku vlastným zariadeniam. Pokiaľ bude počet zariadení v topológii <= 63, portové čísla zariadení sa nebudú prekrývať a každý z používateľov bude môcť pracovať s topológiou nezávisle na sebe. Ak ľubovoľný z používateľov do topológie pridá zariadenie, uvidia ho všetci, ale až po obnovení topológie (F5/\emph{Refresh topology}).
 
-Vyššie uvedené správanie bolo otestované po otvorení rovnakého súboru s topológiou dvomi rôznymi používateľmi s rôznymi používateľskými rolami (\emph{admin} a \emph{editor}). Na obr. \ref{obr:eve_ng_rovnaka_topo_prvy_pouzivatel_admin} vidíme, že prvý používateľ už má spustené zariadenia, ale druhý používateľ ich ako spustené nevidí (obr. \ref{obr:eve_ng_rovnaka_topo_druhy_pouzivatel_editor}).
+Vyššie uvedené správanie bolo otestované po otvorení rovnakého súboru s topológiou dvomi rôznymi používateľmi s rôznymi používateľskými rolami (\emph{admin} a \emph{editor}).
 
+S prideľovaním portových čísel súvisí aj problém popísaný v časti \ref{chap:zatvorenie_topo_so_spustenymi_zariadeniami}, pretože do vzťahu na výpočet portového čísla sa neberie do úvahy počet topológii, ktoré má používateľ spustené.
+
+%Na obr. \ref{obr:eve_ng_rovnaka_topo_prvy_pouzivatel_admin} vidíme, že prvý používateľ už má spustené zariadenia, ale druhý používateľ ich ako spustené nevidí (obr. \ref{obr:eve_ng_rovnaka_topo_druhy_pouzivatel_editor}).
+
+\begin{comment}
 \begin{figure}
     \centering
     \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_rovnaka_topo_prvy_pouzivatel_admin}
@@ -405,8 +446,7 @@ Vyššie uvedené správanie bolo otestované po otvorení rovnakého súboru s 
     \caption{Topológia druhého používateľa s používateľskou rolou \emph{editor}}
     \label{obr:eve_ng_rovnaka_topo_druhy_pouzivatel_editor}
 \end{figure}
-
-
+\end{comment}
 
 
 
@@ -414,35 +454,35 @@ Vyššie uvedené správanie bolo otestované po otvorení rovnakého súboru s 
 
 Do EVE-ng topológie je možné pridať prvok typu \emph{sieť}, ktorý umožňuje prepájať topológie medzi sebou alebo ich pripájať ku internetu.
 
-Sieť do topológie pridáme kliknutím na ikonu \emph{+ - Add an object} a zo zoznamu vybierieme položku \emph{Network}. Objaví sa dialógové okno na úpravu parametrov pridávanej siete (obr. \ref{obr:eve_ng_add_network_dialog}). Pre správnu funkčnosť a prehľadnosť stačí zmeniť iba atribúty \emph{Name} a \emph{Type}. To textového poľa atribútu \emph{Name} zadáme názov pridávanej siete. Z rozbaľovacieho zoznamu (obr. \ref{obr:eve_ng_add_network_dialog_network_types}) si následne zvolíme typ siete:
+Sieť do topológie pridáme kliknutím na ikonu \textbf{+} (\emph{Add an object}) a zo zoznamu vybierieme položku \emph{Network}. Objaví sa dialógové okno na úpravu parametrov pridávanej siete (obr. \ref{obr:eve_ng_add_network_dialog}). Pre správnu funkčnosť a prehľadnosť stačí zmeniť iba atribúty \emph{Name} a \emph{Type}. To textového poľa atribútu \emph{Name} zadáme názov pridávanej siete. Z rozbaľovacieho zoznamu (obr. \ref{obr:eve_ng_add_network_dialog_network_types}) si následne zvolíme typ siete:
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_add_network_dialog}
+    \includegraphics[width=0.75\textwidth,trim={13cm 7cm 13cm 5.2cm},clip]{eve_ng_add_network_dialog}
     \caption{Dialógové okno pre pridanie siete}
     \label{obr:eve_ng_add_network_dialog}
 \end{figure}
 
 \begin{description}
-    \item \textbf{bridge} - Slúži na vytvorenie siete na prepojenie zariadení v jednej topológii.
-    \item \textbf{Management (Cloud0)} - Sieť, pomocou ktorj vieme pripojiť topológiu k živej sieti alebo internetu.
-    \item \textbf{Cloud1-9} - Siete, ktoré slúžia na prepájanie topológii medzi sebou na jednom serveri.
+    \item [bridge] - Slúži na vytvorenie siete na prepojenie zariadení v jednej topológii.
+    \item [Management (Cloud0)] - Sieť, pomocou ktorj vieme pripojiť topológiu k živej sieti alebo internetu.
+    \item [Cloud1-9] - Siete, ktoré slúžia na prepájanie topológii medzi sebou na jednom serveri.
 \end{description}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{eve_ng_add_network_dialog_network_types}
+    \includegraphics[width=0.3\textwidth,trim={0cm 0cm 0.3cm 0cm},clip]{eve_ng_add_network_dialog_network_types}
     \caption{Typy sietí}
     \label{obr:eve_ng_add_network_dialog_network_types}
 \end{figure}
 
-Po pridaní siete do topológie k nej môžeme pripájať ľubovoľný počet zariadení prostredníctvom Ethernet rozhraní. Sieť bude pre zariadenia pripojené na sieť slúžiť ako \emph{hub (rozdeľovač)}.
+Po pridaní siete do topológie k nej môžeme pripájať ľubovoľný počet zariadení prostredníctvom Ethernet rozhraní. Sieť bude pre zariadenia, ktoré sú na ňu pripojené, slúžiť ako \emph{hub (rozbočovač)}, čím je možné v topológiách vytvárať \emph{broadcast} domény.
 
 V prípade, že topológiu pripájame na živú sieť prostredníctvom \emph{Cloud0}, je potrebné pre rozhranie zariadenia pripojeného k tejto sieti priradiť IP adresu buď pomocou DHCP, alebo staticky manuálnou konfiguráciou. Ak je potrebné, povolíme IP adresu na zariadení \emph{firewall}. Príklad topológie s rôznymi typmi sietí je znázornený na obr. \ref{obr:eve_ng_siete_v_topologii}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth,trim={0cm 0cm 0cm 4cm},clip]{eve_ng_siete_v_topologii}
+    \includegraphics[width=1\textwidth,trim={9cm 7cm 12.5cm 4cm},clip]{eve_ng_siete_v_topologii}
     \caption{Ukážka topológie s rôznymi typmi sietí}
     \label{obr:eve_ng_siete_v_topologii}
 \end{figure}
