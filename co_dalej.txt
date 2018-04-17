@@ -9,6 +9,13 @@ Zazitky:
 Diplomka
 
     -poslať marekovi vypracované návrhy topológii pre každý typ zariadenia spolu s rozsahmi portových čísel pre každú z nich.
+    
+    -urobiť 'spectator' účty - 20, pre každého študenta, aby som nemusel fotiť topológie, ale aby si ich pozreli sami
+        -login: spectator@#
+            -@ - cislo skupiny
+            -# - 1 alebo 2S
+
+
 
     -povedať Uramovej, že ako switch môže slúžiť aj "bridge" sieť v topológii - tá je zapnutá hneď po vložení a pripojené zariadenia sa vedia okamžite opingať - vhodné, keď chceme vytvoriť broadcastovú doménu pomocou prvku, ktorý nepotrebujeme ďalej konfigurovať tzv. hlúpy switch
 
