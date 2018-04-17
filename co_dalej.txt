@@ -8,20 +8,10 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -20 'spectator' účtov, pre každého študenta, aby som nemusel fotiť topológie, ale aby si ich pozreli sami
-        -login: spectator@#
-            -@ - cislo skupiny
-            -# - 1 alebo 2S
-        -nech si pomáhajú pôvodnou topológiou
-            -EVE-ng topológia - iba kvôli názvom rozhraní
-            -adresovanie, čísla AS
-
-
-    -povedať Uramovej, že ako switch môže slúžiť aj "bridge" sieť v topológii - tá je zapnutá hneď po vložení a pripojené zariadenia sa vedia okamžite opingať - vhodné, keď chceme vytvoriť broadcastovú doménu pomocou prvku, ktorý nepotrebujeme ďalej konfigurovať tzv. hlúpy switch
-
     -Vytvorit adresar CD
         -bude obsahovat vsetky subory z kapitoly Prilohy -> CD (pridať aj upravený integračný balíček a PDF s prácou)
 
+    -mb + tel + objednať dosky na diplomku osobne v edise
 
 
     -všetky zoznamy v práci sú formátované ako
@@ -38,16 +28,6 @@ Diplomka
 
 
 
-    -ešte raz urobiť dôkaz nezávislosti topológii po otvorení rovnakého súboru rôznymi používateľov
-        -dať tam iba screeny topológii prvého a druhého používateľa s viditeľnou adresou prvého zariadenia v topológii
-            -topológiu vytvoriť jednoduchšiu - 4 zariadenia (2+2 routre)
-
-    -rebenchmarkovať PAP topológiu
-
-
-
-
-
 
 Dodatočne po odovzdaní:
 
@@ -56,8 +36,14 @@ Dodatočne po odovzdaní:
         -topológia:
             CE1 - PE1 - CORE - PE2 - CE2
 
+    -nasadenie na mpls topológiu?
+
 ===============================================================================
 Co dalej?
+
+-opraviť bug:
+    -používateľ s rolou user vie spúšťať zariadenia v topológii, ale má mať iba oprávnenie prehliadať súbory a topológie.
+    -MOŽNÉ RIEŠENIE: pridať kontrolu používateľskej role v súbore "api.php" do funkcie zodpovednej sa spustenie zariadenia.
 
 -opraviť bug:
     -nefunguje pridávanie obrázkov do topológie cez "Add a new object -> Picture -> zadáme názov do 'Name' a v 'Browse' vyberieme súbor s obrázkom".
