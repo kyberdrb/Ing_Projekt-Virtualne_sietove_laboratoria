@@ -1,0 +1,9 @@
+Vygenerovanie protokolu originality pre záverečnú prácu
+
+1) fri.uniza.sk -> Intranet -> Záverečné práce
+2) Zadať prihlasovacie údaje, akými sa prihlasuje na školské počítače.
+3) Kliknúť na odkaz "Evidencia záverečných prác" (http://kniznica.utc.sk/ezp)
+4) Prihlasovacie meno: osobné číslo študenta
+   Heslo: ako do vzdelávania
+5) V stĺpci "Operácie" pre diplomovú prácu klikneme v rozbaľovacom menu na "Pridať novú verziu".
+6) Vyplníme všetky potrebné polia.
