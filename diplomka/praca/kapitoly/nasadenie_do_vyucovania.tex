@@ -1,7 +1,7 @@
 \chapter{Nasadenie do vyučovania}
 \label{chap:nasadenie_do_vyucovania}
 
-Aby bola preverená celková kvalita a využiteľnosť virtuálneho laboratória, bol nástroj EVE-ng nasadený na vypracovávanie rôznych topológii z vybraných predmetov, ktoré sú opísané v nasledujúcich častiach tejto kapitoly. Zároveň budú popísané aj problémy proces nasadzovania sprevádzali. Predmety sú uvedené v poradí podľa toho, v akom čase bol nástroj EVE-ng na nich používaný. Návod na vytvorenie vlastnej topológie je uvedený v kapitole \ref{chap:pouzivanie_eve_ng}.
+Aby bola preverená celková kvalita a využiteľnosť virtuálneho laboratória, bol nástroj EVE-ng nasadený na vypracovávanie rôznych topológii z vybraných predmetov, ktoré sú opísané v nasledujúcich častiach tejto kapitoly. Zároveň budú popísané aj problémy, ktoré proces nasadzovania sprevádzali. Predmety sú uvedené v poradí podľa toho, v akom čase bol nástroj EVE-ng na nich používaný. Návod na vytvorenie vlastnej topológie je uvedený v kapitole \ref{chap:pouzivanie_eve_ng}.
 
 
 
@@ -11,7 +11,7 @@ Aby bola preverená celková kvalita a využiteľnosť virtuálneho laboratória
 
 V rámci predmetu Projektovanie sietí 2 bol nástroj EVE-ng nasadený do vyučovania na vypracovávanie topológii s pokročilejšími sieťovými technológiami. Topológie boli spustené na virtuálnom EVE-ng serveri.
 
-V EVE-ng boli úspešne dokončené semestrálne práce s témou \emph{VPLS} a \emph{Seamless MPLS}. Téma \emph{EVPN} bola vypracovávaná v nástroji \emph{ViRo2}.
+V EVE-ng boli úspešne dokončené semestrálne práce zamerané na pokročilé technológie v témach z oblastí \emph{VPLS} a \emph{Seamless MPLS}. Téma \emph{EVPN} bola vypracovávaná v nástroji \emph{ViRo2}.
 
 Topológie semestrálnych prác sa skladali z týchto zariadení:
 
@@ -23,7 +23,7 @@ Topológie semestrálnych prác sa skladali z týchto zariadení:
     \item Nokia VSR - EVPN
 \end{itemize}
 
-Vypracovávanie semestrálnych prác sa však nezaobišlo bez komplkácii. Neustále bola zapracovávaná spätná väzba ostatných skupín ohľadom používania nástroja EVE-ng a podporovaných technológii zariadení. Zistilo sa, že virtuálna inštalácia EVE-ng neposkytuje dostatočný výkon, ktorý bol potrebný na vypracovanie všetkých semestrálnych prác. Preto bol vytvorený fyzický EVE-ng server, ktorý bol nasadený na nasledujúcom predmete, Počítačové siete 2.
+Vypracovávanie semestrálnych prác sa však nezaobišlo bez komplkácii. Neustále bola zapracovávaná spätná väzba študentov pracujúcich v skupinách ohľadom používania nástroja EVE-ng a podporovaných technológii zariadení. Zistilo sa napríklad, že virtuálna inštalácia EVE-ng neposkytuje dostatočný výkon, ktorý bol potrebný na vypracovanie všetkých semestrálnych prác. Preto bol vytvorený fyzický EVE-ng server, ktorý bol nasadený na nasledujúcom predmete, Počítačové siete 2.
 
 
 
@@ -94,32 +94,45 @@ Spomenutý súbor ukazuje veľké rozdiely v meraniach využitia operačnej pam�
 
 \section{Projektovanie sietí 1}
 
-{\huge TODO -dorobiť budúci týždeň - konzultovať s Marekom}
+V rámci predmetu Projektovanie sietí 1 bol nástroj EVE-ng nasadený do vyučovania na vypracovanie topológií na tému \emph{MPLS}. V prípade zlyhania EVE-ng boli pripravené aj záložné topológie v nástroji Dynamips/Dynagen.
 
--nasadiť na jedno cvičenie Projektovania sietí 1
--1 používateľ môže mať otvorenú iba 1 topológiu, ktorá je obmedzená na 63 súčasne spustených zariadení. Ak treba mať spustených 100 smerovačov, 10 smerovačov v 10 topológiách, potom je potrebné vytvoriť 2 používateľské účty - polovicu topológii spustiť v jednom a polovicu v druhom používateľskom účte.
+Najprv bola stanovená základná topológia (obr. \ref{obr:mpls_zakladna_topo}). Od nej sa odvíjali ostatné topológie. Celkovo bolo použitých týchto 6 typov zariadení:
+
+\begin{itemize}[noitemsep]
+    \item Cisco IOL prepínač
+    \item Cisco IOL smerovač
+    \item Cisco 3725 smerovač (Dynamips) s EtherSwitch modulom
+    \item Cisco 7200 smerovač (Dynamips)
+    \item Cisco vIOS smerovač (QEMU)
+    \item Cisco vIOS prepínač (QEMU)
+\end{itemize}
+
+Topológie pozostávali z 10 Cisco smerovačov resp. Cisco MLS. Z každého typu boli spustené 2 topológie t.j. 20 zariadení, okrem Cisco vIOS a vIOS L2 prepínača, z ktorých bola vytvorená iba jedna pre každý typ. 
+
+Rôzne zariadenia sa použili preto, aby boli otestované funkcie ich jednotlivých typov. Pokiaľ by sa ukázalo, že viaceré zariadenia podporujú nutné technológie, môžeme v budúcnosti použiť iba tie, ktoré vyžadujú najmenšie systémové prostriedky. Tak sa dá maximalizovať množstvo spustených zariadení.
 
 
-Použité zariadenia:
--Cisco IOL prepínač - 2x10
--Cisco IOL smerovač - 2x10
--Cisco 3725 - 2x10
--Cisco 7206 VXR - 2x10
--Cisco vIOS smerovač 1x10
--Cisco vIOS prepínač 2x10
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth,trim={0cm 0cm 0cm 0cm},clip]{mpls_zakladna_topo}
+    \caption{Základná MPLS topológia}
+    \label{obr:mpls_zakladna_topo}
+    \cite{mpls_zakladna_topo}
+\end{figure}
 
-Medzi R2, R3 a R4 bude bridge sieť namiesto prepínača, aby sme šetrili systémové prostriedky
+Študenti boli rozdelení do 10 skupín po dvoch študentoch. Z toho vyplýva, že bolo potrebné spustiť najmenej 10 topológii t.j. celkovo 100 zariadení.
 
-Cisco IOL zariadenia mali 3 Ethernet skupiny, aby sa názvy rozhraní zhodovali s pôvodným návrhom MPLS topológie.
+Avšak EVE-ng vo verzii \emph{Community} dokáže v jednej topológii stabilne spustiť najviac 63 zariadení. Preto boli vytvorené dva používateľské účty s rolou \emph{editor}. V oboch účtoch bolo vytvorených 6 topológii, pre každý typ zariadenia jedna. Pre spomenuté používateľské účty bol vybraný taký \emph{POD} identifikátor, aby sa portový rozsah začínal číslom 1, aby to zodpovedalo názvu smerovača prvého smerovača, R1. Zvolené identifikátory boli \emph{9} pre prvého a \emph{14} pre druhého používateľa.
 
-S Cisco IOL smerovačmi spraviť topológiu presne podľa pôvodného návrhu.
+Topológie boli vytvárané tak, aby bol zachovaný počet zariadení a ich prepojenia medzi nimi. Avšak názvy rozhraní rôznych typov zariadení neboli vždy rovnakého typu alebo neboli rovnako očíslované. Preto boli rozhrania pre jednotlivé typy zariadení vybrané tak, aby logicky podľa jednoduchého pravidla zodpovedali tým v pôvodnej topológii. Napr. Cisco IOL zariadenia mali 3 skupiny \emph{Ethernet} rozhraní namiesto dvoch, aby sa názvy rozhraní zhodovali s pôvodným návrhom MPLS topológie (e2/x).
 
-Pri ostatných topológiách povedať, že ak im nepôjde nakonfigurovať nech nahradia podľa výpisu príkazu --show ip int brief--
+Súčasťou topológie je aj \emph{bridge} zariadenie, ktorého úlohou je iba vytvoriť \emph{broadcast} doménu medzi smerovačmi R2, R3 a R4 a preposielať v rámci nej rámce. Výhodou takéhoto zariadenia sú minimálne požiadavky na systémové prostriedky, keďže po jeho vytvorení sa vytvorený iba \emph{bridge} rozhranie na serveri.
 
-Ešte študentom povedať portové čísla. 
+Každému študentovi bol vytvorený používateľský účet s rolou \emph{user}. Tento účet mal slúžiť na prehliadanie topológie priradenej danej skupine. V momente, keď sa študenti začali prihlasovať do webového rozhrania EVE-ng a začali otvárať potrebné súbory s topológiami, server v dôsledku tejto záťaže vykazoval maximálne vyťaženie a stal sa nestabilným. Nestabilita bola vyriešená ukončovaním výpočtovo náročných procesov pomocou vzdialeného prístupu cez SSH. Ukázalo sa, že otváranie topológie je v nástroji EVE-ng výpočtovo náročná činnosť Tomuto problému sa dá predísť tak, že topológie budú jednotliví používatelia otvárať postupne, jeden po druhom. Pri sledovaní záťaže počas otvárania topológie server vykazoval vyššiu záťaž, ktorá sa po dokončení načítavania ustálila.
 
-Používateľské účty: prs1set1, prs1set2 -> POD identifikátor pre tieto účty nebol vyberaný náhodne: 9 pre set1 a 14 pre set2, lebo tie začínajú svoj portový rozsah od 1 na konci
+Nakoniec si všetci študenti otvorili príslušné súbory s topológiou, aby videli, ktoré rozhrania je potrebné jednotlivým zariadeniam konfigurovať. Súbory s topológiou slúžili ako doplnok ku pôvodnému návrhu topológie, ktorý obsahoval dodatočné informácie, ako sú adresácia a čísla autonómnych systémov pre BGP.
 
+Žiaľ, študenti nevypracovali topológiu na tému MPLS v nástroji EVE-ng, pretože dokončovali úlohy z predchádzajúcich cvičení.
 
 
 

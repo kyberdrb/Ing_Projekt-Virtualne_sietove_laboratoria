@@ -8,18 +8,15 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -pridať zdroj na obrázok s MPLS topológiou
-    -do záveru: eve-ng a gns3 v lxc + openstack ako virtualne laboratorium
+    -zapracovať do práce pripomienky vedúceho
 
-    -naposledy si prekontrolovať diplomku:
-        -skontrolovať, či sa na každý obrázok odkazujem v texte (hlavne v kapitole "Používanie EVE-ng")
+    -dbať na formátovanie
         -všetky ukážky zdrojového kódu v práci sú formátované ako
             \begin{Verbatim}[samepage=true]
         -všetky zoznamy v práci sú formátované ako
             \begin{enumerate}[noitemsep]
         a
             \begin{itemize}[noitemsep]
-        -UPRAVIŤ DLHÉ RIADKY V PRÍLOHÁCH
 
 
     -Vytvorit adresar CD

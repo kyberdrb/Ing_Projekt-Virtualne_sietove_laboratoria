@@ -2,7 +2,21 @@ Instalacia VMWare Workstation Player 12.5.5 (cez x2go do odysea)
 
 Operacny system na serveri je Debian 9 Stretch. Do hostovskeho systemu sme potrebovali nainstalovat balicky potrebne pre instalaciu VMware. Medzi potrebnymi balickami pre VMware je aj linux-headers. VMware striktne vyzaduje, aby bola verzia linux-headers zhodna s aktualne beziacim jadrom, preto je potrebne operacny system na serveri aktualizovat.
 
-VMware instalujeme do hostovskeho operacneho systemu na to, aby VMware nainstaloval moduly do kernelu, lebo z kontajnera sa to neda, pretoze jadro je zdielane a neda sa modifikovat zvnutra kontajnera. Potom nainstalujeme VMware aj do kontajnera. Avsak pouzivame a vzdialene spravujeme iba VMware vnutri kontajnera, nie v hostovskom systeme. Kontajnerovy VMware potom spravujeme bud pomocou VNC, alebo inym sposobom zdielania vzdialenej pracovnej plochy v headless serveri.
+VMware instalujeme do hostovskeho operacneho systemu na to, aby VMware nainstaloval moduly do kernelu, lebo z kontajnera sa to neda, pretoze jadro je zdielane a neda sa modifikovat zvnutra kontajnera. Potom nainstalujeme VMware aj do kontajnera. Avsak pouzivame a vzdialene spravujeme iba VMware vnutri kontajnera, nie v hostovskom systeme. Kontajnerovy VMware potom spravujeme bud pomocou VNC, alebo inym sposobom zdielania vzdialenej pracovnej plochy v headless serveri, alebo si mozeme pouzit "SSH X11 Forwarding" pre otvorenie okna VMware Workstation Player prikazmi:
+
+    ssh -X <username>@<IP_adresa_servera>
+    vmplayer
+
+Najprv sa na EVE-ng server prihlasime pomocou SSH. Prepinac "-X" sluzi na aktivaciu, ktora umoznuje lokalne vidiet graficky vystup z headless servera na lokalnom pocitaci. Podmienkou je, aby na serveri v konfiguracnom subore SSH (/etc/ssh/sshd_config) bola moznost "X11Forwarding" odkomentovana a nastavena na "yes" t.j.
+
+    X11Forwarding yes
+
+Ak tak nie je, vykoname spominane zmeny, ulozime subor a restartujeme SSH na serveri
+
+    sudo systemctl restart ssh
+
+Po uspesnej konfiguracii uvidime grafické okno programu VMware Workstation Player.
+
 
 Zakladny postup:
 0) Uistime sa, ze mame nainstalovane linux-headers v rovnakej verzii ako aktualny kernel na hostovskom OS.

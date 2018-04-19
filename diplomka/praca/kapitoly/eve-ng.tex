@@ -181,7 +181,7 @@ Táto úprava je bližšie popísaná spolu s odchytenou prevádzkou v kapitole 
 
 \subsection{Úprava používateľských atribútov}
 
-Atribúty jednotlivých používateľov je možné meniť na obrazovke \emph{User mangement} a môže ich meniť iba používateľ s administrátorskými oprávneniami t.j. s rolou \emph{admin}. Niektoré atribúty, ako sú napr. celé meno používateľa alebo email, sa síce dajú nastaviť, ale následne sa nedajú odstrániť t.j. nastaviť na prázdnu hodnotu. Zmeny sa neprejavia ani vo web rozhraní v zozname používateľov (obrázok \ref{obr:eve_ng_pouzivatelia_web_email_predtym}), ani v MySQL databáze.
+Atribúty jednotlivých používateľov je možné meniť na obrazovke \emph{User mangement} a môže ich meniť iba používateľ s administrátorskými oprávneniami t.j. s rolou \emph{admin}. Niektoré atribúty, ako sú napr. celé meno používateľa alebo email, sa síce dajú nastaviť, ale následne sa nedajú odstrániť, t.j. nastaviť na prázdnu hodnotu. Zmeny sa neprejavia ani vo web rozhraní v zozname používateľov (obrázok \ref{obr:eve_ng_pouzivatelia_web_email_predtym}), ani v MySQL databáze.
 
 \begin{figure}
     
@@ -328,7 +328,7 @@ Keďže v súbore \texttt{messages\_en.js} sa vyskytujú iba definície chybový
 
 sa síce táto správa vyskytuje, ale zakomentovanie ľubovoľnej relevantnej časti kódu v metóde \texttt{closeLab} nemá vplyv na funkčnosť t.j. chybové hlásenie sa pri zatvorení topológie napriek tomu zobrazí.
 
-Preto sme sa nakoniec pozreli do súboru \texttt{messages\_en.js}. V ňom bola chybová správa definovaná v poli \texttt{MESSAGES} ako \texttt{MESSAGES[131]}. Znova sme začali hľadať výskytov tohto reťazca v súboroch nástrojom \emph{grep}. Výstup príkazu ukazoval na súbory
+Preto sme sa nakoniec pozreli do súboru \texttt{messages\_en.js}. V ňom bola chybová správa definovaná v poli \texttt{MESSAGES} ako \texttt{MESSAGES[131]}. Znova sme začali hľadať výskyty tohto reťazca v súboroch nástrojom \emph{grep}. Výstup príkazu ukazoval na súbory
 
 \begin{Verbatim}[samepage=true]
 /opt/unetlab/html/themes/default/js/functions.js
@@ -356,7 +356,7 @@ Keď sme sa ešte predtým rozhodli riešiť problém so zatváraním topológie
         }
     });
 \end{Verbatim}
-keďže aj v ňom sa nastavovala premenná \texttt{running\_nodes} Po zakomentovaní cyklu sa topológia síce dala zatvoriť aj pri spustených zariadeniach, ale so zariadeniami v nej sa nedalo pracovať napr. nebolo možné zastaviť už spustené zariadenia alebo spustiť ďalšie.
+keďže aj v ňom sa nastavovala premenná \texttt{running\_nodes} Po zakomentovaní cyklu sa topológia síce dala zatvoriť aj pri spustených zariadeniach, ale so zariadeniami v nej sa nedalo pracovať, napr. nebolo možné zastaviť už spustené zariadenia alebo spustiť ďalšie.
 
 Po opravení tohto nedostatku sa ale vyskytol ďalší problém, ktorý sa odhalil až po vyriešení tohto, a síce, že po zatvorení jednej topológie 
 %(obrázok \ref{obr:eve_ng_zle_portove_cisla_1}) 
@@ -368,7 +368,7 @@ Otvorili sme jednu topológiu a spustili v nej zariadenia. Po zatvorení tejto t
 %obrázky ukazujú 
 %scenáre ukazovali rovnaký počet spustených zariadení v dvoch rôznych topológiách, pričom zariadenia boli spustené iba v prvej topológii
 %na obrázku \ref{obr:eve_ng_zle_portove_cisla_1}. 
-Zariadenia v všetkých ďalších topológiách mali znefunkčnený vzdialený prístup. Buď sa na ne nedalo pripojiť vôbec, alebo sa konfigurovali zariadenia v pôvodnej topológii, čo dokazuje, že správne fungovali iba zariadenia v pôvodnej topológii. Pokiaľ mali topológie rovnaký počet zariadení a do druhej sme pridali nové zariadenie, toto zariadenie fungovalo bez komplikácii.
+Zariadenia vo všetkých ďalších topológiách mali znefunkčnený vzdialený prístup. Buď sa na ne nedalo pripojiť vôbec, alebo sa konfigurovali zariadenia v pôvodnej topológii, čo dokazuje, že správne fungovali iba zariadenia v pôvodnej topológii. Pokiaľ mali topológie rovnaký počet zariadení a do druhej sme pridali nové zariadenie, toto zariadenie fungovalo bez komplikácii.
 
 Tento jav nastal kvôli tomu, že portové čísla pre jednotlivé zariadenia v topológii sa začínajú číslovať od začiatku rozsahu, ktorý je pridelený danému používateľovi, bez ohľadu na to, ktorá topológia je momentálne otvorená.
 
@@ -436,7 +436,7 @@ Tu je uvedený krátky zoznam najdôležitejších adresárov v EVE-ng. Podrobne
 \subsection{Zálohovanie}
 \label{chap:zalohovanie}
 
-Kritické súbory a adresáre sú automatizovane zálohované nástrojmi \emph{cron} a \emph{rsync}. Pre tento účel bol vytvorený skript (viď kap. \ref{chap:cd} bod \ref{item:backup_script}), ktorý používa nástroj \emph{rsync}. Ten synchronizuje adresáre a súbory len vtedy, pokiaľ zistí, že sa majú nahradiť novšími verziami. Nástroj \emph{cron} je nastavený tak, že vykonáva tento skript každý deň počas noci, kedy sa na serveri vyskytuje minimálna aktivita. Všetky \emph{cron} úlohy daného používateľa je možné zobraziť príkazom \texttt{crontab -l} resp. \texttt{sudo crontab -l}.
+Kritické súbory a adresáre sú automatizovane zálohované nástrojmi \emph{cron} a \emph{rsync}. Pre tento účel bol vytvorený skript (viď kap. \ref{chap:cd} bod \ref{item:backup_script}), ktorý používa nástroj \emph{rsync}. Ten synchronizuje adresáre a súbory len vtedy, pokiaľ zistí, že sa majú nahradiť novšími verziami. Nástroj \emph{cron} je nastavený tak, že vykonáva tento skript každý deň počas noci, kedy sa na serveri vyskytuje minimálna aktivita. Zálohovací server, resp. kontajner, je dostupný pod adresným rozsahom DMZ s posledným oktetom \emph{.45}. Ten obsahuje všetky potrebné súbory a adresáre potrebné na obnovenie EVE-ng servera v prípade jeho zlyhania.
 
 
 

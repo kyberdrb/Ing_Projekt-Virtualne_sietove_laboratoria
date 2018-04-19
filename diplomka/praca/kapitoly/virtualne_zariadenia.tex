@@ -6,14 +6,34 @@ Dôležitú súčasť virtuálneho laboratória tvoria aj jeho zariadenia. Po an
 
 
 
+
 \section{Získavanie}
 
 Zariadenia boli získavané z rôznych zdrojov. Predovšetkým boli použité zariadenia, ktoré sa už na katedre používali. Zároveň sme pre usmernenie vyhľadávania vychádzali aj zo zoznamu zariadení, ktoré nástroj EVE-ng podporoval.
 
-Ako už bolo naznačené v časti \ref{chap:adresarova_struktura}, EVE-ng podporuje rôzne typy zariadení. Patria medzi ne napr. zariadenia typu Dynamips, Cisco IOU a QEMU.
+Ako už bolo naznačené v časti \ref{chap:adresarova_struktura}, EVE-ng podporuje rôzne typy zariadení. Patria medzi ne, podľa typu hypervízora, napr. zariadenia typu Dynamips, Cisco IOU a QEMU.
 
-Zoznam všetkých získaných virtuálnych zariadení je k dispozícii v kap. \ref{chap:cd} v bode \ref{item:sumarny_prehlad_zariadeni} Vśetky získané zariadenia sa nachádzajú na fyzickom EVE-ng serveri v adresári \\
-\texttt{/opt/unetlab/addons/rozne\_zariadenia}.
+
+
+
+
+\subsection{Metodika}
+
+Najprv sme vychádzali zo zoznamu podporovaných zariadení na oficiálnej stránke EVE-ng. Z neho potom boli vybrané tie typy zariadení, ktoré by mohli byť využiteľné pre vyučované témy na katedre. Medzi ne patrili hlavne zariadenia Cisco, Juniper a koncové zariadenia na platforme Linux a Windows.
+
+Následne sme prešli k vyhľadávaniu potrebných virtuálnych zariadení. Väčšina z nich pochádza z rôznych internetových zdrojov. Nie vždy boli zariadenia v správnom formáte a bolo potrebné ich pred použitím v EVE-ng vykonať ich konverziu, čo platilo hlavne pre QEMU/KVM zariadenia. Potom museli byť na serveri umiestnené do adresára, ktorý prislúchal danému typu zariadenia, či už podľa modelu alebo typu hypervízora pre zariadenie. Správneho adresár pre zariadenie bol vybraný hlavne podľa zdrojov \cite{eve_ng_qemu_namings, dalsie_navody_eve_ng} a súboru \\
+\texttt{/opt/unetlab/html/includes/init.php}. Tie obsahovali inštrukcie na správny formát názvu a oprávnení potrebných súborov a adresárov pre pridávané zariadenie. Podrobnejšie sa pridávaniu zariadení venuje kapitola \ref{chap:pridavanie_zariadeni}.
+
+Potom, ako sa zariadenie správnym spôsobom pridali na server, bola vo webovom rozhraní EVE-ng vytvorená topológiu, kde boli tieto zariadenia testované, či je možné ich spustiť v topológii, čomu sa venuje časť \ref{chap:test_spust}.
+
+
+
+
+
+\subsection{Vyhodnotenie}
+
+Zoznam všetkých získaných virtuálnych zariadení je k dispozícii v kapitole \ref{chap:cd} v bode \ref{item:sumarny_prehlad_zariadeni} Všetky získané zariadenia sa nachádzajú na fyzickom EVE-ng serveri v adresári \\
+\texttt{/opt/unetlab/addons/rozne\_zariadenia}. Zdroje, odkiaľ boli virtuálne zariadenia čerpané sú uvedené v kap. \ref{chap:cd} v bode \ref{item:zdroje_informacii_a_zariadeni} Spôsob konverzie zariadení a všeobecný spôsob ich pridávania na EVE-ng server je opísaný v kap. \ref{chap:cd} v bode \ref{item:pridavanie_konverzia_zariadeni}
 
 Získané zariadenia je možné použiť nielen v nástroji EVE-ng, ale aj v iných virtuálnych sieťových laboratóriách, napr. v GNS3. Pretože GNS3 a EVE-ng majú podobnú množinu podporovaných zariadení, bol pre importovanie zariadení z EVE-ng do GNS3 vytvorený skript (viď kap. \ref{chap:cd} bod \ref{item:gns3_import_skript}).
 
@@ -21,10 +41,16 @@ Získané zariadenia je možné použiť nielen v nástroji EVE-ng, ale aj v in�
 
 
 
+
 \section{Pridávanie}
+\label{chap:pridavanie_zariadeni}
 
 
-Zariadenia boli do nástroja EVE-ng pridávané predovšetkým podľa návodov z oficiálnej EVE-ng stránky \cite{eve_ng_howtos}. Pokiaľ na pridanie daného zariadenia na stránkach EVE-ng neexistoval žiadny záznam alebo bol neúplny či chybný, bol použitý návod z iného zdroja alebo bol vytvorený nový návod. Návody na pridanie zariadenia z iných zdrojov sa nachádzajú v kapitole \ref{chap:cd} v bode \ref{item:sumarny_prehlad_zariadeni} V tomto súbore sú pre potrebné zariadenia v stĺpci \emph{Popis} uvedené odkazy na jeho pridanie v časti \emph{Pridanie zariadenia}, čo je zrejmé aj z tabuľky \ref{tab:sumarny_prehlad_stlpce}. Novovytvorené návody pre niektoré zariadenia sú k dispozícii aj v kapitole \ref{chap:cd} v bodoch \ref{item:pridavanie_juniper_vmx}-\ref{item:pridavanie_cisco_asav}
+Zariadenia boli do nástroja EVE-ng pridávané predovšetkým podľa návodov z oficiálnej EVE-ng stránky \cite{eve_ng_howtos}. Pokiaľ na pridanie daného zariadenia na stránkach EVE-ng neexistoval žiadny záznam alebo bol neúplny či chybný, bol použitý návod z iného zdroja alebo bol vytvorený nový návod.
+
+Návody na pridanie zariadenia z iných zdrojov sa nachádzajú v kapitole \ref{chap:cd} v bode \ref{item:sumarny_prehlad_zariadeni} V tomto súbore sú pre potrebné zariadenia v stĺpci \emph{Popis} uvedené odkazy na jeho pridanie v časti \emph{Pridanie zariadenia}, čo je zrejmé aj z tabuľky \ref{tab:sumarny_prehlad_stlpce}. Nápomocný boli predovšetkým návody z zdroja \cite{dalsie_navody_eve_ng}, kde sa nachádzali aj návody pre zariadenia, ktoré síce nástroj EVE-ng podporoval, ale neuvádzal spôsob, ako ich na server pridať, ako napr. ExtremeXOS (prepínač), Cumulus VX (prepínač), Juniper Olive (smerovač) a CheckPoint Security Gateway (firewall).
+
+Novovytvorené návody pre niektoré zariadenia sú k dispozícii aj v kapitole \ref{chap:cd} v bodoch \ref{item:pridavanie_juniper_vmx}-\ref{item:pridavanie_cisco_asav} Nové návody boli vytvorené pre virtuálne zariadenia, ako sú napr. Juniper vMX (smerovač), VyOS (smerovač) či Cisco ASAv (firewall).
 
 Pokiaľ by sme chceli do EVE-ng pridať ďalšie zariadenia, odporúča sa, aby boli otestované podľa krokov popísaných v častiach \ref{chap:test_spust}, \ref{chap:testovanie_zariadeni_benchmark} a \ref{chap:testovanie_technologii}.
 
@@ -60,7 +86,7 @@ Ak sa ani po týchto úkonoch zariadenie nespustilo, odstránili sme ho zo serve
 
 \subsubsection{Vyhodnotenie}
 
-Výsledky testovania spustiteľnosti zariadení sú zhrnuté v súbore \\ \emph{sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods}. Súbor obsahuje viacero stĺpcov, ktorých význam je bližšie vysvetlený v tabuľke \ref{tab:sumarny_prehlad_stlpce}. Z výstupov tohto testovania bol vytvorený aj skript na úpravu šablón, ktorý je bližšie opísaný v závere tejto časti.
+Celkovo bolo takýmto spôsobom otestovaných takmer 100 typov zariadení. Niektoré typy zariadení boli testované vo viacerých verziách. Celkovo bolo v nástroji EVE-ng takto otestovaných približne 250 jednotlivých zariadení. Z nich bolo vybraných 81 tých najnovších a zároveň funkčných zariadení Tie sa nachádzajú na serveri v adresári \texttt{/opt/unetlab/addons/} v príslušnom poadresári daného hypervízora: \texttt{dynamips}, \texttt{iol} a \texttt{qemu}. Odtiaľ sú k dispozícií na vytvorenie topológií vo webovom rozhraní EVE-ng. Výsledky testovania spustiteľnosti zariadení sú zhrnuté v súbore \\ \emph{sumarny\_prehlad\_podporovanych\_zariadeni\_vo\_virtualnych\_sietovych\_nastrojoch.ods}. Súbor obsahuje viacero stĺpcov, ktorých význam je bližšie vysvetlený v tabuľke \ref{tab:sumarny_prehlad_stlpce}. Z výstupov tohto testovania bol vytvorený aj skript na úpravu šablón, ktorý je bližšie opísaný v závere tejto časti.
 
 \begin{longtabu} to \textwidth {| X[2.5,l,m] | X[5.0,l,m] |}
 \caption{Popis stĺpcov v sumárnom prehľade zariadení}
@@ -97,7 +123,7 @@ Pokiaľ sme zistili, že protokol vzdialeného prístupu sa odlišuje od predvol
 \subsection{Testovanie systémových požiadaviek}
 \label{chap:testovanie_zariadeni_benchmark}
 
-Testovanie systémových požiadaviek zariadení bolo realizované na fyzickom EVE-ng serveri. Tento druh testovania bol dôležitý preto, aby sme mohli danému zariadeniu nastaviť dostatočné technické parametre, čím zaistíme jeho plynulý chod a predídeme rôznym komplikáciám počas používania vo vyučovaní. Tieto parametre sú uložené v šablóne pre dané zariadenie.
+Testovanie systémových požiadaviek zariadení bolo realizované na fyzickom EVE-ng serveri. Tento druh testovania bol dôležitý preto, aby sme mohli danému zariadeniu nastaviť dostatočné technické parametre, ktoré boli zmerané nástrojmi na meranie systémových prostriedkov. Tak zaistíme jeho plynulý chod a predídeme rôznym komplikáciám počas používania vo vyučovaní. Tieto parametre sú uložené v šablóne pre dané zariadenie.
 
 Úprava šablón je realizovaná skriptom, po ktorého vykonaní sa príslušným zariadeniam zmenia konkrétne technické parametre v šablóne. Po úprave šablón sa zmeny prejavia okamžite a po pridaní zariadenia do topológie, kedy sa jeho parametre automaticky nastavia na správne hodnoty. Pre vybrané zariadenia boli merané tieto veličiny:
 
@@ -113,7 +139,7 @@ Operačná pamäť je najviac využitá po dokončení spúšťania zariadenia. 
 
 Na meranie využitia operačnej pamäte boli použité dva nástroje: \texttt{ps} a \texttt{ps\_mem}. Prvý z nich už bol na EVE-ng serveri prítomný, druhý bolo potrebné nainštalovať dodatočne. Na meranie boli použité dva nástroje, aby sa navzájom výsledky oboch nástrojov medzi sebou validovali.
 
-Disk najviac vyťažený predovšetkým pri spúšťaní zariadenia, ale môže byť vyťažený aj po dokončení spúšťania. Vyťaženie disku bolo do merania zahrnuté, aby sme vedeli odhadnúť, do akej miery je spúšťanie a beh zariadení ovplyvné načítavaním zariadenia z pevného disku.
+Disk je najviac vyťažený predovšetkým pri spúšťaní zariadenia, ale môže byť vyťažený aj po dokončení spúšťania. Vyťaženie disku bolo do merania zahrnuté, aby sme vedeli odhadnúť, do akej miery je spúšťanie a beh zariadení ovplyvnené načítavaním zariadenia z pevného disku.
 
 Z merania bola vynechaná frekvencia procesora a vyťaženie sieťového rozhrania. Frekvencia procesora bola vynechaná, lebo procesor podľa príkazu \texttt{watch lscpu | grep "MHz"} striedal iba dve frekvencie, 2000.000 MHz (minimálna frekvencia) a 2333.000 MHz (maximálna frekvencia), nezávisle na celkovom vyťažení procesora.
 
@@ -130,7 +156,7 @@ Na monitorovanie vybraných veličín sú určené rôzne nástroje a stratégie
     \item [netdata] monitorovanie rôznych systémových prostriedkov cez webové rozhranie
 \end{description}
 
-Z uvedených nástrojov sme sa rozhodli použiť nástroj \emph{dstat}. Hlavným dôvodom, prečo sme si sme sa rozhodli ďalej používať a upravovať tento nástroj a uprednostniť ho pred ostatnými nástrojmi, bolo predovšetkým ukladanie ziskaných údajov do CSV súboru. Dáta sa do CSV súboru zapisovali každú sekundu. Následne sme si vytvorili tabuľkový dokument, ktorý vyhodnocoval namerané dáta z CSV súboru. Vyhodnocovaním nameraných údajov sa budeme bližšie zaoberať v časti \ref{chap:testovanie_zariadeni_benchmark_vyhodnotenie}.
+Z uvedených nástrojov sme sa rozhodli použiť nástroj \emph{dstat}. Hlavným dôvodom, prečo sme sa rozhodli ďalej používať a upravovať tento nástroj a uprednostniť ho pred ostatnými nástrojmi, bolo predovšetkým ukladanie ziskaných údajov do CSV súboru. Dáta sa do CSV súboru zapisovali každú sekundu. Následne sme si vytvorili tabuľkový dokument, ktorý vyhodnocoval namerané dáta z CSV súboru. Vyhodnocovaním nameraných údajov sa budeme bližšie zaoberať v časti \ref{chap:testovanie_zariadeni_benchmark_vyhodnotenie}.
 
 Nástroj \emph{dstat} však bolo potrebné upraviť tak, aby zisťoval využitie operačnej pamäte iba pre zariadenia v EVE-ng topológii, nie celého systému.
 
@@ -240,51 +266,34 @@ Cieľom testovania technológii je zistiť, do akej je možné použiť virtuál
 
 Na testovanie podporovaných technológii vybraných zariadení bol vytvorený skript, ktorý je dostupný v kapitole \ref{chap:cd} v bode \ref{item:cisco_feature_testing_skript}. Skript sa skladal z viacerých skupín konfiguračných príkazov, pričom každá skupina mala za úlohu testovať podporu konkrétnej technológie na zariadení. Časti tohto skriptu boli postupne zadávané do konfigurácie zariadenia.
 
+Nižšie je uvedený zoznam testovaných zariadení pre tento účel:
+
+\begin{itemize}[noitemsep]
+    \item Cisco IOL prepínač
+    \item Cisco vIOS prepínač
+    \item Cisco 3725 s EtherSwitch modulom
+    \item Cisco 7200
+    \item Cisco IOL smerovač
+    \item Cisco vIOS smerovač
+    \item Cisco CSR
+    \item Cisco CSR-ng
+\end{itemize}
+
+
 
 
 
 \subsubsection{Vyhodnotenie}
 \label{chap:testovanie_technologii_vyhodnotenie}
 
-Po vykonaní konfiguračných príkazov zo skriptu bolo potrebné vyhodnotiť, či a do akej miery je testovaná technológia podporovaná. Technológia bola označená ako podporovaná vtedy, ak príkaz nevypísal žiadne chybové hlásenie. V opačnom prípade sa testovali alternatívne konfigurácie. Ak sa ani žiadna z alternatívnych konfigurácii nevykonala úspešne, technológia bola vyhodnotená ako nepodporovaná. Výsledky testovania technológii sú dostupné v kapitole \ref{chap:cd} v bode \ref{item:zoznam_technologii_s_podporou_zariadeni} Podporované vyučované témy testovaných zariadení sú farebne odlíšené, popr. doplnené krátkym komentárom.
+Po vykonaní konfiguračných príkazov zo skriptu bolo potrebné vyhodnotiť, či a do akej miery je testovaná technológia na danom zariadení podporovaná. Technológia bola označená ako podporovaná vtedy, ak príkaz nevypísal žiadne chybové hlásenie. V opačnom prípade sa testovali alternatívne konfigurácie. Ak sa ani žiadna z alternatívnych konfigurácii nevykonala úspešne, technológia bola vyhodnotená ako nepodporovaná. Výsledky testovania technológii sú dostupné v kapitole \ref{chap:cd} v bode \ref{item:zoznam_technologii_s_podporou_zariadeni} Podporované vyučované témy testovaných zariadení sú farebne odlíšené, popr. doplnené krátkym komentárom.
 
-Nižšie je uvedený zoznam vybraných predmetov a k nim prislúchajúce odporúčané zariadenia.
+Zo spomenutého súboru vyplýva, že prepínacie technológie sú dostupné iba na zariadeniach \emph{Cisco IOL prepínač} a \emph{Cisco vIOS prepínač}. EtherSwitch modul na prepínači Cisco 3725 síce podporoval niektoré prepínacie technológie, ale bolo ich výrazne menej. Prepínacími technológiami sa zaoberajú hlavne predmety Počítačové siete 1 a Pokročilé prepínanie v informačno-komunikačných sieťach.
 
-\begin{itemize}[noitemsep]
-    \item Počítačové siete 1
-    \begin{itemize}[noitemsep]
-        \item Cisco IOL prepínač
-        \item Cisco vIOS prepínač
-    \end{itemize}
-    \item Počítačové siete 2
-    \begin{itemize}[noitemsep]
-        \item Cisco IOL smerovač
-    \end{itemize}
-    \item Projektovanie sietí 1
-    \begin{itemize}[noitemsep]
-        \item Cisco IOL smerovač
-        \item Cisco 3725
-        \item Cisco 7200
-        \item Cisco vIOS smerovač
-        \item Cisco CSR
-        \item Cisco prepínač (IOL switch)
-        \item Cisco vIOS prepínač (QEMU)
-    \end{itemize}
-    \item Projektovanie sietí 2
-    \begin{itemize}[noitemsep]
-        \item Cisco IOL smerovač
-        \item Cisco CSR a CSR-ng
-    \end{itemize}
-    \item Pokročilé prepínanie v informačno-komunikačných sieťach
-    \begin{itemize}[noitemsep]
-        \item Rovnaké zariadenia, ako pre predmet Počítačové siete 1.
-    \end{itemize}
-    \item Pokročilé smerovanie v informačno-komunikačných sieťach
-    \begin{itemize}[noitemsep]
-        \item Rovnaké zariadenia, ako pre predmet Projektovanie sietí 1.
-    \end{itemize}
-\end{itemize}
+Špeciálne postavenie má \emph{Cisco IOL smerovač}, ktorý ako jediný v EVE-ng obsahuje sériové rozhrania, preto aj ako jediný v EVE-ng podporuje Point-to-point technológie. Tento druh smerovača je dôležité pre predmety Počítačové siete 1/2 a Pokročilé prepínanie/smerovanie v informačno-komunikačných sieťach. Ďalšou zvláštnosťou je, že v EVE-ng nie je možné odchytávať prevádzku pre sériové rozhranie. Zaujímavosťou je, že zo všetkých testovaných smerovačov mal najnižšie spotrebu operačnej pamäte, cca 250 MB. V nástroji EVE-ng je prítomný Cisco IOL smerovač z roku 2017 s operačným systémom \emph{IOS 15.7-3.M0a}.
 
-Cisco IOL smerovač ako jediný v EVE-ng obsahuje sériové rozhrania, preto ako jediný v EVE-ng podporuje Point-to-point technológie. Pre výučbu HSRP a VRRP protokolov sú odporúčané Cisco IOL a Cisco vIOS prepínač. Aplikačné protokoly, ako napr. NTP, DHCP alebo Syslog, sú, až na malé výnimky, podporované na všetkých Cisco prepínačoch a smerovačoch. GLBP IPv4 je podporované na všetkých testovaných zariadeniach, ale GLBP IPv6 podporujú iba smerovače Cisco 7200, Cisco IOL smerovač, Cisco vIOS smerovač a Cisco CSR-ng. Cisco podporuje VPLS iba na smerovačoch Cisco CSR a CSR-ng. IP SLA plne podporuje iba smerovač Cisco 3725.
+Ukázalo sa, že smerovače \emph{Cisco 3725}, \emph{Cisco 7200}, \emph{Cisco IOL smerovač} a \emph{Cisco vIOS smerovač} majú veľmi podobnú množinu funkcií, až na malé odchýlky. Cisco 3725 s EtherSwitch modulom ako jediný spomedzi nich podporuje SVI, PortFast, 802.1Q Trunk, VTPv1/v2, STP, HSRP a HSRPv2 (obe pre IPV4), VRRPv2, SPAN a IGMP Snooping. avšak nepodporuje GLBP IPv6 ani EIGRP IPv6. Prepínacie technológie sú dostupné iba pre rozhrania v EtherSwitch module. Spomínané 4 smerovače je možné použiť v topológiách pre uzly, ktoré nevyžadujú sériové prepojenia v rámci ľubovoľného predmetu.
 
-Zoznam odporúčaných zariadení slúži iba na odhad, ktoré zariadenia majú najväčšiu pravdepodobnosť využitia na danom predmete. V prípade, že má predmet v zozname viacero zariadení, treba sa na základe ďalších kritérii rozhodnúť, ktoré z nich budú použité v topológii. Môžeme napr. brať do úvahy iné vyučované témy v topológii, systémové požiadavky zariadenia, iné technické obmedzenia zariadenia a pod. Tento zoznam bol použitý v poslednej fáze projektu - \nameref{chap:nasadenie_do_vyucovania}, ktorej sa venujeme v kapitole \ref{chap:nasadenie_do_vyucovania}.
+Smerovače \emph{Cisco CSR} a \emph{Cisco CSR-ng} sú vhodné na pokročilejšie sieťové technológie, ako napr. VPLS, vyučovaných na predmetoch Projektovanie sietí 1/2. Zvláštnosťou je chýbajúca podpora GLBP pre IPv6 na \emph{Cisco CSR}. Zaujímavou je podpora niektorých prepínacích technológii pre Cisco CSR-ng a v menšej miere pre Cisco CSR, hoci je ich ešte menej, ako pri smerovači Cisco 3725. Nevýhodou oboch smerovačov, v porovnaní s ostatnými šiestimi, sú ich vyššia spotreba operačnej pamäte, cca 4,5 GB.
+
+Výsledky tohto prieskumu boli použité v poslednej fáze projektu - \nameref{chap:nasadenie_do_vyucovania}, ktorej sa venujeme v kapitole \ref{chap:nasadenie_do_vyucovania}. Vyhodnotenie slúži iba na odhad, ktoré zariadenia majú najväčšiu pravdepodobnosť využitia na danom predmete. V prípade, že má predmet v zozname viacero zariadení, treba sa na základe ďalších kritérií rozhodnúť, ktoré z nich budú použité v topológii. Môžeme napr. brať do úvahy iné vyučované témy v topológii, systémové požiadavky zariadenia, iné technické obmedzenia zariadenia a pod. V každom prípade je potrebné pred vytvorením akejkoľvek topológie použiť zoznam podporovaných funkcií pre zariadenia v kapitole \ref{chap:cd} v bode \ref{item:zoznam_technologii_s_podporou_zariadeni} 
