@@ -8,7 +8,7 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -zapracovať do práce pripomienky vedúceho
+    -čo najskôr zapracovať do práce čo najviac pripomienok vedúceho
 
     -dbať na formátovanie
         -všetky ukážky zdrojového kódu v práci sú formátované ako
