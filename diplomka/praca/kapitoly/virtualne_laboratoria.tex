@@ -1,7 +1,7 @@
 \chapter{Nástroje pre sieťovú virtualizáciu}
 \label{chap:nastroje_pre_siet_virt}
 
-V tejto kapitole uvádzam prehľad momentálne dostupných nástrojov virtuálnych sieťových laboratórií a ich porovnaniu na základe kritérií v časti \ref{chap:porovnavacie_kriteria} - \nameref{chap:porovnavacie_kriteria}.
+V tejto kapitole uvádzam prehľad momentálne dostupných nástrojov virtuálnych sieťových nástrojov a ich porovnaniu na základe kritérií v časti \ref{chap:porovnavacie_kriteria} - \nameref{chap:porovnavacie_kriteria}.
 
 
 
@@ -10,7 +10,7 @@ V tejto kapitole uvádzam prehľad momentálne dostupných nástrojov virtuálny
 \section{Porovnávacie kritériá}
 \label{chap:porovnavacie_kriteria}
 
-Pri porovnávaní jednotlivých virtuálnych sieťových laboratórii boli zohľadnené tieto kritériá:
+Pri porovnávaní jednotlivých virtuálnych sieťových nástrojov boli zohľadnené tieto kritériá:
 \begin{itemize}[noitemsep]
     \item Použité vývojové technológie.
     \item Podpora zariadení.
@@ -26,7 +26,7 @@ Pri porovnávaní jednotlivých virtuálnych sieťových laboratórii boli zohľ
     \item Dokumentácia
 \end{itemize}
 
-V nasledujúcich častiach sú popísané jednotlivé riešenia virtuálneho sieťového laboratória.
+Tieto body zároveň špecifikujú požiadavky na virtualizačný nástroj. V nasledujúcich častiach sú popísané jednotlivé riešenia virtuálneho sieťového nástroja.
 
 
 
@@ -40,7 +40,7 @@ Nevýhodou je, že najnovšia verzia je prístupná výlučne pre členov \emph{
 
 Na druhej strane je vyvíjaný pre platformy Windows, Linux a Android, po emulácii aj na macOS \cite{packet_tracer_mac} a dokonca sú podporované aj mobilné platformy prostredníctvom aplikácie \emph{Packet Tracer Mobile}.
 
-Nástroj Packet Tracer je možné používať výlučne lokálne, pretože pre tento nástroj neexistuje serverové riešenie. Vzdialený prístup, vytváranie a  topológii sa realizuje prostredníctvom grafického rozhrania aplikácie. Nástroj nevie rozlišovať rôzne typy používateľov. Je nenáročný na systémové zdroje. Umožňuje pracovať súčasne iba s jednou topológiou, pričom topológiu nie je možné prepojiť so živou sieťou.
+Nástroj Packet Tracer je možné používať výlučne lokálne, pretože pre tento nástroj neexistuje serverové riešenie. Vzdialený prístup, vytváranie a správa topológii sa realizuje prostredníctvom grafického rozhrania aplikácie. Nástroj nevie rozlišovať rôzne typy používateľov. Je nenáročný na systémové zdroje. Umožňuje pracovať súčasne iba s jednou topológiou, pričom topológiu nie je možné prepojiť so živou sieťou.
 
 Na obrázku \ref{obr:packet_tracer} je znázornené rozhranie nástroja Cisco Packet Tracer.
 
@@ -58,7 +58,7 @@ Na obrázku \ref{obr:packet_tracer} je znázornené rozhranie nástroja Cisco Pa
 
 \section{Dynamips/Dynagen}
 
-Dynamips je emulátor Cisco smerovačov určený pre OS  Linux/Windows \cite{dynamips}. Nástroj v prevažnej miere napísaný v jazyku C a má otvorený zdrojový kód \cite{dynamips_github}. Podporuje výlučne vybrané typy Cisco smerovačov \cite{dynamips}. Ovláda sa cez príkazový riadok. Portové čísla pre vzdialený prístup na konzolu sa zariadeniam prideľujú manuálne. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}. Na vytváranie topológii sa používa jednoduchý značkovací jazyk \emph{NETMAP}.
+Dynamips je emulátor Cisco smerovačov určený pre operačné systémy Linux a Windows \cite{dynamips}. Nástroj v prevažnej miere napísaný v jazyku C a má otvorený zdrojový kód \cite{dynamips_github}. Podporuje výlučne vybrané typy Cisco smerovačov \cite{dynamips}. Ovláda sa cez príkazový riadok. Portové čísla pre vzdialený prístup na konzolu sa zariadeniam prideľujú manuálne. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}. Na vytváranie topológii sa používa jednoduchý značkovací jazyk \emph{NETMAP}.
 
 Nástroj Dynagen tvorí nadstavbu pre platformu Dynamips a slúži na jednoduchšiu prácu s topológiami \cite{dynamips}. Topológie môže spravovať výlučne administrátor (alebo vlastník), pretože ani Dynamips, ani Dynagen nevedia rozlišovať rôzne typy používateľov. Počet topológii, ktoré môžu byť súčasne spustené je obmedzený iba výkonom servera. Na jednej topológii môžu pracovať aj viacerí študenti, tým že sa rozdelia portové čísla zariadení v topológii medzi študentov. Nástroj Dynamips umožňuje prepojiť topológiu so živou sieťou \cite{dynamips, dynamips_nil}.
 
@@ -126,9 +126,9 @@ Nástroj v súčasnosti existuje iba vo verzii \emph{Personal Edition} s licenci
 
 \section{ViRo2}
 
-ViRo2 je virtuálne laboratórium vytvorený na Katedre informačných sietí na Fakulte riadenia a informatiky Žilinskej univerzity v Žiline. Nástroj vznikol ako výsledok diplomovej práce Ing. Petra Hadača, pričom pokračoval v predchádzajúcej verzii nástroja ViRo. Nástroj je postavený na platforme Linux. Využíva technológie tzv. \emph{LAMP Stack} servera: Linux, Apache, MySQL, PHP (Drupal). Využíva virtualizáciu pomocou QEMU/KVM a Dynamips. Jeho hlavnou výhodou je možnosť rezervovať si topológiu. Ďalšou možnou nevýhodou je, že webové rozhranie stavia na platforme Drupal, ktorého popularita výrazne klesá \cite{stackoverflow_survey}. Okrem toho, takéto nástroje pre správu webovej stránky, ako napr. Wordpress, Joomla a.i. sa môžu stať potenciálnym bezpečnostným rizikom. \cite{incapsula_cms}
+ViRo2 je virtuálne nástroj vytvorený na Katedre informačných sietí na Fakulte riadenia a informatiky Žilinskej univerzity v Žiline. Nástroj vznikol ako výsledok diplomovej práce Ing. Petra Hadača, pričom pokračoval v predchádzajúcej verzii nástroja ViRo. Nástroj je postavený na platforme Linux. Využíva technológie tzv. \emph{LAMP Stack} servera: Linux, Apache, MySQL, PHP (Drupal). Využíva virtualizáciu pomocou QEMU/KVM a Dynamips. Jeho hlavnou výhodou je možnosť rezervovať si topológiu. Ďalšou možnou nevýhodou je, že webové rozhranie stavia na platforme Drupal, ktorého popularita výrazne klesá \cite{stackoverflow_survey}. Okrem toho, takéto nástroje pre správu webovej stránky, ako napr. Wordpress, Joomla a.i. sa môžu stať potenciálnym bezpečnostným rizikom. \cite{incapsula_cms}
 
-Spravuje sa prostredníctvom web rozhrania, SSH alebo VNC prístupu. Používateľom je dostupné webové rozhranie. Portové čísla na vzdialený prístup sa zariadeniam dajú nastaviť manuálne. Vzdialený prístup k zariadeniam v topológii je realizovaný viacerými spôsobmi: pomocou nástroja \emph{virsh}, aplikáciou \emph{Virtual Machine Manager} prístupnou cez \emph{vnc}, \emph{noVNC} serverom alebo SSH tunelom. Vytváranie topológii a správu zariadení sa používa grafický nástroj \emph{Virtual Machine Manager}. Nástroj ViRo2 vie rozlišovať používateľov s rolou \emph{administrátor}, \emph{učiteľ} a \emph{študent}. Topológie môže vytvárať iba používateľ s rolou \emph{učiteľ} alebo \emph{administrátor}. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Napriek tomu môžu na jednej topológii môžu pracovať aj viacerí študenti rovnakým spôsobom, ako pri nástroji Dynamips/Dynalab. Nástroj umožňuje prepojiť topológiu so živou sieťou pomocou \emph{bridge} rozhrania \cite{viro_hadac}.
+Spravuje sa prostredníctvom web rozhrania, SSH alebo VNC prístupu. Používateľom je dostupné webové rozhranie. Portové čísla na vzdialený prístup sa zariadeniam dajú nastaviť manuálne. Vzdialený prístup k zariadeniam v topológii je realizovaný viacerými spôsobmi: pomocou nástroja \emph{virsh}, aplikáciou \emph{Virtual Machine Manager} prístupnou cez \emph{vnc}, \emph{noVNC} serverom alebo SSH tunelom. Vytváranie topológii a správu zariadení sa používa grafický nástroj \emph{Virtual Machine Manager}. Nástroj ViRo2 vie rozlišovať používateľov s rolou \emph{administrátor}, \emph{učiteľ} a \emph{študent}. Topológie môže vytvárať iba používateľ s rolou \emph{učiteľ} alebo \emph{administrátor}. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Napriek tomu môžu na jednej topológii pracovať aj viacerí študenti rovnakým spôsobom, ako pri nástroji Dynamips/Dynalab. Nástroj umožňuje prepojiť topológiu so živou sieťou pomocou \emph{bridge} rozhrania \cite{viro_hadac}.
 
 
 
@@ -157,7 +157,7 @@ Vývoj tohto nástroja bol zastavený. UNetLab ďalej vyvíjala iná skupina vý
 \section{EVE-ng}
 \label{chap:virt_lab_eve_ng}
 
-EVE-ng je simulačný nástroj sietí, ktorý vznikol ako klon a nasledovník nástroja UNetLab. Celkovou funkcionalitou, až na niektoré zmeny, napr. použitie MySQL namiesto SQLite, pridaná podpora pre ďalšie zariadenia), a vzhľadom webového rozhrania sa preto veľmi podobá na svojho predchodcu. Nástroj je postavený na platforme Linux a vyvíjaný prevažne v jazykoch JavaScript a PHP. Web rozhranie je realizované ako webová aplikácia s použitím framework nástroja \emph{Angular JS} a \emph{Twitter Bootstrap} \cite{eve_ng_technologies}.
+EVE-ng je simulačný nástroj sietí, ktorý vznikol ako klon a nasledovník nástroja UNetLab. Celkovou funkcionalitou, až na niektoré zmeny, napr. použitie MySQL namiesto SQLite, pridaná podpora pre ďalšie zariadenia, a vzhľadom webového rozhrania sa preto veľmi podobá na svojho predchodcu. Nástroj je postavený na platforme Linux a vyvíjaný prevažne v jazykoch JavaScript a PHP. Web rozhranie je realizované ako webová aplikácia s použitím framework nástroja \emph{Angular JS} a \emph{Twitter Bootstrap} \cite{eve_ng_technologies}.
 
 EVE-ng sa v priebehu marca 2018 rozdelilo na tri verzie: Community, Professional a Learning Centre. Community verzia je open-source, aj keď \emph{gitlab} repozitár bol neprístupný pre verejnosť v priebehu novembra/decembra 2017. Napriek tomu sú na serveri všetky súbory prístupné a upravovateľné. Túto verziu je možné slobodne šíriť a upravovať. Verzia Professional obsahuje niektoré funkcionality, ktoré uľahčujú prácu s nástrojom, ale vývojári sa rozhodli spoplatniť ju. Learning Centre verzia obsahuje funkcionality na nasadenie do produkčného prostredia, ako je napr. rozdelenie používateľov do používateľských rolí. Podrobný zoznam podporovaných funkcii v jednotlivých verziách je dostupný v \cite{eve_ng_versions_table} a \cite{eve_ng_versions_list}.
 
@@ -170,7 +170,7 @@ Vzhľad webového rozhrania EVE-ng je znázornený na obrázku \ref{obr:eve_ng_w
     \label{obr:eve_ng_web}
 \end{figure}
 
-Z tabuľky vyplýva, že verzia \emph{Community} je ako jediná bezplatná. Najväčšími výhodami ostatných verzii je rozdelenie používateľov do používateľských rolí a izolácia ich súborov (iba v \emph{Learning Centre}), zatvorenie topológie s už spustenými zariadeniami, prehľad zatvorených topológii so spustenými zariadeniami a zvýšený limit na počet spustených zariadení pre topológiu.
+Z tabuľky vyplýva, že verzia \emph{Community} je ako jediná bezplatná. Najväčšími výhodami ostatných verzií je rozdelenie používateľov do používateľských rolí a izolácia ich súborov (iba v \emph{Learning Centre}), zatvorenie topológie s už spustenými zariadeniami, prehľad zatvorených topológii so spustenými zariadeniami a zvýšený limit na počet spustených zariadení pre topológiu.
 
 Doplnením a rozšírením funkcionality EVE-ng Community verzie je venovaná kapitola \ref{chap:eve_ng_uprava_zdroj_kodov} - \nameref{chap:eve_ng_uprava_zdroj_kodov}.
 
@@ -224,6 +224,8 @@ GNS3 VM aj vzdialený server je postavený na platforme Linux. Vzdialený server
 GNS3 VM, resp. vzdialený server, sa spravuje cez príkazový riadok. Používateľovi je dostupná klientská aplikácia. Portové čísla na vzdialený prístup sa zariadeniam prideľujú automaticky, avšak je možné manuálne meniť rozsah, v akom sa majú portové čísla automaticky prideľovať, dokonca umožňuje aj manuálnu zmenu čísla portu pre jednotlivé zariadenia \cite{gns3_console_ports, gns3_console_ports_remote}. Vzdialený prístup k zariadeniam v topológii je realizovaný protokolom \emph{telnet}, \emph{vnc} alebo \emph{rdp}. Topológie sa vytvárajú v klientskej aplikácii prepájaním uzlov medzi sebou pomocou myši. V predvolenom nastavení sú všetky topológie na GNS3 VM / vzdialenom serveri zdieľané a môže ich meniť ktokoľvek, kto má k serveru z GNS3 klientskej aplikácie, pretože v predvolenom nastavení nástroj nevie rozlišovať rôzne typy používateľov ani ich izolovať. Počet topológii, ktoré môžu byť súčasne spustené je obmedzené iba výkonom servera. Napriek tomu môžu na jednej topológii môžu pracovať aj viacerí študenti tým, že si otvoria rovnaký projekt na vzdialenom serveri. Zmeny v takejto zdieľanej topológii sa prejavia okamžite všetkým používateľom, ktorí majú túto topológiu práve otvorenú. Jeden používateľ môže mať spustených aj viacero topológii, klientská aplikácia však dovoľuje pracovať iba s jednou naraz. Aj GNS3, podobne ako aj ďalšie nástroje, umožňuje prepojiť topológiu so živou sieťou pomocou \emph{bridge} rozhrania alebo \emph{NAT} siete.
 
 Vývoj tohto nástroja stále pokračuje. Na obrázku \ref{obr:gns3_client} je znázornená klientská aplikácia GNS3 Client.
+
+\setlength{\textfloatsep}{50pt}
 
 \begin{figure}
     \centering

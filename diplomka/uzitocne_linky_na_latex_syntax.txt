@@ -96,3 +96,7 @@ https://tex.stackexchange.com/questions/134162/getting-two-pictures-to-appear-on
 
 Orezávanie obrázkov
 https://tex.stackexchange.com/questions/57418/crop-an-inserted-image/57420#57420
+
+Zmenšenie riadkovania pre blok textu
+https://tex.stackexchange.com/questions/48741/temporarily-increase-line-spacing/48743#48743
+(posledný príklad z odkazovaného príspevku - cez "renewcommand")

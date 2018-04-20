@@ -8,11 +8,14 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -čo najskôr zapracovať do práce čo najviac pripomienok vedúceho
-
     -dbať na formátovanie
         -všetky ukážky zdrojového kódu v práci sú formátované ako
+            \renewcommand\baselinestretch{1}
             \begin{Verbatim}[samepage=true]
+                <ukážka_zdrojového_kódu>
+            \end{Verbatim}
+            \renewcommand\baselinestretch{1.5}
+
         -všetky zoznamy v práci sú formátované ako
             \begin{enumerate}[noitemsep]
         a

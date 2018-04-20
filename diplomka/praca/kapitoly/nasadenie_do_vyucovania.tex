@@ -18,12 +18,12 @@ Topológie semestrálnych prác sa skladali z týchto zariadení:
 \begin{itemize}[noitemsep]
     \item Cisco IOL smerovač - VPLS, Seamless MPLS
     \item Cisco CSR - VPLS
-    \item Juniper Olive - Seamless MPLS
+    \item Juniper Olive 12.1 - Seamless MPLS
     \item Juniper vMX 15 - VPLS
     \item Nokia VSR - EVPN
 \end{itemize}
 
-Vypracovávanie semestrálnych prác sa však nezaobišlo bez komplkácii. Neustále bola zapracovávaná spätná väzba študentov pracujúcich v skupinách ohľadom používania nástroja EVE-ng a podporovaných technológii zariadení. Zistilo sa napríklad, že virtuálna inštalácia EVE-ng neposkytuje dostatočný výkon, ktorý bol potrebný na vypracovanie všetkých semestrálnych prác. Preto bol vytvorený fyzický EVE-ng server, ktorý bol nasadený na nasledujúcom predmete, Počítačové siete 2.
+Vypracovávanie semestrálnych prác sa však nezaobišlo bez komplkácii. Neustále bola zapracovávaná spätná väzba študentov pracujúcich v skupinách ohľadom používania nástroja EVE-ng a podporovaných technológii zariadení. Zistilo sa napríklad, že virtuálna inštalácia EVE-ng neposkytuje dostatočný výkon, ktorý bol potrebný na vypracovanie všetkých semestrálnych prác. Preto bol vytvorený fyzický EVE-ng server, ktorý bol nasadený na nasledujúcom predmete, Počítačové siete 2. Fyzický server vykazoval vyšší výkon v porovnaní s virtuálnym, čo mohlo byť s veľkou pravdepodobnosťou spôsobené dodatočným hypervízorom VMware pri virtuálnom serveri.
 
 
 
@@ -79,14 +79,17 @@ Pri testovaní DCE/DTE rozhraní sme narazili na obmedzenie nástroja EVE-ng. Co
   
 Zmerané boli aj systémové požiadavky celkovej topológie na fyzickom EVE-ng serveri. Po vyhodnotení výsledkov merania sme zistili, že celá topológia, 33 Cisco IOL smerovačov a 16 koncových zariadení Alpine Linux, sa spúšťala približne 2 minúty, spotrebovala 13GB operačnej pamäte a procesor vyťažovala na 21\%. Celkovo by sme podľa celkového vyťaženia CPU mohli spustiť 4 takéto topológie, avšak množstvo operačnej pamäte by dovoľovalo spustiť iba 3. Tabuľkový dokument s výsledkami merania systémových požiadaviek topológie je prítomný v kapitole \ref{chap:cd} v bode \ref{item:nasadenie_ps2_benchmark}
 
-Spomenutý súbor ukazuje veľké rozdiely v meraniach využitia operačnej pamäte medzi nástrojmi \emph{ps} a \emph{ps\_mem} v hárku \emph{VstupVystup}, hoci sa merala rovnaká množina procesov. Po manuálnom overení sa ukázalo, že prvý menovaný nástroj vykazoval presnejšie výsledky, preto boli pri odhadoch použité ním namerané hodnoty.
-
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth,trim={12cm 2cm 23.7cm 7cm},clip]{eve_ng_ppp_zakladna_topo_v1}
     \caption{Základná PPP topológia - prvotný návrh}
     \label{obr:eve_ng_ppp_zakladna_topo_v1}
 \end{figure}
+
+Spomenutý súbor ukazuje veľké rozdiely v meraniach využitia operačnej pamäte medzi nástrojmi \emph{ps} a \emph{ps\_mem} v hárku \emph{VstupVystup}, hoci sa merala rovnaká množina procesov. Po manuálnom overení sa ukázalo, že prvý menovaný nástroj vykazoval presnejšie výsledky, preto boli pri odhadoch použité ním namerané hodnoty.
+
+Študenti počas vypracovávaní topológie na predmete Počítačové siete 2 nezaznamenali žiadny rozdiel oproti nástroju Dynamips/Dynagen, keďže sa na zariadenia prihlasovali rovnako, pomocou nástroja \emph{PuTTY} IP adresou a portom, pričom zariadenia poskytovali, až na malé výnimky rovnaké funkcie, ako v nástroji Dynamips/Dynagen. Nástroj EVE-ng na fyzickom serveri bol počas celej doby vypracovávania stabilný. Zariadenia boli počas celého vyučovania spustené a samovoľne sa nevypínali. Fyzický EVE-ng server je tým pádom vhodný na používanie na predmete Počítačové siete 2.
+
 
 
 
@@ -120,6 +123,8 @@ Rôzne zariadenia sa použili preto, aby boli otestované funkcie ich jednotliv�
     \cite{mpls_zakladna_topo}
 \end{figure}
 
+Celkovo bolo v topológii spustených 40 Dynamips zariadení, 40 IOL zariadení, a 20 QEMU zariadení. Vyťaženie procesora sa pohybovalo medzi 35-65\%, pričom bolo využitých približne 28 GB operačnej pamäťe.
+
 Študenti boli rozdelení do 10 skupín po dvoch študentoch. Z toho vyplýva, že bolo potrebné spustiť najmenej 10 topológii t.j. celkovo 100 zariadení.
 
 Avšak EVE-ng vo verzii \emph{Community} dokáže v jednej topológii stabilne spustiť najviac 63 zariadení. Preto boli vytvorené dva používateľské účty s rolou \emph{editor}. V oboch účtoch bolo vytvorených 6 topológii, pre každý typ zariadenia jedna. Pre spomenuté používateľské účty bol vybraný taký \emph{POD} identifikátor, aby sa portový rozsah začínal číslom 1, aby to zodpovedalo názvu smerovača prvého smerovača, R1. Zvolené identifikátory boli \emph{9} pre prvého a \emph{14} pre druhého používateľa.
@@ -145,8 +150,8 @@ Na predmetoch, kde nástroj EVE-ng nasadený bol, sa ukázalo, že ho je možné
 
 Pri nasadení na predmet Projektovanie sietí 2, kde bola použitá virtuálna inštalácia EVE-ng, bol naopak nástroj nestabilný, zariadenia často zamŕzali a pri zadávaní príkazov do konzoly bola prítomná vyššia odozva z klávesnice. Mohlo to byť spôsobené mnohými faktormi, či už samotnou virtuálnou platformou VMware, alebo nesprávne nastavenými systémovými parametrami pre jednotlivé zariadenia v topológii.
 
-Študenti počas vypracovávaní topológie na predmete Počítačové siete 2 nezaznamenali žiadny rozdiel oproti nástroju Dynamips/Dynagen, keďže sa na zariadenia prihlasovali rovnako, pomocou nástroja \emph{PuTTY} IP adresou a portom, pričom zariadenia poskytovali, až na malé výnimky rovnaké funkcie, ako v nástroji Dynamips/Dynagen. Nástroj EVE-ng na fyzickom serveri bol počas celej doby vypracovávania stabilný. Zariadenia boli počas celého vyučovania spustené a samovoľne sa nevypínali.
-
 Napriek mnohým nedostatkom nástroja EVE-ng, je minimálne pre učiteľov výhodou, že môžu vytvárať topológie z grafického rozhrania, namiesto z príkazového riadku. Nevýhodami sú nemožnosť stabilne spúšťať viac ako 63 zariadení v jednej topológii. Jednotliví používatelia a študenti si svoje topológie nemôžu spravovať nezávisle na sebe, keďže toto je možné iba v Learning Centre verzii nástroja, ktorá súbory jednotlivých používateľov od seba oddeľuje.
 
-Čo sa týka odhadov systémových požiadaviek topológii, tie môžeme odhadnúť súčtom systémových požiadaviek jednotlivých zariadení, ktoré sa v topológii budú nachádzať. Systémové požiadavky vybraných zariadení sú k dispozícii na CD v kapitole \ref{chap:cd} v bode \ref{item:all_benchmarks}
+Čo sa týka odhadov systémových požiadaviek topológii, tie môžeme odhadnúť súčtom systémových požiadaviek jednotlivých zariadení, ktoré sa v topológii budú nachádzať. Systémové požiadavky vybraných zariadení sú k dispozícii na CD v kap. \ref{chap:cd} v bode \ref{item:all_benchmarks} Tak môžu byť vopred odhadnuté systémové požiadavky konkrétnej topológie.
+
+Z meraní systémových požiadaviek celých topológií z predmetov Počítačové siete 2 a Projektovanie sietí 1 vyplýva, že namerané systémové požiadavky zariadení uvedené v kap. \ref{chap:cd} v bode \ref{item:all_benchmarks} reprezentujú najhorší možný scenár a v skutočnosti fyzický EVE-ng server bude mať ešte dostatočnú výkonovú rezervu. Rezervu je možné pri homogénnej topológii kvantifikovať jednoduchšie, než pri topológiách s rôznymi druhmi zariadení.
