@@ -1,4 +1,5 @@
 %\documentclass[a4paper,12pt]{report}
+%\documentclass[a4paper,twoside,11pt]{report}
 \documentclass[a4paper,11pt]{report}
 \usepackage[slovak,english]{babel}
 \usepackage[T1]{fontenc}             
@@ -18,7 +19,9 @@
 \usepackage[pdftex,unicode,bookmarks=false]{hyperref}
 
 % Janechova sablona pouziva XeTEX - ale ked sa pouzije v tejto
-% sablone, znaky s diakritikou sa nezobrazia spravne
+% sablone, znaky s diakritikou sa nezobrazia spravne;
+% Mozno bude treba pridat dalsie balicky, aby sa vsetky znaky
+% zobrazovali spravne
 %\usepackage[xetex,unicode,bookmarks=false]{hyperref}
 
 
@@ -62,6 +65,18 @@
 % Mensie rozostupy medzi prvkami v zoznamoch
 % napr. pre zoznamy "itemize" a "enumerate"
 \usepackage{enumitem}
+
+
+% Ukazky zdrojovych kodov sa nerozdelia
+% na viac stran, ale zostanu pohromade
+% na jednej strane
+\usepackage{fancyvrb}
+
+% Viacriadkovy komentar
+\usepackage{verbatim}
+
+% Obrázok/tabuľka až na ďalšej strane
+\usepackage{afterpage}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -169,7 +184,6 @@
 \input{kapitoly/eve-ng}
 \input{kapitoly/analyza_vyucovania}
 \input{kapitoly/virtualne_zariadenia}
-\input{kapitoly/pouzivanie_eve-ng}
 \input{kapitoly/nasadenie_do_vyucovania}
 \input{kapitoly/zaver}
 \input{kapitoly/prilohy}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="eVPN" id="a7252e03-586e-4d0c-b584-e2bafe74a4aa" version="1" scripttimeout="300" lock="0" author="skupina2">
+  <topology>
+    <nodes>
+      <node id="1" name="CE1" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-15.4.2T.bin" ethernet="1" nvram="1024" ram="240" serial="1" console="" delay="0" icon="Router.png" config="0" left="660" top="25">
+        <interface id="0" name="e0/0" type="ethernet" network_id="5"/>
+      </node>
+      <node id="3" name="CE2" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-15.4.2T.bin" ethernet="1" nvram="1024" ram="240" serial="1" console="" delay="0" icon="Router.png" config="0" left="255" top="306">
+        <interface id="0" name="e0/0" type="ethernet" network_id="3"/>
+      </node>
+      <node id="4" name="PE2" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-15.4.2T.bin" ethernet="1" nvram="1024" ram="240" serial="1" console="" delay="0" icon="Router.png" config="0" left="510" top="306">
+        <interface id="0" name="e0/0" type="ethernet" network_id="3"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="1"/>
+        <interface id="48" name="e0/3" type="ethernet" network_id="6"/>
+      </node>
+      <node id="5" name="PE3" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-15.4.2T.bin" ethernet="1" nvram="1024" ram="240" serial="1" console="" delay="0" icon="Router.png" config="0" left="825" top="306">
+        <interface id="0" name="e0/0" type="ethernet" network_id="2"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="4"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="6"/>
+      </node>
+      <node id="6" name="CE3" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-15.4.2T.bin" ethernet="1" nvram="1024" ram="240" serial="1" console="" delay="0" icon="Router.png" config="0" left="1095" top="309">
+        <interface id="0" name="e0/0" type="ethernet" network_id="2"/>
+      </node>
+      <node id="2" name="PE1" type="qemu" template="olive" image="olive-12-1-R1-9" console="telnet" cpu="4" cpulimit="0" ram="2048" ethernet="4" uuid="5b774864-ca0b-4a06-8b4c-90c2de70808f" delay="0" icon="JuniperMX.png" config="0" left="657" top="174">
+        <interface id="0" name="em0" type="ethernet" network_id="5"/>
+        <interface id="1" name="em1" type="ethernet" network_id="1"/>
+        <interface id="2" name="em2" type="ethernet" network_id="4"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="2" type="bridge" name="Net-R5iface_0" left="801" top="355" visibility="0"/>
+      <network id="3" type="bridge" name="Net-R3iface_0" left="411" top="361" visibility="0"/>
+      <network id="6" type="bridge" name="Net-PE2iface_48" left="555" top="352" visibility="0"/>
+      <network id="1" type="bridge" name="Net-PE2iface_16" left="558" top="347" visibility="0"/>
+      <network id="4" type="bridge" name="Net-PE3iface_16" left="499" top="278" visibility="0"/>
+      <network id="5" type="bridge" name="Net-CE1iface_0" left="720" top="91" visibility="0"/>
+    </networks>
+  </topology>
+</lab>

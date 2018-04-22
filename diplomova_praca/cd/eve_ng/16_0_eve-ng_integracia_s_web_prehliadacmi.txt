@@ -1,0 +1,145 @@
+EVE-ng integrácia s web prehliadačmi
+
+Integračný balíček pre EVE-ng slúži na pohodlnejšiu prácu so zariadeniami v topológii vo web rozhraní. Baliček umožňuje po kliknutí na zariadenie otvoriť vzdialenú konzolu zariadenia. Nemusíme sa tak pripájať na zariadenia manuálne, neustálym zadávaním IP adresy servera, portu a protokolu pre dané zariadenie v topológii.
+
+*************
+INŠTALÁCIA
+
+1) LINUX
+  https://github.com/kyberdrb/eve-ng-integration
+  https://www.youtube.com/watch?v=6Pvx5d6x_SA
+
+2) WINDOWS
+  -Stiahneme si inštaláčný balíček z
+    http://www.eve-ng.net/index.php/downloads/windows-client-side-pack
+  konkrétne z
+    https://mega.nz/#!uw5AHIwT!3YiQZKBUvf8WyzjIn3B4_fSD9FUDPC-v2rhqTJ-V8z0
+  alebo
+    https://cloud.mail.ru/public/B58R/6mRpyWyi6
+
+  Nainštalujeme všetky súčasti v rámci inštalácie.
+
+*************
+NASTAVENIE WEB PREHLIADAČOV
+
+Integračný balíček by sa mal aktivovať okamžite aj bez reštartu prehliadača. Ak sa tak nestane, vykonáme nižšie uvedené kroky.
+
+1) Firefox
+  https://github.com/kyberdrb/eve-ng-integration
+  
+  v odpovediach na otázky:
+
+    "Does not work in Firefox but works in another browser"
+  a
+    "Firefox says The address wasn't understood when you clickeď on a node")
+
+2) Chrome
+  Na rovnakej adrese ako pri prehliadači Firefox, len v odpovediach na otázky:
+
+    "Does not work in Google Chrome but works in another browser"
+  a
+    "Chrome/Chromium downloads RDP files instead of opening"
+
+*************
+PREDVOLENÉ APLIKÁCIE PRE PROTOKOLY
+
+  telnet  -> štandardná aplikácia pre terminál
+  docker  -> štandardná aplikácia pre terminál
+  rdp     -> xrdpviewer/vinagre
+  vnc     -> vinagre
+
+
+*************
+ÚPRAVA OTVÁRANÝCH APLIKÁCII
+
+  Úprave otváraných aplikácii  sa venujem v časti "ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM" , konkrétne v časti "PO INŠTALÁCII".
+
+
+*************
+ZABEZPEČENIE VZDIALENÉHO PRÍSTUPU KU ZARIADENIAM
+
+
+Integračný balíček som upravil tak, že sa do SSH tunelov presmerovavajú protokoly VNC a telnet. Táto funkcionalita je dostupná okamžite po inštalácii upraveného balíčka. Pokiaľ je už nainštalovaný predvolený integračný balíček, môžeme dodatočne upraviť potrebné súbory.
+
+PRED INŠTALÁCIOU
+    upravene subory pred inštaláciou:
+        ./MAKEFILE
+        ./bin/eve-ng-integration
+
+PO INŠTALÁCII
+    upravene subory po inštalácii:
+        /bin/eve-ng-integration
+        /usr/share/applications/eve-ng-integration.desktop
+
+    Vykonat prikazy (ako standardny pouzivatel)
+        xdg-mime default eve-ng-integration.desktop x-scheme-handler/vnc
+        sudo update-desktop-database -q
+        sudo update-mime-database -n /usr/share/mime
+
+
+
+Pri SSH autentifikácii pomocou hesla je potrebné pripojiť zariadenia s VNC prístupom v dvoch krokoch:
+  - Prvý krát sa vytvorí port-forwarding v rámci SSH tunela a pripojenie zlyhá.
+  - Druhý krát sa ale pripojenie podarí aj bez opätovného zadania hesla, pretože príkaz vytvárajúci SSH tunel ho drží otvorený určitý čas.
+ 
+Pri SSH autentifikácii pomocou kľúčov sa pripojenie podarí na prvý krát, ale je potrebné pridať dodatočné zdržanie, lebo prvý krát sa VNC pripojenie vytvorí skôr ako SSH port-forwarding.
+
+
+*************
+ZABEZPEČENIE WIRESHARK ODCHYTÁVANIA
+
+Predvolene je na odchytávanie používaný účet "root" na EVE-ng serveri. Bezpečnejšie je, keď vytvoríme nového štandardného používateľa, ktorý bude mať opravnenie odchytavat prevadzku na rozhraniach. Takéhoto používateľa som nazval "wireshark_capture".
+
+Používateľský účet "wireshark_capture" bude slúžiť výlučne na odchytávanie
+prevádzky. Kvôli bezpečnosti bude patriť do osobitnej skupiny a nebude mať 
+pridelené žiadne ďalšie oprávnenia.
+
+Na serveri preto vykonáme nasledovné príkazy:
+
+  sudo useradd wireshark_capture -m -s /bin/bash
+  sudo passwd wireshark_capture
+  sudo setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/sbin/tcpdump
+
+Príkaz "setcap" aktivuje odchytávanie prevádzky nástrojom "tcpdump" pre všetkých štandardných používateľov t.j. aj pre používateľa "wireshark_capture".
+
+Je nutné vykonať spomenutý príkaz, pretože nástroj "tcpdump" môžu v predvolene používať iba používateľ "root" a tí používatelia, ktorí sú oprávnený používať príkaz "sudo".
+  
+Na klientskom počítači preto vykonáme nasledovné príkazy:
+
+  ssh-copy-id wireshark_capture@<ip_adresa_servera>
+
+V prípade, že je nainštalovaný predvolený EVE-ng integračný balíček, musíme vykonať zmeny v súbore "/bin/eve-ng-integration".
+
+V riadku
+
+  if url.scheme == 'capture':
+      cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+            -l root {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+
+zmeníme názov používateľského účtu, pomocou ktorého budeme odchytávať prevádzku v topológii, z "root" na "wireshark_capture".
+
+  if url.scheme == 'capture':
+    cmd = 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
+          -l wireshark_capture {host} tcpdump -i {path} -n -s 0 -U -w -'.format(**data)
+
+Súbor uložíme a v EVE-ng topológii potom otestujeme, či odchytávanie prevádzky funguje správne. Postup odchytávania prevádzky je uvedený v súbore "eve-ng_odchytavanie_prevadzky_v_topologii.txt".
+
+
+
+
+Zdroje:
+  EVE install Telnet VNC Wireshark Local management
+    https://www.youtube.com/watch?v=Ea4U93991dw
+    
+  https://github.com/SmartFinn/eve-ng-integration
+  https://github.com/kyberdrb/eve-ng-integration
+  http://www.eve-ng.net/index.php/downloads/windows-client-side-pack
+  http://forum.802101.com/solved-doesn-t-work-wireshark-t163.html
+  https://unix.stackexchange.com/questions/75902/how-to-run-xfce-terminál-with-different-commands-per-tab-and-keep-using-the-tabs
+  https://gist.github.com/scy/6781836
+  https://bbs.archlinux.org/viewtopic.php?pid=1474224#p1474224
+  https://wiki.wireshark.org/CaptureSetup/CapturePrivileges#Other_Linux_based_systems_or_other_installation_methods
+  https://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html
+  
+  Konečne vyriešené odchytávanie ako štandardný používateľ
+    http://daydreamer66.blogspot.sk/2014/06/rhel-how-can-non-root-users-can-run.html

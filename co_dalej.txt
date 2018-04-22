@@ -8,22 +8,11 @@ Zazitky:
 ===============================================================================
 Diplomka
 
-    -dbať na formátovanie
-        -všetky ukážky zdrojového kódu v práci sú formátované ako
-            \renewcommand\baselinestretch{1}
-            \begin{Verbatim}[samepage=true]
-                <ukážka_zdrojového_kódu>
-            \end{Verbatim}
-            \renewcommand\baselinestretch{1.5}
-
-        -všetky zoznamy v práci sú formátované ako
-            \begin{enumerate}[noitemsep]
-        a
-            \begin{itemize}[noitemsep]
-
+    -23.4. 2018 - DAT PRACU NA KONTROLU ORIGINALITY + DAT TLACIT PRACU :D - priniest si original zadania, ked si budem davat tlacit pracu. Praca je hotova s vnutrom na druhy den, najskor v utorok.
+        -OPYTAT SA, CI SA TO MOZE TLACIT OBOJSTRANNE, ALEBO LEN NA JEDNU STRANU? - podla toho upravit formatovanie PDFka
 
     -Vytvorit adresar CD
-        -bude obsahovat vsetky subory z kapitoly Prilohy -> CD (pridať aj upravený integračný balíček a PDF s prácou) + pridat UNL subory z EVE-ng servera na PS2 (PAP, CHAP) a PrS1 (MPLS) a odkázať sa na ne v príslušných častiach v kapitole "Nasadenie do vyučovania"
+        -bude obsahovat vsetky subory z kapitoly Prilohy -> CD - nakoniec pridať aj PDF s prácou !!! 
 
     
 

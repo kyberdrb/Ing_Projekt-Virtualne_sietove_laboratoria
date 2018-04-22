@@ -1,0 +1,51 @@
+Po zmenšení šírky okna pod 992 pixelov sa zobrazí správa
+
+    Display too small
+    This device is not large enough, you need 992px width at least.
+
+Preto som začal hľadať súbory, obsahujúce časť tejto správy.
+
+    grep -rnw '/opt/unetlab/html/' -e 'Display too small'
+
+Príkaz ma naviedol na súbor "/opt/unetlab/html/themes/default/index.html", ktorý ako jediný obsahoval tento text.
+
+...
+<body>
+        <div class="hidden-md hidden-lg container" id="small">
+                ...
+        </div>
+        <div class="hidden-xs hidden-sm container-fluid" id="body">
+                ...
+        </div>
+</body>
+...
+
+Skúsil som zakomentovať riadky od značky "<body>" po "</body>" a uložiť súbor, ale následkom tejto zmeny mi nešli otvárať topológie a vyskytovali sa rôzne grafické chyby vo vykresľovaní topológie a jej prvkov.
+
+Po experimentovaní so zakomentovaním a upravovaním rôznych riadkov som našiel spôsob, ako túto správu vypnúť. Riešenie spočívalo v zakomentovaní celej "div" časti s 'id="small"' a odstránení tried "hidden-xs" a "hidden-sm" z definície časti "div" s 'id="body"' t.j.
+
+...
+<body>
+        <!--<div class="hidden-md hidden-lg container" id="small">
+                ...
+        </div>-->
+        <!--<div class="hidden-xs hidden-sm container-fluid" id="body">-->
+        <div class="container-fluid" id="body">
+</body>
+...
+
+Prvá úprava vypne hlásenie o nízkom rozlíšení obrazovky. Po uložení súboru po prvej úprave a znovunačítaní stránky uvidíme prazdnu bielu obrazovku, ak je okno prehliadača príliš malé t.j. menšie ako 992 pixelov.
+
+Druhá úprava odstráni obmedzenie pri vykresľovaní obsahu topológie. Po uložení súboru po prvej úprave a znovunačítaní stránky uvidíme pôvodnú topológiu bez výrazných grafických chýb aj vtedy, ak je okno prehliadača príliš malé t.j. menšie ako 992 pixelov.
+
+Po vykonaných úpravách sa problém so zobrazovaním chybovej správy vyriešil, avšak sa vyskytol jeden kozmetický nedostatok. Po zmenšení okna sa zdeformoval posuvník na približovanie a odďaľovanie topológie. Tento problém sa mi nepodarilo ošetriť. Z "Inšpektora prvkov" vo webovom prehliadači som zistil, že tento jav môžu spôsobovať napevno zadané hodnoty v súboroch
+
+    /opt/unetlab/html/themes/default/bootstrap/css/bootstrap.min.css
+    /opt/unetlab/html/themes/adminLTE/build/bootstrap-less/variables.less
+
+Samotný prvok sa volá "plus-minus-slider" a posuvná plocha sa volá "zoomslide", Preto sa riešenie môže skrývať v úprave súborov z výstupu nižšie uvedených súborov.
+    
+    grep -rnw '/opt/unetlab/html/' -e 'plus-minus-slider'
+    grep -rnw '/opt/unetlab/html/' -e 'zoomslide'
+
+Bol to práve prvok "zoomslide", ktorý sa neúmerne zväčšil. Jeho funkčnosť - približovať a oddaľovať prvky v topológii však zostala zachovaná aj napriek tomuto vedľajšiemu účinku.

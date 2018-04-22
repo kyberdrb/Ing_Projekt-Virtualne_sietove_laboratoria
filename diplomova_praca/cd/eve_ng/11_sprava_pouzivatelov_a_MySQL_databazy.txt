@@ -1,0 +1,266 @@
+-Po prihlásení do EVE-ng klikneme na úvodnej obrazovke na "Management" -> "User management"
+-Zobrazí sa zoznam používateľov v EVE-ng.
+
+Poznámka: POD je identifikačné číslo používateľa, podľa ktorého sa určuje rozsah portov pre zariadenia v projekte. Musí byť unikátne pre každého používateľa.
+
+Všetci používatelia sú uložení v MySQL databáze.
+
+Z hľadiska bezpečnosti je vhodné zmeniť heslo do MySQL databázy v EVE-ng.
+
+Spravovať používateľov môže iba používateľ s rolou "Administrator".
+
+
+===========================================================================
+===========================================================================
+
+OBNOVA HESLA KU ROOT ÚČTU V MYSQL DATABÁZE
+
+
+-V prípade, že sa nevieme prihlásiť k MySQL databáze ani lokálne alebo SSH
+ príkazmi
+
+    mysql -u root --password='heslo_ku_databázi' eve_ng_db
+    mysql -u root -p eve_ng_db
+
+ môžeme ho zmeniť nasledovne:
+
+  -Zastavíme MySQL službu
+
+    sudo systemctl stop mysql
+  
+  -Vytvoríme adresár pre MySQL socket, pretože vo verzii 5.7 sa tento
+   adresár vymaže po zastavení MySQL služby. Keby sme tento krok nevykonali,
+   núdzové prihlásenie sa do databázy pomocou "mysqld_safe" by zlyhalo s 
+   chybovým hlásením
+   "mysqld_safe Directory '/var/run/mysqld' for UNIX socket file don't exists."
+
+    mkdir -p /var/run/mysqld
+    chown mysql:mysql /var/run/mysqld
+
+  -Spustíme MySQL službu v núdzovom režime a presunieme ju na pozadie
+   (znakom '&' na konci príkazu), aby sme mohli aj naďalej pracovať
+   s konzolou.
+    
+    sudo mysqld_safe --skip-grant-tables --skip-networking &
+
+  -Prihlásime sa do databázy. Keďže MySQL služba je spustená v núdzovom
+   režime, výzva na zadanie hesla pre "root" používateľa bude preskočená.
+
+    mysql -u root
+
+  -V príkazovom riadku MySQL vykonáme príkaz na znovunačítanie "Grant" 
+   tabuliek (tabuliek s informáciami o používateľských účtoch v MySQL)
+
+    FLUSH PRIVILEGES;
+
+  -Zmeníme heslo pre "root" používateľa v MySQL
+
+    ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+
+  -Po zmene hesla sa objaví hlásenie
+   "Query OK, 0 rows affected (0.00 sec)"
+
+  -Ukončíme MySQL službu spustenú v núdzovom režime
+   
+    sudo kill $(sudo cat /var/run/mysqld/mysqld.pid) 
+
+  -Spustíme MySQL službu v štandardnom režime
+
+    sudo systemctl start mysql
+
+  -Prihlásime sa do databázy ako "root" používateľ s novým heslom
+
+    mysql -u root -p eve_ng_db
+
+  -Ak sme sa prihlásili, heslo bolo úspešne zmenené.
+
+
+Zdroje
+  https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password
+  https://stackoverflow.com/questions/42153059/mysqld-safe-directory-var-run-mysqld-for-unix-socket-file-dont-exists/42169345#42169345
+  https://stackoverflow.com/questions/42153059/mysqld-safe-directory-var-run-mysqld-for-unix-socket-file-dont-exists/42169345#comment75732997_42169345
+  https://dev.mysql.com/doc/refman/5.7/en/grant-tables.html
+
+===========================================================================
+===========================================================================
+
+
+
+===========================================================================
+===========================================================================
+PRIPOJENIE SA NA MYSQL SERVER CEZ SSH TUNEL
+
+Pripojenie na server je zabezpečené SSH tunelom. SSH prístup je zabezpečený SSH kľúčom.
+
+===========================================================================
+VYTVORENIE SSH TUNELA
+
+Otvoríme terminal. Vytvoríme SSH tunel ku MySQL databázi na vzdialenom serveri.
+
+  ssh -f -o ExitOnForwardFailure=yes -L 3306:localhost:3306 <REMOTE_SERVER_IP> sleep 30
+
+Otvorí sa SSH pripojenie (tunel) ku vzdialenému serveru s definovaným mapovaním portov. MySQL port sa presmeruje do SSH tunela. SSH pripojenie sa následne presunie na pozadie (prepínač "-f").
+
+Ak sa na MySQL server nepripojíme počas doby uvedenej za prikazom "sleep", tunel bude automaticky zatvorený. Tunel zostane otvorený počas celého používania aplikácie MySQL resp. 
+MySQL Workbench. Po ukončení práce s aplikáciou sa SSH tunel automaticky ukončí.
+
+===========================================================================
+1) MySQL CLI
+Otvoríme dalsiu kartu v terminali alebo novy terminal.
+Pripojime sa ku MySQL databázi
+
+  mysql -h 127.0.0.1 -P 3306 -u root -p eve_ng_db
+
+Zadame heslo do databaze.
+Po zadani hesla mozeme vykonavat prikazy v MySQL konzole.
+
+===========================================================================
+2) MySQL Workbench
+
+-Klikneme na ikonku "+" vedla "MySQL Connections"
+-Otvorí sa dialogove okno "Setup New Connection". Zadame nasledovne parametre
+  -Connection Name:     <nazov_pripojenia>
+  -Connection Method:   Standard TCP/IP over SSH  <= takto pristupime k MySQL databaze cez SSH port forwarding
+  -"Parameters" karta
+    -SSH Hostname:      <IP_adresa_MySQL_servera>:22
+    -SSH Username:      <meno_pouzivatela>
+    -SSH Password:      <nemusime zadavat, ak nechceme alebo pouzivame SSH kluc>
+    -SSH Key File:      <vyberieme_subor_s_nasim_privatnym_klucom>
+    -MySQL Hostname:    127.0.0.1   <= localhost (kvoli bezpecnosti)
+    -MySQL Server Port: 3306
+    -Username:          <meno_mysql_pouzivatela>   <= obvykle root
+    -Password:          <nemusime zadavat, ak nechceme>
+    -Default Schema:    <zadame nazov databazy, do ktorej sa predvolene pripojime>
+  -Ulozime nastavenia stlacenim tlacidla "OK"
+
+-Na uvodnej obrazovke sa objavi novovytvorene pripojenie. Klikneme
+nan pravym tlacidlom mysi -> Edit Connection
+  -Otvorí sa dialogove okno "Manage Server Connections"
+  -V hornej casti klikneme na kartu "Remote Management"
+    -Zvolime "SSH login based management"
+      -Hostname:
+      -Port:
+      -Username:
+      -Password:
+      -Ak pouzivame SSH kluc, zaskrtneme "Authenticate Using SSH Key"
+        -SSH Key Path:  <zadame absolutnu cestu k nasmu privatnemu SSH klucu>
+  -Nastavenia ulozime kliknutim na tlacidlo "Close"
+
+-Klikneme na novovytvorene MySQL pripojenie lavym tlacidlom mysi.
+-Ak sa objavi dialogove okno "Conenct to MySQL Server", zadame heslo k databázi
+prislusneho MySQL pouzivatela.
+-Aby sme nacitali vysetky databazy, klikneme na tlacidlo "Reconnect to DBMS"
+(posledne tlacidlo na hornej liste - ikonka Databazoveho servera so sipkami).
+-Po kliknuti na toto tlacidlo sa nacita zoznam vsetkych databaz ulozenych
+na MySQL serveri v "/var/lib/mysql/". Zoznam databaz sa zobrazi v lavom
+dolnom rohu okna.
+-Teraz mozeme s databazou pracovat napr.
+  -otvorime si eve_ng_db -> Tables -> users
+  -klikneme na tabulku 'users' pravym tlacidlom mysi
+    -> Select rows - Limit 1000
+  -Otvorí sa nova karta s vypisanym zoznamom pouzivatelov.
+
+===========================================================================
+===========================================================================
+
+
+VYTVORENIE POUŽÍVATEĽA
+Web GUI:
+-Klikneme na tlačidlo "Add user"
+-Vyplíme potrebné údaje (prinajmenšom polia označené hviezdičkou). Položku "POD" nemeníme.
+-Keďže ešte v EVE-ng nie je podporovaná rola bežného používateľa, položku "Role" nastavíme na "Administrator"
+-Používateľa uložíme kliknutím na tlačidlo "Add".
+-Použvateľský účet je teraz aktívny a je možné sa pomocou neho prihlásiť do EVE-ng.
+__________________________________________________________________________
+
+Databáza:
+V prípade, že používateľa nemôžeme pridať z web rozhrania, musíme sa prihlásiť na server cez SSH a pridať ho do databázy (MySQL) maunálne príkazom (vykonáme ako root => sudo -i)
+
+  echo "INSERT INTO users VALUES ('nazov_pouzivatela',NULL,'upravit.mail@provider.com',-1,'Eve-NG Administrator','85262adf74518bbb70c7cb94cd6159d91669e5a81edf1efebd543eadbda9fa2b',NULL,'','admin','',1);" | mysql --host=localhost --user=root --password=eve-ng eve_ng_db
+
+  resp.
+
+  mysql --host=localhost --user=root --password=eve-ng eve_ng_db  
+  INSERT INTO users VALUES ('nazov_pouzivatela',NULL,'upravit.mail@provider.com',-1,'Eve-NG Administrator','85262adf74518bbb70c7cb94cd6159d91669e5a81edf1efebd543eadbda9fa2b',NULL,'','admin','',1);
+
+Tento záznam pridá používateľa
+
+  admin
+
+s heslom
+
+  eve
+  
+a s rolou "admin" (administrátor).
+Overíme, či sa záznam vložil do tabuľky "users"
+
+  mysql --host=localhost --user=root --password=eve-ng eve_ng_db
+  select * from users
+
+Mali by sme vidieť aktuálne pridaného používateľa. Teraz sa môžeme prihlásiť pod týmto účtom do EVE-ng web rozhrania. Ak to stále nejde, prihlásime sa pod iným, funkčným, účtom a upravíme POD identifikátor na unikátnu hodnotu novému používateľovi. Odhlásime sa.
+
+Heslo pre každého používateľa ukladá do databázy ako výsledok funkcie SHA256 vypočítaná z reťazca zadaného ako heslo. Môžeme si vygenerovať aj vlastné heslo príkazom
+
+  sha256sum heslo_pre_používateľa
+
+Výsledok môžeme použiť v príkaze INSERT.
+
+Dôkaz, že sa naozaj používa funkcia SHA256 je zrejmý z výstupu príkazu
+
+  grep -rnw '/opt/unetlab/html/' -e 'sha256'
+
+Výstup príkazu ukazuje na nasledovné súbory:
+
+  /opt/unetlab/html/includes/api_authentication.php
+  /opt/unetlab/html/includes/api_uusers.php
+  /opt/unetlab/html/includes/functions.php
+
+===========================================================================
+
+VYMAZANIE POUŽÍVATEĽA
+-V riadku konkrétneho používateľa klikneme na ikonku odpadkového koša v stĺpci "Actions".
+
+===========================================================================
+
+ÚPRAVA POUŽÍVATEĽA / RESET HESLA
+Web GUI:
+-V riadku konkrétneho používateľa klikneme na ikonku zápisníka "Edit" v stĺpci "Actions".
+-Upravíme požadované údaje (položku "POD" neupravujeme!)
+__________________________________________________________________________
+
+Databáza:
+  mysql --host=localhost --user=root --password=eve-ng eve_ng_db
+  update users set role='admin' where username='pavel';
+
+Pre reset hesla konkretneho pouzivatela zadame prikaz:
+
+  UPDATE eve_ng_db.users
+  SET password = '85262adf74518bbb70c7cb94cd6159d91669e5a81edf1efebd543eadbda9fa2b'
+  WHERE username = 'meno_pouzivatela';
+
+To zmeni pouzivatelovi heslo na 'eve'. (tomu zodpoveda aj prislusna HASH hodnota)
+
+Heslo pouzivatela, ktory zabudol heslo, moze zmenit aj iny pouzivatel typu
+"administrator" z web rozhrania EVE-ng. Postupujeme rovnako, ako v casti
+"ÚPRAVA POUŽÍVATEĽA -> Web GUI", pricom upravíme používateľove polia "Password"
+ a "Password Confirmation".
+
+
+
+
+Zdroje:
+https://gist.github.com/scy/6781836
+
+https://stackoverflow.com/questions/18644812/how-to-view-table-contents-in-mysql-workbench-gui
+Connect to a Database Schema - MySQL Workbench
+  https://www.youtube.com/watch?v=Zuxvc9KDr48
+https://www.inmotionhosting.com/support/website/database-connections/connect-database-remotely-mysql-workbench
+https://www.cyberciti.biz/faq/how-do-i-access-mysql-server-from-the-shell-prompt-command-line/
+https://wiki.archlinux.org/index.php/MySQL
+https://stackoverflow.com/questions/11657829/error-2002-hy000-cant-connect-to-local-mysql-server-through-socket-var-run
+https://dev.mysql.com/doc/refman/5.7/en/show-tables.html
+https://dev.mysql.com/doc/workbench/en/wb-mysql-connections-remote-management.html
+
+https://stackoverflow.com/questions/1346209/unknown-column-in-field-list-error-on-mysql-update-query
+https://alvinalexander.com/blog/post/mysql/list-tables-in-mysql-database
+http://www.eve-ng.net/index.php/faq

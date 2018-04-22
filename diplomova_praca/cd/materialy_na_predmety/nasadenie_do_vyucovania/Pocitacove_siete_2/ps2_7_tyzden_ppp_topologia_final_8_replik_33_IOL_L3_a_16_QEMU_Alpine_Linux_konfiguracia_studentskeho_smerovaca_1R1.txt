@@ -1,0 +1,51 @@
+!#################
+!
+! Autentifikacia studentskeho smerovaca
+! smerom k ucitelskemu smerovacu R_ucitel
+!
+end
+ena
+conf t
+!
+! Rozhranie k ucitelovi
+int s0/0
+encapsulation ppp
+!
+!#################
+!
+! Multilink PPP
+!
+! DOROBIT PODLA:
+! https://networklessons.com/cisco/ccna-routing-switching-icnd2-200-105/ppp-multilink/
+!
+!#################
+!
+! PAP - klient
+!
+end
+ena
+conf t
+int s0/0
+ ppp pap sent <username> pass <heslo>
+!
+!
+! PAP - server
+int s0/0
+ ppp authentication pap
+!
+!####################
+!
+! CHAP - routre musia mať "username" 
+! a "password" smerovača oproti
+!
+!
+! CHAP - R3
+username R4 pass cisco4
+int s1/2 ! k R4
+ ppp authentication CHAP
+!
+!
+! CHAP - R4
+username R3 pass cisco3
+int s1/2 ! k R3
+ ppp authentication CHAP

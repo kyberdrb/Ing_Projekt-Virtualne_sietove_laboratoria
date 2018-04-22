@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="PrS1_9cv_MPLS_navrh" id="2eb7388d-caca-49d6-bf60-177f86c42d1b" version="1" scripttimeout="300" lock="0">
+  <topology>
+    <nodes>
+      <node id="1" name="R1" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="255" top="57">
+        <interface id="2" name="e2/0" type="ethernet" network_id="10"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="1"/>
+      </node>
+      <node id="2" name="R2" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="255" top="171">
+        <interface id="2" name="e2/0" type="ethernet" network_id="10"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="9"/>
+      </node>
+      <node id="3" name="R3" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="180" top="333">
+        <interface id="2" name="e2/0" type="ethernet" network_id="6"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="9"/>
+      </node>
+      <node id="4" name="R4" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="321" top="333">
+        <interface id="1" name="e1/0" type="ethernet" network_id="5"/>
+        <interface id="2" name="e2/0" type="ethernet" network_id="7"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="9"/>
+      </node>
+      <node id="5" name="R5" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="492" top="57">
+        <interface id="2" name="e2/0" type="ethernet" network_id="2"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="1"/>
+      </node>
+      <node id="6" name="R6" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="492" top="168">
+        <interface id="2" name="e2/0" type="ethernet" network_id="2"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="3"/>
+      </node>
+      <node id="7" name="R7" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="492" top="330">
+        <interface id="17" name="e1/1" type="ethernet" network_id="4"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="3"/>
+      </node>
+      <node id="8" name="R8" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="60" top="477">
+        <interface id="2" name="e2/0" type="ethernet" network_id="6"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="8"/>
+      </node>
+      <node id="9" name="R9" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="249" top="477">
+        <interface id="2" name="e2/0" type="ethernet" network_id="7"/>
+        <interface id="18" name="e2/1" type="ethernet" network_id="8"/>
+      </node>
+      <node id="10" name="R10" type="iol" template="iol" image="i86bi-linux-l3-adventerprisek9-ms-15.7-3.M0a_20171006.bin" ethernet="3" nvram="1024" ram="512" serial="2" console="" delay="0" icon="Router.png" config="0" left="399" top="474">
+        <interface id="1" name="e1/0" type="ethernet" network_id="5"/>
+        <interface id="17" name="e1/1" type="ethernet" network_id="4"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="Net-R1iface_18" left="417" top="100" visibility="0"/>
+      <network id="2" type="bridge" name="Net-R5iface_2" left="588" top="100" visibility="0"/>
+      <network id="3" type="bridge" name="Net-R6iface_18" left="669" top="190" visibility="0"/>
+      <network id="4" type="bridge" name="Net-R7iface_17" left="672" top="316" visibility="0"/>
+      <network id="5" type="bridge" name="Net-R10iface_1" left="570" top="457" visibility="0"/>
+      <network id="6" type="bridge" name="Net-R8iface_2" left="240" top="454" visibility="0"/>
+      <network id="7" type="bridge" name="Net-R9iface_2" left="405" top="460" visibility="0"/>
+      <network id="8" type="bridge" name="Net-R8iface_18" left="240" top="454" visibility="0"/>
+      <network id="10" type="bridge" name="Net-R1iface_2" left="414" top="100" visibility="0"/>
+      <network id="9" type="bridge" name="Net" left="252" top="273" visibility="1"/>
+    </networks>
+  </topology>
+</lab>

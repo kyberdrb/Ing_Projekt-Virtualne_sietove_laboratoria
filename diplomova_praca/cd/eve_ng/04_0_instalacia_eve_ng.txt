@@ -1,0 +1,199 @@
+Nástroj EVE-ng môžeme nainštalovať buď z ISO súboru dostupného na stiahnutie zo stránky "http://www.eve-ng.net/index.php/community" alebo nainštalujeme operačný systém Ubuntu Server, do ktorého neskôr pridáme nástroj EVE-ng. Nižšie opisujem kroky pred a počas inštalácie EVE-ng servera. Operačný systém Ubuntu Server inštalujem vo verzii 16.04, pretože ten je oficiálne podporovaný pre nástroj EVE-ng vo verzii v2.0.3-86.
+
+
+
+************* PRED INŠTALÁCIOU NA FYZICKÝ SERVER *************
+
+Snažil som sa minimalizovať komplikácie, ku ktorým by mohlo dôjsť pri inštalácii EVE-ng servera. Preto som vyčistil server od prachu, otestoval som všetky disky na chybné sektory, rozpustil RAID zväzok, nastavil BIOS, vytvoril inštalačné USB médium s operačným systémom Ubuntu Server x64 16.04 a nainštaloval spomínaný operačný systém z USB média na server.
+
+
+*************
+Vyčistenie servera
+
+Stlačeným vzduchom prefúkneme ventilátory a tesné priestory od prachu.
+
+
+*************
+Test disku na chybné sektory
+
+Pred inštaláciou na fyzicky server otestujeme disk na chybné sektory. Tak predídeme chybám, ktoré môžu vzniknúť až po inštalácii.
+
+Najprv vytvoríme tzv. "live" USB disk s ľubovoľnou Linux distribúciou, napr. s "Ubuntu Desktop". ISO súbor spomenutého operačného systému je dostupné na stránke "https://www.ubuntu.com/download/desktop".
+
+Po stiahnutí ISO súboru vytvoríme inštalačný USB disk. V Linux distribúciách môžeme použiť príkaz "dd" alebo nástroj "Etcher", čo je odporúčaná a bezpečnejšia voľba pre vytváranie spustiteľného USB disku. V operačnom systéme Windows môžeme použiť napr. nástroje "Rufus" alebo "Linux Live USB Creator (LiLi)".
+
+Môžeme si vybrať ľubovoľný z vyššie uvedených nástrojov. avšak postup pri vytváraní "live" USB disku pre každý zo spomenutý nástroj nie je predmetom tejto práce.
+
+Akonáhle sme "live" USB disk vytvorili, pripojíme ho ku serveru. Následne pripojený USB disk zvolíme na spusteníe; buď v nástroji BIOS alebo v tzv. "Boot Menu".
+
+Po spustení operačného systému z USB disku otvoríme terminál a zadáme príkaz
+
+  sudo -i
+  lsblk
+
+Zobrazí sa zoznam pripojených diskov. Disk s názvom "/dev/sda" je obvykle USB disk, z ktorého sme systém spustili. Zistíme názvy pripojených pevných diskov napr. /dev/sdb".
+
+Potom, ako sme zistili názov disku, ktorý chceme skontrolovať, vyhľadáme chybné bloky na disku príkazom
+
+  badblocks -v /dev/sdb > badsectors_sdb.txt
+
+Operácia môže trvať dlhší čast; na 320GB HDD to trvalo približne jednu hodinu. V prípade, že sa nájdu chybné sektory na disku, zapíšu sa do súboru "badsectors_sdb.txt".
+
+Po dokončení kontroly sa zobrazí výsledok
+
+  0 bad blocks
+
+Skontrolujeme obsah súboru "badsectors_sdb.txt"
+
+  cat badsectors_sdb.txt
+
+Ak je súbor prazdny, disk je v poriadku a môžeme ho použiť. V opačnom prípade si uložíme textový súbor na iné miesto napr. na iný USB/HDD disk, email, cloud a pod. Tento súbor obsahuje zoznam poškodených sektorov pevného disku. Súbor potom slúži ďalším nástrojom na to, aby sa vyhýbali týmto sektorom pri práci s diskom.
+
+Príkazmi "e2fsck" alebo "fsck" vieme zabezpečiť, že sa zabráni operačnému systému používať chybné sektory na zvolenom pevnom disku.
+
+Príkaz pre súborové systémy ext2/ext3/ext4:
+
+  sudo e2fsck -l badsectors.txt /dev/sda10
+
+Príkaz pre ostatné súborové systémy:
+
+  sudo fsck -l badsectors.txt /dev/sda10
+
+
+*************
+Nastavenie BIOS
+
+V nástroji BIOS som upravil nastavenia tak, aby bol zaistený plynulý chod servera.
+
+Bola aktivovaná funkcia "Asus Smart Fan II", aby server nemusel mať ventilátory stále na plný výkon, čím sa predlžuje ich životnosť.
+
+Funkcia "Restore on AC loss" bola nastavená na "Power On", aby sa server znovu zapol pri výpadku elektriny.
+
+V "Boot Priority Options" bolo nastavené spúšťanie iba z jediného pevného disku. Ostatné disky budú slúžiť ako záložné alebo podporné disky. Najprv odstránime všetky zariadenia z "Boot Priority Options", uložíme nastavenia (F10 -> odpovedať "Yes" na otázku, či chceme uložiť nastavenia). Malo by sa objaviť hlásenie, že nenašiel spustiteľné zariadenie. Potom reštartujeme znovu (klávesová skratka "Ctrl + Alt + Del"), vôjdeme do nástroja BIOS, pridáme jedno zariadenie do zoznamu v "Boot Priority Options" a reštartujeme. Keď sa server spustí, vybrali sme ten správny disk s operačným systémom. Inak znovu vôjdeme do nástroja BIOS, odstránime aktuálne zariadenie v "Boot Priority Options" a vyberieme ďalšie, kým nenájdeme ten správny disk a server sa nespustí.
+
+Môžeme ešte nastaviť heslo do nástroja BIOS. Tento krok som vynechal, keďže pri zabudnutí tohto hesla by bolo jeho prelomenie resp. odstránenie náročné.
+
+
+*************
+Pokus o aktualizáciu nástroja BIOS
+
+Pokúsil som sa aktualizovať nástroj BIOS na serveri.
+
+Postup vytvorenia aktualizačného USB v operačnom systéme Windows:
+- Stiahneme si nástroj "Rufus".
+- Zvolíme nasledovné nastavenia:
+  -Device: zvolíme USB disk
+  -Partition scheme and target system type: MBR partition scheme for BIOS or UEFI computers
+  -File System: FAT alebo FAT32
+  -Cluster size: default
+  -New volume label: odstránime všetko - necháme prazdne
+  -Quick Format: zaškrtnuté
+  -Create a bootable disk using: MS-DOS
+  -Create extended label and icon files: odškrtnuté
+- klikneme na tlačidlo "Start"
+
+Vytvorený USB disk pripojíme ku serveru a zapneme ho. Vôjdeme do nástroja BIOS a zmeníme prioritu spúšťania tak, aby bol USB disk na prvom mieste. Stlačíme klávesu F10 a na otázku, či chceme uložiť nastavenia, odpovieme "Yes". Server sa následne reštartuje.
+
+Preto som opakoval rovnaký postup, ale s disketou vloženou do externej disketovej mechaniky.
+
+Po spustení servera z diskety sa po chvíli objavila MS-DOS obrazovka s výberom rozloženia klávesnice. Vyberieme "English-US". Ale po spustení aktualizačného skriptu sa objavilo chybové hlásenie "Cannot flash if Memory Managers (e.g. HIMEM) present".
+
+V nástroji BIOS bola prítomná funkcia "Flash Write". Bola nastavená na hodnotu "Enabled", čím chránila BIOS proti zápisu. Nastavil som ju na "Disabled" a uložil nastavenia. Skúsil som BIOS aktualizovať znova, ale aj napriek tomu sa BIOS nenechal aktualizovať a vypísal rovnaké chybové hlásenie.
+
+Ukázalo sa, že aktualizácia nástroja BIOS na serveri je technicky náročná, preto som sa rozhodol nevykonať ju.
+
+
+************* VYTVORENIE SPUSTITEĽNÉHO USB S UBUNTU SERVER *************
+
+Vytvoriť spustiteľné USB z Ubuntu Server 16.04 ISO súboru je istejšie, než z ISO súboru z EVE-ng stránky, pretože USB vytvorené z EVE-ng ISO súboru sa nemusí spustiť. Aj nástroj "Etcher" zobrazil chybové hlásenie, že ISO súbor nie je spustiteľný ("not bootable"). USB disk vytvoríme podľa návodu uvedeného v časti "Testovanie diskov na chybné sektory".
+
+
+************* POSTUP INŠTALÁCIE *************
+
+Tesne pred inštaláciou odpojíme všetky disky okrem disku, na ktorý chceme EVE-ng/Ubuntu nainštalovať! Zjednodušíme a sprehľadníme tak inštalačný proces a predídeme chybám pri partíciovaní disku a prípadnej strate dát z iných diskov.
+
+Spustíme/reštartujeme server a pri spúšťacej "BOOT" obrazovke opakovane stláčame klávesu na zobrazenie "Boot Options Menu" napr. F8. Objaví sa zoznam zariadení, z ktorých chceme spustiť server. Vyberieme USB disk. Následne sa spustí inštalačná procedúra.
+
+- Zo zoznamu jazykov vyberieme "English" - anglický jazyk.
+- Zobrazí sa inštalačné menu. Zvolíme možnosť
+  "Install Ubuntu Server" (prvá možnosť)
+resp.
+  "Install EVE Bare" pri inštalácií z EVE ISO
+-Zvolíme krajinu.
+  other->Europe->Slovakia
+-Zvolíme rozloženie klávesnice:
+  en_US.UTF-8
+-Preskočíme automatickú detekciu rozloženia podľa klávesnice
+  -zvolíme "No"
+  -nastavíme rozloženie klávesnice na "[English (US)]"
+-V zobrazenom zozname jazykov znovu zvolíme
+  "[English (US)]"
+-V prípade, že máme viac siťových kariet, sme vyzvaní vybrať si tú, ktorú budeme chcieť primárne používať. Obvykle vyberieme tú, ktorá je pripojená na internet.
+-Dotazovanie sa na "Nameserver adresses" môžeme preskočiť výberom možnosti "Continue".
+-Nastavíme tzv. "hostname" - doménové meno servera
+-Zadáme celé meno používateľa.
+-Zadáme názov používateľského účtu.
+-Zopakujeme heslo pre používateľa.
+-Pri otázke "Encrypt home directory" vyberieme voľbu "No".
+
+-PARTÍCIOVANIE
+
+MOŽNOSŤ 1 - S použitím LVM
+
+Tento spôsob je uprednostňovaný pred druhým uvedeným spôsobom. Navyše je odporúčaný aj v  EVE-ng dokumentácii. LVM poskytuje množstvo výhod, o.i. aj zmenu veľkosti partícii počas behu systému.
+
+Pri výbere spôsobu partíciovania disku vyberieme možnosť "Guided - use entire disk and setup LVM". Následne potvrdíme všetky predvolené hodnoty.
+
+Ak sme vyzvaní na zadanie nižšie uvedených parametrov, odpovieme na ne nasledovne:
+
+- Partition disks: Zvolíme hlavný disk, na ktorý má byť systém nainštalovaný. V prípade, že máme nakonfigurovaný RAID zväzok, mali by sme vidieť iba jeden pevný disk s menom RAID radiča.
+- Write changes to disk and create LVM: YES
+- Amount of volume: ponecháme všetku kapacitu
+- Force UEFI Installation: YES (na starších serveroch zvolíme "No")
+- Write changes to disk: YES
+
+Aj napriek tomu, že predvolené hodnoty vyhradia príliš veľa miesta pre swap partíciu, vieme s použitím LVM nástrojov meniť parametre jednotlivých partícii, a to aj počas behu systému.
+
+
+MOŽNOSŤ 2 - Bez použitia LVM
+
+Pri výbere spôsobu partíciovania disku vyberieme možnosť "Guided - use entire disk". Aj táto možnosť vyhradí príliš veľké miesto pre swap partíciu.
+ 
+Preto na obrazovke "Write changes" sa navigujeme na swap partíciu, zvolíme ju klávesou Enter a vyberieme možnosť "Delete partition".
+
+Následne primárnu ext4 partíciu rozšírime. Zvolíme ju a vyberieme možnosť "Resize partition". Následne zadáme väčšiu kapacitu partície a potvrdíme. Ak je potrebné, vyberieme primárnej ext4 partícií prípojný bod (mount point) "/". Na otázku "Write changes to disk" vyberieme voľbu "Yes", čím potvrdíme zmeny.
+
+
+Nastavíme proxy server (ak nemáme žiaden proxy server, necháme prázdne).
+
+Pri dotaze na automatické aktualizácie zvolíme "No automatic updates", aby sme predišli nepredvídaným následkom. Aktualizácia servera bude diať na vyžiadanie administrátora. Ak sme aj napriek tomu zvolili automatické aktualizácie, vieme ich vypnúť dodatočne. Dodatočné vypnutie automatických aktualizácii opisujem v súbore "prvotna_konfiguracia_EVE_ng.txt" v časti "20auto-upgrades".
+
+Aktualizácia EVE-ng si vyžaduje dodržanie presného postupu, ktorý je opísaný v súbore "aktualizovanie_eve_ng.txt".
+
+Ak sme vyzvaní, na obrazovke "tasksel" (medzerníkom) označíme balíček "OpenSSH server".
+
+Nainštalujeme GRUB na disk. Ak sme vopred odpojili všetky pevné disky okrem jediného alebo sme vytvorili RAID zväzok, bude to jediná položka v zozname spolu s USB kľúčom.
+
+Po nainštalovaní GRUB zavádzača potvrdíme reštart voľbou "Continue". Server sa následne reštartuje. Ak sa po reštarte nespustí, vypneme ho dlhším podržaním napájacieho tlačidla.
+Následne ho znovu zapneme.
+
+Po reštarte sa prihlásime s predvolenymi prihlasovacimi udajmi "root/eve". Po prvom prihlasení treba vykonať prvotnú konfiguráciu, ktorá je opísaná v súbore "prvotna_konfiguracia_EVE_ng.txt".
+
+
+*************
+Rozpustenie RAID zväzku
+
+Najprv som nainštaloval nástroj "EVE-ng" na server, keď boli disky ešte v RAID zväzku. Keď už bol server spustený, približne do hodiny začal na lokálnu konzolu vypisovať chybové hlásenia ohľadom diskov. Nič sa ale nevypisovalo do SSH konzoly.
+
+Preto som rozpustil RAID zväzok, vybral som všetky disky, zvolil som si prvý disk, vložil som ho naspäť, aby bol zapojený iba jeden jediný disk, a otestoval som ho na chybné sektory. Kontrola ukázala, že disk bol v poriadku, preto som ho znovu preinštaloval do pôvodného stavu.
+
+Po tejto zmene sa ani po niekoľkých hodinách sa neobjavilo žiadne chybové hlásenie ani na lokálnej, ani na SSH konzole. Neskôr som zapojil a otestoval aj zvyšné tri disky na serveri. Všetky boli v poriadku ("0 bad blocks").
+
+Z toho vyplýva, že chyby s diskami na serveri spôsoboval s veľkou pravdepodobnosťou hardvérový RAID radič.
+
+
+Zdroje:
+https://blogs.technet.microsoft.com/csstwplatform/2012/06/25/how-to-create-a-ms-dos-bootable-usb-flash-drive/
+https://www.computing.net/answers/windows-xp/phoenix-bios-upgrade-himem-message/192069.html#1
+https://www.garron.me/en/linux/turn-off-stop-ubuntu-automatic-update.html
+https://askubuntu.com/a/172527

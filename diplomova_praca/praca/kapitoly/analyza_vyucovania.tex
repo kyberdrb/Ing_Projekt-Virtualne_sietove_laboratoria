@@ -1,9 +1,10 @@
 \chapter{Analýza vyučovania}
 \label{chap:analyza_vyucovania}
 
-Virtuálne sieťové laborarórium bude má byť nasadené na vybrané predmety vyučované na katedre. Na to treba analyzovať vyučované technológie týchto predmetov. Na základe toho sa budú získavať a testovať zariadenia, čomu je venovaná kapitola \ref{chap:virt_zariadenia} - \nameref{chap:virt_zariadenia}.
+Virtuálne sieťové laborarórium má byť nasadené na vybrané predmety vyučované na katedre. Na to treba analyzovať vyučované témy týchto predmetov. Na základe toho sa budú získavať a testovať zariadenia, čomu je venovaná kapitola \ref{chap:virt_zariadenia} - \nameref{chap:virt_zariadenia}.
 
 V tejto kapitole opisujem vyučované témy týchto predmetov:
+
 \begin{itemize}[noitemsep]
     \item Počítačové siete 1 (5BN103)
     \item Počítačové siete 2 (5BN104)
@@ -14,51 +15,20 @@ V tejto kapitole opisujem vyučované témy týchto predmetov:
     \item Pokročilé smerovanie v informačno-komunikačných sieťach (5IN124)
 \end{itemize}
 
-Tieto predmety boli vybrané hlavne kvôli tomu, pretože sa na nich pracuje so sieťovými technológiami. Nástroj má byť v prvom rade nasadený na tie predmety, kde sa vyučujú pokročilejšie sieťové technológie t.j. Projektovanie sietí 1, Projektovanie sietí 2, Pokročilé prepínanie v informačno-komunikačných sieťach a Pokročilé smerovanie v informačno-komunikačných sieťach.
+Výber predmetov ovplyvňoval fakt, že na nich vyučujú sieťové technológie. Nástroj má byť v prvom rade používaný na predmetoch, kde sa vyučujú pokročilejšie sieťové technológie t.j. Projektovanie sietí 1, Projektovanie sietí 2, Pokročilé prepínanie v informačno-komunikačných sieťach a Pokročilé smerovanie v informačno-komunikačných sieťach.
 
 V nasledujúcich častiach budú opísané zariadenia, ktoré sa používajú pri výučbe týchto predmetov, ako aj vyučované technológie.
 
-Vyučované technológie boli získané z informačných listov predmetov a z plánov predmetu od vyučujúcich. Zoznam vyučovaných technológii je prítomný na CD v súbore \texttt{materialy\_na\_predmety/0\_1\_zoznam\_technologii.txt}
+Vyučované technológie boli získané z informačných listov predmetov a z plánov predmetu od vyučujúcich. Zoznam vyučovaných technológii je dostupný v kapitole \ref{chap:cd} v bodoch \ref{item:zoznam_technologii_s_podporou_zariadeni} a \ref{item:zoznam_technologii_txt}
 
 
 
 
 \section{Počítačové siete 1}
 
-Predmet obsahuje témy z oblasti CCNA 2 vrátane prepínacích technológii. Momentálne sa na predmete používa iba nástroj Packet Tracer.
+Predmet obsahuje témy z oblasti CCNA 2 vrátane prepínacích technológii z CCNA 3. Momentálne sa na predmete používa iba nástroj Packet Tracer.
 
-Na predmete sa vyučujú tieto technológie:
-
-\begin{itemize}[noitemsep]
-    \item IPv4 a IPv6 statické smerovanie
-    \item RIPv2
-    \item RIPng
-    \item SVI
-    \item STP BPDU Guard
-    \item PortFast
-    \item VLAN
-    \item VLAN Trunk 802.1Q
-    \item IVL smerovanie - Router on a Stick
-    \item VTP v1/v2/v3
-    \item STP, PVST+, RPVST+
-    \item Extended VLAN
-    \item L2 EtherChannel PAgP a LACP
-    \item L3 EtherChannel PAgP a LACP
-    \item HSRP IPv4 
-    \item HSRPv2 IPv4 a IPv6 
-    \item VRRPv2 IPv4 
-    \item VRRPv3 IPv4 a IPv6 
-    \item GLBP IPv4 a IPv6 
-    \item ACL IPv4 a IPv6 
-    \item DHCP IPv4 a IPv6 
-    \item NAT
-    \item LLDP
-    \item CDP
-    \item Syslog
-    \item NTP
-    \item SNMP
-    \item SPAN
-\end{itemize}
+Na predmete sa vyučuje IPv4 a IPv6 statické smerovanie, RIPv2, RIPng, SVI, STP BPDU Guard, PortFast, VLAN, VLAN Trunk 802.1Q, InterVLAN smerovanie - Router on a Stick, VTP v1/v2/v3, STP, PVST+, RPVST+, Extended VLAN, L2 EtherChannel PAgP a LACP, L3 EtherChannel PAgP a LACP, HSRP IPv4, HSRPv2 IPv4 a IPv6, VRRPv2 IPv4 VRRPv3 IPv4 a IPv6, GLBP IPv4 a IPv6, ACL IPv4 a IPv6, DHCP IPv4 a IPv6, NAT, LLDP, CDP, Syslog, NTP, SNMP, SPAN.
 
 Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco a jednoduchými koncovými zariadeniami v rámci možností nástroja Packet Tracer. V budúcnosti sa uvažuje o integrácii Juniper smerovačov a pokročilejších koncových zariadení na platforme Linux a Windows.
 
@@ -67,22 +37,9 @@ Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco a jedn
 
 \section{Počítačové siete 2}
 
-Predmet obsahuje témy z oblasti CCNA 3 a CCNA 4 okrem prepínacích technológii. Momentálne sa na predmete používajú nástroje Packet Tracer a na niektoré topológie nástroj Dynamips/Dynalab. V druhom menovanom nástroji topológie pozostávajú z zariadení Cisco 2691.
+Predmet obsahuje témy z oblasti CCNA 3 a CCNA 4 okrem prepínacích technológii. Momentálne sa na predmete používajú nástroje Packet Tracer a na niektoré topológie nástroj Dynamips/\\Dynagen. V druhom menovanom nástroji topológie pozostávajú z zariadení Cisco 2691.
 
-Na predmete sa vyučujú tieto technológie:
-
-\begin{itemize}[noitemsep]
-    \item EIGRP IPv4 a IPv6
-    \item OSPFv2 Single-Area a Multi-Area
-    \item OSPFv3 Single-Area a Multi-Area
-    \item PPP
-    \item MLPPP
-    \item HDLC
-    \item Frame Relay	
-    \item PPPoE
-    \item GRE
-    \item eBGP IPv4
-\end{itemize}
+Na predmete sa vyučujú témy EIGRP IPv4 a IPv6, OSPFv2 Single-Area a Multi-Area, OSPFv3 Single-Area a Multi-Area, PPP, MLPPP, HDLC, PPPoE, GRE, eBGP IPv4.
 
 Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco a jednoduchými koncovými zariadeniami v rámci možností nástroja Packet Tracer. V budúcnosti sa uvažuje o integrácii Juniper smerovačov a pokročilejších koncových zariadení na platforme Linux a Windows.
 
@@ -93,31 +50,9 @@ Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco a jedn
 
 Predmet obsahuje niektoré témy z oblasti CCNP Routing a ďalších pokročilých smerovacích technológii. Momentálne sa na predmete používa nástroj Dynamips/Dynalab. V ňom pozostávajú topológie zo zariadení Cisco 2691 a Cisco 7200.
 
-Na predmete sa vyučujú tieto technológie:
+Na predmete sa vyučujú témy OSPFv2 Multi-Area, IS-IS IPv4, IGMP v1/v2/v3, IGMP Snooping, PIM Dense Mode/Sparse Mode/Sparse-Dense Mode, PIM Any-Source Multicast, PIM Source-Specific Multicast, Manual RP, Auto-RP, BSR, Anycast RP, BGP IPv4, Router Reflector, MP-BGP,BGP mVPN, Hub \& Spoke VPN, Draft Rosen, BGP L3 VPN, MPLS, LDP, RSVP, VPLS.
 
-\begin{itemize}[noitemsep]
-    \item OSPFv2 Multi-Area
-    \item IS-IS IPv4 
-    \item IGMP v1/v2/v3
-    \item IGMP Snooping
-    \item PIM Dense Mode / PIM Sparse Mode / PIM Sparse-Dense Mode
-    \item PIM Any-Source Multicast
-    \item PIM Source-Specific Multicast
-    \item Manual RP / Auto-RP / BSR / Anycast RP
-    \item BGP IPv4
-    \item Router Reflector
-    \item MP-BGP
-    \item BGP mVPN
-    \item Hub \& Spoke VPN
-    \item Draft Rosen
-    \item BGP L3 VPN
-    \item MPLS
-    \item LDP
-    \item RSVP
-    \item VPLS
-\end{itemize}
-
-Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco. Koncové zariadenia sa takmer vôbec nepoužívajú, iba ak by sa skupina rozhodla pracovať s fyzickými zariadeniami. V budúcnosti sa uvažuje o integrácii Juniper smerovačov a pokročilejších koncových zariadení na platforme Linux a Windows, hlavne pre účely vyučovania multicast technológii.
+Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco. Koncové zariadenia sa takmer vôbec nepoužívajú, iba ak by sa skupina rozhodla pracovať s fyzickými zariadeniami. V budúcnosti sa uvažuje o integrácii Juniper smerovačov a pokročilejších koncových zariadení na platforme Linux a Windows, hlavne pre účely vyučovania \emph{multicast} technológii.
 
 
 
@@ -125,14 +60,8 @@ Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco. Konco
 
 Predmet obsahuje témy z oblasti pokročilých smerovacích technológii. Výučba tohto predmetu bola v šk. roku 2017/2018 realizovaná v nástroji EVE-ng v rámci pilotného nasadenia do vyučovania.
 
-Na predmete sa vyučujú tieto technológie:
+Na predmete sa vyučujú témy VPLS, EVPN, Seamless MPLS, BGP mVPN NG.
 
-\begin{itemize}[noitemsep]
-    \item VPLS
-    \item EVPN
-    \item Seamless MPLS
-    \item BGP mVPN NG
-\end{itemize}
 
 Na predmete sa pracovalo so smerovačmi a prepínačmi Cisco a smerovačmi Juniper a Nokia. Nástroj EVE-ng podporuje koncové zariadenia na platforme Linux a Windows a je ich možné integrovať do topológie.
 
@@ -143,9 +72,9 @@ Na predmete sa pracovalo so smerovačmi a prepínačmi Cisco a smerovačmi Junip
   
 Predmet obsahuje prehľad tém a technológii z oblasti bezpečnosti v rámci linkovej, sieťovej a aplikačnej vrstvy. Výučba tohto predmetu je plánovaná na šk. roku 2018/2019 namiesto predmetu Optimalizácia konvergovaných sietí. Zvažuje sa nad jeho realizáciou v nástroji EVE-ng v rámci ďalšieho nasadenia do vyučovania.
 
-Keďže predmet je nový a jeho osnova ešte nie je pevne stanovený, zoznam vyučovaných technológii nie je uvedený. Prehľad tém vyučovaných na kurze čerpá z materiálov Cisco Network Security (IINS) (210-260), ktorý je dostupný na stránke \cite{ccna_security_topics}.
+Keďže predmet je nový a jeho osnova ešte nie je pevne stanovená, zoznam vyučovaných technológii nie je uvedený. Prehľad tém vyučovaných na kurze čerpá z materiálov Cisco Network Security (IINS) (210-260), ktorý je dostupný na stránke \cite{ccna_security_topics}.
 
-Predmet vyžaduje Cisco zariadenia, konkrétne prepínače, smerovače popr. firewall zariadenia. Nástroj EVE-ng podporuje koncové zariadenia na platforme Linux a Windows a je ich možné integrovať do topológie.
+Predmet vyžaduje Cisco zariadenia, konkrétne prepínače, smerovače, popr. Cisco firewall a koncové zariadenia na platforme Linux alebo Windows.
 
 
 
@@ -155,40 +84,9 @@ Predmet vyžaduje Cisco zariadenia, konkrétne prepínače, smerovače popr. fir
 
 Predmet obsahuje témy z oblasti CCNP Switching. Momentálne sa na predmete používajú fyzické zariadenia, keďže katedra momentálne nedisponuje riešením na virtualizáciu prepínačov.
 
-Na predmete sa vyučujú tieto technológie:
+Vyučované témy na tomto predmete sa do veľkej miery zhodujú s predmetom Počítačové siete 1, avšak témy sú preberané podrobnejšie. Osnova predmetu obsahuje navyše témy IP SLA, STP BPDU Filter, MST, CEF, MLS, FHRP IPv4 a IPv6, NTP Authentication, Cisco ISL trunks, DHCP Snooping, PVLAN.
 
-\begin{itemize}[noitemsep]
-    \item VLAN
-    \item PVLAN
-    \item VLAN Trunk 802.1Q
-    \item Cisco ISL trunks
-    \item InterVLAN smerovanie - Router on a Stick
-    \item VTP v1/v2/v3
-    \item DTP
-    \item STP/PVST+/RPVST+
-    \item STP BPDU Guard
-    \item STP BPDU Filter
-    \item L2 EtherChannel PAgP a LACP
-    \item L3 EtherChannel PAgP a LACP
-    \item HSRP IPv4 
-    \item HSRPv2 IPv4 a IPv6 
-    \item VRRPv2 IPv4 
-    \item VRRPv3 IPv4 a IPv6 
-    \item GLBP IPv4 a GLBP IPv6 
-    \item FHRP IPv4 a IPv6 
-    \item DHCP IPv4 a IPv6 
-    \item DHCP Snooping
-    \item NTP
-    \item NTP Authentication
-    \item SNMP
-    \item SPAN
-    \item IP SLA
-    \item MST
-    \item CEF
-    \item MLS
-\end{itemize}
-
-Na predmete sa pracuje predovšetkým s fyzickými prepínačmi a Cisco a fyzickými koncovými zariadeniami. Nástroj EVE-ng podporuje nielen koncové zariadenia na platforme Linux a Windows, ale do topológie je možné integrovať aj rôzne Cisco prepínače.
+Na predmete sa pracuje predovšetkým s fyzickými prepínačmi a Cisco. Nástroj EVE-ng umožňuje do topológie integrovať aj rôzne Cisco prepínače.
 
 
 
@@ -198,18 +96,6 @@ Na predmete sa pracuje predovšetkým s fyzickými prepínačmi a Cisco a fyzick
 
 Predmet obsahuje témy z oblasti CCNP Routing. Momentálne sa na predmete používa nástroj Dynampis/Dynalab. Ten obsahuje topológie, ktoré využívajú smerovač rady Cisco 7200, keďže je to jedniný Dynamips smerovač, ktorý v plnom rozsahu podporuje technológie vyučované na predmete.
 
-Na predmete sa vyučujú tieto technológie:
+Vyučované témy na tomto predmete sa do veľkej miery zhodujú s predmetom Počítačové siete 2, avšak témy sú preberané podrobnejšie. Osnova predmetu obsahuje navyše témy PBR, Route redistribution, Route filtering, IP SLA, MP-BGP.
 
-\begin{itemize}[noitemsep]
-    \item RIPv2
-    \item RIPng
-    \item NAT
-    \item EIGRP IPv4 a IPv6
-    \item OSPFv2 Multi-Area
-    \item OSPFv3 Multi-Area
-    \item BGP IPv4
-    \item IP SLA
-    \item MP-BGP
-\end{itemize}
-
-Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco a fyzickými koncovými zariadeniami. Nástroj EVE-ng podporuje nielen koncové zariadenia na platforme Linux a Windows, ale do topológie je možné integrovať aj rôzne Cisco smerovače.
+Na predmete sa pracuje predovšetkým so smerovačmi a prepínačmi Cisco. Nástroj EVE-ng umožňuje do topológie integrovať aj rôzne Cisco smerovače, od jednoduchších, až po pokročilejšie.

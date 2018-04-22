@@ -1,0 +1,87 @@
+CALCULATING IDLE PC
+
+If an unsupported image is added to the UNetLab platform, an Idle PC value must be identified. Start a Dynamips instance with basic configuration, but firtsly, go to the home directory
+
+  cd
+
+Then start a Dynamips instance with basic configuration:
+
+  dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 96 -n 128
+or
+  dynamips -P 3725 /opt/unetlab/addons/dynamips/<nazov_3725_zariadenia>.image -r 256 -n 128
+or
+  dynamips -P 7200 -t 7200 /opt/unetlab/addons/dynamips/<nazov_7200_zariadenia>.image -r 512 -n 128
+
+
+Pre vysvetlivky parametrov vid "man dynamips" alebo "dynamips -h".
+
+
+Povodny prikaz, ktory sa spusta cez EVE-ng web.
+  dynamips -N 1710 -T 32772 -P 1700 -t 1710 -o 4 -c 0x2102 -X -l dynamips.txt --idle-pc 0x80369ac4 -N 1710 -i 4 -r 96 -n 128
+
+
+
+
+
+
+
+  CPU usage is very high, a whole one core of CPU for each instance (htop output):
+
+PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+521 root      20   0  412236 125408 109904 S 99.5 25.4   3:27.82 dynamips
+
+  Wait for the following line on the console:
+Would you like to enter the initial configuration dialog? [yes/no]:
+
+
+[OPTIONAL !!!] - Exit from initial configuration dialog, and quit to get the con0 prompt:
+WARNING! - this may generate fewer IDLE PC values or the values might be less relevant
+
+Router>exit
+
+Router con0 is now available
+
+Press RETURN to get started.
+
+
+
+
+  After few more seconds press 'CTRL + ]' (na slovenskej klavesnici: CTRL + pravy ALT + G) (nothing will show up) and then press 'i'. Dynamips will compute and show suggested Idle PC values:
+
+Please wait while gathering statistics...
+Done. Suggested idling PC:
+   0x80369ac4 (count=35)
+   0x8023afac (count=51)
+   0x8023b008 (count=30)
+   0x8023b050 (count=27)
+   0x803637a0 (count=38)
+   0x80363984 (count=20)
+   0x80363ccc (count=28)
+   0x80363d48 (count=28)
+   0x80363d78 (count=74)
+   0x803645d0 (count=76)
+Restart the emulator with "--idle-pc=0x80369ac4" (for example)
+
+
+
+  Press 'CTRL + ]' and then press 'q' (na slovenskej klavesnici: 'CTRL + pravy ALT + G' a potom 'q') to terminate dynamips emulation.
+  Start the emulator again with the first suggested IDLE PC value e.g. "--idle-pc=0x80369ac4" (for example). Select one and restart dynamips with the IDle PC value:
+
+dynamips -P 1700 -t 1710 /opt/unetlab/addons/dynamips/<nazov_1710_zariadenia>.image -r 96 -n 128 --idle-pc 0x80369ac4
+
+
+
+
+
+  If CPU usage is lower, then a good Idle PC value has been found. Note this value for this device into the template file (see "10_uprava_sablon.txt"):
+
+PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND
+3598 root      20   0  346700 125328 109828 S  5.3 25.3   0:03.98 dynamips
+
+
+If CPU is still busy, then another value must be tested (either the second value or value with the highest 'count').
+
+
+
+Zdroje:
+  https://netbrainstlearn.wordpress.com/2015/12/15/unl-adding-dynamips-images/

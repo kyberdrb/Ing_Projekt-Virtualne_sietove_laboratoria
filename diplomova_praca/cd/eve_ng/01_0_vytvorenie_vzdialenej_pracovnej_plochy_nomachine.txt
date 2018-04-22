@@ -1,0 +1,28 @@
+Vytvorenie vzdialenej pracovnej plochy s XFCE4 a NoMachine na headless Debian 9 Stretch
+
+Nainstalujeme graficke prostredie
+
+  sudo aptitude xfce4
+
+stiahneme si NoMachine instalacny balicek pre konkretny operacny system (v nasom pripade Debian). Instalacny balicek obsahuje aj klienta aj server.
+
+Nainstalujeme stiahnuty balicek na server
+
+  sudo dpkg -i nomachine.deb
+
+Spustime NoMachine server
+
+  sudo systemctl start nomachine
+
+Nasledne sa na server mozeme pripojit z NoMachine klienta. Ak mame firewall, povolime port 4000.
+
+NoMachine server vypneme prikazom
+
+  sudo systemctl stop nomachine
+
+
+
+Ja som mal Debian 9 Stretch vo virtualke, takze sa mi po restarte hned rozbehol lightdm s xfce4. To nie je ziaduce, lebo to nebude bezat na headless serveri. Preto v "/etc/X11//etc/X11/default-display-manager" zakomentujeme jediny riadok, ktory tam je (mal by to byt z "/usr/bin/lightdm" na "#/usr/bin/lightdm"
+
+Sources:
+https://www.olimex.com/forum/index.php?PHPSESSID=9iap9u5k6s32q1onrkspbcgd54&topic=2413.msg12268#msg12268

@@ -1,0 +1,50 @@
+************* ************* *************
+Monitorovanie EVE-ng servera - System status
+
+System status je nástroj na monitorovanie systémových prostriedkov vo webovom rozhraní EVE-ng.
+
+Zobrazíme ho po príhlásení kliknutím na položku "System" -> "System status".
+
+System status zobrazuje celkové percentuálne vyťaženie procesora, operačnej pamäte, kapacity diskov a počty spustených zariadení každého typu.
+
+Tiež je možné zapnúť a vypnúť mechanizmy "UKSM" a "CPULimit".
+
+
+************* ************* *************
+Monitorovanie servera - netdata
+
+*************
+Instalacia na server
+  Postupujeme podla navodu na
+    https://github.com/firehol/netdata/wiki/Installation
+
+  Na server bol instalovany podla
+    https://github.com/firehol/netdata/wiki/Installation#linux-one-liner
+
+  Aktivujeme spustenie netdata sluzby po starte a spustime ju
+
+    systemctl enable netdata
+    systemctl start netdata
+
+
+
+*************
+Na klientskom PC
+
+Vytvorime SSH tunel.
+
+  ssh -f -o ExitOnForwardFailure=yes -L 19999:localhost:19999 158.193.152.50 sleep 10
+
+V prehliadači si otvoríme stránku
+
+  http://localhost:19999
+
+Ak sme sa dostali na stránku, SSH tunel je aktívny a monitorovanie na 
+vzdialenom serveri je zapnuté.
+Po zavretí karty alebo po zavretí internetového prehliadača sa SSH
+tunel automaticky ukončí.
+
+Zdroje:
+  https://github.com/firehol/netdata
+  https://github.com/firehol/netdata/wiki/Installation
+  https://gist.github.com/scy/6781836

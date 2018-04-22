@@ -1,0 +1,331 @@
+Tipy:
+-EVE-ng: Namiesto c2691 pouzijeme c3725, pretoze c2691 sa mi nepodarilo integrovat do EVE-ng. Ale nasiel som IOS v rovnakej verzii ako ma c2691 pre c3725, takze funkcionalita je zachovana.
+-V GNS3 nepripajame koncove zariadenia priamo k oblaciku, ale oblacik prepojime s Ethernet prepinacom. Vsetky dalsie zariadenia pripajame k tomuto prepinacu.
+
+Zazitky:
+-20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
+
+===============================================================================
+Diplomka
+
+    -23.4. 2018 - DAT PRACU NA KONTROLU ORIGINALITY + DAT TLACIT PRACU :D - priniest si original zadania, ked si budem davat tlacit pracu. Praca je hotova s vnutrom na druhy den, najskor v utorok.
+        -OPYTAT SA, CI SA TO MOZE TLACIT OBOJSTRANNE, ALEBO LEN NA JEDNU STRANU? - podla toho upravit formatovanie PDFka
+
+    -Vytvorit adresar CD
+        -bude obsahovat vsetky subory z kapitoly Prilohy -> CD (pridať aj upravený integračný balíček a PDF s prácou) + pridat nastroj "dstat_custom" !!!
+
+    
+
+
+
+
+
+
+Dodatočne po odovzdaní:
+
+    -replikovať jakubovu topológiu v EVE-ng
+        -konfiguráky => FB
+        -topológia:
+            CE1 - PE1 - CORE - PE2 - CE2
+
+    -nasadenie na mpls topológiu?
+
+===============================================================================
+Co dalej?
+
+-opraviť bug:
+    -používateľ s rolou user vie spúšťať zariadenia v topológii, ale má mať iba oprávnenie prehliadať súbory a topológie.
+    -MOŽNÉ RIEŠENIE: pridať kontrolu používateľskej role v súbore "api.php" do funkcie zodpovednej sa spustenie zariadenia.
+
+-opraviť bug:
+    -nefunguje pridávanie obrázkov do topológie cez "Add a new object -> Picture -> zadáme názov do 'Name' a v 'Browse' vyberieme súbor s obrázkom".
+
+-dokončiť testovanie technológii pre Juniper vMX (1 uzol aj VCP+VFP konfiguráciu), Juniper vSRX a Nokia VSR (13 aj 14, aj 1 uzol aj IOM+CPM konfiguráciu)
+  -Na Cisco switchoch otestovat aj technologiu RITE - port mirroring na smerovaci
+    https://networklessons.com/cisco/ccie-routing-switching/router-ip-traffic-export-rite/
+  -Na všetkých Cisco zariadeniach otestovať podporu IPsec
+    https://www.cisco.com/c/en/us/support/docs/routers/1700-series-modular-access-routers/71462-rtr-l2l-ipsec-split.html
+
+-Otestovať v GNS3 prepojiť už spustené uzly medzi sebou (hot connect) a otestovať konektivitu, či to bude fungovať.
+
+-urobiť na EVE-ng serveri
+
+  cd ~
+  git clone https://github.com/dainok/unetlab.git
+  cd unetlab
+  diff -qr ~/unetlab/ /opt/unetlab/
+hlavne bude zaujímavý adresár s webovou stránkou
+  diff -qr ~/unetlab/html /opt/unetlab/html/
+  
+Niečo sa mi na EVE-ng nezdá. EVE-ng má príliš veľa problémov. UNetLab by mohol dať odpovede na otázky, ktoré EVE-ng má.
+
+-OPRAVIT BUG - eve-ng sa uplne pokazilo
+  -nastartuje uzol hned po pridani a neda sa s nim pracovat
+  -RIESENIE: asi viem v com je problem - problem vznikol s tym, ked som zatvoril labak a otvoril iny labak a s prekvapenim som zistil, ze porty medzi zariadeniami v labaku sa prekryvali! preto sa tvarili, ze su uz spustene, pritom bolo spustene uplne ine zariadenie => eve-ng sa nepozera na command, ale iba na port => este sa nesmie pracovat na inej topologii, pokial sa nezastavili zariadenia v povodnej.
+  -na to bude treba podla prikazu
+    grep -rnw '/opt/unetlab/html/' -e '32768' | less
+  upravit subory
+    /opt/unetlab/html/includes/cli.php
+    /opt/unetlab/html/includes/__node.php
+  Zaroven sa da manualne definovat port pre zariadenie a odstranit obmedzenie bezat maximalne 128 zariadeni v jednej topologii, staci upravit rovnicu. Mozno, ze sa podari aj integrovat manualnu zmenu portovych cisel zvnutra otvoreneho projektu v tabulke "Nodes" a dynamicke pridelovanie portovych cisel podla toho, ktore su volne, a to nebude uz take trivialne.
+
+-vypytat si od mareka windows a windows server z openstacku a pridat ho do eve-ng
+
+-pridat feature:
+  -do zoznamu uzlov v projekte v časti "Nodes" sa v tabuľke objaví aj číslo portu
+  -neskôr v zozname uzlov v projekte v časti "Nodes" umožniť zmenu čísla portu pre zariadenia (v rámci daného rozsahu)
+
+-otestovať v EVE-ng IS-IS topológiu - jednej skupine sa neprejavila zmena časovačov
+  -otestovať na všetkých zariadeniach vhodných na PrS1 - viď "materialy_na_predmety/vyucovane_technologie.ods"
+  -ak bude možné, otestovať spomenutú situáciu aj v GNS3
+
+-opraviť bug:
+  -wireshark odchytavanie konkretneho rozhrania z EVE-ng topologie
+  -chybu som spozoroval az vtedy, ked som zmenil sposob odhytavania paketov v topologii z "root" uctu na pouzivatelsky ucet "wireshark_capture"
+  -mozno by stacilo kazdych 24 hodin spustit skript, ktory by ukoncoval wireshark procesy
+  -OTESTOVANE - staci vykonavat prikaz
+    sudo killall tcpdump
+  a ukoncia sa nielen tcpdump, ale aj SSH relacie, ktore ich zapuzdrovali!
+  Ale najlepsie by bolo, keby sa SSH relacie s tcpdump odchytavanim ukoncili po dokonceni odchytavania.
+
+-cez Cisco Feature Navigator porovnat duplicitne Dynamips zariadenia
+  -zoznam features je uz stiahnuty v adresari "materialy_na_predmety/cisco_routers_feature_set"
+
+-opraviť bug:
+  -jeden používateľ nemôže byť prihlásený z dvoch rôznych počítačov - tak by sa dala vyriešiť práca v tíme, konfigurácia rovnakých zariadení na rovnakých portoch, aktualizácia topológie,
+  atď.
+  -> treba spustiť Wireshark odchytávanie, prihlásiť používateľa z jedného počítača. Spustiť odchytávanie na inom počítači a prihlásiť sa ako rovnaký používateľ. Potom na základe vymieňaných správ (a ich kódov!) so serverom zistiť, prečo server automaticky odhlásil používateľa z prvého počítača a odstrániť toto obmedzenie.
+
+-rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na sirene (IP: .53)
+  -Instalacia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_01_install_lxc_lxd_container_support.txt
+  -Spristupnenie adresara z hostovskeho systemu pre LXC kontajner - uzitocne pre adresare so zariadeniami - nemusia sa kopirovat do kazdeho kontajnera, ale bude existovat jeden adresar, ktory bude pristupny vylucne na citanie (nie na zapis!) kazdemu EVE-ng LXC kontajneru
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_02_mount_host_directory_to_container.txt
+  -Aktivacia spustania KVM virtualky v LXC kontajneri - uzitocne pre QEMU zariadenia
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt
+    
+-rozbehnut KVM virtualku v eve-ng nainstalovanu v LXC kontaineri na Odyseovi(.51)->
+  -ak to vyjde, nainstalovat do nej EVE-ng a vyskusat funkcionalitu
+    ale pravdepodobne to nevyjde, pretoze /dev/net/tun alebo /dev/tun (uz si nepamatam
+    presne) nie je pritomne na odyseovi => Riesenie: pridat na odysea tun zariadenie do dev
+    -https://superuser.com/questions/497245/how-to-load-tun-module-in-linux
+
+
+-vzajomne izolovat pouzivatelov na EVE-ng serveri (kvoli pouzivatelovi 
+ "wireshark_capture") -> zapisat do suboru "zabezpecenie_servera.txt" do 
+ casti "ZABEZPECENIE SYSTEMU"
+  -> zabezpecenie adresarov na xx0 (chmod)
+      "~/.ssh"
+    a
+      "/etc/ssl/"
+    kazdeho pouzivatela, aby nedoslo k uniku privatnych klucov
+  -nastavit umask v subore /etc/login.defs zo 022 na 027
+   -> pri takomto nastaveni umask budu mat domovske adresare novovytvorenych
+      pouzivatelov nie opravnenia 755 (pri umask 022), ale 750 (pri umask 027)
+        => domovske adresare budu citatelne pre vlastnikov domovskych 
+            adresarov, ale nie pre niekoho ineho
+  https://serverfault.com/questions/333745/isolating-a-user
+  https://superuser.com/questions/303910/ubuntu-default-access-mode-permissions-for-users-home-dir-home-user
+
+-lepsie zabezpecenie pre Apache
+  -lepsie HTTPS
+    https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-apache-in-ubuntu-16-04
+  -modsecurity, modevasive
+
+-opravit bug:
+  -pri vymazani suboru/adresara ako pouzivatel s rolou "user" sa nezobrazi chybove oznamenie o nedostatocnych opravneniach
+    Možné riešenie -> viď súbor "eve_ng-Nezobrazuje_sa_chybove_hlasenie_o_nedostatocnych_opravneniach_pre_BUG_UNRESOLVED.txt"
+
+-Opravit deformovany posuvnik na priblizovanie/oddalovanie topologie pri zmensovani topologie pod istu hranicu (cca 950px)
+  -Navrhy na riesenie su v subore "eve_ng-Display_too_small_BUG.txt"
+
+-Este lepsi sposob izolacie odchytavacieho uctu "wireshark_capture"
+  https://unix.stackexchange.com/questions/208960/how-to-restrict-a-user-to-one-folder-and-not-allow-them-to-move-out-his-folder/209065#209065
+
+-LACP Nexus 9000v - IOSv Bug fix
+  https://www.reddit.com/r/networking/comments/7w9i7v/lacp_nexus_9000v_iosv_bug_fix/
+  
+-Preskumat labaky
+  https://adamfromthefuture.blogspot.sk/2017/12/ccna-rs-prep-hero-level-rip.html
+  
+  https://certcollection.org/forum/topic/311957-collection-of-unetlab-iouios-and-qemu-for-eve-ng/#entry1161364
+    konkretne
+  https://mega.nz/#F!QWpTkL6I!aoxcgZ-c4hETZ5dK9udQLA!hWQzSazD
+
+  https://certcollection.org/forum/topic/316843-preloaded-eve-lite-edition-vm/#entry1191332
+    konkretne
+  https://cloud.mail.ru/public/MUgt/WFij4yTCB
+
+  https://certcollection.org/forum/topic/318612-eve-comm-edition-added-h1-h2-h3-ts1-ts2/#entry1203852
+    konkretne
+  https://mega.nz/#!EllR1DhZ!N4vfwBx1PqxF-MmGhziCi6S62vnT0r1WZlJqCOSbOcA
+
+-Ako importovat pouzivatelske ucty z LDAP do databazy (MySQL pre EVE-ng)?
+alebo
+do Linuxu (GNS3)
+-IPFS
+-Plotly/matplotlib - python kniznica pre vizualizaciu grafov
+-gnuplot - vizualizaciu grafov v Linuxe
+-Graphana - web framework pre vizualizaciu grafov
+-netdata
+  -treba doriesit zabezpecenie 
+    [https] a autentifikaciu [htaccess/reverse proxy autentifikacia])
+
+-urobit windows koncove zariadenie pre EVE-ng; najlepsie s virtio ovladacmi 
+    -Windows 10 x86/x64
+    -Windows Server 2016
+  -mozno vytvorit s ntLite?
+  -OPRAVIT BUG: 
+    zrejme bude treba vytvorit novu sablonu pre windowsy akebo upravit "unl_wrapper", lebo na mojom notebooku
+    som spustil Win10 x86 s plnou virtio podporou. Vsimol som si odlisne QEMU parametre,
+    akymi EVE-ng spusta Windows zariadenia, v porovnani s mojou Windows virtualkou.
+    Okrem upravy sablony bude treba upravit aj "qemu_wrapper" (ale qemu wrapper je binarka) ->
+    skontrolovat logy "/opt/unetlab/data/Logs/" predovsetkym "unl_wrapper" a "wrapper"
+  -MOZNE RIESENIE:
+    Windows virtualka sa v EVE-ng aj na mojom notebooku spustila prikazom
+    
+      sudo qemu-system-x86_64 -m 4G -cpu host -enable-kvm -drive file=/opt/unetlab/addons/qemu/win-10-pro-x86-1709_20170930_z_mojho_nb/virtioa.qcow2,if=ide,serial=111074 -vnc :26881
+
+      (zdroj: https://virtualchimp.wordpress.com/2016/03/09/creating-and-installing-windows-10-image-using-qemu/)
+
+    Windows virtualka sa spustila na porte 32781 (5900+26881). Teraz uz staci upravovat prikaz dovtedy, kym sa Windows virtualka nespusti aj z web rozhrania. 
+
+    Mozno pomoze porovnat si QEMU prikaz, ktory spusta windows virtualku z mojho notebooku so serverovym.
+    
+    Pokroky zaznamenat do navodu "eve-ng/07_9_vytvorenie_windows_10_kvm_virtualky_s_virtio_ovladacmi-CIASTOCNY_USPECH.txt"
+
+-ntopng - kategorizacia sietovej premavky podla typu/protokolu (http, dns, dhcp, aplikacie, ...)
+-Blockchain - matematika+siete+kryptomeny
+-Wireshark odchytavanie nebude fungovat pre seriove linky v EVE-ng
+    http://www.eve-ng.net/forum/viewtopic.php?f=6&t=812
+ Mozne riesenie - Cisco zariadenia vedia odchytavat prevadzku prikazom "monitor"
+  https://greenstack.wordpress.com/2015/01/06/cisco-iou-features-for-ccie-training-on-gns3/
+  https://www.youtube.com/watch?v=-EP_qtNQFsE&hd=1
+-linux file sync backup
+  https://unix.stackexchange.com/questions/307046/real-time-file-synchronization
+  https://syncthing.net/
+-LXC Web GUI (ale podla FAQ nefunguje pod Debianom - otestovat?)
+  https://lxc-webpanel.github.io/faq.html
+-NextCloud (nahrada za SharePoint a OneDrive a Skype For Business) - kvoli WebRTC videohovorom
+  https://www.youtube.com/watch?v=UYtFCpY0zuc
+-spustat zalohovanie potrebnych suborov a adresarov (uvedenych v zalohovacom skripte) nie podla casu cez cron, ale pri zmene tychto suborov a adresarov cez incron
+  https://www.howtoforge.com/tutorial/trigger-commands-on-file-or-directory-changes-with-incron/
+-ak sa mi podari uspesne spustit eve-ng server v kontajneri na odyseovi t.j. spustim v nej dynamips, iol aj qemu uzol, myslim, ze to nemusi fungovat na 100%, lebo eve-ng bude pouzivat odyseov debianovsky kernel namiesto svojho upraveneho kernelu pre lepsiu podporu l2 technologii; alebo vyskusat frontend od "breaktheweb"
+-Installing GNS3 server on LXC container
+-GNS3 support for Linux Containers (LXC & LXD) in addition to VMs...
+-Vyskusat OKS s kontajnermi Docker/LXC/LXD - mozno by to vyriesilo problemy s ntp synchronizaciou
+-rozdelenie EVE-ng do Community, Professional a Learning Centre edicie
+  POROVNANIE
+    http://www.eve-ng.net/index.php/features/compare
+  -Professional a Learning Centre opravuju mnozstvo nedostatkov:
+    -Podpora Docker kontajnerov
+    -moznost prace viacerych ludi na jednom projekte
+    -rozne typy pouzivatelov: administrator, ucitel student
+  -Community verzia bude pre vlastnu spotrebu
+  -Pro a Learning verzie budu spoplatnene (cca 100$ za rok)
+  -ale problem je, ze gitlab repozitar uz nie je verejne pristupny
+    => projekt uz nie je open-source!
+    ALE po instalacii eve-ng na server budu vsetky subory pristupne
+    => Riesenia, pokial nechceme za nic platit:
+        -pouzivat community ediciu a upravit si ju po svojom
+          -integracia BigBlueButton a dalsich funkcionalit
+            http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696
+            http://www.eve-ng.net/forum/viewtopic.php?f=6&t=2569&sid=0ebc9abde97106cc3497d0d3aa8d171e
+            http://eve-ng.net/index.php/features
+          -vytvorenie vlastneho EVE-ng repozitara?
+        alebo prechod na staru verziu (UNetLab)
+          https://github.com/dainok/unetlab
+        alebo prechod na inu platformu (GNS3)
+    => Riesenia, pokial nevadi, ze budeme platit:
+        -kupime si Pro/Learning ediciu iba raz, a na nich budeme stavat
+        alebo si budeme Pro/Learning ediciu kupovat kazdy rok
+        ALEBO HACKNEME EVE-NG PRO EDÍCIU, ABY FUNGOVALA AJ BEZ LICENCIE :D
+  http://eve-ng.net/index.php/faq  => hladat: Q: What happened to user roles (User, Editor)?
+  http://www.eve-ng.net/forum/viewtopic.php?f=6&t=696&sid=0ebc9abde97106cc3497d0d3aa8d171e
+  https://twitter.com/EVE_NG_TEAM/status/951560394765733888
+  
+-Pridat predmet na bezpecnost:
+  -Cisco hardening
+    https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html
+  -zabezpecenie Linux systemu: SELinux/AppArmor, KASLR
+  -Spectre/Meltdown indikator zabezpecenia, vid link nizsie (/sys/devices/system/cpu/vulnerabilities/)
+    https://www.linux.com/blog/intro-to-linux/2018/1/linux-kernel-415-unusual-release-cycle
+  -zabezpecenie SSH, Apache, MySQL, DNS
+  -ako sa chranit proti DoS a DDoS utokom (IDS/IPS)
+  -ako zabezpecit nezabezpecenu http premavku
+    -"vytvorenie openvpn tunela" + "reverse https proxy server"
+    -vytvorenie timu na monitorovanie bezpecnostnych zranitelnosti linuxu a windowsu
+    (najnovsie zranitelnosti: spectre a meltdown (linux), krack (wifi), blueborn (bluetooth))
+    https://certcollection.org/forum/topic/316995-red-hat-certificate-of-expertise-in-server-hardening-ex413-and-lpic-3-303-security-exam/#entry1200335
+    https://www.xda-developers.com/wpa2-wifi-protocol-vulnerability-krack/
+    http://xlab.tencent.com/special/spectre/spectre_check.html
+-Zmenit AvS: namiesto C sa moze ucit Python alebo webove technologie (napr. JavaScript) a nebudu sa ucit nizkourovnove sietove technologie, ale REST API napr. pre LXD (pretoze LXD je riadena prostrednictvom REST API)
+-Zmenit SOS: vyskusat vytvarat servery (mail, web, dns, firewall) ako Docker/LXC/LXD kontajnery (aplikacne kontajnery s vysokou dostupnostou - viacero replik s load balancingom)
+-Experiment: Vytvorit KVM virtualku s Windows 10, doinstalovat do nej Microsoft Office, Windows 10 KVM virtualku spustit v LXC kontajneri a vzdialene k nej pristupovat cez RDP
+  https://www.youtube.com/watch?v=ttvWx27hI60
+  https://stgraber.org/2012/03/04/booting-an-ubuntu-12-04-virtual-machine-in-an-lxc-container/
+-Importovat nastroj na generovanie sieti "Routem" z Cisco VIRL do EVE-ng a GNS3
+-GNS3 cluster
+  https://gns3.com/discussions/gns3-clustering-using-mpich
+  https://www.gns3.com/discussions/the-worlds-first-gns3-beowulf-cl
+  https://www.youtube.com/watch?v=i_r3z1jYHAc
+-OpenStack redeployment, ale automatizovane - mozne vyriesenie dlhych odoziev z api
+  -nutna podpora kvm a lxd
+  -automatizovany deployment s juju, ansible, ...
+  -https://maas.io/?utm_expid=.-9HoJQVJQvy8JWjBxJYSpQ.0&utm_referrer=https%3A%2F%2Fwww.google.sk%2F
+  -https://www.linux.com/blog/learn/chapter/OpenStack/2017/7/how-install-openstack-less-hour
+-vyuzitie OpenStacku na vytvaranie topologii
+-pripojenie na internet z vnutra projektu - oblacik (v DMZ nie je DHCP server - mozne riesenie: pridat DHCP server, ktory bude pridelovat privatne IP adresy a bude robit preklad adries NAT, kvoli pristupu na internet. Ale ako potom budu studenti pristupovat ku zariadeniam, ked budu mat lokalnu IP adresu?)
+-vyskusat cracknutu verziu Mikrotik 5.2 vo VBoxe -> potom importovat do EVE-ng
+-Ak bude EVE-ng/GNS3 bezat na fyzickom serveri,
+  integrovat ho do monitorovania cez Zabbix
+-Openstack v EVE-ng: http://networkop.co.uk/blog/2016/04/04/openstack-unl/
+-Vytvaranie sablon pre neexistujuce zariadenia pre EVE-ng
+  http://www.brianlinkletter.com/build-custom-linux-router-image-unetlab-eve-ng-network-emulators/
+-RancherVM / Project Atomic - spustanie KVM virtualiek ako Docker kontainery => toto teoreticky umozni vytvorit windows virtualku, ktora sa zabali do docker kontajnera
+-Unified Networking Lab v2 (UNetLabv2)
+  http://www.routereflector.com/unetlab/
+  https://www.indiegogo.com/projects/eve-ng-unified-networking-lab-2-0#/
+
+
+
+  GNS3
+-Rozdiel medzi klasickou GNS3 a GNS3-SW
+  -SW je skratka pre SolarWinds (pridane balicky navyse)
+  https://www.gns3.com/discussions/what-is-difference-between-gns-2
+  ODPOVED: https://www.gns3.com/discussions/gns3-2-0-1-released
+-vyskusat GNS3 nainstalovat do GNS3 kontajnera (podobne ako pri EVE-ng)
+  https://gns3.com/discussions/gns3-support-for-linux-container
+  https://gns3.com/news/article/installing-gns3-server-on-lxc-co
+-vygenerovat Cisco IOU licenciu pre GNS3
+-pozriet konfiguraky v gns3:
+  -/home/gns3/.config/GNS3/gns3_server.conf
+
+  -vysledky profilingu v eve-ng sa premietnu do nastavenia parametrov (CPU, RAM) v sablonach pre jednotlive druhy virtualnych zariadeni v ramci aktualizacneho skriptu pre sablony (sablona obsahuje nastavenia daneho druhu virtualneho zariadenia)
+  -pouzit zistene parametre pre zariadenia v gns3
+  -ak sa to bude spravat podobne, upravit templejty v gns3 v $HOME/gns3/gns3-server/gns3server/appliances
+  -preskumat aj startup configy, na ktore sa odkazuju aj niektore appliances v gns3 v /home/gns3/gns3-server/gns3server/configs
+  -pohrabat sa v adresarovej strukture gns3
+    -/opt/gns3
+    -/home/gns3/gns3-server/
+    -/home/gns3/gns3-server/gns3server
+
+  -otestovat docker v EVE-ng
+    https://github.com/phusion/baseimage-docker
+    https://hub.docker.com/_/busybox/
+    https://hub.docker.com/r/socketplane/openvswitch/
+    https://hub.docker.com/_/debian/
+    
+  -zabezpecit gns3 vzdialeny server
+    -ssh
+    -autentifikacia voci gns3 klientovi
+      https://gns3.com/discussions/i-implemented-multiuser-gns3-s-2
+      http://forum.gns3.net/topic314.html
+      https://adosztal.blogspot.sk/2017/03/multiuser-lab-with-gns3.html
+    
+  -vyskusat vsetky ios, iou a qemu zariadenia v gns3vm
+  -upravit templejty (appliances) skriptom, podla parametrov zistenych z eveng skriptu na upravu sablon
+    -urobit benchmarking a profiling vybranych zariadeni podla parametrov zariadeni
+    v eve-ng a zistit, do akej miery sa zhoduju s vysledkami z eve-ng
+    -vyhodnotit
+

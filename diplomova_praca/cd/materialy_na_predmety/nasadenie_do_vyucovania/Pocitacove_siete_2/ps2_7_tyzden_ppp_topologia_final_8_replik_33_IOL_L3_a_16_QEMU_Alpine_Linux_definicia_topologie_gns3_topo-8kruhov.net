@@ -1,0 +1,287 @@
+autostart = False
+ghostios = True
+sparsemem = True
+
+[localhost:33000]
+
+workingdir = /home/marek/PS2/PPP/Work
+        udp = 35000
+        aux = none
+
+
+        [[7200]]
+                ram = 256
+                ghostios = True
+                sparsemem = True
+                npe = npe-400
+                image = /Topologies/IOSes/c7200-adventerprisek9-mz.155-2.XB.bin.unp
+                confreg = 0x2102
+                cnfg = /home/marek/PS2/PPP/R-Ucitel.txt
+                slot1 = PA-8T
+                slot2 = PA-8T
+
+        [[2691]]
+                ram = 128
+                image = /Topologies/IOSes/c2691-advipservicesk9-mz.124-12.bin.unp
+                idlepc = 0x60a29810
+                confreg = 0x2142
+                slot1 = NM-4T
+
+        [[ROUTER R-Ucitel]]
+                model = 7200
+                console = 6000
+
+###############################################
+#                                             #
+#                  Skupina 1                  #
+#                                             #
+###############################################
+
+        [[ROUTER 1R1]]
+                model = 2691
+                console = 6011
+                s1/0 = R-Ucitel s1/0
+                s1/1 = 1R3 s1/1
+
+        [[ROUTER 1R2]]
+                model = 2691
+                console = 6012
+                s1/0 = R-Ucitel s1/1
+                s1/1 = 1R4 s1/1
+
+        [[ROUTER 1R3]]
+                model = 2691
+                console = 6013
+                s1/0 = 1R4 s1/0
+
+        [[ROUTER 1R4]]
+                model = 2691
+                console = 6014
+
+###############################################
+#                                             #
+#                  Skupina 2                  #
+#                                             #
+###############################################
+
+        [[ROUTER 2R1]]
+                model = 2691
+                console = 6021
+                s1/0 = R-Ucitel s1/2
+                s1/1 = 2R3 s1/1
+
+        [[ROUTER 2R2]]
+                model = 2691
+                console = 6022
+                s1/0 = R-Ucitel s1/3
+                s1/1 = 2R4 s1/1
+
+        [[ROUTER 2R3]]
+                model = 2691
+                console = 6023
+                s1/0 = 2R4 s1/0
+
+        [[ROUTER 2R4]]
+                model = 2691
+                console = 6024
+
+###############################################
+#                                             #
+#                  Skupina 3                  #
+#                                             #
+###############################################
+
+[localhost:33001]
+workingdir = /home/marek/PS2/PPP/Work
+        udp = 35100
+        aux = none
+
+                [[2691]]
+                ram = 128
+                image = /Topologies/IOSes/c2691-advipservicesk9-mz.124-12.bin.unp
+                idlepc = 0x60a29810
+                confreg = 0x2142
+                slot1 = NM-4T
+
+        [[ROUTER 3R1]]
+                model = 2691
+                console = 6031
+                s1/0 = R-Ucitel s1/4
+                s1/1 = 3R3 s1/1
+
+        [[ROUTER 3R2]]
+                model = 2691
+                console = 6032
+                s1/0 = R-Ucitel s1/5
+                s1/1 = 3R4 s1/1
+
+        [[ROUTER 3R3]]
+                model = 2691
+                console = 6033
+                s1/0 = 3R4 s1/0
+
+        [[ROUTER 3R4]]
+                model = 2691
+                console = 6034
+
+###############################################
+#                                             #
+#                  Skupina 4                  #
+#                                             #
+###############################################
+
+        [[ROUTER 4R1]]
+                model = 2691
+                console = 6041
+                s1/0 = R-Ucitel s1/6
+                s1/1 = 4R3 s1/1
+
+        [[ROUTER 4R2]]
+                model = 2691
+                console = 6042
+                s1/0 = R-Ucitel s1/7
+                s1/1 = 4R4 s1/1
+
+        [[ROUTER 4R3]]
+                model = 2691
+                console = 6043
+                s1/0 = 4R4 s1/0
+
+        [[ROUTER 4R4]]
+                model = 2691
+                console = 6044
+
+###############################################
+#                                             #
+#                  Skupina 5                  #
+#                                             #
+###############################################
+
+[localhost:33002]
+workingdir = /home/marek/PS2/PPP/Work
+        udp = 35200
+        aux = none
+
+                [[2691]]
+                ram = 128
+                image = /Topologies/IOSes/c2691-advipservicesk9-mz.124-12.bin.unp
+                idlepc = 0x60a29810
+                confreg = 0x2142
+                slot1 = NM-4T
+
+        [[ROUTER 5R1]]
+                model = 2691
+                console = 6051
+                s1/0 = R-Ucitel s2/0
+                s1/1 = 5R3 s1/1
+
+        [[ROUTER 5R2]]
+                model = 2691
+                console = 6052
+                s1/0 = R-Ucitel s2/1
+                s1/1 = 5R4 s1/1
+
+        [[ROUTER 5R3]]
+                model = 2691
+                console = 6053
+                s1/0 = 5R4 s1/0
+
+        [[ROUTER 5R4]]
+                model = 2691
+                console = 6054
+
+###############################################
+#                                             #
+#                  Skupina 6                  #
+#                                             #
+###############################################
+
+        [[ROUTER 6R1]]
+                model = 2691
+                console = 6061
+                s1/0 = R-Ucitel s2/2
+                s1/1 = 6R3 s1/1
+
+        [[ROUTER 6R2]]
+                model = 2691
+                console = 6062
+                s1/0 = R-Ucitel s2/3
+                s1/1 = 6R4 s1/1
+
+        [[ROUTER 6R3]]
+                model = 2691
+                console = 6063
+                s1/0 = 6R4 s1/0
+
+        [[ROUTER 6R4]]
+                model = 2691
+                console = 6064
+
+###############################################
+#                                             #
+#                  Skupina 7                  #
+#                                             #
+###############################################
+
+[localhost:33003]
+workingdir = /home/marek/PS2/PPP/Work
+        udp = 35300
+        aux = none
+
+                [[2691]]
+                ram = 128
+                image = /Topologies/IOSes/c2691-advipservicesk9-mz.124-12.bin.unp
+                idlepc = 0x60a29810
+                confreg = 0x2142
+                slot1 = NM-4T
+
+        [[ROUTER 7R1]]
+                model = 2691
+                console = 6071
+                s1/0 = R-Ucitel s2/4
+                s1/1 = 7R3 s1/1
+
+        [[ROUTER 7R2]]
+                model = 2691
+                console = 6072
+                s1/0 = R-Ucitel s2/5
+                s1/1 = 7R4 s1/1
+
+        [[ROUTER 7R3]]
+                model = 2691
+                console = 6073
+                s1/0 = 7R4 s1/0
+
+        [[ROUTER 7R4]]
+                model = 2691
+                console = 6074
+
+###############################################
+#                                             #
+#                  Skupina 8                  #
+#                                             #
+###############################################
+
+        [[ROUTER 8R1]]
+                model = 2691
+                console = 6081
+                s1/0 = R-Ucitel s2/6
+                s1/1 = 8R3 s1/1
+
+        [[ROUTER 8R2]]
+                model = 2691
+                console = 6082
+                s1/0 = R-Ucitel s2/7
+                s1/1 = 8R4 s1/1
+
+        [[ROUTER 8R3]]
+                model = 2691
+                console = 6083
+                s1/0 = 8R4 s1/0
+
+        [[ROUTER 8R4]]
+                model = 2691
+                console = 6084
+
+
+
