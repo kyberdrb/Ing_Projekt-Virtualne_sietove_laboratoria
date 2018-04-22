@@ -9,8 +9,9 @@ Zazitky:
 Diplomka
 
     -23.4. 2018 - DAT PRACU NA KONTROLU ORIGINALITY + DAT TLACIT PRACU :D - priniest si original zadania, ked si budem davat tlacit pracu. Praca je hotova s vnutrom na druhy den, najskor v utorok.
-        -OPYTAT SA, CI SA TO MOZE TLACIT OBOJSTRANNE, ALEBO LEN NA JEDNU STRANU? - podla toho upravit formatovanie PDFka
+        -OPYTAT SA, CI SA TO MOZE TLACIT OBOJSTRANNE, ALEBO LEN NA JEDNU STRANU? - podla toho upravit formatovanie PDFka popr. aktualizovat subor praca.pdf v adresari "cd"
         -OBJEDNAT OBALY NA CD 3KS V EDISE 
+        -NAPALIT CD (brano)
 
     
 
