@@ -23,7 +23,7 @@ Po extrakcii súborov môžeme aktualizovať zmenené súbory v Git adresári. P
   dtrx praca.zip
   rm praca.zip
   mv /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomova_praca/praca/ ~/Downloads/praca_git_backup
-  cp -r ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomova_praca/
+  cp -r ~/Downloads/praca/ /home/andrej/github/Ing-Projekt_Ing-Virtualne_sietove_laboratoria/diplomova_praca/praca/
 
 
 # Najrýchlejší spôsob je presunúť predchádzajúci adresár s prácou na iné miesto mimo repozitár a na rovnaké miesto skopírovať práve stiahnutý rozbalený adresár s prácou.
