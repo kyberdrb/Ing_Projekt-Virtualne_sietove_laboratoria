@@ -125,3 +125,9 @@ https://tex.stackexchange.com/questions/3033/forcing-linebreaks-in-url/3034#3034
 
 Zobrazenie obrázkov na rovnakej strane
 https://tex.stackexchange.com/questions/134162/getting-two-pictures-to-appear-on-the-same-page/134172#134172
+
+Zväčšenie/zmenšenie medzery medzi obrázkom a ďalším blokom textu
+https://tex.stackexchange.com/questions/26521/how-to-change-the-spacing-between-figures-tables-and-text/26522#26522
+
+Zobrazenie obrázkov na rovnakej strane
+https://tex.stackexchange.com/questions/52515/forcing-a-figure-to-appear-on-the-next-page/52521#52521
