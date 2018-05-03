@@ -1,7 +1,0 @@
-Instalacia QEMU/KVM v Ubuntu
-    sudo aptitude install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
-    sudo systemctl enable libvirtd.service
-    sudo usermod -aG libvirt andrej
-    sudo usermod -aG kvm andrej
-    reboot
-

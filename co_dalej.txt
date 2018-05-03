@@ -6,19 +6,8 @@ Zazitky:
 -20.12. 2017 o 10:30 som zistil, ze mi nejde pripojit sa ani na LXC kontajner 'eve-backup' ani na EVE-ng vo VMware Player. Dovodom bol vypadok elektriny. Podla vypisu logovacich suborov prikazom "sudo journalctl" neviem urcit, kedy vypadok nastal (zrejme niekedy v noci), ale prvy logovaci zaznam na 'sirene' bol vytvoreny "Dec 20 07:13:16". Kontajner 'eve-backup' sa zapol az potom, co som hned v ten den prisiel na katedru: v "sudo journalctl" je uvedeny ako prvy zaznam "Dec 20 11:10:42", ale na Odyseovi je UTC cas z NTP - bolo to o hodinu neskor; "Dec 20 12:10:42".
 
 ===============================================================================
-Diplomka
 
-    -kupit si 3ks papierovych cd obalov v edise
-    -napalit 3 cd (brano)
-
-    
-
-
-
-
-
-
-Dodatočne po odovzdaní:
+Dodatočne po odovzdaní diplomky:
 
     -replikovať jakubovu topológiu v EVE-ng
         -konfiguráky => FB
@@ -29,6 +18,9 @@ Dodatočne po odovzdaní:
 
 ===============================================================================
 Co dalej?
+
+-pre aktualne informacie sledovat aj EVE-ng na Twitteri
+    https://twitter.com/EVE_NG_TEAM
 
 -opraviť bug:
     -používateľ s rolou user vie spúšťať zariadenia v topológii, ale má mať iba oprávnenie prehliadať súbory a topológie.

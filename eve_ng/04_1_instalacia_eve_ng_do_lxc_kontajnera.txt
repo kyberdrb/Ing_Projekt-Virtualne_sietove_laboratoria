@@ -10,6 +10,16 @@ apt-get install aptitude
 aptitude update
 aptitude install openssh bash-completion lxc
 
+Ak ešte nemáme žiadne zariadenie v EVE-ng v QCOW2 formáte, môžeme nainštalovať na fyzický EVE-ng server aj QEMU/KVM, VirtualBox a pod., aby sme vedeli vytvoriť virtuálny stroj v QCOW2 formáte, ktorý neskôr importujeme do EVE-ng LXC kontajnera. Ak už QCOW2 zariadeniami disponujeme, nepotrebujeme vykonávať tento krok.
+
+    sudo aptitude install qemu-kvm qemu virt-manager virt-viewer libvirt-bin
+    sudo systemctl enable libvirtd.service
+    sudo usermod -aG libvirt andrej
+    sudo usermod -aG kvm andrej
+    reboot
+
+Vytvoríme LXC kontajner
+
 sudo lxc-create -t download -n eve_ng-lxc
 
 debian
@@ -26,6 +36,13 @@ aptitude upgrade
 adduser andrej
 aptitude install ssh wget sudo debian-keyring debian-archive-keyring software-properties-common build-essential
 usermod -aG sudo andrej
+
+
+# Perzistentne nastavenie DNS serverov v LXC kontajneri
+# vid ./GENERAL_edit_DNS_nameservers_via_resolvconf.txt
+
+# Katedrový LXC server funguje lepšie, keď má v operačnom systéme v LXC nastavenú IP adresu na rozhraní eth0. Tak bude po spustení a po reštarte takmer okamžite dostupný z internetu. Pravdepodobne DHCP problém v DMZ zóne na katedre.
+
 
 Pripojíme sa do LXC kontajnera cez SSH ako štandardný používateľ. Príkaz "sudo" pre štandardného používateľa by mal fungovať bez dodatočnej konfigurácie.
 
@@ -365,13 +382,20 @@ X.X.X.0   0.0.0.0         255.255.255.128 U     0      0        0 pnet0
 
 # Teraz by uz mala byt internetova konektivita dnu aj von pre LXC kontajner
 
+Ešte potrebujeme upraviť konfiguračný súbor LXC kontajnera tak, aby sme boli schopní v EVE-ng LXC kontajneri spúšťať QEMU/KVM zariadenia t.j. súbory s príponou "*.qcow2". Viď súbory
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_01_install_lxc_lxd_container_support.txt
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_02_mount_host_directory_to_container.txt
+    https://github.com/kyberdrb/Linux_tutorials/blob/master/ARCH_LXC_03_run_kvm_inside_lxc_lxd_container.txt
 
-
+Návod "ARCH_LXC_01" sa zaoberá inštaláciou podpory pre LXC kontajnery.
+Návod "ARCH_LXC_01" sa zaoberá pripojením adresára z hosťovského systému do LXC kontajnera. To môže byť užitočné, pokiaľ chceme mať viacero EVE-ng inštalácií na jednom serveri, ktoré medzi sebou zdieľajú rovnakú množinu zariadení.
+Návod "ARCH_LXC_01" sa zaoberá úpravou konfiguračného súboru pre LXC kontajner tak, aby sme boli schopní spúšťať aj QEMU/KVM zariadenia zvnútra LXC kontajnera.
 
 
 
 Sources:
     https://feeding.cloud.geek.nz/posts/lxc-setup-on-debian-jessie/
+    https://www.unixmen.com/how-to-install-and-configure-qemu-in-ubuntu/
     https://stgraber.org/2013/12/20/lxc-1-0-your-first-ubuntu-container/
     https://help.ubuntu.com/lts/serverguide/lxc.html
     http://www.eve-ng.net/index.php/documentation/installation/bare-install
@@ -383,3 +407,19 @@ Sources:
     http://www.ducea.com/2006/08/01/how-to-enable-ip-forwarding-in-linux/
     https://www.digitalocean.com/community/tutorials/how-to-forward-ports-through-a-linux-gateway-with-iptables
     https://serverfault.com/questions/181094/how-do-i-delete-a-route-from-linux-routing-table/735257#735257
+
+
+Ďalšie zdoje, osobitne pre spustenie QEMU/KVM zariadenia v LXC kontajneri resp. pripájanie zdieľaných adresárov a zariadení:
+    https://www.google.sk/search?client=firefox-b-ab&dcr=0&ei=rvtIWtHwEMfEwQKNoInoDg&q=kvm+in+lxc&oq=kvm+in+lxc&gs_l=psy-ab.3..0i19k1j0i22i30i19k1l6.12390.12602.0.12801.2.2.0.0.0.0.203.392.0j1j1.2.0....0...1.1.64.psy-ab..0.2.390...0i22i30k1.0.Y4cQNb7TI-0
+    https://www.google.sk/search?q=kvm+in+lxc+container&ie=utf-8&oe=utf-8&client=firefox-b-ab&gfe_rd=cr&dcr=0&ei=pPpFWuv2MfCA8QfUjKz4CA
+    https://github.com/lxc/lxd/issues/3393
+    https://github.com/lxc/lxd/issues/2718
+    https://docs.openstack.org/devstack/latest/guides/lxc.html
+    https://blog.a2o.si/2015/10/26/how-to-run-ubuntu-kvm-host-in-an-unprivileged-lxc-container/
+    https://unix.stackexchange.com/questions/82012/lxc-running-virtualbox-inside-a-container
+    https://linuxcontainers.org/lxc/manpages//man5/lxc.container.conf.5.html
+    https://gist.github.com/julianlam/07abef272136ea14a627
+    https://www.youtube.com/watch?v=DRXEtfSA4SM (LXC, from Start to Finish)
+    https://github.com/fgrehm/vagrant-lxc/issues/193#issuecomment-37600484
+    https://serverfault.com/questions/471719/how-to-start-qemu-directly-in-the-console-not-in-curses-or-sdl
+    https://draskodraskovic.wordpress.com/2012/05/26/running-qemu-in-nographic-mode/

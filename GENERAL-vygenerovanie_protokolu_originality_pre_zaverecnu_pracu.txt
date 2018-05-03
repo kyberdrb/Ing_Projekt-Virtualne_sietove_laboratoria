@@ -7,3 +7,10 @@ Vygenerovanie protokolu originality pre záverečnú prácu
    Heslo: ako do vzdelávania
 5) V stĺpci "Operácie" pre diplomovú prácu klikneme v rozbaľovacom menu na "Pridať novú verziu".
 6) Vyplníme všetky potrebné polia.
+
+Potom dáme "Exportovať", zase všetko vyplníme:
+    Študijný odbor: Informačné systémy
+Stiahneme si vygenerovanú licenciu.
+
+Uložíme a počkáme na vygenerovanie posudku originality.
+Po jeho vygenerovaní si ho stiahneme a odošleme vedúcemu záverečnej práce.
