@@ -102,15 +102,14 @@
         <li>Rôzne nástroje.</li>
         <li>Technologická ohraničenosť nástrojov.</li>
       </ul>
-
     </section>
 
 
     <section class="slide">
       <h2>Ciele diplomovej práce</h2>
-      <p>Zjednotenie čo najväčšieho množstva funkcionalít už existujúcich nástrojov do jedného</p>
+      <p>Zjednotenie čo najväčšieho množstva funkcionalít už existujúcich nástrojov do jedného.</p>
 
-      <h3>&nbspČiastkové ciele</h3>
+      <h3>Čiastkové ciele</h3>
       <ul>
         <li>Prieskum nástrojov pre sieťovú virtualizáciu</li>
         <li>Výber jedného riešenia</li>
@@ -128,20 +127,18 @@
       <p>Prieskum a porovnanie existujúcich riešení pre potreby katedry.</p>
 
       <h3>Výsledok</h3>
-        <p>Zoznam nástrojov a ich funkcionalít.</p>
+      <p>Zoznam nástrojov a ich funkcionalít.</p>
     </section>
 
 
     <section class="slide">
       <h2>Výber jedného riešenia</h2>
 
-
       <h3>Účel</h3>
       <ul>
         <li>Výber jedného nástroja podľa definovaných kritérii.</li>
-        <li>Vytvorenie návodov pre nasadenie EVE-ng do infraštruktúry.</li>
+        <li>Nasadenie EVE-ng do infraštruktúry.</li>
       </ul>
-
 
       <h3>Metodika</h3>
       <ul>
@@ -149,90 +146,78 @@
         <li>Inštalácia</li>
         <li>Úprava nástroja</li>
         <li>Administrácia</li>
+        <li>Vytvorenie návodov z vyššie uvedených bodov</li>
       </ul>
     </section>
 
-    <section class="slide">
-        <h2>Výber jedného riešenia</h2>
-    
-        <h3>Definované kritériá</h3>
-        <ul>
-            <li>krit 1</li>
-            <li>krit 2</li>
-            <li>krit 3</li>
-            <li>...</li>
-        </ul>
-        </section>
 
     <section class="slide">
-        <h2>Výber jedného riešenia</h2>    
+      <h3>Definované kritériá</h3>
+      <ul>
+        <li>Open-source.</li>
+        <li>Podpora už používaných zariadení.</li>
+        <li>Podpora rôznych virtualizačných technológii.</li>
+        <li>Podpora zariadení od rôznych výrobcov.</li>
+        <li>Jednoduché ovládanie.</li>
+        <li>Vzdialený prístup ku zariadeniam.</li>
+        <li>Správa topológií.</li>
+        <li>Používateľ môže mať spustených viacero topológií.</li>
+        <li>Možnosť práce viac ľudí naraz na rovnakom projekte.</li>
+        <li>Možnosť prepojiť topológiu so živou sieťou.</li>
+        <li>Podpora nástroja v budúcnosti.</li>
+      </ul>
+    </section>
     
-        <h3>Metodika - podrobnejší popis</h3>
-        
+
+    <section class="slide">
+      <h3>Úprava nástroja</h3>
+      <ul>
+        <li>Sprístupnenie používateľských rolí.</li>
         <ul>
-            <li>Úprava nástroja</li>
-            <ul>
-            <li><em>Wireshark, Debugger Console</em></li>
-            <li>Sprístupnenie používateľských rolí.</li>
-            <ul>
-                <li>Dostupná iba v platenej verzii.</li>
-                <li>Implementovaná dodatočne.</li>
-            </ul>
-            <li>Povolenie úprav používateľských atribútov.</li>
-            <li>Vypnutie správy o nízkom rozlíšení obrazovky.</li>
-            <li>Zatvorenie topológie so spustenými zariadeniami.</li>
-            </ul>
-            <li>Administrácia</li>
-            <ul>
-            <li>Zálohovanie.</li>
-            <ul>
-                <li>Rýchle obnovenie v prípade zlyhania servera.</li>
-                <li><em>rsync, cron</em></li>
-                <li>Kritické súbory a adresáre.</li>
-            </ul>
-            <li>Monitorovanie.</li>
-            <ul>
-                <li><em>dstat, EVE-ng System status, htop</em></li>
-            </ul>
-            <li>Správa používateľov.</li>
-            </ul>
+          <li>Dostupná iba v platenej verzii. (implementovaná dodatočne)</li>
         </ul>
-    
-        
-        <h3>Výsledky</h3>
-    
-        <p>
-            Dve inštancie EVE-ng servera: virtuálny stroj (VMware) a fyzický server (sirena).
-        </p>
-        </section>
+        <li>Povolenie úprav používateľských atribútov.</li>
+        <li>Vypnutie správy o nízkom rozlíšení obrazovky.</li>
+        <li>Zatvorenie topológie so spustenými zariadeniami.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h3>Administrácia</h3>
+      <ul>
+        <li>Zálohovanie.</li>
+        <ul>
+          <li>Rýchle obnovenie v prípade zlyhania servera.</li>
+          <li>Kritické súbory a adresáre.</li>
+        </ul>
+        <li>Monitorovanie.</li>
+        <li>Správa používateľov.</li>
+      </ul>
+
+      <h3>Výsledky</h3>
+      <p>Dve inštancie EVE-ng servera:</p>
+      <ul>
+        <li><strike>Virtuálny stroj (VMware).</strike></li>
+        <li>Fyzický server.</li>
+      </ul>
+    </section>
+
 
     <section class="slide">
       <h2>Analýza vyučovania</h2>
 
-
-      <h3>Dôvod</h3>
-
-      <p>
-        Prieskum vyučovaných tém na katedre.
-      </p>
-
+      <h3>Účel</h3>
+      <p>Prieskum vyučovaných tém na katedre.</p>
 
       <h3>Metodika</h3>
-      
       <ul>
         <li>Informačné listy predmetov</li>
         <li>Vyučovacie materiály predmetov na katedre</li>
       </ul>
-
       
       <h3>Výsledky</h3>
-
-      <p>
-        Textový dokument - zoznam vyučovaných sieťových tém
-        <ul>
-          <li>napr. VLAN, DHCP, OSPF a pod.</li>
-        </ul>
-      </p>
+      <p>Textový dokument - zoznam vyučovaných sieťových tém (napr. VLAN, DHCP, OSPF a pod.)</p>
     </section>
 
 
@@ -240,8 +225,7 @@
       <h2>Virtuálne zariadenia</h2>
 
 
-      <h3>Dôvody</h3>
-
+      <h3>Účel</h3>
       <ul>
         <li>Získavanie stabilných zariadení pre virtuálny nástroj EVE-ng.</li>
         <li>Testovanie zariadení na podporované technológie.</li>
@@ -254,18 +238,8 @@
       <ul>
         <li>Získavanie</li>
         <li>Testovanie spustiteľnosti</li>
-          <ul>
-            <li>Dá sa zariadenie spustiť?</li>
-          </ul>
         <li>Testovanie systémových požiadaviek</li>
-          <ul>
-            <li>Koľko systémových zdrojov zariadenie potrebuje?</li>
-          </ul>
         <li>Testovanie podporovaných technológii</li>
-          <ul>
-            <li>Aké smerovacie/prepínacie/aplikačné technológie zariadenie podporuje?</li>
-          </ul>
-        </ul>
       </ul>
 
       
@@ -286,41 +260,27 @@
     <section class="slide">
       <h2>Nasadenie do vyučovania</h2>
 
-
-      <h3>Dôvod</h3>
-
-      <p>
-        Overenie použiteľnosti nástroja vo vyučovaní.
-      </p>
-
+      <h3>Účel</h3>
+      <p>Overenie použiteľnosti nástroja vo vyučovaní.</p>
 
       <h3>Metodika</h3>
-      
       <ul>
-        <li>Nasadenie na predmety Projektovanie sietí 2.</li>
-        <li><strong>Plánované nasadenie na Počítačové siete 2 v piatok.</strong></li>
-        <ul>
-          <li>PPP, MLPPP, PAP, CHAP</li>
-        </ul>
-        <li><strong>Nasadenie na Projektovanie sietí 1?</strong></li>
+        <li>Výber vhodných zariadení.</li>
+        <li>Zostavenie topológie.</li>
+        <li>Replikácia topológie.</li>
       </ul>
-
       
       <h3>Výsledky</h3>
-
       <ul>
         <li>Projektovanie sietí 2</li>
-        <ul>
-          <li>VPLS</li>
-          <li>Seamless MPLS</li>
-        </ul>
+        <li>Počítačové siete 2</li>
+        <li>Projektovanie sietí 1</li>
       </ul>
     </section>
 
 
     <section class="slide">
-        <h2>Výsledky projektu</h2>
-
+        <h2>Výsledky</h2>
         <ul>
           <li>Analýza dostupných nástrojov pre sieťovú virtualizáciu.</li>
           <li>Inštalácia vybraného nástroja - EVE-ng.</li>
@@ -341,7 +301,7 @@
           <ul>
             <li>podporované technológie pre Juniper, Nokia smerovače</li>
           </ul>
-          <li>co_dalej.txt</li>
+          <li>GNS3</li>
         </ul>
     </section>
 
