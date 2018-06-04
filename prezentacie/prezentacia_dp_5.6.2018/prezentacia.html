@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>DP - Virtuálne sieťové laboratórium - Šišila</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/horizontal-slide.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <section class="slide">
+      <h1>Virtuálne sieťové laboratórium</h1>
+    </section>
+
+
+    <section class="slide">
+      <h2>Projekt</h2>
+
+      <strong>Autor:</strong>
+      <p>Andrej Šišila</p>
+
+      <strong>Vedúci:</strong>
+      <p>doc. Ing. Pavel Segeč, PhD.</p>
+
+      <strong>Úloha:</strong>
+      <p>Hľadanie virtualizačného sieťového nástroja pre katedru</p>
+    </section>
+
+
+    <section class="slide">
+      <h2>Špecifikácia projektu</h2>
+
+      <ul>
+        <li>Nahradenie fyzického a všetkých virtuálnych laboratórii jediným riešením, ktoré by podporovalo všetky virtuálne zariadenia prítomné na katedre, a v ktorom sa môžu vypracovávať konfiguračné úlohy na vybrané vyučovacie predmety.</li>
+        <li>Podpora pre typy používateľov</li>
+        <ul>
+          <li>Učiteľ</li>
+          <ul>
+            <li>Vytváranie topológii sietí</li>
+            <li>Zadávanie úloh študentom</li>
+          </ul>
+          <li>Študent</li>
+          <ul>
+            <li>Konfigurácia zadaných úloh na vytvorenej topológii</li>
+          </ul>
+        </ul>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Súčasný stav</h2>
+
+      <h3>Virtuálne sieťové laboratóriá používané na katedre:</h3>
+
+      <h4>Packet Tracer</h4>
+      <ul>
+        <li>Počítačové siete 1/2</li>
+      </ul>
+
+      <h4>Dynamips/Dynalab</h4>
+      <ul>
+        <li>Počítačové siete 2, Projektovanie sietí 1</li>
+        <li>Pokročilé prepínanie/smerovanie v informačno-komunikačných sieťach (CCNP Switching/Routing)</li>
+      </ul>
+
+
+      <h4>OpenStack</h4>
+      <ul>
+        <li>Nebol skúmaný.</li>
+        <li>Používa sa na iné predmety, ktoré nie sú cieľom tejto práce.</li>
+        <li>Potencionálne použiteľný.</li>
+      </ul>
+
+
+      <h3>Nedostatky súčasného stavu</h3>
+      <ul>
+        <li>Rôzne nástroje.</li>
+        <li>Technologická ohraničenosť nástrojov.</li>
+      </ul>
+
+    </section>
+
+
+    <section class="slide">
+      <h2>Ciele diplomovej práce</h2>
+      <p>Zjednotenie čo najväčšieho množstva funkcionalít už existujúcich nástrojov do jedného</p>
+
+      <h3>&nbspČiastkové ciele</h3>
+      <ul>
+        <li>Prieskum nástrojov pre sieťovú virtualizáciu</li>
+        <li>Výber jedného riešenia</li>
+        <li>Analýza vyučovania</li>
+        <li>Zber virtuálnych zariadení</li>
+        <li>Nasadenie do vyučovania</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Prieskum nástrojov pre sieťovú virtualizáciu</h2>
+
+      <h3>Účel</h3>
+      <p>Prieskum a porovnanie existujúcich riešení pre potreby katedry.</p>
+
+      <h3>Výsledok</h3>
+        <p>Zoznam nástrojov a ich funkcionalít.</p>
+    </section>
+
+
+    <section class="slide">
+      <h2>Výber jedného riešenia</h2>
+
+
+      <h3>Účel</h3>
+      <ul>
+        <li>Výber jedného nástroja podľa definovaných kritérii.</li>
+        <li>Vytvorenie návodov pre nasadenie EVE-ng do infraštruktúry.</li>
+      </ul>
+
+
+      <h3>Metodika</h3>
+      <ul>
+        <li>Definovanie kritérií</li>
+        <li>Inštalácia</li>
+        <li>Úprava nástroja</li>
+        <li>Administrácia</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+        <h2>Výber jedného riešenia</h2>
+    
+        <h3>Definované kritériá</h3>
+        <ul>
+            <li>krit 1</li>
+            <li>krit 2</li>
+            <li>krit 3</li>
+            <li>...</li>
+        </ul>
+        </section>
+
+    <section class="slide">
+        <h2>Výber jedného riešenia</h2>    
+    
+        <h3>Metodika - podrobnejší popis</h3>
+        
+        <ul>
+            <li>Úprava nástroja</li>
+            <ul>
+            <li><em>Wireshark, Debugger Console</em></li>
+            <li>Sprístupnenie používateľských rolí.</li>
+            <ul>
+                <li>Dostupná iba v platenej verzii.</li>
+                <li>Implementovaná dodatočne.</li>
+            </ul>
+            <li>Povolenie úprav používateľských atribútov.</li>
+            <li>Vypnutie správy o nízkom rozlíšení obrazovky.</li>
+            <li>Zatvorenie topológie so spustenými zariadeniami.</li>
+            </ul>
+            <li>Administrácia</li>
+            <ul>
+            <li>Zálohovanie.</li>
+            <ul>
+                <li>Rýchle obnovenie v prípade zlyhania servera.</li>
+                <li><em>rsync, cron</em></li>
+                <li>Kritické súbory a adresáre.</li>
+            </ul>
+            <li>Monitorovanie.</li>
+            <ul>
+                <li><em>dstat, EVE-ng System status, htop</em></li>
+            </ul>
+            <li>Správa používateľov.</li>
+            </ul>
+        </ul>
+    
+        
+        <h3>Výsledky</h3>
+    
+        <p>
+            Dve inštancie EVE-ng servera: virtuálny stroj (VMware) a fyzický server (sirena).
+        </p>
+        </section>
+
+    <section class="slide">
+      <h2>Analýza vyučovania</h2>
+
+
+      <h3>Dôvod</h3>
+
+      <p>
+        Prieskum vyučovaných tém na katedre.
+      </p>
+
+
+      <h3>Metodika</h3>
+      
+      <ul>
+        <li>Informačné listy predmetov</li>
+        <li>Vyučovacie materiály predmetov na katedre</li>
+      </ul>
+
+      
+      <h3>Výsledky</h3>
+
+      <p>
+        Textový dokument - zoznam vyučovaných sieťových tém
+        <ul>
+          <li>napr. VLAN, DHCP, OSPF a pod.</li>
+        </ul>
+      </p>
+    </section>
+
+
+    <section class="slide">
+      <h2>Virtuálne zariadenia</h2>
+
+
+      <h3>Dôvody</h3>
+
+      <ul>
+        <li>Získavanie stabilných zariadení pre virtuálny nástroj EVE-ng.</li>
+        <li>Testovanie zariadení na podporované technológie.</li>
+        <li>Hľadanie prieniku technológii.</li>
+      </ul>
+
+
+      <h3>Metodika</h3>
+      
+      <ul>
+        <li>Získavanie</li>
+        <li>Testovanie spustiteľnosti</li>
+          <ul>
+            <li>Dá sa zariadenie spustiť?</li>
+          </ul>
+        <li>Testovanie systémových požiadaviek</li>
+          <ul>
+            <li>Koľko systémových zdrojov zariadenie potrebuje?</li>
+          </ul>
+        <li>Testovanie podporovaných technológii</li>
+          <ul>
+            <li>Aké smerovacie/prepínacie/aplikačné technológie zariadenie podporuje?</li>
+          </ul>
+        </ul>
+      </ul>
+
+      
+      <h3>Výsledky</h3>
+
+      <ul>
+        <li>Tabuľkový dokument s výsledkami testovania spustiteľnosti zariadení.</li>
+        <li>Tabuľkový dokument s výsledkami testovania systémových požiadaviek zariadení.</li>
+        <li>Tabuľkový dokument so zoznamom vyučovaných sieťových technológii a zoznamom podporovaných technológii testovaných zariadení.</li>
+      </ul>
+    </section>
+
+
+    <!---<section class="slide">
+      Obrázky tabuľkových dokumentov (zrejme ľavé horné rohy)
+    </section>-->
+
+    <section class="slide">
+      <h2>Nasadenie do vyučovania</h2>
+
+
+      <h3>Dôvod</h3>
+
+      <p>
+        Overenie použiteľnosti nástroja vo vyučovaní.
+      </p>
+
+
+      <h3>Metodika</h3>
+      
+      <ul>
+        <li>Nasadenie na predmety Projektovanie sietí 2.</li>
+        <li><strong>Plánované nasadenie na Počítačové siete 2 v piatok.</strong></li>
+        <ul>
+          <li>PPP, MLPPP, PAP, CHAP</li>
+        </ul>
+        <li><strong>Nasadenie na Projektovanie sietí 1?</strong></li>
+      </ul>
+
+      
+      <h3>Výsledky</h3>
+
+      <ul>
+        <li>Projektovanie sietí 2</li>
+        <ul>
+          <li>VPLS</li>
+          <li>Seamless MPLS</li>
+        </ul>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+        <h2>Výsledky projektu</h2>
+
+        <ul>
+          <li>Analýza dostupných nástrojov pre sieťovú virtualizáciu.</li>
+          <li>Inštalácia vybraného nástroja - EVE-ng.</li>
+          <li>Analýza vyučovaných technológii vybraných predmetov.</li>
+          <li>Získanie a testovanie dostupných virtuálnych zariadení.</li>
+          <li>Vyhodnotenie výstupov testovania.</li>
+          <li>Nasadenie do vyučovania na vybrané predmety.</li>
+        </ul>
+    </section>
+
+
+    <section class="slide">
+        <h2>Pokračovanie projektu</h2>
+
+        <ul>
+          <li>Oprava nedostatkov a pridávanie funkcionalít do nástroja EVE-ng</li>
+          <li>Dokončenie testovania technológii</li>
+          <ul>
+            <li>podporované technológie pre Juniper, Nokia smerovače</li>
+          </ul>
+          <li>co_dalej.txt</li>
+        </ul>
+    </section>
+
+
+    <!-- End slides. -->
+
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+  <!-- Required JS files. -->
+  <script src="jquery.min.js"></script>
+  <script src="core/deck.core.js"></script>
+
+  <!-- Extension JS files. Add or remove as needed. -->
+  <script src="extensions/menu/deck.menu.js"></script>
+  <script src="extensions/goto/deck.goto.js"></script>
+  <script src="extensions/status/deck.status.js"></script>
+  <script src="extensions/navigation/deck.navigation.js"></script>
+  <script src="extensions/scale/deck.scale.js"></script>
+
+  <!-- Initialize the deck. You can put this in an external file if desired. -->
+  <script>
+    $(function() {
+      $.deck('.slide');
+    });
+  </script>
+
+</body>
+</html>
