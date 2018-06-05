@@ -215,7 +215,8 @@ h1, .vcenter {
 }
 
 h2 {
-  font-size: 2.25em;
+  /*font-size: 2.25em;*/
+  font-size: 65px;
   font-weight: bold;
   padding-top: .5em;
   margin: 0 0 .66666em 0;
@@ -223,14 +224,16 @@ h2 {
 }
 
 h3 {
-  font-size: 1.4375em;
+  /*font-size: 1.4375em;*/
+  font-size: 55px;
   font-weight: bold;
   margin-left: 5px;
   margin-bottom: .30435em;
 }
 
 h4 {
-  font-size: 1.25em;
+  /*font-size: 1.25em;*/
+  font-size: 45px;
   font-weight: bold;
   margin-bottom: .25em;
 }
@@ -256,15 +259,12 @@ video, iframe, img {
   margin: 0 auto;
 }
 
-/* p, blockquote, iframe, img, ul, ol, pre, video {
-  margin-bottom: 1em;
-} */
-
 p, blockquote, iframe, img, pre, video {
   margin-bottom: 1em;
 }
 
 p {
+  font-size: 30px;
   padding: 0 15px;
 }
 
