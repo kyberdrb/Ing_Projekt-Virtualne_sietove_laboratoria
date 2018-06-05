@@ -263,8 +263,11 @@ p, blockquote, iframe, img, pre, video {
   margin-bottom: 1em;
 }
 
-p {
+p, ul, ol {
   font-size: 30px;
+}
+
+p {
   padding: 0 15px;
 }
 
