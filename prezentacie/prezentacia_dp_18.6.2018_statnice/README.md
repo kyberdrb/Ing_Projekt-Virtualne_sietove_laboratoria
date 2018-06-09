@@ -1,6 +1,6 @@
 Prezentáciu je možné prehliadať cez
 
-  http://htmlpreview.github.io/?https://github.com/kyberdrb/Ing_Projekt-Virtualne_sietove_laboratoria/blob/master/prezentacie/prezentacia_dp_5.6.2018/prezentacia.html
+  http://htmlpreview.github.io/?https://github.com/kyberdrb/Ing_Projekt-Virtualne_sietove_laboratoria/blob/master/prezentacie/prezentacia_dp_18.6.2018_statnice/prezentacia.html
 
 Zdroje:
 
