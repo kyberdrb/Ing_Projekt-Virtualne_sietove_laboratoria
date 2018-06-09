@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+
+  <title>Andrej Šišila - Sieťové virtualizačné nástroje a ich využitie vo vyučovacom procese KIS</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/web-2.0.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/fade.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+</head>
+<body>
+  <div class="deck-container">
+    <section class="slide">
+      <h2>Sieťové virtualizačné nástroje a ich využitie vo vyučovacom procese KIS</h2>
+
+      <p style="padding: 0 0"><strong>Bc. Andrej Šišila</strong></p>
+      <p style="padding: 0 0"><strong>doc. Ing. Pavel Segeč, PhD.</strong></p>
+    </section>
+
+
+    <section class="slide">
+      <h2>Špecifikácia projektu</h2>
+      <ul>
+        <li>Nahradenie fyzických a virtuálnych laboratórii jediným virtualizovaným riešením</li>
+        <li>Podpora virtuálnych zariadení používaných na katedre</li>
+        <li>Vypracovávanie konfiguračných úloh pre vybrané vyučovacie predmety.</li>
+        <li>V čo najväčšej miere.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Súčasný stav</h2>
+
+      <h3>Virtuálne sieťové laboratóriá používané na katedre:</h3>
+
+      <p><strong>Packet Tracer</strong> - Počítačové siete 1/2 [PS1, PS2] (CCNA)</p>
+      <p><strong>Dynamips/Dynalab</strong> - Počítačové siete 2 (CCNA), Projektovanie sietí 1 [PrS1], Pokročilé prepínanie/smerovanie v informačno-komunikačných sieťach (CCNP Switching/Routing)</p>
+      <p><strong>GNS3</strong> - Používaný iba lokálne</p>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-bottom: 0px; margin-top: 1em;"><strong>OpenStack</strong></p>
+      <ul>
+        <li>Nebol skúmaný.</li>
+        <li>Používa sa na iné predmety, ktoré nie sú cieľom tejto práce.</li>
+        <li>Potencionálne použiteľný.</li>
+      </ul>
+
+      <h3>Nedostatky súčasného stavu</h3>
+      <ul>
+        <li>Rôzne nástroje pre rôzne predmety a ich technologická ohraničenosť nástrojov - potreba zjednotenia.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Ciele diplomovej práce</h2>
+      <p>Zjednotenie čo najväčšieho množstva funkcionalít už existujúcich nástrojov do jedného.</p>
+
+      <h3>Čiastkové ciele</h3>
+      <ul>
+        <li>Prieskum nástrojov pre sieťovú virtualizáciu</li>
+        <li>Výber jedného riešenia</li>
+        <li>Analýza vyučovania</li>
+        <li>Zber virtuálnych zariadení</li>
+        <li>Nasadenie do vyučovania</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Prieskum nástrojov pre sieťovú virtualizáciu</h2>
+
+      <h3>Účel</h3>
+      <p>Prieskum a porovnanie existujúcich riešení pre potreby katedry podľa zvolených kritérií.</p>
+
+      <h3>Kritériá</h3>
+      <ul>
+        <li>Open-source.</li>
+        <li>Podpora zariadení od rôznych výrobcov.</li>
+        <li>Jednoduché ovládanie.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h3>Kritériá (pokr.)</h3>
+      <ul>
+        <li>Vzdialený prístup ku zariadeniam.</li>
+        <li>Správa topológií.</li>
+        <li>Používateľ môže mať spustených viacero topológií.</li>
+        <li>Možnosť práce viac ľudí naraz na rovnakom projekte.</li>
+        <li>Možnosť prepojiť topológiu so živou sieťou.</li>
+        <li>Podpora nástroja v budúcnosti.</li>
+      </ul>
+
+      <h3>Výsledok</h3>
+      <p>Zoznam nástrojov a ich funkcionalít.</p>
+    </section>
+
+
+    <section class="slide">
+      <h2>Výber jedného riešenia</h2>
+
+      <h3>Účel</h3>
+      <ul>
+        <li>Výber jedného nástroja podľa definovaných kritérii.</li>
+        <li>Nasadenie EVE-ng do sieťovej infraštruktúry.</li>
+      </ul>
+
+      <h3>Metodika</h3>
+      <ul>
+        <li>Inštalácia</li>
+        <li>Úprava nástroja</li>
+        <li>Administrácia</li>
+        <li>Vytvorenie návodov z vyššie uvedených bodov</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h3>Úprava nástroja</h3>
+      <ul>
+        <li>Sprístupnenie používateľských rolí.</li>
+        <ul>
+            <li>Podpora pre typy používateľov</li>
+            <ul>
+              <li>Učiteľ</li>
+              <ul>
+                <li>Vytváranie sieťových topológií</li>
+                <li>Zadávanie úloh študentom</li>
+              </ul>
+              <li>Študent</li>
+              <ul>
+                <li>Konfigurácia zadaných úloh na vytvorenej topológii</li>
+              </ul>
+            </ul>
+        </ul>
+        <li>Povolenie úprav používateľských atribútov.</li>
+        <li>Vypnutie správy o nízkom rozlíšení obrazovky.</li>
+        <li><em>Zatvorenie topológie so spustenými zariadeniami.</em></li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h3>Administrácia</h3>
+      <ul>
+        <li>Zálohovanie.</li>
+        <ul>
+          <li>Rýchle obnovenie v prípade zlyhania servera.</li>
+          <li>Zálohovací skript.</li>
+        </ul>
+        <li>Monitorovanie.</li>
+        <li>Správa používateľov.</li>
+      </ul>
+
+      <h3>Výsledky</h3>
+      <p style="margin-bottom: 0px;">Dve inštancie EVE-ng servera:</p>
+      <ul style="margin-top: 0px;">
+        <li><strike>Virtuálny stroj (VMware).</strike></li>
+        <li>Fyzický server.</li>
+      </ul>
+      <p>Zálohovací skript.</p>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Zálohovací skript</strong></p>
+      <p>EVE-ng + GNS3</p>
+      <img src="images/skript_zalohovanie_eve-ng_gns3.png">
+    </section>
+
+    
+    <section class="slide">
+      <h2>Analýza vyučovania</h2>
+
+      <h3>Účel</h3>
+      <p>Prieskum vyučovaných tém na katedre.</p>
+
+      <h3>Metodika</h3>
+      <ul>
+        <li>Informačné listy predmetov</li>
+        <li>Vyučovacie materiály predmetov na katedre</li>
+      </ul>
+      
+      <h3>Výsledky</h3>
+      <p>Textový dokument so zoznamom vyučovaných tém.</p>
+    </section>
+
+
+    <section class="slide">
+      <h2>Virtuálne zariadenia</h2>
+
+      <h3>Účel</h3>
+      <ul>
+        <li>Získavanie stabilných zariadení pre virtuálny nástroj EVE-ng.</li>
+        <li>Hľadanie prieniku technológii.</li>
+      </ul>
+
+
+      <h3>Metodika</h3>
+      <ul>
+        <li>Získavanie.</li>
+        <li>Testovanie:</li>
+        <ul>
+          <li>spustiteľnosti.</li>
+          <li>systémových požiadaviek.</li>
+          <li>podporovaných technológii.</li>
+        </ul>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+    <h3>Výsledky</h3>
+      <ul>
+        <li>Vyše 50 rôznych druhov zariadení, celkovo cca. 100 zariadení</li>
+        <li>Tabuľkový dokument s výsledkami testovania spustiteľnosti zariadení.</li>
+        <li>Skript na testovanie systémových požiadaviek.</li>
+        <li>Skript na úpravu šablón pre virtuálne zariadenia podľa systémových požiadaviek.</li>
+        <li>Tabuľkový dokument s výsledkami testovania systémových požiadaviek zariadení.</li>
+        <li>Skript na testovanie podporovaných technológií zariadení Cisco.</li>
+        <li>Tabuľkový dokument so zoznamom vyučovaných sieťových technológii a zoznamom podporovaných technológii testovaných zariadení.</li>
+        <li>Skript na importovanie zariadení z EVE-ng na GNS3 server.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Tabuľkový dokument s výsledkami testovania spustiteľnosti zariadení</strong></p>
+      <p>Zariadenie | Platforma | Názov súboru | Spôsob virtualizácie | Predvolené prihlasovacie údaje | Spôsob pripojenia | Úspešné spustenie | Poznámky</p>
+      <img src="images/sumarny_prehlad_testovanie_spustitelnosti.png">
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Tabuľkový dokument s výsledkami testovania systémových požiadaviek zariadení</strong></p>
+      <p>Čas spúšťania, Odhadovaný počet zariadení, ktoré je možné spustiť naraz a celkovo</p>
+      <img src="images/testovanie_systemovych_poziadaviek_sablona.png">
+    </section>
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Tabuľkový dokument so zoznamom vyučovaných sieťových technológii a zoznamom podporovaných technológii testovaných zariadení</strong></p>
+      <p>Vyučovaná téma | Predmety | Jednotlivé zariadenia </p>
+      <img src="images/sumarny_prehlad_testovanie_vyucovanych_technologii.png">
+    </section>
+
+    
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Skript na testovanie systémových požiadaviek</strong></p>
+      <img src="images/skript_testovanie_systemovych_poziadaviek.png">
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Skript na úpravu šablón pre virtuálne zariadenia</strong></p>
+      <p>podľa systémových požiadaviek</p>
+      <img style="margin-top:80px; height: 350px;" src="images/skript_uprava_sablon.png">
+    </section>
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Skript na testovanie podporovaných technológií zariadení Cisco</strong></p>
+      <img src="images/skript_testovanie_technologii_cisco.png">
+    </section>
+    
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Skript na importovanie zariadení z EVE-ng na GNS3 server</strong></p>
+      <p>Importovanie iba QEMU zariadení (iná adresárová štruktúra)</p>
+      <img src="images/skript_import_qemu_zariadeni_z_eve-ng_do_gns3.png">
+    </section>
+
+
+    <section class="slide">
+      <h2>Nasadenie do vyučovania</h2>
+
+      <h3>Účel</h3>
+      <p>Overenie použiteľnosti nástroja vo vyučovaní.</p>
+
+      <h3>Metodika</h3>
+      <ul>
+        <li>Výber vhodných zariadení.</li>
+        <li>Zostavenie topológie.</li>
+        <li>Replikácia topológie.</li>
+        <li>Interakcia s topológiou pomocou webového rozhrania.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h3>Výsledky</h3>
+      <ul>
+        <li>Projektovanie sietí 2</li>
+        <li>Počítačové siete 2</li>
+        <li>Projektovanie sietí 1</li>
+        <li>Integračný balíček pre EVE-ng (Linux)</li>
+        <ul>
+            <li>SSH tunely pre <em>telnet</em> a <em>VNC</em> protokoly.</li>
+          </ul>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      Obrázok webového rozhrania EVE-ng s otvorenou topológiou na PrS1 (nejakú bez sériových liniek)
+    </section>
+
+
+    <section class="slide">
+      Obrázok odchytávania paketov v topológii - kontextová ponuka zariadenia + wireshark okno
+    </section>
+
+
+    <section class="slide">
+      <h2>Pokračovanie projektu</h2>
+      <ul>
+        <li>Dokončenie testovania technológii</li>
+        <ul>
+          <li>podporované technológie pre zariadenia iných výrobcov (napr. Juniper, Nokia)</li>
+        </ul>
+        <li>EVE-ng - Oprava nedostatkov a pridávanie funkcionalít do nástroja.</li>
+        <li><strong>GNS3</strong> - Izolácia a autentifikácia používateľov.</li>
+        <li>OpenStack</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <h2>Výsledky práce</h2>
+      <ul>
+        <li>Analýza dostupných nástrojov pre sieťovú virtualizáciu.</li>
+        <li>Inštalácia vybraného nástroja - EVE-ng.</li>
+        <li>Analýza vyučovaných technológii vybraných predmetov.</li>
+        <li>Získanie a testovanie dostupných virtuálnych zariadení.</li>
+        <li>Vytvorenie postupov na testovanie iných virtualizačných nástrojov.</li>
+        <li>Vyhodnotenie výstupov testovania - sumárne tabuľkové súbory.</li>
+        <li>Nasadenie do vyučovania na vybrané predmety.</li>
+        <li>Skripty (Bash, Python).</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 70px;"><strong>Použitie smerovačov bez sériových liniek v topológií na PrS1</strong></p>
+
+      <p>Absencia sériových rozhraní v topológií na PrS1 by nemala mať vplyv na funkčnosť vyučovanej témy.</p>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 70px;"><strong>Pre študentov by bolo vhodnejšie, aby si topológiu sami vytvorili, aby si študenti uvedomili, kde robia chyby napr. pri prepájaní zariadení.</strong></p>
+
+      <ul>
+        <li>PS1 - iba fyzické zariadenia.</li>
+        <li>PS2, PrS1, PrS2 - fyzické aj virtuálne zariadenia.</li>
+        <li>Citlivé webové rozhranie EVE-ng pri používaní viacerými používateľmi.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 70px;"><strong>Cisco Packet Tracer je prístupný iba pre študentov Cisco Network Academy.</strong></p>
+
+      <ul>
+        <li>V najnovšej verzií nutný Netacad účet pre jeho používanie.</li>
+        <li><em>Multiuser</em> mód sme na cvičeniach z PS1/2 nevyužívali.</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 70px;"><strong>Využitie platformy OpenStack ako virtuálne sieťové laboratórium podľa vzoru jednej ruskej univerzity (OpenNebula).</strong></p>
+
+      <ul>
+        <li>Vhodné preskúmať.</li>
+        <li>Virtuálne zariadenia k dispozícií.</li>
+        <li>Doplniť grafické rozhranie (web/aplikácia).</li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 70px;"><strong>Zriedkavé využívanie nástroja ViRo2 na katedre.</strong></p>
+
+      <ul>
+        <li>Neskúmal som dôvody.</li>
+        <li>ViRo2 ako inšpirácia pre EVE-ng a v.v.</li>
+        <li>Doplniť grafické rozhranie (web/aplikácia).</li>
+        <li>Popularita CMS systému <a href="https://insights.stackoverflow.com/survey/2018/?utm_source=Iterable&utm_medium=email&utm_campaign=dev-survey-2018-promotion#most-popular-technologies">Drupal</a> </li>
+      </ul>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 70px;"><strong>Porovnávacie kritéria pre virtuálne sieťové nástroje.</strong></p>
+
+      <ul>
+        <li>Úvodné kritériá (12) slúžia na prvotné preskúmanie nástrojov.</li>
+        <li>Neskôr museli byť pridané aj ďalšie 4, kvôli spresneniu.</li>
+        <li>Dôsledky zberu a implementácie ďalších kritérií:</li>
+        <ul>
+          <li>Predĺženie vývoja. (nové požiadavky treba špecifikovať, implementovať, otestovať a zdokumentovať)</li>
+          <li>Oboznamovanie sa s nástrojov trvalo určitý čas. (identifikácia a spolupráca jednotlivých súčastí EVE-ng)</li>
+        </ul>
+      </ul>
+    </section>
+
+
+    <!-- End slides. -->
+
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+  <!-- Required JS files. -->
+  <script src="jquery.min.js"></script>
+  <script src="core/deck.core.js"></script>
+
+  <!-- Extension JS files. Add or remove as needed. -->
+  <script src="extensions/menu/deck.menu.js"></script>
+  <script src="extensions/goto/deck.goto.js"></script>
+  <script src="extensions/status/deck.status.js"></script>
+  <script src="extensions/navigation/deck.navigation.js"></script>
+  <script src="extensions/scale/deck.scale.js"></script>
+
+  <!-- Initialize the deck. You can put this in an external file if desired. -->
+  <script>
+    $(function() {
+      $.deck('.slide');
+    });
+  </script>
+
+</body>
+</html>
