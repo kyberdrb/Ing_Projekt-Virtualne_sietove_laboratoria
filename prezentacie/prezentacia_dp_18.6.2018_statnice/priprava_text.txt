@@ -1,0 +1,184 @@
+1.
+
+Ďakujem za slovo.
+
+Vážený predseda, vážená komisia,
+
+chcel by som vám prezentovať výsledky svojej diplomovej práce, ktorej témou boli sieťové virtualizačné nástroje a ich využitie vo vyučovacom procese Katedry informačných sietí, pod vedením doc. Pavla Segeča.
+
+---
+
+2.
+
+Úlohou tohto projektu bolo nahradiť existujúce sieťové laboratóriá jedným riešením, ktoré by v čo najväčšej miere podporovalo virtuálne zariadenia používané na katedre, a ktoré by dovoľovalo vypracovávanie úloh z vybraných predmetov.
+
+---
+
+3.
+
+Na katedre sa momentálne aktívne používajú nástroje Packet Tracer, Dynampis/Dynalab, GNS3 a OpenStack. Používajú sa predovšetkým na vyučovanie CCNA a CCNP kurzov.
+
+---
+
+4.
+
+Nedostatkom súčasného stavu je to, že rôzne predmety si vyžadujú iné nástroje, kvôli ich technologickej špecializácii. Preto bolo potrebné nájsť jednotné riešenie, ktoré by vyhovovalo špecifikácii tohto projektu. To povedie k zjednodušeniu vyučovacieho procesu a rozšíreniu vyčovaných tém.
+
+---
+
+5.
+
+Hlavným cieľom tejto diplomovej práce je zjednotenie čo najväčšieho množstva funkcionalít z už existujúcich sieťových virtualizačných nástrojov do jedného.
+
+Tomu predchádzali uvedené čiastkové ciele. V priebehu prezentácie sa budem venovať každému z nich.
+
+---
+
+6.
+
+Prvým krokom bol prieskum nástrojov pre sieťovú virtualizáciu. V tomto kroku bol vykonaný prieskum dostupných nástrojov a zároveň boli stanovené kritériá, ktoré má nástroj spĺňať. Tu sú uvedené niektoré kritériá, ktoré boli brané do úvahy.
+
+---
+
+7.
+
+Výsledkom tohto kroku bol zoznam nástrojov a ich funkcionalít.
+
+---
+
+8.
+
+Ďalším krokom bolo podľa spomenutých kritérii vybrať jedno riešenie a nasadiť ho do sieťovej infraštruktúry katedry. Kritériám vyhovoval o.i. aj nástroj EVE-ng, preto sme sa rozhodli venovať sa mu ďalej. Nasadzovanie nástroja prebiehalo vo viacerých krokoch, ktoré boli dôsledne dokumentované.
+
+---
+
+9.
+
+Po inštalácii nástroja bolo potrebné vykonať na ňom určité úpravy, ktoré vylepšili jeho doterajšie funkcionality a opravili niektoré z jeho nedostatkov. Konkrétne implementácia používateľských rolí v EVE-ng umožnila izoláciu používateľov vo webovom rozhraní a priradenie povolených operácií každej roli. Táto funkcionalita bola dostupná iba v platených verziách nástroja.
+
+---
+
+10.
+
+V rámci administrácie servera som sa venoval jeho zálohovaniu, monitorovaniu a správe webových používateľov. Zálohovanie umožňuje rýchle obnovenie servera v prípade kritickej udalosti. Výsledkami tohto kroku boli dve inštancie EVE-ng servera: VMware inštalácia slúžila hlavne na prvotné testovanie a odladenie nástroja. Tento server bol odstránený. Fyzická inštalácia vychádzala z týchto skúseností a slúžila na vypracovávanie niektorých konfiguračných úloh z rôznych predmetov. Navyše bol vytvorený aj zálohovací skript, ktorý automatizuje zálohovanie dôležitých súborov a adresárov do LXC kontajnera.
+
+---
+
+11.
+
+Na obrázku vidíme časť zo zálohovacieho skriptu, na ktorej je znázornené zálohovanie databáz s používateľskými kontami a ďalšími informáciami. Skript je možné použiť nielen pre EVE-ng, ale aj v ekvivalentnom nástroji, GNS3.
+
+---
+
+12.
+
+V kroku "Analýza vyučovania" bol vytvorený dokument so zoznamom vyučovaných tém na základe dostupných materiálov pre predmety, ktoré boli vymenované v úvode prezentácie.
+
+---
+
+13.
+
+Nasledujúci krok bol venovaný virtuálnym zariadeniam. Hľadali sa také zariadenia, ktoré by podporovali témy vyučované na vybraných predmetoch. Najprv bolo potrebné tieto zariadenia získať a potom otestovať podľa uvedených bodov.
+
+---
+
+14.
+
+Výsledkom tohto kroku bolo viacero skriptov a sumárnych tabuľkových dokumentov, ktoré budú bližšie opísané na nasledujúcich snímkoch.
+
+---
+
+15.
+
+Tu vidíme ukážku tabuľkového dokumentu, ktorý slúži ako referencia o tom, ako sa dané zariadenie správa v EVE-ng topológii. Tak môžeme predísť rôznym komplikáciám pri práci s daným zariadením.
+
+---
+
+16.
+
+Tento skript slúži na meranie systémových nárokov zariadenia alebo topológie. Na obrázku je znázornená časť skriptu, ktorá meria vyťaženie operačnej pamäte.
+
+---
+
+17.
+
+Na tomto obrázku vidíme ukážku tabuľkového dokumentu, ktorý slúži na odhad systémových požiadaviek daného zariadenia. Tak mu môžeme nastaviť dostatočné parametre pre správny chod.
+
+---
+
+18.
+
+Tu vidíme časť skriptu, ktorý slúži na hromadnú úpravu systémových požiadaviek v šablónach pre jednotlivé zariadenia.
+
+---
+
+19.
+
+Na tomto obrázku vidíme časť skriptu, ktorý slúži na otestovanie podpory danej vyučovanej témy pre Cisco zariadenie.
+
+---
+
+20.
+
+Tu vidíme ukážku tabuľkového dokumentu, ktorý slúži ako referencia o tom, ktoré zariadenia podporujú danú vyučovanú tému, a na ktorom predmete je táto téma vyučovaná. Na základe toho môžeme určiť, ktoré zariadenia sú vhodné pre daný predmet.
+
+---
+
+21.
+
+Na tomto obrázku vidíme časť skriptu, ktorý slúži na jednoduchšie importovanie KVM zariadení z EVE-ng do nástroja GNS3.
+
+---
+
+22.
+
+Posledným krokom bolo nasadenie nástroja do vyučovania, kedy sa testovalo praktické využitie nástroja. Najprv bola pre danú úlohu vytvorená vzorová topológia z vhodných zariadení, následne bola replikovaná pre každého študenta resp. skupinu a nakoniec bola na topológii vypracovávaná zadaná úloha.
+
+---
+
+23.
+
+Výsledkom tohto kroku boli vypracované úlohy a semestrálne práce z uvedených predmetov. Navyše bol upravený aj integračný balíček pre platformu Linux. Integračný balíček zjednodušuje vzdialený prístup k zariadeniam v EVE-ng topológii cez webové rozhranie. Úprava spočívala v zapuzdrení protokolov telnet a vnc do SSH tunelov.
+
+---
+
+24.
+
+Na obrázku vidíme ukážku topológie na predmet Projektovanie sietí 1.
+
+---
+
+25.
+
+Tu je demonštrované odchytávanie paketov v EVE-ng topológii.
+
+---
+
+26.
+
+Zo smerovača R2 bol vykonaný ping na smerovač R1, pričom bola komunikácia zároveň odchytávaná nástrojom Wireshark.
+
+---
+
+27.
+
+Do budúcnosti by bolo potrebné dokončiť testovanie vyučovaných technológií aj pre smerovače iných výrobcov. Projekt sa môže ďalej uberať rôznymi smermi. Podľa môjho názoru má väčší význam zamerať sa na nástroje GNS3 a OpenStack, pretože obidva sú open-source nástroje používané na katedre.
+
+---
+
+28.
+
+Celkovo boli v práci splnené tieto kroky:
+Boli analyzované dostupné nástroje pre sieťovú virtualizáciu,
+následne bol nainštalovaný nástroj EVE-ng,
+a analyzované vyučované témy vybraných predmetov.
+Ďalej boli zhromaždené a testované dostupné virtuálne zariadenia, pričom postupy, podľa ktorých bolo testovanie vykonané, môžu byť použité aj v iných virtualizačných nástrojoch.
+Výstupy testovania boli vyhodnotené sumárnymi tabuľkovými súbormi.
+Vstupné údaje pre tieto dokumenty boli získavané vytvorenými skriptami.
+Nakoniec bol nástroj úspešne nasadený do vyučovania na vybrané predmety.
+
+---
+
+29.
+
+Ďakujem za váš čas a pozornosť.

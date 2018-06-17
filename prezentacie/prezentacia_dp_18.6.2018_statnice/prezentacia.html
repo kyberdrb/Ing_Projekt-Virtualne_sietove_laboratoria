@@ -45,7 +45,6 @@
         <li>Nahradenie fyzických a virtuálnych laboratórii jediným virtualizovaným riešením</li>
         <li>Podpora virtuálnych zariadení používaných na katedre</li>
         <li>Vypracovávanie konfiguračných úloh pre vybrané vyučovacie predmety.</li>
-        <li>V čo najväčšej miere.</li>
       </ul>
     </section>
 
@@ -53,25 +52,24 @@
     <section class="slide">
       <h2>Súčasný stav</h2>
 
-      <h3>Virtuálne sieťové laboratóriá používané na katedre:</h3>
+      <h3>Virtuálne sieťové nástroje používané na katedre:</h3>
 
       <p><strong>Packet Tracer</strong> - Počítačové siete 1/2 [PS1, PS2] (CCNA)</p>
       <p><strong>Dynamips/Dynalab</strong> - Počítačové siete 2 (CCNA), Projektovanie sietí 1 [PrS1], Pokročilé prepínanie/smerovanie v informačno-komunikačných sieťach (CCNP Switching/Routing)</p>
       <p><strong>GNS3</strong> - Používaný iba lokálne</p>
+      <p><strong>OpenStack</strong></p>
     </section>
 
 
     <section class="slide">
-      <p style="margin-bottom: 0px; margin-top: 1em;"><strong>OpenStack</strong></p>
+      <h2>Nedostatky súčasného stavu</h2>
       <ul>
-        <li>Nebol skúmaný.</li>
-        <li>Používa sa na iné predmety, ktoré nie sú cieľom tejto práce.</li>
-        <li>Potencionálne použiteľný.</li>
-      </ul>
-
-      <h3>Nedostatky súčasného stavu</h3>
-      <ul>
-        <li>Rôzne nástroje pre rôzne predmety a ich technologická ohraničenosť nástrojov - potreba zjednotenia.</li>
+        <li>Rôzne predmety</li>
+        <li>Rôzne nástroje</li>
+        <li>Technologická špecializácia</li>
+        <li>Potreba zjednotenia</li>
+        <li>Zjednodušenie vyučovacieho procesu</li>
+        <li>Rozšírenie vyučovaných tém</li>
       </ul>
     </section>
 
@@ -128,7 +126,7 @@
       <h3>Účel</h3>
       <ul>
         <li>Výber jedného nástroja podľa definovaných kritérii.</li>
-        <li>Nasadenie EVE-ng do sieťovej infraštruktúry.</li>
+        <li>Nasadenie nástroja do sieťovej infraštruktúry.</li>
       </ul>
 
       <h3>Metodika</h3>
@@ -137,6 +135,7 @@
         <li>Úprava nástroja</li>
         <li>Administrácia</li>
         <li>Vytvorenie návodov z vyššie uvedených bodov</li>
+        <li>EVE-ng</li>
       </ul>
     </section>
 
@@ -172,7 +171,6 @@
         <li>Zálohovanie.</li>
         <ul>
           <li>Rýchle obnovenie v prípade zlyhania servera.</li>
-          <li>Zálohovací skript.</li>
         </ul>
         <li>Monitorovanie.</li>
         <li>Správa používateľov.</li>
@@ -243,8 +241,8 @@
         <li>Vyše 50 rôznych druhov zariadení, celkovo cca. 100 zariadení</li>
         <li>Tabuľkový dokument s výsledkami testovania spustiteľnosti zariadení.</li>
         <li>Skript na testovanie systémových požiadaviek.</li>
-        <li>Skript na úpravu šablón pre virtuálne zariadenia podľa systémových požiadaviek.</li>
         <li>Tabuľkový dokument s výsledkami testovania systémových požiadaviek zariadení.</li>
+        <li>Skript na úpravu šablón pre virtuálne zariadenia podľa systémových požiadaviek.</li>
         <li>Skript na testovanie podporovaných technológií zariadení Cisco.</li>
         <li>Tabuľkový dokument so zoznamom vyučovaných sieťových technológii a zoznamom podporovaných technológii testovaných zariadení.</li>
         <li>Skript na importovanie zariadení z EVE-ng na GNS3 server.</li>
@@ -260,21 +258,15 @@
 
 
     <section class="slide">
+      <p style="margin-top: 1em;"><strong>Skript na testovanie systémových požiadaviek</strong></p>
+      <a href="images/skript_testovanie_systemovych_poziadaviek.png" target="_blank"><img style="height: 500px;" src="images/skript_testovanie_systemovych_poziadaviek.png"></a>
+    </section>
+
+
+    <section class="slide">
       <p style="margin-top: 1em;"><strong>Tabuľkový dokument s výsledkami testovania systémových požiadaviek zariadení</strong></p>
       <p>Čas spúšťania, Odhadovaný počet zariadení, ktoré je možné spustiť naraz a celkovo</p>
       <a href="images/testovanie_systemovych_poziadaviek_sablona.png" target="_blank"><img src="images/testovanie_systemovych_poziadaviek_sablona.png"></a>
-    </section>
-
-    <section class="slide">
-      <p style="margin-top: 1em;"><strong>Tabuľkový dokument so zoznamom vyučovaných sieťových technológii a zoznamom podporovaných technológii testovaných zariadení</strong></p>
-      <p>Vyučovaná téma | Predmety | Jednotlivé zariadenia </p>
-      <a href="images/sumarny_prehlad_testovanie_vyucovanych_technologii.png" target="_blank"><img src="images/sumarny_prehlad_testovanie_vyucovanych_technologii.png"></a>
-    </section>
-
-    
-    <section class="slide">
-      <p style="margin-top: 1em;"><strong>Skript na testovanie systémových požiadaviek</strong></p>
-      <a href="images/skript_testovanie_systemovych_poziadaviek.png" target="_blank"><img style="height: 500px;" src="images/skript_testovanie_systemovych_poziadaviek.png"></a>
     </section>
 
 
@@ -284,10 +276,17 @@
       <a href="images/skript_uprava_sablon.png" target="_blank"><img style="margin-top:80px; height: 350px;" src="images/skript_uprava_sablon.png"></a>
     </section>
 
+
     <section class="slide">
       <p style="margin-top: 1em;"><strong>Skript na testovanie podporovaných technológií zariadení Cisco</strong></p>
-      
       <a href="images/skript_testovanie_technologii_cisco.png" target="_blank"><img src="images/skript_testovanie_technologii_cisco.png"></a>
+    </section>
+
+
+    <section class="slide">
+      <p style="margin-top: 1em;"><strong>Tabuľkový dokument so zoznamom vyučovaných sieťových technológii a zoznamom podporovaných technológii testovaných zariadení</strong></p>
+      <p>Vyučovaná téma | Predmety | Jednotlivé zariadenia </p>
+      <a href="images/sumarny_prehlad_testovanie_vyucovanych_technologii.png" target="_blank"><img src="images/sumarny_prehlad_testovanie_vyucovanych_technologii.png"></a>
     </section>
     
 
@@ -306,10 +305,9 @@
 
       <h3>Metodika</h3>
       <ul>
-        <li>Výber vhodných zariadení.</li>
-        <li>Zostavenie topológie.</li>
+        <li>Zostavenie topológie z vhodných zariadení.</li>
         <li>Replikácia topológie.</li>
-        <li>Interakcia s topológiou pomocou webového rozhrania.</li>
+        <li>Vypracovanie úlohy.</li>
       </ul>
     </section>
 
@@ -322,7 +320,7 @@
         <li>Projektovanie sietí 1</li>
         <li>Integračný balíček pre EVE-ng (Linux)</li>
         <ul>
-            <li>SSH tunely pre <em>telnet</em> a <em>VNC</em> protokoly.</li>
+            <li>SSH tunely - vzdialený prístup k zariadeniam - <em>telnet</em> a <em>VNC</em>.</li>
           </ul>
       </ul>
     </section>
