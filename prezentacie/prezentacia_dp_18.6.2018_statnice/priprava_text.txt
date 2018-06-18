@@ -2,7 +2,7 @@
 
 Ďakujem za slovo.
 
-Vážený predseda, vážená komisia,
+Vážený pán predseda, vážená komisia,
 
 chcel by som vám prezentovať výsledky svojej diplomovej práce, ktorej témou boli sieťové virtualizačné nástroje a ich využitie vo vyučovacom procese Katedry informačných sietí, pod vedením doc. Pavla Segeča.
 
@@ -22,7 +22,7 @@ Na katedre sa momentálne aktívne používajú nástroje Packet Tracer, Dynampi
 
 4.
 
-Nedostatkom súčasného stavu je to, že rôzne predmety si vyžadujú iné nástroje, kvôli ich technologickej špecializácii. Preto bolo potrebné nájsť jednotné riešenie, ktoré by vyhovovalo špecifikácii tohto projektu. To povedie k zjednodušeniu vyučovacieho procesu a rozšíreniu vyčovaných tém.
+Nedostatkom súčasného stavu je to, že rôzne predmety si vyžadujú iné nástroje, kvôli ich technologickej špecializácii. Preto bolo potrebné nájsť jednotné riešenie, ktoré by vyhovovalo špecifikácii tohto projektu. To povedie k zjednodušeniu vyučovacieho procesu a rozšíreniu vyčovaných tém, ktoré môžu byť vyučované vo virtualizovanom prostredí.
 
 ---
 
@@ -54,13 +54,13 @@ Výsledkom tohto kroku bol zoznam nástrojov a ich funkcionalít.
 
 9.
 
-Po inštalácii nástroja bolo potrebné vykonať na ňom určité úpravy, ktoré vylepšili jeho doterajšie funkcionality a opravili niektoré z jeho nedostatkov. Konkrétne implementácia používateľských rolí v EVE-ng umožnila izoláciu používateľov vo webovom rozhraní a priradenie povolených operácií každej roli. Táto funkcionalita bola dostupná iba v platených verziách nástroja.
+Po inštalácii nástroja bolo potrebné vykonať na ňom určité úpravy, ktoré vylepšili jeho doterajšie funkcionality a opravili niektoré z jeho nedostatkov. Konkrétne implementácia používateľských rolí v EVE-ng umožnila izoláciu používateľov vo webovom rozhraní a priradenie povolených operácií každej roli. To zvyšuje bezpečnosť pri používaní webového rozhrania. Táto funkcionalita bola dostupná iba v platených verziách nástroja.
 
 ---
 
 10.
 
-V rámci administrácie servera som sa venoval jeho zálohovaniu, monitorovaniu a správe webových používateľov. Zálohovanie umožňuje rýchle obnovenie servera v prípade kritickej udalosti. Výsledkami tohto kroku boli dve inštancie EVE-ng servera: VMware inštalácia slúžila hlavne na prvotné testovanie a odladenie nástroja. Tento server bol odstránený. Fyzická inštalácia vychádzala z týchto skúseností a slúžila na vypracovávanie niektorých konfiguračných úloh z rôznych predmetov. Navyše bol vytvorený aj zálohovací skript, ktorý automatizuje zálohovanie dôležitých súborov a adresárov do LXC kontajnera.
+V rámci administrácie servera som sa venoval jeho zálohovaniu, monitorovaniu a správe webových používateľov. Zálohovanie umožňuje rýchle obnovenie servera v prípade kritickej udalosti. Výsledkami tohto kroku boli dve inštancie EVE-ng servera: VMware inštalácia slúžila hlavne na prvotné testovanie a odladenie nástroja. Tento server bol následne odstránený. Fyzická inštalácia vychádzala z týchto skúseností a slúžila na vypracovávanie niektorých konfiguračných úloh z rôznych predmetov. Navyše bol vytvorený aj zálohovací skript, ktorý automatizuje zálohovanie dôležitých súborov a adresárov do LXC kontajnera.
 
 ---
 
@@ -114,7 +114,7 @@ Tu vidíme časť skriptu, ktorý slúži na hromadnú úpravu systémových po�
 
 19.
 
-Na tomto obrázku vidíme časť skriptu, ktorý slúži na otestovanie podpory danej vyučovanej témy pre Cisco zariadenie.
+Na tomto obrázku vidíme úvodnú časť skriptu, ktorý slúži na otestovanie podpory danej vyučovanej témy pre Cisco zariadenie.
 
 ---
 
@@ -170,7 +170,7 @@ Do budúcnosti by bolo potrebné dokončiť testovanie vyučovaných technológi
 
 Celkovo boli v práci splnené tieto kroky:
 Boli analyzované dostupné nástroje pre sieťovú virtualizáciu,
-následne bol nainštalovaný nástroj EVE-ng,
+následne bol podľa definovaných kritérií zvolený a nainštalovaný nástroj EVE-ng,
 a analyzované vyučované témy vybraných predmetov.
 Ďalej boli zhromaždené a testované dostupné virtuálne zariadenia, pričom postupy, podľa ktorých bolo testovanie vykonané, môžu byť použité aj v iných virtualizačných nástrojoch.
 Výstupy testovania boli vyhodnotené sumárnymi tabuľkovými súbormi.
