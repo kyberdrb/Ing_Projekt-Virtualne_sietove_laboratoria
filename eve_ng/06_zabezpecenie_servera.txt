@@ -126,6 +126,31 @@ Ak chceme, aby sa nový používateľ mohol prihlasovať na server cez SSH aj po
 
 Iba ak je to nevyhnutné, pridáme používateľa do skupiny "sudo".
 
+Postup pre vytvorenie nového používateľa:
+
+  Na serveri (cez SSH)
+
+      sudo groupadd users
+      sudo useradd <USERNAME> -m -s /bin/bash -G users,adm,cdrom,sudo,dip,plugdev,lxd,lpadmin,sambashare
+      sudo passwd <USERNAME>
+
+  Na klientskom počítači
+
+      Skúsime sa prihlásiť ešte pred importovaním SSH certifikátu na server:
+
+          ssh <USERNAME>@<ip_adresa_servera>
+
+      Pre zvýšenú bezpečnosť môžeme importovať SSH certifikát pre nového používateľa na server:
+
+          ssh-copy-id <USERNAME>@<ip_adresa_servera>
+
+
+Odstránenie používateľa:
+
+    Na server zadáme tieto príkazy
+
+        sudo userdel <USERNAME>
+        rm -rf /home/<USERNAME>/
 
 *************
 Zmena SSH portu
