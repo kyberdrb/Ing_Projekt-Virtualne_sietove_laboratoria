@@ -518,6 +518,9 @@ Zdroje:
 -Systém
 https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps
 https://www.tecmint.com/check-linux-hard-disk-bad-sectors-bad-blocks/
+https://www.tecmint.com/add-users-in-linux/
+https://www.cyberciti.biz/faq/linux-remove-user-command/
+https://www.techrepublic.com/article/how-to-create-users-and-groups-in-linux-from-the-command-line/
 
 -SSH
 https://askubuntu.com/a/2224 -> priradenie používateľa do sudo skupiny
